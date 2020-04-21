@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
-    class Item
+    public class Item
     {
         [Key]
         public int Id { get; set; }
@@ -16,7 +11,5 @@ namespace SimpleBilling.Model
         public string Unit { get; set; }
         public string Barcode { get; set; }
         public Category Categories { get; set; }
-
-
     }
 }
