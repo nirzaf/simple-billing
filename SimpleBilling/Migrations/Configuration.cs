@@ -1,15 +1,12 @@
-﻿namespace SimpleBilling.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+﻿using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SimpleBilling.Model.BillingContext>
+namespace SimpleBilling.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<Model.BillingContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Model.BillingContext context)

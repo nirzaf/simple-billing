@@ -10,6 +10,6 @@ namespace SimpleBilling.Model
         public string ItemName { get; set; }
         public string Unit { get; set; }
         public string Barcode { get; set; }
-        public Category Categories { get; set; }
+        public virtual Category Categories { get; set; }
     }
 }
