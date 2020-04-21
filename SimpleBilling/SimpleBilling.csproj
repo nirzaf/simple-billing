@@ -70,6 +70,8 @@
     </Compile>
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
