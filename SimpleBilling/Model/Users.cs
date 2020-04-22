@@ -6,7 +6,9 @@ namespace SimpleBilling.Model
     {
         [Key]
         public int UserId { get; set; }
+        [MaxLength(50)]
         public string Username { get; set; }
+        [MaxLength(50)]
         public string Password { get; set; }
         public int UserType { get; set; }
         public int IsDeleted { get; set; }

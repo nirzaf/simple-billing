@@ -23,17 +23,17 @@ namespace SimpleBilling
         {
             foreach (Form form in Application.OpenForms)
             {
-                // If frmHome is Opened, set focus to it and exit subroutine.
                 if (form.GetType() == typeof(ManageItems))
                 {
-
                     form.Activate();
                     return;
                 }
             }
 
-            ManageItems manageItems = new ManageItems();
-            manageItems.MdiParent = this;
+            ManageItems manageItems = new ManageItems
+            {
+                MdiParent = this
+            };
             manageItems.Show();
         }
     }

@@ -13,12 +13,12 @@ namespace SimpleBilling.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004212118150_billing1"; }
+            get { return "202004212258542_billing1"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target
