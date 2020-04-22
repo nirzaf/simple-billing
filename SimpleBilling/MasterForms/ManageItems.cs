@@ -16,8 +16,26 @@ namespace SimpleBilling.MasterForms
 
         private void ManageItems_Load(object sender, EventArgs e)
         {
-            PanelCRUD.Enabled = false;
-            LoadCMBCategory();
+            //LoadCMBCategory();
+            Form_Load();
+            //LoadDGV();
+        }
+
+        private void Form_Load()
+        {
+            try
+            {
+                PanelCRUD.Enabled = false;
+                using (BillingContext db = new BillingContext())
+                {
+                    itemBindingSource.DataSource = db.Items.ToList();
+                    categoryBindingSource.DataSource = db.Categories.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Info(ex.ToString());
+            }
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -28,13 +46,13 @@ namespace SimpleBilling.MasterForms
             TxtItemCode.Focus();
         }
 
-        private void LoadCMBCategory()
-        {
-            BillingContext db = new BillingContext();
-            CmbCategories.DataSource = (from d in db.Categories select d).ToList(); 
-            CmbCategories.ValueMember = "CategoryId";
-            CmbCategories.DisplayMember = "CategoryName";
-        }
+        //private void LoadCMBCategory()
+        //{
+        //    BillingContext db = new BillingContext();
+        //    CmbCategories.DataSource = (from d in db.Categories select d).ToList();
+        //    CmbCategories.ValueMember = "CategoryId";
+        //    CmbCategories.DisplayMember = "CategoryName";
+        //}
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -67,6 +85,26 @@ namespace SimpleBilling.MasterForms
             }
         }
 
+        private void LoadDGV()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from sem in db.Items.ToList()
+                            join ses in db.Categories
+                            on sem.Id equals ses.CategoryId
+                            select new
+                            {
+                                sem.Id,
+                                sem.Code,
+                                sem.ItemName,
+                                sem.Unit,
+                                sem.Barcode,
+                                sem.Categories
+                            }).ToList();
+                DGVItems.DataSource = data;
+            }
+        }
+
         private void TimerMessage_Tick(object sender, EventArgs e)
         {
             LblMessage.Text = string.Empty;
@@ -75,6 +113,19 @@ namespace SimpleBilling.MasterForms
         private void Info(string Message)
         {
             LblMessage.Text = Message;
+        }
+
+        private void DGVItems_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception.Message == "DataGridViewComboBoxCell value is not valid.")
+            {
+                object value = DGVItems.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                if (!((DataGridViewComboBoxColumn)DGVItems.Columns[e.ColumnIndex]).Items.Contains(value))
+                {
+                    ((DataGridViewComboBoxColumn)DGVItems.Columns[e.ColumnIndex]).Items.Add(value);
+                    e.ThrowException = false;
+                }
+            }
         }
     }
 }
