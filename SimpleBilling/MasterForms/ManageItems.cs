@@ -29,7 +29,7 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     itemBindingSource.DataSource = db.Items.ToList();
-                    categoryBindingSource.DataSource = db.Categories.ToList();
+                    categoryBindingSource.DataSource = db.Categories.ToList();                   
                 }
             }
             catch (Exception ex)
