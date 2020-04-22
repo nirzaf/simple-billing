@@ -59,7 +59,7 @@
             this.itemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.categoriesDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -79,7 +79,7 @@
             this.itemNameDataGridViewTextBoxColumn,
             this.unitDataGridViewTextBoxColumn,
             this.barcodeDataGridViewTextBoxColumn,
-            this.categoriesDataGridViewTextBoxColumn});
+            this.categoriesDataGridViewComboBoxColumn});
             this.DGVItems.DataSource = this.itemBindingSource;
             this.DGVItems.Location = new System.Drawing.Point(13, 44);
             this.DGVItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -374,18 +374,18 @@
             this.barcodeDataGridViewTextBoxColumn.HeaderText = "Barcode";
             this.barcodeDataGridViewTextBoxColumn.Name = "barcodeDataGridViewTextBoxColumn";
             // 
-            // categoriesDataGridViewTextBoxColumn
+            // categoriesDataGridViewComboBoxColumn
             // 
-            this.categoriesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.categoriesDataGridViewTextBoxColumn.DataPropertyName = "Categories";
-            this.categoriesDataGridViewTextBoxColumn.DataSource = this.categoryBindingSource;
-            this.categoriesDataGridViewTextBoxColumn.DisplayMember = "CategoryName";
-            this.categoriesDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.categoriesDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoriesDataGridViewTextBoxColumn.Name = "categoriesDataGridViewTextBoxColumn";
-            this.categoriesDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.categoriesDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.categoriesDataGridViewTextBoxColumn.ValueMember = "CategoryId";
+            this.categoriesDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.categoriesDataGridViewComboBoxColumn.DataPropertyName = "Categories";
+            this.categoriesDataGridViewComboBoxColumn.DataSource = this.categoryBindingSource;
+            this.categoriesDataGridViewComboBoxColumn.DisplayMember = "CategoryName";
+            this.categoriesDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.categoriesDataGridViewComboBoxColumn.HeaderText = "Category";
+            this.categoriesDataGridViewComboBoxColumn.Name = "categoriesDataGridViewComboBoxColumn";
+            this.categoriesDataGridViewComboBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.categoriesDataGridViewComboBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.categoriesDataGridViewComboBoxColumn.ValueMember = "CategoryId";
             // 
             // ManageItems
             // 
@@ -446,6 +446,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn barcodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn categoriesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn categoriesDataGridViewComboBoxColumn;
     }
 }
