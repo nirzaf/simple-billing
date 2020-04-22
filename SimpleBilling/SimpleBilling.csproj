@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202004221523278_biling.designer.cs">
       <DependentUpon>202004221523278_biling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004221632336_billing2.cs" />
+    <Compile Include="Migrations\202004221632336_billing2.designer.cs">
+      <DependentUpon>202004221632336_billing2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004221523278_biling.resx">
       <DependentUpon>202004221523278_biling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004221632336_billing2.resx">
+      <DependentUpon>202004221632336_billing2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

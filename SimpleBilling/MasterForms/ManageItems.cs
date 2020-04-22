@@ -16,7 +16,8 @@ namespace SimpleBilling.MasterForms
 
         private void ManageItems_Load(object sender, EventArgs e)
         {
-            Form_Load();
+            //Form_Load();
+            LoadDGV();
         }
 
         private void Form_Load()
@@ -26,7 +27,7 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     itemBindingSource.DataSource = db.Items.ToList();
-                    categoryBindingSource.DataSource = db.Categories.ToList();                   
+                                      
                 }
             }
             catch (Exception ex)
@@ -96,9 +97,10 @@ namespace SimpleBilling.MasterForms
                                 sem.ItemName,
                                 sem.Unit,
                                 sem.Barcode,
-                                sem.Categories
+                                ses.CategoryId
                             }).ToList();
-                DGVItems.DataSource = data;
+                itemBindingSource.DataSource = data;
+                categoryBindingSource.DataSource = db.Categories.ToList();
             }
         }
 
