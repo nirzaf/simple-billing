@@ -38,17 +38,43 @@ namespace SimpleBilling.MasterForms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                Item items = itemBindingSource.Current as Item;
-                if(items != null)
+                using (BillingContext db = new BillingContext())
                 {
-                    if (db.Entry(items).State == EntityState.Detached)
+                    if (itemBindingSource.Current is Item items)
                     {
-                        db.Set<Item>().Attach(items);
+                        if (db.Entry(items).State == EntityState.Detached)
+                        {
+                            db.Set<Item>().Attach(items);
+                        }
+                        if (items.Id == 0)
+                        {
+                            db.Entry(items).State = EntityState.Added;
+                        }
+                        else
+                        {
+                            db.Entry(items).State = EntityState.Modified;
+                        }
+                        db.SaveChanges();
+                        Info("Item Added Successfully");
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Info(ex.Message.ToString());
+            }
+        }
+
+        private void TimerMessage_Tick(object sender, EventArgs e)
+        {
+            LblMessage.Text = string.Empty;
+        }
+
+        private void Info(string Message)
+        {
+            LblMessage.Text = Message;
         }
     }
 }

@@ -57,6 +57,8 @@
             this.unitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LblMessage = new System.Windows.Forms.Label();
+            this.TimerMessage = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
@@ -211,6 +213,7 @@
             // 
             // CmbCategories
             // 
+            this.CmbCategories.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.itemBindingSource, "Categories", true));
             this.CmbCategories.FormattingEnabled = true;
             this.CmbCategories.Location = new System.Drawing.Point(136, 153);
             this.CmbCategories.Name = "CmbCategories";
@@ -351,12 +354,30 @@
             this.categoriesDataGridViewTextBoxColumn.HeaderText = "Categories";
             this.categoriesDataGridViewTextBoxColumn.Name = "categoriesDataGridViewTextBoxColumn";
             // 
+            // LblMessage
+            // 
+            this.LblMessage.AutoSize = true;
+            this.LblMessage.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMessage.ForeColor = System.Drawing.Color.LawnGreen;
+            this.LblMessage.Location = new System.Drawing.Point(12, 386);
+            this.LblMessage.Name = "LblMessage";
+            this.LblMessage.Size = new System.Drawing.Size(78, 23);
+            this.LblMessage.TabIndex = 3;
+            this.LblMessage.Text = "Message";
+            // 
+            // TimerMessage
+            // 
+            this.TimerMessage.Enabled = true;
+            this.TimerMessage.Interval = 3000;
+            this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
+            // 
             // ManageItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1244, 457);
+            this.Controls.Add(this.LblMessage);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.DGVItems);
             this.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -372,6 +393,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -405,5 +427,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriesDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label LblMessage;
+        private System.Windows.Forms.Timer TimerMessage;
     }
 }
