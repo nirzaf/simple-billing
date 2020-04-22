@@ -16,16 +16,13 @@ namespace SimpleBilling.MasterForms
 
         private void ManageItems_Load(object sender, EventArgs e)
         {
-            //LoadCMBCategory();
             Form_Load();
-            //LoadDGV();
         }
 
         private void Form_Load()
         {
             try
             {
-                PanelCRUD.Enabled = false;
                 using (BillingContext db = new BillingContext())
                 {
                     itemBindingSource.DataSource = db.Items.ToList();

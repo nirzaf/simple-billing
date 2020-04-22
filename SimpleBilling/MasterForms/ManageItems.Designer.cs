@@ -381,11 +381,11 @@
             this.categoriesDataGridViewTextBoxColumn.DataSource = this.categoryBindingSource;
             this.categoriesDataGridViewTextBoxColumn.DisplayMember = "CategoryName";
             this.categoriesDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.categoriesDataGridViewTextBoxColumn.HeaderText = "Categories";
+            this.categoriesDataGridViewTextBoxColumn.HeaderText = "Category";
             this.categoriesDataGridViewTextBoxColumn.Name = "categoriesDataGridViewTextBoxColumn";
             this.categoriesDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.categoriesDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.categoriesDataGridViewTextBoxColumn.ValueMember = "CategoryName";
+            this.categoriesDataGridViewTextBoxColumn.ValueMember = "CategoryId";
             // 
             // ManageItems
             // 
