@@ -377,7 +377,7 @@
             // categoriesDataGridViewComboBoxColumn
             // 
             this.categoriesDataGridViewComboBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.categoriesDataGridViewComboBoxColumn.DataPropertyName = "Categories";
+            this.categoriesDataGridViewComboBoxColumn.DataPropertyName = "CategoryId";
             this.categoriesDataGridViewComboBoxColumn.DataSource = this.categoryBindingSource;
             this.categoriesDataGridViewComboBoxColumn.DisplayMember = "CategoryName";
             this.categoriesDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
