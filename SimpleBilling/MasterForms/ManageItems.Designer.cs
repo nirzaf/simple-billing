@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVItems = new System.Windows.Forms.DataGridView();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -41,7 +41,7 @@
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.PanelCRUD = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtItemId = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,15 +54,9 @@
             this.CmbCategories = new System.Windows.Forms.ComboBox();
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categories = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
@@ -70,32 +64,24 @@
             // 
             // DGVItems
             // 
-            this.DGVItems.AutoGenerateColumns = false;
             this.DGVItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.codeDataGridViewTextBoxColumn,
-            this.itemNameDataGridViewTextBoxColumn,
-            this.unitDataGridViewTextBoxColumn,
-            this.barcodeDataGridViewTextBoxColumn,
-            this.Categories});
-            this.DGVItems.DataSource = this.itemBindingSource;
             this.DGVItems.Location = new System.Drawing.Point(13, 44);
             this.DGVItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DGVItems.Name = "DGVItems";
             this.DGVItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVItems.Size = new System.Drawing.Size(709, 318);
+            this.DGVItems.Size = new System.Drawing.Size(725, 318);
             this.DGVItems.TabIndex = 0;
+            this.DGVItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVItems_CellClick);
             this.DGVItems.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGVItems_DataError);
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // itemBindingSource
             // 
             this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // label1
             // 
@@ -193,7 +179,7 @@
             this.PanelCRUD.ColumnCount = 2;
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.29782F));
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.70218F));
-            this.PanelCRUD.Controls.Add(this.textBox1, 1, 0);
+            this.PanelCRUD.Controls.Add(this.TxtItemId, 1, 0);
             this.PanelCRUD.Controls.Add(this.label6, 0, 0);
             this.PanelCRUD.Controls.Add(this.label2, 0, 2);
             this.PanelCRUD.Controls.Add(this.label1, 0, 1);
@@ -218,14 +204,14 @@
             this.PanelCRUD.Size = new System.Drawing.Size(455, 256);
             this.PanelCRUD.TabIndex = 2;
             // 
-            // textBox1
+            // TxtItemId
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "Id", true));
-            this.textBox1.Location = new System.Drawing.Point(136, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(316, 26);
-            this.textBox1.TabIndex = 12;
+            this.TxtItemId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtItemId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "Id", true));
+            this.TxtItemId.Location = new System.Drawing.Point(136, 3);
+            this.TxtItemId.Name = "TxtItemId";
+            this.TxtItemId.Size = new System.Drawing.Size(316, 26);
+            this.TxtItemId.TabIndex = 12;
             // 
             // label6
             // 
@@ -315,6 +301,7 @@
             // 
             // CmbCategories
             // 
+            this.CmbCategories.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.categoryBindingSource, "Items", true));
             this.CmbCategories.DataSource = this.categoryBindingSource;
             this.CmbCategories.DisplayMember = "CategoryName";
             this.CmbCategories.FormattingEnabled = true;
@@ -323,6 +310,7 @@
             this.CmbCategories.Size = new System.Drawing.Size(316, 28);
             this.CmbCategories.TabIndex = 10;
             this.CmbCategories.ValueMember = "CategoryId";
+            this.CmbCategories.SelectedIndexChanged += new System.EventHandler(this.CmbCategories_SelectedIndexChanged);
             // 
             // LblMessage
             // 
@@ -341,50 +329,6 @@
             this.TimerMessage.Interval = 3000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 46;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            // 
-            // itemNameDataGridViewTextBoxColumn
-            // 
-            this.itemNameDataGridViewTextBoxColumn.DataPropertyName = "ItemName";
-            this.itemNameDataGridViewTextBoxColumn.HeaderText = "ItemName";
-            this.itemNameDataGridViewTextBoxColumn.Name = "itemNameDataGridViewTextBoxColumn";
-            // 
-            // unitDataGridViewTextBoxColumn
-            // 
-            this.unitDataGridViewTextBoxColumn.DataPropertyName = "Unit";
-            this.unitDataGridViewTextBoxColumn.HeaderText = "Unit";
-            this.unitDataGridViewTextBoxColumn.Name = "unitDataGridViewTextBoxColumn";
-            // 
-            // barcodeDataGridViewTextBoxColumn
-            // 
-            this.barcodeDataGridViewTextBoxColumn.DataPropertyName = "Barcode";
-            this.barcodeDataGridViewTextBoxColumn.HeaderText = "Barcode";
-            this.barcodeDataGridViewTextBoxColumn.Name = "barcodeDataGridViewTextBoxColumn";
-            // 
-            // Categories
-            // 
-            this.Categories.DataPropertyName = "Categories";
-            this.Categories.DataSource = this.categoryBindingSource;
-            this.Categories.DisplayMember = "CategoryName";
-            this.Categories.HeaderText = "Categories";
-            this.Categories.Name = "Categories";
-            this.Categories.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Categories.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Categories.ValueMember = "CategoryId";
-            // 
             // ManageItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -401,8 +345,8 @@
             this.Text = "Manage Items";
             this.Load += new System.EventHandler(this.ManageItems_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.PanelCRUD.ResumeLayout(false);
@@ -434,16 +378,10 @@
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.ComboBox CmbCategories;
         private System.Windows.Forms.BindingSource itemBindingSource;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtItemId;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer TimerMessage;
         private System.Windows.Forms.BindingSource categoryBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn barcodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Categories;
     }
 }

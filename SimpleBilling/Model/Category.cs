@@ -5,11 +5,6 @@ namespace SimpleBilling.Model
 {
     public class Category
     {
-        public Category()
-        {
-            Items = new HashSet<Item>();
-        }
-
         [Key]
         public int CategoryId { get; set; }
 

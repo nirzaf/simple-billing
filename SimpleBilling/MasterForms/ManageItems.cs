@@ -27,7 +27,7 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     itemBindingSource.DataSource = db.Items.ToList();
-                                      
+                    categoryBindingSource.DataSource = db.Categories.ToList();
                 }
             }
             catch (Exception ex)
@@ -60,20 +60,25 @@ namespace SimpleBilling.MasterForms
                 {
                     if (itemBindingSource.Current is Item items)
                     {
-                        if (db.Entry(items).State == EntityState.Detached)
+                        if (items != null)
                         {
-                            db.Set<Item>().Attach(items);
+                            items.Categories = (Category)CmbCategories.SelectedItem;
+                            if (db.Entry(items).State == EntityState.Detached)
+                            {
+                                db.Set<Item>().Attach(items);
+                            }
+                            if (items.Id == 0)
+                            {
+                                db.Entry(items).State = EntityState.Added;
+                            }
+                            else
+                            {
+                                db.Entry(items).State = EntityState.Modified;
+                            }
+                            db.SaveChanges();
+                            LoadDGV();
+                            Info("Item Added Successfully");
                         }
-                        if (items.Id == 0)
-                        {
-                            db.Entry(items).State = EntityState.Added;
-                        }
-                        else
-                        {
-                            db.Entry(items).State = EntityState.Modified;
-                        }
-                        db.SaveChanges();
-                        Info("Item Added Successfully");
                     }
                 }
             }
@@ -87,19 +92,19 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from sem in db.Items.ToList()
-                            join ses in db.Categories
-                            on sem.Id equals ses.CategoryId
+                var data = (from item in db.Items
+                            join cat in db.Categories
+                            on item.Categories.CategoryId equals cat.CategoryId
                             select new
                             {
-                                sem.Id,
-                                sem.Code,
-                                sem.ItemName,
-                                sem.Unit,
-                                sem.Barcode,
-                                ses.CategoryId
+                                item.Id,
+                                item.Code,
+                                item.ItemName,
+                                item.Unit,
+                                item.Barcode,
+                                item.Categories.CategoryName
                             }).ToList();
-                itemBindingSource.DataSource = data;
+                DGVItems.DataSource = data;
                 categoryBindingSource.DataSource = db.Categories.ToList();
             }
         }
@@ -124,6 +129,24 @@ namespace SimpleBilling.MasterForms
                     ((DataGridViewComboBoxColumn)DGVItems.Columns[e.ColumnIndex]).Items.Add(value);
                     e.ThrowException = false;
                 }
+            }
+        }
+
+        private void CmbCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LblMessage.Text = CmbCategories.SelectedValue.ToString();
+        }
+
+        private void DGVItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVItems.SelectedRows.Count > 0)
+            {
+                TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
+                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
             }
         }
     }
