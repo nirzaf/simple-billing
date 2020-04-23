@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVItems = new System.Windows.Forms.DataGridView();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,14 +50,16 @@
             this.TxtUnit = new System.Windows.Forms.TextBox();
             this.TxtBarcode = new System.Windows.Forms.TextBox();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVItems
@@ -74,14 +74,6 @@
             this.DGVItems.TabIndex = 0;
             this.DGVItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVItems_CellClick);
             this.DGVItems.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGVItems_DataError);
-            // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // label1
             // 
@@ -142,6 +134,7 @@
             this.BtnCancel.TabIndex = 3;
             this.BtnCancel.Text = "Cancel";
             this.BtnCancel.UseVisualStyleBackColor = false;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnDelete
             // 
@@ -162,6 +155,7 @@
             this.BtnEdit.TabIndex = 1;
             this.BtnEdit.Text = "Edit";
             this.BtnEdit.UseVisualStyleBackColor = false;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // BtnAdd
             // 
@@ -207,9 +201,9 @@
             // TxtItemId
             // 
             this.TxtItemId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtItemId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "Id", true));
             this.TxtItemId.Location = new System.Drawing.Point(136, 3);
             this.TxtItemId.Name = "TxtItemId";
+            this.TxtItemId.ReadOnly = true;
             this.TxtItemId.Size = new System.Drawing.Size(316, 26);
             this.TxtItemId.TabIndex = 12;
             // 
@@ -266,7 +260,6 @@
             // TxtItemCode
             // 
             this.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtItemCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "Code", true));
             this.TxtItemCode.Location = new System.Drawing.Point(136, 33);
             this.TxtItemCode.Name = "TxtItemCode";
             this.TxtItemCode.Size = new System.Drawing.Size(316, 26);
@@ -275,7 +268,6 @@
             // TxtItemName
             // 
             this.TxtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtItemName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "ItemName", true));
             this.TxtItemName.Location = new System.Drawing.Point(136, 63);
             this.TxtItemName.Name = "TxtItemName";
             this.TxtItemName.Size = new System.Drawing.Size(316, 26);
@@ -284,7 +276,6 @@
             // TxtUnit
             // 
             this.TxtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtUnit.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "Unit", true));
             this.TxtUnit.Location = new System.Drawing.Point(136, 93);
             this.TxtUnit.Name = "TxtUnit";
             this.TxtUnit.Size = new System.Drawing.Size(316, 26);
@@ -293,7 +284,6 @@
             // TxtBarcode
             // 
             this.TxtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBarcode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "Barcode", true));
             this.TxtBarcode.Location = new System.Drawing.Point(136, 123);
             this.TxtBarcode.Name = "TxtBarcode";
             this.TxtBarcode.Size = new System.Drawing.Size(316, 26);
@@ -302,15 +292,17 @@
             // CmbCategories
             // 
             this.CmbCategories.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.categoryBindingSource, "Items", true));
-            this.CmbCategories.DataSource = this.categoryBindingSource;
-            this.CmbCategories.DisplayMember = "CategoryName";
+            this.CmbCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbCategories.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.CmbCategories.FormattingEnabled = true;
             this.CmbCategories.Location = new System.Drawing.Point(136, 153);
             this.CmbCategories.Name = "CmbCategories";
             this.CmbCategories.Size = new System.Drawing.Size(316, 28);
             this.CmbCategories.TabIndex = 10;
-            this.CmbCategories.ValueMember = "CategoryId";
-            this.CmbCategories.SelectedIndexChanged += new System.EventHandler(this.CmbCategories_SelectedIndexChanged);
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // LblMessage
             // 
@@ -325,9 +317,12 @@
             // 
             // TimerMessage
             // 
-            this.TimerMessage.Enabled = true;
             this.TimerMessage.Interval = 3000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
             // 
             // ManageItems
             // 
@@ -345,12 +340,12 @@
             this.Text = "Manage Items";
             this.Load += new System.EventHandler(this.ManageItems_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.PanelCRUD.ResumeLayout(false);
             this.PanelCRUD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,7 +376,7 @@
         private System.Windows.Forms.TextBox TxtItemId;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label LblMessage;
-        private System.Windows.Forms.Timer TimerMessage;
         private System.Windows.Forms.BindingSource categoryBindingSource;
+        private System.Windows.Forms.Timer TimerMessage;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using SimpleBilling.Model;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -16,75 +15,84 @@ namespace SimpleBilling.MasterForms
 
         private void ManageItems_Load(object sender, EventArgs e)
         {
-            //Form_Load();
+            PanelCRUD.Enabled = false;
             LoadDGV();
-        }
-
-        private void Form_Load()
-        {
-            try
-            {
-                using (BillingContext db = new BillingContext())
-                {
-                    itemBindingSource.DataSource = db.Items.ToList();
-                    categoryBindingSource.DataSource = db.Categories.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                Info(ex.ToString());
-            }
+            DGVItems_CellClick(sender, e as DataGridViewCellEventArgs);
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             PanelCRUD.Enabled = true;
-            itemBindingSource.Add(new Item());
-            itemBindingSource.MoveLast();
+            TxtItemId.Text = "0";
             TxtItemCode.Focus();
         }
 
-        //private void LoadCMBCategory()
-        //{
-        //    BillingContext db = new BillingContext();
-        //    CmbCategories.DataSource = (from d in db.Categories select d).ToList();
-        //    CmbCategories.ValueMember = "CategoryId";
-        //    CmbCategories.DisplayMember = "CategoryName";
-        //}
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            PanelCRUD.Enabled = true;
+            TxtItemCode.Focus();
+            BtnSave.Enabled = true;
+        }
+
+        private void ItemCRUD()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                int CatId = Convert.ToInt32(CmbCategories.SelectedValue.ToString());
+                Category cat = db.Categories.FirstOrDefault(s => s.CategoryId == CatId);
+
+                Item items = new Item
+                {
+                    Id = Convert.ToInt32(TxtItemId.Text.Trim()),
+                    Code = TxtItemCode.Text.Trim(),
+                    ItemName = TxtItemName.Text.Trim(),
+                    Unit = TxtUnit.Text.Trim(),
+                    Barcode = TxtBarcode.Text.Trim(),
+                    Categories = cat
+                };
+
+                if (items.Id == 0)
+                {
+                    db.Entry(items).State = EntityState.Added;
+                    db.SaveChanges();
+                    Info("Item Added Successfully");                   
+                }
+                else
+                {
+                    var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
+                    if (result != null)
+                    {
+                        result.Code= items.Code;
+                        result.ItemName = items.ItemName;
+                        result.Unit = items.Unit;
+                        result.Barcode = items.Barcode;
+                        result.Categories = items.Categories;
+                        db.SaveChanges();
+                        Info("Item Modified Successfully");
+                    }                   
+                }
+                
+                int lastRow = DGVItems.Rows.Count;
+                DGVItems.CurrentCell = DGVItems.Rows[lastRow - 1].Cells[0];
+            }
+        }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                using (BillingContext db = new BillingContext())
-                {
-                    if (itemBindingSource.Current is Item items)
-                    {
-                        if (items != null)
-                        {
-                            items.Categories = (Category)CmbCategories.SelectedItem;
-                            if (db.Entry(items).State == EntityState.Detached)
-                            {
-                                db.Set<Item>().Attach(items);
-                            }
-                            if (items.Id == 0)
-                            {
-                                db.Entry(items).State = EntityState.Added;
-                            }
-                            else
-                            {
-                                db.Entry(items).State = EntityState.Modified;
-                            }
-                            db.SaveChanges();
-                            LoadDGV();
-                            Info("Item Added Successfully");
-                        }
-                    }
-                }
+                ItemCRUD();
             }
             catch (Exception ex)
             {
                 Info(ex.Message.ToString());
+            }
+            finally 
+            {
+                PanelCRUD.Enabled = false;
+                BtnSave.Enabled = false;
+                DGVItems.Refresh();
+                LoadDGV();
             }
         }
 
@@ -105,7 +113,9 @@ namespace SimpleBilling.MasterForms
                                 item.Categories.CategoryName
                             }).ToList();
                 DGVItems.DataSource = data;
-                categoryBindingSource.DataSource = db.Categories.ToList();
+                CmbCategories.ValueMember = "CategoryId";
+                CmbCategories.DisplayMember = "CategoryName";
+                CmbCategories.DataSource = db.Categories.ToList();
             }
         }
 
@@ -132,11 +142,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void CmbCategories_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LblMessage.Text = CmbCategories.SelectedValue.ToString();
-        }
-
         private void DGVItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (DGVItems.SelectedRows.Count > 0)
@@ -148,6 +153,20 @@ namespace SimpleBilling.MasterForms
                 TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
                 CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
             }
+            else
+            {
+                TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
+                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
+            }
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            PanelCRUD.Enabled = false;
         }
     }
 }
