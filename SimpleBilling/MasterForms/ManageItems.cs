@@ -16,6 +16,7 @@ namespace SimpleBilling.MasterForms
         private void ManageItems_Load(object sender, EventArgs e)
         {
             PanelCRUD.Enabled = false;
+            BtnCancel.Enabled = false;
             LoadDGV();
             DGVItems_CellClick(sender, e as DataGridViewCellEventArgs);
         }
@@ -23,6 +24,7 @@ namespace SimpleBilling.MasterForms
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             PanelCRUD.Enabled = true;
+            BtnCancel.Enabled = true;
             TxtItemId.Text = "0";
             TxtItemCode.Focus();
         }
@@ -30,6 +32,7 @@ namespace SimpleBilling.MasterForms
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             PanelCRUD.Enabled = true;
+            BtnCancel.Enabled = true;
             TxtItemCode.Focus();
             BtnSave.Enabled = true;
         }
@@ -90,6 +93,7 @@ namespace SimpleBilling.MasterForms
             finally 
             {
                 PanelCRUD.Enabled = false;
+                BtnCancel.Enabled = false;
                 BtnSave.Enabled = false;
                 DGVItems.Refresh();
                 LoadDGV();
@@ -167,6 +171,39 @@ namespace SimpleBilling.MasterForms
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             PanelCRUD.Enabled = false;
+            BtnCancel.Enabled = false;
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        int Id = Convert.ToInt32(TxtItemId.Text.Trim().ToString());
+                        Item items = db.Items.FirstOrDefault(s => s.Id == Id);
+
+                        if (items != null)
+                        {
+                            db.Entry(items).State = EntityState.Deleted;
+                            db.SaveChanges();
+                            Info("Item Deleted Successfully");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info(ex.ToString());
+            }
+            finally
+            {
+                DGVItems.Refresh();
+                LoadDGV();
+            }
         }
     }
 }

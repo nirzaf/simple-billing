@@ -50,9 +50,9 @@
             this.TxtUnit = new System.Windows.Forms.TextBox();
             this.TxtBarcode = new System.Windows.Forms.TextBox();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
@@ -145,6 +145,7 @@
             this.BtnDelete.TabIndex = 2;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnEdit
             // 
@@ -300,10 +301,6 @@
             this.CmbCategories.Size = new System.Drawing.Size(316, 28);
             this.CmbCategories.TabIndex = 10;
             // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
             // LblMessage
             // 
             this.LblMessage.AutoSize = true;
@@ -319,6 +316,10 @@
             // 
             this.TimerMessage.Interval = 3000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // itemBindingSource
             // 
