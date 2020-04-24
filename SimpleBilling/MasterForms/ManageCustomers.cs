@@ -28,6 +28,21 @@ namespace SimpleBilling
             }
         }
 
+        private void Info(string Message)
+        {
+            LblMessage.Text = Message;
+        }
+
+        private void MessageTimer_Tick(object sender, EventArgs e)
+        {
+            LblMessage.Text = string.Empty;
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            CRUDPanel.Enabled = false;
+        }
+
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = true;
@@ -37,13 +52,34 @@ namespace SimpleBilling
             TxtName.Focus();
         }
 
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            CRUDPanel.Enabled = true;
-            BtnSave.Enabled = true;
-            TxtName.Focus();
-            Customers cus = customersBindingSource.Current as Customers;
-
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    if (customersBindingSource.Current is Customers cat)
+                    {
+                        if (db.Entry(cat).State == EntityState.Detached)
+                            db.Set<Customers>().Attach(cat);
+                        if (cat.CustomerId == 0)
+                        {
+                            db.Entry(cat).State = EntityState.Added;
+                            Info("Customer Added");
+                        }
+                        else
+                        {
+                            db.Entry(cat).State = EntityState.Modified;
+                            Info("Customer Modified");
+                        }
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info(ex.ToString());
+            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -79,50 +115,12 @@ namespace SimpleBilling
             }
         }
 
-        private void Info(string Message)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
-            LblMessage.Text = Message;
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (BillingContext db = new BillingContext())
-                {
-                    if (customersBindingSource.Current is Customers cat)
-                    {
-                        if (db.Entry(cat).State == EntityState.Detached)
-                            db.Set<Customers>().Attach(cat);
-                        if (cat.CustomerId == 0)
-                        {
-                            db.Entry(cat).State = EntityState.Added;
-                            Info("Customer Added");
-                        }
-                        else
-                        {
-                            db.Entry(cat).State = EntityState.Modified;
-                            Info("Customer Modified");
-                        }
-                        db.SaveChanges();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Info(ex.ToString());
-            }
-        }
-
-
-        private void MessageTimer_Tick(object sender, EventArgs e)
-        {
-            LblMessage.Text = string.Empty;
-        }
-
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            CRUDPanel.Enabled = false;
+            CRUDPanel.Enabled = true;
+            BtnSave.Enabled = true;
+            TxtName.Focus();
+            Customers cus = customersBindingSource.Current as Customers;
         }
     }
 }
