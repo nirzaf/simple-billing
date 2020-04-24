@@ -314,7 +314,8 @@
             // 
             // TimerMessage
             // 
-            this.TimerMessage.Interval = 3000;
+            this.TimerMessage.Enabled = true;
+            this.TimerMessage.Interval = 6000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
             // 
             // categoryBindingSource

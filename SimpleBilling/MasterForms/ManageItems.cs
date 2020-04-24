@@ -17,6 +17,7 @@ namespace SimpleBilling.MasterForms
         {
             PanelCRUD.Enabled = false;
             BtnCancel.Enabled = false;
+            LblMessage.Text = string.Empty;
             LoadDGV();
             DGVItems_CellClick(sender, e as DataGridViewCellEventArgs);
         }

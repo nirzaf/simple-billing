@@ -20,6 +20,7 @@ namespace SimpleBilling.MasterForms
 
         private void LoadDGV()
         {
+            LblMessage.Text = "";
             PanelCRUD.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
@@ -112,6 +113,11 @@ namespace SimpleBilling.MasterForms
 
                 throw;
             }
+        }
+
+        private void TimerLabel_Tick(object sender, EventArgs e)
+        {
+            LblMessage.Text = "";
         }
     }
 }
