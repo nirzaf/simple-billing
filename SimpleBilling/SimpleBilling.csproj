@@ -77,6 +77,12 @@
     <Compile Include="MasterForms\ManageCategory.Designer.cs">
       <DependentUpon>ManageCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageEmployees.Designer.cs">
+      <DependentUpon>ManageEmployees.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     <EmbeddedResource Include="MasterForms\ManageCustomers.resx">
       <DependentUpon>ManageCustomers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageEmployees.resx">
+      <DependentUpon>ManageEmployees.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageItems.resx">
       <DependentUpon>ManageItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +239,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Category.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Customers.datasource" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.Employee.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Item.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Supplier.datasource" />
     <None Include="Properties\Settings.settings">
