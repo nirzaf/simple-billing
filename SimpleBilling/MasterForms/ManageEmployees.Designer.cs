@@ -49,15 +49,15 @@
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
+            this.SecretCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtSecretCode = new System.Windows.Forms.TextBox();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.employeeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SecretCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtSecretCode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVEmployees)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -296,6 +296,30 @@
             this.LblMessage.TabIndex = 3;
             this.LblMessage.Text = "label6";
             // 
+            // SecretCode
+            // 
+            this.SecretCode.DataPropertyName = "SecretCode";
+            this.SecretCode.HeaderText = "Secret Code";
+            this.SecretCode.Name = "SecretCode";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(545, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 19);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Secret Code";
+            // 
+            // TxtSecretCode
+            // 
+            this.TxtSecretCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "SecretCode", true));
+            this.TxtSecretCode.Location = new System.Drawing.Point(545, 72);
+            this.TxtSecretCode.Name = "TxtSecretCode";
+            this.TxtSecretCode.Size = new System.Drawing.Size(265, 26);
+            this.TxtSecretCode.TabIndex = 12;
+            // 
             // employeeBindingSource
             // 
             this.employeeBindingSource.DataSource = typeof(SimpleBilling.Model.Employee);
@@ -329,30 +353,6 @@
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // SecretCode
-            // 
-            this.SecretCode.DataPropertyName = "SecretCode";
-            this.SecretCode.HeaderText = "Secret Code";
-            this.SecretCode.Name = "SecretCode";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(545, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 19);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Secret Code";
-            // 
-            // TxtSecretCode
-            // 
-            this.TxtSecretCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "SecretCode", true));
-            this.TxtSecretCode.Location = new System.Drawing.Point(545, 72);
-            this.TxtSecretCode.Name = "TxtSecretCode";
-            this.TxtSecretCode.Size = new System.Drawing.Size(265, 26);
-            this.TxtSecretCode.TabIndex = 12;
             // 
             // ManageEmployees
             // 
