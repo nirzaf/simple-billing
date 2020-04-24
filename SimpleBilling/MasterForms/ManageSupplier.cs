@@ -16,5 +16,10 @@ namespace SimpleBilling.MasterForms
         {
             InitializeComponent();
         }
+
+        private void ManageSupplier_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -9,5 +9,9 @@ namespace SimpleBilling.Model
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Customers> Customers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<GRNHeader> GRNHeaders { get; set; }
+        public DbSet<GRNDetails> GRNDetails { get; set; }
+        public DbSet<Employee> Employee { get; set; }
     }
 }
