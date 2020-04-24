@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGVSupplier = new System.Windows.Forms.DataGridView();
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,19 +49,19 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // DGVSupplier
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 45);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(855, 230);
-            this.dataGridView1.TabIndex = 0;
+            this.DGVSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVSupplier.Location = new System.Drawing.Point(5, 45);
+            this.DGVSupplier.Name = "DGVSupplier";
+            this.DGVSupplier.Size = new System.Drawing.Size(855, 230);
+            this.DGVSupplier.TabIndex = 0;
             // 
             // CRUDPanel
             // 
@@ -157,6 +157,7 @@
             // 
             this.TxtSupplierId.Location = new System.Drawing.Point(3, 33);
             this.TxtSupplierId.Name = "TxtSupplierId";
+            this.TxtSupplierId.ReadOnly = true;
             this.TxtSupplierId.Size = new System.Drawing.Size(278, 26);
             this.TxtSupplierId.TabIndex = 6;
             // 
@@ -268,14 +269,14 @@
             this.ClientSize = new System.Drawing.Size(863, 515);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.CRUDPanel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGVSupplier);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageSupplier";
             this.Text = "ManageSupplier";
             this.Load += new System.EventHandler(this.ManageSupplier_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -286,7 +287,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DGVSupplier;
         private System.Windows.Forms.Panel CRUDPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox TxtCodeNumber;
