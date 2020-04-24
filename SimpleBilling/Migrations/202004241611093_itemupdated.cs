@@ -1,8 +1,8 @@
-﻿namespace SimpleBilling.Migrations
+﻿using System;
+using System.Data.Entity.Migrations;
+
+namespace SimpleBilling.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class itemupdated : DbMigration
     {
         public override void Up()

@@ -83,11 +83,17 @@
     <Compile Include="MasterForms\ManageItems.Designer.cs">
       <DependentUpon>ManageItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterForms\ManageStocks.cs">
+    <Compile Include="MasterForms\ManageGRN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterForms\ManageStocks.Designer.cs">
-      <DependentUpon>ManageStocks.cs</DependentUpon>
+    <Compile Include="MasterForms\ManageGRN.Designer.cs">
+      <DependentUpon>ManageGRN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForms\ManageSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageSupplier.Designer.cs">
+      <DependentUpon>ManageSupplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202004212112022_billing.cs" />
     <Compile Include="Migrations\202004212112022_billing.designer.cs">
@@ -125,12 +131,32 @@
     <Compile Include="Migrations\202004241611093_itemupdated.designer.cs">
       <DependentUpon>202004241611093_itemupdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241851240_newmodelsadded.cs" />
+    <Compile Include="Migrations\202004241851240_newmodelsadded.designer.cs">
+      <DependentUpon>202004241851240_newmodelsadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004241852559_newmodelsadded1.cs" />
+    <Compile Include="Migrations\202004241852559_newmodelsadded1.designer.cs">
+      <DependentUpon>202004241852559_newmodelsadded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004241913245_newmodelsadded2.cs" />
+    <Compile Include="Migrations\202004241913245_newmodelsadded2.designer.cs">
+      <DependentUpon>202004241913245_newmodelsadded2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004241916473_billing7.cs" />
+    <Compile Include="Migrations\202004241916473_billing7.designer.cs">
+      <DependentUpon>202004241916473_billing7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Customers.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\GRNDetails.cs" />
+    <Compile Include="Model\GRNHeader.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Model\UserTypeConfigurations.cs" />
     <Compile Include="Program.cs" />
@@ -147,8 +173,11 @@
     <EmbeddedResource Include="MasterForms\ManageItems.resx">
       <DependentUpon>ManageItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterForms\ManageStocks.resx">
-      <DependentUpon>ManageStocks.cs</DependentUpon>
+    <EmbeddedResource Include="MasterForms\ManageGRN.resx">
+      <DependentUpon>ManageGRN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageSupplier.resx">
+      <DependentUpon>ManageSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004212112022_billing.resx">
       <DependentUpon>202004212112022_billing.cs</DependentUpon>
@@ -176,6 +205,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004241611093_itemupdated.resx">
       <DependentUpon>202004241611093_itemupdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241851240_newmodelsadded.resx">
+      <DependentUpon>202004241851240_newmodelsadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241852559_newmodelsadded1.resx">
+      <DependentUpon>202004241852559_newmodelsadded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241913245_newmodelsadded2.resx">
+      <DependentUpon>202004241913245_newmodelsadded2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241916473_billing7.resx">
+      <DependentUpon>202004241916473_billing7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

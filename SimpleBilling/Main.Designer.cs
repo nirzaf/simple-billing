@@ -105,7 +105,8 @@
             // 
             this.manageStockToolStripMenuItem.Name = "manageStockToolStripMenuItem";
             this.manageStockToolStripMenuItem.Size = new System.Drawing.Size(226, 24);
-            this.manageStockToolStripMenuItem.Text = "Manage Stock";
+            this.manageStockToolStripMenuItem.Text = "Manage GRN";
+            this.manageStockToolStripMenuItem.Click += new System.EventHandler(this.manageStockToolStripMenuItem_Click);
             // 
             // Main
             // 

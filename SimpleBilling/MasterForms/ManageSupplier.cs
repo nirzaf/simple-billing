@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
 {
-    public partial class ManageStocks : Form
+    public partial class ManageSupplier : Form
     {
-        public ManageStocks()
+        public ManageSupplier()
         {
             InitializeComponent();
         }

@@ -46,5 +46,10 @@ namespace SimpleBilling
             };
             manageCustomers.Show();
         }
+
+        private void manageStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
