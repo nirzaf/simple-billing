@@ -33,13 +33,17 @@
             this.manageItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mASTERToolStripMenuItem});
+            this.mASTERToolStripMenuItem,
+            this.pOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 3, 0, 3);
@@ -52,7 +56,8 @@
             this.mASTERToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageItemsToolStripMenuItem,
             this.manageCustomersToolStripMenuItem,
-            this.manageInvoiceToolStripMenuItem});
+            this.manageInvoiceToolStripMenuItem,
+            this.manageStockToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
@@ -72,13 +77,35 @@
             this.manageCustomersToolStripMenuItem.Name = "manageCustomersToolStripMenuItem";
             this.manageCustomersToolStripMenuItem.Size = new System.Drawing.Size(226, 24);
             this.manageCustomersToolStripMenuItem.Text = "Manage Customers";
+            this.manageCustomersToolStripMenuItem.Click += new System.EventHandler(this.manageCustomersToolStripMenuItem_Click);
             // 
             // manageInvoiceToolStripMenuItem
             // 
             this.manageInvoiceToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageInvoiceToolStripMenuItem.Name = "manageInvoiceToolStripMenuItem";
             this.manageInvoiceToolStripMenuItem.Size = new System.Drawing.Size(226, 24);
-            this.manageInvoiceToolStripMenuItem.Text = "Manage Invoice";
+            this.manageInvoiceToolStripMenuItem.Text = "Manage Invoices";
+            // 
+            // pOSToolStripMenuItem
+            // 
+            this.pOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quickSaleToolStripMenuItem});
+            this.pOSToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pOSToolStripMenuItem.Name = "pOSToolStripMenuItem";
+            this.pOSToolStripMenuItem.Size = new System.Drawing.Size(55, 23);
+            this.pOSToolStripMenuItem.Text = "POS";
+            // 
+            // quickSaleToolStripMenuItem
+            // 
+            this.quickSaleToolStripMenuItem.Name = "quickSaleToolStripMenuItem";
+            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.quickSaleToolStripMenuItem.Text = "Quick Sale";
+            // 
+            // manageStockToolStripMenuItem
+            // 
+            this.manageStockToolStripMenuItem.Name = "manageStockToolStripMenuItem";
+            this.manageStockToolStripMenuItem.Size = new System.Drawing.Size(226, 24);
+            this.manageStockToolStripMenuItem.Text = "Manage Stock";
             // 
             // Main
             // 
@@ -106,5 +133,8 @@
         private System.Windows.Forms.ToolStripMenuItem manageItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageCustomersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageInvoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageStockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pOSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quickSaleToolStripMenuItem;
     }
 }

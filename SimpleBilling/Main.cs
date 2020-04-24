@@ -1,5 +1,4 @@
 ﻿using SimpleBilling.MasterForms;
-using SimpleBilling.Model;
 using System;
 using System.Windows.Forms;
 
@@ -28,6 +27,24 @@ namespace SimpleBilling
                 MdiParent = this
             };
             manageItems.Show();
+        }
+
+        private void manageCustomersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageCustomers))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            ManageCustomers manageCustomers = new ManageCustomers
+            {
+                MdiParent = this
+            };
+            manageCustomers.Show();
         }
     }
 }

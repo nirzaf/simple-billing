@@ -83,6 +83,12 @@
     <Compile Include="MasterForms\ManageItems.Designer.cs">
       <DependentUpon>ManageItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageStocks.Designer.cs">
+      <DependentUpon>ManageStocks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202004212112022_billing.cs" />
     <Compile Include="Migrations\202004212112022_billing.designer.cs">
       <DependentUpon>202004212112022_billing.cs</DependentUpon>
@@ -115,6 +121,10 @@
     <Compile Include="Migrations\202004241405284_billing6.designer.cs">
       <DependentUpon>202004241405284_billing6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241611093_itemupdated.cs" />
+    <Compile Include="Migrations\202004241611093_itemupdated.designer.cs">
+      <DependentUpon>202004241611093_itemupdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -136,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageItems.resx">
       <DependentUpon>ManageItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageStocks.resx">
+      <DependentUpon>ManageStocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004212112022_billing.resx">
       <DependentUpon>202004212112022_billing.cs</DependentUpon>
@@ -160,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004241405284_billing6.resx">
       <DependentUpon>202004241405284_billing6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241611093_itemupdated.resx">
+      <DependentUpon>202004241611093_itemupdated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
