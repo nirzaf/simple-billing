@@ -32,7 +32,6 @@
             this.DGVEmployees = new System.Windows.Forms.DataGridView();
             this.CRUDPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,11 +42,6 @@
             this.TxtContact = new System.Windows.Forms.TextBox();
             this.TxtAddress = new System.Windows.Forms.TextBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
-            this.employeeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
@@ -55,11 +49,17 @@
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.employeeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVEmployees)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVEmployees
@@ -113,10 +113,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.93694F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(814, 111);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(SimpleBilling.Model.Employee);
             // 
             // label1
             // 
@@ -173,6 +169,7 @@
             this.TxtEmployeeId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "EmployeeId", true));
             this.TxtEmployeeId.Location = new System.Drawing.Point(3, 22);
             this.TxtEmployeeId.Name = "TxtEmployeeId";
+            this.TxtEmployeeId.ReadOnly = true;
             this.TxtEmployeeId.Size = new System.Drawing.Size(265, 26);
             this.TxtEmployeeId.TabIndex = 6;
             // 
@@ -207,36 +204,6 @@
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(265, 26);
             this.TxtEmail.TabIndex = 10;
-            // 
-            // employeeIdDataGridViewTextBoxColumn
-            // 
-            this.employeeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeeId";
-            this.employeeIdDataGridViewTextBoxColumn.HeaderText = "EmployeeId";
-            this.employeeIdDataGridViewTextBoxColumn.Name = "employeeIdDataGridViewTextBoxColumn";
-            // 
-            // employeeNameDataGridViewTextBoxColumn
-            // 
-            this.employeeNameDataGridViewTextBoxColumn.DataPropertyName = "EmployeeName";
-            this.employeeNameDataGridViewTextBoxColumn.HeaderText = "EmployeeName";
-            this.employeeNameDataGridViewTextBoxColumn.Name = "employeeNameDataGridViewTextBoxColumn";
-            // 
-            // contactDataGridViewTextBoxColumn
-            // 
-            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
-            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
-            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             // 
             // tableLayoutPanel2
             // 
@@ -323,6 +290,40 @@
             this.LblMessage.TabIndex = 3;
             this.LblMessage.Text = "label6";
             // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(SimpleBilling.Model.Employee);
+            // 
+            // employeeIdDataGridViewTextBoxColumn
+            // 
+            this.employeeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeeId";
+            this.employeeIdDataGridViewTextBoxColumn.HeaderText = "EmployeeId";
+            this.employeeIdDataGridViewTextBoxColumn.Name = "employeeIdDataGridViewTextBoxColumn";
+            // 
+            // employeeNameDataGridViewTextBoxColumn
+            // 
+            this.employeeNameDataGridViewTextBoxColumn.DataPropertyName = "EmployeeName";
+            this.employeeNameDataGridViewTextBoxColumn.HeaderText = "EmployeeName";
+            this.employeeNameDataGridViewTextBoxColumn.Name = "employeeNameDataGridViewTextBoxColumn";
+            // 
+            // contactDataGridViewTextBoxColumn
+            // 
+            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
+            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
+            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
             // ManageEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -344,8 +345,8 @@
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
