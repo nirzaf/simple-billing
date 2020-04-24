@@ -103,6 +103,14 @@
     <Compile Include="Migrations\202004221925309_billing3.designer.cs">
       <DependentUpon>202004221925309_billing3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241242074_billing4.cs" />
+    <Compile Include="Migrations\202004241242074_billing4.designer.cs">
+      <DependentUpon>202004241242074_billing4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004241251011_billing5.cs" />
+    <Compile Include="Migrations\202004241251011_billing5.designer.cs">
+      <DependentUpon>202004241251011_billing5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -140,6 +148,12 @@
     <EmbeddedResource Include="Migrations\202004221925309_billing3.resx">
       <DependentUpon>202004221925309_billing3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241242074_billing4.resx">
+      <DependentUpon>202004241242074_billing4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241251011_billing5.resx">
+      <DependentUpon>202004241251011_billing5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -151,6 +165,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Category.datasource" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.Customers.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Item.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -50,10 +50,10 @@
             this.TxtUnit = new System.Windows.Forms.TextBox();
             this.TxtBarcode = new System.Windows.Forms.TextBox();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BtnAddCategory = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
-            this.BtnAddCategory = new System.Windows.Forms.Button();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
@@ -304,6 +304,21 @@
             this.CmbCategories.Size = new System.Drawing.Size(316, 28);
             this.CmbCategories.TabIndex = 10;
             // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
+            // 
+            // BtnAddCategory
+            // 
+            this.BtnAddCategory.BackColor = System.Drawing.Color.White;
+            this.BtnAddCategory.Location = new System.Drawing.Point(136, 183);
+            this.BtnAddCategory.Name = "BtnAddCategory";
+            this.BtnAddCategory.Size = new System.Drawing.Size(316, 34);
+            this.BtnAddCategory.TabIndex = 13;
+            this.BtnAddCategory.Text = "Add Category";
+            this.BtnAddCategory.UseVisualStyleBackColor = false;
+            this.BtnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
+            // 
             // LblMessage
             // 
             this.LblMessage.AutoSize = true;
@@ -320,21 +335,6 @@
             this.TimerMessage.Enabled = true;
             this.TimerMessage.Interval = 6000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
-            // 
-            // BtnAddCategory
-            // 
-            this.BtnAddCategory.BackColor = System.Drawing.Color.White;
-            this.BtnAddCategory.Location = new System.Drawing.Point(136, 183);
-            this.BtnAddCategory.Name = "BtnAddCategory";
-            this.BtnAddCategory.Size = new System.Drawing.Size(316, 34);
-            this.BtnAddCategory.TabIndex = 13;
-            this.BtnAddCategory.Text = "Add Category";
-            this.BtnAddCategory.UseVisualStyleBackColor = false;
-            this.BtnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // itemBindingSource
             // 

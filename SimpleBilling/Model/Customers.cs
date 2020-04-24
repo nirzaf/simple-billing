@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace SimpleBilling.Model
         public string Email { get; set; }
         [MaxLength(250)]
         public string Address { get; set; }
+        [DefaultValue("true")]
         public bool Is_Deleted { get; set; }
     }
 }

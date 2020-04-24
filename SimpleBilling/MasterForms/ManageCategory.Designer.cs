@@ -30,27 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVCategories = new System.Windows.Forms.DataGridView();
+            this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.PanelCRUD = new System.Windows.Forms.Panel();
+            this.TxtCategoryName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtCatId = new System.Windows.Forms.TextBox();
-            this.TxtCategoryName = new System.Windows.Forms.TextBox();
+            this.PanelCRUD = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.BtnEdit = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnEdit = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerLabel = new System.Windows.Forms.Timer(this.components);
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVCategories
@@ -70,6 +70,27 @@
             this.DGVCategories.Size = new System.Drawing.Size(247, 208);
             this.DGVCategories.TabIndex = 0;
             // 
+            // categoryIdDataGridViewTextBoxColumn
+            // 
+            this.categoryIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.categoryIdDataGridViewTextBoxColumn.DataPropertyName = "CategoryId";
+            this.categoryIdDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.categoryIdDataGridViewTextBoxColumn.Name = "categoryIdDataGridViewTextBoxColumn";
+            this.categoryIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.categoryIdDataGridViewTextBoxColumn.Width = 48;
+            // 
+            // categoryNameDataGridViewTextBoxColumn
+            // 
+            this.categoryNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "Category Name";
+            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
+            this.categoryNameDataGridViewTextBoxColumn.Width = 139;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -88,14 +109,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(399, 63);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // PanelCRUD
+            // TxtCategoryName
             // 
-            this.PanelCRUD.Controls.Add(this.tableLayoutPanel1);
-            this.PanelCRUD.Location = new System.Drawing.Point(271, 18);
-            this.PanelCRUD.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.PanelCRUD.Name = "PanelCRUD";
-            this.PanelCRUD.Size = new System.Drawing.Size(432, 97);
-            this.PanelCRUD.TabIndex = 2;
+            this.TxtCategoryName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryName", true));
+            this.TxtCategoryName.Location = new System.Drawing.Point(118, 33);
+            this.TxtCategoryName.Name = "TxtCategoryName";
+            this.TxtCategoryName.Size = new System.Drawing.Size(277, 26);
+            this.TxtCategoryName.TabIndex = 3;
             // 
             // label1
             // 
@@ -130,13 +150,14 @@
             this.TxtCatId.Size = new System.Drawing.Size(277, 26);
             this.TxtCatId.TabIndex = 2;
             // 
-            // TxtCategoryName
+            // PanelCRUD
             // 
-            this.TxtCategoryName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryName", true));
-            this.TxtCategoryName.Location = new System.Drawing.Point(118, 33);
-            this.TxtCategoryName.Name = "TxtCategoryName";
-            this.TxtCategoryName.Size = new System.Drawing.Size(277, 26);
-            this.TxtCategoryName.TabIndex = 3;
+            this.PanelCRUD.Controls.Add(this.tableLayoutPanel1);
+            this.PanelCRUD.Location = new System.Drawing.Point(271, 18);
+            this.PanelCRUD.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.PanelCRUD.Name = "PanelCRUD";
+            this.PanelCRUD.Size = new System.Drawing.Size(432, 97);
+            this.PanelCRUD.TabIndex = 2;
             // 
             // tableLayoutPanel2
             // 
@@ -156,29 +177,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(432, 64);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // BtnAdd
+            // BtnSave
             // 
-            this.BtnAdd.BackColor = System.Drawing.Color.White;
-            this.BtnAdd.ForeColor = System.Drawing.Color.Black;
-            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(102, 58);
-            this.BtnAdd.TabIndex = 0;
-            this.BtnAdd.Text = "Add";
-            this.BtnAdd.UseVisualStyleBackColor = false;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // BtnEdit
-            // 
-            this.BtnEdit.BackColor = System.Drawing.Color.White;
-            this.BtnEdit.ForeColor = System.Drawing.Color.Black;
-            this.BtnEdit.Location = new System.Drawing.Point(111, 3);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.Size = new System.Drawing.Size(102, 58);
-            this.BtnEdit.TabIndex = 1;
-            this.BtnEdit.Text = "Edit";
-            this.BtnEdit.UseVisualStyleBackColor = false;
-            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            this.BtnSave.BackColor = System.Drawing.Color.White;
+            this.BtnSave.ForeColor = System.Drawing.Color.Black;
+            this.BtnSave.Location = new System.Drawing.Point(327, 3);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(102, 58);
+            this.BtnSave.TabIndex = 3;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnDelete
             // 
@@ -192,17 +201,29 @@
             this.BtnDelete.UseVisualStyleBackColor = false;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // BtnSave
+            // BtnEdit
             // 
-            this.BtnSave.BackColor = System.Drawing.Color.White;
-            this.BtnSave.ForeColor = System.Drawing.Color.Black;
-            this.BtnSave.Location = new System.Drawing.Point(327, 3);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(102, 58);
-            this.BtnSave.TabIndex = 3;
-            this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.BtnEdit.BackColor = System.Drawing.Color.White;
+            this.BtnEdit.ForeColor = System.Drawing.Color.Black;
+            this.BtnEdit.Location = new System.Drawing.Point(111, 3);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(102, 58);
+            this.BtnEdit.TabIndex = 1;
+            this.BtnEdit.Text = "Edit";
+            this.BtnEdit.UseVisualStyleBackColor = false;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.BackColor = System.Drawing.Color.White;
+            this.BtnAdd.ForeColor = System.Drawing.Color.Black;
+            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(102, 58);
+            this.BtnAdd.TabIndex = 0;
+            this.BtnAdd.Text = "Add";
+            this.BtnAdd.UseVisualStyleBackColor = false;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // LblMessage
             // 
@@ -219,27 +240,6 @@
             this.TimerLabel.Enabled = true;
             this.TimerLabel.Interval = 6000;
             this.TimerLabel.Tick += new System.EventHandler(this.TimerLabel_Tick);
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
-            // categoryIdDataGridViewTextBoxColumn
-            // 
-            this.categoryIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.categoryIdDataGridViewTextBoxColumn.DataPropertyName = "CategoryId";
-            this.categoryIdDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.categoryIdDataGridViewTextBoxColumn.Name = "categoryIdDataGridViewTextBoxColumn";
-            this.categoryIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.categoryIdDataGridViewTextBoxColumn.Width = 48;
-            // 
-            // categoryNameDataGridViewTextBoxColumn
-            // 
-            this.categoryNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
-            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "Category Name";
-            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
-            this.categoryNameDataGridViewTextBoxColumn.Width = 139;
             // 
             // ManageCategory
             // 
@@ -259,11 +259,11 @@
             this.Text = "Manage Category";
             this.Load += new System.EventHandler(this.ManageCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.PanelCRUD.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
