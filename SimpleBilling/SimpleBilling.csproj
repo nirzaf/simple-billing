@@ -231,6 +231,7 @@
     <None Include="Properties\DataSources\SimpleBilling.Model.Category.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Customers.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Item.datasource" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.Supplier.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

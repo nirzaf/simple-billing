@@ -24,7 +24,7 @@ namespace SimpleBilling
             CRUDPanel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                customersBindingSource.DataSource = db.Customers.ToList();
+                customersBindingSource1.DataSource = db.Customers.ToList();
             }
         }
 
@@ -47,8 +47,8 @@ namespace SimpleBilling
         {
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
-            customersBindingSource.Add(new Customers());
-            customersBindingSource.MoveLast();
+            customersBindingSource1.Add(new Customers());
+            customersBindingSource1.MoveLast();
             TxtName.Focus();
         }
 
@@ -58,7 +58,7 @@ namespace SimpleBilling
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (customersBindingSource.Current is Customers cat)
+                    if (customersBindingSource1.Current is Customers cat)
                     {
                         if (db.Entry(cat).State == EntityState.Detached)
                             db.Set<Customers>().Attach(cat);
@@ -80,6 +80,11 @@ namespace SimpleBilling
             {
                 Info(ex.ToString());
             }
+            finally
+            {
+                DGVCustomers.Refresh();
+                LoadDGV();
+            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -91,7 +96,7 @@ namespace SimpleBilling
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        Customers cus = customersBindingSource.Current as Customers;
+                        Customers cus = customersBindingSource1.Current as Customers;
 
                         if (cus != null)
                         {
@@ -120,7 +125,7 @@ namespace SimpleBilling
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             TxtName.Focus();
-            Customers cus = customersBindingSource.Current as Customers;
+            Customers cus = customersBindingSource1.Current as Customers;
         }
     }
 }
