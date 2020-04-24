@@ -20,5 +20,7 @@ namespace SimpleBilling.Model
         [EmailAddress]
         public string Email { get; set; }
         public int Status { get; set; }
+        [MaxLength(10)]
+        public string SecretCode { get; set; }
     }
 }
