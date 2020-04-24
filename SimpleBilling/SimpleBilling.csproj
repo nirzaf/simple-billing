@@ -65,6 +65,12 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageCustomers.Designer.cs">
+      <DependentUpon>ManageCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageCategory.resx">
       <DependentUpon>ManageCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageCustomers.resx">
+      <DependentUpon>ManageCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageItems.resx">
       <DependentUpon>ManageItems.cs</DependentUpon>

@@ -42,10 +42,10 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
+            this.TimerLabel = new System.Windows.Forms.Timer(this.components);
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimerLabel = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
@@ -214,6 +214,12 @@
             this.LblMessage.TabIndex = 3;
             this.LblMessage.Text = "label3";
             // 
+            // TimerLabel
+            // 
+            this.TimerLabel.Enabled = true;
+            this.TimerLabel.Interval = 6000;
+            this.TimerLabel.Tick += new System.EventHandler(this.TimerLabel_Tick);
+            // 
             // categoryBindingSource
             // 
             this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
@@ -234,12 +240,6 @@
             this.categoryNameDataGridViewTextBoxColumn.HeaderText = "Category Name";
             this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
             this.categoryNameDataGridViewTextBoxColumn.Width = 139;
-            // 
-            // TimerLabel
-            // 
-            this.TimerLabel.Enabled = true;
-            this.TimerLabel.Interval = 6000;
-            this.TimerLabel.Tick += new System.EventHandler(this.TimerLabel_Tick);
             // 
             // ManageCategory
             // 
