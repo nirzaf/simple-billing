@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVCategories = new System.Windows.Forms.DataGridView();
-            this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCategoryName = new System.Windows.Forms.TextBox();
@@ -60,36 +58,12 @@
             this.DGVCategories.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVCategories.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.DGVCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVCategories.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.categoryIdDataGridViewTextBoxColumn,
-            this.categoryNameDataGridViewTextBoxColumn});
             this.DGVCategories.DataSource = this.categoryBindingSource;
             this.DGVCategories.Location = new System.Drawing.Point(14, 18);
             this.DGVCategories.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVCategories.Name = "DGVCategories";
             this.DGVCategories.Size = new System.Drawing.Size(247, 208);
             this.DGVCategories.TabIndex = 0;
-            // 
-            // categoryIdDataGridViewTextBoxColumn
-            // 
-            this.categoryIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.categoryIdDataGridViewTextBoxColumn.DataPropertyName = "CategoryId";
-            this.categoryIdDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.categoryIdDataGridViewTextBoxColumn.Name = "categoryIdDataGridViewTextBoxColumn";
-            this.categoryIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.categoryIdDataGridViewTextBoxColumn.Width = 48;
-            // 
-            // categoryNameDataGridViewTextBoxColumn
-            // 
-            this.categoryNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
-            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "Category Name";
-            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
-            this.categoryNameDataGridViewTextBoxColumn.Width = 139;
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // tableLayoutPanel1
             // 
@@ -285,8 +259,6 @@
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private System.Windows.Forms.Label LblMessage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Timer TimerLabel;
     }
 }

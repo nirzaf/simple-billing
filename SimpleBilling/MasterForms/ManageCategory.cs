@@ -108,10 +108,9 @@ namespace SimpleBilling.MasterForms
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Info(ex.ToString());
             }
         }
 
