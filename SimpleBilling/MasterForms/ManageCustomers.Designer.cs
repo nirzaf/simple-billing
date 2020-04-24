@@ -383,11 +383,6 @@
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer MessageTimer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox TxtEmail;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtAddress;
