@@ -206,5 +206,21 @@ namespace SimpleBilling.MasterForms
                 LoadDGV();
             }
         }
+
+        private void BtnAddCategory_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageCategory))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            ManageCategory manageCategory = new ManageCategory();
+            manageCategory.Show();
+            Close();
+        }
     }
 }

@@ -52,6 +52,7 @@
             this.CmbCategories = new System.Windows.Forms.ComboBox();
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
+            this.BtnAddCategory = new System.Windows.Forms.Button();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
@@ -186,16 +187,18 @@
             this.PanelCRUD.Controls.Add(this.TxtUnit, 1, 3);
             this.PanelCRUD.Controls.Add(this.TxtBarcode, 1, 4);
             this.PanelCRUD.Controls.Add(this.CmbCategories, 1, 5);
+            this.PanelCRUD.Controls.Add(this.BtnAddCategory, 1, 6);
             this.PanelCRUD.Location = new System.Drawing.Point(3, 3);
             this.PanelCRUD.Name = "PanelCRUD";
-            this.PanelCRUD.RowCount = 7;
+            this.PanelCRUD.RowCount = 8;
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.PanelCRUD.Size = new System.Drawing.Size(455, 256);
             this.PanelCRUD.TabIndex = 2;
             // 
@@ -318,6 +321,17 @@
             this.TimerMessage.Interval = 6000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
             // 
+            // BtnAddCategory
+            // 
+            this.BtnAddCategory.BackColor = System.Drawing.Color.White;
+            this.BtnAddCategory.Location = new System.Drawing.Point(136, 183);
+            this.BtnAddCategory.Name = "BtnAddCategory";
+            this.BtnAddCategory.Size = new System.Drawing.Size(316, 34);
+            this.BtnAddCategory.TabIndex = 13;
+            this.BtnAddCategory.Text = "Add Category";
+            this.BtnAddCategory.UseVisualStyleBackColor = false;
+            this.BtnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
+            // 
             // categoryBindingSource
             // 
             this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
@@ -380,5 +394,6 @@
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private System.Windows.Forms.Timer TimerMessage;
+        private System.Windows.Forms.Button BtnAddCategory;
     }
 }
