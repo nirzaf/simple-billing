@@ -5,9 +5,9 @@ namespace SimpleBilling.Model
     public class BillingContext : DbContext
     {
         public BillingContext() : base("name=con"){ }
-
         public DbSet<Users> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Customers> Customers { get; set; }
     }
 }
