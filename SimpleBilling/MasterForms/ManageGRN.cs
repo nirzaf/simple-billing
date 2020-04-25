@@ -107,7 +107,8 @@ namespace SimpleBilling.MasterForms
                         db.Set<GRNDetails>().Attach(details);
 
                     var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == details.GRN_Id 
-                    && b.GRNCode == details.GRNCode && b.ProductId == details.ProductId);
+                    && b.GRNCode == details.GRNCode 
+                    && b.ProductId == details.ProductId);
 
                     if (result != null)
                     {
