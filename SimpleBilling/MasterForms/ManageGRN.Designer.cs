@@ -30,10 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVGRNList = new System.Windows.Forms.DataGridView();
+            this.gRNIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gRNCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lineIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gRNDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DTPDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.CmbProduct = new System.Windows.Forms.ComboBox();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -42,19 +49,22 @@
             this.label6 = new System.Windows.Forms.Label();
             this.TxtUnitCost = new System.Windows.Forms.TextBox();
             this.BtnAddItem = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtReference = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.CMBSupplier = new System.Windows.Forms.ComboBox();
-            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.BtnCreateGRN = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtDiscount = new System.Windows.Forms.TextBox();
-            this.LblMessage = new System.Windows.Forms.Label();
-            this.MessageTimer = new System.Windows.Forms.Timer(this.components);
+            this.BtnCreateGRN = new System.Windows.Forms.Button();
+            this.CMBSupplier = new System.Windows.Forms.ComboBox();
+            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.DTPDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtReference = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtGRNNo = new System.Windows.Forms.TextBox();
+            this.LblMessage = new System.Windows.Forms.Label();
+            this.MessageTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -63,11 +73,76 @@
             // 
             // DGVGRNList
             // 
+            this.DGVGRNList.AutoGenerateColumns = false;
+            this.DGVGRNList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVGRNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gRNIdDataGridViewTextBoxColumn,
+            this.gRNCodeDataGridViewTextBoxColumn,
+            this.lineIdDataGridViewTextBoxColumn,
+            this.productIdDataGridViewTextBoxColumn,
+            this.unitCostDataGridViewTextBoxColumn,
+            this.quantityDataGridViewTextBoxColumn,
+            this.discountDataGridViewTextBoxColumn,
+            this.subTotalDataGridViewTextBoxColumn});
+            this.DGVGRNList.DataSource = this.gRNDetailsBindingSource;
             this.DGVGRNList.Location = new System.Drawing.Point(-4, 130);
             this.DGVGRNList.Name = "DGVGRNList";
             this.DGVGRNList.Size = new System.Drawing.Size(909, 254);
             this.DGVGRNList.TabIndex = 0;
+            this.DGVGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellContentClick);
+            // 
+            // gRNIdDataGridViewTextBoxColumn
+            // 
+            this.gRNIdDataGridViewTextBoxColumn.DataPropertyName = "GRN_Id";
+            this.gRNIdDataGridViewTextBoxColumn.HeaderText = "GRN_Id";
+            this.gRNIdDataGridViewTextBoxColumn.Name = "gRNIdDataGridViewTextBoxColumn";
+            // 
+            // gRNCodeDataGridViewTextBoxColumn
+            // 
+            this.gRNCodeDataGridViewTextBoxColumn.DataPropertyName = "GRNCode";
+            this.gRNCodeDataGridViewTextBoxColumn.HeaderText = "GRNCode";
+            this.gRNCodeDataGridViewTextBoxColumn.Name = "gRNCodeDataGridViewTextBoxColumn";
+            // 
+            // lineIdDataGridViewTextBoxColumn
+            // 
+            this.lineIdDataGridViewTextBoxColumn.DataPropertyName = "LineId";
+            this.lineIdDataGridViewTextBoxColumn.HeaderText = "LineId";
+            this.lineIdDataGridViewTextBoxColumn.Name = "lineIdDataGridViewTextBoxColumn";
+            // 
+            // productIdDataGridViewTextBoxColumn
+            // 
+            this.productIdDataGridViewTextBoxColumn.DataPropertyName = "ProductId";
+            this.productIdDataGridViewTextBoxColumn.HeaderText = "ProductId";
+            this.productIdDataGridViewTextBoxColumn.Name = "productIdDataGridViewTextBoxColumn";
+            // 
+            // unitCostDataGridViewTextBoxColumn
+            // 
+            this.unitCostDataGridViewTextBoxColumn.DataPropertyName = "UnitCost";
+            this.unitCostDataGridViewTextBoxColumn.HeaderText = "UnitCost";
+            this.unitCostDataGridViewTextBoxColumn.Name = "unitCostDataGridViewTextBoxColumn";
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            // 
+            // discountDataGridViewTextBoxColumn
+            // 
+            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
+            this.discountDataGridViewTextBoxColumn.HeaderText = "Discount";
+            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
+            // 
+            // subTotalDataGridViewTextBoxColumn
+            // 
+            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
+            this.subTotalDataGridViewTextBoxColumn.HeaderText = "SubTotal";
+            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
+            // 
+            // gRNDetailsBindingSource
+            // 
+            this.gRNDetailsBindingSource.DataSource = typeof(SimpleBilling.Model.GRNDetails);
             // 
             // CRUDPanel
             // 
@@ -113,24 +188,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(903, 117);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(363, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Date";
-            // 
-            // DTPDate
-            // 
-            this.DTPDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPDate.Location = new System.Drawing.Point(363, 21);
-            this.DTPDate.Name = "DTPDate";
-            this.DTPDate.Size = new System.Drawing.Size(174, 26);
-            this.DTPDate.TabIndex = 7;
             // 
             // label4
             // 
@@ -199,63 +256,7 @@
             this.BtnAddItem.TabIndex = 15;
             this.BtnAddItem.Text = "Add Item";
             this.BtnAddItem.UseVisualStyleBackColor = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(183, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Reference No";
-            // 
-            // TxtReference
-            // 
-            this.TxtReference.Location = new System.Drawing.Point(183, 21);
-            this.TxtReference.Name = "TxtReference";
-            this.TxtReference.Size = new System.Drawing.Size(174, 26);
-            this.TxtReference.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(543, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 18);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Supplier";
-            // 
-            // CMBSupplier
-            // 
-            this.CMBSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.CMBSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CMBSupplier.DataSource = this.supplierBindingSource;
-            this.CMBSupplier.DisplayMember = "Name";
-            this.CMBSupplier.FormattingEnabled = true;
-            this.CMBSupplier.Location = new System.Drawing.Point(543, 21);
-            this.CMBSupplier.Name = "CMBSupplier";
-            this.CMBSupplier.Size = new System.Drawing.Size(174, 27);
-            this.CMBSupplier.TabIndex = 13;
-            this.CMBSupplier.ValueMember = "SupplierId";
-            // 
-            // BtnCreateGRN
-            // 
-            this.BtnCreateGRN.BackColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BtnCreateGRN.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.FlatAppearance.BorderSize = 0;
-            this.BtnCreateGRN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateGRN.Location = new System.Drawing.Point(723, 21);
-            this.BtnCreateGRN.Name = "BtnCreateGRN";
-            this.BtnCreateGRN.Size = new System.Drawing.Size(174, 23);
-            this.BtnCreateGRN.TabIndex = 14;
-            this.BtnCreateGRN.Text = "Create GRN";
-            this.BtnCreateGRN.UseVisualStyleBackColor = false;
-            this.BtnCreateGRN.Click += new System.EventHandler(this.BtnCreateGRN_Click);
+            this.BtnAddItem.Click += new System.EventHandler(this.BtnAddItem_Click);
             // 
             // label1
             // 
@@ -274,21 +275,80 @@
             this.TxtDiscount.Size = new System.Drawing.Size(174, 26);
             this.TxtDiscount.TabIndex = 5;
             // 
-            // LblMessage
+            // BtnCreateGRN
             // 
-            this.LblMessage.AutoSize = true;
-            this.LblMessage.ForeColor = System.Drawing.Color.Lime;
-            this.LblMessage.Location = new System.Drawing.Point(2, 423);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(54, 19);
-            this.LblMessage.TabIndex = 2;
-            this.LblMessage.Text = "label8";
+            this.BtnCreateGRN.BackColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BtnCreateGRN.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.FlatAppearance.BorderSize = 0;
+            this.BtnCreateGRN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCreateGRN.Location = new System.Drawing.Point(723, 21);
+            this.BtnCreateGRN.Name = "BtnCreateGRN";
+            this.BtnCreateGRN.Size = new System.Drawing.Size(174, 23);
+            this.BtnCreateGRN.TabIndex = 14;
+            this.BtnCreateGRN.Text = "Create GRN";
+            this.BtnCreateGRN.UseVisualStyleBackColor = false;
+            this.BtnCreateGRN.Click += new System.EventHandler(this.BtnCreateGRN_Click);
             // 
-            // MessageTimer
+            // CMBSupplier
             // 
-            this.MessageTimer.Enabled = true;
-            this.MessageTimer.Interval = 6000;
-            this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
+            this.CMBSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CMBSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CMBSupplier.DataSource = this.supplierBindingSource;
+            this.CMBSupplier.DisplayMember = "Name";
+            this.CMBSupplier.FormattingEnabled = true;
+            this.CMBSupplier.Location = new System.Drawing.Point(543, 21);
+            this.CMBSupplier.Name = "CMBSupplier";
+            this.CMBSupplier.Size = new System.Drawing.Size(174, 27);
+            this.CMBSupplier.TabIndex = 13;
+            this.CMBSupplier.ValueMember = "SupplierId";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(543, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 18);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Supplier";
+            // 
+            // DTPDate
+            // 
+            this.DTPDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPDate.Location = new System.Drawing.Point(363, 21);
+            this.DTPDate.Name = "DTPDate";
+            this.DTPDate.Size = new System.Drawing.Size(174, 26);
+            this.DTPDate.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(363, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 18);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Date";
+            // 
+            // TxtReference
+            // 
+            this.TxtReference.Location = new System.Drawing.Point(183, 21);
+            this.TxtReference.Name = "TxtReference";
+            this.TxtReference.Size = new System.Drawing.Size(174, 26);
+            this.TxtReference.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(183, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 18);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Reference No";
             // 
             // label8
             // 
@@ -307,6 +367,22 @@
             this.TxtGRNNo.Size = new System.Drawing.Size(174, 26);
             this.TxtGRNNo.TabIndex = 0;
             // 
+            // LblMessage
+            // 
+            this.LblMessage.AutoSize = true;
+            this.LblMessage.ForeColor = System.Drawing.Color.Lime;
+            this.LblMessage.Location = new System.Drawing.Point(2, 387);
+            this.LblMessage.Name = "LblMessage";
+            this.LblMessage.Size = new System.Drawing.Size(54, 19);
+            this.LblMessage.TabIndex = 2;
+            this.LblMessage.Text = "label8";
+            // 
+            // MessageTimer
+            // 
+            this.MessageTimer.Enabled = true;
+            this.MessageTimer.Interval = 10000;
+            this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -323,6 +399,7 @@
             this.Text = "Good Received Note";
             this.Load += new System.EventHandler(this.ManageGRN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -360,5 +437,14 @@
         private System.Windows.Forms.Timer MessageTimer;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtGRNNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gRNIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gRNCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lineIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitCostDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn discountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource gRNDetailsBindingSource;
     }
 }

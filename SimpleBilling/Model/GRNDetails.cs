@@ -22,7 +22,7 @@ namespace SimpleBilling.Model
         public int LineId { get; set; }
         [Key]
         [Column(Order = 4)]
-        public int ProductId { get; set; }
+        public virtual Item ProductId { get; set; }
         [Required]
         public float UnitCost { get; set; }
         [Required]

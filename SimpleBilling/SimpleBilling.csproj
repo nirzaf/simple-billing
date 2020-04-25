@@ -161,6 +161,10 @@
     <Compile Include="Migrations\202004250027173_bill1.designer.cs">
       <DependentUpon>202004250027173_bill1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004250158287_bill2.cs" />
+    <Compile Include="Migrations\202004250158287_bill2.designer.cs">
+      <DependentUpon>202004250158287_bill2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -241,6 +245,9 @@
     <EmbeddedResource Include="Migrations\202004250027173_bill1.resx">
       <DependentUpon>202004250027173_bill1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004250158287_bill2.resx">
+      <DependentUpon>202004250158287_bill2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -254,6 +261,7 @@
     <None Include="Properties\DataSources\SimpleBilling.Model.Category.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Customers.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Employee.datasource" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.GRNDetails.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Item.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Supplier.datasource" />
     <None Include="Properties\Settings.settings">
