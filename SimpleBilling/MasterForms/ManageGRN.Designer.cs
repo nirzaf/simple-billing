@@ -30,14 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVGRNList = new System.Windows.Forms.DataGridView();
-            this.gRNIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gRNCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lineIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gRNDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -73,71 +65,12 @@
             // 
             // DGVGRNList
             // 
-            this.DGVGRNList.AutoGenerateColumns = false;
             this.DGVGRNList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVGRNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.gRNIdDataGridViewTextBoxColumn,
-            this.gRNCodeDataGridViewTextBoxColumn,
-            this.lineIdDataGridViewTextBoxColumn,
-            this.productIdDataGridViewTextBoxColumn,
-            this.unitCostDataGridViewTextBoxColumn,
-            this.quantityDataGridViewTextBoxColumn,
-            this.discountDataGridViewTextBoxColumn,
-            this.subTotalDataGridViewTextBoxColumn});
-            this.DGVGRNList.DataSource = this.gRNDetailsBindingSource;
             this.DGVGRNList.Location = new System.Drawing.Point(-4, 130);
             this.DGVGRNList.Name = "DGVGRNList";
             this.DGVGRNList.Size = new System.Drawing.Size(909, 254);
             this.DGVGRNList.TabIndex = 0;
-            // 
-            // gRNIdDataGridViewTextBoxColumn
-            // 
-            this.gRNIdDataGridViewTextBoxColumn.DataPropertyName = "GRN_Id";
-            this.gRNIdDataGridViewTextBoxColumn.HeaderText = "GRN_Id";
-            this.gRNIdDataGridViewTextBoxColumn.Name = "gRNIdDataGridViewTextBoxColumn";
-            // 
-            // gRNCodeDataGridViewTextBoxColumn
-            // 
-            this.gRNCodeDataGridViewTextBoxColumn.DataPropertyName = "GRNCode";
-            this.gRNCodeDataGridViewTextBoxColumn.HeaderText = "GRNCode";
-            this.gRNCodeDataGridViewTextBoxColumn.Name = "gRNCodeDataGridViewTextBoxColumn";
-            // 
-            // lineIdDataGridViewTextBoxColumn
-            // 
-            this.lineIdDataGridViewTextBoxColumn.DataPropertyName = "LineId";
-            this.lineIdDataGridViewTextBoxColumn.HeaderText = "LineId";
-            this.lineIdDataGridViewTextBoxColumn.Name = "lineIdDataGridViewTextBoxColumn";
-            // 
-            // productIdDataGridViewTextBoxColumn
-            // 
-            this.productIdDataGridViewTextBoxColumn.DataPropertyName = "ProductId";
-            this.productIdDataGridViewTextBoxColumn.HeaderText = "ProductId";
-            this.productIdDataGridViewTextBoxColumn.Name = "productIdDataGridViewTextBoxColumn";
-            // 
-            // unitCostDataGridViewTextBoxColumn
-            // 
-            this.unitCostDataGridViewTextBoxColumn.DataPropertyName = "UnitCost";
-            this.unitCostDataGridViewTextBoxColumn.HeaderText = "UnitCost";
-            this.unitCostDataGridViewTextBoxColumn.Name = "unitCostDataGridViewTextBoxColumn";
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            // 
-            // discountDataGridViewTextBoxColumn
-            // 
-            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
-            this.discountDataGridViewTextBoxColumn.HeaderText = "Discount";
-            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
-            // 
-            // subTotalDataGridViewTextBoxColumn
-            // 
-            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
-            this.subTotalDataGridViewTextBoxColumn.HeaderText = "SubTotal";
-            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
             // 
             // gRNDetailsBindingSource
             // 
@@ -436,14 +369,6 @@
         private System.Windows.Forms.Timer MessageTimer;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtGRNNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gRNIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gRNCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lineIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn discountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource gRNDetailsBindingSource;
     }
 }

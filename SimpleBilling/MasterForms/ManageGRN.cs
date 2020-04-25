@@ -26,7 +26,20 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext()) 
             {
-                gRNDetailsBindingSource.DataSource = db.GRNDetails.Where(c => c.GRN_Id == GRN_Id).ToList();
+                var data = (from details in db.GRNDetails
+                            join item in db.Items
+                            on details.ProductId equals item.Id
+                            select new
+                            {
+                                GRN_Code = details.GRNCode,
+                                Line_No = details.LineId,
+                                Item_Name = item.ItemName,
+                                details.Quantity,
+                                Unit_Cost = details.UnitCost,
+                                details.Discount,
+                                Sub_Total = details.SubTotal
+                            }).Where(c=>c.GRN_Code == GRN_Code).ToList();
+                DGVGRNList.DataSource = data;
             }
         }
 
@@ -69,6 +82,11 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 Info(ex.ToString());
+            }
+            finally
+            {
+                BtnAddItem.Enabled = true;
+                BtnCreateGRN.Enabled = false;
             }
         }
         private void Info(string Message)
