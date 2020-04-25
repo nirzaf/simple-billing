@@ -170,7 +170,7 @@
             this.TxtQuantity.Location = new System.Drawing.Point(183, 72);
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(174, 26);
-            this.TxtQuantity.TabIndex = 10;
+            this.TxtQuantity.TabIndex = 3;
             // 
             // label6
             // 
@@ -187,7 +187,7 @@
             this.TxtUnitCost.Location = new System.Drawing.Point(363, 72);
             this.TxtUnitCost.Name = "TxtUnitCost";
             this.TxtUnitCost.Size = new System.Drawing.Size(174, 26);
-            this.TxtUnitCost.TabIndex = 11;
+            this.TxtUnitCost.TabIndex = 4;
             // 
             // BtnAddItem
             // 
@@ -215,7 +215,7 @@
             this.TxtReference.Location = new System.Drawing.Point(183, 21);
             this.TxtReference.Name = "TxtReference";
             this.TxtReference.Size = new System.Drawing.Size(174, 26);
-            this.TxtReference.TabIndex = 8;
+            this.TxtReference.TabIndex = 1;
             // 
             // label7
             // 
@@ -272,7 +272,7 @@
             this.TxtDiscount.Location = new System.Drawing.Point(543, 72);
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(174, 26);
-            this.TxtDiscount.TabIndex = 17;
+            this.TxtDiscount.TabIndex = 5;
             // 
             // LblMessage
             // 
@@ -305,7 +305,7 @@
             this.TxtGRNNo.Location = new System.Drawing.Point(3, 21);
             this.TxtGRNNo.Name = "TxtGRNNo";
             this.TxtGRNNo.Size = new System.Drawing.Size(174, 26);
-            this.TxtGRNNo.TabIndex = 19;
+            this.TxtGRNNo.TabIndex = 0;
             // 
             // ManageGRN
             // 
