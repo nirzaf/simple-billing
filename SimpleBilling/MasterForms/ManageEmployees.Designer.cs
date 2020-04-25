@@ -30,39 +30,34 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVEmployees = new System.Windows.Forms.DataGridView();
+            this.SecretCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.TxtSecretCode = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtEmail = new System.Windows.Forms.TextBox();
+            this.TxtAddress = new System.Windows.Forms.TextBox();
+            this.TxtContact = new System.Windows.Forms.TextBox();
+            this.TxtEmployeeName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtEmployeeId = new System.Windows.Forms.TextBox();
-            this.TxtEmployeeName = new System.Windows.Forms.TextBox();
-            this.TxtContact = new System.Windows.Forms.TextBox();
-            this.TxtAddress = new System.Windows.Forms.TextBox();
-            this.TxtEmail = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.BtnEdit = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnCancel = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnEdit = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
-            this.SecretCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtSecretCode = new System.Windows.Forms.TextBox();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employeeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVEmployees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVEmployees
@@ -72,17 +67,18 @@
             this.DGVEmployees.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeIdDataGridViewTextBoxColumn,
-            this.employeeNameDataGridViewTextBoxColumn,
-            this.contactDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
             this.SecretCode});
             this.DGVEmployees.DataSource = this.employeeBindingSource;
             this.DGVEmployees.Location = new System.Drawing.Point(2, 41);
             this.DGVEmployees.Name = "DGVEmployees";
             this.DGVEmployees.Size = new System.Drawing.Size(817, 197);
             this.DGVEmployees.TabIndex = 0;
+            // 
+            // SecretCode
+            // 
+            this.SecretCode.DataPropertyName = "SecretCode";
+            this.SecretCode.HeaderText = "Secret Code";
+            this.SecretCode.Name = "SecretCode";
             // 
             // CRUDPanel
             // 
@@ -120,25 +116,55 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(814, 111);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // TxtSecretCode
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Employee Id";
+            this.TxtSecretCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "SecretCode", true));
+            this.TxtSecretCode.Location = new System.Drawing.Point(545, 72);
+            this.TxtSecretCode.Name = "TxtSecretCode";
+            this.TxtSecretCode.Size = new System.Drawing.Size(265, 26);
+            this.TxtSecretCode.TabIndex = 12;
             // 
-            // label2
+            // label6
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(274, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Employee Name";
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(545, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 19);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Secret Code";
+            // 
+            // TxtEmail
+            // 
+            this.TxtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Email", true));
+            this.TxtEmail.Location = new System.Drawing.Point(274, 72);
+            this.TxtEmail.Name = "TxtEmail";
+            this.TxtEmail.Size = new System.Drawing.Size(265, 26);
+            this.TxtEmail.TabIndex = 10;
+            // 
+            // TxtAddress
+            // 
+            this.TxtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Address", true));
+            this.TxtAddress.Location = new System.Drawing.Point(3, 72);
+            this.TxtAddress.Name = "TxtAddress";
+            this.TxtAddress.Size = new System.Drawing.Size(265, 26);
+            this.TxtAddress.TabIndex = 9;
+            // 
+            // TxtContact
+            // 
+            this.TxtContact.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Contact", true));
+            this.TxtContact.Location = new System.Drawing.Point(545, 22);
+            this.TxtContact.Name = "TxtContact";
+            this.TxtContact.Size = new System.Drawing.Size(265, 26);
+            this.TxtContact.TabIndex = 8;
+            // 
+            // TxtEmployeeName
+            // 
+            this.TxtEmployeeName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "EmployeeName", true));
+            this.TxtEmployeeName.Location = new System.Drawing.Point(274, 22);
+            this.TxtEmployeeName.Name = "TxtEmployeeName";
+            this.TxtEmployeeName.Size = new System.Drawing.Size(265, 26);
+            this.TxtEmployeeName.TabIndex = 7;
             // 
             // label3
             // 
@@ -150,15 +176,25 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Contact";
             // 
-            // label4
+            // label2
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 19);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Address";
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(274, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Employee Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Employee Id";
             // 
             // label5
             // 
@@ -179,37 +215,15 @@
             this.TxtEmployeeId.Size = new System.Drawing.Size(265, 26);
             this.TxtEmployeeId.TabIndex = 6;
             // 
-            // TxtEmployeeName
+            // label4
             // 
-            this.TxtEmployeeName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "EmployeeName", true));
-            this.TxtEmployeeName.Location = new System.Drawing.Point(274, 22);
-            this.TxtEmployeeName.Name = "TxtEmployeeName";
-            this.TxtEmployeeName.Size = new System.Drawing.Size(265, 26);
-            this.TxtEmployeeName.TabIndex = 7;
-            // 
-            // TxtContact
-            // 
-            this.TxtContact.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Contact", true));
-            this.TxtContact.Location = new System.Drawing.Point(545, 22);
-            this.TxtContact.Name = "TxtContact";
-            this.TxtContact.Size = new System.Drawing.Size(265, 26);
-            this.TxtContact.TabIndex = 8;
-            // 
-            // TxtAddress
-            // 
-            this.TxtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Address", true));
-            this.TxtAddress.Location = new System.Drawing.Point(3, 72);
-            this.TxtAddress.Name = "TxtAddress";
-            this.TxtAddress.Size = new System.Drawing.Size(265, 26);
-            this.TxtAddress.TabIndex = 9;
-            // 
-            // TxtEmail
-            // 
-            this.TxtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Email", true));
-            this.TxtEmail.Location = new System.Drawing.Point(274, 72);
-            this.TxtEmail.Name = "TxtEmail";
-            this.TxtEmail.Size = new System.Drawing.Size(265, 26);
-            this.TxtEmail.TabIndex = 10;
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 19);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Address";
             // 
             // tableLayoutPanel2
             // 
@@ -231,38 +245,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(817, 66);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // BtnAdd
+            // BtnSave
             // 
-            this.BtnAdd.BackColor = System.Drawing.Color.White;
-            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(157, 60);
-            this.BtnAdd.TabIndex = 0;
-            this.BtnAdd.Text = "Add";
-            this.BtnAdd.UseVisualStyleBackColor = false;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // BtnEdit
-            // 
-            this.BtnEdit.BackColor = System.Drawing.Color.White;
-            this.BtnEdit.Location = new System.Drawing.Point(166, 3);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.Size = new System.Drawing.Size(157, 60);
-            this.BtnEdit.TabIndex = 1;
-            this.BtnEdit.Text = "Edit";
-            this.BtnEdit.UseVisualStyleBackColor = false;
-            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.BackColor = System.Drawing.Color.White;
-            this.BtnDelete.Location = new System.Drawing.Point(329, 3);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(157, 60);
-            this.BtnDelete.TabIndex = 2;
-            this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = false;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.BtnSave.BackColor = System.Drawing.Color.White;
+            this.BtnSave.Location = new System.Drawing.Point(655, 3);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(159, 60);
+            this.BtnSave.TabIndex = 4;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnCancel
             // 
@@ -275,16 +267,38 @@
             this.BtnCancel.UseVisualStyleBackColor = false;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // BtnSave
+            // BtnDelete
             // 
-            this.BtnSave.BackColor = System.Drawing.Color.White;
-            this.BtnSave.Location = new System.Drawing.Point(655, 3);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(159, 60);
-            this.BtnSave.TabIndex = 4;
-            this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Location = new System.Drawing.Point(329, 3);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(157, 60);
+            this.BtnDelete.TabIndex = 2;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
+            // BtnEdit
+            // 
+            this.BtnEdit.BackColor = System.Drawing.Color.White;
+            this.BtnEdit.Location = new System.Drawing.Point(166, 3);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(157, 60);
+            this.BtnEdit.TabIndex = 1;
+            this.BtnEdit.Text = "Edit";
+            this.BtnEdit.UseVisualStyleBackColor = false;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.BackColor = System.Drawing.Color.White;
+            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(157, 60);
+            this.BtnAdd.TabIndex = 0;
+            this.BtnAdd.Text = "Add";
+            this.BtnAdd.UseVisualStyleBackColor = false;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // LblMessage
             // 
@@ -295,64 +309,6 @@
             this.LblMessage.Size = new System.Drawing.Size(54, 19);
             this.LblMessage.TabIndex = 3;
             this.LblMessage.Text = "label6";
-            // 
-            // SecretCode
-            // 
-            this.SecretCode.DataPropertyName = "SecretCode";
-            this.SecretCode.HeaderText = "Secret Code";
-            this.SecretCode.Name = "SecretCode";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(545, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 19);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Secret Code";
-            // 
-            // TxtSecretCode
-            // 
-            this.TxtSecretCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "SecretCode", true));
-            this.TxtSecretCode.Location = new System.Drawing.Point(545, 72);
-            this.TxtSecretCode.Name = "TxtSecretCode";
-            this.TxtSecretCode.Size = new System.Drawing.Size(265, 26);
-            this.TxtSecretCode.TabIndex = 12;
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(SimpleBilling.Model.Employee);
-            // 
-            // employeeIdDataGridViewTextBoxColumn
-            // 
-            this.employeeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeeId";
-            this.employeeIdDataGridViewTextBoxColumn.HeaderText = "EmployeeId";
-            this.employeeIdDataGridViewTextBoxColumn.Name = "employeeIdDataGridViewTextBoxColumn";
-            // 
-            // employeeNameDataGridViewTextBoxColumn
-            // 
-            this.employeeNameDataGridViewTextBoxColumn.DataPropertyName = "EmployeeName";
-            this.employeeNameDataGridViewTextBoxColumn.HeaderText = "EmployeeName";
-            this.employeeNameDataGridViewTextBoxColumn.Name = "employeeNameDataGridViewTextBoxColumn";
-            // 
-            // contactDataGridViewTextBoxColumn
-            // 
-            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
-            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
-            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             // 
             // ManageEmployees
             // 
@@ -372,11 +328,11 @@
             this.Text = "Manage Employees";
             this.Load += new System.EventHandler(this.ManageEmployees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVEmployees)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,11 +361,6 @@
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Label LblMessage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SecretCode;
         private System.Windows.Forms.TextBox TxtSecretCode;
         private System.Windows.Forms.Label label6;

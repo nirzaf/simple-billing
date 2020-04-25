@@ -85,7 +85,6 @@ namespace SimpleBilling.MasterForms
         {
             LblMessage.Text = Message;
         }
-
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = false;

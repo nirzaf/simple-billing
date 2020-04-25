@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,12 +34,42 @@ namespace SimpleBilling.MasterForms
         }
 
         private void BtnCreateGRN_Click(object sender, EventArgs e)
-        { 
-            string ReferenceNo = TxtReference.Text.Trim();
-            string Date = DTPDate.Value.ToShortDateString();
-            string SupplierId = CMBSupplier.SelectedValue.ToString();
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    GRNHeader header = new GRNHeader
+                    {
+                        ReferenceNo = TxtReference.Text.Trim(),
+                        GRN_Date = DTPDate.Value.ToShortDateString(),
+                        Supplier = (Supplier)CMBSupplier.SelectedItem,
+                        GrossTotal = 0,
+                        NetTotal = 0,
+                        TotalDiscout = 0,
+                        Employee = null,
+                        Status = 1
+                    };
 
+                    if (db.Entry(header).State == EntityState.Detached)
+                        db.Set<GRNHeader>().Attach(header);
+                    db.Entry(header).State = EntityState.Added;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Info(ex.ToString());
+            }
+        }
+        private void Info(string Message)
+        {
+            LblMessage.Text = Message;
+        }
 
+        private void MessageTimer_Tick(object sender, EventArgs e)
+        {
+            LblMessage.Text = string.Empty;
         }
     }
 }
