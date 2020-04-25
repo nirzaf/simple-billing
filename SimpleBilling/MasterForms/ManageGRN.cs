@@ -96,10 +96,35 @@ namespace SimpleBilling.MasterForms
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                         Quantity = Convert.ToInt32(TxtQuantity.Text.Trim())
                     };
-                    if (!string.IsNullOrWhiteSpace(TxtDiscount.Text)) details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                    if (!string.IsNullOrWhiteSpace(TxtDiscount.Text)) 
+                        details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                    else
+                        result.Discount = 0;
+
                     details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
-                    if (db.Entry(details).State == EntityState.Detached) db.Set<GRNDetails>().Attach(details);
-                    db.Entry(details).State = EntityState.Added;
+                    
+                    if (db.Entry(details).State == EntityState.Detached) 
+                        db.Set<GRNDetails>().Attach(details);
+
+                    var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == details.GRN_Id 
+                    && b.GRNCode == details.GRNCode && b.ProductId == details.ProductId);
+
+                    if (result != null)
+                    {
+                        result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
+                        result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                        if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
+                            result.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                        else
+                            result.Discount = 0;
+
+                        result.SubTotal = (result.UnitCost * Convert.ToSingle(result.Quantity)) - result.Discount;
+                        db.Entry(result).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        db.Entry(details).State = EntityState.Added;
+                    }
                     db.SaveChanges();
                     if (details.GRN_Id != 0)
                     {
