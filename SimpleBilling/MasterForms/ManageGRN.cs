@@ -101,7 +101,6 @@ namespace SimpleBilling.MasterForms
                     if (db.Entry(details).State == EntityState.Detached) db.Set<GRNDetails>().Attach(details);
                     db.Entry(details).State = EntityState.Added;
                     db.SaveChanges();
-                    MessageBox.Show(details.GRN_Id.ToString());
                     if (details.GRN_Id != 0)
                     {
                         LineNo++;
