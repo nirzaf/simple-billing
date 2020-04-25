@@ -22,5 +22,6 @@ namespace SimpleBilling.Model
         public float NetTotal { get; set; }
         public int Status { get; set; }
         public virtual Employee Employee { get; set; }
+        public ICollection<Item> Items { get; set; }
     }
 }
