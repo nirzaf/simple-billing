@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace SimpleBilling
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
