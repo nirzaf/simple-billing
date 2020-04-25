@@ -99,7 +99,7 @@ namespace SimpleBilling.MasterForms
                     if (!string.IsNullOrWhiteSpace(TxtDiscount.Text)) 
                         details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
                     else
-                        result.Discount = 0;
+                        details.Discount = 0;
 
                     details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
                     
