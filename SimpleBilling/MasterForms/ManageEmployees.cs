@@ -30,7 +30,7 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                employeeBindingSource.DataSource = db.Employee.ToList();
+                employeeBindingSource1.DataSource = db.Employee.ToList();
             }
         }
 
@@ -38,8 +38,8 @@ namespace SimpleBilling.MasterForms
         {
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
-            employeeBindingSource.Add(new Employee());
-            employeeBindingSource.MoveLast();
+            employeeBindingSource1.Add(new Employee());
+            employeeBindingSource1.MoveLast();
             TxtEmployeeName.Focus();
         }
 
@@ -48,7 +48,7 @@ namespace SimpleBilling.MasterForms
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             TxtEmployeeName.Focus();
-            Employee emp = employeeBindingSource.Current as Employee;
+            Employee emp = employeeBindingSource1.Current as Employee;
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace SimpleBilling.MasterForms
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        if (employeeBindingSource.Current is Employee emp)
+                        if (employeeBindingSource1.Current is Employee emp)
                         {
                             if (db.Entry(emp).State == EntityState.Detached)
                                 db.Set<Employee>().Attach(emp);
@@ -96,7 +96,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (employeeBindingSource.Current is Employee emp)
+                    if (employeeBindingSource1.Current is Employee emp)
                     {
                         if (db.Entry(emp).State == EntityState.Detached)
                             db.Set<Employee>().Attach(emp);

@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVEmployees = new System.Windows.Forms.DataGridView();
-            this.SecretCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,11 +52,19 @@
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
+            this.employeeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.employeeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.secretCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVEmployees
@@ -67,18 +74,17 @@
             this.DGVEmployees.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SecretCode});
-            this.DGVEmployees.DataSource = this.employeeBindingSource;
+            this.employeeIdDataGridViewTextBoxColumn,
+            this.employeeNameDataGridViewTextBoxColumn,
+            this.contactDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.secretCodeDataGridViewTextBoxColumn});
+            this.DGVEmployees.DataSource = this.employeeBindingSource1;
             this.DGVEmployees.Location = new System.Drawing.Point(2, 41);
             this.DGVEmployees.Name = "DGVEmployees";
             this.DGVEmployees.Size = new System.Drawing.Size(817, 197);
             this.DGVEmployees.TabIndex = 0;
-            // 
-            // SecretCode
-            // 
-            this.SecretCode.DataPropertyName = "SecretCode";
-            this.SecretCode.HeaderText = "Secret Code";
-            this.SecretCode.Name = "SecretCode";
             // 
             // CRUDPanel
             // 
@@ -118,7 +124,7 @@
             // 
             // TxtSecretCode
             // 
-            this.TxtSecretCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "SecretCode", true));
+            this.TxtSecretCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource1, "SecretCode", true));
             this.TxtSecretCode.Location = new System.Drawing.Point(545, 72);
             this.TxtSecretCode.Name = "TxtSecretCode";
             this.TxtSecretCode.Size = new System.Drawing.Size(265, 26);
@@ -136,7 +142,7 @@
             // 
             // TxtEmail
             // 
-            this.TxtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Email", true));
+            this.TxtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource1, "Email", true));
             this.TxtEmail.Location = new System.Drawing.Point(274, 72);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(265, 26);
@@ -144,7 +150,7 @@
             // 
             // TxtAddress
             // 
-            this.TxtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Address", true));
+            this.TxtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource1, "Address", true));
             this.TxtAddress.Location = new System.Drawing.Point(3, 72);
             this.TxtAddress.Name = "TxtAddress";
             this.TxtAddress.Size = new System.Drawing.Size(265, 26);
@@ -152,7 +158,7 @@
             // 
             // TxtContact
             // 
-            this.TxtContact.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Contact", true));
+            this.TxtContact.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource1, "Contact", true));
             this.TxtContact.Location = new System.Drawing.Point(545, 22);
             this.TxtContact.Name = "TxtContact";
             this.TxtContact.Size = new System.Drawing.Size(265, 26);
@@ -160,7 +166,7 @@
             // 
             // TxtEmployeeName
             // 
-            this.TxtEmployeeName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "EmployeeName", true));
+            this.TxtEmployeeName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource1, "EmployeeName", true));
             this.TxtEmployeeName.Location = new System.Drawing.Point(274, 22);
             this.TxtEmployeeName.Name = "TxtEmployeeName";
             this.TxtEmployeeName.Size = new System.Drawing.Size(265, 26);
@@ -208,7 +214,7 @@
             // 
             // TxtEmployeeId
             // 
-            this.TxtEmployeeId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "EmployeeId", true));
+            this.TxtEmployeeId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource1, "EmployeeId", true));
             this.TxtEmployeeId.Location = new System.Drawing.Point(3, 22);
             this.TxtEmployeeId.Name = "TxtEmployeeId";
             this.TxtEmployeeId.ReadOnly = true;
@@ -310,6 +316,46 @@
             this.LblMessage.TabIndex = 3;
             this.LblMessage.Text = "label6";
             // 
+            // employeeBindingSource1
+            // 
+            this.employeeBindingSource1.DataSource = typeof(SimpleBilling.Model.Employee);
+            // 
+            // employeeIdDataGridViewTextBoxColumn
+            // 
+            this.employeeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeeId";
+            this.employeeIdDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.employeeIdDataGridViewTextBoxColumn.Name = "employeeIdDataGridViewTextBoxColumn";
+            // 
+            // employeeNameDataGridViewTextBoxColumn
+            // 
+            this.employeeNameDataGridViewTextBoxColumn.DataPropertyName = "EmployeeName";
+            this.employeeNameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.employeeNameDataGridViewTextBoxColumn.Name = "employeeNameDataGridViewTextBoxColumn";
+            // 
+            // contactDataGridViewTextBoxColumn
+            // 
+            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
+            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
+            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // secretCodeDataGridViewTextBoxColumn
+            // 
+            this.secretCodeDataGridViewTextBoxColumn.DataPropertyName = "SecretCode";
+            this.secretCodeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.secretCodeDataGridViewTextBoxColumn.Name = "secretCodeDataGridViewTextBoxColumn";
+            // 
             // ManageEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -333,6 +379,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,8 +408,14 @@
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Label LblMessage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SecretCode;
         private System.Windows.Forms.TextBox TxtSecretCode;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.BindingSource employeeBindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn secretCodeDataGridViewTextBoxColumn;
     }
 }
