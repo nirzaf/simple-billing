@@ -1,13 +1,8 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -16,7 +11,7 @@ namespace SimpleBilling.MasterForms
     {
         private int GRN_Id= int.MinValue;
         private string GRN_Code = string.Empty;
-        private int LineNo = 0;
+        private int LineNo = 1;
         public ManageGRN()
         {
             InitializeComponent();
@@ -97,17 +92,16 @@ namespace SimpleBilling.MasterForms
                         GRN_Id = GRN_Id,
                         GRNCode = GRN_Code,
                         LineId = LineNo,
-                        ProductId = (Item)CmbProduct.SelectedItem,
+                        ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                         Quantity = Convert.ToInt32(TxtQuantity.Text.Trim())
                     };
-                    if (string.IsNullOrWhiteSpace(TxtDiscount.Text))
-                        details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                    if (!string.IsNullOrWhiteSpace(TxtDiscount.Text)) details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
                     details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
-                    if (db.Entry(details).State == EntityState.Detached)
-                        db.Set<GRNDetails>().Attach(details);
+                    if (db.Entry(details).State == EntityState.Detached) db.Set<GRNDetails>().Attach(details);
                     db.Entry(details).State = EntityState.Added;
                     db.SaveChanges();
+                    MessageBox.Show(details.GRN_Id.ToString());
                     if (details.GRN_Id != 0)
                     {
                         LineNo++;
@@ -119,11 +113,6 @@ namespace SimpleBilling.MasterForms
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void DGVGRNList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

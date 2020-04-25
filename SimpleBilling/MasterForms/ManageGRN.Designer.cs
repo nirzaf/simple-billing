@@ -90,7 +90,6 @@
             this.DGVGRNList.Name = "DGVGRNList";
             this.DGVGRNList.Size = new System.Drawing.Size(909, 254);
             this.DGVGRNList.TabIndex = 0;
-            this.DGVGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellContentClick);
             // 
             // gRNIdDataGridViewTextBoxColumn
             // 
