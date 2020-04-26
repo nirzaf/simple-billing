@@ -53,20 +53,19 @@ namespace SimpleBilling.MasterForms
 
         private void BtnLoadInvoice_Click(object sender, EventArgs e)
         {
-            string GRN_String = DGVInvoices.SelectedRows[0].Cells[0].Value + string.Empty;
-            int GRN_Id = Convert.ToInt32(GRN_String);
-            ManageGRN grn = new ManageGRN(GRN_Id);
+            LoadGRNInvoice();
+        }
+
+        private void LoadGRNInvoice()
+        {
+            string GRN_String = DGVInvoices.SelectedRows[0].Cells[1].Value + string.Empty;
+            ManageGRN grn = new ManageGRN(GRN_String);
             grn.Show();
             Close();
         }
-
         private void DGVInvoices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string GRN_String = DGVInvoices.SelectedRows[0].Cells[0].Value + string.Empty;
-            int GRN_Id = Convert.ToInt32(GRN_String);
-            ManageGRN grn = new ManageGRN(GRN_Id);
-            grn.Show();
-            Close();
+            LoadGRNInvoice();
         }
     }
 }

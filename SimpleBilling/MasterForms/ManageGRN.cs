@@ -9,65 +9,48 @@ namespace SimpleBilling.MasterForms
 {
     public partial class ManageGRN : Form
     {
-        private int GRN_Id;
+        private int GRN_Id = int.MaxValue;
         private string GRN_Code = string.Empty;
         private int LineNo = 1;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
-        public ManageGRN(int GRN_Id)
+        public ManageGRN(string GRN_Init_Code)
         {
             InitializeComponent();
-            this.GRN_Id = GRN_Id;
+            GRN_Code = GRN_Init_Code; 
         }
 
         private void ManageGRN_Load(object sender, EventArgs e)
         {
             LoadCmb();
-            if (GRN_Id != 0)
+            if (!string.IsNullOrEmpty(GRN_Code))
             {
-                LoadInvoice(GRN_Id);
+                LoadDetails(GRN_Code);
             }
         }
 
-        private void LoadInvoice(int Inv_Id)
+        private void LoadDetails(string GRN_New_Code)
         {
-            using (BillingContext db = new BillingContext())
+            GRN_New_Code = GRN_Code;
+            if (!string.IsNullOrEmpty(GRN_New_Code))
             {
-                var data = (from details in db.GRNDetails
-                            join item in db.Items
-                            on details.ProductId equals item.Id
-                            select new
-                            {
-                                details.GRN_Id,
-                                Line_No = details.LineId,
-                                Item_Name = item.ItemName,
-                                details.Quantity,
-                                Unit_Cost = details.UnitCost,
-                                details.Discount,
-                                Sub_Total = details.SubTotal
-                            }).Where(c => c.GRN_Id == Inv_Id).ToList();
-                DGVGRNList.DataSource = data;
-            }
-        }
-
-        private void LoadDetails()
-        {
-            using (BillingContext db = new BillingContext())
-            {
-                var data = (from details in db.GRNDetails
-                            join item in db.Items
-                            on details.ProductId equals item.Id
-                            select new
-                            {
-                                GRN_Code = details.GRNCode,
-                                Line_No = details.LineId,
-                                Item_Name = item.ItemName,
-                                details.Quantity,
-                                Unit_Cost = details.UnitCost,
-                                details.Discount,
-                                Sub_Total = details.SubTotal
-                            }).Where(c => c.GRN_Code == GRN_Code).ToList();
-                DGVGRNList.DataSource = data;
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = (from details in db.GRNDetails
+                                join item in db.Items
+                                on details.ProductId equals item.Id
+                                select new
+                                {
+                                    GRN_Code = details.GRNCode,
+                                    Line_No = details.LineId,
+                                    Item_Name = item.ItemName,
+                                    details.Quantity,
+                                    Unit_Cost = details.UnitCost,
+                                    details.Discount,
+                                    Sub_Total = details.SubTotal
+                                }).Where(c => c.GRN_Code == GRN_New_Code).ToList();
+                    DGVGRNList.DataSource = data;
+                }
             }
         }
 
@@ -176,7 +159,7 @@ namespace SimpleBilling.MasterForms
                     if (details.GRN_Id != 0)
                     {
                         LineNo++;
-                        LoadDetails();
+                        LoadDetails(GRN_Code);
                     }
                 }
             }
