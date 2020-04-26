@@ -3,13 +3,11 @@ using SimpleBilling.Model;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Linq;
-using SimpleBilling.Business;
 
 namespace SimpleBilling.MasterForms
 {
     public partial class ManageItems : Form
     {
-        private readonly CRUDItem item = new CRUDItem();
         public ManageItems()
         {
             InitializeComponent();
@@ -77,9 +75,6 @@ namespace SimpleBilling.MasterForms
                         Info("Item Modified Successfully");
                     }                   
                 }
-                
-                int lastRow = DGVItems.Rows.Count;
-                DGVItems.CurrentCell = DGVItems.Rows[lastRow - 1].Cells[0];
             }
         }
 
@@ -100,6 +95,8 @@ namespace SimpleBilling.MasterForms
                 BtnSave.Enabled = false;
                 DGVItems.Refresh();
                 LoadDGV();
+                int lastRow = DGVItems.Rows.Count;
+                DGVItems.CurrentCell = DGVItems.Rows[lastRow - 1].Cells[0];
             }
         }
 
