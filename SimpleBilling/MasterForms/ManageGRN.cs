@@ -9,19 +9,45 @@ namespace SimpleBilling.MasterForms
 {
     public partial class ManageGRN : Form
     {
-        private int GRN_Id= int.MinValue;
+        private int GRN_Id;
         private string GRN_Code = string.Empty;
         private int LineNo = 1;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
-        public ManageGRN()
+        public ManageGRN(int GRN_Id)
         {
             InitializeComponent();
+            this.GRN_Id = GRN_Id;
         }
 
         private void ManageGRN_Load(object sender, EventArgs e)
         {
             LoadCmb();
+            if (GRN_Id != 0)
+            {
+                LoadInvoice(GRN_Id);
+            }
+        }
+
+        private void LoadInvoice(int Inv_Id)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from details in db.GRNDetails
+                            join item in db.Items
+                            on details.ProductId equals item.Id
+                            select new
+                            {
+                                details.GRN_Id,
+                                Line_No = details.LineId,
+                                Item_Name = item.ItemName,
+                                details.Quantity,
+                                Unit_Cost = details.UnitCost,
+                                details.Discount,
+                                Sub_Total = details.SubTotal
+                            }).Where(c => c.GRN_Id == Inv_Id).ToList();
+                DGVGRNList.DataSource = data;
+            }
         }
 
         private void LoadDetails()
@@ -208,6 +234,7 @@ namespace SimpleBilling.MasterForms
         {
             GRNInvoices inv = new GRNInvoices();
             inv.Show();
+            Hide();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace SimpleBilling.MasterForms
 
         private void LoadDGV()
         {
+            BtnLoadInvoice.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
                 var data = (from header in db.GRNHeaders
@@ -40,6 +41,23 @@ namespace SimpleBilling.MasterForms
                             }).ToList();
                 DGVInvoices.DataSource = data;
             }
+        }
+
+        private void DGVInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVInvoices.Rows.Count > 0)
+            {
+                BtnLoadInvoice.Enabled = true;
+            }
+        }
+
+        private void BtnLoadInvoice_Click(object sender, EventArgs e)
+        {
+            string GRN_String = DGVInvoices.SelectedRows[0].Cells[0].Value + string.Empty;
+            int GRN_Id = Convert.ToInt32(GRN_String);
+            ManageGRN grn = new ManageGRN(GRN_Id);
+            grn.Show();
+            Close();
         }
     }
 }

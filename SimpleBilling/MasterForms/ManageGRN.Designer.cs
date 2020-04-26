@@ -34,16 +34,15 @@
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
+            this.BtnAddItem = new System.Windows.Forms.Button();
             this.CmbProduct = new System.Windows.Forms.ComboBox();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.TxtQuantity = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtUnitCost = new System.Windows.Forms.TextBox();
-            this.BtnAddItem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtDiscount = new System.Windows.Forms.TextBox();
-            this.BtnCreateGRN = new System.Windows.Forms.Button();
             this.CMBSupplier = new System.Windows.Forms.ComboBox();
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtGRNNo = new System.Windows.Forms.TextBox();
+            this.BtnCreateGRN = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
             this.BtnComplete = new System.Windows.Forms.Button();
@@ -142,6 +142,18 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Product";
             // 
+            // BtnAddItem
+            // 
+            this.BtnAddItem.BackColor = System.Drawing.Color.White;
+            this.BtnAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddItem.Location = new System.Drawing.Point(723, 72);
+            this.BtnAddItem.Name = "BtnAddItem";
+            this.BtnAddItem.Size = new System.Drawing.Size(174, 26);
+            this.BtnAddItem.TabIndex = 15;
+            this.BtnAddItem.Text = "Add Item";
+            this.BtnAddItem.UseVisualStyleBackColor = false;
+            this.BtnAddItem.Click += new System.EventHandler(this.BtnAddItem_Click);
+            // 
             // CmbProduct
             // 
             this.CmbProduct.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -189,18 +201,6 @@
             this.TxtUnitCost.Size = new System.Drawing.Size(174, 26);
             this.TxtUnitCost.TabIndex = 4;
             // 
-            // BtnAddItem
-            // 
-            this.BtnAddItem.BackColor = System.Drawing.Color.White;
-            this.BtnAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddItem.Location = new System.Drawing.Point(723, 72);
-            this.BtnAddItem.Name = "BtnAddItem";
-            this.BtnAddItem.Size = new System.Drawing.Size(174, 26);
-            this.BtnAddItem.TabIndex = 15;
-            this.BtnAddItem.Text = "Add Item";
-            this.BtnAddItem.UseVisualStyleBackColor = false;
-            this.BtnAddItem.Click += new System.EventHandler(this.BtnAddItem_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -217,23 +217,6 @@
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(174, 26);
             this.TxtDiscount.TabIndex = 5;
-            // 
-            // BtnCreateGRN
-            // 
-            this.BtnCreateGRN.BackColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BtnCreateGRN.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.FlatAppearance.BorderSize = 0;
-            this.BtnCreateGRN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.BtnCreateGRN.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateGRN.Location = new System.Drawing.Point(3, 3);
-            this.BtnCreateGRN.Name = "BtnCreateGRN";
-            this.BtnCreateGRN.Size = new System.Drawing.Size(84, 50);
-            this.BtnCreateGRN.TabIndex = 14;
-            this.BtnCreateGRN.Text = "Create Invoice";
-            this.BtnCreateGRN.UseVisualStyleBackColor = false;
-            this.BtnCreateGRN.Click += new System.EventHandler(this.BtnCreateGRN_Click);
             // 
             // CMBSupplier
             // 
@@ -309,6 +292,23 @@
             this.TxtGRNNo.Name = "TxtGRNNo";
             this.TxtGRNNo.Size = new System.Drawing.Size(174, 26);
             this.TxtGRNNo.TabIndex = 0;
+            // 
+            // BtnCreateGRN
+            // 
+            this.BtnCreateGRN.BackColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BtnCreateGRN.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.FlatAppearance.BorderSize = 0;
+            this.BtnCreateGRN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.BtnCreateGRN.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCreateGRN.Location = new System.Drawing.Point(3, 3);
+            this.BtnCreateGRN.Name = "BtnCreateGRN";
+            this.BtnCreateGRN.Size = new System.Drawing.Size(84, 50);
+            this.BtnCreateGRN.TabIndex = 14;
+            this.BtnCreateGRN.Text = "Create Invoice";
+            this.BtnCreateGRN.UseVisualStyleBackColor = false;
+            this.BtnCreateGRN.Click += new System.EventHandler(this.BtnCreateGRN_Click);
             // 
             // LblMessage
             // 
