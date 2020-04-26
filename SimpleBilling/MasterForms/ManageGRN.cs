@@ -52,7 +52,7 @@ namespace SimpleBilling.MasterForms
 
         private void LoadDetails()
         {
-            using (BillingContext db = new BillingContext()) 
+            using (BillingContext db = new BillingContext())
             {
                 var data = (from details in db.GRNDetails
                             join item in db.Items
@@ -66,7 +66,7 @@ namespace SimpleBilling.MasterForms
                                 Unit_Cost = details.UnitCost,
                                 details.Discount,
                                 Sub_Total = details.SubTotal
-                            }).Where(c=>c.GRN_Code == GRN_Code).ToList();
+                            }).Where(c => c.GRN_Code == GRN_Code).ToList();
                 DGVGRNList.DataSource = data;
             }
         }

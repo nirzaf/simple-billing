@@ -43,6 +43,7 @@
             this.DGVInvoices.Size = new System.Drawing.Size(934, 317);
             this.DGVInvoices.TabIndex = 0;
             this.DGVInvoices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoices_CellClick);
+            this.DGVInvoices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoices_CellDoubleClick);
             // 
             // BtnLoadInvoice
             // 
@@ -67,6 +68,7 @@
             this.Controls.Add(this.DGVInvoices);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "GRNInvoices";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GRNInvoices";
             this.Load += new System.EventHandler(this.GRNInvoices_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVInvoices)).EndInit();

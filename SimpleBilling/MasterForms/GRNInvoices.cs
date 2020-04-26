@@ -59,5 +59,14 @@ namespace SimpleBilling.MasterForms
             grn.Show();
             Close();
         }
+
+        private void DGVInvoices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string GRN_String = DGVInvoices.SelectedRows[0].Cells[0].Value + string.Empty;
+            int GRN_Id = Convert.ToInt32(GRN_String);
+            ManageGRN grn = new ManageGRN(GRN_Id);
+            grn.Show();
+            Close();
+        }
     }
 }

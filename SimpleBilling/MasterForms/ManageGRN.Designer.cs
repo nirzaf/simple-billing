@@ -463,6 +463,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageGRN";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Good Received Note";
             this.Load += new System.EventHandler(this.ManageGRN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
