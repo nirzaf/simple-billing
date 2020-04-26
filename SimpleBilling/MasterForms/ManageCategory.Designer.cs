@@ -44,6 +44,8 @@
             this.BtnAdd = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerLabel = new System.Windows.Forms.Timer(this.components);
+            this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -58,12 +60,19 @@
             this.DGVCategories.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVCategories.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.DGVCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVCategories.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.categoryIdDataGridViewTextBoxColumn,
+            this.categoryNameDataGridViewTextBoxColumn});
             this.DGVCategories.DataSource = this.categoryBindingSource;
             this.DGVCategories.Location = new System.Drawing.Point(14, 18);
             this.DGVCategories.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVCategories.Name = "DGVCategories";
             this.DGVCategories.Size = new System.Drawing.Size(247, 208);
             this.DGVCategories.TabIndex = 0;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // tableLayoutPanel1
             // 
@@ -215,6 +224,19 @@
             this.TimerLabel.Interval = 6000;
             this.TimerLabel.Tick += new System.EventHandler(this.TimerLabel_Tick);
             // 
+            // categoryIdDataGridViewTextBoxColumn
+            // 
+            this.categoryIdDataGridViewTextBoxColumn.DataPropertyName = "CategoryId";
+            this.categoryIdDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.categoryIdDataGridViewTextBoxColumn.Name = "categoryIdDataGridViewTextBoxColumn";
+            this.categoryIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryNameDataGridViewTextBoxColumn
+            // 
+            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
+            // 
             // ManageCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -260,5 +282,7 @@
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer TimerLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
     }
 }

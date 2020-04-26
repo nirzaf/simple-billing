@@ -116,6 +116,29 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
+                    GRNHeader header = new GRNHeader
+                    {
+                        ReferenceNo = TxtReference.Text.Trim(),
+                        GRN_No = TxtGRNNo.Text.Trim(),
+                        GRN_Date = DTPDate.Value.ToShortDateString(),
+                        Supplier = (Supplier)CMBSupplier.SelectedItem,
+                        GrossTotal = 0,
+                        NetTotal = 0,
+                        TotalDiscout = 0,
+                        Employee = null,
+                        Status = 1
+                    };
+
+                    if (header.GRN_No != TxtGRNNo.Text.Trim())
+                    {
+                        if (db.Entry(header).State == EntityState.Detached)
+                            db.Set<GRNHeader>().Attach(header);
+                        db.Entry(header).State = EntityState.Added;
+                        db.SaveChanges();
+                        GRN_Id = header.GRN_Id;
+                        GRN_Code = header.GRN_No;
+                    }
+
                     GRNDetails details = new GRNDetails
                     {
                         GRN_Id = GRN_Id,
