@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBilling.Model
 {
@@ -12,6 +8,7 @@ namespace SimpleBilling.Model
     {
         [Key]
         public int GRN_Id { get; set; }
+
         public string GRN_No { get; set; }
         public string GRN_Date { get; set; }
         public string ReferenceNo { get; set; }

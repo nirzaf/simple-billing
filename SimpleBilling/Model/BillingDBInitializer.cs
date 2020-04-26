@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace SimpleBilling.Model
 {
-    public class BillingDBInitializer : DropCreateDatabaseAlways<BillingContext>
+    public class BillingDBInitializer : CreateDatabaseIfNotExists<BillingContext>
     {
         protected override void Seed(BillingContext context)
         {

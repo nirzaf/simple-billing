@@ -339,9 +339,12 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tableLayoutPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.50704F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.49296F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.76731F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.23269F));
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label11, 0, 2);
@@ -350,17 +353,18 @@
             this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 1, 2);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 361);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(710, 88);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(362, 88);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Location = new System.Drawing.Point(4, 1);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(96, 19);
             this.label9.TabIndex = 0;
@@ -369,7 +373,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 29);
+            this.label10.Location = new System.Drawing.Point(4, 30);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 19);
             this.label10.TabIndex = 1;
@@ -378,7 +382,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 58);
+            this.label11.Location = new System.Drawing.Point(4, 59);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 19);
             this.label11.TabIndex = 2;
@@ -387,29 +391,29 @@
             // LblGrossTotal
             // 
             this.LblGrossTotal.AutoSize = true;
-            this.LblGrossTotal.Location = new System.Drawing.Point(176, 0);
+            this.LblGrossTotal.Location = new System.Drawing.Point(162, 1);
             this.LblGrossTotal.Name = "LblGrossTotal";
-            this.LblGrossTotal.Size = new System.Drawing.Size(63, 19);
+            this.LblGrossTotal.Size = new System.Drawing.Size(18, 19);
             this.LblGrossTotal.TabIndex = 3;
-            this.LblGrossTotal.Text = "label12";
+            this.LblGrossTotal.Text = "0";
             // 
             // LblTotalDiscount
             // 
             this.LblTotalDiscount.AutoSize = true;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(176, 29);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(162, 30);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
-            this.LblTotalDiscount.Size = new System.Drawing.Size(63, 19);
+            this.LblTotalDiscount.Size = new System.Drawing.Size(18, 19);
             this.LblTotalDiscount.TabIndex = 4;
-            this.LblTotalDiscount.Text = "label12";
+            this.LblTotalDiscount.Text = "0";
             // 
             // LblNetTotal
             // 
             this.LblNetTotal.AutoSize = true;
-            this.LblNetTotal.Location = new System.Drawing.Point(176, 58);
+            this.LblNetTotal.Location = new System.Drawing.Point(162, 59);
             this.LblNetTotal.Name = "LblNetTotal";
-            this.LblNetTotal.Size = new System.Drawing.Size(63, 19);
+            this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
             this.LblNetTotal.TabIndex = 5;
-            this.LblNetTotal.Text = "label12";
+            this.LblNetTotal.Text = "0";
             // 
             // tableLayoutPanel3
             // 
