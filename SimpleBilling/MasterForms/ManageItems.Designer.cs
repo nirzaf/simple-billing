@@ -53,6 +53,8 @@
             this.BtnAddCategory = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
+            this.TxtUnitCost = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
@@ -154,7 +156,7 @@
             this.BtnEdit.Location = new System.Drawing.Point(93, 3);
             this.BtnEdit.Name = "BtnEdit";
             this.BtnEdit.Size = new System.Drawing.Size(84, 62);
-            this.BtnEdit.TabIndex = 1;
+            this.BtnEdit.TabIndex = 12;
             this.BtnEdit.Text = "Edit";
             this.BtnEdit.UseVisualStyleBackColor = false;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
@@ -165,7 +167,7 @@
             this.BtnAdd.Location = new System.Drawing.Point(3, 3);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(84, 62);
-            this.BtnAdd.TabIndex = 0;
+            this.BtnAdd.TabIndex = 11;
             this.BtnAdd.Text = "Add";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -180,14 +182,16 @@
             this.PanelCRUD.Controls.Add(this.label2, 0, 2);
             this.PanelCRUD.Controls.Add(this.label1, 0, 1);
             this.PanelCRUD.Controls.Add(this.label3, 0, 3);
-            this.PanelCRUD.Controls.Add(this.label4, 0, 4);
-            this.PanelCRUD.Controls.Add(this.label5, 0, 5);
             this.PanelCRUD.Controls.Add(this.TxtItemCode, 1, 1);
             this.PanelCRUD.Controls.Add(this.TxtItemName, 1, 2);
             this.PanelCRUD.Controls.Add(this.TxtUnit, 1, 3);
-            this.PanelCRUD.Controls.Add(this.TxtBarcode, 1, 4);
-            this.PanelCRUD.Controls.Add(this.CmbCategories, 1, 5);
-            this.PanelCRUD.Controls.Add(this.BtnAddCategory, 1, 6);
+            this.PanelCRUD.Controls.Add(this.BtnAddCategory, 1, 7);
+            this.PanelCRUD.Controls.Add(this.CmbCategories, 1, 6);
+            this.PanelCRUD.Controls.Add(this.label5, 0, 6);
+            this.PanelCRUD.Controls.Add(this.TxtBarcode, 1, 5);
+            this.PanelCRUD.Controls.Add(this.label4, 0, 5);
+            this.PanelCRUD.Controls.Add(this.TxtUnitCost, 1, 4);
+            this.PanelCRUD.Controls.Add(this.label7, 0, 4);
             this.PanelCRUD.Location = new System.Drawing.Point(3, 3);
             this.PanelCRUD.Name = "PanelCRUD";
             this.PanelCRUD.RowCount = 8;
@@ -245,7 +249,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(3, 120);
+            this.label4.Location = new System.Drawing.Point(3, 150);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 20);
             this.label4.TabIndex = 4;
@@ -255,7 +259,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(3, 150);
+            this.label5.Location = new System.Drawing.Point(3, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 20);
             this.label5.TabIndex = 5;
@@ -288,10 +292,10 @@
             // TxtBarcode
             // 
             this.TxtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBarcode.Location = new System.Drawing.Point(136, 123);
+            this.TxtBarcode.Location = new System.Drawing.Point(136, 153);
             this.TxtBarcode.Name = "TxtBarcode";
             this.TxtBarcode.Size = new System.Drawing.Size(316, 26);
-            this.TxtBarcode.TabIndex = 9;
+            this.TxtBarcode.TabIndex = 10;
             // 
             // CmbCategories
             // 
@@ -299,7 +303,7 @@
             this.CmbCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbCategories.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.CmbCategories.FormattingEnabled = true;
-            this.CmbCategories.Location = new System.Drawing.Point(136, 153);
+            this.CmbCategories.Location = new System.Drawing.Point(136, 183);
             this.CmbCategories.Name = "CmbCategories";
             this.CmbCategories.Size = new System.Drawing.Size(316, 28);
             this.CmbCategories.TabIndex = 10;
@@ -307,9 +311,9 @@
             // BtnAddCategory
             // 
             this.BtnAddCategory.BackColor = System.Drawing.Color.White;
-            this.BtnAddCategory.Location = new System.Drawing.Point(136, 183);
+            this.BtnAddCategory.Location = new System.Drawing.Point(136, 224);
             this.BtnAddCategory.Name = "BtnAddCategory";
-            this.BtnAddCategory.Size = new System.Drawing.Size(316, 34);
+            this.BtnAddCategory.Size = new System.Drawing.Size(316, 29);
             this.BtnAddCategory.TabIndex = 13;
             this.BtnAddCategory.Text = "Add Category";
             this.BtnAddCategory.UseVisualStyleBackColor = false;
@@ -331,6 +335,24 @@
             this.TimerMessage.Enabled = true;
             this.TimerMessage.Interval = 6000;
             this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
+            // 
+            // TxtUnitCost
+            // 
+            this.TxtUnitCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtUnitCost.Location = new System.Drawing.Point(136, 123);
+            this.TxtUnitCost.Name = "TxtUnitCost";
+            this.TxtUnitCost.Size = new System.Drawing.Size(316, 26);
+            this.TxtUnitCost.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.Location = new System.Drawing.Point(3, 120);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Unit Cost";
             // 
             // categoryBindingSource
             // 
@@ -395,5 +417,7 @@
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private System.Windows.Forms.Timer TimerMessage;
         private System.Windows.Forms.Button BtnAddCategory;
+        private System.Windows.Forms.TextBox TxtUnitCost;
+        private System.Windows.Forms.Label label7;
     }
 }

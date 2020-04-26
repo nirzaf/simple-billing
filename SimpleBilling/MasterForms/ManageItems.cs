@@ -26,6 +26,7 @@ namespace SimpleBilling.MasterForms
         {
             PanelCRUD.Enabled = true;
             BtnCancel.Enabled = true;
+            BtnSave.Enabled = true;
             TxtItemId.Text = "0";
             TxtItemCode.Focus();
         }
@@ -51,6 +52,7 @@ namespace SimpleBilling.MasterForms
                     Code = TxtItemCode.Text.Trim(),
                     ItemName = TxtItemName.Text.Trim(),
                     Unit = TxtUnit.Text.Trim(),
+                    UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                     Barcode = TxtBarcode.Text.Trim(),
                     Categories = cat
                 };
@@ -69,6 +71,7 @@ namespace SimpleBilling.MasterForms
                         result.Code= items.Code;
                         result.ItemName = items.ItemName;
                         result.Unit = items.Unit;
+                        result.UnitCost = items.UnitCost;
                         result.Barcode = items.Barcode;
                         result.Categories = items.Categories;
                         db.SaveChanges();
@@ -113,6 +116,7 @@ namespace SimpleBilling.MasterForms
                                 item.Code,
                                 item.ItemName,
                                 item.Unit,
+                                item.UnitCost,
                                 item.Barcode,
                                 item.Categories.CategoryName
                             }).ToList();
@@ -159,12 +163,12 @@ namespace SimpleBilling.MasterForms
             }
             else
             {
-                TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
-                TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
-                TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
-                TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
-                TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
-                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
+                //TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                //TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
+                //TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
+                //TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
+                //TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
+                //CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
             }
         }
 
