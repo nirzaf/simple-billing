@@ -55,12 +55,21 @@
             this.TxtGRNNo = new System.Windows.Forms.TextBox();
             this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
+            this.BtnComplete = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.LblGrossTotal = new System.Windows.Forms.Label();
+            this.LblTotalDiscount = new System.Windows.Forms.Label();
+            this.LblNetTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVGRNList
@@ -69,7 +78,7 @@
             this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVGRNList.Location = new System.Drawing.Point(-4, 130);
             this.DGVGRNList.Name = "DGVGRNList";
-            this.DGVGRNList.Size = new System.Drawing.Size(909, 254);
+            this.DGVGRNList.Size = new System.Drawing.Size(909, 224);
             this.DGVGRNList.TabIndex = 0;
             // 
             // gRNDetailsBindingSource
@@ -303,7 +312,7 @@
             // 
             this.LblMessage.AutoSize = true;
             this.LblMessage.ForeColor = System.Drawing.Color.Lime;
-            this.LblMessage.Location = new System.Drawing.Point(2, 387);
+            this.LblMessage.Location = new System.Drawing.Point(9, 452);
             this.LblMessage.Name = "LblMessage";
             this.LblMessage.Size = new System.Drawing.Size(54, 19);
             this.LblMessage.TabIndex = 2;
@@ -315,12 +324,99 @@
             this.MessageTimer.Interval = 10000;
             this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
             // 
+            // BtnComplete
+            // 
+            this.BtnComplete.BackColor = System.Drawing.Color.White;
+            this.BtnComplete.Location = new System.Drawing.Point(722, 361);
+            this.BtnComplete.Name = "BtnComplete";
+            this.BtnComplete.Size = new System.Drawing.Size(180, 35);
+            this.BtnComplete.TabIndex = 3;
+            this.BtnComplete.Text = "Complete";
+            this.BtnComplete.UseVisualStyleBackColor = false;
+            this.BtnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.50704F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.49296F));
+            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LblGrossTotal, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.LblTotalDiscount, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 1, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 361);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(710, 88);
+            this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(96, 19);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Gross Total";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 29);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(119, 19);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Total Discount";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 58);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 19);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Net Total";
+            // 
+            // LblGrossTotal
+            // 
+            this.LblGrossTotal.AutoSize = true;
+            this.LblGrossTotal.Location = new System.Drawing.Point(176, 0);
+            this.LblGrossTotal.Name = "LblGrossTotal";
+            this.LblGrossTotal.Size = new System.Drawing.Size(63, 19);
+            this.LblGrossTotal.TabIndex = 3;
+            this.LblGrossTotal.Text = "label12";
+            // 
+            // LblTotalDiscount
+            // 
+            this.LblTotalDiscount.AutoSize = true;
+            this.LblTotalDiscount.Location = new System.Drawing.Point(176, 29);
+            this.LblTotalDiscount.Name = "LblTotalDiscount";
+            this.LblTotalDiscount.Size = new System.Drawing.Size(63, 19);
+            this.LblTotalDiscount.TabIndex = 4;
+            this.LblTotalDiscount.Text = "label12";
+            // 
+            // LblNetTotal
+            // 
+            this.LblNetTotal.AutoSize = true;
+            this.LblNetTotal.Location = new System.Drawing.Point(176, 58);
+            this.LblNetTotal.Name = "LblNetTotal";
+            this.LblNetTotal.Size = new System.Drawing.Size(63, 19);
+            this.LblNetTotal.TabIndex = 5;
+            this.LblNetTotal.Text = "label12";
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(904, 451);
+            this.ClientSize = new System.Drawing.Size(904, 502);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.BtnComplete);
             this.Controls.Add(this.LblMessage);
             this.Controls.Add(this.CRUDPanel);
             this.Controls.Add(this.DGVGRNList);
@@ -337,6 +433,8 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,5 +468,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtGRNNo;
         private System.Windows.Forms.BindingSource gRNDetailsBindingSource;
+        private System.Windows.Forms.Button BtnComplete;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label LblGrossTotal;
+        private System.Windows.Forms.Label LblTotalDiscount;
+        private System.Windows.Forms.Label LblNetTotal;
     }
 }

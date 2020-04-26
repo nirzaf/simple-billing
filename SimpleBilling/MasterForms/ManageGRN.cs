@@ -12,6 +12,8 @@ namespace SimpleBilling.MasterForms
         private int GRN_Id= int.MinValue;
         private string GRN_Code = string.Empty;
         private int LineNo = 1;
+        private float TotalDiscount = 0;
+        private float NetTotal = 0;
         public ManageGRN()
         {
             InitializeComponent();
@@ -114,18 +116,18 @@ namespace SimpleBilling.MasterForms
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                         Quantity = Convert.ToInt32(TxtQuantity.Text.Trim())
                     };
-                    if (!string.IsNullOrWhiteSpace(TxtDiscount.Text)) 
+                    if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
                         details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
                     else
                         details.Discount = 0;
 
                     details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
-                    
-                    if (db.Entry(details).State == EntityState.Detached) 
+
+                    if (db.Entry(details).State == EntityState.Detached)
                         db.Set<GRNDetails>().Attach(details);
 
-                    var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == details.GRN_Id 
-                    && b.GRNCode == details.GRNCode 
+                    var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == details.GRN_Id
+                    && b.GRNCode == details.GRNCode
                     && b.ProductId == details.ProductId);
 
                     if (result != null)
@@ -155,6 +157,48 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                foreach (DataGridViewRow r in DGVGRNList.Rows)
+                {
+                    {
+                        TotalDiscount += Convert.ToSingle(r.Cells[5].Value);
+                        NetTotal += Convert.ToSingle(r.Cells[6].Value);
+                    }
+                }
+                LblTotalDiscount.Text = TotalDiscount.ToString();
+                LblNetTotal.Text = NetTotal.ToString();
+                LblGrossTotal.Text = (TotalDiscount + NetTotal).ToString();
+            }
+        }
+
+        private void BtnComplete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = (from details in db.GRNDetails 
+                                select new
+                                {
+                                    GRN_Code = details.GRNCode,
+                                    Line_No = details.LineId,
+                                    details.Quantity,
+                                    Unit_Cost = details.UnitCost,
+                                    details.Discount,
+                                    Sub_Total = details.SubTotal
+                                }).Where(c => c.GRN_Code == GRN_Code).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Info(ex.ToString());
+            }
+            finally
+            {
+                BtnAddItem.Enabled = true;
+                BtnCreateGRN.Enabled = false;
             }
         }
     }
