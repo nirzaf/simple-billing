@@ -3,11 +3,13 @@ using SimpleBilling.Model;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Linq;
+using SimpleBilling.Business;
 
 namespace SimpleBilling.MasterForms
 {
     public partial class ManageItems : Form
     {
+        private readonly CRUDItem item = new CRUDItem();
         public ManageItems()
         {
             InitializeComponent();

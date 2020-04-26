@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\CRUDItem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +180,10 @@
     <Compile Include="Migrations\202004252047312_billing9.designer.cs">
       <DependentUpon>202004252047312_billing9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004261857473_billing10.cs" />
+    <Compile Include="Migrations\202004261857473_billing10.designer.cs">
+      <DependentUpon>202004261857473_billing10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -270,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004252047312_billing9.resx">
       <DependentUpon>202004252047312_billing9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004261857473_billing10.resx">
+      <DependentUpon>202004261857473_billing10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

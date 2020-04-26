@@ -13,6 +13,7 @@ namespace SimpleBilling.Model
         public string ItemName { get; set; }
         [MaxLength(25)]
         public string Unit { get; set; }
+        public float UnitCost { get; set; }
         [MaxLength(250)]
         public string Barcode { get; set; }
         [DefaultValue(0)]
