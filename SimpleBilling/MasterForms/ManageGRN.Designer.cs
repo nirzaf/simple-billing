@@ -63,6 +63,8 @@
             this.LblGrossTotal = new System.Windows.Forms.Label();
             this.LblTotalDiscount = new System.Windows.Forms.Label();
             this.LblNetTotal = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnLoadInvoice = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -70,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVGRNList
@@ -102,15 +105,14 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BtnAddItem, 4, 3);
             this.tableLayoutPanel1.Controls.Add(this.CmbProduct, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label5, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtQuantity, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtUnitCost, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.BtnAddItem, 4, 3);
             this.tableLayoutPanel1.Controls.Add(this.label1, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtDiscount, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.BtnCreateGRN, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.CMBSupplier, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label7, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.DTPDate, 2, 1);
@@ -225,11 +227,11 @@
             this.BtnCreateGRN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnCreateGRN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnCreateGRN.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateGRN.Location = new System.Drawing.Point(723, 21);
+            this.BtnCreateGRN.Location = new System.Drawing.Point(3, 3);
             this.BtnCreateGRN.Name = "BtnCreateGRN";
-            this.BtnCreateGRN.Size = new System.Drawing.Size(174, 23);
+            this.BtnCreateGRN.Size = new System.Drawing.Size(84, 50);
             this.BtnCreateGRN.TabIndex = 14;
-            this.BtnCreateGRN.Text = "Create GRN";
+            this.BtnCreateGRN.Text = "Create Invoice";
             this.BtnCreateGRN.UseVisualStyleBackColor = false;
             this.BtnCreateGRN.Click += new System.EventHandler(this.BtnCreateGRN_Click);
             // 
@@ -331,7 +333,7 @@
             this.BtnComplete.Name = "BtnComplete";
             this.BtnComplete.Size = new System.Drawing.Size(180, 35);
             this.BtnComplete.TabIndex = 3;
-            this.BtnComplete.Text = "Complete";
+            this.BtnComplete.Text = "Complete Invoice";
             this.BtnComplete.UseVisualStyleBackColor = false;
             this.BtnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
             // 
@@ -409,12 +411,49 @@
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "label12";
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.BtnCreateGRN, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BtnLoadInvoice, 0, 1);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(912, 13);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 7;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(90, 396);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
+            // BtnLoadInvoice
+            // 
+            this.BtnLoadInvoice.BackColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BtnLoadInvoice.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.FlatAppearance.BorderSize = 0;
+            this.BtnLoadInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 59);
+            this.BtnLoadInvoice.Name = "BtnLoadInvoice";
+            this.BtnLoadInvoice.Size = new System.Drawing.Size(84, 50);
+            this.BtnLoadInvoice.TabIndex = 15;
+            this.BtnLoadInvoice.Text = "Load GRN Invoice";
+            this.BtnLoadInvoice.UseVisualStyleBackColor = false;
+            this.BtnLoadInvoice.Click += new System.EventHandler(this.BtnLoadInvoice_Click);
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(904, 502);
+            this.ClientSize = new System.Drawing.Size(1015, 502);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.BtnComplete);
             this.Controls.Add(this.LblMessage);
@@ -435,6 +474,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -476,5 +516,7 @@
         private System.Windows.Forms.Label LblGrossTotal;
         private System.Windows.Forms.Label LblTotalDiscount;
         private System.Windows.Forms.Label LblNetTotal;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button BtnLoadInvoice;
     }
 }

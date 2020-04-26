@@ -65,6 +65,12 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\GRNInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\GRNInvoices.Designer.cs">
+      <DependentUpon>GRNInvoices.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\GRNInvoices.resx">
+      <DependentUpon>GRNInvoices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageCategory.resx">
       <DependentUpon>ManageCategory.cs</DependentUpon>

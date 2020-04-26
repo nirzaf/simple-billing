@@ -179,16 +179,18 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = (from details in db.GRNDetails 
-                                select new
-                                {
-                                    GRN_Code = details.GRNCode,
-                                    Line_No = details.LineId,
-                                    details.Quantity,
-                                    Unit_Cost = details.UnitCost,
-                                    details.Discount,
-                                    Sub_Total = details.SubTotal
-                                }).Where(c => c.GRN_Code == GRN_Code).ToList();
+                    GRNHeader header = new GRNHeader
+                    {
+                        GrossTotal = NetTotal + TotalDiscount,
+                        TotalDiscout = TotalDiscount,
+                        NetTotal = NetTotal,
+                        Status = 2 
+                    };
+
+                    if (db.Entry(header).State == EntityState.Detached)
+                        db.Set<GRNHeader>().Attach(header);
+                    db.Entry(header).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -200,6 +202,12 @@ namespace SimpleBilling.MasterForms
                 BtnAddItem.Enabled = true;
                 BtnCreateGRN.Enabled = false;
             }
+        }
+
+        private void BtnLoadInvoice_Click(object sender, EventArgs e)
+        {
+            GRNInvoices inv = new GRNInvoices();
+            inv.Show();
         }
     }
 }
