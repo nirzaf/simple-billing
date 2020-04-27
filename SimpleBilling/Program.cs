@@ -14,7 +14,7 @@ namespace SimpleBilling
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ManageItems());
+            Application.Run(new ManageGRN(""));
         }
     }
 }

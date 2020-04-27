@@ -11,7 +11,6 @@ namespace SimpleBilling.MasterForms
     {
         private int GRN_Id = int.MaxValue;
         private string GRN_Code = string.Empty;
-        private int LineNo = 1;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
         public ManageGRN(string GRN_Init_Code)
@@ -52,6 +51,17 @@ namespace SimpleBilling.MasterForms
                     DGVGRNList.DataSource = data;
                 }
             }
+
+            TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
+                             where row.Cells[0].FormattedValue.ToString() != string.Empty
+                             select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
+            NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
+                        where row.Cells[0].FormattedValue.ToString() != string.Empty
+                        select Convert.ToInt32(row.Cells[6].FormattedValue)).Sum();
+            LblTotalDiscount.Text = TotalDiscount.ToString();
+            LblNetTotal.Text = NetTotal.ToString();
+            float GrossTotal = TotalDiscount + NetTotal;
+            LblGrossTotal.Text = GrossTotal.ToString();
         }
 
         private void LoadCmb()
@@ -60,44 +70,6 @@ namespace SimpleBilling.MasterForms
             {
                 itemBindingSource.DataSource = db.Items.ToList();
                 supplierBindingSource.DataSource = db.Suppliers.ToList();
-            }
-        }
-
-        private void BtnCreateGRN_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (BillingContext db = new BillingContext())
-                {
-                    GRNHeader header = new GRNHeader
-                    {
-                        ReferenceNo = TxtReference.Text.Trim(),
-                        GRN_No = TxtGRNNo.Text.Trim(),
-                        GRN_Date = DTPDate.Value.ToShortDateString(),
-                        Supplier = (Supplier)CMBSupplier.SelectedItem,
-                        GrossTotal = 0,
-                        NetTotal = 0,
-                        TotalDiscout = 0,
-                        Employee = null,
-                        Status = 1
-                    };
-
-                    if (db.Entry(header).State == EntityState.Detached)
-                        db.Set<GRNHeader>().Attach(header);
-                    db.Entry(header).State = EntityState.Added;
-                    db.SaveChanges();
-                    GRN_Id = header.GRN_Id;
-                    GRN_Code = header.GRN_No;
-                }
-            }
-            catch (Exception ex)
-            {
-                Info(ex.ToString());
-            }
-            finally
-            {
-                BtnAddItem.Enabled = true;
-                BtnCreateGRN.Enabled = false;
             }
         }
         private void Info(string Message)
@@ -129,7 +101,9 @@ namespace SimpleBilling.MasterForms
                         Status = 1
                     };
 
-                    if (header.GRN_No != TxtGRNNo.Text.Trim())
+                    var isGRNExist = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == header.GRN_No);
+
+                    if(isGRNExist == null)
                     {
                         if (db.Entry(header).State == EntityState.Detached)
                             db.Set<GRNHeader>().Attach(header);
@@ -139,11 +113,13 @@ namespace SimpleBilling.MasterForms
                         GRN_Code = header.GRN_No;
                     }
 
+                    int LineCount = Convert.ToInt32(DGVGRNList.Rows.Count.ToString());
+
                     GRNDetails details = new GRNDetails
                     {
                         GRN_Id = GRN_Id,
                         GRNCode = GRN_Code,
-                        LineId = LineNo,
+                        LineId = ++LineCount,
                         ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                         Quantity = Convert.ToInt32(TxtQuantity.Text.Trim())
@@ -181,7 +157,6 @@ namespace SimpleBilling.MasterForms
                     db.SaveChanges();
                     if (details.GRN_Id != 0)
                     {
-                        LineNo++;
                         LoadDetails(GRN_Code);
                     }
                 }
@@ -192,16 +167,16 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
-                foreach (DataGridViewRow r in DGVGRNList.Rows)
-                {
-                    {
-                        TotalDiscount += Convert.ToSingle(r.Cells[5].Value);
-                        NetTotal += Convert.ToSingle(r.Cells[6].Value);
-                    }
-                }
+                TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows 
+                                         where row.Cells[0].FormattedValue.ToString() != string.Empty
+                                         select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
+                NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
+                                      where row.Cells[0].FormattedValue.ToString() != string.Empty
+                                      select Convert.ToInt32(row.Cells[6].FormattedValue)).Sum();
                 LblTotalDiscount.Text = TotalDiscount.ToString();
                 LblNetTotal.Text = NetTotal.ToString();
-                LblGrossTotal.Text = (TotalDiscount + NetTotal).ToString();
+                float GrossTotal = TotalDiscount + NetTotal;
+                LblGrossTotal.Text = GrossTotal.ToString();
             }
         }
 
@@ -211,13 +186,13 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    GRNHeader header = new GRNHeader
-                    {
-                        GrossTotal = NetTotal + TotalDiscount,
-                        TotalDiscout = TotalDiscount,
-                        NetTotal = NetTotal,
-                        Status = 2 
-                    };
+                    var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == TxtGRNNo.Text.Trim());
+
+                    header.GrossTotal = NetTotal + TotalDiscount;
+                    header.TotalDiscout = TotalDiscount;
+                    header.NetTotal = NetTotal;
+                    header.Status = 2;
+      
 
                     if (db.Entry(header).State == EntityState.Detached)
                         db.Set<GRNHeader>().Attach(header);
@@ -231,8 +206,8 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
-                BtnAddItem.Enabled = true;
-                BtnCreateGRN.Enabled = false;
+                DGVGRNList.DataSource = null;
+                MessageBox.Show($"Invoice {TxtGRNNo.Text.Trim()} Created Successfully");
             }
         }
 
@@ -241,6 +216,16 @@ namespace SimpleBilling.MasterForms
             GRNInvoices inv = new GRNInvoices();
             inv.Show();
             Hide();
+        }
+
+        private void CmbProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int ItemId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
+            using (BillingContext db = new BillingContext())
+            {
+                var result = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                TxtUnitCost.Text = result.UnitCost.ToString();
+            }
         }
     }
 }

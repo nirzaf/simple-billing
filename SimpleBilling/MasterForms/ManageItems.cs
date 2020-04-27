@@ -158,8 +158,9 @@ namespace SimpleBilling.MasterForms
                 TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
                 TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
                 TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
-                TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
-                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
+                TxtUnitCost.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
+                TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
+                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
             }
             else
             {
