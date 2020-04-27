@@ -24,6 +24,7 @@ namespace SimpleBilling.MasterForms
         private void ManageGRN_Load(object sender, EventArgs e)
         {
             LblMessage.Text = string.Empty;
+            BtnApprove.Enabled = false;
             LoadCmb();
             if (!string.IsNullOrEmpty(GRN_Code))
             {
@@ -38,29 +39,28 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = (from details in db.GRNDetails.Where(a=>a.IsDeleted == true)
+                    var data = (from details in db.GRNDetails.Where(a=>a.IsDeleted == true && a.GRNCode == GRN_New_Code)
                                 join item in db.Items
                                 on details.ProductId equals item.Id
                                 select new
                                 {
-                                    GRN_Code = details.GRNCode,
                                     Line_No = details.LineId,
                                     Item_Name = item.ItemName,
                                     details.Quantity,
                                     Unit_Cost = details.UnitCost,
                                     details.Discount,
                                     Sub_Total = details.SubTotal
-                                }).Where(c => c.GRN_Code == GRN_New_Code).ToList();
+                                }).ToList();
                     DGVGRNList.DataSource = data;
                 }
             
 
             TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
                              where row.Cells[0].FormattedValue.ToString() != string.Empty
-                             select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
+                             select Convert.ToInt32(row.Cells[4].FormattedValue)).Sum();
             NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
                         where row.Cells[0].FormattedValue.ToString() != string.Empty
-                        select Convert.ToInt32(row.Cells[6].FormattedValue)).Sum();
+                        select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
             LblTotalDiscount.Text = TotalDiscount.ToString();
             LblNetTotal.Text = NetTotal.ToString();
             float GrossTotal = TotalDiscount + NetTotal;
@@ -91,16 +91,19 @@ namespace SimpleBilling.MasterForms
                     if (Status == 1)
                     {
                         CurrentStatus = "Created";
+                        BtnApprove.Enabled = false;
                         return CurrentStatus;
                     }
                     else if (Status == 2)
                     {
                         CurrentStatus = "Completed";
+                        BtnApprove.Enabled = true;
                         return CurrentStatus;
                     }
                     else
                     {
                         CurrentStatus = "Approved";
+                        BtnApprove.Enabled = false;
                         return CurrentStatus;
                     }
                 }
@@ -254,8 +257,9 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
-                DGVGRNList.DataSource = null;
-                MessageBox.Show($"Invoice {TxtGRNNo.Text.Trim()} Created Successfully");
+                MessageBox.Show($"Invoice {TxtGRNNo.Text.Trim()} Completed Successfully! Pending for Approval");
+                LoadDetails(GRN_Code);
+                BtnApprove.Enabled = true;
             }
         }
 
@@ -287,15 +291,55 @@ namespace SimpleBilling.MasterForms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (BillingContext db = new BillingContext()) 
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
-                Result.IsDeleted = false;
-                if(db.Entry(Result).State == EntityState.Detached)
-                    db.Set<GRNDetails>().Attach(Result);
-                db.Entry(Result).State = EntityState.Modified;
-                db.SaveChanges();
-                LoadDetails(GRN_Code);
+                using (BillingContext db = new BillingContext())
+                {
+                    var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
+                    Result.IsDeleted = false;
+                    if (db.Entry(Result).State == EntityState.Detached)
+                        db.Set<GRNDetails>().Attach(Result);
+                    db.Entry(Result).State = EntityState.Modified;
+                    db.SaveChanges();
+                    LoadDetails(GRN_Code);
+                }
+            }
+        }
+
+        private void BtnApprove_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to approve this invoice?", "Confirmation Approve", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    foreach (GRNDetails details in db.GRNDetails)
+                    {
+                        if (details.GRNCode == GRN_Code && details.IsDeleted == true)
+                        {
+                            using (BillingContext db1 = new BillingContext())
+                            {
+                                int Item = details.ProductId;
+                                int Qty = details.Quantity;
+                                Item item = db1.Items.FirstOrDefault(c => c.Id.Equals(Item));
+                                item.StockQty += Qty;
+                                if (db1.Entry(item).State == EntityState.Detached)
+                                    db1.Set<Item>().Attach(item);
+                                db1.Entry(item).State = EntityState.Modified;
+                                db1.SaveChanges();
+                            }
+                        }
+                    }
+
+                    var Result = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRN_Code));
+                    Result.Status = 3;
+                    if (db.Entry(Result).State == EntityState.Detached)
+                        db.Set<GRNHeader>().Attach(Result);
+                    db.Entry(Result).State = EntityState.Modified;
+                    db.SaveChanges();
+                    LoadDetails(GRN_Code);
+                }
             }
         }
     }

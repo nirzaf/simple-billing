@@ -66,9 +66,9 @@
             this.LblTotalDiscount = new System.Windows.Forms.Label();
             this.LblNetTotal = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnLoadInvoice = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnApprove = new System.Windows.Forms.Button();
+            this.BtnLoadInvoice = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -462,23 +462,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(90, 413);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
-            // BtnLoadInvoice
-            // 
-            this.BtnLoadInvoice.BackColor = System.Drawing.Color.White;
-            this.BtnLoadInvoice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BtnLoadInvoice.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnLoadInvoice.FlatAppearance.BorderSize = 0;
-            this.BtnLoadInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.BtnLoadInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 61);
-            this.BtnLoadInvoice.Name = "BtnLoadInvoice";
-            this.BtnLoadInvoice.Size = new System.Drawing.Size(84, 50);
-            this.BtnLoadInvoice.TabIndex = 15;
-            this.BtnLoadInvoice.Text = "Load Invoice";
-            this.BtnLoadInvoice.UseVisualStyleBackColor = false;
-            this.BtnLoadInvoice.Click += new System.EventHandler(this.BtnLoadInvoice_Click);
-            // 
             // BtnDelete
             // 
             this.BtnDelete.BackColor = System.Drawing.Color.White;
@@ -499,6 +482,24 @@
             this.BtnApprove.TabIndex = 17;
             this.BtnApprove.Text = "Approve";
             this.BtnApprove.UseVisualStyleBackColor = false;
+            this.BtnApprove.Click += new System.EventHandler(this.BtnApprove_Click);
+            // 
+            // BtnLoadInvoice
+            // 
+            this.BtnLoadInvoice.BackColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BtnLoadInvoice.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.FlatAppearance.BorderSize = 0;
+            this.BtnLoadInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 61);
+            this.BtnLoadInvoice.Name = "BtnLoadInvoice";
+            this.BtnLoadInvoice.Size = new System.Drawing.Size(84, 50);
+            this.BtnLoadInvoice.TabIndex = 15;
+            this.BtnLoadInvoice.Text = "Load Invoice";
+            this.BtnLoadInvoice.UseVisualStyleBackColor = false;
+            this.BtnLoadInvoice.Click += new System.EventHandler(this.BtnLoadInvoice_Click);
             // 
             // ManageGRN
             // 
