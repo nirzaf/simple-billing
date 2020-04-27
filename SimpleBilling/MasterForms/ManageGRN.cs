@@ -73,10 +73,45 @@ namespace SimpleBilling.MasterForms
                     TxtReference.Text = header.ReferenceNo;
                     DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
                     CMBSupplier.SelectedItem = header.Supplier;
+                    LblStatus.Text = Invoice_Status(GRN_New_Code);
                 }
             }
         }
 
+        private string Invoice_Status(string GRN_New_Code)
+        {
+            try
+            {
+                string CurrentStatus = string.Empty;
+                int Status;
+                using (BillingContext db = new BillingContext())
+                {
+                    GRNHeader header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code);
+                    Status = header.Status;
+                    if (Status == 1)
+                    {
+                        CurrentStatus = "Created";
+                        return CurrentStatus;
+                    }
+                    else if (Status == 2)
+                    {
+                        CurrentStatus = "Completed";
+                        return CurrentStatus;
+                    }
+                    else
+                    {
+                        CurrentStatus = "Approved";
+                        return CurrentStatus;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info(ex.ToString());
+                throw;
+            }
+
+        }
         private void LoadCmb()
         {
             using (BillingContext db = new BillingContext()) 

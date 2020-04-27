@@ -52,6 +52,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtGRNNo = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.LblStatus = new System.Windows.Forms.Label();
             this.itemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
@@ -66,6 +68,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnApprove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -125,6 +128,8 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.TxtGRNNo, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LblStatus, 4, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -306,6 +311,26 @@
             this.TxtGRNNo.Size = new System.Drawing.Size(174, 26);
             this.TxtGRNNo.TabIndex = 0;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(723, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 18);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Status";
+            // 
+            // LblStatus
+            // 
+            this.LblStatus.AutoSize = true;
+            this.LblStatus.ForeColor = System.Drawing.Color.Yellow;
+            this.LblStatus.Location = new System.Drawing.Point(723, 18);
+            this.LblStatus.Name = "LblStatus";
+            this.LblStatus.Size = new System.Drawing.Size(117, 19);
+            this.LblStatus.TabIndex = 20;
+            this.LblStatus.Text = "Invoice Status";
+            // 
             // itemBindingSource1
             // 
             this.itemBindingSource1.DataSource = typeof(SimpleBilling.Model.Item);
@@ -314,7 +339,7 @@
             // 
             this.LblMessage.AutoSize = true;
             this.LblMessage.ForeColor = System.Drawing.Color.Lime;
-            this.LblMessage.Location = new System.Drawing.Point(9, 452);
+            this.LblMessage.Location = new System.Drawing.Point(12, 435);
             this.LblMessage.Name = "LblMessage";
             this.LblMessage.Size = new System.Drawing.Size(54, 19);
             this.LblMessage.TabIndex = 2;
@@ -419,9 +444,10 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.BtnLoadInvoice, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.BtnComplete, 0, 6);
             this.tableLayoutPanel3.Controls.Add(this.BtnDelete, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.BtnApprove, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.BtnLoadInvoice, 0, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(912, 13);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 7;
@@ -445,7 +471,7 @@
             this.BtnLoadInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnLoadInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 3);
+            this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 61);
             this.BtnLoadInvoice.Name = "BtnLoadInvoice";
             this.BtnLoadInvoice.Size = new System.Drawing.Size(84, 50);
             this.BtnLoadInvoice.TabIndex = 15;
@@ -463,6 +489,16 @@
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
+            // BtnApprove
+            // 
+            this.BtnApprove.BackColor = System.Drawing.Color.White;
+            this.BtnApprove.Location = new System.Drawing.Point(3, 293);
+            this.BtnApprove.Name = "BtnApprove";
+            this.BtnApprove.Size = new System.Drawing.Size(84, 52);
+            this.BtnApprove.TabIndex = 17;
+            this.BtnApprove.Text = "Approve";
+            this.BtnApprove.UseVisualStyleBackColor = false;
             // 
             // ManageGRN
             // 
@@ -537,5 +573,8 @@
         private System.Windows.Forms.Button BtnLoadInvoice;
         private System.Windows.Forms.BindingSource itemBindingSource1;
         private System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LblStatus;
+        private System.Windows.Forms.Button BtnApprove;
     }
 }
