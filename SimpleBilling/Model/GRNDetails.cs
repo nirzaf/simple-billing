@@ -15,8 +15,6 @@ namespace SimpleBilling.Model
         [Key]
         [Column(Order = 3)]
         public int LineId { get; set; }
-        [Key]
-        [Column(Order = 4)]
         public int ProductId { get; set; }
         [Required]
         public float UnitCost { get; set; }
@@ -26,5 +24,7 @@ namespace SimpleBilling.Model
         public float Discount { get; set; }
         [Required]
         public float SubTotal { get; set; }
+        [DefaultValue(true)]
+        public bool IsDeleted { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,6 +14,7 @@ namespace SimpleBilling.MasterForms
         private string GRN_Code = string.Empty;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
+        private int LineNo;
         public ManageGRN(string GRN_Init_Code)
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace SimpleBilling.MasterForms
 
         private void ManageGRN_Load(object sender, EventArgs e)
         {
+            LblMessage.Text = string.Empty;
             LoadCmb();
             if (!string.IsNullOrEmpty(GRN_Code))
             {
@@ -35,7 +38,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = (from details in db.GRNDetails
+                    var data = (from details in db.GRNDetails.Where(a=>a.IsDeleted == true)
                                 join item in db.Items
                                 on details.ProductId equals item.Id
                                 select new
@@ -50,7 +53,7 @@ namespace SimpleBilling.MasterForms
                                 }).Where(c => c.GRN_Code == GRN_New_Code).ToList();
                     DGVGRNList.DataSource = data;
                 }
-            }
+            
 
             TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
                              where row.Cells[0].FormattedValue.ToString() != string.Empty
@@ -62,6 +65,16 @@ namespace SimpleBilling.MasterForms
             LblNetTotal.Text = NetTotal.ToString();
             float GrossTotal = TotalDiscount + NetTotal;
             LblGrossTotal.Text = GrossTotal.ToString();
+
+                using (BillingContext db = new BillingContext())
+                {
+                    GRNHeader header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code);
+                    TxtGRNNo.Text = GRN_New_Code;
+                    TxtReference.Text = header.ReferenceNo;
+                    DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
+                    CMBSupplier.SelectedItem = header.Supplier;
+                }
+            }
         }
 
         private void LoadCmb()
@@ -225,6 +238,29 @@ namespace SimpleBilling.MasterForms
             {
                 var result = db.Items.FirstOrDefault(c => c.Id == ItemId);
                 TxtUnitCost.Text = result.UnitCost.ToString();
+            }
+        }
+
+        private void DGVGRNList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVGRNList.SelectedRows.Count > 0)
+            {
+                GRN_Code = DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty;
+                LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty);
+            }
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext()) 
+            {
+                var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
+                Result.IsDeleted = false;
+                if(db.Entry(Result).State == EntityState.Detached)
+                    db.Set<GRNDetails>().Attach(Result);
+                db.Entry(Result).State = EntityState.Modified;
+                db.SaveChanges();
+                LoadDetails(GRN_Code);
             }
         }
     }

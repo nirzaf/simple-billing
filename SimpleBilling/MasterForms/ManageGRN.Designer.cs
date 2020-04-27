@@ -65,6 +65,7 @@
             this.LblNetTotal = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -82,8 +83,10 @@
             this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVGRNList.Location = new System.Drawing.Point(6, 130);
             this.DGVGRNList.Name = "DGVGRNList";
+            this.DGVGRNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVGRNList.Size = new System.Drawing.Size(899, 224);
             this.DGVGRNList.TabIndex = 0;
+            this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
             // 
             // gRNDetailsBindingSource
             // 
@@ -122,7 +125,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.TxtGRNNo, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 7);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.23932F));
@@ -328,7 +331,7 @@
             this.BtnComplete.BackColor = System.Drawing.Color.White;
             this.BtnComplete.Location = new System.Drawing.Point(3, 351);
             this.BtnComplete.Name = "BtnComplete";
-            this.BtnComplete.Size = new System.Drawing.Size(84, 57);
+            this.BtnComplete.Size = new System.Drawing.Size(84, 52);
             this.BtnComplete.TabIndex = 3;
             this.BtnComplete.Text = "Done";
             this.BtnComplete.UseVisualStyleBackColor = false;
@@ -416,8 +419,9 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.BtnComplete, 0, 6);
             this.tableLayoutPanel3.Controls.Add(this.BtnLoadInvoice, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BtnComplete, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.BtnDelete, 0, 2);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(912, 13);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 7;
@@ -428,6 +432,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(90, 413);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
@@ -439,7 +444,7 @@
             this.BtnLoadInvoice.FlatAppearance.BorderSize = 0;
             this.BtnLoadInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnLoadInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 3);
             this.BtnLoadInvoice.Name = "BtnLoadInvoice";
             this.BtnLoadInvoice.Size = new System.Drawing.Size(84, 50);
@@ -447,6 +452,17 @@
             this.BtnLoadInvoice.Text = "Load Invoice";
             this.BtnLoadInvoice.UseVisualStyleBackColor = false;
             this.BtnLoadInvoice.Click += new System.EventHandler(this.BtnLoadInvoice_Click);
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Location = new System.Drawing.Point(3, 119);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(84, 52);
+            this.BtnDelete.TabIndex = 16;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // ManageGRN
             // 
@@ -520,5 +536,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button BtnLoadInvoice;
         private System.Windows.Forms.BindingSource itemBindingSource1;
+        private System.Windows.Forms.Button BtnDelete;
     }
 }

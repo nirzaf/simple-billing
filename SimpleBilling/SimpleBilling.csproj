@@ -107,6 +107,14 @@
     <Compile Include="MasterForms\ManageSupplier.Designer.cs">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004270054318_billing.cs" />
+    <Compile Include="Migrations\202004270054318_billing.designer.cs">
+      <DependentUpon>202004270054318_billing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004270057146_billing1.cs" />
+    <Compile Include="Migrations\202004270057146_billing1.designer.cs">
+      <DependentUpon>202004270057146_billing1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -144,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageSupplier.resx">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004270054318_billing.resx">
+      <DependentUpon>202004270054318_billing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004270057146_billing1.resx">
+      <DependentUpon>202004270057146_billing1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
