@@ -162,15 +162,15 @@ namespace SimpleBilling.MasterForms
                 TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
                 CmbCategories.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
             }
-            else
-            {
-                //TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
-                //TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
-                //TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
-                //TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
-                //TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
-                //CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
-            }
+            //else
+            //{
+            //    TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
+            //    TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
+            //    TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
+            //    TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
+            //    TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
+            //    CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
+            //}
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

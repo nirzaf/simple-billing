@@ -87,7 +87,7 @@ namespace SimpleBilling.MasterForms
                     if (data != null)
                     {
                         TxtUnitPrice.Text = data.UnitCost.ToString();
-                        CmbAddItem.SelectedText = data.ItemName;
+                        TxtItemDescription.Text = data.ItemName;
                         TxtProductCode.Text = data.Code;
                         TxtDiscount.Text = "0";
                     }
