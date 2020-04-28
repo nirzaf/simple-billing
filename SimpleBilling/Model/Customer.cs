@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleBilling.Model
 {
-    public class Customers
+    public class Customer
     {
         [Key]
         public int CustomerId { get; set; }
