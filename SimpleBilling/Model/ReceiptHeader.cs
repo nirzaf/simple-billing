@@ -31,5 +31,7 @@ namespace SimpleBilling.Model
         public float PaidAmount { get; set; }
         public float Balance { get; set; }
         public int Status { get; set; }
+        [DefaultValue(false)]
+        public bool Is_Deleted { get; set; }
     }
 }

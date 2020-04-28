@@ -27,6 +27,7 @@ namespace SimpleBilling.Model
         public float SubTotal { get; set; }
         [Required]
         public float NetTotal { get; set; }
-
+        [DefaultValue(false)]
+        public bool Is_Deleted { get; set; }
     }
 }
