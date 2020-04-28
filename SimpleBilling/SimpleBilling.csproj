@@ -113,6 +113,12 @@
     <Compile Include="MasterForms\ManageSupplier.Designer.cs">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\POS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\POS.Designer.cs">
+      <DependentUpon>POS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202004270054318_billing.cs" />
     <Compile Include="Migrations\202004270054318_billing.designer.cs">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>
@@ -152,6 +158,10 @@
     <Compile Include="Migrations\202004280352210_billing9.cs" />
     <Compile Include="Migrations\202004280352210_billing9.designer.cs">
       <DependentUpon>202004280352210_billing9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004280407440_billing10.cs" />
+    <Compile Include="Migrations\202004280407440_billing10.designer.cs">
+      <DependentUpon>202004280407440_billing10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
@@ -196,6 +206,9 @@
     <EmbeddedResource Include="MasterForms\ManageSupplier.resx">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\POS.resx">
+      <DependentUpon>POS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004270054318_billing.resx">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004280352210_billing9.resx">
       <DependentUpon>202004280352210_billing9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004280407440_billing10.resx">
+      <DependentUpon>202004280407440_billing10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
