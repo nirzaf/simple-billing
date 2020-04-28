@@ -31,7 +31,8 @@ namespace SimpleBilling.MasterForms
         private void DGVSellingPrice_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ItemId = Convert.ToInt32(DGVSellingPrice.SelectedRows[0].Cells[0].Value + string.Empty);
-            Price = Convert.ToSingle(TxtSellingPrice.Text.Trim());
+            TxtSellingPrice.Text = DGVSellingPrice.SelectedRows[0].Cells[3].Value + string.Empty;
+
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace SimpleBilling.MasterForms
 
         private void UpdatePrice()
         {
+            Price = Convert.ToSingle(TxtSellingPrice.Text.Trim());
             using (BillingContext db = new BillingContext())
             {
                 var Item = db.Items.FirstOrDefault(c => c.Id.Equals(ItemId));
@@ -49,6 +51,7 @@ namespace SimpleBilling.MasterForms
                     db.Set<Item>().Attach(Item);
                 db.Entry(Item).State = EntityState.Modified;
                 db.SaveChanges();
+                LoadDGV();
             }
         }
     }
