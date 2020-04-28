@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleBilling.Model
 {
-    class ReceiptHeader
+    public class ReceiptHeader
     {
         [Key]
         public int ReceiptId { get; set; }
