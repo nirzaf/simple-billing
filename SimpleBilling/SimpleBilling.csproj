@@ -158,6 +158,7 @@
     <Compile Include="Model\GRNDetails.cs" />
     <Compile Include="Model\GRNHeader.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ReceiptBody.cs" />
     <Compile Include="Model\ReceiptHeader.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Users.cs" />

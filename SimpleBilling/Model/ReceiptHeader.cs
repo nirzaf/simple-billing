@@ -13,6 +13,9 @@ namespace SimpleBilling.Model
         [Key]
         public int ReceiptId { get; set; }
         [Required]
+        [MaxLength(200)]
+        public string ReceiptNo { get; set; }
+        [Required]
         public string Date  { get; set; }
         [Required]
         public string Time { get; set; }
@@ -20,8 +23,13 @@ namespace SimpleBilling.Model
         public int Cashier { get; set; }
         [DefaultValue(0)]
         public float TotalDiscount { get; set; }
+        public float SubTotal { get; set; }
         [DefaultValue(0)]       
-        public float TotalPrice { get; set; }
-
+        public float NetTotal { get; set; }
+        [MaxLength(10)]
+        public string PaymentType { get; set; }
+        public float PaidAmount { get; set; }
+        public float Balance { get; set; }
+        public int Status { get; set; }
     }
 }
