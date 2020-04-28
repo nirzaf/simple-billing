@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using SimpleBilling.Model;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -20,17 +15,21 @@ namespace SimpleBilling.MasterForms
         private void POS_Load(object sender, EventArgs e)
         {
             SystemTimer_Tick(sender, e);
+            LoadDateAndTime();
         }
 
         private void LoadDateAndTime()
         {
-            LblDate.Text = DateTime.Now.ToShortDateString();
-            LblTime.Text = DateTime.Now.ToLongTimeString();
+            using (BillingContext db = new BillingContext())
+            {
+                customersBindingSource.DataSource = db.Customers.ToList();
+            }
         }
 
         private void SystemTimer_Tick(object sender, EventArgs e)
-        {
-            LoadDateAndTime();
+        {           
+            LblDate.Text = DateTime.Now.ToShortDateString();
+            LblTime.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }

@@ -33,6 +33,10 @@
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
             this.CmbCustomers = new System.Windows.Forms.ComboBox();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BtnAddCustomer = new System.Windows.Forms.Button();
+            this.CmbAddItem = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LblDate
@@ -59,15 +63,40 @@
             // SystemTimer
             // 
             this.SystemTimer.Enabled = true;
-            this.SystemTimer.Tick += new System.EventHandler(this.systemTimer_Tick);
+            this.SystemTimer.Tick += new System.EventHandler(this.SystemTimer_Tick);
             // 
             // CmbCustomers
             // 
+            this.CmbCustomers.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.customersBindingSource, "CustomerId", true));
+            this.CmbCustomers.DataSource = this.customersBindingSource;
+            this.CmbCustomers.DisplayMember = "Name";
             this.CmbCustomers.FormattingEnabled = true;
-            this.CmbCustomers.Location = new System.Drawing.Point(186, 6);
+            this.CmbCustomers.Location = new System.Drawing.Point(228, 6);
             this.CmbCustomers.Name = "CmbCustomers";
             this.CmbCustomers.Size = new System.Drawing.Size(187, 27);
             this.CmbCustomers.TabIndex = 2;
+            this.CmbCustomers.ValueMember = "CustomerId";
+            // 
+            // customersBindingSource
+            // 
+            this.customersBindingSource.DataSource = typeof(SimpleBilling.Model.Customers);
+            // 
+            // BtnAddCustomer
+            // 
+            this.BtnAddCustomer.Location = new System.Drawing.Point(422, 6);
+            this.BtnAddCustomer.Name = "BtnAddCustomer";
+            this.BtnAddCustomer.Size = new System.Drawing.Size(50, 27);
+            this.BtnAddCustomer.TabIndex = 3;
+            this.BtnAddCustomer.Text = "Add";
+            this.BtnAddCustomer.UseVisualStyleBackColor = true;
+            // 
+            // CmbAddItem
+            // 
+            this.CmbAddItem.FormattingEnabled = true;
+            this.CmbAddItem.Location = new System.Drawing.Point(479, 6);
+            this.CmbAddItem.Name = "CmbAddItem";
+            this.CmbAddItem.Size = new System.Drawing.Size(225, 27);
+            this.CmbAddItem.TabIndex = 4;
             // 
             // POS
             // 
@@ -75,6 +104,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1027, 511);
+            this.Controls.Add(this.CmbAddItem);
+            this.Controls.Add(this.BtnAddCustomer);
             this.Controls.Add(this.CmbCustomers);
             this.Controls.Add(this.LblTime);
             this.Controls.Add(this.LblDate);
@@ -85,6 +116,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POS";
             this.Load += new System.EventHandler(this.POS_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +128,8 @@
         private System.Windows.Forms.Label LblTime;
         private System.Windows.Forms.Timer SystemTimer;
         private System.Windows.Forms.ComboBox CmbCustomers;
+        private System.Windows.Forms.BindingSource customersBindingSource;
+        private System.Windows.Forms.Button BtnAddCustomer;
+        private System.Windows.Forms.ComboBox CmbAddItem;
     }
 }
