@@ -18,7 +18,6 @@ namespace SimpleBilling.Model
         public string Barcode { get; set; }
         [DefaultValue(0)]
         public int StockQty { get; set; }
-
         public float SellingPrice { get; set; }
         public virtual Category Categories { get; set; }
     }
