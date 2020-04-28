@@ -12,10 +12,10 @@ namespace SimpleBilling.Model
     public class ReceiptBody
     {
         [Key]
-        [Index(Order=1)]
+        [Column(Order = 1)]
         public int ReceiptId { get; set; }
         [Key]
-        [Index(Order=2)]
+        [Column(Order = 2)]
         public int LineId { get; set; }
         [Required]
         public int ProductId { get; set; }
