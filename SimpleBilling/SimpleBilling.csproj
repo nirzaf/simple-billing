@@ -65,6 +65,12 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ConfigureSellingPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ConfigureSellingPrice.Designer.cs">
+      <DependentUpon>ConfigureSellingPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\GRNInvoices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,34 @@
     <Compile Include="Migrations\202004270057146_billing1.designer.cs">
       <DependentUpon>202004270057146_billing1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004272338225_billing2.cs" />
+    <Compile Include="Migrations\202004272338225_billing2.designer.cs">
+      <DependentUpon>202004272338225_billing2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004272341131_billing3.cs" />
+    <Compile Include="Migrations\202004272341131_billing3.designer.cs">
+      <DependentUpon>202004272341131_billing3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004272344341_billing4.cs" />
+    <Compile Include="Migrations\202004272344341_billing4.designer.cs">
+      <DependentUpon>202004272344341_billing4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004272345550_billing5.cs" />
+    <Compile Include="Migrations\202004272345550_billing5.designer.cs">
+      <DependentUpon>202004272345550_billing5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004272347429_billing6.cs" />
+    <Compile Include="Migrations\202004272347429_billing6.designer.cs">
+      <DependentUpon>202004272347429_billing6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004272350043_billing7.cs" />
+    <Compile Include="Migrations\202004272350043_billing7.designer.cs">
+      <DependentUpon>202004272350043_billing7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004272359350_billing8.cs" />
+    <Compile Include="Migrations\202004272359350_billing8.designer.cs">
+      <DependentUpon>202004272359350_billing8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -131,6 +165,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ConfigureSellingPrice.resx">
+      <DependentUpon>ConfigureSellingPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\GRNInvoices.resx">
       <DependentUpon>GRNInvoices.cs</DependentUpon>
@@ -158,6 +195,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004270057146_billing1.resx">
       <DependentUpon>202004270057146_billing1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272338225_billing2.resx">
+      <DependentUpon>202004272338225_billing2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272341131_billing3.resx">
+      <DependentUpon>202004272341131_billing3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272344341_billing4.resx">
+      <DependentUpon>202004272344341_billing4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272345550_billing5.resx">
+      <DependentUpon>202004272345550_billing5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272347429_billing6.resx">
+      <DependentUpon>202004272347429_billing6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272350043_billing7.resx">
+      <DependentUpon>202004272350043_billing7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004272359350_billing8.resx">
+      <DependentUpon>202004272359350_billing8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

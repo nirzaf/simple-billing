@@ -43,18 +43,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.TxtItemCode = new System.Windows.Forms.TextBox();
             this.TxtItemName = new System.Windows.Forms.TextBox();
             this.TxtUnit = new System.Windows.Forms.TextBox();
-            this.TxtBarcode = new System.Windows.Forms.TextBox();
-            this.CmbCategories = new System.Windows.Forms.ComboBox();
             this.BtnAddCategory = new System.Windows.Forms.Button();
-            this.LblMessage = new System.Windows.Forms.Label();
-            this.TimerMessage = new System.Windows.Forms.Timer(this.components);
+            this.CmbCategories = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtBarcode = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.TxtUnitCost = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.LblMessage = new System.Windows.Forms.Label();
+            this.TimerMessage = new System.Windows.Forms.Timer(this.components);
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
@@ -245,26 +245,6 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Unit";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(3, 150);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 20);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Barcode";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(3, 180);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Categories";
-            // 
             // TxtItemCode
             // 
             this.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -289,13 +269,16 @@
             this.TxtUnit.Size = new System.Drawing.Size(316, 26);
             this.TxtUnit.TabIndex = 8;
             // 
-            // TxtBarcode
+            // BtnAddCategory
             // 
-            this.TxtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBarcode.Location = new System.Drawing.Point(136, 153);
-            this.TxtBarcode.Name = "TxtBarcode";
-            this.TxtBarcode.Size = new System.Drawing.Size(316, 26);
-            this.TxtBarcode.TabIndex = 10;
+            this.BtnAddCategory.BackColor = System.Drawing.Color.White;
+            this.BtnAddCategory.Location = new System.Drawing.Point(136, 224);
+            this.BtnAddCategory.Name = "BtnAddCategory";
+            this.BtnAddCategory.Size = new System.Drawing.Size(316, 29);
+            this.BtnAddCategory.TabIndex = 13;
+            this.BtnAddCategory.Text = "Add Category";
+            this.BtnAddCategory.UseVisualStyleBackColor = false;
+            this.BtnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
             // 
             // CmbCategories
             // 
@@ -308,33 +291,33 @@
             this.CmbCategories.Size = new System.Drawing.Size(316, 28);
             this.CmbCategories.TabIndex = 10;
             // 
-            // BtnAddCategory
+            // label5
             // 
-            this.BtnAddCategory.BackColor = System.Drawing.Color.White;
-            this.BtnAddCategory.Location = new System.Drawing.Point(136, 224);
-            this.BtnAddCategory.Name = "BtnAddCategory";
-            this.BtnAddCategory.Size = new System.Drawing.Size(316, 29);
-            this.BtnAddCategory.TabIndex = 13;
-            this.BtnAddCategory.Text = "Add Category";
-            this.BtnAddCategory.UseVisualStyleBackColor = false;
-            this.BtnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(3, 180);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 20);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Categories";
             // 
-            // LblMessage
+            // TxtBarcode
             // 
-            this.LblMessage.AutoSize = true;
-            this.LblMessage.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMessage.ForeColor = System.Drawing.Color.LawnGreen;
-            this.LblMessage.Location = new System.Drawing.Point(12, 386);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(78, 23);
-            this.LblMessage.TabIndex = 3;
-            this.LblMessage.Text = "Message";
+            this.TxtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtBarcode.Location = new System.Drawing.Point(136, 153);
+            this.TxtBarcode.Name = "TxtBarcode";
+            this.TxtBarcode.Size = new System.Drawing.Size(316, 26);
+            this.TxtBarcode.TabIndex = 10;
             // 
-            // TimerMessage
+            // label4
             // 
-            this.TimerMessage.Enabled = true;
-            this.TimerMessage.Interval = 6000;
-            this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(3, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Barcode";
             // 
             // TxtUnitCost
             // 
@@ -353,6 +336,23 @@
             this.label7.Size = new System.Drawing.Size(66, 20);
             this.label7.TabIndex = 15;
             this.label7.Text = "Unit Cost";
+            // 
+            // LblMessage
+            // 
+            this.LblMessage.AutoSize = true;
+            this.LblMessage.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMessage.ForeColor = System.Drawing.Color.LawnGreen;
+            this.LblMessage.Location = new System.Drawing.Point(12, 386);
+            this.LblMessage.Name = "LblMessage";
+            this.LblMessage.Size = new System.Drawing.Size(78, 23);
+            this.LblMessage.TabIndex = 3;
+            this.LblMessage.Text = "Message";
+            // 
+            // TimerMessage
+            // 
+            this.TimerMessage.Enabled = true;
+            this.TimerMessage.Interval = 6000;
+            this.TimerMessage.Tick += new System.EventHandler(this.TimerMessage_Tick);
             // 
             // categoryBindingSource
             // 
