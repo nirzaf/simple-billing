@@ -32,6 +32,7 @@
             this.LblDate = new System.Windows.Forms.Label();
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
+            this.CmbCustomers = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // LblDate
@@ -60,12 +61,21 @@
             this.SystemTimer.Enabled = true;
             this.SystemTimer.Tick += new System.EventHandler(this.systemTimer_Tick);
             // 
+            // CmbCustomers
+            // 
+            this.CmbCustomers.FormattingEnabled = true;
+            this.CmbCustomers.Location = new System.Drawing.Point(186, 6);
+            this.CmbCustomers.Name = "CmbCustomers";
+            this.CmbCustomers.Size = new System.Drawing.Size(187, 27);
+            this.CmbCustomers.TabIndex = 2;
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1027, 511);
+            this.Controls.Add(this.CmbCustomers);
             this.Controls.Add(this.LblTime);
             this.Controls.Add(this.LblDate);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,5 +95,6 @@
         private System.Windows.Forms.Label LblDate;
         private System.Windows.Forms.Label LblTime;
         private System.Windows.Forms.Timer SystemTimer;
+        private System.Windows.Forms.ComboBox CmbCustomers;
     }
 }

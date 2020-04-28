@@ -47,7 +47,7 @@ namespace SimpleBilling
         {
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
-            customersBindingSource1.Add(new Customer());
+            customersBindingSource1.Add(new Customers());
             customersBindingSource1.MoveLast();
             TxtName.Focus();
         }
@@ -58,10 +58,10 @@ namespace SimpleBilling
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (customersBindingSource1.Current is Customer cat)
+                    if (customersBindingSource1.Current is Customers cat)
                     {
                         if (db.Entry(cat).State == EntityState.Detached)
-                            db.Set<Customer>().Attach(cat);
+                            db.Set<Customers>().Attach(cat);
                         if (cat.CustomerId == 0)
                         {
                             db.Entry(cat).State = EntityState.Added;
@@ -96,12 +96,12 @@ namespace SimpleBilling
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        Customer cus = customersBindingSource1.Current as Customer;
+                        Customers cus = customersBindingSource1.Current as Customers;
 
                         if (cus != null)
                         {
                             if (db.Entry(cus).State == EntityState.Detached)
-                                db.Set<Customer>().Attach(cus);
+                                db.Set<Customers>().Attach(cus);
                             db.Entry(cus).State = EntityState.Deleted;
                             db.SaveChanges();
                             Info("Customer Deleted Successfully");
@@ -125,7 +125,7 @@ namespace SimpleBilling
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             TxtName.Focus();
-            Customer cus = customersBindingSource1.Current as Customer;
+            Customers cus = customersBindingSource1.Current as Customers;
         }
     }
 }

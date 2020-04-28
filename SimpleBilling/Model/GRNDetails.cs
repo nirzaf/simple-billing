@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBilling.Model
 {
-    public class GRNDetail
+    public class GRNDetails
     {
         [Key]
         [Column(Order = 1)]

@@ -309,7 +309,7 @@
             // 
             // customersBindingSource1
             // 
-            this.customersBindingSource1.DataSource = typeof(SimpleBilling.Model.Customer);
+            this.customersBindingSource1.DataSource = typeof(SimpleBilling.Model.Customers);
             // 
             // dataGridViewTextBoxColumn1
             // 

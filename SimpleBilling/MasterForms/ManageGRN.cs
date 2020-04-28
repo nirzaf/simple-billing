@@ -166,7 +166,7 @@ namespace SimpleBilling.MasterForms
 
                     int LineCount = Convert.ToInt32(DGVGRNList.Rows.Count.ToString());
 
-                    GRNDetail details = new GRNDetail
+                    GRNDetails details = new GRNDetails
                     {
                         GRN_Id = GRN_Id,
                         GRNCode = GRN_Code,
@@ -183,7 +183,7 @@ namespace SimpleBilling.MasterForms
                     details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
 
                     if (db.Entry(details).State == EntityState.Detached)
-                        db.Set<GRNDetail>().Attach(details);
+                        db.Set<GRNDetails>().Attach(details);
 
                     var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == details.GRN_Id
                     && b.GRNCode == details.GRNCode
@@ -299,7 +299,7 @@ namespace SimpleBilling.MasterForms
                     var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
                     Result.IsDeleted = false;
                     if (db.Entry(Result).State == EntityState.Detached)
-                        db.Set<GRNDetail>().Attach(Result);
+                        db.Set<GRNDetails>().Attach(Result);
                     db.Entry(Result).State = EntityState.Modified;
                     db.SaveChanges();
                     LoadDetails(GRN_Code);
@@ -314,7 +314,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    foreach (GRNDetail details in db.GRNDetails)
+                    foreach (GRNDetails details in db.GRNDetails)
                     {
                         if (details.GRNCode == GRN_Code && details.IsDeleted == true)
                         {

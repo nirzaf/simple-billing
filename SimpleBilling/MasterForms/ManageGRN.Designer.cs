@@ -93,7 +93,7 @@
             // 
             // gRNDetailsBindingSource
             // 
-            this.gRNDetailsBindingSource.DataSource = typeof(SimpleBilling.Model.GRNDetail);
+            this.gRNDetailsBindingSource.DataSource = typeof(SimpleBilling.Model.GRNDetails);
             // 
             // CRUDPanel
             // 
