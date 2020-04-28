@@ -53,9 +53,11 @@
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.SuspendLayout();
             // 
             // LblDate
@@ -278,6 +280,7 @@
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(244, 26);
             this.TxtQuantity.TabIndex = 13;
+            this.TxtQuantity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyUp);
             // 
             // TxtDiscount
             // 
@@ -285,6 +288,7 @@
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(244, 26);
             this.TxtDiscount.TabIndex = 14;
+            this.TxtDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtDiscount_KeyUp);
             // 
             // TxtSubTotal
             // 
@@ -297,8 +301,17 @@
             // 
             this.TxtNetTotal.Location = new System.Drawing.Point(753, 123);
             this.TxtNetTotal.Name = "TxtNetTotal";
+            this.TxtNetTotal.ReadOnly = true;
             this.TxtNetTotal.Size = new System.Drawing.Size(244, 26);
             this.TxtNetTotal.TabIndex = 16;
+            // 
+            // DGVReceiptBody
+            // 
+            this.DGVReceiptBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVReceiptBody.Location = new System.Drawing.Point(12, 185);
+            this.DGVReceiptBody.Name = "DGVReceiptBody";
+            this.DGVReceiptBody.Size = new System.Drawing.Size(747, 314);
+            this.DGVReceiptBody.TabIndex = 6;
             // 
             // POS
             // 
@@ -306,6 +319,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1027, 511);
+            this.Controls.Add(this.DGVReceiptBody);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -318,6 +332,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -348,5 +363,6 @@
         private System.Windows.Forms.TextBox TxtSubTotal;
         private System.Windows.Forms.TextBox TxtNetTotal;
         private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.DataGridView DGVReceiptBody;
     }
 }

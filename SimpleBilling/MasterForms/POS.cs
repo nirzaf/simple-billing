@@ -114,5 +114,40 @@ namespace SimpleBilling.MasterForms
         {
             GetItemDetailsByBarCode();
         }
+
+        private void TxtQuantity_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TxtQuantity.Text.Trim()))
+            {
+                float UnitCost = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                float Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                float Total = UnitCost * Qty;
+                TxtSubTotal.Text = Total.ToString();
+                TxtDiscount_KeyUp(sender, e);
+            }
+        }
+
+        private void TxtDiscount_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TxtDiscount.Text.Trim()))
+            {
+                float UnitCost = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                float Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                float Total = UnitCost * Qty;
+                TxtSubTotal.Text = Total.ToString();
+                float Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                float NetTotal = Total - Discount;
+                TxtNetTotal.Text = NetTotal.ToString();
+            }
+            else
+            {
+                float UnitCost = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                float Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                float Total = UnitCost * Qty;
+                TxtSubTotal.Text = Total.ToString();
+                TxtNetTotal.Text = Total.ToString();
+                TxtSubTotal.Text = Total.ToString();
+            }
+        }
     }
 }
