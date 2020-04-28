@@ -32,6 +32,7 @@
             this.LblDate = new System.Windows.Forms.Label();
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
+            this.CmbAddItem = new System.Windows.Forms.ComboBox();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCustomer = new System.Windows.Forms.TextBox();
@@ -49,10 +50,9 @@
             this.TxtUnitPrice = new System.Windows.Forms.TextBox();
             this.TxtQuantity = new System.Windows.Forms.TextBox();
             this.TxtDiscount = new System.Windows.Forms.TextBox();
+            this.TxtSubTotal = new System.Windows.Forms.TextBox();
+            this.TxtNetTotal = new System.Windows.Forms.TextBox();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.TxtItemDescription = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -84,6 +84,22 @@
             this.SystemTimer.Enabled = true;
             this.SystemTimer.Tick += new System.EventHandler(this.SystemTimer_Tick);
             // 
+            // CmbAddItem
+            // 
+            this.CmbAddItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CmbAddItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CmbAddItem.DataSource = this.itemBindingSource;
+            this.CmbAddItem.DisplayMember = "ItemName";
+            this.CmbAddItem.FormattingEnabled = true;
+            this.CmbAddItem.Location = new System.Drawing.Point(503, 63);
+            this.CmbAddItem.Name = "CmbAddItem";
+            this.CmbAddItem.Size = new System.Drawing.Size(244, 27);
+            this.CmbAddItem.TabIndex = 4;
+            this.CmbAddItem.ValueMember = "Id";
+            this.CmbAddItem.SelectedIndexChanged += new System.EventHandler(this.CmbAddItem_SelectedIndexChanged);
+            this.CmbAddItem.Enter += new System.EventHandler(this.CmbAddItem_Enter);
+            this.CmbAddItem.Leave += new System.EventHandler(this.CmbAddItem_Leave);
+            // 
             // itemBindingSource
             // 
             this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
@@ -95,9 +111,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CmbAddItem, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.LblDate, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.LblTime, 1, 0);
@@ -114,7 +129,8 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtUnitPrice, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtQuantity, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtDiscount, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.TxtItemDescription, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.TxtSubTotal, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.TxtNetTotal, 3, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -123,7 +139,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1003, 150);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
@@ -259,41 +274,31 @@
             // 
             // TxtQuantity
             // 
-            this.TxtQuantity.Location = new System.Drawing.Point(253, 123);
+            this.TxtQuantity.Location = new System.Drawing.Point(3, 123);
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(244, 26);
             this.TxtQuantity.TabIndex = 13;
             // 
             // TxtDiscount
             // 
-            this.TxtDiscount.Location = new System.Drawing.Point(753, 123);
+            this.TxtDiscount.Location = new System.Drawing.Point(253, 123);
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(244, 26);
             this.TxtDiscount.TabIndex = 14;
             // 
-            // textBox1
+            // TxtSubTotal
             // 
-            this.textBox1.Location = new System.Drawing.Point(503, 123);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 26);
-            this.textBox1.TabIndex = 18;
+            this.TxtSubTotal.Location = new System.Drawing.Point(503, 123);
+            this.TxtSubTotal.Name = "TxtSubTotal";
+            this.TxtSubTotal.Size = new System.Drawing.Size(244, 26);
+            this.TxtSubTotal.TabIndex = 15;
             // 
-            // textBox2
+            // TxtNetTotal
             // 
-            this.textBox2.Location = new System.Drawing.Point(3, 123);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(244, 26);
-            this.textBox2.TabIndex = 19;
-            // 
-            // TxtItemDescription
-            // 
-            this.TxtItemDescription.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.TxtItemDescription.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.TxtItemDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemBindingSource, "ItemName", true));
-            this.TxtItemDescription.Location = new System.Drawing.Point(503, 63);
-            this.TxtItemDescription.Name = "TxtItemDescription";
-            this.TxtItemDescription.Size = new System.Drawing.Size(244, 26);
-            this.TxtItemDescription.TabIndex = 20;
+            this.TxtNetTotal.Location = new System.Drawing.Point(753, 123);
+            this.TxtNetTotal.Name = "TxtNetTotal";
+            this.TxtNetTotal.Size = new System.Drawing.Size(244, 26);
+            this.TxtNetTotal.TabIndex = 16;
             // 
             // POS
             // 
@@ -323,6 +328,7 @@
         private System.Windows.Forms.Label LblTime;
         private System.Windows.Forms.Timer SystemTimer;
         private System.Windows.Forms.BindingSource customersBindingSource;
+        private System.Windows.Forms.ComboBox CmbAddItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -339,9 +345,8 @@
         private System.Windows.Forms.TextBox TxtUnitPrice;
         private System.Windows.Forms.TextBox TxtQuantity;
         private System.Windows.Forms.TextBox TxtDiscount;
+        private System.Windows.Forms.TextBox TxtSubTotal;
+        private System.Windows.Forms.TextBox TxtNetTotal;
         private System.Windows.Forms.BindingSource itemBindingSource;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox TxtItemDescription;
     }
 }
