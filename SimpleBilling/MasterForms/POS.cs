@@ -7,6 +7,8 @@ namespace SimpleBilling.MasterForms
 {
     public partial class POS : Form
     {
+        private int ItemId;
+        private string BarCode;
         public POS()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 customersBindingSource.DataSource = db.Customers.ToList();
+                itemBindingSource.DataSource = db.Items.ToList();
             }
         }
 
@@ -30,6 +33,86 @@ namespace SimpleBilling.MasterForms
         {           
             LblDate.Text = DateTime.Now.ToShortDateString();
             LblTime.Text = DateTime.Now.ToLongTimeString();
+        }
+
+
+        private void TxtCustomer_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
+                {
+                    string MobileNumber = TxtCustomer.Text.Trim();
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
+                        if (data != null)
+                        {
+                            LblCustomer.Text = data.Name;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CmbAddItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetItemDetailsById();
+        }
+
+        private void GetItemDetailsById()
+        {
+            ItemId = Convert.ToInt32(CmbAddItem.SelectedValue.ToString());
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                if (data != null)
+                {
+                    TxtUnitPrice.Text = data.UnitCost.ToString();
+                    TxtBarCode.Text = data.Barcode;
+                    TxtProductCode.Text = data.Code;
+                    TxtDiscount.Text = "0";
+                }
+            }
+        }
+
+        private void GetItemDetailsByBarCode()
+        {
+            if (!string.IsNullOrWhiteSpace(TxtBarCode.Text.Trim()))
+            {
+                BarCode = TxtBarCode.Text.Trim();
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.Items.FirstOrDefault(c => c.Barcode == BarCode);
+                    if (data != null)
+                    {
+                        TxtUnitPrice.Text = data.UnitCost.ToString();
+                        CmbAddItem.SelectedText = data.ItemName;
+                        TxtProductCode.Text = data.Code;
+                        TxtDiscount.Text = "0";
+                    }
+                }
+            }
+        }
+
+        private void CmbAddItem_Enter(object sender, EventArgs e)
+        {
+            GetItemDetailsById();
+        }
+
+        private void CmbAddItem_Leave(object sender, EventArgs e)
+        {
+            GetItemDetailsById();
+        }
+
+        private void TxtBarCode_KeyUp(object sender, KeyEventArgs e)
+        {
+            GetItemDetailsByBarCode();
+        }
+
+        private void TxtBarCode_Enter(object sender, EventArgs e)
+        {
+            GetItemDetailsByBarCode();
         }
     }
 }

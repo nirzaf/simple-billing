@@ -32,9 +32,11 @@
             this.LblDate = new System.Windows.Forms.Label();
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
-            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CmbAddItem = new System.Windows.Forms.ComboBox();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtCustomer = new System.Windows.Forms.TextBox();
+            this.LblCustomer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,10 +52,10 @@
             this.TxtDiscount = new System.Windows.Forms.TextBox();
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TxtCustomer = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LblDate
@@ -82,17 +84,26 @@
             this.SystemTimer.Enabled = true;
             this.SystemTimer.Tick += new System.EventHandler(this.SystemTimer_Tick);
             // 
-            // customersBindingSource
-            // 
-            this.customersBindingSource.DataSource = typeof(SimpleBilling.Model.Customers);
-            // 
             // CmbAddItem
             // 
+            this.CmbAddItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CmbAddItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CmbAddItem.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.itemBindingSource, "Id", true));
+            this.CmbAddItem.DataSource = this.itemBindingSource;
+            this.CmbAddItem.DisplayMember = "ItemName";
             this.CmbAddItem.FormattingEnabled = true;
             this.CmbAddItem.Location = new System.Drawing.Point(503, 63);
             this.CmbAddItem.Name = "CmbAddItem";
             this.CmbAddItem.Size = new System.Drawing.Size(244, 27);
             this.CmbAddItem.TabIndex = 4;
+            this.CmbAddItem.ValueMember = "Id";
+            this.CmbAddItem.SelectedIndexChanged += new System.EventHandler(this.CmbAddItem_SelectedIndexChanged);
+            this.CmbAddItem.Enter += new System.EventHandler(this.CmbAddItem_Enter);
+            this.CmbAddItem.Leave += new System.EventHandler(this.CmbAddItem_Leave);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
             // 
             // tableLayoutPanel1
             // 
@@ -103,7 +114,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.CmbAddItem, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.LblDate, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.LblTime, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
@@ -131,6 +142,25 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1003, 150);
             this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // TxtCustomer
+            // 
+            this.TxtCustomer.Location = new System.Drawing.Point(753, 3);
+            this.TxtCustomer.Name = "TxtCustomer";
+            this.TxtCustomer.Size = new System.Drawing.Size(244, 26);
+            this.TxtCustomer.TabIndex = 1;
+            this.TxtCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyUp);
+            // 
+            // LblCustomer
+            // 
+            this.LblCustomer.AutoSize = true;
+            this.LblCustomer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.LblCustomer.ForeColor = System.Drawing.Color.Lime;
+            this.LblCustomer.Location = new System.Drawing.Point(503, 0);
+            this.LblCustomer.Name = "LblCustomer";
+            this.LblCustomer.Size = new System.Drawing.Size(84, 19);
+            this.LblCustomer.TabIndex = 17;
+            this.LblCustomer.Text = "Customer";
             // 
             // label1
             // 
@@ -226,6 +256,8 @@
             this.TxtBarCode.Name = "TxtBarCode";
             this.TxtBarCode.Size = new System.Drawing.Size(244, 26);
             this.TxtBarCode.TabIndex = 10;
+            this.TxtBarCode.Enter += new System.EventHandler(this.TxtBarCode_Enter);
+            this.TxtBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtBarCode_KeyUp);
             // 
             // TxtProductCode
             // 
@@ -269,24 +301,6 @@
             this.TxtNetTotal.Size = new System.Drawing.Size(244, 26);
             this.TxtNetTotal.TabIndex = 16;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.ForeColor = System.Drawing.Color.Lime;
-            this.label9.Location = new System.Drawing.Point(503, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 19);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Customer";
-            // 
-            // TxtCustomer
-            // 
-            this.TxtCustomer.Location = new System.Drawing.Point(753, 3);
-            this.TxtCustomer.Name = "TxtCustomer";
-            this.TxtCustomer.Size = new System.Drawing.Size(244, 26);
-            this.TxtCustomer.TabIndex = 18;
-            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -301,9 +315,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POS";
             this.Load += new System.EventHandler(this.POS_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,7 +340,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtCustomer;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label LblCustomer;
         private System.Windows.Forms.TextBox TxtBarCode;
         private System.Windows.Forms.TextBox TxtProductCode;
         private System.Windows.Forms.TextBox TxtUnitPrice;
@@ -333,5 +348,6 @@
         private System.Windows.Forms.TextBox TxtDiscount;
         private System.Windows.Forms.TextBox TxtSubTotal;
         private System.Windows.Forms.TextBox TxtNetTotal;
+        private System.Windows.Forms.BindingSource itemBindingSource;
     }
 }
