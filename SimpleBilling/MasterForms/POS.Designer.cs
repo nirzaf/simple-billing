@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.LblDate = new System.Windows.Forms.Label();
             this.LblTime = new System.Windows.Forms.Label();
-            this.systemTimer = new System.Windows.Forms.Timer(this.components);
+            this.SystemTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // LblDate
@@ -55,10 +55,10 @@
             this.LblTime.TabIndex = 1;
             this.LblTime.Text = "Time";
             // 
-            // systemTimer
+            // SystemTimer
             // 
-            this.systemTimer.Enabled = true;
-            this.systemTimer.Tick += new System.EventHandler(this.systemTimer_Tick);
+            this.SystemTimer.Enabled = true;
+            this.SystemTimer.Tick += new System.EventHandler(this.systemTimer_Tick);
             // 
             // POS
             // 
@@ -84,6 +84,6 @@
 
         private System.Windows.Forms.Label LblDate;
         private System.Windows.Forms.Label LblTime;
-        private System.Windows.Forms.Timer systemTimer;
+        private System.Windows.Forms.Timer SystemTimer;
     }
 }

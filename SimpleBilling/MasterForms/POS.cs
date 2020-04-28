@@ -19,7 +19,7 @@ namespace SimpleBilling.MasterForms
 
         private void POS_Load(object sender, EventArgs e)
         {
-            systemTimer_Tick(sender, e);
+            SystemTimer_Tick(sender, e);
         }
 
         private void LoadDateAndTime()
@@ -28,7 +28,7 @@ namespace SimpleBilling.MasterForms
             LblTime.Text = DateTime.Now.ToLongTimeString();
         }
 
-        private void systemTimer_Tick(object sender, EventArgs e)
+        private void SystemTimer_Tick(object sender, EventArgs e)
         {
             LoadDateAndTime();
         }
