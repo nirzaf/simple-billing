@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleBilling.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,28 @@ namespace SimpleBilling.MasterForms
         private void LoadReceipt_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void DGVLoad(string InvoiceNo)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false)
+                            join cashier in db.Employee
+                            on header.Cashier equals cashier.EmployeeId
+                            select new
+                            {
+                                header.ReceiptNo,
+                                header.Date,
+                                header.Time,
+                                cashier.EmployeeName,
+                                header.SubTotal,
+                                header.TotalDiscount,
+                                header.PaidAmount,
+                                header.Balance,
+                                header.PaymentType
+                            }).ToList();
+            }
         }
     }
 }

@@ -47,7 +47,7 @@
             // DGVLoadReceipt
             // 
             this.DGVLoadReceipt.AutoGenerateColumns = false;
-            this.DGVLoadReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.DGVLoadReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVLoadReceipt.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVLoadReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVLoadReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -62,7 +62,7 @@
             this.DGVLoadReceipt.DataSource = this.receiptHeaderBindingSource;
             this.DGVLoadReceipt.Location = new System.Drawing.Point(2, 29);
             this.DGVLoadReceipt.Name = "DGVLoadReceipt";
-            this.DGVLoadReceipt.Size = new System.Drawing.Size(965, 438);
+            this.DGVLoadReceipt.Size = new System.Drawing.Size(1230, 438);
             this.DGVLoadReceipt.TabIndex = 0;
             // 
             // BtnLoadReceipt
@@ -84,63 +84,55 @@
             this.receiptNoDataGridViewTextBoxColumn.DataPropertyName = "ReceiptNo";
             this.receiptNoDataGridViewTextBoxColumn.HeaderText = "Receipt No";
             this.receiptNoDataGridViewTextBoxColumn.Name = "receiptNoDataGridViewTextBoxColumn";
-            this.receiptNoDataGridViewTextBoxColumn.Width = 118;
             // 
             // dateDataGridViewTextBoxColumn
             // 
             this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
             this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
             this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.Width = 69;
             // 
             // timeDataGridViewTextBoxColumn
             // 
             this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
             this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
             this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            this.timeDataGridViewTextBoxColumn.Width = 71;
             // 
             // totalDiscountDataGridViewTextBoxColumn
             // 
             this.totalDiscountDataGridViewTextBoxColumn.DataPropertyName = "TotalDiscount";
             this.totalDiscountDataGridViewTextBoxColumn.HeaderText = "Total Discount";
             this.totalDiscountDataGridViewTextBoxColumn.Name = "totalDiscountDataGridViewTextBoxColumn";
-            this.totalDiscountDataGridViewTextBoxColumn.Width = 132;
             // 
             // subTotalDataGridViewTextBoxColumn
             // 
             this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
             this.subTotalDataGridViewTextBoxColumn.HeaderText = "Sub Total";
             this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
-            this.subTotalDataGridViewTextBoxColumn.Width = 97;
             // 
             // netTotalDataGridViewTextBoxColumn
             // 
             this.netTotalDataGridViewTextBoxColumn.DataPropertyName = "NetTotal";
             this.netTotalDataGridViewTextBoxColumn.HeaderText = "Net Total";
             this.netTotalDataGridViewTextBoxColumn.Name = "netTotalDataGridViewTextBoxColumn";
-            this.netTotalDataGridViewTextBoxColumn.Width = 93;
             // 
             // paidAmountDataGridViewTextBoxColumn
             // 
             this.paidAmountDataGridViewTextBoxColumn.DataPropertyName = "PaidAmount";
             this.paidAmountDataGridViewTextBoxColumn.HeaderText = "Paid Amount";
             this.paidAmountDataGridViewTextBoxColumn.Name = "paidAmountDataGridViewTextBoxColumn";
-            this.paidAmountDataGridViewTextBoxColumn.Width = 120;
             // 
             // balanceDataGridViewTextBoxColumn
             // 
             this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
             this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
             this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
-            this.balanceDataGridViewTextBoxColumn.Width = 96;
             // 
             // LoadReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(968, 511);
+            this.ClientSize = new System.Drawing.Size(1233, 511);
             this.Controls.Add(this.BtnLoadReceipt);
             this.Controls.Add(this.DGVLoadReceipt);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
