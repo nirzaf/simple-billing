@@ -210,6 +210,9 @@
     <EmbeddedResource Include="MasterForms\GRNInvoices.resx">
       <DependentUpon>GRNInvoices.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\LoadReceipt.resx">
+      <DependentUpon>LoadReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageCategory.resx">
       <DependentUpon>ManageCategory.cs</DependentUpon>
     </EmbeddedResource>
