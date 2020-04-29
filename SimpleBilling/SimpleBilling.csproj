@@ -163,6 +163,22 @@
     <Compile Include="Migrations\202004280407440_billing10.designer.cs">
       <DependentUpon>202004280407440_billing10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004290037563_billing11.cs" />
+    <Compile Include="Migrations\202004290037563_billing11.designer.cs">
+      <DependentUpon>202004290037563_billing11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004290056437_billing12.cs" />
+    <Compile Include="Migrations\202004290056437_billing12.designer.cs">
+      <DependentUpon>202004290056437_billing12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004290116069_billing13.cs" />
+    <Compile Include="Migrations\202004290116069_billing13.designer.cs">
+      <DependentUpon>202004290116069_billing13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004290224519_billing14.cs" />
+    <Compile Include="Migrations\202004290224519_billing14.designer.cs">
+      <DependentUpon>202004290224519_billing14.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -241,6 +257,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004280407440_billing10.resx">
       <DependentUpon>202004280407440_billing10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004290037563_billing11.resx">
+      <DependentUpon>202004290037563_billing11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004290056437_billing12.resx">
+      <DependentUpon>202004290056437_billing12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004290116069_billing13.resx">
+      <DependentUpon>202004290116069_billing13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004290224519_billing14.resx">
+      <DependentUpon>202004290224519_billing14.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

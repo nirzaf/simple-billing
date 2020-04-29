@@ -164,7 +164,7 @@ namespace SimpleBilling.MasterForms
                         GRN_Code = header.GRN_No;
                     }
 
-                    int LineCount = Convert.ToInt32(DGVGRNList.Rows.Count.ToString());
+                    int LineCount = DGVGRNList.Rows.Count;
 
                     GRNDetails details = new GRNDetails
                     {

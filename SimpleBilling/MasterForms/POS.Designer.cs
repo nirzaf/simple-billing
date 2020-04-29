@@ -52,6 +52,7 @@
             this.TxtDiscount = new System.Windows.Forms.TextBox();
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
+            this.LblReceiptNo = new System.Windows.Forms.Label();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -65,7 +66,7 @@
             this.LblDate.AutoSize = true;
             this.LblDate.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblDate.ForeColor = System.Drawing.Color.Lime;
-            this.LblDate.Location = new System.Drawing.Point(3, 0);
+            this.LblDate.Location = new System.Drawing.Point(8, 556);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(44, 19);
             this.LblDate.TabIndex = 0;
@@ -75,7 +76,7 @@
             // 
             this.LblTime.AutoSize = true;
             this.LblTime.ForeColor = System.Drawing.Color.Lime;
-            this.LblTime.Location = new System.Drawing.Point(253, 0);
+            this.LblTime.Location = new System.Drawing.Point(99, 556);
             this.LblTime.Name = "LblTime";
             this.LblTime.Size = new System.Drawing.Size(46, 19);
             this.LblTime.TabIndex = 1;
@@ -102,10 +103,6 @@
             this.CmbAddItem.Enter += new System.EventHandler(this.CmbAddItem_Enter);
             this.CmbAddItem.Leave += new System.EventHandler(this.CmbAddItem_Leave);
             // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -116,8 +113,6 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.CmbAddItem, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LblDate, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LblTime, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 1);
@@ -133,6 +128,7 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtDiscount, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtSubTotal, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtNetTotal, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.LblReceiptNo, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -141,6 +137,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1003, 150);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
@@ -280,6 +277,7 @@
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(244, 26);
             this.TxtQuantity.TabIndex = 13;
+            this.TxtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
             this.TxtQuantity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyUp);
             // 
             // TxtDiscount
@@ -288,6 +286,7 @@
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(244, 26);
             this.TxtDiscount.TabIndex = 14;
+            this.TxtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDiscount_KeyDown);
             this.TxtDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtDiscount_KeyUp);
             // 
             // TxtSubTotal
@@ -305,12 +304,24 @@
             this.TxtNetTotal.Size = new System.Drawing.Size(244, 26);
             this.TxtNetTotal.TabIndex = 16;
             // 
+            // LblReceiptNo
+            // 
+            this.LblReceiptNo.AutoSize = true;
+            this.LblReceiptNo.ForeColor = System.Drawing.Color.Wheat;
+            this.LblReceiptNo.Location = new System.Drawing.Point(3, 0);
+            this.LblReceiptNo.Name = "LblReceiptNo";
+            this.LblReceiptNo.Size = new System.Drawing.Size(89, 19);
+            this.LblReceiptNo.TabIndex = 18;
+            this.LblReceiptNo.Text = "ReceiptNo";
+            // 
             // DGVReceiptBody
             // 
+            this.DGVReceiptBody.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVReceiptBody.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVReceiptBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReceiptBody.Location = new System.Drawing.Point(12, 185);
             this.DGVReceiptBody.Name = "DGVReceiptBody";
-            this.DGVReceiptBody.Size = new System.Drawing.Size(747, 314);
+            this.DGVReceiptBody.Size = new System.Drawing.Size(997, 294);
             this.DGVReceiptBody.TabIndex = 6;
             // 
             // POS
@@ -318,9 +329,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1027, 511);
+            this.ClientSize = new System.Drawing.Size(1027, 584);
             this.Controls.Add(this.DGVReceiptBody);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.LblDate);
+            this.Controls.Add(this.LblTime);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -334,6 +347,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -364,5 +378,6 @@
         private System.Windows.Forms.TextBox TxtNetTotal;
         private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.DataGridView DGVReceiptBody;
+        private System.Windows.Forms.Label LblReceiptNo;
     }
 }

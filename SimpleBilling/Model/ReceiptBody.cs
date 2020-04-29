@@ -7,17 +7,11 @@ namespace SimpleBilling.Model
     public class ReceiptBody
     {
         [Key]
-        [Column(Order = 1)]
-        public int ReceiptId { get; set; }
+        [Column(Order=1)]
+        public int ReceiptNo { get; set; }
         [Key]
         [Column(Order = 2)]
-        public int LineId { get; set; }
-        [Required]
         public int ProductId { get; set; }
-        [Required]
-        public string ProductCode { get; set; }
-        [Required]
-        public string ProductName { get; set; }
         [Required]
         public float UnitPrice { get; set; }
         [Required]
