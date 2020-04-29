@@ -55,10 +55,22 @@
             this.LblReceiptNo = new System.Windows.Forms.Label();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.LblSubTotal = new System.Windows.Forms.Label();
+            this.LblTotalDiscount = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.LblNetTotal = new System.Windows.Forms.Label();
+            this.BtnPrintPreview = new System.Windows.Forms.Button();
+            this.BtnPrint = new System.Windows.Forms.Button();
+            this.TxtGivenAmount = new System.Windows.Forms.TextBox();
+            this.LblBalanceAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblDate
@@ -66,7 +78,7 @@
             this.LblDate.AutoSize = true;
             this.LblDate.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblDate.ForeColor = System.Drawing.Color.Lime;
-            this.LblDate.Location = new System.Drawing.Point(8, 556);
+            this.LblDate.Location = new System.Drawing.Point(3, 74);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(44, 19);
             this.LblDate.TabIndex = 0;
@@ -76,7 +88,7 @@
             // 
             this.LblTime.AutoSize = true;
             this.LblTime.ForeColor = System.Drawing.Color.Lime;
-            this.LblTime.Location = new System.Drawing.Point(99, 556);
+            this.LblTime.Location = new System.Drawing.Point(202, 74);
             this.LblTime.Name = "LblTime";
             this.LblTime.Size = new System.Drawing.Size(46, 19);
             this.LblTime.TabIndex = 1;
@@ -324,16 +336,141 @@
             this.DGVReceiptBody.Size = new System.Drawing.Size(997, 294);
             this.DGVReceiptBody.TabIndex = 6;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.LblBalanceAmount, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label10, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.LblTime, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LblDate, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.LblSubTotal, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.LblTotalDiscount, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.BtnPrint, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.BtnPrintPreview, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.TxtGivenAmount, 3, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 485);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.43478F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.43478F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.13044F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(997, 93);
+            this.tableLayoutPanel2.TabIndex = 7;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 19);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Sub Total";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(202, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(119, 19);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Totsl Discount";
+            // 
+            // LblSubTotal
+            // 
+            this.LblSubTotal.AutoSize = true;
+            this.LblSubTotal.ForeColor = System.Drawing.Color.White;
+            this.LblSubTotal.Location = new System.Drawing.Point(3, 37);
+            this.LblSubTotal.Name = "LblSubTotal";
+            this.LblSubTotal.Size = new System.Drawing.Size(18, 19);
+            this.LblSubTotal.TabIndex = 2;
+            this.LblSubTotal.Text = "0";
+            // 
+            // LblTotalDiscount
+            // 
+            this.LblTotalDiscount.AutoSize = true;
+            this.LblTotalDiscount.ForeColor = System.Drawing.Color.White;
+            this.LblTotalDiscount.Location = new System.Drawing.Point(202, 37);
+            this.LblTotalDiscount.Name = "LblTotalDiscount";
+            this.LblTotalDiscount.Size = new System.Drawing.Size(18, 19);
+            this.LblTotalDiscount.TabIndex = 3;
+            this.LblTotalDiscount.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(401, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 19);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Net Total";
+            // 
+            // LblNetTotal
+            // 
+            this.LblNetTotal.AutoSize = true;
+            this.LblNetTotal.ForeColor = System.Drawing.Color.White;
+            this.LblNetTotal.Location = new System.Drawing.Point(401, 37);
+            this.LblNetTotal.Name = "LblNetTotal";
+            this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
+            this.LblNetTotal.TabIndex = 5;
+            this.LblNetTotal.Text = "0";
+            // 
+            // BtnPrintPreview
+            // 
+            this.BtnPrintPreview.BackColor = System.Drawing.Color.White;
+            this.BtnPrintPreview.Location = new System.Drawing.Point(799, 3);
+            this.BtnPrintPreview.Name = "BtnPrintPreview";
+            this.BtnPrintPreview.Size = new System.Drawing.Size(195, 31);
+            this.BtnPrintPreview.TabIndex = 6;
+            this.BtnPrintPreview.Text = "Print Preview";
+            this.BtnPrintPreview.UseVisualStyleBackColor = false;
+            // 
+            // BtnPrint
+            // 
+            this.BtnPrint.BackColor = System.Drawing.Color.White;
+            this.BtnPrint.Location = new System.Drawing.Point(799, 40);
+            this.BtnPrint.Name = "BtnPrint";
+            this.BtnPrint.Size = new System.Drawing.Size(193, 31);
+            this.BtnPrint.TabIndex = 7;
+            this.BtnPrint.Text = "Print";
+            this.BtnPrint.UseVisualStyleBackColor = false;
+            // 
+            // TxtGivenAmount
+            // 
+            this.TxtGivenAmount.Location = new System.Drawing.Point(600, 3);
+            this.TxtGivenAmount.Name = "TxtGivenAmount";
+            this.TxtGivenAmount.Size = new System.Drawing.Size(193, 26);
+            this.TxtGivenAmount.TabIndex = 8;
+            // 
+            // LblBalanceAmount
+            // 
+            this.LblBalanceAmount.AutoSize = true;
+            this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
+            this.LblBalanceAmount.Location = new System.Drawing.Point(600, 37);
+            this.LblBalanceAmount.Name = "LblBalanceAmount";
+            this.LblBalanceAmount.Size = new System.Drawing.Size(18, 19);
+            this.LblBalanceAmount.TabIndex = 9;
+            this.LblBalanceAmount.Text = "0";
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1027, 584);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.DGVReceiptBody);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.LblDate);
-            this.Controls.Add(this.LblTime);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -346,8 +483,9 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -379,5 +517,16 @@
         private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.DataGridView DGVReceiptBody;
         private System.Windows.Forms.Label LblReceiptNo;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label LblBalanceAmount;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label LblSubTotal;
+        private System.Windows.Forms.Label LblTotalDiscount;
+        private System.Windows.Forms.Label LblNetTotal;
+        private System.Windows.Forms.Button BtnPrint;
+        private System.Windows.Forms.Button BtnPrintPreview;
+        private System.Windows.Forms.TextBox TxtGivenAmount;
     }
 }
