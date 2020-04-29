@@ -294,6 +294,7 @@
     <None Include="Properties\DataSources\SimpleBilling.Model.Employee.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.GRNDetails.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Item.datasource" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.ReceiptHeader.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Supplier.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
