@@ -74,18 +74,15 @@ namespace SimpleBilling.MasterForms
 
         private void TxtCustomer_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
             {
-                if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
+                string MobileNumber = TxtCustomer.Text.Trim();
+                using (BillingContext db = new BillingContext())
                 {
-                    string MobileNumber = TxtCustomer.Text.Trim();
-                    using (BillingContext db = new BillingContext())
+                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
+                    if (data != null)
                     {
-                        var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
-                        if (data != null)
-                        {
-                            LblCustomer.Text = data.Name;
-                        }
+                        LblCustomer.Text = data.Name;
                     }
                 }
             }

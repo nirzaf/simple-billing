@@ -1,18 +1,14 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
 {
     public partial class LoadReceipt : Form
     {
+        private string ReceiptNo;
         public LoadReceipt()
         {
             InitializeComponent();
@@ -20,10 +16,10 @@ namespace SimpleBilling.MasterForms
 
         private void LoadReceipt_Load(object sender, EventArgs e)
         {
-
+            DGVLoad();
         }
 
-        private void DGVLoad(string InvoiceNo)
+        private void DGVLoad()
         {
             using (BillingContext db = new BillingContext())
             {
@@ -42,7 +38,25 @@ namespace SimpleBilling.MasterForms
                                 header.Balance,
                                 header.PaymentType
                             }).ToList();
+                DGVLoadReceipt.DataSource = data;
             }
+        }
+
+        private void LoadReceiptFromDGV()
+        {
+            if (DGVLoadReceipt.SelectedRows.Count > 0)
+            {
+                ReceiptNo = DGVLoadReceipt.SelectedRows[0].Cells[0].Value + string.Empty;
+            }
+        }
+        private void BtnLoadReceipt_Click(object sender, EventArgs e)
+        {
+            LoadReceiptFromDGV();
+        }
+
+        private void DGVLoadReceipt_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LoadReceiptFromDGV();
         }
     }
 }

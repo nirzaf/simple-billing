@@ -67,6 +67,8 @@
             this.BtnPrint = new System.Windows.Forms.Button();
             this.BtnPrintPreview = new System.Windows.Forms.Button();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.LblReceiptStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -368,6 +370,8 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnPrint, 4, 1);
             this.tableLayoutPanel2.Controls.Add(this.BtnPrintPreview, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.TxtGivenAmount, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LblReceiptStatus, 3, 2);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 485);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
@@ -474,6 +478,26 @@
             this.TxtGivenAmount.Size = new System.Drawing.Size(193, 26);
             this.TxtGivenAmount.TabIndex = 8;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(401, 74);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(120, 19);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Receipt Status";
+            // 
+            // LblReceiptStatus
+            // 
+            this.LblReceiptStatus.AutoSize = true;
+            this.LblReceiptStatus.ForeColor = System.Drawing.Color.White;
+            this.LblReceiptStatus.Location = new System.Drawing.Point(600, 74);
+            this.LblReceiptStatus.Name = "LblReceiptStatus";
+            this.LblReceiptStatus.Size = new System.Drawing.Size(58, 19);
+            this.LblReceiptStatus.TabIndex = 11;
+            this.LblReceiptStatus.Text = "Ready";
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -541,5 +565,7 @@
         private System.Windows.Forms.Button BtnPrintPreview;
         private System.Windows.Forms.TextBox TxtGivenAmount;
         private System.Windows.Forms.Button BtnLoadReceipt;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label LblReceiptStatus;
     }
 }

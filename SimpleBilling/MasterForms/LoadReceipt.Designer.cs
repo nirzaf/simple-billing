@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.DGVLoadReceipt = new System.Windows.Forms.DataGridView();
-            this.BtnLoadReceipt = new System.Windows.Forms.Button();
-            this.receiptHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.receiptNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +38,8 @@
             this.netTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paidAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BtnLoadReceipt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVLoadReceipt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -64,20 +64,7 @@
             this.DGVLoadReceipt.Name = "DGVLoadReceipt";
             this.DGVLoadReceipt.Size = new System.Drawing.Size(1230, 438);
             this.DGVLoadReceipt.TabIndex = 0;
-            // 
-            // BtnLoadReceipt
-            // 
-            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
-            this.BtnLoadReceipt.Location = new System.Drawing.Point(810, 473);
-            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
-            this.BtnLoadReceipt.Size = new System.Drawing.Size(157, 33);
-            this.BtnLoadReceipt.TabIndex = 1;
-            this.BtnLoadReceipt.Text = "Load Receipt";
-            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
-            // 
-            // receiptHeaderBindingSource
-            // 
-            this.receiptHeaderBindingSource.DataSource = typeof(SimpleBilling.Model.ReceiptHeader);
+            this.DGVLoadReceipt.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVLoadReceipt_CellDoubleClick);
             // 
             // receiptNoDataGridViewTextBoxColumn
             // 
@@ -126,6 +113,21 @@
             this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
             this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
             this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
+            // 
+            // receiptHeaderBindingSource
+            // 
+            this.receiptHeaderBindingSource.DataSource = typeof(SimpleBilling.Model.ReceiptHeader);
+            // 
+            // BtnLoadReceipt
+            // 
+            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
+            this.BtnLoadReceipt.Location = new System.Drawing.Point(1064, 473);
+            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
+            this.BtnLoadReceipt.Size = new System.Drawing.Size(157, 33);
+            this.BtnLoadReceipt.TabIndex = 1;
+            this.BtnLoadReceipt.Text = "Load Receipt";
+            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
+            this.BtnLoadReceipt.Click += new System.EventHandler(this.BtnLoadReceipt_Click);
             // 
             // LoadReceipt
             // 
