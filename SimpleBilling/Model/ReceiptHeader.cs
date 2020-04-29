@@ -11,8 +11,6 @@ namespace SimpleBilling.Model
     public class ReceiptHeader
     {
         [Key]
-        public int ReceiptId { get; set; }
-        [Required]
         [MaxLength(200)]
         public string ReceiptNo { get; set; }
         [Required]
@@ -30,6 +28,7 @@ namespace SimpleBilling.Model
         public string PaymentType { get; set; }
         public float PaidAmount { get; set; }
         public float Balance { get; set; }
+        [DefaultValue(0)]
         public int Status { get; set; }
         [DefaultValue(false)]
         public bool Is_Deleted { get; set; }

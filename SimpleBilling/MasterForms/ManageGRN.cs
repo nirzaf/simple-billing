@@ -57,10 +57,10 @@ namespace SimpleBilling.MasterForms
 
             TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
                              where row.Cells[0].FormattedValue.ToString() != string.Empty
-                             select Convert.ToInt32(row.Cells[4].FormattedValue)).Sum();
+                             select Convert.ToSingle(row.Cells[4].FormattedValue)).Sum();
             NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
                         where row.Cells[0].FormattedValue.ToString() != string.Empty
-                        select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
+                        select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
             LblTotalDiscount.Text = TotalDiscount.ToString();
             LblNetTotal.Text = NetTotal.ToString();
             float GrossTotal = TotalDiscount + NetTotal;

@@ -151,7 +151,7 @@ namespace SimpleBilling.MasterForms
             GetItemDetailsByBarCode();
         }
 
-        private int AddReceiptHeader()
+        private string AddReceiptHeader()
         {
             try
             {
@@ -180,11 +180,11 @@ namespace SimpleBilling.MasterForms
                             db.Set<ReceiptHeader>().Attach(header);
                         db.Entry(header).State = EntityState.Added;
                         db.SaveChanges();
-                        return header.ReceiptId;
+                        return header.ReceiptNo;
                     }
                     else
                     {
-                        return result.ReceiptId;
+                        return result.ReceiptNo;
                     }
                 }
             }
@@ -196,7 +196,7 @@ namespace SimpleBilling.MasterForms
         }
 
 
-        private void LoadDGV(int ReceiptNo)
+        private void LoadDGV(string ReceiptNo)
         {
             using (BillingContext db = new BillingContext())
             {
@@ -221,7 +221,7 @@ namespace SimpleBilling.MasterForms
 
         private void AddReceiptBody()
         {
-            int ReceiptNo = AddReceiptHeader();
+            string ReceiptNo = AddReceiptHeader();
             try
             {
                 using (BillingContext db = new BillingContext())

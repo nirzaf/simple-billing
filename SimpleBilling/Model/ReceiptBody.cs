@@ -8,7 +8,7 @@ namespace SimpleBilling.Model
     {
         [Key]
         [Column(Order=1)]
-        public int ReceiptNo { get; set; }
+        public string ReceiptNo { get; set; }
         [Key]
         [Column(Order = 2)]
         public int ProductId { get; set; }

@@ -53,20 +53,20 @@
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
             this.LblReceiptNo = new System.Windows.Forms.Label();
+            this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.LblBalanceAmount = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.LblSubTotal = new System.Windows.Forms.Label();
             this.LblTotalDiscount = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.LblNetTotal = new System.Windows.Forms.Label();
-            this.BtnPrintPreview = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
+            this.BtnPrintPreview = new System.Windows.Forms.Button();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
-            this.LblBalanceAmount = new System.Windows.Forms.Label();
-            this.BtnLoadReceipt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -328,6 +328,16 @@
             this.LblReceiptNo.TabIndex = 18;
             this.LblReceiptNo.Text = "ReceiptNo";
             // 
+            // BtnLoadReceipt
+            // 
+            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
+            this.BtnLoadReceipt.Location = new System.Drawing.Point(253, 3);
+            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
+            this.BtnLoadReceipt.Size = new System.Drawing.Size(244, 24);
+            this.BtnLoadReceipt.TabIndex = 19;
+            this.BtnLoadReceipt.Text = "Load Receipt";
+            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
+            // 
             // DGVReceiptBody
             // 
             this.DGVReceiptBody.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -367,15 +377,25 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(997, 93);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
-            // label9
+            // LblBalanceAmount
             // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(3, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 19);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Sub Total";
+            this.LblBalanceAmount.AutoSize = true;
+            this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
+            this.LblBalanceAmount.Location = new System.Drawing.Point(600, 37);
+            this.LblBalanceAmount.Name = "LblBalanceAmount";
+            this.LblBalanceAmount.Size = new System.Drawing.Size(18, 19);
+            this.LblBalanceAmount.TabIndex = 9;
+            this.LblBalanceAmount.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(401, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 19);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Net Total";
             // 
             // label10
             // 
@@ -386,6 +406,16 @@
             this.label10.Size = new System.Drawing.Size(119, 19);
             this.label10.TabIndex = 1;
             this.label10.Text = "Totsl Discount";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 19);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Sub Total";
             // 
             // LblSubTotal
             // 
@@ -407,16 +437,6 @@
             this.LblTotalDiscount.TabIndex = 3;
             this.LblTotalDiscount.Text = "0";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(401, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(76, 19);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Net Total";
-            // 
             // LblNetTotal
             // 
             this.LblNetTotal.AutoSize = true;
@@ -426,16 +446,6 @@
             this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "0";
-            // 
-            // BtnPrintPreview
-            // 
-            this.BtnPrintPreview.BackColor = System.Drawing.Color.White;
-            this.BtnPrintPreview.Location = new System.Drawing.Point(799, 3);
-            this.BtnPrintPreview.Name = "BtnPrintPreview";
-            this.BtnPrintPreview.Size = new System.Drawing.Size(195, 31);
-            this.BtnPrintPreview.TabIndex = 6;
-            this.BtnPrintPreview.Text = "Print Preview";
-            this.BtnPrintPreview.UseVisualStyleBackColor = false;
             // 
             // BtnPrint
             // 
@@ -447,32 +457,22 @@
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
             // 
+            // BtnPrintPreview
+            // 
+            this.BtnPrintPreview.BackColor = System.Drawing.Color.White;
+            this.BtnPrintPreview.Location = new System.Drawing.Point(799, 3);
+            this.BtnPrintPreview.Name = "BtnPrintPreview";
+            this.BtnPrintPreview.Size = new System.Drawing.Size(195, 31);
+            this.BtnPrintPreview.TabIndex = 6;
+            this.BtnPrintPreview.Text = "Print Preview";
+            this.BtnPrintPreview.UseVisualStyleBackColor = false;
+            // 
             // TxtGivenAmount
             // 
             this.TxtGivenAmount.Location = new System.Drawing.Point(600, 3);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(193, 26);
             this.TxtGivenAmount.TabIndex = 8;
-            // 
-            // LblBalanceAmount
-            // 
-            this.LblBalanceAmount.AutoSize = true;
-            this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(600, 37);
-            this.LblBalanceAmount.Name = "LblBalanceAmount";
-            this.LblBalanceAmount.Size = new System.Drawing.Size(18, 19);
-            this.LblBalanceAmount.TabIndex = 9;
-            this.LblBalanceAmount.Text = "0";
-            // 
-            // BtnLoadReceipt
-            // 
-            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
-            this.BtnLoadReceipt.Location = new System.Drawing.Point(253, 3);
-            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
-            this.BtnLoadReceipt.Size = new System.Drawing.Size(244, 24);
-            this.BtnLoadReceipt.TabIndex = 19;
-            this.BtnLoadReceipt.Text = "Load Receipt";
-            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
             // 
             // POS
             // 
