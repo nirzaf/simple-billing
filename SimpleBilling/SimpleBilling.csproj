@@ -77,6 +77,12 @@
     <Compile Include="MasterForms\GRNInvoices.Designer.cs">
       <DependentUpon>GRNInvoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\LoadReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\LoadReceipt.Designer.cs">
+      <DependentUpon>LoadReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageCustomers.cs">
       <SubType>Form</SubType>
     </Compile>

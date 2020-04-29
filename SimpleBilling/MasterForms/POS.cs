@@ -18,6 +18,13 @@ namespace SimpleBilling.MasterForms
         private int CashierId = 1;
         private string PaymentType = string.Empty;
         private string ReceiptNo = string.Empty;
+
+        private float ReceiptTotalDiscount;
+        private float ReceiptSubTotal;
+        private float ReceiptNetTotal;
+        private float GivenAmount;
+        private float BalanceAmount;
+
         public string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -287,6 +294,20 @@ namespace SimpleBilling.MasterForms
             {
                 Exp(ex);
             }
+        }
+
+        private void CompleteReceipt()
+        {
+            ReceiptTotalDiscount = (from DataGridViewRow row in DGVReceiptBody.Rows
+                             where row.Cells[0].FormattedValue.ToString() != string.Empty
+                             select Convert.ToSingle(row.Cells[6].FormattedValue)).Sum();
+            ReceiptNetTotal = (from DataGridViewRow row in DGVReceiptBody.Rows
+                        where row.Cells[0].FormattedValue.ToString() != string.Empty
+                        select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+            LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
+            LblNetTotal.Text = ReceiptNetTotal.ToString();
+            ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;
+            LblSubTotal.Text = ReceiptSubTotal.ToString();
         }
 
         private void Exp(Exception ex)

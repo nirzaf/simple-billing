@@ -66,6 +66,7 @@
             this.BtnPrint = new System.Windows.Forms.Button();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.LblBalanceAmount = new System.Windows.Forms.Label();
+            this.BtnLoadReceipt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -141,6 +142,7 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtSubTotal, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtNetTotal, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.LblReceiptNo, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BtnLoadReceipt, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -462,6 +464,16 @@
             this.LblBalanceAmount.TabIndex = 9;
             this.LblBalanceAmount.Text = "0";
             // 
+            // BtnLoadReceipt
+            // 
+            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
+            this.BtnLoadReceipt.Location = new System.Drawing.Point(253, 3);
+            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
+            this.BtnLoadReceipt.Size = new System.Drawing.Size(244, 24);
+            this.BtnLoadReceipt.TabIndex = 19;
+            this.BtnLoadReceipt.Text = "Load Receipt";
+            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -528,5 +540,6 @@
         private System.Windows.Forms.Button BtnPrint;
         private System.Windows.Forms.Button BtnPrintPreview;
         private System.Windows.Forms.TextBox TxtGivenAmount;
+        private System.Windows.Forms.Button BtnLoadReceipt;
     }
 }
