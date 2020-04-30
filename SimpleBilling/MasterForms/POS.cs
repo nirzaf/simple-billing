@@ -351,21 +351,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    AddReceiptBody();
-                }
-            }
-            catch (Exception ex)
-            {
-                Exp(ex);
-            }
-        }
-
         private void TotalCalculator()
         {
             ReceiptTotalDiscount = (from DataGridViewRow row in DGVReceiptBody.Rows
@@ -491,24 +476,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TxtQuantity_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(TxtQuantity.Text.Trim()))
-                {
-                    UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
-                    Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
-                    Total = UnitPrice * Qty;
-                    TxtSubTotal.Text = Total.ToString();
-                    TxtDiscount_KeyUp(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                Exp(ex);
-            }
-        }
 
         private void TxtGivenAmount_KeyUp(object sender, KeyEventArgs e)
         {
@@ -575,7 +542,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Val.Validation.TxtBox(sender, e, TxtUnitPrice);
+            Val.Validation.IsDecimal(e, TxtUnitPrice);
         }
 
         private void BtnLoadReceipt_Click(object sender, EventArgs e)
@@ -583,6 +550,50 @@ namespace SimpleBilling.MasterForms
             LoadReceipt receiptLoader = new LoadReceipt();
             receiptLoader.Show();
             Hide();
+        }
+
+        private void TxtQuantity_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(TxtQuantity.Text.Trim()))
+                {
+                    UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                    Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                    Total = UnitPrice * Qty;
+                    TxtSubTotal.Text = Total.ToString();
+                    TxtDiscount_KeyUp(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
+        }
+
+        private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    AddReceiptBody();
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
+        }
+
+        private void TxtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Val.Validation.IsInt(e);
+        }
+
+        private void TxtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Val.Validation.IsDecimal(e, TxtDiscount);
         }
     }
 }

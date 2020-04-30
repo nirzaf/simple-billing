@@ -7,24 +7,6 @@ namespace SimpleBilling.Val
 {
     public static class Validation
     {
-        public static void TxtBox(object sender, KeyPressEventArgs e, TextBox textBox)
-        {
-            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
-            {
-                e.Handled = true;
-            }
-
-            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
-            {
-                e.Handled = true;
-            }
-
-            if (Regex.IsMatch(textBox.Text, @"\.\d\d"))
-            {
-                e.Handled = true;
-            }
-        }
-
         public static bool IsNumber(char ch, string text)
         {
             bool res = true;
@@ -39,6 +21,29 @@ namespace SimpleBilling.Val
                 res = false;
 
             return res;
+        }
+
+        public static void IsDecimal(KeyPressEventArgs e, TextBox txt)
+        {
+            if (!IsNumber(e.KeyChar, txt.Text))
+                e.Handled = true;
+        }
+
+        public static void IsInt(KeyPressEventArgs e)
+        {
+            if ((!char.IsDigit(e.KeyChar)) && (e.KeyChar != Convert.ToChar(Keys.Back)))
+                e.Handled = true;
+        }
+        public static bool IsEmpty(TextBox txt)
+        {
+            if (string.IsNullOrWhiteSpace(txt.Text.ToString()))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
