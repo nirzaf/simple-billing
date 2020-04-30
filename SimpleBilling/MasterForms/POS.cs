@@ -101,8 +101,8 @@ namespace SimpleBilling.MasterForms
                         LblCashier.Text = a.Cashier;
                         LblBalanceAmount.Text = a.Balance.ToString();
                         TxtGivenAmount.Text = a.PaidAmount.ToString();
-                        LblReceiptStatus.Text = GetReceiptStatus(a.Status);
                         ReceiptStatus = a.Status;
+                        LblReceiptStatus.Text = GetReceiptStatus(ReceiptStatus);
                         LblReceiptNo.Text = ReceiptNo;
                     }
                     TotalCalculator();
@@ -433,26 +433,23 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (value)
+                    int ItemId = Convert.ToInt32(dgv.Cells[0].Value);
+                    int Qty = Convert.ToInt32(dgv.Cells[4].Value);
+                    var Result = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                    if (Result != null)
                     {
-                        int ItemId = Convert.ToInt32(dgv.Cells[0].Value);
-                        int Qty = Convert.ToInt32(dgv.Cells[4].Value);
-                        var Result = db.Items.FirstOrDefault(c => c.Id == ItemId);
-                        if (Result != null)
+                        if (value)
                         {
-                            if (value)
-                            {
-                                Result.StockQty -= Qty;
-                            }
-                            else 
-                            {
-                                Result.StockQty += Qty;
-                            }
-                            if (db.Entry(Result).State == EntityState.Detached)
-                                db.Set<Item>().Attach(Result);
-                            db.Entry(Result).State = EntityState.Modified;
-                            db.SaveChanges();
+                            Result.StockQty -= Qty;
                         }
+                        if (!value)
+                        {
+                            Result.StockQty += Qty;
+                        }
+                        if (db.Entry(Result).State == EntityState.Detached)
+                            db.Set<Item>().Attach(Result);
+                        db.Entry(Result).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
             }
@@ -546,9 +543,8 @@ namespace SimpleBilling.MasterForms
             Void();
         }
 
-        private int CancelReceipt()
+        private void CancelReceipt()
         {
-            int count = 0;
             using (BillingContext db = new BillingContext())
             {
                 var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false && c.Status == 2);
@@ -559,21 +555,18 @@ namespace SimpleBilling.MasterForms
                         db.Set<ReceiptHeader>().Attach(result);
                     db.Entry(result).State = EntityState.Modified;                    
                 }
-                return count = db.SaveChanges();
+               db.SaveChanges();
             }
         }
         private void Void()
         {
-            int count = CancelReceipt();
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to void this receipt?", "Confirmation Void", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    if (count > 0)
-                    {
-                        ReduceStock(false);
-                    }
+                    CancelReceipt();
+                    ReduceStock(false);
                 }
             }
             catch (Exception ex)
@@ -582,11 +575,8 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
-                if (count > 0)
-                {
-                    LblReceiptStatus.Text = "Voided";
-                    ReceiptStatus = 0;
-                }
+                LblReceiptStatus.Text = "Voided";
+                ReceiptStatus = 0;
             }
         }
     }
