@@ -579,5 +579,30 @@ namespace SimpleBilling.MasterForms
                 ReceiptStatus = 0;
             }
         }
+
+        private void TxtNetTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void RdoButtonCash_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblTotalDiscount_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
