@@ -136,7 +136,7 @@ namespace SimpleBilling.MasterForms
             }
             else 
             {
-                return "Cancelled";
+                return "Canceled";
             }
         }
 
