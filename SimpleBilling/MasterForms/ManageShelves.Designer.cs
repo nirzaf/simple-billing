@@ -33,13 +33,13 @@
             this.PanelCRUD = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.TxtId = new System.Windows.Forms.TextBox();
             this.TxtShelfName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnEdit = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
@@ -105,20 +105,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Id";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(3, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Shelf Name";
-            // 
             // TxtId
             // 
             this.TxtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.shelfBindingSource, "ShelfId", true));
-            this.TxtId.Enabled = false;
             this.TxtId.Location = new System.Drawing.Point(3, 23);
             this.TxtId.Name = "TxtId";
             this.TxtId.ReadOnly = true;
@@ -132,6 +121,16 @@
             this.TxtShelfName.Name = "TxtShelfName";
             this.TxtShelfName.Size = new System.Drawing.Size(267, 26);
             this.TxtShelfName.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(3, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Shelf Name";
             // 
             // tableLayoutPanel2
             // 
@@ -151,16 +150,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(163, 232);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // BtnAdd
+            // BtnDelete
             // 
-            this.BtnAdd.BackColor = System.Drawing.Color.White;
-            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(157, 52);
-            this.BtnAdd.TabIndex = 0;
-            this.BtnAdd.Text = "Add";
-            this.BtnAdd.UseVisualStyleBackColor = false;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Location = new System.Drawing.Point(3, 119);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(157, 52);
+            this.BtnDelete.TabIndex = 2;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnEdit
             // 
@@ -173,16 +172,16 @@
             this.BtnEdit.UseVisualStyleBackColor = false;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
-            // BtnDelete
+            // BtnAdd
             // 
-            this.BtnDelete.BackColor = System.Drawing.Color.White;
-            this.BtnDelete.Location = new System.Drawing.Point(3, 119);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(157, 52);
-            this.BtnDelete.TabIndex = 2;
-            this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = false;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.BtnAdd.BackColor = System.Drawing.Color.White;
+            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(157, 52);
+            this.BtnAdd.TabIndex = 0;
+            this.BtnAdd.Text = "Add";
+            this.BtnAdd.UseVisualStyleBackColor = false;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnSave
             // 

@@ -42,8 +42,6 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = true;
             BtnSave.Enabled = true;
             TxtCategoryName.Focus();
-            Category cat = categoryBindingSource.Current as Category;
-
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -111,6 +109,11 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 Info(ex.ToString());
+            }
+            finally
+            {
+                DGVCategories.Refresh();
+                LoadDGV();
             }
         }
 

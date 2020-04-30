@@ -50,24 +50,34 @@ namespace SimpleBilling.MasterForms
 
         private void ManageShelves_Click(object sender, EventArgs e)
         {
-            Init();
+            Save();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            PanelCRUD.Enabled = true;
-            BtnSave.Enabled = true;
-            TxtId.Text = "0";
-            TxtShelfName.Focus();
+            Add();
+        }
+        private void Add()
+        {
+            shelfBindingSource.Add(new Shelf());
+            shelfBindingSource.MoveLast();
+            Edit();
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
+            Edit();
+        }
+
+        private void Edit()
+        {
             PanelCRUD.Enabled = true;
+            BtnAdd.Enabled = false;
+            BtnEdit.Enabled = false;
+            BtnDelete.Enabled = false;
             BtnSave.Enabled = true;
             TxtShelfName.Focus();
         }
-
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -112,6 +122,11 @@ namespace SimpleBilling.MasterForms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            SaveItem();
+        }
+
+        private void SaveItem()
+        {
             try
             {
                 using (BillingContext db = new BillingContext())
@@ -141,7 +156,15 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 LoadDGV();
+                Save();
             }
+        }
+        private void Save()
+        {
+            BtnSave.Enabled = false;
+            PanelCRUD.Enabled = false;
+            BtnAdd.Enabled = true;
+            BtnEdit.Enabled = true;
         }
     }
 }
