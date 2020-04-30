@@ -69,11 +69,16 @@
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.LblReceiptStatus = new System.Windows.Forms.Label();
+            this.LblCashier = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.RdoButtonCash = new System.Windows.Forms.RadioButton();
+            this.RdoCard = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblDate
@@ -339,6 +344,7 @@
             this.BtnLoadReceipt.TabIndex = 19;
             this.BtnLoadReceipt.Text = "Load Receipt";
             this.BtnLoadReceipt.UseVisualStyleBackColor = false;
+            this.BtnLoadReceipt.Click += new System.EventHandler(this.BtnLoadReceipt_Click);
             // 
             // DGVReceiptBody
             // 
@@ -347,7 +353,7 @@
             this.DGVReceiptBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReceiptBody.Location = new System.Drawing.Point(12, 185);
             this.DGVReceiptBody.Name = "DGVReceiptBody";
-            this.DGVReceiptBody.Size = new System.Drawing.Size(997, 294);
+            this.DGVReceiptBody.Size = new System.Drawing.Size(997, 260);
             this.DGVReceiptBody.TabIndex = 6;
             // 
             // tableLayoutPanel2
@@ -358,6 +364,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.LblCashier, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.LblBalanceAmount, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.label13, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label10, 1, 0);
@@ -498,12 +505,56 @@
             this.LblReceiptStatus.TabIndex = 11;
             this.LblReceiptStatus.Text = "Ready";
             // 
+            // LblCashier
+            // 
+            this.LblCashier.AutoSize = true;
+            this.LblCashier.ForeColor = System.Drawing.Color.White;
+            this.LblCashier.Location = new System.Drawing.Point(799, 74);
+            this.LblCashier.Name = "LblCashier";
+            this.LblCashier.Size = new System.Drawing.Size(68, 19);
+            this.LblCashier.TabIndex = 12;
+            this.LblCashier.Text = "Cashier";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.RdoCard);
+            this.panel1.Controls.Add(this.RdoButtonCash);
+            this.panel1.Location = new System.Drawing.Point(612, 451);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(193, 31);
+            this.panel1.TabIndex = 8;
+            // 
+            // RdoButtonCash
+            // 
+            this.RdoButtonCash.AutoSize = true;
+            this.RdoButtonCash.ForeColor = System.Drawing.Color.GreenYellow;
+            this.RdoButtonCash.Location = new System.Drawing.Point(4, 9);
+            this.RdoButtonCash.Name = "RdoButtonCash";
+            this.RdoButtonCash.Size = new System.Drawing.Size(67, 23);
+            this.RdoButtonCash.TabIndex = 0;
+            this.RdoButtonCash.TabStop = true;
+            this.RdoButtonCash.Text = "Cash";
+            this.RdoButtonCash.UseVisualStyleBackColor = true;
+            // 
+            // RdoCard
+            // 
+            this.RdoCard.AutoSize = true;
+            this.RdoCard.ForeColor = System.Drawing.Color.GreenYellow;
+            this.RdoCard.Location = new System.Drawing.Point(94, 8);
+            this.RdoCard.Name = "RdoCard";
+            this.RdoCard.Size = new System.Drawing.Size(64, 23);
+            this.RdoCard.TabIndex = 1;
+            this.RdoCard.TabStop = true;
+            this.RdoCard.Text = "Card";
+            this.RdoCard.UseVisualStyleBackColor = true;
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1027, 584);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.DGVReceiptBody);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -521,6 +572,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -567,5 +620,9 @@
         private System.Windows.Forms.Button BtnLoadReceipt;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label LblReceiptStatus;
+        private System.Windows.Forms.Label LblCashier;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton RdoCard;
+        private System.Windows.Forms.RadioButton RdoButtonCash;
     }
 }

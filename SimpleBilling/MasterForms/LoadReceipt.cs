@@ -52,11 +52,20 @@ namespace SimpleBilling.MasterForms
         private void BtnLoadReceipt_Click(object sender, EventArgs e)
         {
             LoadReceiptFromDGV();
+            OpenOPS();
+        }
+
+        private void OpenOPS()
+        {
+            POS pos = new POS(ReceiptNo);
+            pos.Show();
+            Hide();
         }
 
         private void DGVLoadReceipt_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             LoadReceiptFromDGV();
+            OpenOPS();
         }
     }
 }

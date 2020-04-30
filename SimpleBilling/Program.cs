@@ -16,6 +16,7 @@ namespace SimpleBilling
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new ManageGRN(string.Empty));
             Application.Run(new POS(string.Empty));
+            //Application.Run(new LoadReceipt());
         }
     }
 }

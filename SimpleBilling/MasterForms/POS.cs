@@ -1,5 +1,6 @@
 ﻿using SimpleBilling.Model;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -24,6 +25,7 @@ namespace SimpleBilling.MasterForms
         private float ReceiptNetTotal;
         private float GivenAmount;
         private float BalanceAmount;
+        private int ReceiptStatus;
 
         public string RandomString(int length)
         {
@@ -36,12 +38,14 @@ namespace SimpleBilling.MasterForms
         {
             InitializeComponent();
             ReceiptNo = Receipt;
+            DGVLoad(ReceiptNo);
         }
 
         private void POS_Load(object sender, EventArgs e)
         {
             SystemTimer_Tick(sender, e);
             DGVLoad(ReceiptNo);
+            RdoButtonCash.Checked = true;
         }
 
         private void DGVLoad(string ReceiptNo)
@@ -52,6 +56,47 @@ namespace SimpleBilling.MasterForms
                 {
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
+                    var RptBody = (from body in db.ReceiptBodies.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
+                                join item in db.Items
+                                on body.ProductId equals item.Id
+                                select new
+                                {
+                                    item.Id,
+                                    item.Code,
+                                    item.ItemName,
+                                    body.UnitPrice,
+                                    body.Quantity,
+                                    body.SubTotal,
+                                    body.Discount,
+                                    body.NetTotal
+                                }).ToList();
+                    DGVReceiptBody.DataSource = RptBody;
+
+                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
+                                     join cashier in db.Employee
+                                     on header.Cashier equals cashier.EmployeeId
+                                     select new
+                                     {
+                                         header.Date,
+                                         header.Time,
+                                         header.TotalDiscount,
+                                         header.SubTotal,
+                                         header.NetTotal,
+                                         header.PaidAmount,
+                                         header.Balance,
+                                         header.Status,
+                                         Cashier = cashier.EmployeeName
+                                     }).ToList();
+                    foreach (var a in RptHeader)
+                    {
+                        LblCashier.Text = a.Cashier;
+                        LblBalanceAmount.Text = a.Balance.ToString();
+                        TxtGivenAmount.Text = a.PaidAmount.ToString();
+                        LblReceiptStatus.Text = GetReceiptStatus(a.Status);
+                        ReceiptStatus = a.Status;
+                        LblReceiptNo.Text = ReceiptNo;
+                    }
+                    TotalCalculator();
                 }
             }
             else
@@ -62,6 +107,22 @@ namespace SimpleBilling.MasterForms
                     itemBindingSource.DataSource = db.Items.ToList();
                 }
                LblReceiptNo.Text = (RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/",string.Empty).Replace(":",string.Empty);
+            }
+        }
+
+        private string GetReceiptStatus(int Status)
+        {
+            if (Status == 1)
+            {
+                return "On Process";
+            }
+            else if (Status == 2) 
+            {
+                return "Completed";
+            }
+            else 
+            {
+                return "Cancelled";
             }
         }
 
@@ -95,16 +156,19 @@ namespace SimpleBilling.MasterForms
 
         private void GetItemDetailsById()
         {
-            ItemId = Convert.ToInt32(CmbAddItem.SelectedValue.ToString());
-            using (BillingContext db = new BillingContext())
+            if (CmbAddItem.SelectedValue != null)
             {
-                var data = db.Items.FirstOrDefault(c => c.Id == ItemId);
-                if (data != null)
+                ItemId = Convert.ToInt32(CmbAddItem.SelectedValue.ToString());
+                using (BillingContext db = new BillingContext())
                 {
-                    TxtUnitPrice.Text = data.SellingPrice.ToString();
-                    TxtBarCode.Text = data.Barcode;
-                    TxtProductCode.Text = data.Code;
-                    TxtDiscount.Text = "0";
+                    var data = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                    if (data != null)
+                    {
+                        TxtUnitPrice.Text = data.SellingPrice.ToString();
+                        TxtBarCode.Text = data.Barcode;
+                        TxtProductCode.Text = data.Code;
+                        TxtDiscount.Text = "0";
+                    }
                 }
             }
         }
@@ -260,6 +324,7 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 LoadDGV(ReceiptNo);
+                TotalCalculator();
             }
         }
 
@@ -293,18 +358,55 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void CompleteReceipt()
+        private void TotalCalculator()
         {
             ReceiptTotalDiscount = (from DataGridViewRow row in DGVReceiptBody.Rows
-                             where row.Cells[0].FormattedValue.ToString() != string.Empty
-                             select Convert.ToSingle(row.Cells[6].FormattedValue)).Sum();
+                                    where row.Cells[0].FormattedValue.ToString() != string.Empty
+                                    select Convert.ToSingle(row.Cells[6].FormattedValue)).Sum();
             ReceiptNetTotal = (from DataGridViewRow row in DGVReceiptBody.Rows
-                        where row.Cells[0].FormattedValue.ToString() != string.Empty
-                        select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+                               where row.Cells[0].FormattedValue.ToString() != string.Empty
+                               select Convert.ToSingle(row.Cells[7].FormattedValue)).Sum();
             LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
             LblNetTotal.Text = ReceiptNetTotal.ToString();
             ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;
             LblSubTotal.Text = ReceiptSubTotal.ToString();
+        }
+
+        private void CompleteReceipt()
+        {
+            if (!string.IsNullOrWhiteSpace(TxtGivenAmount.Text))
+            {
+                GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                BalanceAmount = GivenAmount - ReceiptNetTotal;
+                if (BalanceAmount > 0)
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false && c.Status == 1);
+                        if (Result != null)
+                        {
+                            Result.NetTotal = ReceiptNetTotal;
+                            Result.TotalDiscount = ReceiptTotalDiscount;
+                            Result.SubTotal = ReceiptSubTotal;
+                            Result.PaidAmount = GivenAmount;
+                            Result.Balance = BalanceAmount;
+                            Result.PaymentType = GetPaymentType();
+                            Result.Status = 2;
+                            if (db.Entry(Result).State == EntityState.Detached)
+                                db.Set<ReceiptHeader>().Attach(Result);
+                            db.Entry(Result).State = EntityState.Modified;
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetPaymentType()
+        {
+            if (RdoButtonCash.Checked == true)
+                return "Cash";
+            else
+                return "Card";
         }
 
         private void Exp(Exception ex)
@@ -352,6 +454,13 @@ namespace SimpleBilling.MasterForms
             {
                 Exp(ex);
             }
+        }
+
+        private void BtnLoadReceipt_Click(object sender, EventArgs e)
+        {
+            LoadReceipt receiptLoader = new LoadReceipt();
+            receiptLoader.Show();
+            Hide();             
         }
     }
 }
