@@ -44,7 +44,9 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 int CatId = Convert.ToInt32(CmbCategories.SelectedValue.ToString());
+                int ShelveId = Convert.ToInt32(CmbShelf.SelectedValue.ToString());
                 Category cat = db.Categories.FirstOrDefault(s => s.CategoryId == CatId);
+                Shelf shelve = db.Shelves.FirstOrDefault(c => c.ShelfId == ShelveId);
 
                 Item items = new Item
                 {

@@ -180,7 +180,7 @@
             this.PanelCRUD.ColumnCount = 3;
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.66667F));
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.33334F));
-            this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.PanelCRUD.Controls.Add(this.TxtItemId, 1, 0);
             this.PanelCRUD.Controls.Add(this.label6, 0, 0);
             this.PanelCRUD.Controls.Add(this.label2, 0, 2);
@@ -220,7 +220,7 @@
             this.TxtItemId.Location = new System.Drawing.Point(94, 3);
             this.TxtItemId.Name = "TxtItemId";
             this.TxtItemId.ReadOnly = true;
-            this.TxtItemId.Size = new System.Drawing.Size(345, 26);
+            this.TxtItemId.Size = new System.Drawing.Size(344, 26);
             this.TxtItemId.TabIndex = 12;
             // 
             // label6
@@ -258,7 +258,7 @@
             this.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtItemCode.Location = new System.Drawing.Point(94, 34);
             this.TxtItemCode.Name = "TxtItemCode";
-            this.TxtItemCode.Size = new System.Drawing.Size(345, 26);
+            this.TxtItemCode.Size = new System.Drawing.Size(344, 26);
             this.TxtItemCode.TabIndex = 6;
             // 
             // TxtItemName
@@ -266,7 +266,7 @@
             this.TxtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtItemName.Location = new System.Drawing.Point(94, 65);
             this.TxtItemName.Name = "TxtItemName";
-            this.TxtItemName.Size = new System.Drawing.Size(345, 26);
+            this.TxtItemName.Size = new System.Drawing.Size(344, 26);
             this.TxtItemName.TabIndex = 7;
             // 
             // TxtUnit
@@ -274,7 +274,7 @@
             this.TxtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtUnit.Location = new System.Drawing.Point(94, 96);
             this.TxtUnit.Name = "TxtUnit";
-            this.TxtUnit.Size = new System.Drawing.Size(345, 26);
+            this.TxtUnit.Size = new System.Drawing.Size(344, 26);
             this.TxtUnit.TabIndex = 8;
             // 
             // CmbCategories
@@ -285,7 +285,7 @@
             this.CmbCategories.FormattingEnabled = true;
             this.CmbCategories.Location = new System.Drawing.Point(94, 189);
             this.CmbCategories.Name = "CmbCategories";
-            this.CmbCategories.Size = new System.Drawing.Size(345, 28);
+            this.CmbCategories.Size = new System.Drawing.Size(344, 28);
             this.CmbCategories.TabIndex = 10;
             // 
             // categoryBindingSource
@@ -307,7 +307,7 @@
             this.TxtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtBarcode.Location = new System.Drawing.Point(94, 158);
             this.TxtBarcode.Name = "TxtBarcode";
-            this.TxtBarcode.Size = new System.Drawing.Size(345, 26);
+            this.TxtBarcode.Size = new System.Drawing.Size(344, 26);
             this.TxtBarcode.TabIndex = 10;
             // 
             // label4
@@ -325,7 +325,7 @@
             this.TxtUnitCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtUnitCost.Location = new System.Drawing.Point(94, 127);
             this.TxtUnitCost.Name = "TxtUnitCost";
-            this.TxtUnitCost.Size = new System.Drawing.Size(345, 26);
+            this.TxtUnitCost.Size = new System.Drawing.Size(344, 26);
             this.TxtUnitCost.TabIndex = 9;
             // 
             // label7
@@ -341,7 +341,7 @@
             // BtnAddCategory
             // 
             this.BtnAddCategory.BackColor = System.Drawing.Color.White;
-            this.BtnAddCategory.Location = new System.Drawing.Point(445, 189);
+            this.BtnAddCategory.Location = new System.Drawing.Point(444, 189);
             this.BtnAddCategory.Name = "BtnAddCategory";
             this.BtnAddCategory.Size = new System.Drawing.Size(40, 28);
             this.BtnAddCategory.TabIndex = 13;
@@ -367,13 +367,13 @@
             this.CmbShelf.FormattingEnabled = true;
             this.CmbShelf.Location = new System.Drawing.Point(94, 227);
             this.CmbShelf.Name = "CmbShelf";
-            this.CmbShelf.Size = new System.Drawing.Size(345, 28);
+            this.CmbShelf.Size = new System.Drawing.Size(344, 28);
             this.CmbShelf.TabIndex = 17;
             // 
             // BtnAddShelf
             // 
             this.BtnAddShelf.BackColor = System.Drawing.Color.White;
-            this.BtnAddShelf.Location = new System.Drawing.Point(445, 227);
+            this.BtnAddShelf.Location = new System.Drawing.Point(444, 227);
             this.BtnAddShelf.Name = "BtnAddShelf";
             this.BtnAddShelf.Size = new System.Drawing.Size(37, 28);
             this.BtnAddShelf.TabIndex = 18;
