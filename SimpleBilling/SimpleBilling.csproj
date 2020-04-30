@@ -200,6 +200,22 @@
     <Compile Include="Migrations\202004300144009_billing16.designer.cs">
       <DependentUpon>202004300144009_billing16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004300320230_billing17.cs" />
+    <Compile Include="Migrations\202004300320230_billing17.designer.cs">
+      <DependentUpon>202004300320230_billing17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004300322203_billing18.cs" />
+    <Compile Include="Migrations\202004300322203_billing18.designer.cs">
+      <DependentUpon>202004300322203_billing18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004300330426_nuget.cs" />
+    <Compile Include="Migrations\202004300330426_nuget.designer.cs">
+      <DependentUpon>202004300330426_nuget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004300339136_nuget1.cs" />
+    <Compile Include="Migrations\202004300339136_nuget1.designer.cs">
+      <DependentUpon>202004300339136_nuget1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -300,6 +316,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004300144009_billing16.resx">
       <DependentUpon>202004300144009_billing16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004300320230_billing17.resx">
+      <DependentUpon>202004300320230_billing17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004300322203_billing18.resx">
+      <DependentUpon>202004300322203_billing18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004300330426_nuget.resx">
+      <DependentUpon>202004300330426_nuget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004300339136_nuget1.resx">
+      <DependentUpon>202004300339136_nuget1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

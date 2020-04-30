@@ -59,6 +59,8 @@ namespace SimpleBilling.MasterForms
 
                 if (items.Id == 0)
                 {
+                    if (db.Entry(items).State == EntityState.Detached)
+                        db.Set<Item>().Attach(items);
                     db.Entry(items).State = EntityState.Added;
                     db.SaveChanges();
                     Info("Item Added Successfully");                   
@@ -68,12 +70,15 @@ namespace SimpleBilling.MasterForms
                     var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
                     if (result != null)
                     {
-                        result.Code= items.Code;
-                        result.ItemName = items.ItemName;
-                        result.Unit = items.Unit;
-                        result.UnitCost = items.UnitCost;
-                        result.Barcode = items.Barcode;
-                        result.Categories = items.Categories;
+                        result.Code= TxtItemCode.Text.Trim();
+                        result.ItemName = TxtItemName.Text.Trim();
+                        result.Unit = TxtUnit.Text.Trim();
+                        result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                        result.Barcode = TxtBarcode.Text.Trim();
+                        result.Categories = cat;
+                        if (db.Entry(result).State == EntityState.Detached)
+                            db.Set<Item>().Attach(result);
+                        db.Entry(result).State = EntityState.Modified;
                         db.SaveChanges();
                         Info("Item Modified Successfully");
                     }                   
@@ -121,9 +126,14 @@ namespace SimpleBilling.MasterForms
                                 item.Categories.CategoryName
                             }).ToList();
                 DGVItems.DataSource = data;
+
                 CmbCategories.ValueMember = "CategoryId";
                 CmbCategories.DisplayMember = "CategoryName";
                 CmbCategories.DataSource = db.Categories.ToList();
+
+                CmbShelf.ValueMember = "ShelfId";
+                CmbShelf.DisplayMember = "ShelfName";
+                CmbShelf.DataSource = db.Shelves.ToList();
             }
         }
 
@@ -225,6 +235,11 @@ namespace SimpleBilling.MasterForms
             ManageCategory manageCategory = new ManageCategory();
             manageCategory.Show();
             Close();
+        }
+
+        private void PanelCRUD_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
