@@ -65,8 +65,8 @@
             this.LblSubTotal = new System.Windows.Forms.Label();
             this.LblTotalDiscount = new System.Windows.Forms.Label();
             this.LblNetTotal = new System.Windows.Forms.Label();
+            this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
-            this.BtnPrintPreview = new System.Windows.Forms.Button();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.LblReceiptStatus = new System.Windows.Forms.Label();
@@ -374,8 +374,8 @@
             this.tableLayoutPanel2.Controls.Add(this.LblSubTotal, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.LblTotalDiscount, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.BtnPrint, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.BtnPrintPreview, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnVoid, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.BtnPrint, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.TxtGivenAmount, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label11, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.LblReceiptStatus, 3, 2);
@@ -385,6 +385,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.43478F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.43478F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.13044F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(997, 93);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
@@ -468,25 +469,26 @@
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "0";
             // 
+            // BtnVoid
+            // 
+            this.BtnVoid.BackColor = System.Drawing.Color.White;
+            this.BtnVoid.Location = new System.Drawing.Point(799, 40);
+            this.BtnVoid.Name = "BtnVoid";
+            this.BtnVoid.Size = new System.Drawing.Size(193, 31);
+            this.BtnVoid.TabIndex = 7;
+            this.BtnVoid.Text = "Void";
+            this.BtnVoid.UseVisualStyleBackColor = false;
+            this.BtnVoid.Click += new System.EventHandler(this.BtnVoid_Click);
+            // 
             // BtnPrint
             // 
             this.BtnPrint.BackColor = System.Drawing.Color.White;
-            this.BtnPrint.Location = new System.Drawing.Point(799, 40);
+            this.BtnPrint.Location = new System.Drawing.Point(799, 3);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(193, 31);
-            this.BtnPrint.TabIndex = 7;
+            this.BtnPrint.Size = new System.Drawing.Size(195, 31);
+            this.BtnPrint.TabIndex = 6;
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
-            // 
-            // BtnPrintPreview
-            // 
-            this.BtnPrintPreview.BackColor = System.Drawing.Color.White;
-            this.BtnPrintPreview.Location = new System.Drawing.Point(799, 3);
-            this.BtnPrintPreview.Name = "BtnPrintPreview";
-            this.BtnPrintPreview.Size = new System.Drawing.Size(195, 31);
-            this.BtnPrintPreview.TabIndex = 6;
-            this.BtnPrintPreview.Text = "Print Preview";
-            this.BtnPrintPreview.UseVisualStyleBackColor = false;
             // 
             // TxtGivenAmount
             // 
@@ -616,8 +618,8 @@
         private System.Windows.Forms.Label LblSubTotal;
         private System.Windows.Forms.Label LblTotalDiscount;
         private System.Windows.Forms.Label LblNetTotal;
+        private System.Windows.Forms.Button BtnVoid;
         private System.Windows.Forms.Button BtnPrint;
-        private System.Windows.Forms.Button BtnPrintPreview;
         private System.Windows.Forms.TextBox TxtGivenAmount;
         private System.Windows.Forms.Button BtnLoadReceipt;
         private System.Windows.Forms.Label label11;

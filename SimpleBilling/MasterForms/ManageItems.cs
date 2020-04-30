@@ -112,9 +112,11 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from item in db.Items
+                var data = (from item in db.Items.Where(c=>c.IsDeleted==false)
                             join cat in db.Categories
                             on item.Categories.CategoryId equals cat.CategoryId
+                            join shelve in db.Shelves
+                            on item.Shelfs.ShelfId equals shelve.ShelfId
                             select new
                             {
                                 item.Id,
@@ -123,7 +125,8 @@ namespace SimpleBilling.MasterForms
                                 item.Unit,
                                 item.UnitCost,
                                 item.Barcode,
-                                item.Categories.CategoryName
+                                item.Categories.CategoryName,
+                                item.Shelfs.ShelfName
                             }).ToList();
                 DGVItems.DataSource = data;
 
@@ -171,16 +174,8 @@ namespace SimpleBilling.MasterForms
                 TxtUnitCost.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
                 TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
                 CmbCategories.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
+                CmbShelf.Text = DGVItems.SelectedRows[0].Cells[7].Value + string.Empty;
             }
-            //else
-            //{
-            //    TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
-            //    TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
-            //    TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
-            //    TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
-            //    TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
-            //    CmbCategories.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
-            //}
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -234,12 +229,23 @@ namespace SimpleBilling.MasterForms
 
             ManageCategory manageCategory = new ManageCategory();
             manageCategory.Show();
-            Close();
+            Hide();
         }
 
-        private void PanelCRUD_Paint(object sender, PaintEventArgs e)
+        private void BtnAddShelf_Click(object sender, EventArgs e)
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageShelves))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
 
+            ManageShelves manageShelve = new ManageShelves();
+            manageShelve.Show();
+            Hide();
         }
     }
 }

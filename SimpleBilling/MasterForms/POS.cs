@@ -1,6 +1,5 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,9 +15,9 @@ namespace SimpleBilling.MasterForms
         private float Total;
         private float NetTotal;
         private float Discount;
-        private int CashierId = 1;
-        private string PaymentType = string.Empty;
-        private string ReceiptNo = string.Empty;
+        private readonly int CashierId = 1;
+        private readonly string PaymentType = string.Empty;
+        private readonly string ReceiptNo = string.Empty;
 
         private float ReceiptTotalDiscount;
         private float ReceiptSubTotal;
@@ -46,6 +45,16 @@ namespace SimpleBilling.MasterForms
             SystemTimer_Tick(sender, e);
             DGVLoad(ReceiptNo);
             RdoButtonCash.Checked = true;
+            PrintAndVoid();
+        }
+
+        private void PrintAndVoid()
+        {
+            if (ReceiptStatus != 2 || LblReceiptStatus.Text != "Completed")
+            {
+                BtnPrint.Enabled = false;
+                BtnVoid.Enabled = false;
+            }
         }
 
         private void DGVLoad(string ReceiptNo)
@@ -256,7 +265,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-
         private void LoadDGV(string ReceiptNo)
         {
             using (BillingContext db = new BillingContext())
@@ -401,7 +409,7 @@ namespace SimpleBilling.MasterForms
                                     db.Entry(Result).State = EntityState.Modified;
                                     db.SaveChanges();
                                     LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                                    ReduceStock();
+                                    ReduceStock(true);
                                     MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
                                 }
                             }
@@ -413,24 +421,38 @@ namespace SimpleBilling.MasterForms
             {
                 Exp(ex);
             }
+            finally
+            {
+                PrintAndVoid();
+            }
         }
 
-        private void ReduceStock()
+        private void ReduceStock(bool value)
         {
             foreach (DataGridViewRow dgv in DGVReceiptBody.Rows)
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    int ItemId = Convert.ToInt32(dgv.Cells[0].Value);
-                    int Qty = Convert.ToInt32(dgv.Cells[4].Value);
-                    var Result = db.Items.FirstOrDefault(c => c.Id == ItemId);
-                    if (Result != null)
+                    if (value)
                     {
-                        Result.StockQty -= Qty;
-                        if (db.Entry(Result).State == EntityState.Detached)
-                            db.Set<Item>().Attach(Result);
-                        db.Entry(Result).State = EntityState.Modified;
-                        db.SaveChanges();
+                        int ItemId = Convert.ToInt32(dgv.Cells[0].Value);
+                        int Qty = Convert.ToInt32(dgv.Cells[4].Value);
+                        var Result = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                        if (Result != null)
+                        {
+                            if (value)
+                            {
+                                Result.StockQty -= Qty;
+                            }
+                            else 
+                            {
+                                Result.StockQty += Qty;
+                            }
+                            if (db.Entry(Result).State == EntityState.Detached)
+                                db.Set<Item>().Attach(Result);
+                            db.Entry(Result).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
                     }
                 }
             }
@@ -515,6 +537,55 @@ namespace SimpleBilling.MasterForms
                 if (BalanceAmount >= 0)
                 {
                     CompleteReceipt();
+                }
+            }
+        }
+
+        private void BtnVoid_Click(object sender, EventArgs e)
+        {
+            Void();
+        }
+
+        private int CancelReceipt()
+        {
+            int count = 0;
+            using (BillingContext db = new BillingContext())
+            {
+                var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false && c.Status == 2);
+                if (result != null)
+                {
+                    result.Status = 0;
+                    if (db.Entry(result).State == EntityState.Detached)
+                        db.Set<ReceiptHeader>().Attach(result);
+                    db.Entry(result).State = EntityState.Modified;                    
+                }
+                return count = db.SaveChanges();
+            }
+        }
+        private void Void()
+        {
+            int count = CancelReceipt();
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to void this receipt?", "Confirmation Void", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (count > 0)
+                    {
+                        ReduceStock(false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
+            finally
+            {
+                if (count > 0)
+                {
+                    LblReceiptStatus.Text = "Voided";
+                    ReceiptStatus = 0;
                 }
             }
         }
