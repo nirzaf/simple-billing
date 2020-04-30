@@ -35,7 +35,6 @@
             this.CmbAddItem = new System.Windows.Forms.ComboBox();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtQuantity = new System.Windows.Forms.NumericUpDown();
             this.TxtCustomer = new System.Windows.Forms.TextBox();
             this.LblCustomer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.TxtBarCode = new System.Windows.Forms.TextBox();
             this.TxtProductCode = new System.Windows.Forms.TextBox();
             this.TxtUnitPrice = new System.Windows.Forms.TextBox();
+            this.TxtQuantity = new System.Windows.Forms.TextBox();
             this.TxtDiscount = new System.Windows.Forms.TextBox();
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
@@ -82,7 +82,6 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -144,7 +143,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.TxtQuantity, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.CmbAddItem, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 2, 0);
@@ -159,6 +157,7 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtBarCode, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtProductCode, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtUnitPrice, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.TxtQuantity, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtDiscount, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtSubTotal, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtNetTotal, 3, 4);
@@ -177,16 +176,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 140);
             this.tableLayoutPanel1.TabIndex = 5;
-            // 
-            // TxtQuantity
-            // 
-            this.TxtQuantity.Location = new System.Drawing.Point(3, 115);
-            this.TxtQuantity.Name = "TxtQuantity";
-            this.TxtQuantity.Size = new System.Drawing.Size(250, 26);
-            this.TxtQuantity.TabIndex = 0;
-            this.TxtQuantity.ValueChanged += new System.EventHandler(this.TxtQuantity_ValueChanged);
-            this.TxtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown_1);
-            this.TxtQuantity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyUp_1);
             // 
             // TxtCustomer
             // 
@@ -331,6 +320,16 @@
             this.TxtUnitPrice.Size = new System.Drawing.Size(250, 26);
             this.TxtUnitPrice.TabIndex = 12;
             this.TxtUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUnitPrice_KeyPress);
+            // 
+            // TxtQuantity
+            // 
+            this.TxtQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtQuantity.Location = new System.Drawing.Point(3, 115);
+            this.TxtQuantity.Name = "TxtQuantity";
+            this.TxtQuantity.Size = new System.Drawing.Size(250, 26);
+            this.TxtQuantity.TabIndex = 13;
+            this.TxtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
+            this.TxtQuantity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyUp);
             // 
             // TxtDiscount
             // 
@@ -723,7 +722,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -758,6 +756,7 @@
         private System.Windows.Forms.TextBox TxtBarCode;
         private System.Windows.Forms.TextBox TxtProductCode;
         private System.Windows.Forms.TextBox TxtUnitPrice;
+        private System.Windows.Forms.TextBox TxtQuantity;
         private System.Windows.Forms.TextBox TxtDiscount;
         private System.Windows.Forms.TextBox TxtSubTotal;
         private System.Windows.Forms.TextBox TxtNetTotal;
@@ -789,6 +788,5 @@
         private System.Windows.Forms.Button BtnLoadReceipt;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.NumericUpDown TxtQuantity;
     }
 }
