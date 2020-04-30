@@ -575,7 +575,8 @@ namespace SimpleBilling.MasterForms
 
         private void TxtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Val.Validation.TxtBox(sender, e, TxtUnitPrice);
+            if (!Val.Validation.IsNumber(e.KeyChar, TxtUnitPrice.Text))
+                e.Handled = true;
         }
 
         private void BtnLoadReceipt_Click(object sender, EventArgs e)
@@ -583,6 +584,10 @@ namespace SimpleBilling.MasterForms
             LoadReceipt receiptLoader = new LoadReceipt();
             receiptLoader.Show();
             Hide();
+        }
+
+        private void TxtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }
