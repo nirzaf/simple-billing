@@ -351,21 +351,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    AddReceiptBody();
-                }
-            }
-            catch (Exception ex)
-            {
-                Exp(ex);
-            }
-        }
-
         private void TotalCalculator()
         {
             ReceiptTotalDiscount = (from DataGridViewRow row in DGVReceiptBody.Rows
@@ -586,8 +571,57 @@ namespace SimpleBilling.MasterForms
             Hide();
         }
 
-        private void TxtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtQuantity_KeyDown_1(object sender, KeyEventArgs e)
         {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    AddReceiptBody();
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
+        }
+
+        private void TxtQuantity_KeyUp_1(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(TxtQuantity.Text.Trim()))
+                {
+                    UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                    Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                    Total = UnitPrice * Qty;
+                    TxtSubTotal.Text = Total.ToString();
+                    TxtDiscount_KeyUp(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
+        }
+
+        private void TxtQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(TxtQuantity.Text.Trim()))
+                {
+                    UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                    Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                    Total = UnitPrice * Qty;
+                    TxtSubTotal.Text = Total.ToString();
+                    TxtDiscount_KeyUp(sender, e as KeyEventArgs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
         }
     }
 }
