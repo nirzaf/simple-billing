@@ -53,33 +53,33 @@
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
             this.LblReceiptNo = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.LblCashier = new System.Windows.Forms.Label();
-            this.LblBalanceAmount = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.LblSubTotal = new System.Windows.Forms.Label();
-            this.LblTotalDiscount = new System.Windows.Forms.Label();
-            this.LblNetTotal = new System.Windows.Forms.Label();
-            this.BtnVoid = new System.Windows.Forms.Button();
-            this.BtnPrint = new System.Windows.Forms.Button();
-            this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.LblReceiptStatus = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.LblNetTotal = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.RdoCard = new System.Windows.Forms.RadioButton();
             this.RdoButtonCash = new System.Windows.Forms.RadioButton();
+            this.label10 = new System.Windows.Forms.Label();
+            this.LblTotalDiscount = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.LblSubTotal = new System.Windows.Forms.Label();
+            this.TxtGivenAmount = new System.Windows.Forms.TextBox();
+            this.LblBalanceAmount = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.BtnVoid = new System.Windows.Forms.Button();
+            this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -176,7 +176,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 140);
             this.tableLayoutPanel1.TabIndex = 5;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // TxtCustomer
             // 
@@ -198,7 +197,6 @@
             this.LblCustomer.Size = new System.Drawing.Size(250, 19);
             this.LblCustomer.TabIndex = 17;
             this.LblCustomer.Text = "Customer";
-            this.LblCustomer.Click += new System.EventHandler(this.LblCustomer_Click);
             // 
             // label1
             // 
@@ -321,6 +319,7 @@
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.Size = new System.Drawing.Size(250, 26);
             this.TxtUnitPrice.TabIndex = 12;
+            this.TxtUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUnitPrice_KeyPress);
             // 
             // TxtQuantity
             // 
@@ -358,7 +357,6 @@
             this.TxtNetTotal.ReadOnly = true;
             this.TxtNetTotal.Size = new System.Drawing.Size(250, 26);
             this.TxtNetTotal.TabIndex = 16;
-            this.TxtNetTotal.TextChanged += new System.EventHandler(this.TxtNetTotal_TextChanged);
             // 
             // LblReceiptNo
             // 
@@ -370,6 +368,17 @@
             this.LblReceiptNo.Size = new System.Drawing.Size(250, 19);
             this.LblReceiptNo.TabIndex = 18;
             this.LblReceiptNo.Text = "ReceiptNo";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(259, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(250, 19);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Customer Name";
             // 
             // DGVReceiptBody
             // 
@@ -430,117 +439,6 @@
             this.LblCashier.TabIndex = 12;
             this.LblCashier.Text = "Cashier";
             // 
-            // LblBalanceAmount
-            // 
-            this.LblBalanceAmount.AutoSize = true;
-            this.LblBalanceAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 65);
-            this.LblBalanceAmount.Name = "LblBalanceAmount";
-            this.LblBalanceAmount.Size = new System.Drawing.Size(164, 19);
-            this.LblBalanceAmount.TabIndex = 9;
-            this.LblBalanceAmount.Text = "0";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(683, 56);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(164, 28);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Net Total";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(683, 28);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(164, 28);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Total Discount";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(683, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(164, 28);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Gross Total";
-            // 
-            // LblSubTotal
-            // 
-            this.LblSubTotal.AutoSize = true;
-            this.LblSubTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblSubTotal.ForeColor = System.Drawing.Color.White;
-            this.LblSubTotal.Location = new System.Drawing.Point(853, 0);
-            this.LblSubTotal.Name = "LblSubTotal";
-            this.LblSubTotal.Size = new System.Drawing.Size(168, 28);
-            this.LblSubTotal.TabIndex = 2;
-            this.LblSubTotal.Text = "0";
-            // 
-            // LblTotalDiscount
-            // 
-            this.LblTotalDiscount.AutoSize = true;
-            this.LblTotalDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblTotalDiscount.ForeColor = System.Drawing.Color.White;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(853, 28);
-            this.LblTotalDiscount.Name = "LblTotalDiscount";
-            this.LblTotalDiscount.Size = new System.Drawing.Size(168, 28);
-            this.LblTotalDiscount.TabIndex = 3;
-            this.LblTotalDiscount.Text = "0";
-            this.LblTotalDiscount.Click += new System.EventHandler(this.LblTotalDiscount_Click);
-            // 
-            // LblNetTotal
-            // 
-            this.LblNetTotal.AutoSize = true;
-            this.LblNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblNetTotal.ForeColor = System.Drawing.Color.White;
-            this.LblNetTotal.Location = new System.Drawing.Point(853, 56);
-            this.LblNetTotal.Name = "LblNetTotal";
-            this.LblNetTotal.Size = new System.Drawing.Size(168, 28);
-            this.LblNetTotal.TabIndex = 5;
-            this.LblNetTotal.Text = "0";
-            // 
-            // BtnVoid
-            // 
-            this.BtnVoid.BackColor = System.Drawing.Color.White;
-            this.BtnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVoid.Location = new System.Drawing.Point(3, 73);
-            this.BtnVoid.Name = "BtnVoid";
-            this.BtnVoid.Size = new System.Drawing.Size(103, 64);
-            this.BtnVoid.TabIndex = 7;
-            this.BtnVoid.Text = "Void";
-            this.BtnVoid.UseVisualStyleBackColor = false;
-            this.BtnVoid.Click += new System.EventHandler(this.BtnVoid_Click);
-            // 
-            // BtnPrint
-            // 
-            this.BtnPrint.BackColor = System.Drawing.Color.White;
-            this.BtnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnPrint.Location = new System.Drawing.Point(3, 3);
-            this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(103, 64);
-            this.BtnPrint.TabIndex = 6;
-            this.BtnPrint.Text = "Print";
-            this.BtnPrint.UseVisualStyleBackColor = false;
-            // 
-            // TxtGivenAmount
-            // 
-            this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 31);
-            this.TxtGivenAmount.Name = "TxtGivenAmount";
-            this.TxtGivenAmount.Size = new System.Drawing.Size(164, 26);
-            this.TxtGivenAmount.TabIndex = 8;
-            this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
-            this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -562,6 +460,28 @@
             this.LblReceiptStatus.Size = new System.Drawing.Size(168, 19);
             this.LblReceiptStatus.TabIndex = 11;
             this.LblReceiptStatus.Text = "Ready";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(683, 56);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(164, 28);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Net Total";
+            // 
+            // LblNetTotal
+            // 
+            this.LblNetTotal.AutoSize = true;
+            this.LblNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LblNetTotal.ForeColor = System.Drawing.Color.White;
+            this.LblNetTotal.Location = new System.Drawing.Point(853, 56);
+            this.LblNetTotal.Name = "LblNetTotal";
+            this.LblNetTotal.Size = new System.Drawing.Size(168, 28);
+            this.LblNetTotal.TabIndex = 5;
+            this.LblNetTotal.Text = "0";
             // 
             // panel1
             // 
@@ -598,7 +518,116 @@
             this.RdoButtonCash.TabStop = true;
             this.RdoButtonCash.Text = "Cash";
             this.RdoButtonCash.UseVisualStyleBackColor = true;
-            this.RdoButtonCash.CheckedChanged += new System.EventHandler(this.RdoButtonCash_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(683, 28);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(164, 28);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Total Discount";
+            // 
+            // LblTotalDiscount
+            // 
+            this.LblTotalDiscount.AutoSize = true;
+            this.LblTotalDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LblTotalDiscount.ForeColor = System.Drawing.Color.White;
+            this.LblTotalDiscount.Location = new System.Drawing.Point(853, 28);
+            this.LblTotalDiscount.Name = "LblTotalDiscount";
+            this.LblTotalDiscount.Size = new System.Drawing.Size(168, 28);
+            this.LblTotalDiscount.TabIndex = 3;
+            this.LblTotalDiscount.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(683, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(164, 28);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Gross Total";
+            // 
+            // LblSubTotal
+            // 
+            this.LblSubTotal.AutoSize = true;
+            this.LblSubTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LblSubTotal.ForeColor = System.Drawing.Color.White;
+            this.LblSubTotal.Location = new System.Drawing.Point(853, 0);
+            this.LblSubTotal.Name = "LblSubTotal";
+            this.LblSubTotal.Size = new System.Drawing.Size(168, 28);
+            this.LblSubTotal.TabIndex = 2;
+            this.LblSubTotal.Text = "0";
+            // 
+            // TxtGivenAmount
+            // 
+            this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 31);
+            this.TxtGivenAmount.Name = "TxtGivenAmount";
+            this.TxtGivenAmount.Size = new System.Drawing.Size(164, 26);
+            this.TxtGivenAmount.TabIndex = 8;
+            this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
+            this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
+            // 
+            // LblBalanceAmount
+            // 
+            this.LblBalanceAmount.AutoSize = true;
+            this.LblBalanceAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
+            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 65);
+            this.LblBalanceAmount.Name = "LblBalanceAmount";
+            this.LblBalanceAmount.Size = new System.Drawing.Size(164, 19);
+            this.LblBalanceAmount.TabIndex = 9;
+            this.LblBalanceAmount.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.label12.Location = new System.Drawing.Point(343, 28);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(164, 28);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Given Amount";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.label15.Location = new System.Drawing.Point(343, 65);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(164, 19);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Balance Amount";
+            // 
+            // BtnVoid
+            // 
+            this.BtnVoid.BackColor = System.Drawing.Color.White;
+            this.BtnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnVoid.Location = new System.Drawing.Point(3, 73);
+            this.BtnVoid.Name = "BtnVoid";
+            this.BtnVoid.Size = new System.Drawing.Size(103, 64);
+            this.BtnVoid.TabIndex = 7;
+            this.BtnVoid.Text = "Void";
+            this.BtnVoid.UseVisualStyleBackColor = false;
+            this.BtnVoid.Click += new System.EventHandler(this.BtnVoid_Click);
+            // 
+            // BtnPrint
+            // 
+            this.BtnPrint.BackColor = System.Drawing.Color.White;
+            this.BtnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnPrint.Location = new System.Drawing.Point(3, 3);
+            this.BtnPrint.Name = "BtnPrint";
+            this.BtnPrint.Size = new System.Drawing.Size(103, 64);
+            this.BtnPrint.TabIndex = 6;
+            this.BtnPrint.Text = "Print";
+            this.BtnPrint.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel3
             // 
@@ -650,16 +679,17 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(109, 140);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
-            // label14
+            // BtnLoadReceipt
             // 
-            this.label14.AutoSize = true;
-            this.label14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(259, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(250, 19);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Customer Name";
+            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
+            this.BtnLoadReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnLoadReceipt.Location = new System.Drawing.Point(3, 3);
+            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
+            this.BtnLoadReceipt.Size = new System.Drawing.Size(103, 64);
+            this.BtnLoadReceipt.TabIndex = 20;
+            this.BtnLoadReceipt.Text = "Load Receipt";
+            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
+            this.BtnLoadReceipt.Click += new System.EventHandler(this.BtnLoadReceipt_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -675,39 +705,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 286);
             this.tableLayoutPanel6.TabIndex = 10;
-            // 
-            // BtnLoadReceipt
-            // 
-            this.BtnLoadReceipt.BackColor = System.Drawing.Color.White;
-            this.BtnLoadReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnLoadReceipt.Location = new System.Drawing.Point(3, 3);
-            this.BtnLoadReceipt.Name = "BtnLoadReceipt";
-            this.BtnLoadReceipt.Size = new System.Drawing.Size(103, 64);
-            this.BtnLoadReceipt.TabIndex = 20;
-            this.BtnLoadReceipt.Text = "Load Receipt";
-            this.BtnLoadReceipt.UseVisualStyleBackColor = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label12.Location = new System.Drawing.Point(343, 28);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 28);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Given Amount";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label15.Location = new System.Drawing.Point(343, 65);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(164, 19);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "Balance Amount";
             // 
             // POS
             // 

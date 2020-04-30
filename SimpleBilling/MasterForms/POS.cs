@@ -510,13 +510,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void BtnLoadReceipt_Click(object sender, EventArgs e)
-        {
-            LoadReceipt receiptLoader = new LoadReceipt();
-            receiptLoader.Show();
-            Hide();             
-        }
-
         private void TxtGivenAmount_KeyUp(object sender, KeyEventArgs e)
         {
             if (TxtGivenAmount.Text.Length > 0)
@@ -580,29 +573,16 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TxtNetTotal_TextChanged(object sender, EventArgs e)
+        private void TxtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            Val.Validation.TxtBox(sender, e, TxtUnitPrice);
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void BtnLoadReceipt_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void RdoButtonCash_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LblCustomer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LblTotalDiscount_Click(object sender, EventArgs e)
-        {
-
+            LoadReceipt receiptLoader = new LoadReceipt();
+            receiptLoader.Show();
+            Hide();
         }
     }
 }
