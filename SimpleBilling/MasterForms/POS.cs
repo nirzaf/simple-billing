@@ -45,14 +45,20 @@ namespace SimpleBilling.MasterForms
             DGVLoad(ReceiptNo);
             RdoButtonCash.Checked = true;
             PrintAndVoid();
+            TxtCustomer.Focus();
         }
 
         private void PrintAndVoid()
         {
             if (ReceiptStatus != 2 || LblReceiptStatus.Text != "Completed")
             {
-                BtnPrint.Enabled = false;
+                BtnPrint.Enabled = true;
                 BtnVoid.Enabled = false;
+            }
+            else if(ReceiptStatus == 2 || LblReceiptStatus.Text == "Completed") 
+            {
+                BtnPrint.Enabled = true;
+                BtnVoid.Enabled = true;
             }
         }
 
@@ -469,7 +475,7 @@ namespace SimpleBilling.MasterForms
                 NetTotal = Total - Discount;
                 TxtNetTotal.Text = NetTotal.ToString();
             }
-            else if(Val.Validation.IsEmpty(TxtQuantity) && Val.Validation.IsEmpty(TxtUnitPrice))
+            else if (Val.Validation.IsEmpty(TxtQuantity) && Val.Validation.IsEmpty(TxtUnitPrice))
             {
                 UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                 Qty = Convert.ToSingle(TxtQuantity.Text.Trim());

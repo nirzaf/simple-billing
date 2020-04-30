@@ -130,7 +130,7 @@
             this.CmbAddItem.Location = new System.Drawing.Point(515, 59);
             this.CmbAddItem.Name = "CmbAddItem";
             this.CmbAddItem.Size = new System.Drawing.Size(250, 27);
-            this.CmbAddItem.TabIndex = 4;
+            this.CmbAddItem.TabIndex = 2;
             this.CmbAddItem.ValueMember = "Id";
             this.CmbAddItem.SelectedIndexChanged += new System.EventHandler(this.CmbAddItem_SelectedIndexChanged);
             this.CmbAddItem.Enter += new System.EventHandler(this.CmbAddItem_Enter);
@@ -183,7 +183,7 @@
             this.TxtQuantity.Location = new System.Drawing.Point(3, 115);
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(250, 26);
-            this.TxtQuantity.TabIndex = 20;
+            this.TxtQuantity.TabIndex = 3;
             this.TxtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
             this.TxtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQuantity_KeyPress);
             this.TxtQuantity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyUp);
@@ -311,7 +311,7 @@
             this.TxtBarCode.Location = new System.Drawing.Point(3, 59);
             this.TxtBarCode.Name = "TxtBarCode";
             this.TxtBarCode.Size = new System.Drawing.Size(250, 26);
-            this.TxtBarCode.TabIndex = 10;
+            this.TxtBarCode.TabIndex = 5;
             this.TxtBarCode.Enter += new System.EventHandler(this.TxtBarCode_Enter);
             this.TxtBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtBarCode_KeyUp);
             // 
@@ -321,7 +321,7 @@
             this.TxtProductCode.Location = new System.Drawing.Point(259, 59);
             this.TxtProductCode.Name = "TxtProductCode";
             this.TxtProductCode.Size = new System.Drawing.Size(250, 26);
-            this.TxtProductCode.TabIndex = 11;
+            this.TxtProductCode.TabIndex = 6;
             // 
             // TxtUnitPrice
             // 
@@ -338,7 +338,7 @@
             this.TxtDiscount.Location = new System.Drawing.Point(259, 115);
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(250, 26);
-            this.TxtDiscount.TabIndex = 14;
+            this.TxtDiscount.TabIndex = 4;
             this.TxtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDiscount_KeyDown);
             this.TxtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDiscount_KeyPress);
             this.TxtDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtDiscount_KeyUp);
@@ -349,7 +349,7 @@
             this.TxtSubTotal.Location = new System.Drawing.Point(515, 115);
             this.TxtSubTotal.Name = "TxtSubTotal";
             this.TxtSubTotal.Size = new System.Drawing.Size(250, 26);
-            this.TxtSubTotal.TabIndex = 15;
+            this.TxtSubTotal.TabIndex = 7;
             // 
             // TxtNetTotal
             // 
@@ -358,7 +358,7 @@
             this.TxtNetTotal.Name = "TxtNetTotal";
             this.TxtNetTotal.ReadOnly = true;
             this.TxtNetTotal.Size = new System.Drawing.Size(250, 26);
-            this.TxtNetTotal.TabIndex = 16;
+            this.TxtNetTotal.TabIndex = 8;
             // 
             // LblReceiptNo
             // 
@@ -571,7 +571,7 @@
             this.TxtGivenAmount.Location = new System.Drawing.Point(513, 31);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(164, 26);
-            this.TxtGivenAmount.TabIndex = 8;
+            this.TxtGivenAmount.TabIndex = 9;
             this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
             this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
             // 
