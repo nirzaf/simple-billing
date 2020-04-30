@@ -120,6 +120,12 @@
     <Compile Include="MasterForms\ManageGRN.Designer.cs">
       <DependentUpon>ManageGRN.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageShelves.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageShelves.Designer.cs">
+      <DependentUpon>ManageShelves.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     <EmbeddedResource Include="MasterForms\ManageGRN.resx">
       <DependentUpon>ManageGRN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageShelves.resx">
+      <DependentUpon>ManageShelves.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageSupplier.resx">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,6 +354,7 @@
     <None Include="Properties\DataSources\SimpleBilling.Model.GRNDetails.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Item.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.ReceiptHeader.datasource" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.Shelf.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Supplier.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

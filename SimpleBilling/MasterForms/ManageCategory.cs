@@ -59,7 +59,7 @@ namespace SimpleBilling.MasterForms
 
                         if (cat != null)
                         {
-                            if (db.Entry(cat).State ==EntityState.Detached)
+                            if (db.Entry(cat).State == EntityState.Detached)
                                 db.Set<Category>().Attach(cat);
                             db.Entry(cat).State = EntityState.Deleted;
                             db.SaveChanges();
@@ -99,7 +99,7 @@ namespace SimpleBilling.MasterForms
                             db.Entry(cat).State = EntityState.Added;
                             Info("Category Added");
                         }
-                        else 
+                        else
                         {
                             db.Entry(cat).State = EntityState.Modified;
                             Info("Category Modified");
