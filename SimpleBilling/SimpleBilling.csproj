@@ -132,6 +132,12 @@
     <Compile Include="MasterForms\ManageSupplier.Designer.cs">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageVehicles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageVehicles.Designer.cs">
+      <DependentUpon>ManageVehicles.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\POS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageSupplier.resx">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageVehicles.resx">
+      <DependentUpon>ManageVehicles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
