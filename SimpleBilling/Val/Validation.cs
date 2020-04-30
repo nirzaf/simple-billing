@@ -34,9 +34,9 @@ namespace SimpleBilling.Val
             if ((!char.IsDigit(e.KeyChar)) && (e.KeyChar != Convert.ToChar(Keys.Back)))
                 e.Handled = true;
         }
-        public static bool IsEmpty(TextBox txt)
+        public static bool IsEmpty(TextBox t)
         {
-            if (string.IsNullOrWhiteSpace(txt.Text.ToString()))
+            if (string.IsNullOrWhiteSpace(t.Text.Trim()))
             {
                 return false;
             }

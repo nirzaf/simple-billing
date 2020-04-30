@@ -18,7 +18,6 @@ namespace SimpleBilling.MasterForms
         private readonly int CashierId = 1;
         private readonly string PaymentType = string.Empty;
         private readonly string ReceiptNo = string.Empty;
-
         private float ReceiptTotalDiscount;
         private float ReceiptSubTotal;
         private float ReceiptNetTotal;
@@ -314,10 +313,14 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
-                        Result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
-                        Result.Discount += Convert.ToSingle(TxtDiscount.Text.Trim());
-                        Result.SubTotal += Convert.ToSingle(TxtSubTotal.Text.Trim());
-                        Result.NetTotal += Convert.ToSingle(TxtNetTotal.Text.Trim());
+                        if (Val.Validation.IsEmpty(TxtDiscount) && Val.Validation.IsEmpty(TxtQuantity) 
+                            && Val.Validation.IsEmpty(TxtSubTotal) && Val.Validation.IsEmpty(TxtNetTotal)) 
+                        {
+                            Result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
+                            Result.Discount += Convert.ToSingle(TxtDiscount.Text.Trim());
+                            Result.SubTotal += Convert.ToSingle(TxtSubTotal.Text.Trim());
+                            Result.NetTotal += Convert.ToSingle(TxtNetTotal.Text.Trim());
+                        }
                         if (db.Entry(Result).State == EntityState.Detached)
                             db.Set<ReceiptBody>().Attach(Result);
                         db.Entry(Result).State = EntityState.Modified;
@@ -455,7 +458,8 @@ namespace SimpleBilling.MasterForms
 
         private void TxtDiscount_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TxtDiscount.Text.Trim()))
+            if (Val.Validation.IsEmpty(TxtDiscount) 
+                && Val.Validation.IsEmpty(TxtQuantity) && Val.Validation.IsEmpty(TxtUnitPrice))
             {
                 UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                 Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
@@ -465,7 +469,7 @@ namespace SimpleBilling.MasterForms
                 NetTotal = Total - Discount;
                 TxtNetTotal.Text = NetTotal.ToString();
             }
-            else
+            else if(Val.Validation.IsEmpty(TxtQuantity) && Val.Validation.IsEmpty(TxtUnitPrice))
             {
                 UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                 Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
@@ -556,7 +560,7 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(TxtQuantity.Text.Trim()))
+                if (Val.Validation.IsEmpty(TxtUnitPrice) && Val.Validation.IsEmpty(TxtQuantity))
                 {
                     UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                     Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
