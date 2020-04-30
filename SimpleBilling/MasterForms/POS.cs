@@ -374,28 +374,63 @@ namespace SimpleBilling.MasterForms
 
         private void CompleteReceipt()
         {
-            if (!string.IsNullOrWhiteSpace(TxtGivenAmount.Text))
+            try
             {
-                GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                BalanceAmount = GivenAmount - ReceiptNetTotal;
-                if (BalanceAmount > 0)
+                if (!string.IsNullOrWhiteSpace(TxtGivenAmount.Text))
                 {
-                    using (BillingContext db = new BillingContext())
+                    GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                    BalanceAmount = GivenAmount - ReceiptNetTotal;
+                    if (BalanceAmount >= 0)
                     {
-                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false && c.Status == 1);
-                        if (Result != null)
+                        using (BillingContext db = new BillingContext())
                         {
-                            Result.NetTotal = ReceiptNetTotal;
-                            Result.TotalDiscount = ReceiptTotalDiscount;
-                            Result.SubTotal = ReceiptSubTotal;
-                            Result.PaidAmount = GivenAmount;
-                            Result.Balance = BalanceAmount;
-                            Result.PaymentType = GetPaymentType();
-                            Result.Status = 2;
-                            if (db.Entry(Result).State == EntityState.Detached)
-                                db.Set<ReceiptHeader>().Attach(Result);
-                            db.Entry(Result).State = EntityState.Modified;
+                            var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false);
+                            if (Result != null)
+                            {
+                                if (Result.Status == 1)
+                                {
+                                    Result.NetTotal = ReceiptNetTotal;
+                                    Result.TotalDiscount = ReceiptTotalDiscount;
+                                    Result.SubTotal = ReceiptSubTotal;
+                                    Result.PaidAmount = GivenAmount;
+                                    Result.Balance = BalanceAmount;
+                                    Result.PaymentType = GetPaymentType();
+                                    Result.Status = 2;
+                                    if (db.Entry(Result).State == EntityState.Detached)
+                                        db.Set<ReceiptHeader>().Attach(Result);
+                                    db.Entry(Result).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
+                                    ReduceStock();
+                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
+                                }
+                            }
                         }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exp(ex);
+            }
+        }
+
+        private void ReduceStock()
+        {
+            foreach (DataGridViewRow dgv in DGVReceiptBody.Rows)
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    int ItemId = Convert.ToInt32(dgv.Cells[0].Value);
+                    int Qty = Convert.ToInt32(dgv.Cells[4].Value);
+                    var Result = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                    if (Result != null)
+                    {
+                        Result.StockQty -= Qty;
+                        if (db.Entry(Result).State == EntityState.Detached)
+                            db.Set<Item>().Attach(Result);
+                        db.Entry(Result).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
             }
@@ -461,6 +496,27 @@ namespace SimpleBilling.MasterForms
             LoadReceipt receiptLoader = new LoadReceipt();
             receiptLoader.Show();
             Hide();             
+        }
+
+        private void TxtGivenAmount_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TxtGivenAmount.Text.Length > 0)
+            {
+                float GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
+                LblBalanceAmount.Text = BalanceAmount.ToString();
+            }
+        }
+
+        private void TxtGivenAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (BalanceAmount >= 0)
+                {
+                    CompleteReceipt();
+                }
+            }
         }
     }
 }

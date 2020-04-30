@@ -57,6 +57,7 @@
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.LblCashier = new System.Windows.Forms.Label();
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -69,10 +70,9 @@
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.LblReceiptStatus = new System.Windows.Forms.Label();
-            this.LblCashier = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.RdoButtonCash = new System.Windows.Forms.RadioButton();
             this.RdoCard = new System.Windows.Forms.RadioButton();
+            this.RdoButtonCash = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -388,6 +388,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(997, 93);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
+            // LblCashier
+            // 
+            this.LblCashier.AutoSize = true;
+            this.LblCashier.ForeColor = System.Drawing.Color.White;
+            this.LblCashier.Location = new System.Drawing.Point(799, 74);
+            this.LblCashier.Name = "LblCashier";
+            this.LblCashier.Size = new System.Drawing.Size(68, 19);
+            this.LblCashier.TabIndex = 12;
+            this.LblCashier.Text = "Cashier";
+            // 
             // LblBalanceAmount
             // 
             this.LblBalanceAmount.AutoSize = true;
@@ -484,6 +494,8 @@
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(193, 26);
             this.TxtGivenAmount.TabIndex = 8;
+            this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
+            this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
             // 
             // label11
             // 
@@ -505,16 +517,6 @@
             this.LblReceiptStatus.TabIndex = 11;
             this.LblReceiptStatus.Text = "Ready";
             // 
-            // LblCashier
-            // 
-            this.LblCashier.AutoSize = true;
-            this.LblCashier.ForeColor = System.Drawing.Color.White;
-            this.LblCashier.Location = new System.Drawing.Point(799, 74);
-            this.LblCashier.Name = "LblCashier";
-            this.LblCashier.Size = new System.Drawing.Size(68, 19);
-            this.LblCashier.TabIndex = 12;
-            this.LblCashier.Text = "Cashier";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.RdoCard);
@@ -523,18 +525,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(193, 31);
             this.panel1.TabIndex = 8;
-            // 
-            // RdoButtonCash
-            // 
-            this.RdoButtonCash.AutoSize = true;
-            this.RdoButtonCash.ForeColor = System.Drawing.Color.GreenYellow;
-            this.RdoButtonCash.Location = new System.Drawing.Point(4, 9);
-            this.RdoButtonCash.Name = "RdoButtonCash";
-            this.RdoButtonCash.Size = new System.Drawing.Size(67, 23);
-            this.RdoButtonCash.TabIndex = 0;
-            this.RdoButtonCash.TabStop = true;
-            this.RdoButtonCash.Text = "Cash";
-            this.RdoButtonCash.UseVisualStyleBackColor = true;
             // 
             // RdoCard
             // 
@@ -547,6 +537,18 @@
             this.RdoCard.TabStop = true;
             this.RdoCard.Text = "Card";
             this.RdoCard.UseVisualStyleBackColor = true;
+            // 
+            // RdoButtonCash
+            // 
+            this.RdoButtonCash.AutoSize = true;
+            this.RdoButtonCash.ForeColor = System.Drawing.Color.GreenYellow;
+            this.RdoButtonCash.Location = new System.Drawing.Point(4, 9);
+            this.RdoButtonCash.Name = "RdoButtonCash";
+            this.RdoButtonCash.Size = new System.Drawing.Size(67, 23);
+            this.RdoButtonCash.TabIndex = 0;
+            this.RdoButtonCash.TabStop = true;
+            this.RdoButtonCash.Text = "Cash";
+            this.RdoButtonCash.UseVisualStyleBackColor = true;
             // 
             // POS
             // 

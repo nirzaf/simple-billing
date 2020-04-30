@@ -19,6 +19,10 @@ namespace SimpleBilling.Model
         [DefaultValue(0)]
         public int StockQty { get; set; }
         public float SellingPrice { get; set; }
+        [DefaultValue(false)]
+        public bool Is_Service { get; set; }
         public virtual Category Categories { get; set; }
+
+        public virtual Shelf Shelfs { get; set; }
     }
 }

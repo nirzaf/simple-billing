@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202004292226422_billing15.designer.cs">
       <DependentUpon>202004292226422_billing15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004300144009_billing16.cs" />
+    <Compile Include="Migrations\202004300144009_billing16.designer.cs">
+      <DependentUpon>202004300144009_billing16.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
@@ -207,6 +211,7 @@
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\ReceiptBody.cs" />
     <Compile Include="Model\ReceiptHeader.cs" />
+    <Compile Include="Model\Shelf.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Model\UserTypeConfigurations.cs" />
@@ -292,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004292226422_billing15.resx">
       <DependentUpon>202004292226422_billing15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004300144009_billing16.resx">
+      <DependentUpon>202004300144009_billing16.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
