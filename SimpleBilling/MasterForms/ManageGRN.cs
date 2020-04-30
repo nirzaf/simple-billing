@@ -272,11 +272,14 @@ namespace SimpleBilling.MasterForms
 
         private void CmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ItemId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
-            using (BillingContext db = new BillingContext())
+            if (CmbProduct.SelectedValue != null)
             {
-                var result = db.Items.FirstOrDefault(c => c.Id == ItemId);
-                TxtUnitCost.Text = result.UnitCost.ToString();
+                int ItemId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
+                using (BillingContext db = new BillingContext())
+                {
+                    var result = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                    TxtUnitCost.Text = result.UnitCost.ToString();
+                }
             }
         }
 
