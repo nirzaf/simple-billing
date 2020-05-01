@@ -143,6 +143,7 @@
             this.gRNInvoicesToolStripMenuItem.Name = "gRNInvoicesToolStripMenuItem";
             this.gRNInvoicesToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.gRNInvoicesToolStripMenuItem.Text = "GRN Invoices";
+            this.gRNInvoicesToolStripMenuItem.Click += new System.EventHandler(this.gRNInvoicesToolStripMenuItem_Click);
             // 
             // receiptsToolStripMenuItem
             // 
@@ -174,7 +175,7 @@
             // quickSaleToolStripMenuItem
             // 
             this.quickSaleToolStripMenuItem.Name = "quickSaleToolStripMenuItem";
-            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
+            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.quickSaleToolStripMenuItem.Text = "Quick Sale";
             // 
             // Main

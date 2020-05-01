@@ -81,6 +81,7 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -90,6 +91,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblDate
@@ -393,6 +395,7 @@
             this.DGVReceiptBody.Name = "DGVReceiptBody";
             this.DGVReceiptBody.Size = new System.Drawing.Size(1024, 286);
             this.DGVReceiptBody.TabIndex = 6;
+            this.DGVReceiptBody.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVReceiptBody_CellClick);
             // 
             // tableLayoutPanel2
             // 
@@ -698,6 +701,7 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.BtnDelete, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 149);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -708,6 +712,17 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 286);
             this.tableLayoutPanel6.TabIndex = 10;
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Location = new System.Drawing.Point(3, 3);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(103, 65);
+            this.BtnDelete.TabIndex = 0;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // POS
             // 
@@ -735,6 +750,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -792,5 +808,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox TxtQuantity;
+        private System.Windows.Forms.Button BtnDelete;
     }
 }

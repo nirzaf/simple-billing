@@ -605,5 +605,39 @@ namespace SimpleBilling.MasterForms
         {
             Val.Validation.IsDecimal(e, TxtDiscount);
         }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            if (DGVReceiptBody.SelectedRows.Count > 0)
+            {
+                int Id = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty);
+                string ReceiptNo = LblReceiptNo.Text.Trim();
+                using (BillingContext db = new BillingContext())
+                {
+                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == ReceiptNo && c.Is_Deleted == false);
+                    if (Item != null)
+                    {
+                        Item.Is_Deleted = true;
+                        if (db.Entry(Item).State == EntityState.Detached)
+                            db.Set<ReceiptBody>().Attach(Item);
+                        db.Entry(Item).State = EntityState.Modified;
+                        db.SaveChanges();
+                        DGVLoad(ReceiptNo);
+                    }
+                }
+            }
+            else
+            {
+                Info.Mes("Please Select an item to delete");
+            }
+        }
+
+        private void DGVReceiptBody_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVReceiptBody.SelectedRows.Count > 0)
+            {
+                string Id = DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty;
+            }
+        }
     }
 }
