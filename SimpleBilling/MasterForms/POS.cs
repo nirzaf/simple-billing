@@ -631,13 +631,5 @@ namespace SimpleBilling.MasterForms
                 Info.Mes("Please Select an item to delete");
             }
         }
-
-        private void DGVReceiptBody_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DGVReceiptBody.SelectedRows.Count > 0)
-            {
-                string Id = DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty;
-            }
-        }
     }
 }

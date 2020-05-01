@@ -392,10 +392,12 @@
             this.DGVReceiptBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReceiptBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVReceiptBody.Location = new System.Drawing.Point(3, 149);
+            this.DGVReceiptBody.MultiSelect = false;
             this.DGVReceiptBody.Name = "DGVReceiptBody";
+            this.DGVReceiptBody.ReadOnly = true;
+            this.DGVReceiptBody.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVReceiptBody.Size = new System.Drawing.Size(1024, 286);
             this.DGVReceiptBody.TabIndex = 6;
-            this.DGVReceiptBody.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVReceiptBody_CellClick);
             // 
             // tableLayoutPanel2
             // 
