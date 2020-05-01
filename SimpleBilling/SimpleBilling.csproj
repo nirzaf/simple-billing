@@ -76,6 +76,12 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\BusinessInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\BusinessInfo.Designer.cs">
+      <DependentUpon>BusinessInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ConfigureSellingPrice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,9 +238,18 @@
     <Compile Include="Migrations\202004300339136_nuget1.designer.cs">
       <DependentUpon>202004300339136_nuget1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005012003227_billing19.cs" />
+    <Compile Include="Migrations\202005012003227_billing19.designer.cs">
+      <DependentUpon>202005012003227_billing19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005012013569_billing20.cs" />
+    <Compile Include="Migrations\202005012013569_billing20.designer.cs">
+      <DependentUpon>202005012013569_billing20.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
+    <Compile Include="Model\BusinessModel.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Customers.cs" />
     <Compile Include="Model\Employee.cs" />
@@ -252,6 +267,9 @@
     <Compile Include="Val\Validation.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\BusinessInfo.resx">
+      <DependentUpon>BusinessInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ConfigureSellingPrice.resx">
       <DependentUpon>ConfigureSellingPrice.cs</DependentUpon>
@@ -352,6 +370,12 @@
     <EmbeddedResource Include="Migrations\202004300339136_nuget1.resx">
       <DependentUpon>202004300339136_nuget1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005012003227_billing19.resx">
+      <DependentUpon>202005012003227_billing19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005012013569_billing20.resx">
+      <DependentUpon>202005012013569_billing20.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -362,6 +386,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\SimpleBilling.Model.BusinessModel.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Category.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Customers.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Employee.datasource" />

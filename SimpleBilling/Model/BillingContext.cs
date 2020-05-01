@@ -16,5 +16,6 @@ namespace SimpleBilling.Model
         public DbSet<ReceiptHeader> ReceiptHeaders { get; set; }
         public DbSet<ReceiptBody> ReceiptBodies { get; set; }
         public DbSet<Shelf> Shelves { get; set; }
+        public DbSet<BusinessModel> BusinessModels { get; set; }    
     }
 }

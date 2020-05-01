@@ -53,9 +53,7 @@ namespace SimpleBilling.MasterForms
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        Category cat = categoryBindingSource.Current as Category;
-
-                        if (cat != null)
+                        if (categoryBindingSource.Current is Category cat)
                         {
                             if (db.Entry(cat).State == EntityState.Detached)
                                 db.Set<Category>().Attach(cat);
