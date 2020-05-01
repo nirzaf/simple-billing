@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigureSellingPrice));
             this.DGVSellingPrice = new System.Windows.Forms.DataGridView();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.TxtSellingPrice = new System.Windows.Forms.TextBox();
-            this.BtnUpdate = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sellingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.TxtSellingPrice = new System.Windows.Forms.TextBox();
+            this.BtnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSellingPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,32 +63,12 @@
             this.DGVSellingPrice.TabIndex = 0;
             this.DGVSellingPrice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSellingPrice_CellClick);
             // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
-            // TxtSellingPrice
-            // 
-            this.TxtSellingPrice.Location = new System.Drawing.Point(704, 45);
-            this.TxtSellingPrice.Name = "TxtSellingPrice";
-            this.TxtSellingPrice.Size = new System.Drawing.Size(182, 26);
-            this.TxtSellingPrice.TabIndex = 1;
-            // 
-            // BtnUpdate
-            // 
-            this.BtnUpdate.Location = new System.Drawing.Point(704, 78);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(182, 45);
-            this.BtnUpdate.TabIndex = 2;
-            this.BtnUpdate.Text = "Update Price";
-            this.BtnUpdate.UseVisualStyleBackColor = true;
-            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Item Id";
             this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
             // 
             // ItemName
             // 
@@ -110,6 +91,27 @@
             this.sellingPriceDataGridViewTextBoxColumn.Name = "sellingPriceDataGridViewTextBoxColumn";
             this.sellingPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
+            // 
+            // TxtSellingPrice
+            // 
+            this.TxtSellingPrice.Location = new System.Drawing.Point(704, 45);
+            this.TxtSellingPrice.Name = "TxtSellingPrice";
+            this.TxtSellingPrice.Size = new System.Drawing.Size(182, 26);
+            this.TxtSellingPrice.TabIndex = 1;
+            // 
+            // BtnUpdate
+            // 
+            this.BtnUpdate.Location = new System.Drawing.Point(704, 78);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(182, 45);
+            this.BtnUpdate.TabIndex = 2;
+            this.BtnUpdate.Text = "Update Price";
+            this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
+            // 
             // ConfigureSellingPrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -121,6 +123,7 @@
             this.Controls.Add(this.DGVSellingPrice);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ConfigureSellingPrice";
             this.Text = "Configure Selling Price";

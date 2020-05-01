@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GRNInvoices));
             this.DGVInvoices = new System.Windows.Forms.DataGridView();
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVInvoices)).BeginInit();
@@ -67,6 +68,7 @@
             this.Controls.Add(this.BtnLoadInvoice);
             this.Controls.Add(this.DGVInvoices);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GRNInvoices";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GRNInvoices";

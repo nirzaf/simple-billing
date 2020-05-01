@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(POS));
             this.LblDate = new System.Windows.Forms.Label();
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
@@ -716,6 +717,7 @@
             this.ClientSize = new System.Drawing.Size(1145, 584);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "POS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

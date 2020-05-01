@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageShelves));
             this.DGVShelf = new System.Windows.Forms.DataGridView();
+            this.shelfIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shelfNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shelfBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PanelCRUD = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,14 +47,11 @@
             this.BtnSave = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
-            this.shelfBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shelfIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shelfNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVShelf)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shelfBindingSource)).BeginInit();
             this.PanelCRUD.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shelfBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVShelf
@@ -68,6 +69,22 @@
             this.DGVShelf.Size = new System.Drawing.Size(302, 371);
             this.DGVShelf.TabIndex = 0;
             this.DGVShelf.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVShelf_CellClick);
+            // 
+            // shelfIdDataGridViewTextBoxColumn
+            // 
+            this.shelfIdDataGridViewTextBoxColumn.DataPropertyName = "ShelfId";
+            this.shelfIdDataGridViewTextBoxColumn.HeaderText = "Shelf Id";
+            this.shelfIdDataGridViewTextBoxColumn.Name = "shelfIdDataGridViewTextBoxColumn";
+            // 
+            // shelfNameDataGridViewTextBoxColumn
+            // 
+            this.shelfNameDataGridViewTextBoxColumn.DataPropertyName = "ShelfName";
+            this.shelfNameDataGridViewTextBoxColumn.HeaderText = "Shelf Name";
+            this.shelfNameDataGridViewTextBoxColumn.Name = "shelfNameDataGridViewTextBoxColumn";
+            // 
+            // shelfBindingSource
+            // 
+            this.shelfBindingSource.DataSource = typeof(SimpleBilling.Model.Shelf);
             // 
             // PanelCRUD
             // 
@@ -210,22 +227,6 @@
             this.MessageTimer.Interval = 6000;
             this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
             // 
-            // shelfBindingSource
-            // 
-            this.shelfBindingSource.DataSource = typeof(SimpleBilling.Model.Shelf);
-            // 
-            // shelfIdDataGridViewTextBoxColumn
-            // 
-            this.shelfIdDataGridViewTextBoxColumn.DataPropertyName = "ShelfId";
-            this.shelfIdDataGridViewTextBoxColumn.HeaderText = "Shelf Id";
-            this.shelfIdDataGridViewTextBoxColumn.Name = "shelfIdDataGridViewTextBoxColumn";
-            // 
-            // shelfNameDataGridViewTextBoxColumn
-            // 
-            this.shelfNameDataGridViewTextBoxColumn.DataPropertyName = "ShelfName";
-            this.shelfNameDataGridViewTextBoxColumn.HeaderText = "Shelf Name";
-            this.shelfNameDataGridViewTextBoxColumn.Name = "shelfNameDataGridViewTextBoxColumn";
-            // 
             // ManageShelves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -238,17 +239,18 @@
             this.Controls.Add(this.DGVShelf);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageShelves";
             this.Text = "ManageShelves";
             this.Load += new System.EventHandler(this.ManageShelves_Load);
             this.Click += new System.EventHandler(this.ManageShelves_Click);
             ((System.ComponentModel.ISupportInitialize)(this.DGVShelf)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shelfBindingSource)).EndInit();
             this.PanelCRUD.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.shelfBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

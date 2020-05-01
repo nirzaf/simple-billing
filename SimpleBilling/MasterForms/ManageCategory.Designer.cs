@@ -29,12 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageCategory));
             this.DGVCategories = new System.Windows.Forms.DataGridView();
+            this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCategoryName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.TxtCatId = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.PanelCRUD = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSave = new System.Windows.Forms.Button();
@@ -44,15 +48,12 @@
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerLabel = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.categoryIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVCategories
@@ -72,6 +73,23 @@
             this.DGVCategories.Name = "DGVCategories";
             this.DGVCategories.Size = new System.Drawing.Size(376, 273);
             this.DGVCategories.TabIndex = 0;
+            // 
+            // categoryIdDataGridViewTextBoxColumn
+            // 
+            this.categoryIdDataGridViewTextBoxColumn.DataPropertyName = "CategoryId";
+            this.categoryIdDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.categoryIdDataGridViewTextBoxColumn.Name = "categoryIdDataGridViewTextBoxColumn";
+            this.categoryIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryNameDataGridViewTextBoxColumn
+            // 
+            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // tableLayoutPanel1
             // 
@@ -96,9 +114,9 @@
             // 
             this.TxtCategoryName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryName", true));
             this.TxtCategoryName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtCategoryName.Location = new System.Drawing.Point(140, 51);
+            this.TxtCategoryName.Location = new System.Drawing.Point(139, 51);
             this.TxtCategoryName.Name = "TxtCategoryName";
-            this.TxtCategoryName.Size = new System.Drawing.Size(234, 26);
+            this.TxtCategoryName.Size = new System.Drawing.Size(235, 26);
             this.TxtCategoryName.TabIndex = 3;
             // 
             // label1
@@ -110,9 +128,19 @@
             this.label1.Location = new System.Drawing.Point(5, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 48);
+            this.label1.Size = new System.Drawing.Size(126, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "Category Id";
+            // 
+            // TxtCatId
+            // 
+            this.TxtCatId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryId", true));
+            this.TxtCatId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtCatId.Location = new System.Drawing.Point(139, 3);
+            this.TxtCatId.Name = "TxtCatId";
+            this.TxtCatId.ReadOnly = true;
+            this.TxtCatId.Size = new System.Drawing.Size(235, 26);
+            this.TxtCatId.TabIndex = 2;
             // 
             // label2
             // 
@@ -123,19 +151,9 @@
             this.label2.Location = new System.Drawing.Point(5, 48);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 49);
+            this.label2.Size = new System.Drawing.Size(126, 49);
             this.label2.TabIndex = 1;
             this.label2.Text = "Category Name";
-            // 
-            // TxtCatId
-            // 
-            this.TxtCatId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryId", true));
-            this.TxtCatId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtCatId.Location = new System.Drawing.Point(140, 3);
-            this.TxtCatId.Name = "TxtCatId";
-            this.TxtCatId.ReadOnly = true;
-            this.TxtCatId.Size = new System.Drawing.Size(234, 26);
-            this.TxtCatId.TabIndex = 2;
             // 
             // PanelCRUD
             // 
@@ -253,23 +271,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(773, 402);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
-            // categoryIdDataGridViewTextBoxColumn
-            // 
-            this.categoryIdDataGridViewTextBoxColumn.DataPropertyName = "CategoryId";
-            this.categoryIdDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.categoryIdDataGridViewTextBoxColumn.Name = "categoryIdDataGridViewTextBoxColumn";
-            this.categoryIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoryNameDataGridViewTextBoxColumn
-            // 
-            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
-            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "CategoryName";
-            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
             // ManageCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -279,19 +280,20 @@
             this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Category";
             this.Load += new System.EventHandler(this.ManageCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.PanelCRUD.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
