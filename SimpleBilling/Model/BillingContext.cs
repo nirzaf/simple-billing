@@ -1,11 +1,28 @@
 ﻿using System;
-using System.Data.Entity;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace SimpleBilling.Model
 {
     public class BillingContext : DbContext
     {
-        public BillingContext() : base("name=con"){ }
+        private readonly string _connectionString;
+
+        public BillingContext(string ConnectionString)
+        {
+            _connectionString = ConnectionString;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder OptionsBuilder)
+        {
+            var builder = new ConfigurationBuilder()
+                            .SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            var configuration = OptionsBuilder.
+            OptionsBuilder.UseSqlServer(OnConfiguring);
+        }
+
+        //public BillingContext() : base("name=con"){ }
         public DbSet<Users> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }

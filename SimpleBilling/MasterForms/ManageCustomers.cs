@@ -1,6 +1,6 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Windows.Forms;
 

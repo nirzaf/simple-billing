@@ -1,7 +1,7 @@
 ﻿using System;
 using SimpleBilling.Model;
 using System.Windows.Forms;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace SimpleBilling.MasterForms
