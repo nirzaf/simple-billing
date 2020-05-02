@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
-    public class Item
+    public class Item : BaseEntity
     {
         [Key]
         public int Id { get; set; }

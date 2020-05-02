@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBilling.Model
 {
-    public class GRNHeader
+    public class GRNHeader : BaseEntity
     {
         [Key]
         public int GRN_Id { get; set; }

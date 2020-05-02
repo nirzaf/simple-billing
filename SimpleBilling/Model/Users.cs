@@ -2,7 +2,7 @@
 
 namespace SimpleBilling.Model
 {
-    public class Users
+    public class Users : BaseEntity
     {
         [Key]
         public int UserId { get; set; }

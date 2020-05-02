@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace SimpleBilling.Model
@@ -15,6 +16,5 @@ namespace SimpleBilling.Model
             context.Users.AddRange(users);
             base.Seed(context);
         }
-
     }
 }

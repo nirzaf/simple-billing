@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleBilling.Model
 {
-    public class BusinessModel
+    public class BusinessModel : BaseEntity
     {
         [Key]
         public int Id { get; set; }

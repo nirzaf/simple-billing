@@ -265,6 +265,7 @@
       <DependentUpon>202005012013569_billing20.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\BillingContext.cs" />
     <Compile Include="Model\BillingDBInitializer.cs" />
     <Compile Include="Model\BusinessModel.cs" />

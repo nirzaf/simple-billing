@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleBilling.Model
 {
-    public class Employee
+    public class Employee : BaseEntity
     {
         [Key]
         public int EmployeeId { get; set; }

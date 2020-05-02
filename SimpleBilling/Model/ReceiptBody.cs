@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBilling.Model
 {
-    public class ReceiptBody
+    public class ReceiptBody : BaseEntity
     {
         [Key]
         [Column(Order=1)]

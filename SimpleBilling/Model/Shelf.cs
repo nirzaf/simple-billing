@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
-    public class Shelf
+    public class Shelf : BaseEntity
     {   
         [Key]
         public int ShelfId { get; set; }
