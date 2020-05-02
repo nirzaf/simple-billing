@@ -56,7 +56,8 @@ namespace SimpleBilling.MasterForms
                     Unit = TxtUnit.Text.Trim(),
                     UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                     Barcode = TxtBarcode.Text.Trim(),
-                    Categories = cat
+                    Categories = cat,
+                    IsService = GetIsService()
                 };
 
                 if (items.Id == 0)
@@ -64,7 +65,7 @@ namespace SimpleBilling.MasterForms
                     if (db.Entry(items).State == EntityState.Detached)
                         db.Set<Item>().Attach(items);
                     db.Entry(items).State = EntityState.Added;
-                    items.CreatedDate = DateTime.Now;
+                    items.CreatedDate = DateTime.Today;
                     db.SaveChanges();
                     Info("Item Added Successfully");                   
                 }
@@ -79,6 +80,7 @@ namespace SimpleBilling.MasterForms
                         result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
                         result.Barcode = TxtBarcode.Text.Trim();
                         result.Categories = cat;
+                        result.IsService = GetIsService();
                         if (db.Entry(result).State == EntityState.Detached)
                             db.Set<Item>().Attach(result);
                         result.UpdatedDate = DateTime.Now;
@@ -88,6 +90,14 @@ namespace SimpleBilling.MasterForms
                     }                   
                 }
             }
+        }
+
+        private bool GetIsService()
+        {
+            if (ChkBoxIsService.Checked == true)
+                return true;
+            else
+                return false;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -172,6 +182,7 @@ namespace SimpleBilling.MasterForms
             if (DGVItems.SelectedRows.Count > 0)
             {
                 TxtItemId.Text = DGVItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                int Id = Convert.ToInt32(TxtItemId.Text.Trim());
                 TxtItemCode.Text = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
                 TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
                 TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
@@ -179,6 +190,11 @@ namespace SimpleBilling.MasterForms
                 TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
                 CmbCategories.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
                 CmbShelf.Text = DGVItems.SelectedRows[0].Cells[7].Value + string.Empty;
+                using (BillingContext db = new BillingContext()) 
+                {
+                    var item = db.Items.FirstOrDefault(c => c.Id == Id);
+                    if(item.IsService == true) ChkBoxIsService.Checked = true; else ChkBoxIsService.Checked = false;
+                }
             }
         }
 

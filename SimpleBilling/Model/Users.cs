@@ -13,6 +13,5 @@ namespace SimpleBilling.Model
         [MaxLength(150)]
         public string Name { get; set; }
         public int UserType { get; set; }
-        public int IsDeleted { get; set; }
     }
 }

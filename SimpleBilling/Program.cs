@@ -16,11 +16,11 @@ namespace SimpleBilling
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
             //Application.Run(new ManageGRN(string.Empty));
-            Application.Run(new POS(string.Empty));
+            //Application.Run(new POS(string.Empty));
             //Application.Run(new BusinessInfo());
             //Application.Run(new ManageVehicles());
             //Application.Run(new ManageCategory());
-            //Application.Run(new ManageItems());
+            Application.Run(new ManageItems());
             //Application.Run(new ManageShelves());
             //Application.Run(new LoadReceipt());
         }

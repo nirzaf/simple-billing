@@ -42,7 +42,6 @@
             this.TxtItemName = new System.Windows.Forms.TextBox();
             this.TxtUnit = new System.Windows.Forms.TextBox();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.TxtBarcode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -61,13 +60,16 @@
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ChkBoxIsService = new System.Windows.Forms.CheckBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.BaseLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,10 +90,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(3, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.Size = new System.Drawing.Size(80, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "Item Code";
             // 
@@ -128,6 +131,8 @@
             this.PanelCRUD.Controls.Add(this.label5, 0, 7);
             this.PanelCRUD.Controls.Add(this.BtnAddShelf, 2, 8);
             this.PanelCRUD.Controls.Add(this.BtnAddCategory, 2, 7);
+            this.PanelCRUD.Controls.Add(this.label9, 0, 6);
+            this.PanelCRUD.Controls.Add(this.ChkBoxIsService, 1, 6);
             this.PanelCRUD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelCRUD.Location = new System.Drawing.Point(0, 0);
             this.PanelCRUD.Name = "PanelCRUD";
@@ -141,6 +146,7 @@
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.PanelCRUD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.PanelCRUD.Size = new System.Drawing.Size(432, 351);
             this.PanelCRUD.TabIndex = 2;
             // 
@@ -157,30 +163,33 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 20);
+            this.label6.Size = new System.Drawing.Size(80, 39);
             this.label6.TabIndex = 11;
             this.label6.Text = "Item Id";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(3, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.Size = new System.Drawing.Size(80, 39);
             this.label2.TabIndex = 2;
             this.label2.Text = "Item Name";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Location = new System.Drawing.Point(3, 117);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.Size = new System.Drawing.Size(80, 39);
             this.label3.TabIndex = 3;
             this.label3.Text = "Unit";
             // 
@@ -223,10 +232,6 @@
             this.CmbCategories.Size = new System.Drawing.Size(296, 28);
             this.CmbCategories.TabIndex = 10;
             // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -250,10 +255,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(3, 195);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 20);
+            this.label4.Size = new System.Drawing.Size(80, 39);
             this.label4.TabIndex = 4;
             this.label4.Text = "Barcode";
             // 
@@ -269,10 +275,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Location = new System.Drawing.Point(3, 156);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 20);
+            this.label7.Size = new System.Drawing.Size(80, 39);
             this.label7.TabIndex = 15;
             this.label7.Text = "Unit Cost";
             // 
@@ -441,6 +448,32 @@
             this.BaseLayout.Size = new System.Drawing.Size(1250, 457);
             this.BaseLayout.TabIndex = 4;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(3, 234);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 20);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Is Service";
+            // 
+            // ChkBoxIsService
+            // 
+            this.ChkBoxIsService.AutoSize = true;
+            this.ChkBoxIsService.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.itemBindingSource, "IsService", true));
+            this.ChkBoxIsService.ForeColor = System.Drawing.Color.White;
+            this.ChkBoxIsService.Location = new System.Drawing.Point(89, 237);
+            this.ChkBoxIsService.Name = "ChkBoxIsService";
+            this.ChkBoxIsService.Size = new System.Drawing.Size(104, 24);
+            this.ChkBoxIsService.TabIndex = 20;
+            this.ChkBoxIsService.Text = "Check If Yes";
+            this.ChkBoxIsService.UseVisualStyleBackColor = true;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
+            // 
             // itemBindingSource
             // 
             this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
@@ -462,10 +495,10 @@
             this.panel1.ResumeLayout(false);
             this.PanelCRUD.ResumeLayout(false);
             this.PanelCRUD.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.BaseLayout.ResumeLayout(false);
             this.BaseLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -505,5 +538,7 @@
         private System.Windows.Forms.ComboBox CmbShelf;
         private System.Windows.Forms.Button BtnAddShelf;
         private System.Windows.Forms.TableLayoutPanel BaseLayout;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox ChkBoxIsService;
     }
 }
