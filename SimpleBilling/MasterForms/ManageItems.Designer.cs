@@ -118,16 +118,16 @@
             this.PanelCRUD.Controls.Add(this.TxtItemCode, 1, 1);
             this.PanelCRUD.Controls.Add(this.TxtItemName, 1, 2);
             this.PanelCRUD.Controls.Add(this.TxtUnit, 1, 3);
-            this.PanelCRUD.Controls.Add(this.CmbCategories, 1, 6);
-            this.PanelCRUD.Controls.Add(this.label5, 0, 6);
             this.PanelCRUD.Controls.Add(this.TxtBarcode, 1, 5);
             this.PanelCRUD.Controls.Add(this.label4, 0, 5);
             this.PanelCRUD.Controls.Add(this.TxtUnitCost, 1, 4);
             this.PanelCRUD.Controls.Add(this.label7, 0, 4);
-            this.PanelCRUD.Controls.Add(this.BtnAddCategory, 2, 6);
-            this.PanelCRUD.Controls.Add(this.label8, 0, 7);
-            this.PanelCRUD.Controls.Add(this.CmbShelf, 1, 7);
-            this.PanelCRUD.Controls.Add(this.BtnAddShelf, 2, 7);
+            this.PanelCRUD.Controls.Add(this.CmbShelf, 1, 8);
+            this.PanelCRUD.Controls.Add(this.CmbCategories, 1, 7);
+            this.PanelCRUD.Controls.Add(this.label8, 0, 8);
+            this.PanelCRUD.Controls.Add(this.label5, 0, 7);
+            this.PanelCRUD.Controls.Add(this.BtnAddShelf, 2, 8);
+            this.PanelCRUD.Controls.Add(this.BtnAddCategory, 2, 7);
             this.PanelCRUD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelCRUD.Location = new System.Drawing.Point(0, 0);
             this.PanelCRUD.Name = "PanelCRUD";
@@ -218,7 +218,7 @@
             this.CmbCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbCategories.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.CmbCategories.FormattingEnabled = true;
-            this.CmbCategories.Location = new System.Drawing.Point(89, 237);
+            this.CmbCategories.Location = new System.Drawing.Point(89, 276);
             this.CmbCategories.Name = "CmbCategories";
             this.CmbCategories.Size = new System.Drawing.Size(296, 28);
             this.CmbCategories.TabIndex = 10;
@@ -230,10 +230,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(3, 234);
+            this.label5.Location = new System.Drawing.Point(3, 273);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 20);
+            this.label5.Size = new System.Drawing.Size(80, 39);
             this.label5.TabIndex = 5;
             this.label5.Text = "Categories";
             // 
@@ -278,9 +279,10 @@
             // BtnAddCategory
             // 
             this.BtnAddCategory.BackColor = System.Drawing.Color.White;
-            this.BtnAddCategory.Location = new System.Drawing.Point(391, 237);
+            this.BtnAddCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddCategory.Location = new System.Drawing.Point(391, 276);
             this.BtnAddCategory.Name = "BtnAddCategory";
-            this.BtnAddCategory.Size = new System.Drawing.Size(38, 28);
+            this.BtnAddCategory.Size = new System.Drawing.Size(38, 33);
             this.BtnAddCategory.TabIndex = 13;
             this.BtnAddCategory.Text = "+";
             this.BtnAddCategory.UseVisualStyleBackColor = false;
@@ -289,10 +291,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(3, 273);
+            this.label8.Location = new System.Drawing.Point(3, 312);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 20);
+            this.label8.Size = new System.Drawing.Size(80, 39);
             this.label8.TabIndex = 16;
             this.label8.Text = "Shelf";
             // 
@@ -303,7 +306,7 @@
             this.CmbShelf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbShelf.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.CmbShelf.FormattingEnabled = true;
-            this.CmbShelf.Location = new System.Drawing.Point(89, 276);
+            this.CmbShelf.Location = new System.Drawing.Point(89, 315);
             this.CmbShelf.Name = "CmbShelf";
             this.CmbShelf.Size = new System.Drawing.Size(296, 28);
             this.CmbShelf.TabIndex = 17;
@@ -311,9 +314,10 @@
             // BtnAddShelf
             // 
             this.BtnAddShelf.BackColor = System.Drawing.Color.White;
-            this.BtnAddShelf.Location = new System.Drawing.Point(391, 276);
+            this.BtnAddShelf.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddShelf.Location = new System.Drawing.Point(391, 315);
             this.BtnAddShelf.Name = "BtnAddShelf";
-            this.BtnAddShelf.Size = new System.Drawing.Size(37, 28);
+            this.BtnAddShelf.Size = new System.Drawing.Size(38, 33);
             this.BtnAddShelf.TabIndex = 18;
             this.BtnAddShelf.Text = "+";
             this.BtnAddShelf.UseVisualStyleBackColor = false;

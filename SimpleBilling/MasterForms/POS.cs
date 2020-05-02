@@ -38,13 +38,13 @@ namespace SimpleBilling.MasterForms
             InitializeComponent();
             ReceiptNo = Receipt;
             DGVLoad(ReceiptNo);
+            TxtGivenAmount.Enabled = false;
         }
 
         private void POS_Load(object sender, EventArgs e)
         {
             SystemTimer_Tick(sender, e);
             DGVLoad(ReceiptNo);
-            RdoButtonCash.Checked = true;
             PrintAndVoid();
             TxtCustomer.Focus();
         }
@@ -452,10 +452,10 @@ namespace SimpleBilling.MasterForms
 
         private string GetPaymentType()
         {
-            if (RdoButtonCash.Checked == true)
-                return "Cash";
+            if (!string.IsNullOrWhiteSpace(CmbPaymentOption.Text))
+                return CmbPaymentOption.Text.Trim();
             else
-                return "Card";
+                return string.Empty;
         }
 
         private void Exp(Exception ex)
@@ -637,6 +637,14 @@ namespace SimpleBilling.MasterForms
         {
             Receipt rpt = new Receipt(LblReceiptNo.Text);
             rpt.Show();
+        }
+
+        private void CmbPaymentOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(CmbPaymentOption.Text))
+            {
+                TxtGivenAmount.Enabled = true;
+            }
         }
     }
 }

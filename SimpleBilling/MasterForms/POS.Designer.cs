@@ -63,9 +63,6 @@
             this.LblReceiptStatus = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.LblNetTotal = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.RdoCard = new System.Windows.Forms.RadioButton();
-            this.RdoButtonCash = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.LblTotalDiscount = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -82,12 +79,13 @@
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDelete = new System.Windows.Forms.Button();
+            this.CmbPaymentOption = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -113,7 +111,7 @@
             this.LblTime.ForeColor = System.Drawing.Color.Lime;
             this.LblTime.Location = new System.Drawing.Point(173, 121);
             this.LblTime.Name = "LblTime";
-            this.LblTime.Size = new System.Drawing.Size(164, 19);
+            this.LblTime.Size = new System.Drawing.Size(144, 19);
             this.LblTime.TabIndex = 1;
             this.LblTime.Text = "Time";
             // 
@@ -403,8 +401,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 6;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.64844F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.55469F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -415,7 +413,6 @@
             this.tableLayoutPanel2.Controls.Add(this.LblReceiptStatus, 5, 4);
             this.tableLayoutPanel2.Controls.Add(this.label13, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 5, 2);
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label10, 4, 1);
             this.tableLayoutPanel2.Controls.Add(this.LblTotalDiscount, 5, 1);
             this.tableLayoutPanel2.Controls.Add(this.label9, 4, 0);
@@ -424,6 +421,8 @@
             this.tableLayoutPanel2.Controls.Add(this.LblBalanceAmount, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.label12, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label15, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.CmbPaymentOption, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 441);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -441,9 +440,9 @@
             this.LblCashier.AutoSize = true;
             this.LblCashier.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblCashier.ForeColor = System.Drawing.Color.Lime;
-            this.LblCashier.Location = new System.Drawing.Point(343, 121);
+            this.LblCashier.Location = new System.Drawing.Point(323, 121);
             this.LblCashier.Name = "LblCashier";
-            this.LblCashier.Size = new System.Drawing.Size(164, 19);
+            this.LblCashier.Size = new System.Drawing.Size(184, 19);
             this.LblCashier.TabIndex = 12;
             this.LblCashier.Text = "Cashier";
             // 
@@ -490,42 +489,6 @@
             this.LblNetTotal.Size = new System.Drawing.Size(168, 28);
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "0";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.RdoCard);
-            this.panel1.Controls.Add(this.RdoButtonCash);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(513, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(164, 22);
-            this.panel1.TabIndex = 8;
-            // 
-            // RdoCard
-            // 
-            this.RdoCard.AutoSize = true;
-            this.RdoCard.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RdoCard.ForeColor = System.Drawing.Color.GreenYellow;
-            this.RdoCard.Location = new System.Drawing.Point(100, 0);
-            this.RdoCard.Name = "RdoCard";
-            this.RdoCard.Size = new System.Drawing.Size(64, 22);
-            this.RdoCard.TabIndex = 1;
-            this.RdoCard.TabStop = true;
-            this.RdoCard.Text = "Card";
-            this.RdoCard.UseVisualStyleBackColor = true;
-            // 
-            // RdoButtonCash
-            // 
-            this.RdoButtonCash.AutoSize = true;
-            this.RdoButtonCash.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RdoButtonCash.ForeColor = System.Drawing.Color.GreenYellow;
-            this.RdoButtonCash.Location = new System.Drawing.Point(0, 0);
-            this.RdoButtonCash.Name = "RdoButtonCash";
-            this.RdoButtonCash.Size = new System.Drawing.Size(67, 22);
-            this.RdoButtonCash.TabIndex = 0;
-            this.RdoButtonCash.TabStop = true;
-            this.RdoButtonCash.Text = "Cash";
-            this.RdoButtonCash.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -597,9 +560,9 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label12.Location = new System.Drawing.Point(343, 28);
+            this.label12.Location = new System.Drawing.Point(323, 28);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 28);
+            this.label12.Size = new System.Drawing.Size(184, 28);
             this.label12.TabIndex = 13;
             this.label12.Text = "Given Amount";
             // 
@@ -608,9 +571,9 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label15.Location = new System.Drawing.Point(343, 65);
+            this.label15.Location = new System.Drawing.Point(323, 65);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(164, 19);
+            this.label15.Size = new System.Drawing.Size(184, 19);
             this.label15.TabIndex = 14;
             this.label15.Text = "Balance Amount";
             // 
@@ -727,6 +690,31 @@
             this.BtnDelete.UseVisualStyleBackColor = false;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
+            // CmbPaymentOption
+            // 
+            this.CmbPaymentOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbPaymentOption.FormattingEnabled = true;
+            this.CmbPaymentOption.Items.AddRange(new object[] {
+            "Cash",
+            "Card",
+            "Cheque",
+            "Credit"});
+            this.CmbPaymentOption.Location = new System.Drawing.Point(513, 3);
+            this.CmbPaymentOption.Name = "CmbPaymentOption";
+            this.CmbPaymentOption.Size = new System.Drawing.Size(164, 27);
+            this.CmbPaymentOption.TabIndex = 15;
+            this.CmbPaymentOption.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentOption_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.label16.Location = new System.Drawing.Point(323, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(182, 19);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "Select Payment Option";
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -748,8 +736,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -799,9 +785,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label LblReceiptStatus;
         private System.Windows.Forms.Label LblCashier;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton RdoCard;
-        private System.Windows.Forms.RadioButton RdoButtonCash;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
@@ -812,5 +795,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox TxtQuantity;
         private System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.ComboBox CmbPaymentOption;
+        private System.Windows.Forms.Label label16;
     }
 }
