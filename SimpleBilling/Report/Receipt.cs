@@ -16,5 +16,11 @@ namespace SimpleBilling.Report
         {
             InitializeComponent();
         }
+
+        private void Receipt_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
     }
 }
