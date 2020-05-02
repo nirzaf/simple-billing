@@ -31,12 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusinessInfo));
             this.DGVBusinessInfo = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.businessModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.CRUDLayout = new System.Windows.Forms.TableLayoutPanel();
             this.TxtContact = new System.Windows.Forms.TextBox();
@@ -54,17 +49,24 @@
             this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnActivate = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.businessModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVBusinessInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessModelBindingSource)).BeginInit();
             this.BaseLayout.SuspendLayout();
             this.CRUDLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.businessModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVBusinessInfo
             // 
             this.DGVBusinessInfo.AutoGenerateColumns = false;
             this.DGVBusinessInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVBusinessInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DGVBusinessInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVBusinessInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVBusinessInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -76,44 +78,17 @@
             this.DGVBusinessInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVBusinessInfo.Location = new System.Drawing.Point(3, 3);
             this.DGVBusinessInfo.Name = "DGVBusinessInfo";
+            this.DGVBusinessInfo.ReadOnly = true;
             this.DGVBusinessInfo.Size = new System.Drawing.Size(561, 303);
             this.DGVBusinessInfo.TabIndex = 0;
             this.DGVBusinessInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVBusinessInfo_CellClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // contactDataGridViewTextBoxColumn
-            // 
-            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
-            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
-            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
             // 
             // IsActive
             // 
             this.IsActive.DataPropertyName = "IsActive";
             this.IsActive.HeaderText = "Active";
             this.IsActive.Name = "IsActive";
-            // 
-            // businessModelBindingSource
-            // 
-            this.businessModelBindingSource.DataSource = typeof(SimpleBilling.Model.BusinessModel);
+            this.IsActive.ReadOnly = true;
             // 
             // BaseLayout
             // 
@@ -330,6 +305,38 @@
             this.BtnActivate.UseVisualStyleBackColor = false;
             this.BtnActivate.Click += new System.EventHandler(this.BtnActivate_Click);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contactDataGridViewTextBoxColumn
+            // 
+            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
+            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
+            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            this.contactDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // businessModelBindingSource
+            // 
+            this.businessModelBindingSource.DataSource = typeof(SimpleBilling.Model.BusinessModel);
+            // 
             // BusinessInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -345,11 +352,11 @@
             this.Text = "Business Info";
             this.Load += new System.EventHandler(this.BusinessInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVBusinessInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessModelBindingSource)).EndInit();
             this.BaseLayout.ResumeLayout(false);
             this.CRUDLayout.ResumeLayout(false);
             this.CRUDLayout.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.businessModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

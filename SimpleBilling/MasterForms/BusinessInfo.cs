@@ -1,13 +1,9 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -17,6 +13,7 @@ namespace SimpleBilling.MasterForms
         public BusinessInfo()
         {
             InitializeComponent();
+            DGVLoad();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -43,8 +40,8 @@ namespace SimpleBilling.MasterForms
             {
                 businessModelBindingSource.DataSource = db.BusinessModels.Where(c=>c.IsDeleted==false).ToList();
             }
-            DGVBusinessInfo_CellFormatting();
             BtnActivate.Enabled = false;
+            DGVBusinessInfo_CellFormatting();
         }
 
         private void BtnActivate_Click(object sender, EventArgs e)
@@ -131,7 +128,6 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {

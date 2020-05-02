@@ -264,6 +264,12 @@
     <Compile Include="Model\UserTypeConfigurations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\Receipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Receipt.Designer.cs">
+      <DependentUpon>Receipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Val\Validation.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -385,6 +391,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report\Receipt.resx">
+      <DependentUpon>Receipt.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SimpleBilling.Model.BusinessModel.datasource" />
     <None Include="Properties\DataSources\SimpleBilling.Model.Category.datasource" />

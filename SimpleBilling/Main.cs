@@ -154,5 +154,41 @@ namespace SimpleBilling
             };
             InvoiceGRN.Show();
         }
+
+        private void quickSaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(POS))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            POS pos = new POS(string.Empty)
+            {
+                MdiParent = this
+            };
+            pos.Show();
+        }
+
+        private void ManageBusinessInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(BusinessInfo))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            BusinessInfo BusinessInfo = new BusinessInfo()
+            {
+                MdiParent = this
+            };
+            BusinessInfo.Show();
+        }
     }
 }

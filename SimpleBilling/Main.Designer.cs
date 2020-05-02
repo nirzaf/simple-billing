@@ -44,6 +44,7 @@
             this.pendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +70,8 @@
             this.ManageStockToolStripMenuItem,
             this.ManageEmployeesToolStripMenuItem,
             this.ManageShelvesToolStripMenuItem,
-            this.ManageCategoryToolStripMenuItem});
+            this.ManageCategoryToolStripMenuItem,
+            this.ManageBusinessInfoToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(76, 23);
@@ -79,14 +81,14 @@
             // 
             this.ManageItemsToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManageItemsToolStripMenuItem.Name = "ManageItemsToolStripMenuItem";
-            this.ManageItemsToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageItemsToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageItemsToolStripMenuItem.Text = "Manage Items";
             this.ManageItemsToolStripMenuItem.Click += new System.EventHandler(this.ManageItemsToolStripMenuItem_Click);
             // 
             // ManageSuppliersToolStripMenuItem
             // 
             this.ManageSuppliersToolStripMenuItem.Name = "ManageSuppliersToolStripMenuItem";
-            this.ManageSuppliersToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageSuppliersToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageSuppliersToolStripMenuItem.Text = "Manage Suppliers";
             this.ManageSuppliersToolStripMenuItem.Click += new System.EventHandler(this.ManageSuppliersToolStripMenuItem_Click);
             // 
@@ -94,35 +96,35 @@
             // 
             this.ManageCustomersToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManageCustomersToolStripMenuItem.Name = "ManageCustomersToolStripMenuItem";
-            this.ManageCustomersToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageCustomersToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageCustomersToolStripMenuItem.Text = "Manage Customers";
             this.ManageCustomersToolStripMenuItem.Click += new System.EventHandler(this.ManageCustomersToolStripMenuItem_Click);
             // 
             // ManageStockToolStripMenuItem
             // 
             this.ManageStockToolStripMenuItem.Name = "ManageStockToolStripMenuItem";
-            this.ManageStockToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageStockToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageStockToolStripMenuItem.Text = "Manage GRN";
             this.ManageStockToolStripMenuItem.Click += new System.EventHandler(this.ManageStockToolStripMenuItem_Click);
             // 
             // ManageEmployeesToolStripMenuItem
             // 
             this.ManageEmployeesToolStripMenuItem.Name = "ManageEmployeesToolStripMenuItem";
-            this.ManageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageEmployeesToolStripMenuItem.Text = "Manage Employees";
             this.ManageEmployeesToolStripMenuItem.Click += new System.EventHandler(this.ManageEmployeesToolStripMenuItem_Click);
             // 
             // ManageShelvesToolStripMenuItem
             // 
             this.ManageShelvesToolStripMenuItem.Name = "ManageShelvesToolStripMenuItem";
-            this.ManageShelvesToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageShelvesToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageShelvesToolStripMenuItem.Text = "Manage Shelves";
             this.ManageShelvesToolStripMenuItem.Click += new System.EventHandler(this.ManageShelvesToolStripMenuItem_Click);
             // 
             // ManageCategoryToolStripMenuItem
             // 
             this.ManageCategoryToolStripMenuItem.Name = "ManageCategoryToolStripMenuItem";
-            this.ManageCategoryToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.ManageCategoryToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.ManageCategoryToolStripMenuItem.Text = "Manage Category";
             this.ManageCategoryToolStripMenuItem.Click += new System.EventHandler(this.ManageCategoryToolStripMenuItem_Click);
             // 
@@ -177,6 +179,14 @@
             this.quickSaleToolStripMenuItem.Name = "quickSaleToolStripMenuItem";
             this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.quickSaleToolStripMenuItem.Text = "Quick Sale";
+            this.quickSaleToolStripMenuItem.Click += new System.EventHandler(this.quickSaleToolStripMenuItem_Click);
+            // 
+            // ManageBusinessInfoToolStripMenuItem
+            // 
+            this.ManageBusinessInfoToolStripMenuItem.Name = "ManageBusinessInfoToolStripMenuItem";
+            this.ManageBusinessInfoToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.ManageBusinessInfoToolStripMenuItem.Text = "Manage Business Info";
+            this.ManageBusinessInfoToolStripMenuItem.Click += new System.EventHandler(this.ManageBusinessInfoToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -217,5 +227,6 @@
         private System.Windows.Forms.ToolStripMenuItem voidReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pendingReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManageBusinessInfoToolStripMenuItem;
     }
 }
