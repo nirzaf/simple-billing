@@ -636,6 +636,7 @@
             this.BtnPrint.TabIndex = 6;
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
+            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
             // 
             // tableLayoutPanel3
             // 

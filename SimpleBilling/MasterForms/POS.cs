@@ -1,4 +1,5 @@
 ﻿using SimpleBilling.Model;
+using SimpleBilling.Report;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -630,6 +631,12 @@ namespace SimpleBilling.MasterForms
             {
                 Info.Mes("Please Select an item to delete");
             }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            Receipt rpt = new Receipt(LblReceiptNo.Text);
+            rpt.Show();
         }
     }
 }
