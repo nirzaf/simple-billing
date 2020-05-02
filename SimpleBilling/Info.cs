@@ -9,5 +9,11 @@ namespace SimpleBilling
         {
             MessageBox.Show(mes);
         }
+
+        public static DateTime Today()
+        {
+            DateTime Today = DateTime.Today;
+            return Today;
+        }
     }
 }

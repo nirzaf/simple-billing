@@ -20,7 +20,8 @@ namespace SimpleBilling
             //Application.Run(new BusinessInfo());
             //Application.Run(new ManageVehicles());
             //Application.Run(new ManageCategory());
-            Application.Run(new ManageItems());
+            //Application.Run(new ManageItems());
+            Application.Run(new ManageVehicles());
             //Application.Run(new ManageShelves());
             //Application.Run(new LoadReceipt());
         }
