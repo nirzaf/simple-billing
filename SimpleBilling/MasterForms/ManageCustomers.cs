@@ -24,7 +24,7 @@ namespace SimpleBilling
             CRUDPanel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                customersBindingSource1.DataSource = db.Customers.ToList();
+                customersBindingSource1.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -65,11 +65,13 @@ namespace SimpleBilling
                         if (cat.CustomerId == 0)
                         {
                             db.Entry(cat).State = EntityState.Added;
+                            cat.CreatedDate = DateTime.Now;
                             Info("Customer Added");
                         }
                         else
                         {
                             db.Entry(cat).State = EntityState.Modified;
+                            cat.UpdatedDate = DateTime.Now;
                             Info("Customer Modified");
                         }
                         db.SaveChanges();
@@ -102,7 +104,10 @@ namespace SimpleBilling
                         {
                             if (db.Entry(cus).State == EntityState.Detached)
                                 db.Set<Customers>().Attach(cus);
-                            db.Entry(cus).State = EntityState.Deleted;
+                            cus.IsDeleted = true;
+                            cus.UpdatedDate = DateTime.Now;
+                            db.Entry(cus).State = EntityState.Modified;
+                            cus.UpdatedDate = DateTime.Now;
                             db.SaveChanges();
                             Info("Customer Deleted Successfully");
                         }
@@ -125,7 +130,7 @@ namespace SimpleBilling
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             TxtName.Focus();
-            Customers cus = customersBindingSource1.Current as Customers;
+            _ = customersBindingSource1.Current as Customers;
         }
     }
 }

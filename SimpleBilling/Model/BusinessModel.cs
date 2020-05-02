@@ -20,7 +20,5 @@ namespace SimpleBilling.Model
         public string Contact { get; set; }
         [DefaultValue(false)]
         public bool IsActive { get; set; }
-        [DefaultValue(false)]
-        public bool IsDeleted { get; set; }
     }
 }

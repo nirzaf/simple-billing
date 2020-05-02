@@ -11,8 +11,6 @@ namespace SimpleBilling.Model
         [Required]
         [MaxLength(150)]
         public string ShelfName { get; set; }
-        [DefaultValue(false)]
-        public bool IsDeleted { get; set; }
         public virtual ICollection<Item> Items { get; set; }
     }
 }

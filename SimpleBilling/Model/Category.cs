@@ -7,10 +7,8 @@ namespace SimpleBilling.Model
     {
         [Key]
         public int CategoryId { get; set; }
-
         [MaxLength(150)]
         public string CategoryName { get; set; }
-
         public virtual ICollection<Item> Items { get; set; }
     }
 }

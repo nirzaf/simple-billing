@@ -264,6 +264,18 @@
     <Compile Include="Migrations\202005012013569_billing20.designer.cs">
       <DependentUpon>202005012013569_billing20.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005022032218_newBilling.cs" />
+    <Compile Include="Migrations\202005022032218_newBilling.designer.cs">
+      <DependentUpon>202005022032218_newBilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005022039204_newBilling1.cs" />
+    <Compile Include="Migrations\202005022039204_newBilling1.designer.cs">
+      <DependentUpon>202005022039204_newBilling1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005022103076_newBilling2.cs" />
+    <Compile Include="Migrations\202005022103076_newBilling2.designer.cs">
+      <DependentUpon>202005022103076_newBilling2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\BillingContext.cs" />
@@ -401,6 +413,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005012013569_billing20.resx">
       <DependentUpon>202005012013569_billing20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005022032218_newBilling.resx">
+      <DependentUpon>202005022032218_newBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005022039204_newBilling1.resx">
+      <DependentUpon>202005022039204_newBilling1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005022103076_newBilling2.resx">
+      <DependentUpon>202005022103076_newBilling2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

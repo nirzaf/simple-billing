@@ -91,11 +91,13 @@ namespace SimpleBilling.MasterForms
                             db.Set<BusinessModel>().Attach(model);
                         if (model.Id == 0)
                         {
+                            model.CreatedDate = DateTime.Now;
                             db.Entry(model).State = EntityState.Added;
                             Info.Mes("Business Info Added");
                         }
                         else
                         {
+                            model.UpdatedDate = DateTime.Now;
                             db.Entry(model).State = EntityState.Modified;
                             Info.Mes("Business Info Modified");
                         }
@@ -138,6 +140,7 @@ namespace SimpleBilling.MasterForms
                             model.IsDeleted = true;
                             if (db.Entry(model).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(model);
+                            model.UpdatedDate = DateTime.Now;
                             db.Entry(model).State = EntityState.Modified;
                             db.SaveChanges();
                             Info.Mes("Business Info Deleted Successfully");

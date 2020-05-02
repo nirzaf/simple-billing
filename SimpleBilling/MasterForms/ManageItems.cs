@@ -64,6 +64,7 @@ namespace SimpleBilling.MasterForms
                     if (db.Entry(items).State == EntityState.Detached)
                         db.Set<Item>().Attach(items);
                     db.Entry(items).State = EntityState.Added;
+                    items.CreatedDate = DateTime.Now;
                     db.SaveChanges();
                     Info("Item Added Successfully");                   
                 }
@@ -80,6 +81,7 @@ namespace SimpleBilling.MasterForms
                         result.Categories = cat;
                         if (db.Entry(result).State == EntityState.Detached)
                             db.Set<Item>().Attach(result);
+                        result.UpdatedDate = DateTime.Now;
                         db.Entry(result).State = EntityState.Modified;
                         db.SaveChanges();
                         Info("Item Modified Successfully");
@@ -200,7 +202,10 @@ namespace SimpleBilling.MasterForms
 
                         if (items != null)
                         {
-                            db.Entry(items).State = EntityState.Deleted;
+                            items.IsDeleted = true;
+                            items.UpdatedDate = DateTime.Now;
+                            db.Entry(items).State = EntityState.Modified;
+                            items.UpdatedDate = DateTime.Now;
                             db.SaveChanges();
                             Info("Item Deleted Successfully");
                         }

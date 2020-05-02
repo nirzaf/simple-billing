@@ -200,12 +200,13 @@ namespace SimpleBilling.MasterForms
 
                         result.SubTotal = (result.UnitCost * Convert.ToSingle(result.Quantity)) - result.Discount;
                         db.Entry(result).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                     else
                     {
                         db.Entry(details).State = EntityState.Added;
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
                     if (details.GRN_Id != 0)
                     {
                         LoadDetails(GRN_Code);
@@ -247,6 +248,7 @@ namespace SimpleBilling.MasterForms
 
                     if (db.Entry(header).State == EntityState.Detached)
                         db.Set<GRNHeader>().Attach(header);
+                    header.UpdatedDate = DateTime.Now;
                     db.Entry(header).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -303,6 +305,7 @@ namespace SimpleBilling.MasterForms
                     Result.IsDeleted = false;
                     if (db.Entry(Result).State == EntityState.Detached)
                         db.Set<GRNDetails>().Attach(Result);
+                    Result.UpdatedDate = DateTime.Now;
                     db.Entry(Result).State = EntityState.Modified;
                     db.SaveChanges();
                     LoadDetails(GRN_Code);
@@ -329,6 +332,7 @@ namespace SimpleBilling.MasterForms
                                 item.StockQty += Qty;
                                 if (db1.Entry(item).State == EntityState.Detached)
                                     db1.Set<Item>().Attach(item);
+                                item.UpdatedDate = DateTime.Now;
                                 db1.Entry(item).State = EntityState.Modified;
                                 db1.SaveChanges();
                             }
@@ -339,6 +343,7 @@ namespace SimpleBilling.MasterForms
                     Result.Status = 3;
                     if (db.Entry(Result).State == EntityState.Detached)
                         db.Set<GRNHeader>().Attach(Result);
+                    Result.UpdatedDate = DateTime.Now;
                     db.Entry(Result).State = EntityState.Modified;
                     db.SaveChanges();
                     LoadDetails(GRN_Code);

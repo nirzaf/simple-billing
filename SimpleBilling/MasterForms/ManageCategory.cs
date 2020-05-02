@@ -24,7 +24,7 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                categoryBindingSource.DataSource = db.Categories.ToList();
+                categoryBindingSource.DataSource = db.Categories.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -57,7 +57,9 @@ namespace SimpleBilling.MasterForms
                         {
                             if (db.Entry(cat).State == EntityState.Detached)
                                 db.Set<Category>().Attach(cat);
-                            db.Entry(cat).State = EntityState.Deleted;
+                            cat.IsDeleted = true;
+                            cat.UpdatedDate = DateTime.Now;
+                            db.Entry(cat).State = EntityState.Modified;                            
                             db.SaveChanges();
                             Info("Category Deleted Successfully");
                         }
@@ -93,11 +95,13 @@ namespace SimpleBilling.MasterForms
                         if (cat.CategoryId == 0)
                         {
                             db.Entry(cat).State = EntityState.Added;
+                            cat.CreatedDate = DateTime.Now;
                             Info("Category Added");
                         }
                         else
                         {
                             db.Entry(cat).State = EntityState.Modified;
+                            cat.UpdatedDate = DateTime.Now;
                             Info("Category Modified");
                         }
                         db.SaveChanges();

@@ -21,8 +21,6 @@ namespace SimpleBilling.Model
         public float SellingPrice { get; set; }
         [DefaultValue(false)]
         public bool IsService { get; set; }
-        [DefaultValue(false)]
-        public bool IsDeleted { get; set; }
         public virtual Category Categories { get; set; }
         public virtual Shelf Shelfs { get; set; }
     }

@@ -24,7 +24,7 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                supplierBindingSource.DataSource = db.Suppliers.ToList();
+                supplierBindingSource.DataSource = db.Suppliers.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -69,7 +69,9 @@ namespace SimpleBilling.MasterForms
                         {
                             if (db.Entry(sup).State == EntityState.Detached)
                                 db.Set<Supplier>().Attach(sup);
-                            db.Entry(sup).State = EntityState.Deleted;
+                            sup.UpdatedDate = DateTime.Now;
+                            sup.IsDeleted = true;
+                            db.Entry(sup).State = EntityState.Modified;
                             db.SaveChanges();
                             Info("Supplier Deleted Successfully");
                         }
@@ -104,11 +106,13 @@ namespace SimpleBilling.MasterForms
                             db.Set<Supplier>().Attach(sup);
                         if (sup.SupplierId == 0)
                         {
+                            sup.CreatedDate = DateTime.Now;
                             db.Entry(sup).State = EntityState.Added;
                             Info("Supplier Added");
                         }
                         else
                         {
+                            sup.UpdatedDate = DateTime.Now;
                             db.Entry(sup).State = EntityState.Modified;
                             Info("Supplier Modified");
                         }

@@ -24,7 +24,7 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                employeeBindingSource1.DataSource = db.Employee.ToList();
+                employeeBindingSource1.DataSource = db.Employee.Where(c=>c.IsDeleted==false).ToList();
             }
         }
 
@@ -58,7 +58,10 @@ namespace SimpleBilling.MasterForms
                         {
                             if (db.Entry(emp).State == EntityState.Detached)
                                 db.Set<Employee>().Attach(emp);
-                            db.Entry(emp).State = EntityState.Deleted;
+                            emp.IsDeleted = true;
+                            emp.UpdatedDate = DateTime.Now;
+                            db.Entry(emp).State = EntityState.Modified;
+                            emp.UpdatedDate = DateTime.Now;
                             db.SaveChanges();
                             Info("Employee Deleted Successfully");
                         }
@@ -97,11 +100,13 @@ namespace SimpleBilling.MasterForms
                         if (emp.EmployeeId == 0)
                         {
                             db.Entry(emp).State = EntityState.Added;
+                            emp.CreatedDate = DateTime.Now;
                             Info("Employee Added");
                         }
                         else
                         {
                             db.Entry(emp).State = EntityState.Modified;
+                            emp.UpdatedDate = DateTime.Now;
                             Info("Employee Modified");
                         }
                         db.SaveChanges();
