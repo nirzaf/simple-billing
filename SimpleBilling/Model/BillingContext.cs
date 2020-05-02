@@ -1,25 +1,21 @@
-﻿using System;
-using System.IO;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SimpleBilling.Model
 {
     public class BillingContext : DbContext
     {
-        private readonly string _connectionString;
-
-        public BillingContext(string ConnectionString)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            _connectionString = ConnectionString;
+            optionsBuilder.UseSqlServer("Data Source = VL2\\SQLEXPRESS; Initial Catalog = Billing; Integrated Security = True;").EnableSensitiveDataLogging(true);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder OptionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var builder = new ConfigurationBuilder()
-                            .SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
-            var configuration = OptionsBuilder.
-            OptionsBuilder.UseSqlServer(OnConfiguring);
+            modelBuilder.Entity<Supplier>()
+                .HasIndex(p => p.Name)
+                .IsUnique(true);
+
+            modelBuilder.Entity<ReceiptBody>().HasKey(c => new { c.ReceiptNo, c.ProductId });
         }
 
         //public BillingContext() : base("name=con"){ }

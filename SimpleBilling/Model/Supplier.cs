@@ -8,7 +8,6 @@ namespace SimpleBilling.Model
         [Key]
         public int SupplierId { get; set; }
         [MaxLength(150)]
-        [Required][Index(IsUnique = true)]
         public string Name { get; set; }
         [MaxLength(25)]
         [Required]
