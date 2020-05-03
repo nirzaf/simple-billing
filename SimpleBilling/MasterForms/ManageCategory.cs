@@ -35,9 +35,8 @@ namespace SimpleBilling.MasterForms
         {
             PanelCRUD.Enabled = true;
             BtnSave.Enabled = true;
-            categoryBindingSource.Add(new Category());
-            categoryBindingSource.MoveLast();
             TxtCategoryName.Focus();
+            TxtCatId.ReadOnly = false;
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
@@ -135,6 +134,9 @@ namespace SimpleBilling.MasterForms
             if (DGVCategories.SelectedRows.Count > 0)
             {
                 CatId = Convert.ToInt32(DGVCategories.SelectedRows[0].Cells[0].Value + string.Empty);
+                TxtCatId.Text = DGVCategories.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtCategoryName.Text = DGVCategories.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtCatId.ReadOnly = true;
             }
         }
     }
