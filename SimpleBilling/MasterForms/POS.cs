@@ -81,6 +81,10 @@ namespace SimpleBilling.MasterForms
             {
                 Info.Mes(ex.Message);
             }
+            finally
+            {
+                LblReceiptNo.Text = GenReceiptNo();
+            }
         }
 
         private void DGVLoad(string ReceiptNo)
@@ -702,6 +706,11 @@ namespace SimpleBilling.MasterForms
         private void ChkVehicle_MouseHover(object sender, EventArgs e)
         {
             ToolTip();
+        }
+
+        private void BtnNewReceipt_Click(object sender, EventArgs e)
+        {
+            Reset();
         }
     }
 }

@@ -84,6 +84,7 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSaveAsQutation = new System.Windows.Forms.Button();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.BtnNewReceipt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -683,6 +684,7 @@
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.BtnLoadReceipt, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.BtnNewReceipt, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(1033, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -744,6 +746,18 @@
             this.BtnSaveAsQutation.TabIndex = 1;
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
+            // 
+            // BtnNewReceipt
+            // 
+            this.BtnNewReceipt.BackColor = System.Drawing.Color.White;
+            this.BtnNewReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnNewReceipt.Location = new System.Drawing.Point(3, 73);
+            this.BtnNewReceipt.Name = "BtnNewReceipt";
+            this.BtnNewReceipt.Size = new System.Drawing.Size(103, 64);
+            this.BtnNewReceipt.TabIndex = 21;
+            this.BtnNewReceipt.Text = "New Receipt";
+            this.BtnNewReceipt.UseVisualStyleBackColor = false;
+            this.BtnNewReceipt.Click += new System.EventHandler(this.BtnNewReceipt_Click);
             // 
             // POS
             // 
@@ -829,5 +843,6 @@
         private System.Windows.Forms.ComboBox CmbVehicles;
         private System.Windows.Forms.CheckBox ChkVehicle;
         private System.Windows.Forms.ToolTip ToolTipHelp;
+        private System.Windows.Forms.Button BtnNewReceipt;
     }
 }
