@@ -101,21 +101,24 @@ namespace SimpleBilling.MasterForms
                     var r = db.Vehicles.FirstOrDefault(c => c.VehicleNo == TxtVehicleNumber.Text.Trim() && c.IsDeleted == false);
                     if (r == null)
                     {
-                        Vehicle v = new Vehicle
+                        if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtServiceMileageDue))
                         {
-                            VehicleNo = TxtVehicleNumber.Text,
-                            Brand = TxtBrand.Text,
-                            Model = TxtModel.Text,
-                            Type = TxtType.Text,
-                            CurrentMileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
-                            ServiceMileageDue = Convert.ToInt32(TxtServiceMileageDue.Text.Trim()),
-                            AddedDate = Info.Today(),
-                            CreatedDate = Info.Today(),
-                            OwnerId = Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString())
-                        };
-                        if (db.Entry(v).State == EntityState.Detached)
-                            db.Set<Vehicle>().Attach(v);
-                        db.Entry(v).State = EntityState.Added;
+                            Vehicle v = new Vehicle
+                            {
+                                VehicleNo = TxtVehicleNumber.Text,
+                                Brand = TxtBrand.Text,
+                                Model = TxtModel.Text,
+                                Type = TxtType.Text,
+                                CurrentMileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
+                                ServiceMileageDue = Convert.ToInt32(TxtServiceMileageDue.Text.Trim()),
+                                AddedDate = Info.Today(),
+                                CreatedDate = Info.Today(),
+                                OwnerId = Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString())
+                            };
+                            if (db.Entry(v).State == EntityState.Detached)
+                                db.Set<Vehicle>().Attach(v);
+                            db.Entry(v).State = EntityState.Added;
+                        }
                     }
                     else
                     {
@@ -191,6 +194,11 @@ namespace SimpleBilling.MasterForms
                 TxtServiceMileageDue.Text = DGVVehicles.SelectedRows[0].Cells[5].Value + string.Empty;
                 CmbVehicleOwner.Text = DGVVehicles.SelectedRows[0].Cells[7].Value + string.Empty;
             }
+        }
+
+        private void TxtCurrentMileage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Info.IsInt(e);
         }
     }
 }

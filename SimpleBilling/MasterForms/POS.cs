@@ -320,8 +320,8 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
-                        if (Val.Validation.IsEmpty(TxtDiscount) && Val.Validation.IsEmpty(TxtQuantity) 
-                            && Val.Validation.IsEmpty(TxtSubTotal) && Val.Validation.IsEmpty(TxtNetTotal)) 
+                        if (Info.IsEmpty(TxtDiscount) && Info.IsEmpty(TxtQuantity) 
+                            && Info.IsEmpty(TxtSubTotal) && Info.IsEmpty(TxtNetTotal)) 
                         {
                             Result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
                             Result.Discount += Convert.ToSingle(TxtDiscount.Text.Trim());
@@ -465,8 +465,8 @@ namespace SimpleBilling.MasterForms
 
         private void TxtDiscount_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Val.Validation.IsEmpty(TxtDiscount) 
-                && Val.Validation.IsEmpty(TxtQuantity) && Val.Validation.IsEmpty(TxtUnitPrice))
+            if (Info.IsEmpty(TxtDiscount) 
+                && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitPrice))
             {
                 UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                 Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
@@ -476,7 +476,7 @@ namespace SimpleBilling.MasterForms
                 NetTotal = Total - Discount;
                 TxtNetTotal.Text = NetTotal.ToString();
             }
-            else if (Val.Validation.IsEmpty(TxtQuantity) && Val.Validation.IsEmpty(TxtUnitPrice))
+            else if (Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitPrice))
             {
                 UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                 Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
@@ -553,7 +553,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Val.Validation.IsDecimal(e, TxtUnitPrice);
+            Info.IsDecimal(e, TxtUnitPrice);
         }
 
         private void BtnLoadReceipt_Click(object sender, EventArgs e)
@@ -567,7 +567,7 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                if (Val.Validation.IsEmpty(TxtUnitPrice) && Val.Validation.IsEmpty(TxtQuantity))
+                if (Info.IsEmpty(TxtUnitPrice) && Info.IsEmpty(TxtQuantity))
                 {
                     UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
                     Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
@@ -599,12 +599,12 @@ namespace SimpleBilling.MasterForms
 
         private void TxtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Val.Validation.IsInt(e);
+            Info.IsInt(e);
         }
 
         private void TxtDiscount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Val.Validation.IsDecimal(e, TxtDiscount);
+            Info.IsDecimal(e, TxtDiscount);
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)

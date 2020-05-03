@@ -218,6 +218,7 @@
             this.TxtCurrentMileage.Name = "TxtCurrentMileage";
             this.TxtCurrentMileage.Size = new System.Drawing.Size(582, 26);
             this.TxtCurrentMileage.TabIndex = 9;
+            this.TxtCurrentMileage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCurrentMileage_KeyPress);
             // 
             // label6
             // 
