@@ -26,14 +26,6 @@ namespace SimpleBilling.MasterForms
         private float BalanceAmount;
         private int ReceiptStatus;
 
-        public string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-        private readonly Random random = new Random();
-
         public POS(string Receipt)
         {
             InitializeComponent();
@@ -48,10 +40,12 @@ namespace SimpleBilling.MasterForms
             DGVLoad(ReceiptNo);
             PrintAndVoid();
             TxtCustomer.Focus();
+            ChkVehicle.Enabled = false;
         }
 
         private void PrintAndVoid()
         {
+            LblReceiptNo.Text = GenReceiptNo();
             if (ReceiptStatus != 2 || LblReceiptStatus.Text != "Completed")
             {
                 BtnPrint.Enabled = true;
@@ -61,6 +55,31 @@ namespace SimpleBilling.MasterForms
             {
                 BtnPrint.Enabled = true;
                 BtnVoid.Enabled = true;
+            }
+        }
+
+        private void Reset()
+        {
+            try
+            {
+                TxtCustomer.Text = string.Empty;
+                TxtBarCode.Text = string.Empty;
+                TxtProductCode.Text = string.Empty;
+                TxtUnitPrice.Text = string.Empty;
+                TxtQuantity.Text = string.Empty;
+                TxtDiscount.Text = string.Empty;
+                TxtSubTotal.Text = string.Empty;
+                TxtNetTotal.Text = string.Empty;
+                LblReceiptStatus.Text = "Idle";
+                LblSubTotal.Text = "0";
+                LblNetTotal.Text = "0";
+                LblBalanceAmount.Text = "0";
+                TxtGivenAmount.Text = string.Empty;
+                LblTotalDiscount.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
             }
         }
 
@@ -122,9 +141,22 @@ namespace SimpleBilling.MasterForms
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
                 }
-                LblReceiptNo.Text = (RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
+                LblReceiptNo.Text = GenReceiptNo();
             }
         }
+
+        private string GenReceiptNo()
+        {
+            return (RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
+        }
+
+        public string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private readonly Random random = new Random();
 
         private string GetReceiptStatus(int Status)
         {
@@ -163,9 +195,17 @@ namespace SimpleBilling.MasterForms
                         var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId).ToList();
                         if (vehicles != null)
                         {
+                            CmbVehicles.Enabled = true;
                             CmbVehicles.ValueMember = "VehicleNo";
                             CmbVehicles.DisplayMember = "Brand";
                             CmbVehicles.DataSource = vehicles;
+                            ChkVehicle.Enabled = true;
+                        }
+                        else
+                        {
+                            ChkVehicle.Enabled = false;
+                            CmbVehicles.Enabled = false;
+                            ChkVehicle.Checked = false;
                         }
                     }
                 }
@@ -654,8 +694,14 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TxtCustomer_TextChanged(object sender, EventArgs e)
+        private void ToolTip()
         {
+            ToolTipHelp.SetToolTip(ChkVehicle, "Include this vehicle in receipt");
+        }
+
+        private void ChkVehicle_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip();
         }
     }
 }
