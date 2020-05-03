@@ -47,47 +47,51 @@ namespace SimpleBilling.MasterForms
                 int ShelveId = Convert.ToInt32(CmbShelf.SelectedValue.ToString());
                 Category cat = db.Categories.FirstOrDefault(s => s.CategoryId == CatId);
                 Shelf shelve = db.Shelves.FirstOrDefault(c => c.ShelfId == ShelveId);
-
-                Item items = new Item
+                if (Info.IsEmpty(TxtItemId) && Info.IsEmpty(TxtUnitCost))
                 {
-                    Id = Convert.ToInt32(TxtItemId.Text.Trim()),
-                    Code = TxtItemCode.Text.Trim(),
-                    ItemName = TxtItemName.Text.Trim(),
-                    Unit = TxtUnit.Text.Trim(),
-                    UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
-                    Barcode = TxtBarcode.Text.Trim(),
-                    Categories = cat,
-                    IsService = GetIsService()
-                };
-
-                if (items.Id == 0)
-                {
-                    if (db.Entry(items).State == EntityState.Detached)
-                        db.Set<Item>().Attach(items);
-                    db.Entry(items).State = EntityState.Added;
-                    items.CreatedDate = DateTime.Today;
-                    db.SaveChanges();
-                    Info("Item Added Successfully");                   
-                }
-                else
-                {
-                    var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
-                    if (result != null)
+                    Item items = new Item
                     {
-                        result.Code= TxtItemCode.Text.Trim();
-                        result.ItemName = TxtItemName.Text.Trim();
-                        result.Unit = TxtUnit.Text.Trim();
-                        result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
-                        result.Barcode = TxtBarcode.Text.Trim();
-                        result.Categories = cat;
-                        result.IsService = GetIsService();
-                        if (db.Entry(result).State == EntityState.Detached)
-                            db.Set<Item>().Attach(result);
-                        result.UpdatedDate = DateTime.Now;
-                        db.Entry(result).State = EntityState.Modified;
+                        Id = Convert.ToInt32(TxtItemId.Text.Trim()),
+                        Code = TxtItemCode.Text.Trim(),
+                        ItemName = TxtItemName.Text.Trim(),
+                        Unit = TxtUnit.Text.Trim(),
+                        UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
+                        Barcode = TxtBarcode.Text.Trim(),
+                        Categories = cat,
+                        IsService = GetIsService()
+                    };
+
+ 
+                    if (items.Id == 0)
+                    {
+                        if (db.Entry(items).State == EntityState.Detached)
+                            db.Set<Item>().Attach(items);
+                        db.Entry(items).State = EntityState.Added;
+                        items.CreatedDate = DateTime.Today;
                         db.SaveChanges();
-                        Info("Item Modified Successfully");
-                    }                   
+                        Info.Mes("Item Added Successfully");                   
+                    }
+                
+                    else
+                    {
+                        var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
+                        if (result != null)
+                        {
+                            result.Code= TxtItemCode.Text.Trim();
+                            result.ItemName = TxtItemName.Text.Trim();
+                            result.Unit = TxtUnit.Text.Trim();
+                            result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                            result.Barcode = TxtBarcode.Text.Trim();
+                            result.Categories = cat;
+                            result.IsService = GetIsService();
+                            if (db.Entry(result).State == EntityState.Detached)
+                                db.Set<Item>().Attach(result);
+                            result.UpdatedDate = DateTime.Now;
+                            db.Entry(result).State = EntityState.Modified;
+                            db.SaveChanges();
+                            Info.Mes("Item Modified Successfully");
+                        }                   
+                    }
                 }
             }
         }
@@ -108,7 +112,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Info(ex.Message.ToString());
+                Info.Mes(ex.Message.ToString());
             }
             finally 
             {
@@ -157,11 +161,6 @@ namespace SimpleBilling.MasterForms
         private void TimerMessage_Tick(object sender, EventArgs e)
         {
             LblMessage.Text = string.Empty;
-        }
-
-        private void Info(string Message)
-        {
-            LblMessage.Text = Message;
         }
 
         private void DGVItems_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -223,14 +222,14 @@ namespace SimpleBilling.MasterForms
                             db.Entry(items).State = EntityState.Modified;
                             items.UpdatedDate = DateTime.Now;
                             db.SaveChanges();
-                            Info("Item Deleted Successfully");
+                            Info.Mes("Item Deleted Successfully");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Info(ex.ToString());
+                Info.Mes(ex.ToString());
             }
             finally
             {

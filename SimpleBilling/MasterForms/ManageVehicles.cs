@@ -118,23 +118,28 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(v).State == EntityState.Detached)
                                 db.Set<Vehicle>().Attach(v);
                             db.Entry(v).State = EntityState.Added;
+                            db.SaveChanges();
                         }
                     }
                     else
                     {
-                        r.Brand = TxtBrand.Text;
-                        r.Type = TxtType.Text;
-                        r.Model = TxtModel.Text;
-                        r.CurrentMileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
-                        r.ServiceMileageDue = Convert.ToInt32(TxtServiceMileageDue.Text.Trim());
-                        r.AddedDate = Info.Today();
-                        r.UpdatedDate = Info.Today();
-                        r.OwnerId = Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString());
-                        if (db.Entry(r).State == EntityState.Detached)
-                            db.Set<Vehicle>().Attach(r);
-                        db.Entry(r).State = EntityState.Modified;
+                        if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtServiceMileageDue))
+                        {
+                            r.Brand = TxtBrand.Text;
+                            r.Type = TxtType.Text;
+                            r.Model = TxtModel.Text;
+                            r.CurrentMileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                            r.ServiceMileageDue = Convert.ToInt32(TxtServiceMileageDue.Text.Trim());
+                            r.AddedDate = Info.Today();
+                            r.UpdatedDate = Info.Today();
+                            r.OwnerId = Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString());
+                            if (db.Entry(r).State == EntityState.Detached)
+                                db.Set<Vehicle>().Attach(r);
+                            db.Entry(r).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
                     }
-                    db.SaveChanges();
+                 
                 }
             }
             catch (Exception)
