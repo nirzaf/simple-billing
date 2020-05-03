@@ -26,8 +26,13 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                var data = db.Categories.Where(c => c.IsDeleted == false).ToList();
-                DGVCategories.DataSource = data;
+                var dgv = (from cat in db.Categories.Where(c => c.IsDeleted == false)
+                           select new
+                           {
+                               cat.CategoryId,
+                               cat.CategoryName
+                           }).ToList();
+                DGVCategories.DataSource = dgv;
             }
         }
 

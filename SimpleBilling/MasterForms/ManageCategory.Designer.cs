@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageCategory));
             this.DGVCategories = new System.Windows.Forms.DataGridView();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCategoryName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,10 +42,8 @@
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
-            this.TimerLabel = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -56,12 +52,10 @@
             // 
             // DGVCategories
             // 
-            this.DGVCategories.AutoGenerateColumns = false;
             this.DGVCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCategories.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVCategories.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.DGVCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVCategories.DataSource = this.categoryBindingSource;
             this.DGVCategories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVCategories.Location = new System.Drawing.Point(5, 4);
             this.DGVCategories.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -91,7 +85,6 @@
             // 
             // TxtCategoryName
             // 
-            this.TxtCategoryName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryName", true));
             this.TxtCategoryName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtCategoryName.Location = new System.Drawing.Point(139, 51);
             this.TxtCategoryName.Name = "TxtCategoryName";
@@ -113,7 +106,6 @@
             // 
             // TxtCatId
             // 
-            this.TxtCatId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categoryBindingSource, "CategoryId", true));
             this.TxtCatId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtCatId.Location = new System.Drawing.Point(139, 3);
             this.TxtCatId.Name = "TxtCatId";
@@ -225,11 +217,6 @@
             this.LblMessage.TabIndex = 3;
             this.LblMessage.Text = "label3";
             // 
-            // TimerLabel
-            // 
-            this.TimerLabel.Enabled = true;
-            this.TimerLabel.Interval = 6000;
-            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -265,7 +252,6 @@
             this.Text = "Manage Category";
             this.Load += new System.EventHandler(this.ManageCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategories)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.PanelCRUD.ResumeLayout(false);
@@ -290,9 +276,7 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
-        private System.Windows.Forms.BindingSource categoryBindingSource;
         private System.Windows.Forms.Label LblMessage;
-        private System.Windows.Forms.Timer TimerLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
