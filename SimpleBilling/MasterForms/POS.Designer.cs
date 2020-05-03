@@ -54,7 +54,6 @@
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
             this.LblReceiptNo = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -82,6 +81,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSaveAsQutation = new System.Windows.Forms.Button();
+            this.CmbVehicles = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -146,9 +146,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.TxtQuantity, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.CmbAddItem, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 1);
@@ -164,7 +162,9 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtSubTotal, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.TxtNetTotal, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.LblReceiptNo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CmbVehicles, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
@@ -192,22 +192,21 @@
             // 
             // TxtCustomer
             // 
-            this.TxtCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtCustomer.Location = new System.Drawing.Point(771, 3);
+            this.TxtCustomer.Location = new System.Drawing.Point(515, 3);
             this.TxtCustomer.Name = "TxtCustomer";
             this.TxtCustomer.Size = new System.Drawing.Size(250, 26);
             this.TxtCustomer.TabIndex = 1;
+            this.TxtCustomer.TextChanged += new System.EventHandler(this.TxtCustomer_TextChanged);
             this.TxtCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyUp);
             // 
             // LblCustomer
             // 
             this.LblCustomer.AutoSize = true;
             this.LblCustomer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.LblCustomer.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblCustomer.ForeColor = System.Drawing.Color.Lime;
-            this.LblCustomer.Location = new System.Drawing.Point(515, 0);
+            this.LblCustomer.Location = new System.Drawing.Point(259, 0);
             this.LblCustomer.Name = "LblCustomer";
-            this.LblCustomer.Size = new System.Drawing.Size(250, 19);
+            this.LblCustomer.Size = new System.Drawing.Size(84, 19);
             this.LblCustomer.TabIndex = 17;
             this.LblCustomer.Text = "Customer";
             // 
@@ -373,17 +372,6 @@
             this.LblReceiptNo.Size = new System.Drawing.Size(250, 19);
             this.LblReceiptNo.TabIndex = 18;
             this.LblReceiptNo.Text = "ReceiptNo";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(259, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(250, 19);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Customer Name";
             // 
             // DGVReceiptBody
             // 
@@ -581,6 +569,7 @@
             // 
             // CmbPaymentOption
             // 
+            this.CmbPaymentOption.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CmbPaymentOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbPaymentOption.FormattingEnabled = true;
             this.CmbPaymentOption.Items.AddRange(new object[] {
@@ -710,6 +699,7 @@
             // BtnDelete
             // 
             this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(103, 65);
@@ -721,6 +711,7 @@
             // BtnSaveAsQutation
             // 
             this.BtnSaveAsQutation.BackColor = System.Drawing.Color.White;
+            this.BtnSaveAsQutation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSaveAsQutation.ForeColor = System.Drawing.Color.Black;
             this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 216);
             this.BtnSaveAsQutation.Name = "BtnSaveAsQutation";
@@ -728,6 +719,16 @@
             this.BtnSaveAsQutation.TabIndex = 1;
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
+            // 
+            // CmbVehicles
+            // 
+            this.CmbVehicles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbVehicles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbVehicles.FormattingEnabled = true;
+            this.CmbVehicles.Location = new System.Drawing.Point(771, 3);
+            this.CmbVehicles.Name = "CmbVehicles";
+            this.CmbVehicles.Size = new System.Drawing.Size(250, 27);
+            this.CmbVehicles.TabIndex = 19;
             // 
             // POS
             // 
@@ -740,7 +741,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "POS";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POS";
             this.Load += new System.EventHandler(this.POS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
@@ -802,7 +802,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button BtnLoadReceipt;
         private System.Windows.Forms.Label label12;
@@ -812,5 +811,6 @@
         private System.Windows.Forms.ComboBox CmbPaymentOption;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button BtnSaveAsQutation;
+        private System.Windows.Forms.ComboBox CmbVehicles;
     }
 }

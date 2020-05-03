@@ -159,6 +159,14 @@ namespace SimpleBilling.MasterForms
                     if (data != null)
                     {
                         LblCustomer.Text = data.Name;
+
+                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId).ToList();
+                        if (vehicles != null)
+                        {
+                            CmbVehicles.ValueMember = "VehicleNo";
+                            CmbVehicles.DisplayMember = "Brand";
+                            CmbVehicles.DataSource = vehicles;
+                        }
                     }
                 }
             }
@@ -644,6 +652,10 @@ namespace SimpleBilling.MasterForms
             {
                 TxtGivenAmount.Enabled = true;
             }
+        }
+
+        private void TxtCustomer_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
