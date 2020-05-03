@@ -48,6 +48,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.OData.Edm, Version=7.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OData.Edm.7.6.4\lib\portable-net45+win8+wpa81\Microsoft.OData.Edm.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -284,6 +287,18 @@
     <Compile Include="Migrations\202005022226108_newBilling4.designer.cs">
       <DependentUpon>202005022226108_newBilling4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005022351203_newBilling5.cs" />
+    <Compile Include="Migrations\202005022351203_newBilling5.designer.cs">
+      <DependentUpon>202005022351203_newBilling5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005022354500_newBilling6.cs" />
+    <Compile Include="Migrations\202005022354500_newBilling6.designer.cs">
+      <DependentUpon>202005022354500_newBilling6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005030008036_newBilling7.cs" />
+    <Compile Include="Migrations\202005030008036_newBilling7.designer.cs">
+      <DependentUpon>202005030008036_newBilling7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\BillingContext.cs" />
@@ -437,6 +452,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005022226108_newBilling4.resx">
       <DependentUpon>202005022226108_newBilling4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005022351203_newBilling5.resx">
+      <DependentUpon>202005022351203_newBilling5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005022354500_newBilling6.resx">
+      <DependentUpon>202005022354500_newBilling6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005030008036_newBilling7.resx">
+      <DependentUpon>202005030008036_newBilling7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

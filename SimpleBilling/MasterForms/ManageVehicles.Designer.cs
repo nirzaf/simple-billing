@@ -182,20 +182,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(3, 93);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 19);
+            this.label3.Size = new System.Drawing.Size(199, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "Type";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(3, 186);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 19);
+            this.label4.Size = new System.Drawing.Size(199, 33);
             this.label4.TabIndex = 3;
             this.label4.Text = "Owner Name";
             // 
@@ -220,20 +222,22 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(3, 124);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 19);
+            this.label6.Size = new System.Drawing.Size(199, 31);
             this.label6.TabIndex = 10;
             this.label6.Text = "Current Mileage";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(3, 155);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(163, 19);
+            this.label7.Size = new System.Drawing.Size(199, 31);
             this.label7.TabIndex = 11;
             this.label7.Text = "Service Mileage Due";
             // 
@@ -264,6 +268,7 @@
             // 
             // DGVVehicles
             // 
+            this.DGVVehicles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVVehicles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVVehicles.Location = new System.Drawing.Point(3, 65);

@@ -17,6 +17,22 @@ namespace SimpleBilling.MasterForms
 
         private void ManageVehicles_Load(object sender, EventArgs e)
         {
+            try
+            {
+                LoadDGV();
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                Save();
+            }
+        }
+
+        private void LoadDGV()
+        {
             using (BillingContext db = new BillingContext())
             {
                 var data = (from ve in db.Vehicles.Where(c => c.IsDeleted == false)
@@ -71,6 +87,7 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
+                LoadDGV();
                 Save();
             }
         }
@@ -88,6 +105,7 @@ namespace SimpleBilling.MasterForms
                         {
                             VehicleNo = TxtVehicleNumber.Text,
                             Brand = TxtBrand.Text,
+                            Model = TxtModel.Text,
                             Type = TxtType.Text,
                             CurrentMileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
                             ServiceMileageDue = Convert.ToInt32(TxtServiceMileageDue.Text.Trim()),
@@ -103,21 +121,26 @@ namespace SimpleBilling.MasterForms
                     {
                         r.Brand = TxtBrand.Text;
                         r.Type = TxtType.Text;
+                        r.Model = TxtModel.Text;
                         r.CurrentMileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
                         r.ServiceMileageDue = Convert.ToInt32(TxtServiceMileageDue.Text.Trim());
                         r.AddedDate = Info.Today();
                         r.UpdatedDate = Info.Today();
                         r.OwnerId = Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString());
+                        if (db.Entry(r).State == EntityState.Detached)
+                            db.Set<Vehicle>().Attach(r);
+                        db.Entry(r).State = EntityState.Modified;
                     }
                     db.SaveChanges();
                 }
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-             Info.Mes(ex.Message);
+                throw;
             }
             finally
             {
+                LoadDGV();
                 Save();
             }
         }
@@ -128,6 +151,7 @@ namespace SimpleBilling.MasterForms
             BtnCancel.Enabled = false;
             BtnAdd.Enabled = true;
             BtnEdit.Enabled = true;
+            tableLayoutPanel2.Enabled = false;
         }
         private void BtnEdit_Click(object sender, EventArgs e)
         {
@@ -151,6 +175,7 @@ namespace SimpleBilling.MasterForms
             BtnCancel.Enabled = false;
             BtnAdd.Enabled = true;
             BtnEdit.Enabled = true;
+            tableLayoutPanel2.Enabled = false;
         }
 
         private void DGVVehicles_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -158,7 +183,13 @@ namespace SimpleBilling.MasterForms
             if (DGVVehicles.SelectedRows.Count > 0)
             {
                 VehicleNum = DGVVehicles.SelectedRows[0].Cells[0].Value + string.Empty;
-
+                TxtVehicleNumber.Text = VehicleNum;
+                TxtBrand.Text = DGVVehicles.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtModel.Text = DGVVehicles.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtType.Text = DGVVehicles.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtCurrentMileage.Text = DGVVehicles.SelectedRows[0].Cells[4].Value + string.Empty;
+                TxtServiceMileageDue.Text = DGVVehicles.SelectedRows[0].Cells[5].Value + string.Empty;
+                CmbVehicleOwner.Text = DGVVehicles.SelectedRows[0].Cells[7].Value + string.Empty;
             }
         }
     }

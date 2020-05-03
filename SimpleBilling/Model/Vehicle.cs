@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleBilling.Model
 {
@@ -22,7 +17,7 @@ namespace SimpleBilling.Model
         public int CurrentMileage { get; set; }
         [DefaultValue(0)]
         public int ServiceMileageDue { get; set; }
-        public int? OwnerId { get; set; }
+        public int OwnerId { get; set; }
         public DateTime AddedDate { get; set; }
     }
 }

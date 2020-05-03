@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.OData.Edm;
+using System;
 using System.Windows.Forms;
 
 namespace SimpleBilling
@@ -12,7 +13,8 @@ namespace SimpleBilling
 
         public static DateTime Today()
         {
-            DateTime Today = DateTime.Today;
+            string Date = DateTime.Today.ToShortDateString();
+            DateTime Today = Convert.ToDateTime(Date);
             return Today;
         }
     }
