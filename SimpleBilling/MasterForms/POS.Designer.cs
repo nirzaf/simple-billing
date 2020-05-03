@@ -71,6 +71,8 @@
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.CmbPaymentOption = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -79,8 +81,7 @@
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDelete = new System.Windows.Forms.Button();
-            this.CmbPaymentOption = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.BtnSaveAsQutation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -329,6 +330,7 @@
             this.TxtUnitPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUnitPrice.Location = new System.Drawing.Point(771, 59);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
+            this.TxtUnitPrice.ReadOnly = true;
             this.TxtUnitPrice.Size = new System.Drawing.Size(250, 26);
             this.TxtUnitPrice.TabIndex = 12;
             this.TxtUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUnitPrice_KeyPress);
@@ -577,6 +579,31 @@
             this.label15.TabIndex = 14;
             this.label15.Text = "Balance Amount";
             // 
+            // CmbPaymentOption
+            // 
+            this.CmbPaymentOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbPaymentOption.FormattingEnabled = true;
+            this.CmbPaymentOption.Items.AddRange(new object[] {
+            "Cash",
+            "Card",
+            "Cheque",
+            "Credit"});
+            this.CmbPaymentOption.Location = new System.Drawing.Point(513, 3);
+            this.CmbPaymentOption.Name = "CmbPaymentOption";
+            this.CmbPaymentOption.Size = new System.Drawing.Size(164, 27);
+            this.CmbPaymentOption.TabIndex = 15;
+            this.CmbPaymentOption.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentOption_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.label16.Location = new System.Drawing.Point(323, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(182, 19);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "Select Payment Option";
+            // 
             // BtnVoid
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
@@ -668,6 +695,7 @@
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.BtnDelete, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.BtnSaveAsQutation, 0, 3);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 149);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -690,30 +718,16 @@
             this.BtnDelete.UseVisualStyleBackColor = false;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // CmbPaymentOption
+            // BtnSaveAsQutation
             // 
-            this.CmbPaymentOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbPaymentOption.FormattingEnabled = true;
-            this.CmbPaymentOption.Items.AddRange(new object[] {
-            "Cash",
-            "Card",
-            "Cheque",
-            "Credit"});
-            this.CmbPaymentOption.Location = new System.Drawing.Point(513, 3);
-            this.CmbPaymentOption.Name = "CmbPaymentOption";
-            this.CmbPaymentOption.Size = new System.Drawing.Size(164, 27);
-            this.CmbPaymentOption.TabIndex = 15;
-            this.CmbPaymentOption.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentOption_SelectedIndexChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.label16.Location = new System.Drawing.Point(323, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(182, 19);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "Select Payment Option";
+            this.BtnSaveAsQutation.BackColor = System.Drawing.Color.White;
+            this.BtnSaveAsQutation.ForeColor = System.Drawing.Color.Black;
+            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 216);
+            this.BtnSaveAsQutation.Name = "BtnSaveAsQutation";
+            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 67);
+            this.BtnSaveAsQutation.TabIndex = 1;
+            this.BtnSaveAsQutation.Text = "Print Quotation";
+            this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
             // 
             // POS
             // 
@@ -797,5 +811,6 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.ComboBox CmbPaymentOption;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button BtnSaveAsQutation;
     }
 }
