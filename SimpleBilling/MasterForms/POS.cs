@@ -33,6 +33,7 @@ namespace SimpleBilling.MasterForms
         }
 
         private readonly Random random = new Random();
+
         public POS(string Receipt)
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace SimpleBilling.MasterForms
                 BtnPrint.Enabled = true;
                 BtnVoid.Enabled = false;
             }
-            else if(ReceiptStatus == 2 || LblReceiptStatus.Text == "Completed") 
+            else if (ReceiptStatus == 2 || LblReceiptStatus.Text == "Completed")
             {
                 BtnPrint.Enabled = true;
                 BtnVoid.Enabled = true;
@@ -72,22 +73,22 @@ namespace SimpleBilling.MasterForms
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
                     var RptBody = (from body in db.ReceiptBodies.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
-                                join item in db.Items
-                                on body.ProductId equals item.Id
-                                select new
-                                {
-                                    item.Id,
-                                    item.Code,
-                                    item.ItemName,
-                                    body.UnitPrice,
-                                    body.Quantity,
-                                    body.SubTotal,
-                                    body.Discount,
-                                    body.NetTotal
-                                }).ToList();
+                                   join item in db.Items
+                                   on body.ProductId equals item.Id
+                                   select new
+                                   {
+                                       item.Id,
+                                       item.Code,
+                                       item.ItemName,
+                                       body.UnitPrice,
+                                       body.Quantity,
+                                       body.SubTotal,
+                                       body.Discount,
+                                       body.NetTotal
+                                   }).ToList();
                     DGVReceiptBody.DataSource = RptBody;
 
-                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
+                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo && c.IsQuotation == false)
                                      join cashier in db.Employee
                                      on header.Cashier equals cashier.EmployeeId
                                      select new
@@ -121,7 +122,7 @@ namespace SimpleBilling.MasterForms
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
                 }
-               LblReceiptNo.Text = (RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/",string.Empty).Replace(":",string.Empty);
+                LblReceiptNo.Text = (RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
             }
         }
 
@@ -131,22 +132,21 @@ namespace SimpleBilling.MasterForms
             {
                 return "On Process";
             }
-            else if (Status == 2) 
+            else if (Status == 2)
             {
                 return "Completed";
             }
-            else 
+            else
             {
                 return "Canceled";
             }
         }
 
         private void SystemTimer_Tick(object sender, EventArgs e)
-        {           
+        {
             LblDate.Text = DateTime.Now.ToShortDateString();
             LblTime.Text = DateTime.Now.ToLongTimeString();
         }
-
 
         private void TxtCustomer_KeyUp(object sender, KeyEventArgs e)
         {
@@ -275,7 +275,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from body in db.ReceiptBodies.Where(c =>c.ReceiptNo == ReceiptNo &&  c.Is_Deleted == false)
+                var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false)
                             join item in db.Items
                             on body.ProductId equals item.Id
                             select new
@@ -288,10 +288,9 @@ namespace SimpleBilling.MasterForms
                                 body.SubTotal,
                                 body.Discount,
                                 body.NetTotal
-
                             }).ToList();
-                DGVReceiptBody.DataSource = data; 
-           }
+                DGVReceiptBody.DataSource = data;
+            }
         }
 
         private void AddReceiptBody()
@@ -316,12 +315,12 @@ namespace SimpleBilling.MasterForms
                     {
                         if (db.Entry(body).State == EntityState.Detached)
                             db.Set<ReceiptBody>().Attach(body);
-                        db.Entry(body).State = EntityState.Added;                        
+                        db.Entry(body).State = EntityState.Added;
                     }
                     else
                     {
-                        if (Info.IsEmpty(TxtDiscount) && Info.IsEmpty(TxtQuantity) 
-                            && Info.IsEmpty(TxtSubTotal) && Info.IsEmpty(TxtNetTotal)) 
+                        if (Info.IsEmpty(TxtDiscount) && Info.IsEmpty(TxtQuantity)
+                            && Info.IsEmpty(TxtSubTotal) && Info.IsEmpty(TxtNetTotal))
                         {
                             Result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
                             Result.Discount += Convert.ToSingle(TxtDiscount.Text.Trim());
@@ -465,7 +464,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtDiscount_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Info.IsEmpty(TxtDiscount) 
+            if (Info.IsEmpty(TxtDiscount)
                 && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitPrice))
             {
                 UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
@@ -486,7 +485,6 @@ namespace SimpleBilling.MasterForms
                 TxtSubTotal.Text = Total.ToString();
             }
         }
-
 
         private void TxtGivenAmount_KeyUp(object sender, KeyEventArgs e)
         {
@@ -524,11 +522,12 @@ namespace SimpleBilling.MasterForms
                     result.Status = 0;
                     if (db.Entry(result).State == EntityState.Detached)
                         db.Set<ReceiptHeader>().Attach(result);
-                    db.Entry(result).State = EntityState.Modified;                    
+                    db.Entry(result).State = EntityState.Modified;
                 }
-               db.SaveChanges();
+                db.SaveChanges();
             }
         }
+
         private void Void()
         {
             try
@@ -641,7 +640,7 @@ namespace SimpleBilling.MasterForms
 
         private void CmbPaymentOption_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(CmbPaymentOption.Text))
+            if (!string.IsNullOrWhiteSpace(CmbPaymentOption.Text))
             {
                 TxtGivenAmount.Enabled = true;
             }
