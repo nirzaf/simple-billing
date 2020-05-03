@@ -37,6 +37,7 @@
             this.ManageEmployeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageShelvesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,7 @@
             this.pendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1362, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1354, 29);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,7 +72,8 @@
             this.ManageEmployeesToolStripMenuItem,
             this.ManageShelvesToolStripMenuItem,
             this.ManageCategoryToolStripMenuItem,
-            this.ManageBusinessInfoToolStripMenuItem});
+            this.ManageBusinessInfoToolStripMenuItem,
+            this.ManageVehicleToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(76, 23);
@@ -128,6 +130,13 @@
             this.ManageCategoryToolStripMenuItem.Text = "Manage Category";
             this.ManageCategoryToolStripMenuItem.Click += new System.EventHandler(this.ManageCategoryToolStripMenuItem_Click);
             // 
+            // ManageBusinessInfoToolStripMenuItem
+            // 
+            this.ManageBusinessInfoToolStripMenuItem.Name = "ManageBusinessInfoToolStripMenuItem";
+            this.ManageBusinessInfoToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.ManageBusinessInfoToolStripMenuItem.Text = "Manage Business Info";
+            this.ManageBusinessInfoToolStripMenuItem.Click += new System.EventHandler(this.ManageBusinessInfoToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -177,22 +186,22 @@
             // quickSaleToolStripMenuItem
             // 
             this.quickSaleToolStripMenuItem.Name = "quickSaleToolStripMenuItem";
-            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
             this.quickSaleToolStripMenuItem.Text = "Quick Sale";
             this.quickSaleToolStripMenuItem.Click += new System.EventHandler(this.quickSaleToolStripMenuItem_Click);
             // 
-            // ManageBusinessInfoToolStripMenuItem
+            // ManageVehicleToolStripMenuItem
             // 
-            this.ManageBusinessInfoToolStripMenuItem.Name = "ManageBusinessInfoToolStripMenuItem";
-            this.ManageBusinessInfoToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.ManageBusinessInfoToolStripMenuItem.Text = "Manage Business Info";
-            this.ManageBusinessInfoToolStripMenuItem.Click += new System.EventHandler(this.ManageBusinessInfoToolStripMenuItem_Click);
+            this.ManageVehicleToolStripMenuItem.Name = "ManageVehicleToolStripMenuItem";
+            this.ManageVehicleToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.ManageVehicleToolStripMenuItem.Text = "Manage Vehicle";
+            this.ManageVehicleToolStripMenuItem.Click += new System.EventHandler(this.ManageVehicleToolStripMenuItem_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1354, 733);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -228,5 +237,6 @@
         private System.Windows.Forms.ToolStripMenuItem pendingReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageBusinessInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManageVehicleToolStripMenuItem;
     }
 }

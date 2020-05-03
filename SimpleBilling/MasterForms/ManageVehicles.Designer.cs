@@ -274,6 +274,7 @@
             this.DGVVehicles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVVehicles.Location = new System.Drawing.Point(3, 65);
             this.DGVVehicles.Name = "DGVVehicles";
+            this.DGVVehicles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVVehicles.Size = new System.Drawing.Size(793, 231);
             this.DGVVehicles.TabIndex = 1;
             this.DGVVehicles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVVehicles_CellClick);

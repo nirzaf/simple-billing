@@ -190,5 +190,23 @@ namespace SimpleBilling
             };
             BusinessInfo.Show();
         }
+
+        private void ManageVehicleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageVehicles))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            ManageVehicles vehicle = new ManageVehicles()
+            {
+                MdiParent = this
+            };
+            vehicle.Show();
+        }
     }
 }
