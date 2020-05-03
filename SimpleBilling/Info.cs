@@ -12,6 +12,11 @@ namespace SimpleBilling
             MessageBox.Show(mes);
         }
 
+        public static void Required()
+        {
+            MessageBox.Show("Please make sure you have entered all the required fields");
+        }
+
         public static DateTime Today()
         {
             string Date = DateTime.Today.ToShortDateString();

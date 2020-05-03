@@ -61,7 +61,7 @@ namespace SimpleBilling.MasterForms
                         IsService = GetIsService()
                     };
 
- 
+
                     if (items.Id == 0)
                     {
                         if (db.Entry(items).State == EntityState.Detached)
@@ -69,15 +69,15 @@ namespace SimpleBilling.MasterForms
                         db.Entry(items).State = EntityState.Added;
                         items.CreatedDate = DateTime.Today;
                         db.SaveChanges();
-                        Info.Mes("Item Added Successfully");                   
+                        Info.Mes("Item Added Successfully");
                     }
-                
+
                     else
                     {
                         var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
                         if (result != null)
                         {
-                            result.Code= TxtItemCode.Text.Trim();
+                            result.Code = TxtItemCode.Text.Trim();
                             result.ItemName = TxtItemName.Text.Trim();
                             result.Unit = TxtUnit.Text.Trim();
                             result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
@@ -90,8 +90,12 @@ namespace SimpleBilling.MasterForms
                             db.Entry(result).State = EntityState.Modified;
                             db.SaveChanges();
                             Info.Mes("Item Modified Successfully");
-                        }                   
+                        }
                     }
+                }
+                else 
+                {
+                    Info.Required();
                 }
             }
         }

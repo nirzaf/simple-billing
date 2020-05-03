@@ -31,26 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadReceipt));
             this.DGVLoadReceipt = new System.Windows.Forms.DataGridView();
+            this.receiptHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.receiptNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDiscountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.netTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paidAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVLoadReceipt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVLoadReceipt
@@ -59,15 +51,6 @@
             this.DGVLoadReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVLoadReceipt.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVLoadReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVLoadReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.receiptNoDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn,
-            this.timeDataGridViewTextBoxColumn,
-            this.totalDiscountDataGridViewTextBoxColumn,
-            this.subTotalDataGridViewTextBoxColumn,
-            this.netTotalDataGridViewTextBoxColumn,
-            this.paidAmountDataGridViewTextBoxColumn,
-            this.balanceDataGridViewTextBoxColumn});
             this.DGVLoadReceipt.DataSource = this.receiptHeaderBindingSource;
             this.DGVLoadReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVLoadReceipt.Location = new System.Drawing.Point(3, 38);
@@ -162,58 +145,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1227, 46);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // receiptNoDataGridViewTextBoxColumn
-            // 
-            this.receiptNoDataGridViewTextBoxColumn.DataPropertyName = "ReceiptNo";
-            this.receiptNoDataGridViewTextBoxColumn.HeaderText = "Receipt No";
-            this.receiptNoDataGridViewTextBoxColumn.Name = "receiptNoDataGridViewTextBoxColumn";
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // timeDataGridViewTextBoxColumn
-            // 
-            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
-            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            // 
-            // totalDiscountDataGridViewTextBoxColumn
-            // 
-            this.totalDiscountDataGridViewTextBoxColumn.DataPropertyName = "TotalDiscount";
-            this.totalDiscountDataGridViewTextBoxColumn.HeaderText = "Total Discount";
-            this.totalDiscountDataGridViewTextBoxColumn.Name = "totalDiscountDataGridViewTextBoxColumn";
-            // 
-            // subTotalDataGridViewTextBoxColumn
-            // 
-            this.subTotalDataGridViewTextBoxColumn.DataPropertyName = "SubTotal";
-            this.subTotalDataGridViewTextBoxColumn.HeaderText = "Sub Total";
-            this.subTotalDataGridViewTextBoxColumn.Name = "subTotalDataGridViewTextBoxColumn";
-            // 
-            // netTotalDataGridViewTextBoxColumn
-            // 
-            this.netTotalDataGridViewTextBoxColumn.DataPropertyName = "NetTotal";
-            this.netTotalDataGridViewTextBoxColumn.HeaderText = "Net Total";
-            this.netTotalDataGridViewTextBoxColumn.Name = "netTotalDataGridViewTextBoxColumn";
-            // 
-            // paidAmountDataGridViewTextBoxColumn
-            // 
-            this.paidAmountDataGridViewTextBoxColumn.DataPropertyName = "PaidAmount";
-            this.paidAmountDataGridViewTextBoxColumn.HeaderText = "Paid Amount";
-            this.paidAmountDataGridViewTextBoxColumn.Name = "paidAmountDataGridViewTextBoxColumn";
-            // 
-            // balanceDataGridViewTextBoxColumn
-            // 
-            this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
-            this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
-            this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
-            // 
-            // receiptHeaderBindingSource
-            // 
-            this.receiptHeaderBindingSource.DataSource = typeof(SimpleBilling.Model.ReceiptHeader);
-            // 
             // LoadReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -229,11 +160,11 @@
             this.Text = "Load Receipt";
             this.Load += new System.EventHandler(this.LoadReceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVLoadReceipt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,14 +173,6 @@
 
         private System.Windows.Forms.DataGridView DGVLoadReceipt;
         private System.Windows.Forms.Button BtnLoadReceipt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn receiptNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalDiscountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subTotalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn netTotalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paidAmountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn balanceDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource receiptHeaderBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

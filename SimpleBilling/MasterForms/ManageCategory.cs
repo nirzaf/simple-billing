@@ -8,6 +8,8 @@ namespace SimpleBilling.MasterForms
 {
     public partial class ManageCategory : Form
     {
+        private int CatId;
+
         public ManageCategory()
         {
             InitializeComponent();
@@ -24,7 +26,8 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                categoryBindingSource.DataSource = db.Categories.Where(c => c.IsDeleted == false).ToList();
+                var data = db.Categories.Where(c => c.IsDeleted == false).ToList();
+                DGVCategories.DataSource = data;
             }
         }
 
@@ -53,64 +56,72 @@ namespace SimpleBilling.MasterForms
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        if (categoryBindingSource.Current is Category cat)
+                        var cat = db.Categories.FirstOrDefault(c => c.CategoryId == CatId);
+
+                        if (cat != null)
                         {
                             if (db.Entry(cat).State == EntityState.Detached)
                                 db.Set<Category>().Attach(cat);
                             cat.IsDeleted = true;
-                            cat.UpdatedDate = DateTime.Now;
-                            db.Entry(cat).State = EntityState.Modified;                            
+                            cat.UpdatedDate = Info.Today();
+                            db.Entry(cat).State = EntityState.Modified;
                             db.SaveChanges();
-                            Info("Category Deleted Successfully");
+                            Info.Mes("Category Deleted Successfully");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Info(ex.ToString());
+                Info.Mes(ex.ToString());
             }
             finally
             {
                 DGVCategories.Refresh();
                 LoadDGV();
             }
-        }
-
-        private void Info(string Message)
-        {
-            LblMessage.Text = Message;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (Info.IsEmpty(TxtCatId)) CatId = Convert.ToInt32(TxtCatId.Text.Trim());
                 using (BillingContext db = new BillingContext())
                 {
-                    if (categoryBindingSource.Current is Category cat)
+                    Category cat = db.Categories.FirstOrDefault(c => c.CategoryId == CatId);
+                    if (cat == null)
                     {
-                        if (db.Entry(cat).State == EntityState.Detached)
-                            db.Set<Category>().Attach(cat);
-                        if (cat.CategoryId == 0)
+                        cat.CategoryId = CatId;
+                        if (Info.IsEmpty(TxtCategoryName))
                         {
+                            cat.CategoryName = TxtCategoryName.Text.Trim();
+                            cat.CreatedDate = Info.Today();
+                            if (db.Entry(cat).State == EntityState.Detached)
+                                db.Set<Category>().Attach(cat);
                             db.Entry(cat).State = EntityState.Added;
-                            cat.CreatedDate = DateTime.Now;
-                            Info("Category Added");
+                            Info.Mes("Category Added");
+                            db.SaveChanges();
                         }
-                        else
+                    }
+                    else
+                    {
+                        if (Info.IsEmpty(TxtCategoryName))
                         {
+                            cat.CategoryName = TxtCategoryName.Text.Trim();
+                            cat.UpdatedDate = Info.Today();
+                            if (db.Entry(cat).State == EntityState.Detached)
+                                db.Set<Category>().Attach(cat);
                             db.Entry(cat).State = EntityState.Modified;
-                            cat.UpdatedDate = DateTime.Now;
-                            Info("Category Modified");
+                            Info.Mes("Category Modified");
+                            db.SaveChanges();
                         }
-                        db.SaveChanges();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Info(ex.ToString());
+                Info.Mes(ex.Message);
             }
             finally
             {
@@ -119,9 +130,12 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TimerLabel_Tick(object sender, EventArgs e)
+        private void DGVCategories_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblMessage.Text = "";
+            if (DGVCategories.SelectedRows.Count > 0)
+            {
+                CatId = Convert.ToInt32(DGVCategories.SelectedRows[0].Cells[0].Value + string.Empty);
+            }
         }
     }
 }
