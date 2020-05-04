@@ -95,7 +95,7 @@ namespace SimpleBilling.MasterForms
                 {
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
-                    var RptBody = (from body in db.ReceiptBodies.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
+                    var RptBody = (from body in db.ReceiptBodies.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
                                    join item in db.Items
                                    on body.ProductId equals item.Id
                                    select new
@@ -111,7 +111,7 @@ namespace SimpleBilling.MasterForms
                                    }).ToList();
                     DGVReceiptBody.DataSource = RptBody;
 
-                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo && c.IsQuotation == false)
+                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo && c.IsQuotation == false)
                                      join cashier in db.Employee
                                      on header.Cashier equals cashier.EmployeeId
                                      select new
@@ -327,7 +327,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false)
+                var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && c.IsDeleted == false)
                             join item in db.Items
                             on body.ProductId equals item.Id
                             select new
@@ -438,7 +438,7 @@ namespace SimpleBilling.MasterForms
                     {
                         using (BillingContext db = new BillingContext())
                         {
-                            var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false);
+                            var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.IsDeleted == false);
                             if (Result != null)
                             {
                                 if (Result.Status == 1)
@@ -568,7 +568,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.Is_Deleted == false && c.Status == 2);
+                var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.IsDeleted == false && c.Status == 2);
                 if (result != null)
                 {
                     result.Status = 0;
@@ -666,10 +666,10 @@ namespace SimpleBilling.MasterForms
                 string ReceiptNo = LblReceiptNo.Text.Trim();
                 using (BillingContext db = new BillingContext())
                 {
-                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == ReceiptNo && c.Is_Deleted == false);
+                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == ReceiptNo && c.IsDeleted == false);
                     if (Item != null)
                     {
-                        Item.Is_Deleted = true;
+                        Item.IsDeleted = true;
                         if (db.Entry(Item).State == EntityState.Detached)
                             db.Set<ReceiptBody>().Attach(Item);
                         db.Entry(Item).State = EntityState.Modified;

@@ -9,6 +9,7 @@ namespace SimpleBilling.MasterForms
     public partial class LoadReceipt : Form
     {
         private string ReceiptNo;
+
         public LoadReceipt()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false)
+                var data = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false)
                             join cashier in db.Employee
                             on header.Cashier equals cashier.EmployeeId
                             select new
@@ -49,6 +50,7 @@ namespace SimpleBilling.MasterForms
                 ReceiptNo = DGVLoadReceipt.SelectedRows[0].Cells[0].Value + string.Empty;
             }
         }
+
         private void BtnLoadReceipt_Click(object sender, EventArgs e)
         {
             LoadReceiptFromDGV();

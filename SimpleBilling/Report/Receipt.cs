@@ -18,28 +18,29 @@ namespace SimpleBilling.Report
         {
             //RVReceipt.RefreshReport();
         }
+
         private void RVLoad(string ReceiptNo)
         {
-            using (BillingContext db = new BillingContext()) 
+            using (BillingContext db = new BillingContext())
             {
-                var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
-                            join cashier in db.Employee
-                            on header.Cashier equals cashier.EmployeeId
-                            select new
-                            {
-                                header.Date,
-                                header.Time,
-                                header.TotalDiscount,
-                                header.SubTotal,
-                                header.NetTotal,
-                                header.PaidAmount,
-                                header.Balance,
-                                header.Status,
-                                Cashier = cashier.EmployeeName
-                            }).ToList();
+                var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
+                                 join cashier in db.Employee
+                                 on header.Cashier equals cashier.EmployeeId
+                                 select new
+                                 {
+                                     header.Date,
+                                     header.Time,
+                                     header.TotalDiscount,
+                                     header.SubTotal,
+                                     header.NetTotal,
+                                     header.PaidAmount,
+                                     header.Balance,
+                                     header.Status,
+                                     Cashier = cashier.EmployeeName
+                                 }).ToList();
                 ReceiptHeader.DataSource = RptHeader;
 
-                var RptBody = (from body in db.ReceiptBodies.Where(c => c.Is_Deleted == false && c.ReceiptNo == ReceiptNo)
+                var RptBody = (from body in db.ReceiptBodies.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
                                join item in db.Items
                                on body.ProductId equals item.Id
                                select new

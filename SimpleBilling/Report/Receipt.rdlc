@@ -1119,8 +1119,8 @@
           <DataField>Discount</DataField>
           <rd:TypeName>System.Single</rd:TypeName>
         </Field>
-        <Field Name="Is_Deleted">
-          <DataField>Is_Deleted</DataField>
+        <Field Name="IsDeleted">
+          <DataField>IsDeleted</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="NetTotal">
@@ -1172,8 +1172,8 @@
           <DataField>Date</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Is_Deleted">
-          <DataField>Is_Deleted</DataField>
+        <Field Name="IsDeleted">
+          <DataField>IsDeleted</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="NetTotal">
