@@ -111,6 +111,7 @@
             this.BtnUpdate.TabIndex = 1;
             this.BtnUpdate.Text = "Update Stock Count";
             this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // tableLayoutPanel2
             // 

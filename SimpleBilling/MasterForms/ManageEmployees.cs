@@ -24,7 +24,7 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                employeeBindingSource1.DataSource = db.Employee.Where(c=>c.IsDeleted==false).ToList();
+                employeeBindingSource1.DataSource = db.Employee.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -78,10 +78,12 @@ namespace SimpleBilling.MasterForms
                 LoadDGV();
             }
         }
+
         private void Info(string Message)
         {
             LblMessage.Text = Message;
         }
+
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = false;
