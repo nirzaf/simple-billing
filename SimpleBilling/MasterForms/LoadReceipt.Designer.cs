@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadReceipt));
             this.DGVLoadReceipt = new System.Windows.Forms.DataGridView();
-            this.receiptHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -39,7 +37,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DGVLoadReceipt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -47,11 +44,9 @@
             // 
             // DGVLoadReceipt
             // 
-            this.DGVLoadReceipt.AutoGenerateColumns = false;
             this.DGVLoadReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVLoadReceipt.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVLoadReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVLoadReceipt.DataSource = this.receiptHeaderBindingSource;
             this.DGVLoadReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVLoadReceipt.Location = new System.Drawing.Point(3, 38);
             this.DGVLoadReceipt.Name = "DGVLoadReceipt";
@@ -160,7 +155,6 @@
             this.Text = "Load Receipt";
             this.Load += new System.EventHandler(this.LoadReceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVLoadReceipt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.receiptHeaderBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -173,7 +167,6 @@
 
         private System.Windows.Forms.DataGridView DGVLoadReceipt;
         private System.Windows.Forms.Button BtnLoadReceipt;
-        private System.Windows.Forms.BindingSource receiptHeaderBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
