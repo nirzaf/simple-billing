@@ -57,7 +57,7 @@
             this.BaseLayout.RowCount = 2;
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.352941F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.64706F));
-            this.BaseLayout.Size = new System.Drawing.Size(696, 476);
+            this.BaseLayout.Size = new System.Drawing.Size(767, 476);
             this.BaseLayout.TabIndex = 0;
             // 
             // DGVManageStocks
@@ -68,7 +68,7 @@
             this.DGVManageStocks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVManageStocks.Location = new System.Drawing.Point(3, 37);
             this.DGVManageStocks.Name = "DGVManageStocks";
-            this.DGVManageStocks.Size = new System.Drawing.Size(544, 436);
+            this.DGVManageStocks.Size = new System.Drawing.Size(601, 436);
             this.DGVManageStocks.TabIndex = 0;
             this.DGVManageStocks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVManageStocks_CellClick);
             // 
@@ -79,7 +79,7 @@
             this.tableLayoutPanel1.Controls.Add(this.TxtUpdateStockCount, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.BtnUpdate, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(553, 37);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(610, 37);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.880734F));
@@ -90,7 +90,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(140, 436);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(154, 436);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // TxtUpdateStockCount
@@ -98,7 +98,7 @@
             this.TxtUpdateStockCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUpdateStockCount.Location = new System.Drawing.Point(3, 3);
             this.TxtUpdateStockCount.Name = "TxtUpdateStockCount";
-            this.TxtUpdateStockCount.Size = new System.Drawing.Size(134, 26);
+            this.TxtUpdateStockCount.Size = new System.Drawing.Size(148, 26);
             this.TxtUpdateStockCount.TabIndex = 0;
             // 
             // BtnUpdate
@@ -107,7 +107,7 @@
             this.BtnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnUpdate.Location = new System.Drawing.Point(3, 33);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(134, 45);
+            this.BtnUpdate.Size = new System.Drawing.Size(148, 45);
             this.BtnUpdate.TabIndex = 1;
             this.BtnUpdate.Text = "Update Stock ";
             this.BtnUpdate.UseVisualStyleBackColor = false;
@@ -125,15 +125,15 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(544, 28);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(601, 28);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // TxtFilterProducts
             // 
             this.TxtFilterProducts.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtFilterProducts.Location = new System.Drawing.Point(161, 3);
+            this.TxtFilterProducts.Location = new System.Drawing.Point(178, 3);
             this.TxtFilterProducts.Name = "TxtFilterProducts";
-            this.TxtFilterProducts.Size = new System.Drawing.Size(380, 26);
+            this.TxtFilterProducts.Size = new System.Drawing.Size(420, 26);
             this.TxtFilterProducts.TabIndex = 0;
             this.TxtFilterProducts.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterProducts_KeyUp);
             // 
@@ -144,7 +144,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 19);
+            this.label1.Size = new System.Drawing.Size(169, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Filter Products";
             // 
@@ -153,7 +153,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(696, 476);
+            this.ClientSize = new System.Drawing.Size(767, 476);
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
