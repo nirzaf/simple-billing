@@ -80,11 +80,11 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
+            this.BtnNewReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSaveAsQutation = new System.Windows.Forms.Button();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.BtnNewReceipt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -706,6 +706,18 @@
             this.BtnLoadReceipt.UseVisualStyleBackColor = false;
             this.BtnLoadReceipt.Click += new System.EventHandler(this.BtnLoadReceipt_Click);
             // 
+            // BtnNewReceipt
+            // 
+            this.BtnNewReceipt.BackColor = System.Drawing.Color.White;
+            this.BtnNewReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnNewReceipt.Location = new System.Drawing.Point(3, 73);
+            this.BtnNewReceipt.Name = "BtnNewReceipt";
+            this.BtnNewReceipt.Size = new System.Drawing.Size(103, 64);
+            this.BtnNewReceipt.TabIndex = 21;
+            this.BtnNewReceipt.Text = "New Receipt";
+            this.BtnNewReceipt.UseVisualStyleBackColor = false;
+            this.BtnNewReceipt.Click += new System.EventHandler(this.BtnNewReceipt_Click);
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
@@ -746,18 +758,6 @@
             this.BtnSaveAsQutation.TabIndex = 1;
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
-            // 
-            // BtnNewReceipt
-            // 
-            this.BtnNewReceipt.BackColor = System.Drawing.Color.White;
-            this.BtnNewReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnNewReceipt.Location = new System.Drawing.Point(3, 73);
-            this.BtnNewReceipt.Name = "BtnNewReceipt";
-            this.BtnNewReceipt.Size = new System.Drawing.Size(103, 64);
-            this.BtnNewReceipt.TabIndex = 21;
-            this.BtnNewReceipt.Text = "New Receipt";
-            this.BtnNewReceipt.UseVisualStyleBackColor = false;
-            this.BtnNewReceipt.Click += new System.EventHandler(this.BtnNewReceipt_Click);
             // 
             // POS
             // 

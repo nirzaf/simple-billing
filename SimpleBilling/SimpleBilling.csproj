@@ -157,6 +157,12 @@
     <Compile Include="MasterForms\ManageShelves.Designer.cs">
       <DependentUpon>ManageShelves.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageStock.Designer.cs">
+      <DependentUpon>ManageStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageShelves.resx">
       <DependentUpon>ManageShelves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageStock.resx">
+      <DependentUpon>ManageStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageSupplier.resx">
       <DependentUpon>ManageSupplier.cs</DependentUpon>
