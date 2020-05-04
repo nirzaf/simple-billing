@@ -82,10 +82,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(553, 37);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.880734F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.69725F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.30275F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.66055F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -105,9 +105,9 @@
             // 
             this.BtnUpdate.BackColor = System.Drawing.Color.White;
             this.BtnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnUpdate.Location = new System.Drawing.Point(3, 57);
+            this.BtnUpdate.Location = new System.Drawing.Point(3, 33);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(134, 48);
+            this.BtnUpdate.Size = new System.Drawing.Size(134, 45);
             this.BtnUpdate.TabIndex = 1;
             this.BtnUpdate.Text = "Update Stock ";
             this.BtnUpdate.UseVisualStyleBackColor = false;
