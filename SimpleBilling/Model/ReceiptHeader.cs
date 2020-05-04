@@ -36,9 +36,6 @@ namespace SimpleBilling.Model
         public int Status { get; set; }
 
         [DefaultValue(false)]
-        public bool Is_Deleted { get; set; }
-
-        [DefaultValue(false)]
         public bool IsQuotation { get; set; }
     }
 }
