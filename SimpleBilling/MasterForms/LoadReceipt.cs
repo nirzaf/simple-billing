@@ -69,5 +69,60 @@ namespace SimpleBilling.MasterForms
             LoadReceiptFromDGV();
             OpenOPS();
         }
+
+        private void TxtFilterReceipts_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string FilterByReceipt = TxtFilterReceipts.Text.Trim();
+                if (FilterByReceipt.Length > 0)
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var data = (from header in db.ReceiptHeaders
+                                    .Where(c => c.IsDeleted == false && c.IsQuotation == false
+                                    && c.ReceiptNo == FilterByReceipt)
+                                    join cashier in db.Employee
+                                    on header.Cashier equals cashier.EmployeeId
+                                    select new
+                                    {
+                                        header.ReceiptNo,
+                                        header.Date,
+                                        header.Time,
+                                        cashier.EmployeeName,
+                                        header.SubTotal,
+                                        header.TotalDiscount,
+                                        header.PaidAmount,
+                                        header.Balance,
+                                        header.PaymentType
+                                    }).ToList();
+                        DGVLoadReceipt.DataSource = data;
+                    }
+                }
+                else
+                {
+                    var data = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.IsQuotation == false)
+                                join cashier in db.Employee
+                                on header.Cashier equals cashier.EmployeeId
+                                select new
+                                {
+                                    header.ReceiptNo,
+                                    header.Date,
+                                    header.Time,
+                                    cashier.EmployeeName,
+                                    header.SubTotal,
+                                    header.TotalDiscount,
+                                    header.PaidAmount,
+                                    header.Balance,
+                                    header.PaymentType
+                                }).ToList();
+                    DGVLoadReceipt.DataSource = data;
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
     }
 }
