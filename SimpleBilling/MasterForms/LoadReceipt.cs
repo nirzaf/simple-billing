@@ -75,13 +75,13 @@ namespace SimpleBilling.MasterForms
             try
             {
                 string FilterByReceipt = TxtFilterReceipts.Text.Trim();
-                if (FilterByReceipt.Length > 0)
+                using (BillingContext db = new BillingContext())
                 {
-                    using (BillingContext db = new BillingContext())
+                    if (FilterByReceipt.Length > 0)
                     {
                         var data = (from header in db.ReceiptHeaders
                                     .Where(c => c.IsDeleted == false && c.IsQuotation == false
-                                    && c.ReceiptNo == FilterByReceipt)
+                                    && c.ReceiptNo.Contains(FilterByReceipt))
                                     join cashier in db.Employee
                                     on header.Cashier equals cashier.EmployeeId
                                     select new
@@ -98,25 +98,26 @@ namespace SimpleBilling.MasterForms
                                     }).ToList();
                         DGVLoadReceipt.DataSource = data;
                     }
-                }
-                else
-                {
-                    var data = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.IsQuotation == false)
-                                join cashier in db.Employee
-                                on header.Cashier equals cashier.EmployeeId
-                                select new
-                                {
-                                    header.ReceiptNo,
-                                    header.Date,
-                                    header.Time,
-                                    cashier.EmployeeName,
-                                    header.SubTotal,
-                                    header.TotalDiscount,
-                                    header.PaidAmount,
-                                    header.Balance,
-                                    header.PaymentType
-                                }).ToList();
-                    DGVLoadReceipt.DataSource = data;
+                    else
+                    {
+                        var data = (from header in db.ReceiptHeaders
+                                    .Where(c => c.IsDeleted == false && c.IsQuotation == false)
+                                    join cashier in db.Employee
+                                    on header.Cashier equals cashier.EmployeeId
+                                    select new
+                                    {
+                                        header.ReceiptNo,
+                                        header.Date,
+                                        header.Time,
+                                        cashier.EmployeeName,
+                                        header.SubTotal,
+                                        header.TotalDiscount,
+                                        header.PaidAmount,
+                                        header.Balance,
+                                        header.PaymentType
+                                    }).ToList();
+                        DGVLoadReceipt.DataSource = data;
+                    }
                 }
             }
             catch (Exception ex)
