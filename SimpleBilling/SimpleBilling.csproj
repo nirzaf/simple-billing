@@ -236,6 +236,12 @@
     <Compile Include="MasterForms\POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\PreviewPDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\PreviewPDF.Designer.cs">
+      <DependentUpon>PreviewPDF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202004270054318_billing.cs" />
     <Compile Include="Migrations\202004270054318_billing.designer.cs">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>
@@ -448,6 +454,9 @@
     <EmbeddedResource Include="MasterForms\POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\PreviewPDF.resx">
+      <DependentUpon>PreviewPDF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004270054318_billing.resx">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>
     </EmbeddedResource>
@@ -553,6 +562,7 @@
     <EmbeddedResource Include="Migrations\202005050142398_newBilling11.resx">
       <DependentUpon>202005050142398_newBilling11.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

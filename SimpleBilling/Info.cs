@@ -159,6 +159,26 @@ namespace SimpleBilling
             }
         }
 
+        public static void ExpPDF(DataTable dt)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "PDF (*.pdf)|*.pdf",
+                FileName = "test"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Spire.DataExport.PDF.PDFExport PDFExport = new Spire.DataExport.PDF.PDFExport
+                {
+                    DataSource = Spire.DataExport.Common.ExportSource.DataTable,
+                    DataTable = dt,
+                    ActionAfterExport = Spire.DataExport.Common.ActionType.OpenView
+                };
+                PDFExport.PDFOptions.PageOptions.Orientation = Spire.DataExport.Common.PageOrientation.Landscape;
+                PDFExport.SaveToFile(sfd.FileName);
+            }
+        }
+
         public static float GetDGVSum(DataGridView dt, int cell)
         {
             float sum = (from DataGridViewRow row in dt.Rows
