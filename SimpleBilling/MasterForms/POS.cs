@@ -1,5 +1,10 @@
-﻿using SimpleBilling.Model;
-using SimpleBilling.Report;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using SimpleBilling.Model;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -26,6 +31,7 @@ namespace SimpleBilling.MasterForms
         private float GivenAmount;
         private float BalanceAmount;
         private int ReceiptStatus;
+        private DataTable rptBody;
 
         public POS(string Receipt)
         {
@@ -110,6 +116,7 @@ namespace SimpleBilling.MasterForms
                                        body.NetTotal
                                    }).ToList();
                     DGVReceiptBody.DataSource = RptBody;
+                    rptBody = Info.ToDataTable(RptBody);
 
                     var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo && c.IsQuotation == false)
                                      join cashier in db.Employee
@@ -678,8 +685,28 @@ namespace SimpleBilling.MasterForms
 
         private void BtnPrint_Click(object sender, EventArgs e)
         {
-            Receipt rpt = new Receipt(LblReceiptNo.Text);
-            rpt.Show();
+            using (BillingContext db = new BillingContext())
+            {
+                var RptBody = (from body in db.ReceiptBodies.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
+                               join item in db.Items
+                               on body.ProductId equals item.Id
+                               select new
+                               {
+                                   item.Id,
+                                   item.Code,
+                                   item.ItemName,
+                                   body.UnitPrice,
+                                   body.Quantity,
+                                   body.SubTotal,
+                                   body.Discount,
+                                   body.NetTotal
+                               }).ToList();
+                DGVReceiptBody.DataSource = RptBody;
+                DataTable dt = Info.ToDataTable(RptBody);
+                SalesReceiptAsPDF(dt, LblReceiptNo.Text);
+            }
+            //Receipt rpt = new Receipt(LblReceiptNo.Text);
+            //rpt.Show();
         }
 
         private void CmbPaymentOption_SelectedIndexChanged(object sender, EventArgs e)
@@ -703,6 +730,73 @@ namespace SimpleBilling.MasterForms
         private void BtnNewReceipt_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        public void SalesReceiptAsPDF(DataTable dt, string RptNo)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.BusinessModels.FirstOrDefault(c => c.IsActive == true && c.IsDeleted == false);
+                    var header = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == RptNo && c.IsDeleted == false);
+                    string fileName = "C:\\Orion\\" + Info.RandomString(4) + ".pdf";
+                    PdfWriter writer = new PdfWriter(fileName);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document document = new Document(pdf);
+                    Paragraph BusinessName = new Paragraph(data.Name).SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Paragraph Address = new Paragraph(data.Address).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10);
+                    Paragraph PhoneNo = new Paragraph(data.Contact).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10);
+                    Paragraph ReceiptNo = new Paragraph("Receipt No : " + LblReceiptNo.Text).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
+                    Paragraph DateTime = new Paragraph("Date : " + LblDate.Text + ", Time : " + LblTime.Text).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
+                    Paragraph dl = new Paragraph("                ").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    LineSeparator ls = new LineSeparator(new SolidLine());
+                    document.Add(BusinessName);
+                    document.Add(Address);
+                    document.Add(PhoneNo);
+                    document.Add(ReceiptNo);
+                    document.Add(DateTime);
+                    document.Add(ls);
+                    document.Add(dl);
+                    Table table = new Table(7, false);
+                    table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                    table.SetVerticalAlignment(VerticalAlignment.TOP);
+                    table.AddHeaderCell("Id");
+                    table.AddHeaderCell("Item Name");
+                    table.AddHeaderCell("Unit Price");
+                    table.AddHeaderCell("Quantity");
+                    table.AddHeaderCell("Gross Total");
+                    table.AddHeaderCell("Discount");
+                    table.AddHeaderCell("Net Total");
+
+                    foreach (DataRow d in dt.Rows)
+                    {
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[3].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[6].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
+                    }
+
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblSubTotal.Text)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblTotalDiscount.Text)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblNetTotal.Text)));
+
+                    document.Add(table);
+                    document.Close();
+                    Info.StartProcess(fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
         }
     }
 }
