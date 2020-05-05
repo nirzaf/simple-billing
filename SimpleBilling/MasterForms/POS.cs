@@ -1,6 +1,7 @@
 ﻿using SimpleBilling.Model;
 using SimpleBilling.Report;
 using System;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -414,12 +415,11 @@ namespace SimpleBilling.MasterForms
 
         private void TotalCalculator()
         {
-            ReceiptTotalDiscount = (from DataGridViewRow row in DGVReceiptBody.Rows
-                                    where row.Cells[0].FormattedValue.ToString() != string.Empty
-                                    select Convert.ToSingle(row.Cells[6].FormattedValue)).Sum();
-            ReceiptNetTotal = (from DataGridViewRow row in DGVReceiptBody.Rows
-                               where row.Cells[0].FormattedValue.ToString() != string.Empty
-                               select Convert.ToSingle(row.Cells[7].FormattedValue)).Sum();
+            DataTable dt1 = (DataTable)DGVReceiptBody.DataSource;
+            DataTable dt2 = (DataTable)DGVReceiptBody.DataSource;
+            ReceiptTotalDiscount = Info.GetDTSum(dt1, 6);
+            ReceiptNetTotal = Info.GetDTSum(dt2, 7);
+
             LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
             LblNetTotal.Text = ReceiptNetTotal.ToString();
             ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;

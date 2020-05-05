@@ -1,4 +1,6 @@
-﻿using iText.Kernel.Pdf;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -93,7 +96,7 @@ namespace SimpleBilling
             }
         }
 
-        public static void ExportPDF()
+        public static void ExportReceiptsAsPDF(DataTable dt)
         {
             try
             {
@@ -108,8 +111,45 @@ namespace SimpleBilling
                     PdfWriter writer = new PdfWriter(sfd.FileName);
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf);
-                    Paragraph header = new Paragraph("HEADER").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
+                    Paragraph header = new Paragraph("Receipts").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
+                    Paragraph subheader = new Paragraph("Detailed Report").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Paragraph dl = new Paragraph("                ").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    LineSeparator ls = new LineSeparator(new SolidLine());
                     document.Add(header);
+                    document.Add(subheader);
+                    document.Add(ls);
+                    document.Add(dl);
+                    Table table = new Table(6, false);
+
+                    table.AddHeaderCell("Receipt No");
+                    table.AddHeaderCell("Date");
+                    table.AddHeaderCell("Time");
+                    table.AddHeaderCell("Sub Total");
+                    table.AddHeaderCell("Total Discounts");
+                    table.AddHeaderCell("Net Total");
+
+                    foreach (DataRow d in dt.Rows)
+                    {
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[1].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[4].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[6].ToString())));
+                    }
+
+                    float subTotal = GetDTSum(dt, 4);
+                    float discoutTotal = GetDTSum(dt, 5);
+                    float netTotal = GetDTSum(dt, 6);
+
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(subTotal.ToString())));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(discoutTotal.ToString())));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(netTotal.ToString())));
+
+                    document.Add(table);
                     document.Close();
                 }
             }
@@ -117,6 +157,20 @@ namespace SimpleBilling
             {
                 Mes(ex.Message);
             }
+        }
+
+        public static float GetDGVSum(DataGridView dt, int cell)
+        {
+            float sum = (from DataGridViewRow row in dt.Rows
+                         where row.Cells[0].FormattedValue.ToString() != string.Empty
+                         select Convert.ToSingle(row.Cells[cell].FormattedValue)).Sum();
+            return sum;
+        }
+
+        public static float GetDTSum(DataTable dt, int cell)
+        {
+            float sum = dt.AsEnumerable().Sum(c => c.Field<float>(cell));
+            return sum;
         }
     }
 }

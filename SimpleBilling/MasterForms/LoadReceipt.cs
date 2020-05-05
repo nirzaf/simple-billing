@@ -36,8 +36,7 @@ namespace SimpleBilling.MasterForms
                                 cashier.EmployeeName,
                                 header.SubTotal,
                                 header.TotalDiscount,
-                                header.PaidAmount,
-                                header.Balance,
+                                header.NetTotal,
                                 header.PaymentType
                             }).ToList();
                 DGVLoadReceipt.DataSource = data;
@@ -94,8 +93,7 @@ namespace SimpleBilling.MasterForms
                                         cashier.EmployeeName,
                                         header.SubTotal,
                                         header.TotalDiscount,
-                                        header.PaidAmount,
-                                        header.Balance,
+                                        header.NetTotal,
                                         header.PaymentType
                                     }).ToList();
                         DGVLoadReceipt.DataSource = data;
@@ -114,8 +112,7 @@ namespace SimpleBilling.MasterForms
                                         cashier.EmployeeName,
                                         header.SubTotal,
                                         header.TotalDiscount,
-                                        header.PaidAmount,
-                                        header.Balance,
+                                        header.NetTotal,
                                         header.PaymentType
                                     }).ToList();
                         DGVLoadReceipt.DataSource = data;
@@ -150,8 +147,7 @@ namespace SimpleBilling.MasterForms
                                         cashier.EmployeeName,
                                         header.SubTotal,
                                         header.TotalDiscount,
-                                        header.PaidAmount,
-                                        header.Balance,
+                                        header.NetTotal,
                                         header.PaymentType
                                     }).ToList();
                         DGVLoadReceipt.DataSource = data;
@@ -180,8 +176,7 @@ namespace SimpleBilling.MasterForms
                                 cashier.EmployeeName,
                                 header.SubTotal,
                                 header.TotalDiscount,
-                                header.PaidAmount,
-                                header.Balance,
+                                header.NetTotal,
                                 header.PaymentType
                             }).ToList();
                 DGVLoadReceipt.DataSource = data;
@@ -214,7 +209,10 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                Info.ExportPDF();
+                using (BillingContext db = new BillingContext())
+                {
+                    Info.ExportReceiptsAsPDF(Rpt);
+                }
             }
             catch (Exception ex)
             {

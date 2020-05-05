@@ -29,6 +29,9 @@ namespace SimpleBilling.Model
         [MaxLength(10)]
         public string PaymentType { get; set; }
 
+        [DefaultValue("No Remarks Found")]
+        public string Remarks { get; set; }
+
         public float PaidAmount { get; set; }
         public float Balance { get; set; }
 
