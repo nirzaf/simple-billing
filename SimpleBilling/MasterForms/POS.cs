@@ -46,7 +46,6 @@ namespace SimpleBilling.MasterForms
 
         private void PrintAndVoid()
         {
-            LblReceiptNo.Text = GenReceiptNo();
             if (ReceiptStatus != 2 || LblReceiptStatus.Text != "Completed")
             {
                 BtnPrint.Enabled = true;
@@ -117,6 +116,7 @@ namespace SimpleBilling.MasterForms
                                      on header.Cashier equals cashier.EmployeeId
                                      select new
                                      {
+                                         header.ReceiptNo,
                                          header.Date,
                                          header.Time,
                                          header.TotalDiscount,
@@ -125,7 +125,8 @@ namespace SimpleBilling.MasterForms
                                          header.PaidAmount,
                                          header.Balance,
                                          header.Status,
-                                         Cashier = cashier.EmployeeName
+                                         Cashier = cashier.EmployeeName,
+                                         header.Remarks
                                      }).ToList();
                     foreach (var a in RptHeader)
                     {
@@ -133,8 +134,9 @@ namespace SimpleBilling.MasterForms
                         LblBalanceAmount.Text = a.Balance.ToString();
                         TxtGivenAmount.Text = a.PaidAmount.ToString();
                         ReceiptStatus = a.Status;
-                        LblReceiptStatus.Text = GetReceiptStatus(ReceiptStatus);
-                        LblReceiptNo.Text = ReceiptNo;
+                        LblReceiptStatus.Text = GetReceiptStatus(a.Status);
+                        LblReceiptNo.Text = a.ReceiptNo;
+                        TxtRemarks.Text = a.Remarks;
                     }
                     TotalCalculator();
                 }
@@ -290,7 +292,8 @@ namespace SimpleBilling.MasterForms
                         PaymentType = PaymentType,
                         PaidAmount = 0,
                         Balance = 0,
-                        Status = 1
+                        Status = 1,
+                        CreatedDate = DateTime.Now
                     };
 
                     var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo);
@@ -407,10 +410,8 @@ namespace SimpleBilling.MasterForms
 
         private void TotalCalculator()
         {
-            DataTable dt1 = (DataTable)DGVReceiptBody.DataSource;
-            DataTable dt2 = (DataTable)DGVReceiptBody.DataSource;
-            ReceiptTotalDiscount = Info.GetDTSum(dt1, 6);
-            ReceiptNetTotal = Info.GetDTSum(dt2, 7);
+            ReceiptTotalDiscount = Info.GetDGVSum(DGVReceiptBody, 6);
+            ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
 
             LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
             LblNetTotal.Text = ReceiptNetTotal.ToString();
@@ -426,30 +427,29 @@ namespace SimpleBilling.MasterForms
                 {
                     GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
                     BalanceAmount = GivenAmount - ReceiptNetTotal;
-                    if (BalanceAmount >= 0)
+                    using (BillingContext db = new BillingContext())
                     {
-                        using (BillingContext db = new BillingContext())
+                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && c.IsDeleted == false);
+                        if (Result != null)
                         {
-                            var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.IsDeleted == false);
-                            if (Result != null)
+                            if (Result.Status == 1)
                             {
-                                if (Result.Status == 1)
-                                {
-                                    Result.NetTotal = ReceiptNetTotal;
-                                    Result.TotalDiscount = ReceiptTotalDiscount;
-                                    Result.SubTotal = ReceiptSubTotal;
-                                    Result.PaidAmount = GivenAmount;
-                                    Result.Balance = BalanceAmount;
-                                    Result.PaymentType = GetPaymentType();
-                                    Result.Status = 2;
-                                    if (db.Entry(Result).State == EntityState.Detached)
-                                        db.Set<ReceiptHeader>().Attach(Result);
-                                    db.Entry(Result).State = EntityState.Modified;
-                                    db.SaveChanges();
-                                    LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                                    ReduceStock(true);
-                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
-                                }
+                                Result.NetTotal = ReceiptNetTotal;
+                                Result.TotalDiscount = ReceiptTotalDiscount;
+                                Result.SubTotal = ReceiptSubTotal;
+                                Result.PaidAmount = GivenAmount;
+                                Result.Balance = BalanceAmount;
+                                Result.PaymentType = GetPaymentType();
+                                Result.Status = 2;
+                                Result.UpdatedDate = DateTime.Now;
+                                Result.Remarks = TxtRemarks.Text.Trim();
+                                if (db.Entry(Result).State == EntityState.Detached)
+                                    db.Set<ReceiptHeader>().Attach(Result);
+                                db.Entry(Result).State = EntityState.Modified;
+                                db.SaveChanges();
+                                LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
+                                ReduceStock(true);
+                                MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
                             }
                         }
                     }

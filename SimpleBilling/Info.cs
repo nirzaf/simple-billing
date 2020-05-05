@@ -18,7 +18,6 @@ namespace SimpleBilling
     public static class Info
     {
         private static readonly Random random = new Random();
-        private static DateTime dateTime;
 
         public static void Mes(string mes)
         {
@@ -112,7 +111,7 @@ namespace SimpleBilling
                 SaveFileDialog sfd = new SaveFileDialog
                 {
                     Filter = "PDF (*.pdf)|*.pdf",
-                    FileName = RandomString(5) + dateTime.ToShortDateString().Replace("/", "")
+                    FileName = RandomString(5) + DateTime.Now.ToShortDateString().Replace("/", "")
                 };
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {

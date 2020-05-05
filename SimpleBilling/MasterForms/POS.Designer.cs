@@ -85,6 +85,9 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSaveAsQutation = new System.Windows.Forms.Button();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TxtRemarks = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -94,6 +97,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblDate
@@ -102,7 +106,7 @@
             this.LblDate.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblDate.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblDate.ForeColor = System.Drawing.Color.Lime;
-            this.LblDate.Location = new System.Drawing.Point(3, 121);
+            this.LblDate.Location = new System.Drawing.Point(3, 114);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(164, 19);
             this.LblDate.TabIndex = 0;
@@ -113,7 +117,7 @@
             this.LblTime.AutoSize = true;
             this.LblTime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblTime.ForeColor = System.Drawing.Color.Lime;
-            this.LblTime.Location = new System.Drawing.Point(173, 121);
+            this.LblTime.Location = new System.Drawing.Point(173, 114);
             this.LblTime.Name = "LblTime";
             this.LblTime.Size = new System.Drawing.Size(144, 19);
             this.LblTime.TabIndex = 1;
@@ -132,7 +136,7 @@
             this.CmbAddItem.DisplayMember = "ItemName";
             this.CmbAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CmbAddItem.FormattingEnabled = true;
-            this.CmbAddItem.Location = new System.Drawing.Point(499, 59);
+            this.CmbAddItem.Location = new System.Drawing.Point(499, 55);
             this.CmbAddItem.Name = "CmbAddItem";
             this.CmbAddItem.Size = new System.Drawing.Size(242, 27);
             this.CmbAddItem.TabIndex = 2;
@@ -180,13 +184,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 140);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 133);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // TxtQuantity
             // 
             this.TxtQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtQuantity.Location = new System.Drawing.Point(3, 115);
+            this.TxtQuantity.Location = new System.Drawing.Point(3, 107);
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(242, 26);
             this.TxtQuantity.TabIndex = 3;
@@ -200,7 +204,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(3, 37);
+            this.label1.Location = new System.Drawing.Point(3, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(242, 19);
             this.label1.TabIndex = 2;
@@ -212,7 +216,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.ForeColor = System.Drawing.Color.Lime;
-            this.label2.Location = new System.Drawing.Point(251, 37);
+            this.label2.Location = new System.Drawing.Point(251, 33);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(242, 19);
             this.label2.TabIndex = 3;
@@ -224,7 +228,7 @@
             this.label3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label3.ForeColor = System.Drawing.Color.Lime;
-            this.label3.Location = new System.Drawing.Point(499, 37);
+            this.label3.Location = new System.Drawing.Point(499, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(242, 19);
             this.label3.TabIndex = 4;
@@ -236,7 +240,7 @@
             this.label4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label4.ForeColor = System.Drawing.Color.Lime;
-            this.label4.Location = new System.Drawing.Point(747, 37);
+            this.label4.Location = new System.Drawing.Point(747, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(242, 19);
             this.label4.TabIndex = 5;
@@ -248,7 +252,7 @@
             this.label5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.ForeColor = System.Drawing.Color.Lime;
-            this.label5.Location = new System.Drawing.Point(3, 93);
+            this.label5.Location = new System.Drawing.Point(3, 85);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(242, 19);
             this.label5.TabIndex = 6;
@@ -260,7 +264,7 @@
             this.label6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label6.ForeColor = System.Drawing.Color.Lime;
-            this.label6.Location = new System.Drawing.Point(251, 93);
+            this.label6.Location = new System.Drawing.Point(251, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(242, 19);
             this.label6.TabIndex = 7;
@@ -272,7 +276,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label7.ForeColor = System.Drawing.Color.Lime;
-            this.label7.Location = new System.Drawing.Point(499, 93);
+            this.label7.Location = new System.Drawing.Point(499, 85);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(242, 19);
             this.label7.TabIndex = 8;
@@ -284,7 +288,7 @@
             this.label8.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label8.ForeColor = System.Drawing.Color.Lime;
-            this.label8.Location = new System.Drawing.Point(747, 93);
+            this.label8.Location = new System.Drawing.Point(747, 85);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(242, 19);
             this.label8.TabIndex = 9;
@@ -293,7 +297,7 @@
             // TxtBarCode
             // 
             this.TxtBarCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtBarCode.Location = new System.Drawing.Point(3, 59);
+            this.TxtBarCode.Location = new System.Drawing.Point(3, 55);
             this.TxtBarCode.Name = "TxtBarCode";
             this.TxtBarCode.Size = new System.Drawing.Size(242, 26);
             this.TxtBarCode.TabIndex = 5;
@@ -303,7 +307,7 @@
             // TxtProductCode
             // 
             this.TxtProductCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtProductCode.Location = new System.Drawing.Point(251, 59);
+            this.TxtProductCode.Location = new System.Drawing.Point(251, 55);
             this.TxtProductCode.Name = "TxtProductCode";
             this.TxtProductCode.Size = new System.Drawing.Size(242, 26);
             this.TxtProductCode.TabIndex = 6;
@@ -311,7 +315,7 @@
             // TxtUnitPrice
             // 
             this.TxtUnitPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtUnitPrice.Location = new System.Drawing.Point(747, 59);
+            this.TxtUnitPrice.Location = new System.Drawing.Point(747, 55);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.ReadOnly = true;
             this.TxtUnitPrice.Size = new System.Drawing.Size(242, 26);
@@ -321,7 +325,7 @@
             // TxtDiscount
             // 
             this.TxtDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtDiscount.Location = new System.Drawing.Point(251, 115);
+            this.TxtDiscount.Location = new System.Drawing.Point(251, 107);
             this.TxtDiscount.Name = "TxtDiscount";
             this.TxtDiscount.Size = new System.Drawing.Size(242, 26);
             this.TxtDiscount.TabIndex = 4;
@@ -332,7 +336,7 @@
             // TxtSubTotal
             // 
             this.TxtSubTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtSubTotal.Location = new System.Drawing.Point(499, 115);
+            this.TxtSubTotal.Location = new System.Drawing.Point(499, 107);
             this.TxtSubTotal.Name = "TxtSubTotal";
             this.TxtSubTotal.Size = new System.Drawing.Size(242, 26);
             this.TxtSubTotal.TabIndex = 7;
@@ -340,7 +344,7 @@
             // TxtNetTotal
             // 
             this.TxtNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtNetTotal.Location = new System.Drawing.Point(747, 115);
+            this.TxtNetTotal.Location = new System.Drawing.Point(747, 107);
             this.TxtNetTotal.Name = "TxtNetTotal";
             this.TxtNetTotal.ReadOnly = true;
             this.TxtNetTotal.Size = new System.Drawing.Size(242, 26);
@@ -394,7 +398,7 @@
             this.ChkVehicle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ChkVehicle.Location = new System.Drawing.Point(995, 3);
             this.ChkVehicle.Name = "ChkVehicle";
-            this.ChkVehicle.Size = new System.Drawing.Size(26, 22);
+            this.ChkVehicle.Size = new System.Drawing.Size(26, 20);
             this.ChkVehicle.TabIndex = 20;
             this.ChkVehicle.UseVisualStyleBackColor = true;
             this.ChkVehicle.MouseHover += new System.EventHandler(this.ChkVehicle_MouseHover);
@@ -405,12 +409,12 @@
             this.DGVReceiptBody.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVReceiptBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReceiptBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVReceiptBody.Location = new System.Drawing.Point(3, 149);
+            this.DGVReceiptBody.Location = new System.Drawing.Point(3, 142);
             this.DGVReceiptBody.MultiSelect = false;
             this.DGVReceiptBody.Name = "DGVReceiptBody";
             this.DGVReceiptBody.ReadOnly = true;
             this.DGVReceiptBody.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVReceiptBody.Size = new System.Drawing.Size(1024, 286);
+            this.DGVReceiptBody.Size = new System.Drawing.Size(1024, 273);
             this.DGVReceiptBody.TabIndex = 6;
             // 
             // tableLayoutPanel2
@@ -440,7 +444,7 @@
             this.tableLayoutPanel2.Controls.Add(this.CmbPaymentOption, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label16, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 441);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 421);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -448,7 +452,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1024, 140);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1024, 133);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // LblCashier
@@ -456,7 +460,7 @@
             this.LblCashier.AutoSize = true;
             this.LblCashier.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblCashier.ForeColor = System.Drawing.Color.Lime;
-            this.LblCashier.Location = new System.Drawing.Point(323, 121);
+            this.LblCashier.Location = new System.Drawing.Point(323, 114);
             this.LblCashier.Name = "LblCashier";
             this.LblCashier.Size = new System.Drawing.Size(184, 19);
             this.LblCashier.TabIndex = 12;
@@ -467,7 +471,7 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label11.ForeColor = System.Drawing.Color.Yellow;
-            this.label11.Location = new System.Drawing.Point(683, 121);
+            this.label11.Location = new System.Drawing.Point(683, 114);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(164, 19);
             this.label11.TabIndex = 10;
@@ -478,7 +482,7 @@
             this.LblReceiptStatus.AutoSize = true;
             this.LblReceiptStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblReceiptStatus.ForeColor = System.Drawing.Color.Yellow;
-            this.LblReceiptStatus.Location = new System.Drawing.Point(853, 121);
+            this.LblReceiptStatus.Location = new System.Drawing.Point(853, 114);
             this.LblReceiptStatus.Name = "LblReceiptStatus";
             this.LblReceiptStatus.Size = new System.Drawing.Size(168, 19);
             this.LblReceiptStatus.TabIndex = 11;
@@ -489,9 +493,9 @@
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(683, 56);
+            this.label13.Location = new System.Drawing.Point(683, 52);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(164, 28);
+            this.label13.Size = new System.Drawing.Size(164, 26);
             this.label13.TabIndex = 4;
             this.label13.Text = "Net Total";
             // 
@@ -500,9 +504,9 @@
             this.LblNetTotal.AutoSize = true;
             this.LblNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblNetTotal.ForeColor = System.Drawing.Color.White;
-            this.LblNetTotal.Location = new System.Drawing.Point(853, 56);
+            this.LblNetTotal.Location = new System.Drawing.Point(853, 52);
             this.LblNetTotal.Name = "LblNetTotal";
-            this.LblNetTotal.Size = new System.Drawing.Size(168, 28);
+            this.LblNetTotal.Size = new System.Drawing.Size(168, 26);
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "0";
             // 
@@ -511,9 +515,9 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(683, 28);
+            this.label10.Location = new System.Drawing.Point(683, 26);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(164, 28);
+            this.label10.Size = new System.Drawing.Size(164, 26);
             this.label10.TabIndex = 1;
             this.label10.Text = "Total Discount";
             // 
@@ -522,9 +526,9 @@
             this.LblTotalDiscount.AutoSize = true;
             this.LblTotalDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblTotalDiscount.ForeColor = System.Drawing.Color.White;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(853, 28);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(853, 26);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
-            this.LblTotalDiscount.Size = new System.Drawing.Size(168, 28);
+            this.LblTotalDiscount.Size = new System.Drawing.Size(168, 26);
             this.LblTotalDiscount.TabIndex = 3;
             this.LblTotalDiscount.Text = "0";
             // 
@@ -535,7 +539,7 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(683, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(164, 28);
+            this.label9.Size = new System.Drawing.Size(164, 26);
             this.label9.TabIndex = 0;
             this.label9.Text = "Gross Total";
             // 
@@ -546,14 +550,14 @@
             this.LblSubTotal.ForeColor = System.Drawing.Color.White;
             this.LblSubTotal.Location = new System.Drawing.Point(853, 0);
             this.LblSubTotal.Name = "LblSubTotal";
-            this.LblSubTotal.Size = new System.Drawing.Size(168, 28);
+            this.LblSubTotal.Size = new System.Drawing.Size(168, 26);
             this.LblSubTotal.TabIndex = 2;
             this.LblSubTotal.Text = "0";
             // 
             // TxtGivenAmount
             // 
             this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 31);
+            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 29);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(164, 26);
             this.TxtGivenAmount.TabIndex = 9;
@@ -565,7 +569,7 @@
             this.LblBalanceAmount.AutoSize = true;
             this.LblBalanceAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 65);
+            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 59);
             this.LblBalanceAmount.Name = "LblBalanceAmount";
             this.LblBalanceAmount.Size = new System.Drawing.Size(164, 19);
             this.LblBalanceAmount.TabIndex = 9;
@@ -576,9 +580,9 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label12.Location = new System.Drawing.Point(323, 28);
+            this.label12.Location = new System.Drawing.Point(323, 26);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(184, 28);
+            this.label12.Size = new System.Drawing.Size(184, 26);
             this.label12.TabIndex = 13;
             this.label12.Text = "Given Amount";
             // 
@@ -587,7 +591,7 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label15.Location = new System.Drawing.Point(323, 65);
+            this.label15.Location = new System.Drawing.Point(323, 59);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(184, 19);
             this.label15.TabIndex = 14;
@@ -623,9 +627,9 @@
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
             this.BtnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVoid.Location = new System.Drawing.Point(3, 73);
+            this.BtnVoid.Location = new System.Drawing.Point(3, 69);
             this.BtnVoid.Name = "BtnVoid";
-            this.BtnVoid.Size = new System.Drawing.Size(103, 64);
+            this.BtnVoid.Size = new System.Drawing.Size(103, 61);
             this.BtnVoid.TabIndex = 7;
             this.BtnVoid.Text = "Void";
             this.BtnVoid.UseVisualStyleBackColor = false;
@@ -637,7 +641,7 @@
             this.BtnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPrint.Location = new System.Drawing.Point(3, 3);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(103, 64);
+            this.BtnPrint.Size = new System.Drawing.Size(103, 60);
             this.BtnPrint.TabIndex = 6;
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
@@ -654,14 +658,16 @@
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1145, 584);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1145, 593);
             this.tableLayoutPanel3.TabIndex = 9;
             // 
             // tableLayoutPanel4
@@ -671,12 +677,12 @@
             this.tableLayoutPanel4.Controls.Add(this.BtnPrint, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.BtnVoid, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(1033, 441);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1033, 421);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 140);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 133);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // tableLayoutPanel5
@@ -691,7 +697,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(109, 140);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(109, 133);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
             // BtnLoadReceipt
@@ -700,7 +706,7 @@
             this.BtnLoadReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnLoadReceipt.Location = new System.Drawing.Point(3, 3);
             this.BtnLoadReceipt.Name = "BtnLoadReceipt";
-            this.BtnLoadReceipt.Size = new System.Drawing.Size(103, 64);
+            this.BtnLoadReceipt.Size = new System.Drawing.Size(103, 60);
             this.BtnLoadReceipt.TabIndex = 20;
             this.BtnLoadReceipt.Text = "Load Receipt";
             this.BtnLoadReceipt.UseVisualStyleBackColor = false;
@@ -710,9 +716,9 @@
             // 
             this.BtnNewReceipt.BackColor = System.Drawing.Color.White;
             this.BtnNewReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnNewReceipt.Location = new System.Drawing.Point(3, 73);
+            this.BtnNewReceipt.Location = new System.Drawing.Point(3, 69);
             this.BtnNewReceipt.Name = "BtnNewReceipt";
-            this.BtnNewReceipt.Size = new System.Drawing.Size(103, 64);
+            this.BtnNewReceipt.Size = new System.Drawing.Size(103, 61);
             this.BtnNewReceipt.TabIndex = 21;
             this.BtnNewReceipt.Text = "New Receipt";
             this.BtnNewReceipt.UseVisualStyleBackColor = false;
@@ -725,14 +731,14 @@
             this.tableLayoutPanel6.Controls.Add(this.BtnDelete, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.BtnSaveAsQutation, 0, 3);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 149);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 142);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 4;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 286);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 273);
             this.tableLayoutPanel6.TabIndex = 10;
             // 
             // BtnDelete
@@ -741,7 +747,7 @@
             this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(103, 65);
+            this.BtnDelete.Size = new System.Drawing.Size(103, 62);
             this.BtnDelete.TabIndex = 0;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
@@ -752,19 +758,55 @@
             this.BtnSaveAsQutation.BackColor = System.Drawing.Color.White;
             this.BtnSaveAsQutation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSaveAsQutation.ForeColor = System.Drawing.Color.Black;
-            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 216);
+            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 207);
             this.BtnSaveAsQutation.Name = "BtnSaveAsQutation";
-            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 67);
+            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 63);
             this.BtnSaveAsQutation.TabIndex = 1;
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.789063F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.21094F));
+            this.tableLayoutPanel7.Controls.Add(this.label14, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.TxtRemarks, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 560);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1024, 30);
+            this.tableLayoutPanel7.TabIndex = 11;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(3, 11);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(84, 19);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Remarks";
+            // 
+            // TxtRemarks
+            // 
+            this.TxtRemarks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtRemarks.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.TxtRemarks.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRemarks.Location = new System.Drawing.Point(93, 8);
+            this.TxtRemarks.Name = "TxtRemarks";
+            this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
+            this.TxtRemarks.TabIndex = 1;
             // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1145, 584);
+            this.ClientSize = new System.Drawing.Size(1145, 593);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -783,6 +825,8 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -844,5 +888,8 @@
         private System.Windows.Forms.CheckBox ChkVehicle;
         private System.Windows.Forms.ToolTip ToolTipHelp;
         private System.Windows.Forms.Button BtnNewReceipt;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox TxtRemarks;
     }
 }
