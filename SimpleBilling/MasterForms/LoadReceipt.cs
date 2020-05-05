@@ -9,6 +9,7 @@ namespace SimpleBilling.MasterForms
     public partial class LoadReceipt : Form
     {
         private string ReceiptNo;
+        private DataTable Rpt;
 
         public LoadReceipt()
         {
@@ -40,6 +41,7 @@ namespace SimpleBilling.MasterForms
                                 header.PaymentType
                             }).ToList();
                 DGVLoadReceipt.DataSource = data;
+                Rpt = Info.ToDataTable(data);
             }
         }
 
@@ -119,6 +121,102 @@ namespace SimpleBilling.MasterForms
                         DGVLoadReceipt.DataSource = data;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
+        private void BtnGetTodaysReceipts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    string date = DateTime.Today.ToShortDateString();
+                    if (date.Length > 0)
+                    {
+                        var data = (from header in db.ReceiptHeaders
+                                    .Where(c => c.IsDeleted == false && c.IsQuotation == false
+                                    && c.Date == date)
+                                    join cashier in db.Employee
+                                    on header.Cashier equals cashier.EmployeeId
+                                    select new
+                                    {
+                                        header.ReceiptNo,
+                                        header.Date,
+                                        header.Time,
+                                        cashier.EmployeeName,
+                                        header.SubTotal,
+                                        header.TotalDiscount,
+                                        header.PaidAmount,
+                                        header.Balance,
+                                        header.PaymentType
+                                    }).ToList();
+                        DGVLoadReceipt.DataSource = data;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
+        private void BtnViewAll_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from header in db.ReceiptHeaders
+                .Where(c => c.IsDeleted == false && c.IsQuotation == false)
+                            join cashier in db.Employee
+                            on header.Cashier equals cashier.EmployeeId
+                            select new
+                            {
+                                header.ReceiptNo,
+                                header.Date,
+                                header.Time,
+                                cashier.EmployeeName,
+                                header.SubTotal,
+                                header.TotalDiscount,
+                                header.PaidAmount,
+                                header.Balance,
+                                header.PaymentType
+                            }).ToList();
+                DGVLoadReceipt.DataSource = data;
+            }
+        }
+
+        private void BtnExportAsExcel_Click(object sender, EventArgs e)
+        {
+            if (DGVLoadReceipt.Rows.Count > 0)
+            {
+                Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
+                xcelApp.Application.Workbooks.Add(Type.Missing);
+
+                for (int i = 1; i < DGVLoadReceipt.Columns.Count + 1; i++)
+                {
+                    xcelApp.Cells[1, i] = DGVLoadReceipt.Columns[i - 1].HeaderText;
+                }
+
+                for (int i = 0; i < DGVLoadReceipt.Rows.Count; i++)
+                {
+                    for (int j = 0; j < DGVLoadReceipt.Columns.Count; j++)
+                    {
+                        xcelApp.Cells[i + 2, j + 1] = DGVLoadReceipt.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+                xcelApp.Columns.AutoFit();
+                xcelApp.Visible = true;
+            }
+        }
+
+        private void BtnExportAsPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Info.ExportPDF();
             }
             catch (Exception ex)
             {
