@@ -35,9 +35,9 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtFilterReceipts = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnGetTodaysReceipts = new System.Windows.Forms.Button();
             this.BtnViewAll = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnExportAsExcel = new System.Windows.Forms.Button();
             this.BtnExportAsPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVLoadReceipt)).BeginInit();
@@ -131,27 +131,6 @@
             this.TxtFilterReceipts.TabIndex = 1;
             this.TxtFilterReceipts.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterReceipts_KeyUp);
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 6;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.Controls.Add(this.BtnLoadReceipt, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.BtnExportAsExcel, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.BtnExportAsPDF, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 462);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1227, 46);
-            this.tableLayoutPanel3.TabIndex = 2;
-            // 
             // BtnGetTodaysReceipts
             // 
             this.BtnGetTodaysReceipts.BackColor = System.Drawing.Color.White;
@@ -174,24 +153,47 @@
             this.BtnViewAll.UseVisualStyleBackColor = false;
             this.BtnViewAll.Click += new System.EventHandler(this.BtnViewAll_Click);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 6;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.Controls.Add(this.BtnLoadReceipt, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BtnExportAsExcel, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BtnExportAsPDF, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 462);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1227, 46);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
             // BtnExportAsExcel
             // 
+            this.BtnExportAsExcel.BackColor = System.Drawing.Color.White;
             this.BtnExportAsExcel.Location = new System.Drawing.Point(3, 3);
             this.BtnExportAsExcel.Name = "BtnExportAsExcel";
             this.BtnExportAsExcel.Size = new System.Drawing.Size(198, 40);
             this.BtnExportAsExcel.TabIndex = 2;
             this.BtnExportAsExcel.Text = "Export to Excel";
-            this.BtnExportAsExcel.UseVisualStyleBackColor = true;
+            this.BtnExportAsExcel.UseVisualStyleBackColor = false;
             this.BtnExportAsExcel.Click += new System.EventHandler(this.BtnExportAsExcel_Click);
             // 
             // BtnExportAsPDF
             // 
+            this.BtnExportAsPDF.BackColor = System.Drawing.Color.White;
             this.BtnExportAsPDF.Location = new System.Drawing.Point(207, 3);
             this.BtnExportAsPDF.Name = "BtnExportAsPDF";
             this.BtnExportAsPDF.Size = new System.Drawing.Size(198, 40);
             this.BtnExportAsPDF.TabIndex = 3;
             this.BtnExportAsPDF.Text = "Export to PDF";
-            this.BtnExportAsPDF.UseVisualStyleBackColor = true;
+            this.BtnExportAsPDF.UseVisualStyleBackColor = false;
             this.BtnExportAsPDF.Click += new System.EventHandler(this.BtnExportAsPDF_Click);
             // 
             // LoadReceipt

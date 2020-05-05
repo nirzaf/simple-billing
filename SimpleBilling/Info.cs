@@ -95,19 +95,27 @@ namespace SimpleBilling
 
         public static void ExportPDF()
         {
-            SaveFileDialog sfd = new SaveFileDialog
+            try
             {
-                Filter = "PDF (*.pdf)|*.pdf",
-                FileName = "test"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "PDF (*.pdf)|*.pdf",
+                    FileName = "test"
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = sfd.FileName;
+                    PdfWriter writer = new PdfWriter(sfd.FileName);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document document = new Document(pdf);
+                    Paragraph header = new Paragraph("HEADER").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
+                    document.Add(header);
+                    document.Close();
+                }
+            }
+            catch (Exception ex)
             {
-                PdfWriter writer = new PdfWriter(sfd.FileName);
-                PdfDocument pdf = new PdfDocument(writer);
-                Document document = new Document(pdf);
-                Paragraph header = new Paragraph("HEADER").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
-                document.Add(header);
-                document.Close();
+                Mes(ex.Message);
             }
         }
     }
