@@ -7,8 +7,8 @@ using iText.Layout.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -17,9 +17,18 @@ namespace SimpleBilling
 {
     public static class Info
     {
+        private static readonly Random random = new Random();
+        private static DateTime dateTime;
+
         public static void Mes(string mes)
         {
             MessageBox.Show(mes);
+        }
+
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public static void Required()
@@ -103,7 +112,7 @@ namespace SimpleBilling
                 SaveFileDialog sfd = new SaveFileDialog
                 {
                     Filter = "PDF (*.pdf)|*.pdf",
-                    FileName = "test"
+                    FileName = RandomString(5) + dateTime.ToShortDateString().Replace("/", "")
                 };
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -120,7 +129,8 @@ namespace SimpleBilling
                     document.Add(ls);
                     document.Add(dl);
                     Table table = new Table(6, false);
-
+                    table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                    table.SetVerticalAlignment(VerticalAlignment.TOP);
                     table.AddHeaderCell("Receipt No");
                     table.AddHeaderCell("Date");
                     table.AddHeaderCell("Time");
@@ -151,7 +161,41 @@ namespace SimpleBilling
 
                     document.Add(table);
                     document.Close();
+                    StartProcess(sfd.FileName);
                 }
+            }
+            catch (Exception ex)
+            {
+                Mes(ex.Message);
+            }
+        }
+
+        public static void SendToPrinter(string file)
+        {
+            ProcessStartInfo info = new ProcessStartInfo
+            {
+                Verb = "print",
+                FileName = file,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+
+            Process p = new Process
+            {
+                StartInfo = info
+            };
+            p.Start();
+            p.WaitForInputIdle();
+            System.Threading.Thread.Sleep(3000);
+            if (false == p.CloseMainWindow())
+                p.Kill();
+        }
+
+        public static void StartProcess(string Path)
+        {
+            try
+            {
+                Process.Start(Path);
             }
             catch (Exception ex)
             {

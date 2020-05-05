@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
 {
-    public partial class PreviewPDF : Form
+    public partial class PrintPreview : Form
     {
-        public PreviewPDF()
+        public PrintPreview()
         {
             InitializeComponent();
         }

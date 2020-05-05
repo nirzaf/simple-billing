@@ -152,16 +152,8 @@ namespace SimpleBilling.MasterForms
 
         private string GenReceiptNo()
         {
-            return (RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
+            return (Info.RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
         }
-
-        public string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-        private readonly Random random = new Random();
 
         private string GetReceiptStatus(int Status)
         {

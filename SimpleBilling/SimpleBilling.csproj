@@ -236,11 +236,11 @@
     <Compile Include="MasterForms\POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterForms\PreviewPDF.cs">
+    <Compile Include="MasterForms\PrintPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterForms\PreviewPDF.Designer.cs">
-      <DependentUpon>PreviewPDF.cs</DependentUpon>
+    <Compile Include="MasterForms\PrintPreview.Designer.cs">
+      <DependentUpon>PrintPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202004270054318_billing.cs" />
     <Compile Include="Migrations\202004270054318_billing.designer.cs">
@@ -454,8 +454,8 @@
     <EmbeddedResource Include="MasterForms\POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterForms\PreviewPDF.resx">
-      <DependentUpon>PreviewPDF.cs</DependentUpon>
+    <EmbeddedResource Include="MasterForms\PrintPreview.resx">
+      <DependentUpon>PrintPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004270054318_billing.resx">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>

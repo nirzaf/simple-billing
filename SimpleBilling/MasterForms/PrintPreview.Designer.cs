@@ -1,6 +1,6 @@
 ﻿namespace SimpleBilling.MasterForms
 {
-    partial class PreviewPDF
+    partial class PrintPreview
     {
         /// <summary>
         /// Required designer variable.
