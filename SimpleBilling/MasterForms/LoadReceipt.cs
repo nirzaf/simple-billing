@@ -194,12 +194,10 @@ namespace SimpleBilling.MasterForms
             {
                 Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
                 xcelApp.Application.Workbooks.Add(Type.Missing);
-
                 for (int i = 1; i < DGVLoadReceipt.Columns.Count + 1; i++)
                 {
                     xcelApp.Cells[1, i] = DGVLoadReceipt.Columns[i - 1].HeaderText;
                 }
-
                 for (int i = 0; i < DGVLoadReceipt.Rows.Count; i++)
                 {
                     for (int j = 0; j < DGVLoadReceipt.Columns.Count; j++)
