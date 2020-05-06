@@ -21,8 +21,6 @@ namespace SimpleBilling.MasterForms
             CRUDLayout.Enabled = true;
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
-            businessModelBindingSource.Add(new BusinessModel());
-            businessModelBindingSource.MoveLast();
             TxtName.Focus();
         }
 
@@ -38,7 +36,16 @@ namespace SimpleBilling.MasterForms
             BtnCancel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                businessModelBindingSource.DataSource = db.BusinessModels.Where(c=>c.IsDeleted==false).ToList();
+                var data = (from bm in db.BusinessModels.Where(c => c.IsDeleted == false)
+                            select new
+                            {
+                                bm.Id,
+                                bm.Name,
+                                bm.Address,
+                                bm.Contact,
+                                bm.IsActive
+                            }).ToList();
+                DGVBusinessInfo.DataSource = data;
             }
             BtnActivate.Enabled = false;
             DGVBusinessInfo_CellFormatting();
@@ -64,7 +71,6 @@ namespace SimpleBilling.MasterForms
                         db.Entry(item).State = EntityState.Modified;
                         db.SaveChanges();
                     }
-
                 }
             }
             catch (Exception ex)
@@ -77,31 +83,53 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (businessModelBindingSource.Current is BusinessModel model)
+                    int Id = Convert.ToInt32(TxtId.Text.Trim());
+                    if (Id == 0)
                     {
-                        if (db.Entry(model).State == EntityState.Detached)
-                            db.Set<BusinessModel>().Attach(model);
-                        if (model.Id == 0)
+                        if (Info.IsEmpty(TxtName) && Info.IsEmpty(TxtAddress) && Info.IsEmpty(TxtContact))
                         {
-                            model.CreatedDate = DateTime.Now;
-                            db.Entry(model).State = EntityState.Added;
+                            BusinessModel bm = new BusinessModel
+                            {
+                                Name = TxtName.Text.Trim(),
+                                Address = TxtAddress.Text.Trim(),
+                                Contact = TxtContact.Text.Trim(),
+                                CreatedDate = DateTime.Now
+                            };
+                            if (db.Entry(bm).State == EntityState.Detached)
+                                db.Set<BusinessModel>().Attach(bm);
+                            db.Entry(bm).State = EntityState.Added;
+                            db.SaveChanges();
                             Info.Mes("Business Info Added");
                         }
                         else
                         {
-                            model.UpdatedDate = DateTime.Now;
-                            db.Entry(model).State = EntityState.Modified;
+                            Info.Required();
+                        }
+                    }
+                    else
+                    {
+                        var bm = db.BusinessModels.FirstOrDefault(c => c.Id == Id);
+                        if (Info.IsEmpty(TxtName) && Info.IsEmpty(TxtAddress) && Info.IsEmpty(TxtContact))
+                        {
+                            bm.Name = TxtName.Text.Trim();
+                            bm.Address = TxtAddress.Text.Trim();
+                            bm.Contact = TxtContact.Text.Trim();
+                            bm.UpdatedDate = DateTime.Now;
+                            if (db.Entry(bm).State == EntityState.Detached)
+                                db.Set<BusinessModel>().Attach(bm);
+                            db.Entry(bm).State = EntityState.Modified;
                             Info.Mes("Business Info Modified");
                         }
-                        db.SaveChanges();
+                        else
+                        {
+                            Info.Required();
+                        }
                     }
                 }
             }
@@ -135,14 +163,16 @@ namespace SimpleBilling.MasterForms
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        if (businessModelBindingSource.Current is BusinessModel model)
+                        if (DGVBusinessInfo.SelectedRows.Count > 0)
                         {
+                            int id = Convert.ToInt32(DGVBusinessInfo.SelectedRows[0].Cells[0].Value + string.Empty);
+                            var model = db.BusinessModels.FirstOrDefault(c => c.Id == id);
                             model.IsDeleted = true;
                             if (db.Entry(model).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(model);
                             model.UpdatedDate = DateTime.Now;
                             db.Entry(model).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.SaveChangesAsync();
                             Info.Mes("Business Info Deleted Successfully");
                         }
                     }
@@ -181,6 +211,10 @@ namespace SimpleBilling.MasterForms
             if (DGVBusinessInfo.SelectedRows.Count > 0)
             {
                 BtnActivate.Enabled = true;
+                TxtId.Text = DGVBusinessInfo.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtName.Text = DGVBusinessInfo.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtAddress.Text = DGVBusinessInfo.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtContact.Text = DGVBusinessInfo.SelectedRows[0].Cells[3].Value + string.Empty;
             }
         }
     }

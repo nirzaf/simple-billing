@@ -2,6 +2,7 @@
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
+using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using SimpleBilling.Model;
@@ -9,6 +10,7 @@ using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -48,6 +50,8 @@ namespace SimpleBilling.MasterForms
             PrintAndVoid();
             TxtCustomer.Focus();
             ChkVehicle.Enabled = false;
+            TxtCurrentMileage.Enabled = false;
+            TxtNextServiceDue.Enabled = false;
         }
 
         private void PrintAndVoid()
@@ -132,6 +136,7 @@ namespace SimpleBilling.MasterForms
                                          header.PaidAmount,
                                          header.Balance,
                                          header.Status,
+                                         header.VehicleNumber,
                                          Cashier = cashier.EmployeeName,
                                          header.Remarks
                                      }).ToList();
@@ -144,6 +149,7 @@ namespace SimpleBilling.MasterForms
                         LblReceiptStatus.Text = GetReceiptStatus(a.Status);
                         LblReceiptNo.Text = a.ReceiptNo;
                         TxtRemarks.Text = a.Remarks;
+                        CmbVehicles.Text = a.VehicleNumber;
                     }
                     TotalCalculator();
                 }
@@ -203,7 +209,7 @@ namespace SimpleBilling.MasterForms
                         {
                             CmbVehicles.Enabled = true;
                             CmbVehicles.ValueMember = "VehicleNo";
-                            CmbVehicles.DisplayMember = "Brand";
+                            CmbVehicles.DisplayMember = "VehicleNo";
                             CmbVehicles.DataSource = vehicles;
                             ChkVehicle.Enabled = true;
                         }
@@ -302,6 +308,8 @@ namespace SimpleBilling.MasterForms
                         Status = 1,
                         CreatedDate = DateTime.Now
                     };
+                    if (ChkVehicle.Checked == true)
+                        header.VehicleNumber = CmbVehicles.Text.Trim();
 
                     var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo);
 
@@ -441,6 +449,18 @@ namespace SimpleBilling.MasterForms
                         {
                             if (Result.Status == 1)
                             {
+                                if (!string.IsNullOrWhiteSpace(Result.VehicleNumber))
+                                {
+                                    if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
+                                    {
+                                        MileageTracking mt = new MileageTracking();
+                                        mt.Vehicles.VehicleNo = CmbVehicles.Text;
+                                        mt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                                        if (db.Entry(mt).State == EntityState.Detached)
+                                            db.Set<MileageTracking>().Attach(mt);
+                                        db.Entry(mt).State = EntityState.Added;
+                                    }
+                                }
                                 Result.NetTotal = ReceiptNetTotal;
                                 Result.TotalDiscount = ReceiptTotalDiscount;
                                 Result.SubTotal = ReceiptSubTotal;
@@ -705,8 +725,6 @@ namespace SimpleBilling.MasterForms
                 DataTable dt = Info.ToDataTable(RptBody);
                 SalesReceiptAsPDF(dt, LblReceiptNo.Text);
             }
-            //Receipt rpt = new Receipt(LblReceiptNo.Text);
-            //rpt.Show();
         }
 
         private void CmbPaymentOption_SelectedIndexChanged(object sender, EventArgs e)
@@ -743,21 +761,24 @@ namespace SimpleBilling.MasterForms
                     string fileName = "C:\\Orion\\" + Info.RandomString(4) + ".pdf";
                     PdfWriter writer = new PdfWriter(fileName);
                     PdfDocument pdf = new PdfDocument(writer);
-                    Document document = new Document(pdf);
-                    Paragraph BusinessName = new Paragraph(data.Name).SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
-                    Paragraph Address = new Paragraph(data.Address).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10);
-                    Paragraph PhoneNo = new Paragraph(data.Contact).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10);
-                    Paragraph ReceiptNo = new Paragraph("Receipt No : " + LblReceiptNo.Text).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
-                    Paragraph DateTime = new Paragraph("Date : " + LblDate.Text + ", Time : " + LblTime.Text).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
-                    Paragraph dl = new Paragraph("                ").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A5.Rotate());
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine(data.Name);
+                    sb.AppendLine(data.Address);
+                    sb.AppendLine(data.Contact);
+                    StringBuilder RptInfo = new StringBuilder();
+                    RptInfo.Append("Receipt No: " + LblReceiptNo.Text);
+                    RptInfo.Append(", Date : " + header.Date);
+                    RptInfo.Append(", Time : " + header.Time);
+                    Paragraph BusinessName = new Paragraph(sb.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(13);
+                    Paragraph ReceiptInfo = new Paragraph(RptInfo.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10);
                     LineSeparator ls = new LineSeparator(new SolidLine());
+                    Paragraph space = new Paragraph("    ");
+                    SolidLine sl = new SolidLine();
                     document.Add(BusinessName);
-                    document.Add(Address);
-                    document.Add(PhoneNo);
-                    document.Add(ReceiptNo);
-                    document.Add(DateTime);
+                    document.Add(ReceiptInfo);
                     document.Add(ls);
-                    document.Add(dl);
+                    document.Add(space);
                     Table table = new Table(7, false);
                     table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
                     table.SetVerticalAlignment(VerticalAlignment.TOP);
@@ -771,15 +792,16 @@ namespace SimpleBilling.MasterForms
 
                     foreach (DataRow d in dt.Rows)
                     {
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[3].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[6].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[3].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[6].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                     }
 
+                    document.Add(space);
                     table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
                     table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
                     table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
@@ -796,6 +818,34 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 Info.Mes(ex.Message);
+            }
+        }
+
+        private void ChkVehicle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkVehicle.Checked == true)
+            {
+                TxtCurrentMileage.Enabled = true;
+                TxtNextServiceDue.Enabled = true;
+            }
+            else
+            {
+                TxtCurrentMileage.Enabled = false;
+                TxtNextServiceDue.Enabled = false;
+            }
+        }
+
+        private void TxtCurrentMileage_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TxtCurrentMileage.Text.Length > 0)
+            {
+                int cm = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.Vehicles.FirstOrDefault(c => c.VehicleNo == CmbVehicles.Text.Trim());
+                    int nsd = data.ServiceMileageDue;
+                    TxtNextServiceDue.Text = (cm + nsd).ToString();
+                }
             }
         }
     }

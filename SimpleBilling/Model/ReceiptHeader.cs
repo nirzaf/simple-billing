@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
@@ -32,6 +33,7 @@ namespace SimpleBilling.Model
         [DefaultValue("No Remarks Found")]
         public string Remarks { get; set; }
 
+        public string VehicleNumber { get; set; }
         public float PaidAmount { get; set; }
         public float Balance { get; set; }
 

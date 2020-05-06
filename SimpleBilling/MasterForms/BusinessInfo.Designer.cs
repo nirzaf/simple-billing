@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusinessInfo));
             this.DGVBusinessInfo = new System.Windows.Forms.DataGridView();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.businessModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.CRUDLayout = new System.Windows.Forms.TableLayoutPanel();
             this.TxtContact = new System.Windows.Forms.TextBox();
@@ -51,7 +49,6 @@
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnActivate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVBusinessInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessModelBindingSource)).BeginInit();
             this.BaseLayout.SuspendLayout();
             this.CRUDLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -59,14 +56,14 @@
             // 
             // DGVBusinessInfo
             // 
-            this.DGVBusinessInfo.AutoGenerateColumns = false;
+            this.DGVBusinessInfo.AllowUserToAddRows = false;
+            this.DGVBusinessInfo.AllowUserToDeleteRows = false;
             this.DGVBusinessInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVBusinessInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVBusinessInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVBusinessInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVBusinessInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IsActive});
-            this.DGVBusinessInfo.DataSource = this.businessModelBindingSource;
             this.DGVBusinessInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVBusinessInfo.Location = new System.Drawing.Point(3, 3);
             this.DGVBusinessInfo.Name = "DGVBusinessInfo";
@@ -126,7 +123,6 @@
             // 
             // TxtContact
             // 
-            this.TxtContact.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.businessModelBindingSource, "Contact", true));
             this.TxtContact.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtContact.Location = new System.Drawing.Point(183, 96);
             this.TxtContact.Name = "TxtContact";
@@ -135,7 +131,6 @@
             // 
             // TxtAddress
             // 
-            this.TxtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.businessModelBindingSource, "Address", true));
             this.TxtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtAddress.Location = new System.Drawing.Point(183, 65);
             this.TxtAddress.Name = "TxtAddress";
@@ -144,7 +139,6 @@
             // 
             // TxtName
             // 
-            this.TxtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.businessModelBindingSource, "Name", true));
             this.TxtName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtName.Location = new System.Drawing.Point(183, 34);
             this.TxtName.Name = "TxtName";
@@ -197,7 +191,6 @@
             // 
             // TxtId
             // 
-            this.TxtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.businessModelBindingSource, "Id", true));
             this.TxtId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtId.Location = new System.Drawing.Point(183, 3);
             this.TxtId.Name = "TxtId";
@@ -312,7 +305,6 @@
             this.Text = "Business Info";
             this.Load += new System.EventHandler(this.BusinessInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVBusinessInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessModelBindingSource)).EndInit();
             this.BaseLayout.ResumeLayout(false);
             this.CRUDLayout.ResumeLayout(false);
             this.CRUDLayout.PerformLayout();
@@ -341,7 +333,6 @@
         private System.Windows.Forms.Button BtnActivate;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnCancel;
-        private System.Windows.Forms.BindingSource businessModelBindingSource;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
     }
 }

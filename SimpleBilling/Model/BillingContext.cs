@@ -4,7 +4,10 @@ namespace SimpleBilling.Model
 {
     public class BillingContext : DbContext
     {
-        public BillingContext() : base("name=con"){ }
+        public BillingContext() : base("name=con")
+        {
+        }
+
         public DbSet<Users> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
@@ -18,5 +21,6 @@ namespace SimpleBilling.Model
         public DbSet<Shelf> Shelves { get; set; }
         public DbSet<BusinessModel> BusinessModels { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<MileageTracking> MileTracking { get; set; }
     }
 }
