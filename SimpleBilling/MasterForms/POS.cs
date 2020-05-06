@@ -444,39 +444,59 @@ namespace SimpleBilling.MasterForms
                     BalanceAmount = GivenAmount - ReceiptNetTotal;
                     using (BillingContext db = new BillingContext())
                     {
-                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && c.IsDeleted == false);
-                        if (Result != null)
+                        using (DbContextTransaction context = db.Database.BeginTransaction())
                         {
-                            if (Result.Status == 1)
+                            var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && c.IsDeleted == false);
+                            if (Result != null)
                             {
-                                if (!string.IsNullOrWhiteSpace(Result.VehicleNumber))
+                                if (Result.Status == 1)
                                 {
-                                    if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
+                                    if (!string.IsNullOrWhiteSpace(Result.VehicleNumber))
                                     {
-                                        MileageTracking mt = new MileageTracking();
-                                        mt.Vehicles.VehicleNo = CmbVehicles.Text;
-                                        mt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
-                                        if (db.Entry(mt).State == EntityState.Detached)
-                                            db.Set<MileageTracking>().Attach(mt);
-                                        db.Entry(mt).State = EntityState.Added;
+                                        if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
+                                        {
+                                            var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && c.IsDeleted == false);
+                                            if (mlt == null)
+                                            {
+                                                MileageTracking mt = new MileageTracking();
+                                                mt.VehicleNo = CmbVehicles.SelectedValue.ToString();
+                                                mt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                                                mt.CreatedDate = DateTime.Now;
+                                                if (db.Entry(mt).State == EntityState.Detached)
+                                                    db.Set<MileageTracking>().Attach(mt);
+                                                db.Entry(mt).State = EntityState.Added;
+                                                db.SaveChanges();
+                                            }
+                                            else
+                                            {
+                                                mlt.VehicleNo = CmbVehicles.Text;
+                                                mlt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                                                mlt.UpdatedDate = DateTime.Now;
+                                                if (db.Entry(mlt).State == EntityState.Detached)
+                                                    db.Set<MileageTracking>().Attach(mlt);
+                                                db.Entry(mlt).State = EntityState.Modified;
+                                                db.SaveChanges();
+                                            }
+                                        }
                                     }
+                                    Result.NetTotal = ReceiptNetTotal;
+                                    Result.TotalDiscount = ReceiptTotalDiscount;
+                                    Result.SubTotal = ReceiptSubTotal;
+                                    Result.PaidAmount = GivenAmount;
+                                    Result.Balance = BalanceAmount;
+                                    Result.PaymentType = GetPaymentType();
+                                    Result.Status = 2;
+                                    Result.UpdatedDate = DateTime.Now;
+                                    Result.Remarks = TxtRemarks.Text.Trim();
+                                    if (db.Entry(Result).State == EntityState.Detached)
+                                        db.Set<ReceiptHeader>().Attach(Result);
+                                    db.Entry(Result).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
+                                    ReduceStock(true);
+                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
+                                    context.Commit();
                                 }
-                                Result.NetTotal = ReceiptNetTotal;
-                                Result.TotalDiscount = ReceiptTotalDiscount;
-                                Result.SubTotal = ReceiptSubTotal;
-                                Result.PaidAmount = GivenAmount;
-                                Result.Balance = BalanceAmount;
-                                Result.PaymentType = GetPaymentType();
-                                Result.Status = 2;
-                                Result.UpdatedDate = DateTime.Now;
-                                Result.Remarks = TxtRemarks.Text.Trim();
-                                if (db.Entry(Result).State == EntityState.Detached)
-                                    db.Set<ReceiptHeader>().Attach(Result);
-                                db.Entry(Result).State = EntityState.Modified;
-                                db.SaveChanges();
-                                LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                                ReduceStock(true);
-                                MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
                             }
                         }
                     }

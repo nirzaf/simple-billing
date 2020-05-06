@@ -26,6 +26,5 @@ namespace SimpleBilling.Model
 
         public int OwnerId { get; set; }
         public DateTime AddedDate { get; set; }
-        public virtual ICollection<MileageTracking> MileageTrackings { get; set; }
     }
 }
