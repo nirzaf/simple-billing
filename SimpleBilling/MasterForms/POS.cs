@@ -309,7 +309,7 @@ namespace SimpleBilling.MasterForms
                         CreatedDate = DateTime.Now
                     };
                     if (ChkVehicle.Checked == true)
-                        header.VehicleNumber = CmbVehicles.Text.Trim();
+                        header.VehicleNumber = CmbVehicles.SelectedValue.ToString();
 
                     var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo);
 
@@ -434,6 +434,39 @@ namespace SimpleBilling.MasterForms
             LblSubTotal.Text = ReceiptSubTotal.ToString();
         }
 
+        private void InsertMileage()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && c.IsDeleted == false);
+                if (mlt == null)
+                {
+                    MileageTracking mt = new MileageTracking
+                    {
+                        ReceiptNo = LblReceiptNo.Text.Trim(),
+                        VehicleNo = CmbVehicles.SelectedValue.ToString(),
+                        Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
+                        CreatedDate = DateTime.Now
+                    };
+                    if (db.Entry(mt).State == EntityState.Detached)
+                        db.Set<MileageTracking>().Attach(mt);
+                    db.Entry(mt).State = EntityState.Added;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    mlt.VehicleNo = CmbVehicles.Text;
+                    mlt.ReceiptNo = LblReceiptNo.Text.Trim();
+                    mlt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                    mlt.UpdatedDate = DateTime.Now;
+                    if (db.Entry(mlt).State == EntityState.Detached)
+                        db.Set<MileageTracking>().Attach(mlt);
+                    db.Entry(mlt).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
+
         private void CompleteReceipt()
         {
             try
@@ -444,59 +477,34 @@ namespace SimpleBilling.MasterForms
                     BalanceAmount = GivenAmount - ReceiptNetTotal;
                     using (BillingContext db = new BillingContext())
                     {
-                        using (DbContextTransaction context = db.Database.BeginTransaction())
+                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && c.IsDeleted == false);
+                        if (Result != null)
                         {
-                            var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && c.IsDeleted == false);
-                            if (Result != null)
+                            if (Result.Status == 1)
                             {
-                                if (Result.Status == 1)
+                                if (!string.IsNullOrWhiteSpace(Result.VehicleNumber))
                                 {
-                                    if (!string.IsNullOrWhiteSpace(Result.VehicleNumber))
+                                    if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
                                     {
-                                        if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
-                                        {
-                                            var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && c.IsDeleted == false);
-                                            if (mlt == null)
-                                            {
-                                                MileageTracking mt = new MileageTracking();
-                                                mt.VehicleNo = CmbVehicles.SelectedValue.ToString();
-                                                mt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
-                                                mt.CreatedDate = DateTime.Now;
-                                                if (db.Entry(mt).State == EntityState.Detached)
-                                                    db.Set<MileageTracking>().Attach(mt);
-                                                db.Entry(mt).State = EntityState.Added;
-                                                db.SaveChanges();
-                                            }
-                                            else
-                                            {
-                                                mlt.VehicleNo = CmbVehicles.Text;
-                                                mlt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
-                                                mlt.UpdatedDate = DateTime.Now;
-                                                if (db.Entry(mlt).State == EntityState.Detached)
-                                                    db.Set<MileageTracking>().Attach(mlt);
-                                                db.Entry(mlt).State = EntityState.Modified;
-                                                db.SaveChanges();
-                                            }
-                                        }
+                                        InsertMileage();
                                     }
-                                    Result.NetTotal = ReceiptNetTotal;
-                                    Result.TotalDiscount = ReceiptTotalDiscount;
-                                    Result.SubTotal = ReceiptSubTotal;
-                                    Result.PaidAmount = GivenAmount;
-                                    Result.Balance = BalanceAmount;
-                                    Result.PaymentType = GetPaymentType();
-                                    Result.Status = 2;
-                                    Result.UpdatedDate = DateTime.Now;
-                                    Result.Remarks = TxtRemarks.Text.Trim();
-                                    if (db.Entry(Result).State == EntityState.Detached)
-                                        db.Set<ReceiptHeader>().Attach(Result);
-                                    db.Entry(Result).State = EntityState.Modified;
-                                    db.SaveChanges();
-                                    LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                                    ReduceStock(true);
-                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
-                                    context.Commit();
                                 }
+                                Result.NetTotal = ReceiptNetTotal;
+                                Result.TotalDiscount = ReceiptTotalDiscount;
+                                Result.SubTotal = ReceiptSubTotal;
+                                Result.PaidAmount = GivenAmount;
+                                Result.Balance = BalanceAmount;
+                                Result.PaymentType = GetPaymentType();
+                                Result.Status = 2;
+                                Result.UpdatedDate = DateTime.Now;
+                                Result.Remarks = TxtRemarks.Text.Trim();
+                                if (db.Entry(Result).State == EntityState.Detached)
+                                    db.Set<ReceiptHeader>().Attach(Result);
+                                db.Entry(Result).State = EntityState.Modified;
+                                db.SaveChanges();
+                                LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
+                                ReduceStock(true);
+                                MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
                             }
                         }
                     }
