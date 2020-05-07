@@ -52,6 +52,7 @@
             this.DTDueDate = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.CmbBankName = new System.Windows.Forms.ComboBox();
+            this.BtnAddBanks = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVChequeDetails)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -68,6 +69,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.CRUDPanel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BtnAddBanks, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -260,6 +262,7 @@
             // 
             // BtnAdd
             // 
+            this.BtnAdd.BackColor = System.Drawing.Color.White;
             this.BtnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAdd.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAdd.Location = new System.Drawing.Point(3, 3);
@@ -267,11 +270,12 @@
             this.BtnAdd.Size = new System.Drawing.Size(127, 49);
             this.BtnAdd.TabIndex = 0;
             this.BtnAdd.Text = "Add";
-            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnEdit
             // 
+            this.BtnEdit.BackColor = System.Drawing.Color.White;
             this.BtnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnEdit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEdit.Location = new System.Drawing.Point(3, 58);
@@ -279,11 +283,12 @@
             this.BtnEdit.Size = new System.Drawing.Size(127, 49);
             this.BtnEdit.TabIndex = 1;
             this.BtnEdit.Text = "Edit";
-            this.BtnEdit.UseVisualStyleBackColor = true;
+            this.BtnEdit.UseVisualStyleBackColor = false;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // BtnCancel
             // 
+            this.BtnCancel.BackColor = System.Drawing.Color.White;
             this.BtnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancel.Location = new System.Drawing.Point(3, 113);
@@ -291,11 +296,12 @@
             this.BtnCancel.Size = new System.Drawing.Size(127, 49);
             this.BtnCancel.TabIndex = 2;
             this.BtnCancel.Text = "Cancel";
-            this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.UseVisualStyleBackColor = false;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnDelete
             // 
+            this.BtnDelete.BackColor = System.Drawing.Color.White;
             this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDelete.Location = new System.Drawing.Point(3, 168);
@@ -303,10 +309,11 @@
             this.BtnDelete.Size = new System.Drawing.Size(127, 49);
             this.BtnDelete.TabIndex = 3;
             this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.UseVisualStyleBackColor = false;
             // 
             // BtnSave
             // 
+            this.BtnSave.BackColor = System.Drawing.Color.White;
             this.BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSave.Location = new System.Drawing.Point(3, 223);
@@ -314,7 +321,7 @@
             this.BtnSave.Size = new System.Drawing.Size(127, 52);
             this.BtnSave.TabIndex = 4;
             this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // DTDueDate
@@ -344,6 +351,19 @@
             this.CmbBankName.Name = "CmbBankName";
             this.CmbBankName.Size = new System.Drawing.Size(540, 26);
             this.CmbBankName.TabIndex = 12;
+            // 
+            // BtnAddBanks
+            // 
+            this.BtnAddBanks.BackColor = System.Drawing.Color.White;
+            this.BtnAddBanks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddBanks.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddBanks.Location = new System.Drawing.Point(722, 322);
+            this.BtnAddBanks.Name = "BtnAddBanks";
+            this.BtnAddBanks.Size = new System.Drawing.Size(133, 174);
+            this.BtnAddBanks.TabIndex = 4;
+            this.BtnAddBanks.Text = "Add Banks";
+            this.BtnAddBanks.UseVisualStyleBackColor = false;
+            this.BtnAddBanks.Click += new System.EventHandler(this.BtnAddBanks_Click);
             // 
             // ManageCheques
             // 
@@ -394,5 +414,6 @@
         private System.Windows.Forms.DateTimePicker DTDueDate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CmbBankName;
+        private System.Windows.Forms.Button BtnAddBanks;
     }
 }

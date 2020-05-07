@@ -1,12 +1,8 @@
 ﻿using SimpleBilling.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -86,6 +82,13 @@ namespace SimpleBilling.MasterForms
             {
                 Info.Mes(ex.Message);
             }
+        }
+
+        private void BtnAddBanks_Click(object sender, EventArgs e)
+        {
+            ManageBanks mb = new ManageBanks();
+            mb.Show();
+            Hide();
         }
     }
 }
