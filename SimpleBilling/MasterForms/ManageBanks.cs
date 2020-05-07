@@ -44,6 +44,7 @@ namespace SimpleBilling.MasterForms
             {
                 TxtBankId.Text = DGVBanks.SelectedRows[0].Cells[0].Value + string.Empty;
                 TxtBankName.Text = DGVBanks.SelectedRows[0].Cells[1].Value + string.Empty;
+                BtnDelete.Enabled = true;
             }
         }
 
@@ -55,6 +56,11 @@ namespace SimpleBilling.MasterForms
         private void DGVLoad()
         {
             CRUDPanel.Enabled = false;
+            BtnDelete.Enabled = false;
+            BtnSave.Enabled = false;
+            BtnCancel.Enabled = false;
+            BtnAdd.Enabled = true;
+            BtnEdit.Enabled = true;
             using (BillingContext db = new BillingContext())
             {
                 var data = (from bank in db.Banks.Where(c => c.IsDeleted == false)
@@ -68,6 +74,11 @@ namespace SimpleBilling.MasterForms
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void Save()
         {
             try
             {
@@ -111,25 +122,56 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 DGVLoad();
+                BtnSave.Enabled = false;
+                BtnCancel.Enabled = false;
             }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                int BankId = Convert.ToInt32(TxtBankId.Text.Trim());
+                using (BillingContext db = new BillingContext())
                 {
-                    var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && c.IsDeleted == false);
-                    if (b != null)
+                    if (DGVBanks.SelectedRows.Count > 0)
                     {
-                        b.IsDeleted = true;
-                        if (db.Entry(b).State == EntityState.Detached)
-                            db.Set<Bank>().Attach(b);
-                        db.Entry(b).State = EntityState.Modified;
-                        db.SaveChanges();
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Bank?", "Confirmation delete", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                            {
+                                var b = db.Banks.FirstOrDefault(c => c.BankId == BankId && c.IsDeleted == false);
+                                if (b != null)
+                                {
+                                    b.IsDeleted = true;
+                                    if (db.Entry(b).State == EntityState.Detached)
+                                        db.Set<Bank>().Attach(b);
+                                    db.Entry(b).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                }
+                            }
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                DGVLoad();
+                BtnSave.Enabled = false;
+                BtnCancel.Enabled = false;
+            }
+        }
+
+        private void TxtBankName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Save();
             }
         }
     }
