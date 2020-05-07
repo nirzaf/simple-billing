@@ -52,6 +52,7 @@
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
             this.TxtNetTotal = new System.Windows.Forms.TextBox();
             this.LblReceiptNo = new System.Windows.Forms.Label();
+            this.LblCustomer = new System.Windows.Forms.Label();
             this.TxtCustomer = new System.Windows.Forms.TextBox();
             this.CmbVehicles = new System.Windows.Forms.ComboBox();
             this.ChkVehicle = new System.Windows.Forms.CheckBox();
@@ -91,7 +92,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.LblCustomer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -364,6 +364,17 @@
             this.LblReceiptNo.Size = new System.Drawing.Size(242, 19);
             this.LblReceiptNo.TabIndex = 18;
             this.LblReceiptNo.Text = "ReceiptNo";
+            // 
+            // LblCustomer
+            // 
+            this.LblCustomer.AutoSize = true;
+            this.LblCustomer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.LblCustomer.ForeColor = System.Drawing.Color.Lime;
+            this.LblCustomer.Location = new System.Drawing.Point(251, 0);
+            this.LblCustomer.Name = "LblCustomer";
+            this.LblCustomer.Size = new System.Drawing.Size(84, 19);
+            this.LblCustomer.TabIndex = 17;
+            this.LblCustomer.Text = "Customer";
             // 
             // TxtCustomer
             // 
@@ -839,17 +850,6 @@
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
-            // 
-            // LblCustomer
-            // 
-            this.LblCustomer.AutoSize = true;
-            this.LblCustomer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.LblCustomer.ForeColor = System.Drawing.Color.Lime;
-            this.LblCustomer.Location = new System.Drawing.Point(251, 0);
-            this.LblCustomer.Name = "LblCustomer";
-            this.LblCustomer.Size = new System.Drawing.Size(84, 19);
-            this.LblCustomer.TabIndex = 17;
-            this.LblCustomer.Text = "Customer";
             // 
             // POS
             // 
