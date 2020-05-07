@@ -11,7 +11,9 @@ namespace SimpleBilling.Model
         [MaxLength(150)]
         public string PayeeName { get; set; }
 
-        public Date DueDate { get; set; }
+        [MaxLength(30)]
+        public string DueDate { get; set; }
+
         public float Amount { get; set; }
         public int PaidBy { get; set; }
 

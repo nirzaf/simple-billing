@@ -372,6 +372,7 @@
             this.TxtCustomer.Name = "TxtCustomer";
             this.TxtCustomer.Size = new System.Drawing.Size(242, 26);
             this.TxtCustomer.TabIndex = 1;
+            this.TxtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyDown);
             this.TxtCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyUp);
             // 
             // CmbVehicles
