@@ -883,5 +883,36 @@ namespace SimpleBilling.MasterForms
             {
             }
         }
+
+        private void LblAddCheque_Click(object sender, EventArgs e)
+        {
+            Form frmoverlay = new Form();
+            {
+                try
+                {
+                    using (ManageCheques frm = new ManageCheques())
+                    {
+                        frmoverlay.StartPosition = FormStartPosition.Manual;
+                        frmoverlay.FormBorderStyle = FormBorderStyle.None;
+                        frmoverlay.Opacity = .50d;
+                        frmoverlay.TopMost = true;
+                        frmoverlay.Location = Location;
+                        frmoverlay.ShowInTaskbar = false;
+                        frmoverlay.Show();
+                        frm.Owner = frmoverlay;
+                        frm.ShowDialog();
+                        frmoverlay.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
+                }
+                finally
+                {
+                    frmoverlay.Dispose();
+                }
+            }
+        }
     }
 }

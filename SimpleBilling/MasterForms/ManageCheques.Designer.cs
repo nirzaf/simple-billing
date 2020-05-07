@@ -34,23 +34,23 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnCancel = new System.Windows.Forms.Button();
+            this.BtnEdit = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
             this.CRUDPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtChequeAmount = new System.Windows.Forms.TextBox();
+            this.TxtPayeeName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.TxtChequeNumber = new System.Windows.Forms.TextBox();
-            this.TxtPayeeName = new System.Windows.Forms.TextBox();
-            this.TxtChequeAmount = new System.Windows.Forms.TextBox();
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.BtnEdit = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnSave = new System.Windows.Forms.Button();
             this.DTDueDate = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
             this.CmbBankName = new System.Windows.Forms.ComboBox();
             this.BtnAddBanks = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -146,6 +146,70 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(133, 278);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
+            // BtnSave
+            // 
+            this.BtnSave.BackColor = System.Drawing.Color.White;
+            this.BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSave.Location = new System.Drawing.Point(3, 223);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(127, 52);
+            this.BtnSave.TabIndex = 4;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDelete.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDelete.Location = new System.Drawing.Point(3, 168);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(127, 49);
+            this.BtnDelete.TabIndex = 3;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.BackColor = System.Drawing.Color.White;
+            this.BtnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancel.Location = new System.Drawing.Point(3, 113);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(127, 49);
+            this.BtnCancel.TabIndex = 2;
+            this.BtnCancel.Text = "Cancel";
+            this.BtnCancel.UseVisualStyleBackColor = false;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // BtnEdit
+            // 
+            this.BtnEdit.BackColor = System.Drawing.Color.White;
+            this.BtnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnEdit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEdit.Location = new System.Drawing.Point(3, 58);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(127, 49);
+            this.BtnEdit.TabIndex = 1;
+            this.BtnEdit.Text = "Edit";
+            this.BtnEdit.UseVisualStyleBackColor = false;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.BackColor = System.Drawing.Color.White;
+            this.BtnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAdd.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(127, 49);
+            this.BtnAdd.TabIndex = 0;
+            this.BtnAdd.Text = "Add";
+            this.BtnAdd.UseVisualStyleBackColor = false;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
             // CRUDPanel
             // 
             this.CRUDPanel.ColumnCount = 2;
@@ -176,55 +240,93 @@
             this.CRUDPanel.Size = new System.Drawing.Size(713, 174);
             this.CRUDPanel.TabIndex = 3;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(3, 155);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(161, 19);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Bank Name";
+            // 
+            // TxtChequeAmount
+            // 
+            this.TxtChequeAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeAmount.Location = new System.Drawing.Point(170, 59);
+            this.TxtChequeAmount.Name = "TxtChequeAmount";
+            this.TxtChequeAmount.Size = new System.Drawing.Size(540, 26);
+            this.TxtChequeAmount.TabIndex = 7;
+            // 
+            // TxtPayeeName
+            // 
+            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.Location = new System.Drawing.Point(170, 31);
+            this.TxtPayeeName.Name = "TxtPayeeName";
+            this.TxtPayeeName.Size = new System.Drawing.Size(540, 26);
+            this.TxtPayeeName.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(3, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(161, 19);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Amount";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(161, 19);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Payee";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 19);
+            this.label2.Size = new System.Drawing.Size(161, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Cheque Number";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 87);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(3, 93);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 19);
+            this.label3.Size = new System.Drawing.Size(161, 19);
             this.label3.TabIndex = 1;
             this.label3.Text = "Due Date";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 19);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Payee";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 116);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(3, 121);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 19);
+            this.label5.Size = new System.Drawing.Size(161, 19);
             this.label5.TabIndex = 3;
             this.label5.Text = "Paid by";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 19);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Amount";
             // 
             // TxtChequeNumber
             // 
@@ -234,120 +336,30 @@
             this.TxtChequeNumber.Size = new System.Drawing.Size(540, 26);
             this.TxtChequeNumber.TabIndex = 5;
             // 
-            // TxtPayeeName
-            // 
-            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPayeeName.Location = new System.Drawing.Point(170, 32);
-            this.TxtPayeeName.Name = "TxtPayeeName";
-            this.TxtPayeeName.Size = new System.Drawing.Size(540, 26);
-            this.TxtPayeeName.TabIndex = 6;
-            // 
-            // TxtChequeAmount
-            // 
-            this.TxtChequeAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtChequeAmount.Location = new System.Drawing.Point(170, 61);
-            this.TxtChequeAmount.Name = "TxtChequeAmount";
-            this.TxtChequeAmount.Size = new System.Drawing.Size(540, 26);
-            this.TxtChequeAmount.TabIndex = 7;
-            // 
             // CmbPaidBy
             // 
             this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CmbPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbPaidBy.FormattingEnabled = true;
-            this.CmbPaidBy.Location = new System.Drawing.Point(170, 119);
+            this.CmbPaidBy.Location = new System.Drawing.Point(170, 115);
             this.CmbPaidBy.Name = "CmbPaidBy";
             this.CmbPaidBy.Size = new System.Drawing.Size(540, 26);
             this.CmbPaidBy.TabIndex = 9;
-            // 
-            // BtnAdd
-            // 
-            this.BtnAdd.BackColor = System.Drawing.Color.White;
-            this.BtnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnAdd.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAdd.Location = new System.Drawing.Point(3, 3);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(127, 49);
-            this.BtnAdd.TabIndex = 0;
-            this.BtnAdd.Text = "Add";
-            this.BtnAdd.UseVisualStyleBackColor = false;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // BtnEdit
-            // 
-            this.BtnEdit.BackColor = System.Drawing.Color.White;
-            this.BtnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnEdit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEdit.Location = new System.Drawing.Point(3, 58);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.Size = new System.Drawing.Size(127, 49);
-            this.BtnEdit.TabIndex = 1;
-            this.BtnEdit.Text = "Edit";
-            this.BtnEdit.UseVisualStyleBackColor = false;
-            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            // 
-            // BtnCancel
-            // 
-            this.BtnCancel.BackColor = System.Drawing.Color.White;
-            this.BtnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancel.Location = new System.Drawing.Point(3, 113);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(127, 49);
-            this.BtnCancel.TabIndex = 2;
-            this.BtnCancel.Text = "Cancel";
-            this.BtnCancel.UseVisualStyleBackColor = false;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.BackColor = System.Drawing.Color.White;
-            this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnDelete.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDelete.Location = new System.Drawing.Point(3, 168);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(127, 49);
-            this.BtnDelete.TabIndex = 3;
-            this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = false;
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.BackColor = System.Drawing.Color.White;
-            this.BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSave.Location = new System.Drawing.Point(3, 223);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(127, 52);
-            this.BtnSave.TabIndex = 4;
-            this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // DTDueDate
             // 
             this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DTDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTDueDate.Location = new System.Drawing.Point(170, 90);
+            this.DTDueDate.Location = new System.Drawing.Point(170, 87);
             this.DTDueDate.Name = "DTDueDate";
             this.DTDueDate.Size = new System.Drawing.Size(540, 26);
             this.DTDueDate.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 145);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 19);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Bank Name";
             // 
             // CmbBankName
             // 
             this.CmbBankName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBankName.FormattingEnabled = true;
-            this.CmbBankName.Location = new System.Drawing.Point(170, 148);
+            this.CmbBankName.Location = new System.Drawing.Point(170, 143);
             this.CmbBankName.Name = "CmbBankName";
             this.CmbBankName.Size = new System.Drawing.Size(540, 26);
             this.CmbBankName.TabIndex = 12;
@@ -373,7 +385,7 @@
             this.ClientSize = new System.Drawing.Size(858, 499);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManageCheques";
             this.Text = "Manage Cheques";
             this.Load += new System.EventHandler(this.ManageCheques_Load);

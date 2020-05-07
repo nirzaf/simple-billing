@@ -92,6 +92,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.LblCheckDetails = new System.Windows.Forms.Label();
+            this.LblAddCheque = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -433,6 +435,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.Controls.Add(this.LblAddCheque, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.TxtNextServiceDue, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.LblDate, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.LblTime, 1, 4);
@@ -454,6 +457,7 @@
             this.tableLayoutPanel2.Controls.Add(this.LblBalanceAmount, 3, 3);
             this.tableLayoutPanel2.Controls.Add(this.TxtGivenAmount, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.label12, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LblCheckDetails, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 421);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -592,32 +596,33 @@
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(323, 0);
+            this.label16.Location = new System.Drawing.Point(323, 7);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(182, 19);
+            this.label16.Size = new System.Drawing.Size(184, 19);
             this.label16.TabIndex = 16;
             this.label16.Text = "Select Payment Option";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(3, 0);
+            this.label17.Location = new System.Drawing.Point(3, 7);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(148, 26);
+            this.label17.Size = new System.Drawing.Size(148, 19);
             this.label17.TabIndex = 17;
             this.label17.Text = "Current Mileage";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label18.ForeColor = System.Drawing.Color.Snow;
-            this.label18.Location = new System.Drawing.Point(3, 26);
+            this.label18.Location = new System.Drawing.Point(3, 33);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(148, 26);
+            this.label18.Size = new System.Drawing.Size(148, 19);
             this.label18.TabIndex = 18;
             this.label18.Text = "Next Serrvice Due";
             // 
@@ -665,11 +670,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(323, 52);
+            this.label12.Location = new System.Drawing.Point(323, 59);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(184, 26);
+            this.label12.Size = new System.Drawing.Size(184, 19);
             this.label12.TabIndex = 13;
             this.label12.Text = "Given Amount";
             // 
@@ -851,6 +856,29 @@
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
             // 
+            // LblCheckDetails
+            // 
+            this.LblCheckDetails.AutoSize = true;
+            this.LblCheckDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblCheckDetails.ForeColor = System.Drawing.Color.Snow;
+            this.LblCheckDetails.Location = new System.Drawing.Point(323, 33);
+            this.LblCheckDetails.Name = "LblCheckDetails";
+            this.LblCheckDetails.Size = new System.Drawing.Size(184, 19);
+            this.LblCheckDetails.TabIndex = 21;
+            this.LblCheckDetails.Text = "Add Cheque";
+            // 
+            // LblAddCheque
+            // 
+            this.LblAddCheque.AutoSize = true;
+            this.LblAddCheque.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblAddCheque.ForeColor = System.Drawing.Color.Snow;
+            this.LblAddCheque.Location = new System.Drawing.Point(513, 33);
+            this.LblAddCheque.Name = "LblAddCheque";
+            this.LblAddCheque.Size = new System.Drawing.Size(165, 19);
+            this.LblAddCheque.TabIndex = 22;
+            this.LblAddCheque.Text = "Click To Add";
+            this.LblAddCheque.Click += new System.EventHandler(this.LblAddCheque_Click);
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -945,5 +973,7 @@
         private System.Windows.Forms.TextBox TxtNextServiceDue;
         private System.Windows.Forms.TextBox TxtCurrentMileage;
         private System.Windows.Forms.Label LblCustomer;
+        private System.Windows.Forms.Label LblAddCheque;
+        private System.Windows.Forms.Label LblCheckDetails;
     }
 }
