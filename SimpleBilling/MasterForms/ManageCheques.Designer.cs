@@ -80,6 +80,7 @@
             // 
             // DGVChequeDetails
             // 
+            this.DGVChequeDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVChequeDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVChequeDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVChequeDetails.Dock = System.Windows.Forms.DockStyle.Fill;

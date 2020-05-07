@@ -61,7 +61,6 @@ namespace SimpleBilling.MasterForms
                         IsService = GetIsService()
                     };
 
-
                     if (items.Id == 0)
                     {
                         if (db.Entry(items).State == EntityState.Detached)
@@ -71,7 +70,6 @@ namespace SimpleBilling.MasterForms
                         db.SaveChanges();
                         Info.Mes("Item Added Successfully");
                     }
-
                     else
                     {
                         var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
@@ -93,7 +91,7 @@ namespace SimpleBilling.MasterForms
                         }
                     }
                 }
-                else 
+                else
                 {
                     Info.Required();
                 }
@@ -118,7 +116,7 @@ namespace SimpleBilling.MasterForms
             {
                 Info.Mes(ex.Message.ToString());
             }
-            finally 
+            finally
             {
                 PanelCRUD.Enabled = false;
                 BtnCancel.Enabled = false;
@@ -134,7 +132,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from item in db.Items.Where(c=>c.IsDeleted==false)
+                var data = (from item in db.Items.Where(c => c.IsDeleted == false)
                             join cat in db.Categories
                             on item.Categories.CategoryId equals cat.CategoryId
                             join shelve in db.Shelves
@@ -193,10 +191,10 @@ namespace SimpleBilling.MasterForms
                 TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
                 CmbCategories.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
                 CmbShelf.Text = DGVItems.SelectedRows[0].Cells[7].Value + string.Empty;
-                using (BillingContext db = new BillingContext()) 
+                using (BillingContext db = new BillingContext())
                 {
                     var item = db.Items.FirstOrDefault(c => c.Id == Id);
-                    if(item.IsService == true) ChkBoxIsService.Checked = true; else ChkBoxIsService.Checked = false;
+                    if (item.IsService == true) ChkBoxIsService.Checked = true; else ChkBoxIsService.Checked = false;
                 }
             }
         }

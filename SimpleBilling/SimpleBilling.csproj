@@ -179,6 +179,12 @@
     <Compile Include="MasterForms\LoadReceipt.Designer.cs">
       <DependentUpon>LoadReceipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageBanks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageBanks.Designer.cs">
+      <DependentUpon>ManageBanks.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageCheques.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -474,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\LoadReceipt.resx">
       <DependentUpon>LoadReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageBanks.resx">
+      <DependentUpon>ManageBanks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageCategory.resx">
       <DependentUpon>ManageCategory.cs</DependentUpon>

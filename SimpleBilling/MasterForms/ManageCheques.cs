@@ -20,20 +20,33 @@ namespace SimpleBilling.MasterForms
 
         private void ManageCheques_Load(object sender, EventArgs e)
         {
+            DGVLoad();
         }
 
         private void DGVLoad()
         {
             using (BillingContext db = new BillingContext())
-            { 
-               var data = (from ch in db.Cheques.Where(c=>c.IsDeleted ==false)
-                          join cus in db.Customers
-                          on ch.PaidBy equals cus.CustomerId
-                          select new 
-                          { 
-                             ch.ChequeNo,
-                             ch.
-                          })
+            {
+                var data = (from ch in db.Cheques.Where(c => c.IsDeleted == false)
+                            join cus in db.Customers
+                            on ch.PaidBy equals cus.CustomerId
+                            select new
+                            {
+                                ch.ChequeNo,
+                                ch.Amount,
+                                ch.PayeeName,
+                                ch.DueDate,
+                                ch.Bank,
+                                cus.Name
+                            }).ToList();
+                DGVChequeDetails.DataSource = data;
+                CmbPaidBy.ValueMember = "CustomerId";
+                CmbPaidBy.DisplayMember = "Name";
+                CmbPaidBy.DataSource = db.Customers.ToList();
+                List<string> lst = new List<string>();
+                lst.Add("Hatton National Bank");
+                lst.Add("Sampath Bank");
+                lst.Add("Commercial Bank");
             }
         }
 
