@@ -67,6 +67,8 @@
             // DGVBanks
             // 
             this.DGVBanks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVBanks.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DGVBanks.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVBanks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVBanks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVBanks.Location = new System.Drawing.Point(3, 3);
