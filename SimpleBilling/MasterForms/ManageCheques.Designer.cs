@@ -70,7 +70,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.CRUDPanel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.BtnAddBanks, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -98,7 +98,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.20635F));
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -117,11 +117,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(3, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 19);
+            this.label1.Size = new System.Drawing.Size(213, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Filter Cheque";
             // 
@@ -134,7 +135,7 @@
             this.tableLayoutPanel3.Controls.Add(this.BtnCancel, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.BtnEdit, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.BtnAdd, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(722, 38);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
@@ -227,7 +228,7 @@
             this.CRUDPanel.Controls.Add(this.CmbPaidBy, 1, 4);
             this.CRUDPanel.Controls.Add(this.DTDueDate, 1, 3);
             this.CRUDPanel.Controls.Add(this.CmbBankName, 1, 5);
-            this.CRUDPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CRUDPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CRUDPanel.Location = new System.Drawing.Point(3, 322);
             this.CRUDPanel.Name = "CRUDPanel";
             this.CRUDPanel.RowCount = 6;
@@ -254,7 +255,7 @@
             // 
             // TxtChequeAmount
             // 
-            this.TxtChequeAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtChequeAmount.Location = new System.Drawing.Point(170, 59);
             this.TxtChequeAmount.Name = "TxtChequeAmount";
             this.TxtChequeAmount.Size = new System.Drawing.Size(540, 26);
@@ -262,7 +263,7 @@
             // 
             // TxtPayeeName
             // 
-            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtPayeeName.Location = new System.Drawing.Point(170, 31);
             this.TxtPayeeName.Name = "TxtPayeeName";
             this.TxtPayeeName.Size = new System.Drawing.Size(540, 26);
@@ -330,7 +331,7 @@
             // 
             // TxtChequeNumber
             // 
-            this.TxtChequeNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNumber.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtChequeNumber.Location = new System.Drawing.Point(170, 3);
             this.TxtChequeNumber.Name = "TxtChequeNumber";
             this.TxtChequeNumber.Size = new System.Drawing.Size(540, 26);
@@ -338,7 +339,7 @@
             // 
             // CmbPaidBy
             // 
-            this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CmbPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbPaidBy.FormattingEnabled = true;
             this.CmbPaidBy.Location = new System.Drawing.Point(170, 115);
@@ -348,7 +349,7 @@
             // 
             // DTDueDate
             // 
-            this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DTDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTDueDate.Location = new System.Drawing.Point(170, 87);
             this.DTDueDate.Name = "DTDueDate";
@@ -357,9 +358,10 @@
             // 
             // CmbBankName
             // 
+            this.CmbBankName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CmbBankName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBankName.FormattingEnabled = true;
-            this.CmbBankName.Location = new System.Drawing.Point(170, 143);
+            this.CmbBankName.Location = new System.Drawing.Point(170, 145);
             this.CmbBankName.Name = "CmbBankName";
             this.CmbBankName.Size = new System.Drawing.Size(540, 26);
             this.CmbBankName.TabIndex = 12;

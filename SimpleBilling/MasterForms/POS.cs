@@ -892,16 +892,17 @@ namespace SimpleBilling.MasterForms
                 {
                     using (ManageCheques frm = new ManageCheques())
                     {
-                        frmoverlay.StartPosition = FormStartPosition.Manual;
+                        frmoverlay.StartPosition = FormStartPosition.CenterScreen;
                         frmoverlay.FormBorderStyle = FormBorderStyle.None;
-                        frmoverlay.Opacity = .50d;
+                        frmoverlay.Opacity = .5d;
+                        frmoverlay.BackColor = System.Drawing.Color.Black;
+                        frmoverlay.WindowState = FormWindowState.Maximized;
                         frmoverlay.TopMost = true;
                         frmoverlay.Location = Location;
                         frmoverlay.ShowInTaskbar = false;
-                        frmoverlay.Show();
                         frm.Owner = frmoverlay;
                         frm.ShowDialog();
-                        frmoverlay.Dispose();
+                        frmoverlay.Show();
                     }
                 }
                 catch (Exception ex)
