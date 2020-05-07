@@ -179,6 +179,12 @@
     <Compile Include="MasterForms\LoadReceipt.Designer.cs">
       <DependentUpon>LoadReceipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ManageCheques.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ManageCheques.Designer.cs">
+      <DependentUpon>ManageCheques.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\ManageCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -415,6 +421,7 @@
     <Compile Include="Model\BillingDBInitializer.cs" />
     <Compile Include="Model\BusinessModel.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Cheque.cs" />
     <Compile Include="Model\Customers.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\GRNDetails.cs" />
@@ -454,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageCategory.resx">
       <DependentUpon>ManageCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ManageCheques.resx">
+      <DependentUpon>ManageCheques.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageCustomers.resx">
       <DependentUpon>ManageCustomers.cs</DependentUpon>

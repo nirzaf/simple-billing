@@ -59,6 +59,7 @@
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
             this.LblCashier = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.LblReceiptStatus = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.TxtCurrentMileage = new System.Windows.Forms.TextBox();
             this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -90,8 +92,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.TxtCurrentMileage = new System.Windows.Forms.TextBox();
-            this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -464,6 +464,14 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1024, 133);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
+            // TxtNextServiceDue
+            // 
+            this.TxtNextServiceDue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtNextServiceDue.Location = new System.Drawing.Point(157, 29);
+            this.TxtNextServiceDue.Name = "TxtNextServiceDue";
+            this.TxtNextServiceDue.Size = new System.Drawing.Size(160, 26);
+            this.TxtNextServiceDue.TabIndex = 20;
+            // 
             // LblCashier
             // 
             this.LblCashier.AutoSize = true;
@@ -654,6 +662,15 @@
             this.label18.TabIndex = 18;
             this.label18.Text = "Next Serrvice Due";
             // 
+            // TxtCurrentMileage
+            // 
+            this.TxtCurrentMileage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtCurrentMileage.Location = new System.Drawing.Point(157, 3);
+            this.TxtCurrentMileage.Name = "TxtCurrentMileage";
+            this.TxtCurrentMileage.Size = new System.Drawing.Size(160, 26);
+            this.TxtCurrentMileage.TabIndex = 19;
+            this.TxtCurrentMileage.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCurrentMileage_KeyUp);
+            // 
             // BtnVoid
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
@@ -831,23 +848,6 @@
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
-            // 
-            // TxtCurrentMileage
-            // 
-            this.TxtCurrentMileage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtCurrentMileage.Location = new System.Drawing.Point(157, 3);
-            this.TxtCurrentMileage.Name = "TxtCurrentMileage";
-            this.TxtCurrentMileage.Size = new System.Drawing.Size(160, 26);
-            this.TxtCurrentMileage.TabIndex = 19;
-            this.TxtCurrentMileage.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCurrentMileage_KeyUp);
-            // 
-            // TxtNextServiceDue
-            // 
-            this.TxtNextServiceDue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtNextServiceDue.Location = new System.Drawing.Point(157, 29);
-            this.TxtNextServiceDue.Name = "TxtNextServiceDue";
-            this.TxtNextServiceDue.Size = new System.Drawing.Size(160, 26);
-            this.TxtNextServiceDue.TabIndex = 20;
             // 
             // POS
             // 

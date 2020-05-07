@@ -1,5 +1,4 @@
-﻿using SimpleBilling.MasterForms;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace SimpleBilling
