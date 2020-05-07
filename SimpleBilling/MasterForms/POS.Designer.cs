@@ -973,7 +973,7 @@
         private System.Windows.Forms.TextBox TxtNextServiceDue;
         private System.Windows.Forms.TextBox TxtCurrentMileage;
         private System.Windows.Forms.Label LblCustomer;
-        private System.Windows.Forms.Label LblAddCheque;
         private System.Windows.Forms.Label LblCheckDetails;
+        public System.Windows.Forms.Label LblAddCheque;
     }
 }

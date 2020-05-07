@@ -886,34 +886,42 @@ namespace SimpleBilling.MasterForms
 
         private void LblAddCheque_Click(object sender, EventArgs e)
         {
-            Form frmoverlay = new Form();
+            using (ManageCheques mc = new ManageCheques())
             {
-                try
+                if (mc.ShowDialog() == DialogResult.OK)
                 {
-                    using (ManageCheques frm = new ManageCheques())
-                    {
-                        frmoverlay.StartPosition = FormStartPosition.CenterScreen;
-                        frmoverlay.FormBorderStyle = FormBorderStyle.None;
-                        frmoverlay.Opacity = .5d;
-                        frmoverlay.BackColor = System.Drawing.Color.Black;
-                        frmoverlay.WindowState = FormWindowState.Maximized;
-                        frmoverlay.TopMost = true;
-                        frmoverlay.Location = Location;
-                        frmoverlay.ShowInTaskbar = false;
-                        frm.Owner = frmoverlay;
-                        frm.ShowDialog();
-                        frmoverlay.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Info.Mes(ex.Message);
-                }
-                finally
-                {
-                    frmoverlay.Dispose();
+                    LblAddCheque.Text = mc.Text;
                 }
             }
+
+            //Form frmoverlay = new Form();
+            //{
+            //    try
+            //    {
+            //        using (ManageCheques frm = new ManageCheques())
+            //        {
+            //            frmoverlay.StartPosition = FormStartPosition.CenterScreen;
+            //            frmoverlay.FormBorderStyle = FormBorderStyle.None;
+            //            frmoverlay.Opacity = .5d;
+            //            frmoverlay.BackColor = System.Drawing.Color.Black;
+            //            frmoverlay.WindowState = FormWindowState.Maximized;
+            //            frmoverlay.TopMost = true;
+            //            frmoverlay.Location = Location;
+            //            frmoverlay.ShowInTaskbar = false;
+            //            frm.Owner = frmoverlay;
+            //            frm.ShowDialog();
+            //            frmoverlay.Show();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Info.Mes(ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        frmoverlay.Dispose();
+            //    }
+            //}
         }
     }
 }

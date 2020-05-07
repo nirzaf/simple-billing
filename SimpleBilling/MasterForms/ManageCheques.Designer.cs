@@ -53,6 +53,7 @@
             this.DTDueDate = new System.Windows.Forms.DateTimePicker();
             this.CmbBankName = new System.Windows.Forms.ComboBox();
             this.BtnAddBanks = new System.Windows.Forms.Button();
+            this.BtnLoad = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVChequeDetails)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -70,6 +71,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.CRUDPanel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.BtnAddBanks, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BtnLoad, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -379,6 +381,19 @@
             this.BtnAddBanks.UseVisualStyleBackColor = false;
             this.BtnAddBanks.Click += new System.EventHandler(this.BtnAddBanks_Click);
             // 
+            // BtnLoad
+            // 
+            this.BtnLoad.BackColor = System.Drawing.Color.White;
+            this.BtnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnLoad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLoad.Location = new System.Drawing.Point(722, 3);
+            this.BtnLoad.Name = "BtnLoad";
+            this.BtnLoad.Size = new System.Drawing.Size(133, 29);
+            this.BtnLoad.TabIndex = 5;
+            this.BtnLoad.Text = "Load";
+            this.BtnLoad.UseVisualStyleBackColor = false;
+            this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
+            // 
             // ManageCheques
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -390,6 +405,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManageCheques";
             this.Text = "Manage Cheques";
+            this.Activated += new System.EventHandler(this.ManageCheques_Activated);
             this.Load += new System.EventHandler(this.ManageCheques_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVChequeDetails)).EndInit();
@@ -429,5 +445,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CmbBankName;
         private System.Windows.Forms.Button BtnAddBanks;
+        private System.Windows.Forms.Button BtnLoad;
     }
 }

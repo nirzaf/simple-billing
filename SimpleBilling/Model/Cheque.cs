@@ -16,8 +16,6 @@ namespace SimpleBilling.Model
 
         public float Amount { get; set; }
         public int PaidBy { get; set; }
-
-        [MaxLength(50)]
-        public string Bank { get; set; }
+        public int Bank { get; set; }
     }
 }
