@@ -22,5 +22,6 @@ namespace SimpleBilling.Model
         public DbSet<BusinessModel> BusinessModels { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<MileageTracking> MileTracking { get; set; }
+        public DbSet<Cheque> Cheques { get; set; }
     }
 }
