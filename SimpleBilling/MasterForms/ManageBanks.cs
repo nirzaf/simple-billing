@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SimpleBilling.Migrations;
+using SimpleBilling.Model;
+using System;
 using System.Data;
-using System.Drawing;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -46,6 +44,80 @@ namespace SimpleBilling.MasterForms
             {
                 TxtBankId.Text = DGVBanks.SelectedRows[0].Cells[0].Value + string.Empty;
                 TxtBankName.Text = DGVBanks.SelectedRows[0].Cells[1].Value + string.Empty;
+            }
+        }
+
+        private void ManageBanks_Load(object sender, EventArgs e)
+        {
+            DGVLoad();
+        }
+
+        private void DGVLoad()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from bank in db.Banks.Where(c => c.IsDeleted == false)
+                            select new
+                            {
+                                bank.BankId,
+                                bank.BankName
+                            }).ToList();
+                DGVBanks.DataSource = data;
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (TxtBankId.Text.Length > 0)
+                {
+                    if (TxtBankId.Text == "0" && Info.IsEmpty(TxtBankName))
+                    {
+                        Bank b = new Bank
+                        {
+                            BankName = TxtBankName.Text.Trim()
+                        };
+                        if (db.Entry(b).State == EntityState.Detached)
+                            db.Set<Bank>().Attach(b);
+                        db.Entry(b).State = EntityState.Added;
+                        db.SaveChanges();
+                    }
+                    else if (Info.IsEmpty(TxtBankName))
+                    {
+                        if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                        {
+                            var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && c.IsDeleted == false);
+                            if (b != null)
+                            {
+                                b.BankName = TxtBankName.Text.Trim();
+                                if (db.Entry(b).State == EntityState.Detached)
+                                    db.Set<Bank>().Attach(b);
+                                db.Entry(b).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                {
+                    var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && c.IsDeleted == false);
+                    if (b != null)
+                    {
+                        b.IsDeleted = true;
+                        if (db.Entry(b).State == EntityState.Detached)
+                            db.Set<Bank>().Attach(b);
+                        db.Entry(b).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
             }
         }
     }

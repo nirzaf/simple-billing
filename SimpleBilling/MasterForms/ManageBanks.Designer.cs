@@ -117,24 +117,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 19);
+            this.label1.Size = new System.Drawing.Size(166, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bank Id";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 30);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 19);
+            this.label2.Size = new System.Drawing.Size(166, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Bank Name";
             // 
             // TxtBankId
             // 
-            this.TxtBankId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtBankId.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtBankId.Location = new System.Drawing.Point(175, 3);
             this.TxtBankId.Name = "TxtBankId";
             this.TxtBankId.ReadOnly = true;
@@ -143,7 +147,7 @@
             // 
             // TxtBankName
             // 
-            this.TxtBankName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtBankName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtBankName.Location = new System.Drawing.Point(175, 33);
             this.TxtBankName.Name = "TxtBankName";
             this.TxtBankName.Size = new System.Drawing.Size(292, 26);
@@ -180,6 +184,7 @@
             this.BtnDelete.TabIndex = 2;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnCancel
             // 
@@ -201,6 +206,7 @@
             this.BtnSave.TabIndex = 4;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // ManageBanks
             // 
@@ -214,6 +220,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageBanks";
             this.Text = "Manage Banks";
+            this.Load += new System.EventHandler(this.ManageBanks_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVBanks)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
