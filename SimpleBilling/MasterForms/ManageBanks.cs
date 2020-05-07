@@ -20,6 +20,7 @@ namespace SimpleBilling.MasterForms
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
+            TxtBankId.Text = "0";
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace SimpleBilling.MasterForms
 
         private void DGVLoad()
         {
+            CRUDPanel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
                 var data = (from bank in db.Banks.Where(c => c.IsDeleted == false)
@@ -68,37 +70,48 @@ namespace SimpleBilling.MasterForms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                if (TxtBankId.Text.Length > 0)
+                using (BillingContext db = new BillingContext())
                 {
-                    if (TxtBankId.Text == "0" && Info.IsEmpty(TxtBankName))
+                    if (TxtBankId.Text.Length > 0)
                     {
-                        Bank b = new Bank
+                        if (TxtBankId.Text == "0" && Info.IsEmpty(TxtBankName))
                         {
-                            BankName = TxtBankName.Text.Trim()
-                        };
-                        if (db.Entry(b).State == EntityState.Detached)
-                            db.Set<Bank>().Attach(b);
-                        db.Entry(b).State = EntityState.Added;
-                        db.SaveChanges();
-                    }
-                    else if (Info.IsEmpty(TxtBankName))
-                    {
-                        if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
-                        {
-                            var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && c.IsDeleted == false);
-                            if (b != null)
+                            Bank b = new Bank
                             {
-                                b.BankName = TxtBankName.Text.Trim();
-                                if (db.Entry(b).State == EntityState.Detached)
-                                    db.Set<Bank>().Attach(b);
-                                db.Entry(b).State = EntityState.Modified;
-                                db.SaveChanges();
+                                BankName = TxtBankName.Text.Trim()
+                            };
+                            if (db.Entry(b).State == EntityState.Detached)
+                                db.Set<Bank>().Attach(b);
+                            db.Entry(b).State = EntityState.Added;
+                            db.SaveChanges();
+                        }
+                        else if (Info.IsEmpty(TxtBankName))
+                        {
+                            if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                            {
+                                var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && c.IsDeleted == false);
+                                if (b != null)
+                                {
+                                    b.BankName = TxtBankName.Text.Trim();
+                                    if (db.Entry(b).State == EntityState.Detached)
+                                        db.Set<Bank>().Attach(b);
+                                    db.Entry(b).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                }
                             }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                DGVLoad();
             }
         }
 
