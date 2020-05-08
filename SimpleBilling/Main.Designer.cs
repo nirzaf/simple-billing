@@ -38,6 +38,7 @@
             this.ManageShelvesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +46,7 @@
             this.pendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +74,8 @@
             this.ManageShelvesToolStripMenuItem,
             this.ManageCategoryToolStripMenuItem,
             this.ManageBusinessInfoToolStripMenuItem,
-            this.ManageVehicleToolStripMenuItem});
+            this.ManageVehicleToolStripMenuItem,
+            this.ManageBankToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(76, 23);
@@ -137,6 +139,13 @@
             this.ManageBusinessInfoToolStripMenuItem.Text = "Manage Business Info";
             this.ManageBusinessInfoToolStripMenuItem.Click += new System.EventHandler(this.ManageBusinessInfoToolStripMenuItem_Click);
             // 
+            // ManageVehicleToolStripMenuItem
+            // 
+            this.ManageVehicleToolStripMenuItem.Name = "ManageVehicleToolStripMenuItem";
+            this.ManageVehicleToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.ManageVehicleToolStripMenuItem.Text = "Manage Vehicle";
+            this.ManageVehicleToolStripMenuItem.Click += new System.EventHandler(this.ManageVehicleToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -190,12 +199,12 @@
             this.quickSaleToolStripMenuItem.Text = "Quick Sale";
             this.quickSaleToolStripMenuItem.Click += new System.EventHandler(this.quickSaleToolStripMenuItem_Click);
             // 
-            // ManageVehicleToolStripMenuItem
+            // ManageBankToolStripMenuItem
             // 
-            this.ManageVehicleToolStripMenuItem.Name = "ManageVehicleToolStripMenuItem";
-            this.ManageVehicleToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.ManageVehicleToolStripMenuItem.Text = "Manage Vehicle";
-            this.ManageVehicleToolStripMenuItem.Click += new System.EventHandler(this.ManageVehicleToolStripMenuItem_Click);
+            this.ManageBankToolStripMenuItem.Name = "ManageBankToolStripMenuItem";
+            this.ManageBankToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.ManageBankToolStripMenuItem.Text = "Manage Bank";
+            this.ManageBankToolStripMenuItem.Click += new System.EventHandler(this.ManageBankToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -238,5 +247,6 @@
         private System.Windows.Forms.ToolStripMenuItem ManageCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageBusinessInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageVehicleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManageBankToolStripMenuItem;
     }
 }

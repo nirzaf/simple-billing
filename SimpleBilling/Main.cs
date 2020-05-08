@@ -208,5 +208,23 @@ namespace SimpleBilling
             };
             vehicle.Show();
         }
+
+        private void ManageBankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageBanks))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            ManageBanks mb = new ManageBanks()
+            {
+                MdiParent = this
+            };
+            mb.Show();
+        }
     }
 }
