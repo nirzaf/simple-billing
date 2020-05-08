@@ -59,6 +59,7 @@
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.LblAddCheque = new System.Windows.Forms.Label();
             this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
             this.LblCashier = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -78,6 +79,7 @@
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.LblCheckDetails = new System.Windows.Forms.Label();
             this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -92,8 +94,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.LblCheckDetails = new System.Windows.Forms.Label();
-            this.LblAddCheque = new System.Windows.Forms.Label();
+            this.TxtChequeNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -458,6 +459,7 @@
             this.tableLayoutPanel2.Controls.Add(this.TxtGivenAmount, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.label12, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.LblCheckDetails, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.TxtChequeNumber, 4, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 421);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -469,6 +471,18 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1024, 133);
             this.tableLayoutPanel2.TabIndex = 7;
+            // 
+            // LblAddCheque
+            // 
+            this.LblAddCheque.AutoSize = true;
+            this.LblAddCheque.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblAddCheque.ForeColor = System.Drawing.Color.Snow;
+            this.LblAddCheque.Location = new System.Drawing.Point(513, 33);
+            this.LblAddCheque.Name = "LblAddCheque";
+            this.LblAddCheque.Size = new System.Drawing.Size(165, 19);
+            this.LblAddCheque.TabIndex = 22;
+            this.LblAddCheque.Text = "Click To Add";
+            this.LblAddCheque.Click += new System.EventHandler(this.LblAddCheque_Click);
             // 
             // TxtNextServiceDue
             // 
@@ -678,6 +692,17 @@
             this.label12.TabIndex = 13;
             this.label12.Text = "Given Amount";
             // 
+            // LblCheckDetails
+            // 
+            this.LblCheckDetails.AutoSize = true;
+            this.LblCheckDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblCheckDetails.ForeColor = System.Drawing.Color.Snow;
+            this.LblCheckDetails.Location = new System.Drawing.Point(323, 33);
+            this.LblCheckDetails.Name = "LblCheckDetails";
+            this.LblCheckDetails.Size = new System.Drawing.Size(184, 19);
+            this.LblCheckDetails.TabIndex = 21;
+            this.LblCheckDetails.Text = "Add Cheque";
+            // 
             // BtnVoid
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
@@ -856,28 +881,13 @@
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
             // 
-            // LblCheckDetails
+            // TxtChequeNumber
             // 
-            this.LblCheckDetails.AutoSize = true;
-            this.LblCheckDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblCheckDetails.ForeColor = System.Drawing.Color.Snow;
-            this.LblCheckDetails.Location = new System.Drawing.Point(323, 33);
-            this.LblCheckDetails.Name = "LblCheckDetails";
-            this.LblCheckDetails.Size = new System.Drawing.Size(184, 19);
-            this.LblCheckDetails.TabIndex = 21;
-            this.LblCheckDetails.Text = "Add Cheque";
-            // 
-            // LblAddCheque
-            // 
-            this.LblAddCheque.AutoSize = true;
-            this.LblAddCheque.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblAddCheque.ForeColor = System.Drawing.Color.Snow;
-            this.LblAddCheque.Location = new System.Drawing.Point(513, 33);
-            this.LblAddCheque.Name = "LblAddCheque";
-            this.LblAddCheque.Size = new System.Drawing.Size(165, 19);
-            this.LblAddCheque.TabIndex = 22;
-            this.LblAddCheque.Text = "Click To Add";
-            this.LblAddCheque.Click += new System.EventHandler(this.LblAddCheque_Click);
+            this.TxtChequeNumber.Location = new System.Drawing.Point(684, 81);
+            this.TxtChequeNumber.Name = "TxtChequeNumber";
+            this.TxtChequeNumber.Size = new System.Drawing.Size(165, 26);
+            this.TxtChequeNumber.TabIndex = 23;
+            this.TxtChequeNumber.TextChanged += new System.EventHandler(this.TxtChequeNumber_TextChanged);
             // 
             // POS
             // 
@@ -975,5 +985,6 @@
         private System.Windows.Forms.Label LblCustomer;
         private System.Windows.Forms.Label LblCheckDetails;
         public System.Windows.Forms.Label LblAddCheque;
+        private System.Windows.Forms.TextBox TxtChequeNumber;
     }
 }

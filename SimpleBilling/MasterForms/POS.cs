@@ -12,6 +12,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace SimpleBilling.MasterForms
 {
@@ -809,7 +810,6 @@ namespace SimpleBilling.MasterForms
                     document.Add(space);
                     Table table = new Table(7, false);
                     table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
-                    table.SetVerticalAlignment(VerticalAlignment.TOP);
                     table.AddHeaderCell("Id");
                     table.AddHeaderCell("Item Name");
                     table.AddHeaderCell("Unit Price");
@@ -881,47 +881,22 @@ namespace SimpleBilling.MasterForms
         {
             if (e.KeyCode == Keys.Enter)
             {
+                ManageCustomers manageCustomers = new ManageCustomers();
+                manageCustomers.Show();
+                Close();
             }
         }
 
         private void LblAddCheque_Click(object sender, EventArgs e)
         {
-            using (ManageCheques mc = new ManageCheques())
-            {
-                if (mc.ShowDialog() == DialogResult.OK)
-                {
-                    LblAddCheque.Text = mc.Text;
-                }
-            }
+        }
 
-            //Form frmoverlay = new Form();
-            //{
-            //    try
-            //    {
-            //        using (ManageCheques frm = new ManageCheques())
-            //        {
-            //            frmoverlay.StartPosition = FormStartPosition.CenterScreen;
-            //            frmoverlay.FormBorderStyle = FormBorderStyle.None;
-            //            frmoverlay.Opacity = .5d;
-            //            frmoverlay.BackColor = System.Drawing.Color.Black;
-            //            frmoverlay.WindowState = FormWindowState.Maximized;
-            //            frmoverlay.TopMost = true;
-            //            frmoverlay.Location = Location;
-            //            frmoverlay.ShowInTaskbar = false;
-            //            frm.Owner = frmoverlay;
-            //            frm.ShowDialog();
-            //            frmoverlay.Show();
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Info.Mes(ex.Message);
-            //    }
-            //    finally
-            //    {
-            //        frmoverlay.Dispose();
-            //    }
-            //}
+        private void TxtChequeNumber_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxState state = new TextBoxState();
+            ManageCheques mc = new ManageCheques(state);
+            mc.ShowDialog();
+            TxtChequeNumber.Text = state.ToString();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace SimpleBilling
             manageItems.Show();
         }
 
-        private void ManageCustomersToolStripMenuItem_Click(object sender, EventArgs e)
+        public void ManageCustomersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {

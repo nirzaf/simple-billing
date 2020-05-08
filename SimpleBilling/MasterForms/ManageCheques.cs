@@ -1,14 +1,15 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace SimpleBilling.MasterForms
 {
     public partial class ManageCheques : Form
     {
+        private TextBoxState _state;
         private string ChkNo;
 
         public string ChequeNo
@@ -16,9 +17,10 @@ namespace SimpleBilling.MasterForms
             get { return ChkNo; }
         }
 
-        public ManageCheques()
+        public ManageCheques(TextBoxState state)
         {
             InitializeComponent();
+            _state = state;
         }
 
         private void ManageCheques_Load(object sender, EventArgs e)
@@ -141,26 +143,22 @@ namespace SimpleBilling.MasterForms
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            if (DialogResult == DialogResult.OK)
+            if (DGVChequeDetails.SelectedRows.Count > 0)
             {
-                if (DGVChequeDetails.SelectedRows.Count > 0)
+                foreach (Form form in Application.OpenForms)
                 {
-                    foreach (Form form in Application.OpenForms)
+                    if (form.GetType() == typeof(POS))
                     {
-                        if (form.GetType() == typeof(POS))
-                        {
-                            ChkNo = DGVChequeDetails.SelectedRows[0].Cells[0].Value + string.Empty;
-                            form.Activate();
-                            return;
-                        }
+                        form.Activate();
+                        return;
                     }
-
-                    POS pos = new POS(string.Empty)
-                    {
-                        MdiParent = this
-                    };
-                    pos.Show();
                 }
+
+                POS pos = new POS(string.Empty)
+                {
+                    MdiParent = this
+                };
+                pos.Show();
             }
         }
 
