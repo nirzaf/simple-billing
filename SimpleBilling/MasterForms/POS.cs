@@ -958,8 +958,10 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Customers>().Attach(cu);
                             db.Entry(cu).State = EntityState.Added;
                             db.SaveChanges();
-                            LblCustomer.Text = cu.Contact;
+                            Info.Mes("Customer Added Successfully");
+                            TxtCustomer.Text = cu.Contact;
                             HideAddCustomer();
+                            TxtCustomer.Focus();
                         }
                         else
                         {
