@@ -22,6 +22,9 @@ namespace SimpleBilling
         {
             LblMessage.Text = "";
             CRUDPanel.Enabled = false;
+            BtnSave.Enabled = false;
+            BtnCancel.Enabled = false;
+            BtnDelete.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
                 customersBindingSource1.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
@@ -41,12 +44,16 @@ namespace SimpleBilling
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = false;
+            BtnSave.Enabled = false;
+            BtnCancel.Enabled = false;
+            BtnDelete.Enabled = false;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
+            BtnCancel.Enabled = true;
             customersBindingSource1.Add(new Customers());
             customersBindingSource1.MoveLast();
             TxtName.Focus();
@@ -129,8 +136,19 @@ namespace SimpleBilling
         {
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
+            BtnCancel.Enabled = true;
             TxtName.Focus();
             _ = customersBindingSource1.Current as Customers;
+        }
+
+        private void DGVCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVCustomers.SelectedRows.Count > 0)
+            {
+                BtnDelete.Enabled = true;
+                BtnEdit.Enabled = true;
+                BtnAdd.Enabled = true;
+            }
         }
     }
 }
