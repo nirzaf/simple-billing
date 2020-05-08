@@ -54,6 +54,8 @@ namespace SimpleBilling.MasterForms
             TxtCurrentMileage.Enabled = false;
             TxtNextServiceDue.Enabled = false;
             HideAddCustomer();
+            BtnAddCheque.Visible = false;
+            CmbChooseCheques.Visible = false;
         }
 
         private void LoabCMB()
@@ -62,11 +64,11 @@ namespace SimpleBilling.MasterForms
             {
                 CmbPaidBy.ValueMember = "CustomerId";
                 CmbPaidBy.DisplayMember = "Name";
-                CmbPaidBy.DataSource = db.Customers.ToList();
+                CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
 
                 CmbBank.ValueMember = "BankId";
                 CmbBank.DisplayMember = "BankName";
-                CmbBank.DataSource = db.Banks.ToList();
+                CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -790,16 +792,7 @@ namespace SimpleBilling.MasterForms
                     TxtChequeNo.Focus();
                     BtnAddCheque.Visible = true;
                     CmbChooseCheques.Visible = true;
-                    using (BillingContext db = new BillingContext())
-                    {
-                        CmbPaidBy.ValueMember = "CustomerId";
-                        CmbPaidBy.DisplayMember = "Name";
-                        CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
-
-                        CmbBank.ValueMember = "BankId";
-                        CmbBank.DisplayMember = "BankName";
-                        CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
-                    }
+                    LoabCMB();
                 }
             }
         }
