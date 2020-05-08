@@ -237,6 +237,11 @@ namespace SimpleBilling.MasterForms
                             ChkVehicle.Checked = false;
                         }
                     }
+                    else
+                    {
+                        LblCustomer.Text = "Customer";
+                        CmbVehicles.Enabled = false;
+                    }
                 }
             }
         }
@@ -921,7 +926,7 @@ namespace SimpleBilling.MasterForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (LblCustomer.Text != "Customer")
+                if (LblCustomer.Text == "Customer")
                 {
                     ShowAddCustomer();
                     TxtName.Focus();
