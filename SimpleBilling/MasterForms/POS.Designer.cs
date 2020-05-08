@@ -752,6 +752,8 @@
             this.TxtChequeNo.Name = "TxtChequeNo";
             this.TxtChequeNo.Size = new System.Drawing.Size(148, 26);
             this.TxtChequeNo.TabIndex = 24;
+            this.TxtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
+            this.TxtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // TxtPayeeName
             // 
@@ -760,6 +762,8 @@
             this.TxtPayeeName.Name = "TxtPayeeName";
             this.TxtPayeeName.Size = new System.Drawing.Size(160, 26);
             this.TxtPayeeName.TabIndex = 25;
+            this.TxtPayeeName.Enter += new System.EventHandler(this.TxtPayeeName_Enter);
+            this.TxtPayeeName.Leave += new System.EventHandler(this.TxtPayeeName_Leave);
             // 
             // TxtAmount
             // 
@@ -767,6 +771,8 @@
             this.TxtAmount.Name = "TxtAmount";
             this.TxtAmount.Size = new System.Drawing.Size(184, 26);
             this.TxtAmount.TabIndex = 26;
+            this.TxtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
+            this.TxtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
             // 
             // CmbBank
             // 
@@ -807,6 +813,7 @@
             this.BtnAddCheque.TabIndex = 12;
             this.BtnAddCheque.Text = "Add Cheque";
             this.BtnAddCheque.UseVisualStyleBackColor = false;
+            this.BtnAddCheque.Click += new System.EventHandler(this.BtnAddCheque_Click);
             // 
             // CmbChooseCheques
             // 

@@ -930,6 +930,7 @@ namespace SimpleBilling.MasterForms
                 {
                     ShowAddCustomer();
                     TxtName.Focus();
+                    TxtContact.Text = TxtCustomer.Text.Trim();
                 }
             }
         }
@@ -1040,6 +1041,58 @@ namespace SimpleBilling.MasterForms
         private void TxtAddress_Leave(object sender, EventArgs e)
         {
             Info.PlaceHolder(TxtAddress, "Address");
+        }
+
+        private void TxtChequeNo_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtChequeNo, "Cheque Number");
+        }
+
+        private void TxtChequeNo_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtChequeNo, "Cheque Number");
+        }
+
+        private void TxtPayeeName_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtPayeeName, "Payee Name");
+        }
+
+        private void TxtPayeeName_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtPayeeName, "Payee Name");
+        }
+
+        private void TxtAmount_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtAmount, "Amount");
+        }
+
+        private void TxtAmount_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtAmount, "Amount");
+        }
+
+        private void BtnAddCheque_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    Cheque ch = new Cheque();
+                    ch.ChequeNo = TxtChequeNo.Text.Trim();
+                    ch.PayeeName = TxtPayeeName.Text.Trim();
+                    ch.Amount = Convert.ToSingle(TxtAmount.Text.Trim());
+                    ch.DueDate = DTDueDate.Value.ToShortDateString();
+                    ch.PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString());
+                    ch.Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString());
+                    ch.CreatedDate = DateTime.Today;
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
         }
     }
 }
