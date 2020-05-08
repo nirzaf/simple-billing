@@ -731,6 +731,7 @@
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(165, 26);
             this.TxtGivenAmount.TabIndex = 9;
+            this.TxtGivenAmount.Enter += new System.EventHandler(this.TxtGivenAmount_Enter);
             this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
             this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
             // 
@@ -817,12 +818,15 @@
             // 
             // CmbChooseCheques
             // 
+            this.CmbChooseCheques.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CmbChooseCheques.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbChooseCheques.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbChooseCheques.FormattingEnabled = true;
             this.CmbChooseCheques.Location = new System.Drawing.Point(513, 33);
             this.CmbChooseCheques.Name = "CmbChooseCheques";
             this.CmbChooseCheques.Size = new System.Drawing.Size(165, 24);
             this.CmbChooseCheques.TabIndex = 30;
+            this.CmbChooseCheques.SelectedIndexChanged += new System.EventHandler(this.CmbChooseCheques_SelectedIndexChanged);
             // 
             // BtnVoid
             // 

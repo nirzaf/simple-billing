@@ -69,6 +69,10 @@ namespace SimpleBilling.MasterForms
                 CmbBank.ValueMember = "BankId";
                 CmbBank.DisplayMember = "BankName";
                 CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
+
+                CmbChooseCheques.ValueMember = "ChequeNo";
+                CmbChooseCheques.DisplayMember = "ChequeNo";
+                CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -805,6 +809,7 @@ namespace SimpleBilling.MasterForms
             DTDueDate.Visible = true;
             CmbPaidBy.Visible = true;
             CmbBank.Visible = true;
+            BtnAddCheque.Visible = true;
         }
 
         private void HideCheque()
@@ -815,6 +820,7 @@ namespace SimpleBilling.MasterForms
             DTDueDate.Visible = false;
             CmbPaidBy.Visible = false;
             CmbBank.Visible = false;
+            BtnAddCheque.Visible = false;
         }
 
         private void ToolTip()
@@ -1103,11 +1109,9 @@ namespace SimpleBilling.MasterForms
                             db.Set<Cheque>().Attach(ch);
                         db.Entry(ch).State = EntityState.Added;
                         db.SaveChanges();
-                        CmbChooseCheques.ValueMember = "ChequeNo";
-                        CmbChooseCheques.DisplayMember = "ChequeNo";
-                        CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
-                        CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                        LoabCMB();
                         HideCheque();
+                        CmbChooseCheques.SelectedValue = ch.ChequeNo;
                     }
                     else
                     {
@@ -1118,6 +1122,30 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 Info.Mes(ex.Message);
+            }
+        }
+
+        private void CmbChooseCheques_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                string ChequeNo = CmbChooseCheques.SelectedValue.ToString();
+                var data = db.Cheques.FirstOrDefault(c => c.ChequeNo == ChequeNo && c.IsDeleted == false);
+                if (data != null)
+                {
+                    TxtGivenAmount.Text = data.Amount.ToString();
+                    TxtGivenAmount.Focus();
+                }
+            }
+        }
+
+        private void TxtGivenAmount_Enter(object sender, EventArgs e)
+        {
+            if (TxtGivenAmount.Text.Length > 0)
+            {
+                float GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
+                LblBalanceAmount.Text = BalanceAmount.ToString();
             }
         }
     }
