@@ -1079,14 +1079,31 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    Cheque ch = new Cheque();
-                    ch.ChequeNo = TxtChequeNo.Text.Trim();
-                    ch.PayeeName = TxtPayeeName.Text.Trim();
-                    ch.Amount = Convert.ToSingle(TxtAmount.Text.Trim());
-                    ch.DueDate = DTDueDate.Value.ToShortDateString();
-                    ch.PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString());
-                    ch.Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString());
-                    ch.CreatedDate = DateTime.Today;
+                    if (Info.IsEmpty(TxtChequeNo) && Info.IsEmpty(TxtPayeeName) && Info.IsEmpty(TxtAmount))
+                    {
+                        Cheque ch = new Cheque
+                        {
+                            ChequeNo = TxtChequeNo.Text.Trim(),
+                            PayeeName = TxtPayeeName.Text.Trim(),
+                            Amount = Convert.ToSingle(TxtAmount.Text.Trim()),
+                            DueDate = DTDueDate.Value.ToShortDateString(),
+                            PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString()),
+                            Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString()),
+                            CreatedDate = DateTime.Today
+                        };
+                        if (db.Entry(ch).State == EntityState.Detached)
+                            db.Set<Cheque>().Attach(ch);
+                        db.Entry(ch).State = EntityState.Added;
+                        db.SaveChanges();
+                        CmbChooseCheques.ValueMember = "ChequeNo";
+                        CmbChooseCheques.DisplayMember = "ChequeNo";
+                        CmbChooseCheques.DataSource = db.Cheques.ToList().Where(c => c.IsDeleted == false);
+                        CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                    }
+                    else
+                    {
+                        Info.Required();
+                    }
                 }
             }
             catch (Exception ex)
