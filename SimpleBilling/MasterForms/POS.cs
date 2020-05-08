@@ -785,6 +785,21 @@ namespace SimpleBilling.MasterForms
                 if (CmbPaymentOption.SelectedItem.ToString() == "Cheque")
                 {
                     ShowCheque();
+                    TxtPayeeName.Focus();
+                    TxtAmount.Focus();
+                    TxtChequeNo.Focus();
+                    BtnAddCheque.Visible = true;
+                    CmbChooseCheques.Visible = true;
+                    using (BillingContext db = new BillingContext())
+                    {
+                        CmbPaidBy.ValueMember = "CustomerId";
+                        CmbPaidBy.DisplayMember = "Name";
+                        CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
+
+                        CmbBank.ValueMember = "BankId";
+                        CmbBank.DisplayMember = "BankName";
+                        CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
+                    }
                 }
             }
         }
@@ -1005,72 +1020,72 @@ namespace SimpleBilling.MasterForms
 
         private void TxtName_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtName, "Customer Name");
+            Info.Enter(TxtName, "Customer Name");
         }
 
         private void TxtName_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtName, "Customer Name");
+            Info.Leave(TxtName, "Customer Name");
         }
 
         private void TxtContact_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtContact, "Contact No");
+            Info.Enter(TxtContact, "Contact No");
         }
 
         private void TxtContact_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtContact, "Contact No");
+            Info.Leave(TxtContact, "Contact No");
         }
 
         private void TxtEmail_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtEmail, "Email");
+            Info.Enter(TxtEmail, "Email");
         }
 
         private void TxtEmail_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtEmail, "Email");
+            Info.Leave(TxtEmail, "Email");
         }
 
         private void TxtAddress_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtAddress, "Address");
+            Info.Enter(TxtAddress, "Address");
         }
 
         private void TxtAddress_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtAddress, "Address");
+            Info.Leave(TxtAddress, "Address");
         }
 
         private void TxtChequeNo_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtChequeNo, "Cheque Number");
+            Info.Enter(TxtChequeNo, "Cheque Number");
         }
 
         private void TxtChequeNo_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtChequeNo, "Cheque Number");
+            Info.Leave(TxtChequeNo, "Cheque Number");
         }
 
         private void TxtPayeeName_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtPayeeName, "Payee Name");
+            Info.Enter(TxtPayeeName, "Payee Name");
         }
 
         private void TxtPayeeName_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtPayeeName, "Payee Name");
+            Info.Leave(TxtPayeeName, "Payee Name");
         }
 
         private void TxtAmount_Enter(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtAmount, "Amount");
+            Info.Enter(TxtAmount, "Amount");
         }
 
         private void TxtAmount_Leave(object sender, EventArgs e)
         {
-            Info.PlaceHolder(TxtAmount, "Amount");
+            Info.Leave(TxtAmount, "Amount");
         }
 
         private void BtnAddCheque_Click(object sender, EventArgs e)
@@ -1097,8 +1112,9 @@ namespace SimpleBilling.MasterForms
                         db.SaveChanges();
                         CmbChooseCheques.ValueMember = "ChequeNo";
                         CmbChooseCheques.DisplayMember = "ChequeNo";
-                        CmbChooseCheques.DataSource = db.Cheques.ToList().Where(c => c.IsDeleted == false);
+                        CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
                         CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                        HideCheque();
                     }
                     else
                     {

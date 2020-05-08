@@ -24,14 +24,18 @@ namespace SimpleBilling
             MessageBox.Show(mes);
         }
 
-        public static void PlaceHolder(TextBox Txt, string PlaceHolder)
+        public static void Enter(TextBox Txt, string PlaceHolder)
         {
             if (Txt.Text == PlaceHolder)
             {
-                Txt.Text = "";
+                Txt.Text = string.Empty;
                 Txt.ForeColor = System.Drawing.Color.Black;
             }
-            else if (Txt.Text == "")
+        }
+
+        public static void Leave(TextBox Txt, string PlaceHolder)
+        {
+            if (Txt.Text == string.Empty)
             {
                 Txt.Text = PlaceHolder;
                 Txt.ForeColor = System.Drawing.Color.DimGray;
