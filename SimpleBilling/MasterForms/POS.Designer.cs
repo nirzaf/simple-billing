@@ -58,7 +58,7 @@
             this.ChkVehicle = new System.Windows.Forms.CheckBox();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.DownLayout = new System.Windows.Forms.TableLayoutPanel();
             this.LblAddCheque = new System.Windows.Forms.Label();
             this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
             this.LblCashier = new System.Windows.Forms.Label();
@@ -94,12 +94,17 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.TxtChequeNumber = new System.Windows.Forms.TextBox();
+            this.TxtChequeNo = new System.Windows.Forms.TextBox();
+            this.TxtPayeeName = new System.Windows.Forms.TextBox();
+            this.TxtAmount = new System.Windows.Forms.TextBox();
+            this.CmbPaidBy = new System.Windows.Forms.ComboBox();
+            this.CmbBank = new System.Windows.Forms.ComboBox();
+            this.DTDueDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.DownLayout.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -113,7 +118,7 @@
             this.LblDate.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblDate.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblDate.ForeColor = System.Drawing.Color.Lime;
-            this.LblDate.Location = new System.Drawing.Point(3, 114);
+            this.LblDate.Location = new System.Drawing.Point(3, 136);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(148, 19);
             this.LblDate.TabIndex = 0;
@@ -124,7 +129,7 @@
             this.LblTime.AutoSize = true;
             this.LblTime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblTime.ForeColor = System.Drawing.Color.Lime;
-            this.LblTime.Location = new System.Drawing.Point(157, 114);
+            this.LblTime.Location = new System.Drawing.Point(157, 136);
             this.LblTime.Name = "LblTime";
             this.LblTime.Size = new System.Drawing.Size(160, 19);
             this.LblTime.TabIndex = 1;
@@ -424,60 +429,66 @@
             this.DGVReceiptBody.Name = "DGVReceiptBody";
             this.DGVReceiptBody.ReadOnly = true;
             this.DGVReceiptBody.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVReceiptBody.Size = new System.Drawing.Size(1024, 273);
+            this.DGVReceiptBody.Size = new System.Drawing.Size(1024, 220);
             this.DGVReceiptBody.TabIndex = 6;
             // 
-            // tableLayoutPanel2
+            // DownLayout
             // 
-            this.tableLayoutPanel2.ColumnCount = 6;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.03906F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.21094F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.55469F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Controls.Add(this.LblAddCheque, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.TxtNextServiceDue, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.LblDate, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.LblTime, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.LblCashier, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label11, 4, 4);
-            this.tableLayoutPanel2.Controls.Add(this.LblReceiptStatus, 5, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label13, 4, 2);
-            this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 5, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.LblTotalDiscount, 5, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.LblSubTotal, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.CmbPaymentOption, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label16, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label17, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label18, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.TxtCurrentMileage, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label15, 2, 3);
-            this.tableLayoutPanel2.Controls.Add(this.LblBalanceAmount, 3, 3);
-            this.tableLayoutPanel2.Controls.Add(this.TxtGivenAmount, 3, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label12, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.LblCheckDetails, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.TxtChequeNumber, 4, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 421);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1024, 133);
-            this.tableLayoutPanel2.TabIndex = 7;
+            this.DownLayout.ColumnCount = 6;
+            this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.06849F));
+            this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.24266F));
+            this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.591F));
+            this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.69928F));
+            this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.69928F));
+            this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.69928F));
+            this.DownLayout.Controls.Add(this.LblAddCheque, 3, 1);
+            this.DownLayout.Controls.Add(this.TxtNextServiceDue, 1, 1);
+            this.DownLayout.Controls.Add(this.LblDate, 0, 4);
+            this.DownLayout.Controls.Add(this.LblTime, 1, 4);
+            this.DownLayout.Controls.Add(this.LblCashier, 2, 4);
+            this.DownLayout.Controls.Add(this.label11, 4, 4);
+            this.DownLayout.Controls.Add(this.LblReceiptStatus, 5, 4);
+            this.DownLayout.Controls.Add(this.label13, 4, 2);
+            this.DownLayout.Controls.Add(this.LblNetTotal, 5, 2);
+            this.DownLayout.Controls.Add(this.label10, 4, 1);
+            this.DownLayout.Controls.Add(this.LblTotalDiscount, 5, 1);
+            this.DownLayout.Controls.Add(this.label9, 4, 0);
+            this.DownLayout.Controls.Add(this.LblSubTotal, 5, 0);
+            this.DownLayout.Controls.Add(this.CmbPaymentOption, 3, 0);
+            this.DownLayout.Controls.Add(this.label16, 2, 0);
+            this.DownLayout.Controls.Add(this.label17, 0, 0);
+            this.DownLayout.Controls.Add(this.label18, 0, 1);
+            this.DownLayout.Controls.Add(this.TxtCurrentMileage, 1, 0);
+            this.DownLayout.Controls.Add(this.label15, 2, 3);
+            this.DownLayout.Controls.Add(this.LblBalanceAmount, 3, 3);
+            this.DownLayout.Controls.Add(this.TxtGivenAmount, 3, 2);
+            this.DownLayout.Controls.Add(this.label12, 2, 2);
+            this.DownLayout.Controls.Add(this.LblCheckDetails, 2, 1);
+            this.DownLayout.Controls.Add(this.TxtChequeNo, 0, 5);
+            this.DownLayout.Controls.Add(this.TxtPayeeName, 1, 5);
+            this.DownLayout.Controls.Add(this.TxtAmount, 2, 5);
+            this.DownLayout.Controls.Add(this.CmbBank, 5, 5);
+            this.DownLayout.Controls.Add(this.CmbPaidBy, 4, 5);
+            this.DownLayout.Controls.Add(this.DTDueDate, 3, 5);
+            this.DownLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DownLayout.Location = new System.Drawing.Point(3, 368);
+            this.DownLayout.Name = "DownLayout";
+            this.DownLayout.RowCount = 6;
+            this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.DownLayout.Size = new System.Drawing.Size(1024, 186);
+            this.DownLayout.TabIndex = 7;
             // 
             // LblAddCheque
             // 
             this.LblAddCheque.AutoSize = true;
             this.LblAddCheque.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblAddCheque.ForeColor = System.Drawing.Color.Snow;
-            this.LblAddCheque.Location = new System.Drawing.Point(513, 33);
+            this.LblAddCheque.Location = new System.Drawing.Point(513, 43);
             this.LblAddCheque.Name = "LblAddCheque";
             this.LblAddCheque.Size = new System.Drawing.Size(165, 19);
             this.LblAddCheque.TabIndex = 22;
@@ -487,7 +498,7 @@
             // TxtNextServiceDue
             // 
             this.TxtNextServiceDue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtNextServiceDue.Location = new System.Drawing.Point(157, 29);
+            this.TxtNextServiceDue.Location = new System.Drawing.Point(157, 34);
             this.TxtNextServiceDue.Name = "TxtNextServiceDue";
             this.TxtNextServiceDue.Size = new System.Drawing.Size(160, 26);
             this.TxtNextServiceDue.TabIndex = 20;
@@ -497,7 +508,7 @@
             this.LblCashier.AutoSize = true;
             this.LblCashier.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblCashier.ForeColor = System.Drawing.Color.Lime;
-            this.LblCashier.Location = new System.Drawing.Point(323, 114);
+            this.LblCashier.Location = new System.Drawing.Point(323, 136);
             this.LblCashier.Name = "LblCashier";
             this.LblCashier.Size = new System.Drawing.Size(184, 19);
             this.LblCashier.TabIndex = 12;
@@ -508,7 +519,7 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label11.ForeColor = System.Drawing.Color.Yellow;
-            this.label11.Location = new System.Drawing.Point(684, 114);
+            this.label11.Location = new System.Drawing.Point(684, 136);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(165, 19);
             this.label11.TabIndex = 10;
@@ -519,7 +530,7 @@
             this.LblReceiptStatus.AutoSize = true;
             this.LblReceiptStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblReceiptStatus.ForeColor = System.Drawing.Color.Yellow;
-            this.LblReceiptStatus.Location = new System.Drawing.Point(855, 114);
+            this.LblReceiptStatus.Location = new System.Drawing.Point(855, 136);
             this.LblReceiptStatus.Name = "LblReceiptStatus";
             this.LblReceiptStatus.Size = new System.Drawing.Size(166, 19);
             this.LblReceiptStatus.TabIndex = 11;
@@ -530,9 +541,9 @@
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(684, 52);
+            this.label13.Location = new System.Drawing.Point(684, 62);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(165, 26);
+            this.label13.Size = new System.Drawing.Size(165, 31);
             this.label13.TabIndex = 4;
             this.label13.Text = "Net Total";
             // 
@@ -541,9 +552,9 @@
             this.LblNetTotal.AutoSize = true;
             this.LblNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblNetTotal.ForeColor = System.Drawing.Color.White;
-            this.LblNetTotal.Location = new System.Drawing.Point(855, 52);
+            this.LblNetTotal.Location = new System.Drawing.Point(855, 62);
             this.LblNetTotal.Name = "LblNetTotal";
-            this.LblNetTotal.Size = new System.Drawing.Size(166, 26);
+            this.LblNetTotal.Size = new System.Drawing.Size(166, 31);
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "0";
             // 
@@ -552,9 +563,9 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(684, 26);
+            this.label10.Location = new System.Drawing.Point(684, 31);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(165, 26);
+            this.label10.Size = new System.Drawing.Size(165, 31);
             this.label10.TabIndex = 1;
             this.label10.Text = "Total Discount";
             // 
@@ -563,9 +574,9 @@
             this.LblTotalDiscount.AutoSize = true;
             this.LblTotalDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblTotalDiscount.ForeColor = System.Drawing.Color.White;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(855, 26);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(855, 31);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
-            this.LblTotalDiscount.Size = new System.Drawing.Size(166, 26);
+            this.LblTotalDiscount.Size = new System.Drawing.Size(166, 31);
             this.LblTotalDiscount.TabIndex = 3;
             this.LblTotalDiscount.Text = "0";
             // 
@@ -576,7 +587,7 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(684, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(165, 26);
+            this.label9.Size = new System.Drawing.Size(165, 31);
             this.label9.TabIndex = 0;
             this.label9.Text = "Gross Total";
             // 
@@ -587,7 +598,7 @@
             this.LblSubTotal.ForeColor = System.Drawing.Color.White;
             this.LblSubTotal.Location = new System.Drawing.Point(855, 0);
             this.LblSubTotal.Name = "LblSubTotal";
-            this.LblSubTotal.Size = new System.Drawing.Size(166, 26);
+            this.LblSubTotal.Size = new System.Drawing.Size(166, 31);
             this.LblSubTotal.TabIndex = 2;
             this.LblSubTotal.Text = "0";
             // 
@@ -612,7 +623,7 @@
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(323, 7);
+            this.label16.Location = new System.Drawing.Point(323, 12);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(184, 19);
             this.label16.TabIndex = 16;
@@ -623,7 +634,7 @@
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(3, 7);
+            this.label17.Location = new System.Drawing.Point(3, 12);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(148, 19);
             this.label17.TabIndex = 17;
@@ -634,7 +645,7 @@
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label18.ForeColor = System.Drawing.Color.Snow;
-            this.label18.Location = new System.Drawing.Point(3, 33);
+            this.label18.Location = new System.Drawing.Point(3, 43);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(148, 19);
             this.label18.TabIndex = 18;
@@ -654,7 +665,7 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(323, 85);
+            this.label15.Location = new System.Drawing.Point(323, 105);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(184, 19);
             this.label15.TabIndex = 14;
@@ -665,7 +676,7 @@
             this.LblBalanceAmount.AutoSize = true;
             this.LblBalanceAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 85);
+            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 105);
             this.LblBalanceAmount.Name = "LblBalanceAmount";
             this.LblBalanceAmount.Size = new System.Drawing.Size(165, 19);
             this.LblBalanceAmount.TabIndex = 9;
@@ -674,7 +685,7 @@
             // TxtGivenAmount
             // 
             this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 55);
+            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 65);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(165, 26);
             this.TxtGivenAmount.TabIndex = 9;
@@ -686,7 +697,7 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(323, 59);
+            this.label12.Location = new System.Drawing.Point(323, 74);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(184, 19);
             this.label12.TabIndex = 13;
@@ -697,7 +708,7 @@
             this.LblCheckDetails.AutoSize = true;
             this.LblCheckDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblCheckDetails.ForeColor = System.Drawing.Color.Snow;
-            this.LblCheckDetails.Location = new System.Drawing.Point(323, 33);
+            this.LblCheckDetails.Location = new System.Drawing.Point(323, 43);
             this.LblCheckDetails.Name = "LblCheckDetails";
             this.LblCheckDetails.Size = new System.Drawing.Size(184, 19);
             this.LblCheckDetails.TabIndex = 21;
@@ -707,9 +718,9 @@
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
             this.BtnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVoid.Location = new System.Drawing.Point(3, 69);
+            this.BtnVoid.Location = new System.Drawing.Point(3, 96);
             this.BtnVoid.Name = "BtnVoid";
-            this.BtnVoid.Size = new System.Drawing.Size(103, 61);
+            this.BtnVoid.Size = new System.Drawing.Size(103, 87);
             this.BtnVoid.TabIndex = 7;
             this.BtnVoid.Text = "Void";
             this.BtnVoid.UseVisualStyleBackColor = false;
@@ -721,7 +732,7 @@
             this.BtnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPrint.Location = new System.Drawing.Point(3, 3);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(103, 60);
+            this.BtnPrint.Size = new System.Drawing.Size(103, 87);
             this.BtnPrint.TabIndex = 6;
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
@@ -734,7 +745,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.DGVReceiptBody, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.DownLayout, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 1);
@@ -744,8 +755,8 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.5745F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.47038F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1145, 593);
             this.tableLayoutPanel3.TabIndex = 9;
@@ -757,12 +768,12 @@
             this.tableLayoutPanel4.Controls.Add(this.BtnPrint, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.BtnVoid, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(1033, 421);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1033, 368);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 133);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 186);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // tableLayoutPanel5
@@ -818,7 +829,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 273);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 220);
             this.tableLayoutPanel6.TabIndex = 10;
             // 
             // BtnDelete
@@ -827,7 +838,7 @@
             this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(103, 62);
+            this.BtnDelete.Size = new System.Drawing.Size(103, 49);
             this.BtnDelete.TabIndex = 0;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
@@ -838,9 +849,9 @@
             this.BtnSaveAsQutation.BackColor = System.Drawing.Color.White;
             this.BtnSaveAsQutation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSaveAsQutation.ForeColor = System.Drawing.Color.Black;
-            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 207);
+            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 168);
             this.BtnSaveAsQutation.Name = "BtnSaveAsQutation";
-            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 63);
+            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 49);
             this.BtnSaveAsQutation.TabIndex = 1;
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
@@ -881,13 +892,56 @@
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
             // 
-            // TxtChequeNumber
+            // TxtChequeNo
             // 
-            this.TxtChequeNumber.Location = new System.Drawing.Point(684, 81);
-            this.TxtChequeNumber.Name = "TxtChequeNumber";
-            this.TxtChequeNumber.Size = new System.Drawing.Size(165, 26);
-            this.TxtChequeNumber.TabIndex = 23;
-            this.TxtChequeNumber.TextChanged += new System.EventHandler(this.TxtChequeNumber_TextChanged);
+            this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNo.Location = new System.Drawing.Point(3, 158);
+            this.TxtChequeNo.Name = "TxtChequeNo";
+            this.TxtChequeNo.Size = new System.Drawing.Size(148, 26);
+            this.TxtChequeNo.TabIndex = 24;
+            // 
+            // TxtPayeeName
+            // 
+            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.Location = new System.Drawing.Point(157, 158);
+            this.TxtPayeeName.Name = "TxtPayeeName";
+            this.TxtPayeeName.Size = new System.Drawing.Size(160, 26);
+            this.TxtPayeeName.TabIndex = 25;
+            // 
+            // TxtAmount
+            // 
+            this.TxtAmount.Location = new System.Drawing.Point(323, 158);
+            this.TxtAmount.Name = "TxtAmount";
+            this.TxtAmount.Size = new System.Drawing.Size(184, 26);
+            this.TxtAmount.TabIndex = 26;
+            // 
+            // CmbPaidBy
+            // 
+            this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbPaidBy.FormattingEnabled = true;
+            this.CmbPaidBy.Location = new System.Drawing.Point(684, 158);
+            this.CmbPaidBy.Name = "CmbPaidBy";
+            this.CmbPaidBy.Size = new System.Drawing.Size(165, 27);
+            this.CmbPaidBy.TabIndex = 27;
+            this.CmbPaidBy.SelectedIndexChanged += new System.EventHandler(this.CmbPaidBy_SelectedIndexChanged);
+            // 
+            // CmbBank
+            // 
+            this.CmbBank.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbBank.FormattingEnabled = true;
+            this.CmbBank.Location = new System.Drawing.Point(855, 158);
+            this.CmbBank.Name = "CmbBank";
+            this.CmbBank.Size = new System.Drawing.Size(166, 27);
+            this.CmbBank.TabIndex = 28;
+            // 
+            // DTDueDate
+            // 
+            this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DTDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTDueDate.Location = new System.Drawing.Point(513, 158);
+            this.DTDueDate.Name = "DTDueDate";
+            this.DTDueDate.Size = new System.Drawing.Size(165, 26);
+            this.DTDueDate.TabIndex = 29;
             // 
             // POS
             // 
@@ -907,8 +961,8 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.DownLayout.ResumeLayout(false);
+            this.DownLayout.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -945,7 +999,7 @@
         private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.DataGridView DGVReceiptBody;
         private System.Windows.Forms.Label LblReceiptNo;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel DownLayout;
         private System.Windows.Forms.Label LblBalanceAmount;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
@@ -985,6 +1039,11 @@
         private System.Windows.Forms.Label LblCustomer;
         private System.Windows.Forms.Label LblCheckDetails;
         public System.Windows.Forms.Label LblAddCheque;
-        private System.Windows.Forms.TextBox TxtChequeNumber;
+        private System.Windows.Forms.TextBox TxtChequeNo;
+        private System.Windows.Forms.TextBox TxtPayeeName;
+        private System.Windows.Forms.TextBox TxtAmount;
+        private System.Windows.Forms.ComboBox CmbPaidBy;
+        private System.Windows.Forms.ComboBox CmbBank;
+        private System.Windows.Forms.DateTimePicker DTDueDate;
     }
 }

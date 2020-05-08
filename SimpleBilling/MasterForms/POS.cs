@@ -50,6 +50,7 @@ namespace SimpleBilling.MasterForms
             DGVLoad(ReceiptNo);
             PrintAndVoid();
             TxtCustomer.Focus();
+            HideCheque();
             ChkVehicle.Enabled = false;
             TxtCurrentMileage.Enabled = false;
             TxtNextServiceDue.Enabled = false;
@@ -761,7 +762,31 @@ namespace SimpleBilling.MasterForms
             if (!string.IsNullOrWhiteSpace(CmbPaymentOption.Text))
             {
                 TxtGivenAmount.Enabled = true;
+                if (CmbPaymentOption.SelectedItem.ToString() == "Cheque")
+                {
+                    ShowCheque();
+                }
             }
+        }
+
+        private void ShowCheque()
+        {
+            TxtChequeNo.Visible = true;
+            TxtPayeeName.Visible = true;
+            TxtAmount.Visible = true;
+            DTDueDate.Visible = true;
+            CmbPaidBy.Visible = true;
+            CmbBank.Visible = true;
+        }
+
+        private void HideCheque()
+        {
+            TxtChequeNo.Visible = false;
+            TxtPayeeName.Visible = false;
+            TxtAmount.Visible = false;
+            DTDueDate.Visible = false;
+            CmbPaidBy.Visible = false;
+            CmbBank.Visible = false;
         }
 
         private void ToolTip()
@@ -896,7 +921,10 @@ namespace SimpleBilling.MasterForms
             TextBoxState state = new TextBoxState();
             ManageCheques mc = new ManageCheques(state);
             mc.ShowDialog();
-            TxtChequeNumber.Text = state.ToString();
+        }
+
+        private void CmbPaidBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
