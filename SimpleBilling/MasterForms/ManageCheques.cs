@@ -3,24 +3,14 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace SimpleBilling.MasterForms
 {
     public partial class ManageCheques : Form
     {
-        private TextBoxState _state;
-        private string ChkNo;
-
-        public string ChequeNo
-        {
-            get { return ChkNo; }
-        }
-
-        public ManageCheques(TextBoxState state)
+        public ManageCheques()
         {
             InitializeComponent();
-            _state = state;
         }
 
         private void ManageCheques_Load(object sender, EventArgs e)

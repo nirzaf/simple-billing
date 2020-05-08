@@ -12,7 +12,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace SimpleBilling.MasterForms
 {
@@ -56,6 +55,20 @@ namespace SimpleBilling.MasterForms
             TxtNextServiceDue.Enabled = false;
         }
 
+        private void LoabCMB()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                CmbPaidBy.ValueMember = "CustomerId";
+                CmbPaidBy.DisplayMember = "Name";
+                CmbPaidBy.DataSource = db.Customers.ToList();
+
+                CmbBank.ValueMember = "BankId";
+                CmbBank.DisplayMember = "BankName";
+                CmbBank.DataSource = db.Banks.ToList();
+            }
+        }
+
         private void PrintAndVoid()
         {
             if (ReceiptStatus != 2 || LblReceiptStatus.Text != "Completed")
@@ -96,6 +109,7 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 LblReceiptNo.Text = GenReceiptNo();
+                DGVReceiptBody.DataSource = null;
             }
         }
 
@@ -906,25 +920,115 @@ namespace SimpleBilling.MasterForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ManageCustomers manageCustomers = new ManageCustomers();
-                manageCustomers.Show();
-                Close();
+                ShowAddCustomer();
+                TxtName.Focus();
             }
-        }
-
-        private void LblAddCheque_Click(object sender, EventArgs e)
-        {
         }
 
         private void TxtChequeNumber_TextChanged(object sender, EventArgs e)
         {
-            TextBoxState state = new TextBoxState();
-            ManageCheques mc = new ManageCheques(state);
+            ManageCheques mc = new ManageCheques();
             mc.ShowDialog();
         }
 
         private void CmbPaidBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void TxtAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        if (Info.IsEmpty(TxtName) && Info.IsEmpty(TxtContact) && Info.IsEmpty(TxtAddress))
+                        {
+                            Customers cu = new Customers
+                            {
+                                Name = TxtName.Text.Trim(),
+                                Contact = TxtContact.Text.Trim(),
+                                Email = TxtEmail.Text.Trim(),
+                                Address = TxtAddress.Text.Trim(),
+                                CreatedDate = DateTime.Today
+                            };
+
+                            if (db.Entry(cu).State == EntityState.Detached)
+                                db.Set<Customers>().Attach(cu);
+                            db.Entry(cu).State = EntityState.Added;
+                            db.SaveChanges();
+                            LblCustomer.Text = cu.Contact;
+                            HideAddCustomer();
+                        }
+                        else
+                        {
+                            Info.Required();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
+        private void HideAddCustomer()
+        {
+            TxtName.Visible = false;
+            TxtContact.Visible = false;
+            TxtEmail.Visible = false;
+            TxtAddress.Visible = false;
+            TxtCustomer.Focus();
+        }
+
+        private void ShowAddCustomer()
+        {
+            TxtName.Visible = true;
+            TxtContact.Visible = true;
+            TxtEmail.Visible = true;
+            TxtAddress.Visible = true;
+        }
+
+        private void TxtName_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtName, "Customer Name");
+        }
+
+        private void TxtName_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtName, "Customer Name");
+        }
+
+        private void TxtContact_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtContact, "Contact No");
+        }
+
+        private void TxtContact_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtContact, "Contact No");
+        }
+
+        private void TxtEmail_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtEmail, "Email");
+        }
+
+        private void TxtEmail_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtEmail, "Email");
+        }
+
+        private void TxtAddress_Enter(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtAddress, "Address");
+        }
+
+        private void TxtAddress_Leave(object sender, EventArgs e)
+        {
+            Info.PlaceHolder(TxtAddress, "Address");
         }
     }
 }

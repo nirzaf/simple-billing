@@ -24,6 +24,20 @@ namespace SimpleBilling
             MessageBox.Show(mes);
         }
 
+        public static void PlaceHolder(TextBox Txt, string PlaceHolder)
+        {
+            if (Txt.Text == PlaceHolder)
+            {
+                Txt.Text = "";
+                Txt.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (Txt.Text == "")
+            {
+                Txt.Text = PlaceHolder;
+                Txt.ForeColor = System.Drawing.Color.DimGray;
+            }
+        }
+
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
