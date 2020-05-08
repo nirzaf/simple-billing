@@ -53,6 +53,7 @@ namespace SimpleBilling.MasterForms
             ChkVehicle.Enabled = false;
             TxtCurrentMileage.Enabled = false;
             TxtNextServiceDue.Enabled = false;
+            HideAddCustomer();
         }
 
         private void LoabCMB()
@@ -920,8 +921,11 @@ namespace SimpleBilling.MasterForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ShowAddCustomer();
-                TxtName.Focus();
+                if (LblCustomer.Text != "Customer")
+                {
+                    ShowAddCustomer();
+                    TxtName.Focus();
+                }
             }
         }
 
