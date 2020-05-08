@@ -59,7 +59,6 @@
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.DownLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.LblAddCheque = new System.Windows.Forms.Label();
             this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
             this.LblCashier = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -79,7 +78,6 @@
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.LblCheckDetails = new System.Windows.Forms.Label();
             this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -100,6 +98,8 @@
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
             this.CmbBank = new System.Windows.Forms.ComboBox();
             this.DTDueDate = new System.Windows.Forms.DateTimePicker();
+            this.BtnAddCheque = new System.Windows.Forms.Button();
+            this.CmbChooseCheques = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -441,7 +441,6 @@
             this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.69928F));
             this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.69928F));
             this.DownLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.69928F));
-            this.DownLayout.Controls.Add(this.LblAddCheque, 3, 1);
             this.DownLayout.Controls.Add(this.TxtNextServiceDue, 1, 1);
             this.DownLayout.Controls.Add(this.LblDate, 0, 4);
             this.DownLayout.Controls.Add(this.LblTime, 1, 4);
@@ -463,13 +462,14 @@
             this.DownLayout.Controls.Add(this.LblBalanceAmount, 3, 3);
             this.DownLayout.Controls.Add(this.TxtGivenAmount, 3, 2);
             this.DownLayout.Controls.Add(this.label12, 2, 2);
-            this.DownLayout.Controls.Add(this.LblCheckDetails, 2, 1);
             this.DownLayout.Controls.Add(this.TxtChequeNo, 0, 5);
             this.DownLayout.Controls.Add(this.TxtPayeeName, 1, 5);
             this.DownLayout.Controls.Add(this.TxtAmount, 2, 5);
             this.DownLayout.Controls.Add(this.CmbBank, 5, 5);
             this.DownLayout.Controls.Add(this.CmbPaidBy, 4, 5);
             this.DownLayout.Controls.Add(this.DTDueDate, 3, 5);
+            this.DownLayout.Controls.Add(this.BtnAddCheque, 2, 1);
+            this.DownLayout.Controls.Add(this.CmbChooseCheques, 3, 1);
             this.DownLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DownLayout.Location = new System.Drawing.Point(3, 368);
             this.DownLayout.Name = "DownLayout";
@@ -482,18 +482,6 @@
             this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.DownLayout.Size = new System.Drawing.Size(1024, 186);
             this.DownLayout.TabIndex = 7;
-            // 
-            // LblAddCheque
-            // 
-            this.LblAddCheque.AutoSize = true;
-            this.LblAddCheque.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblAddCheque.ForeColor = System.Drawing.Color.Snow;
-            this.LblAddCheque.Location = new System.Drawing.Point(513, 43);
-            this.LblAddCheque.Name = "LblAddCheque";
-            this.LblAddCheque.Size = new System.Drawing.Size(165, 19);
-            this.LblAddCheque.TabIndex = 22;
-            this.LblAddCheque.Text = "Click To Add";
-            this.LblAddCheque.Click += new System.EventHandler(this.LblAddCheque_Click);
             // 
             // TxtNextServiceDue
             // 
@@ -702,17 +690,6 @@
             this.label12.Size = new System.Drawing.Size(184, 19);
             this.label12.TabIndex = 13;
             this.label12.Text = "Given Amount";
-            // 
-            // LblCheckDetails
-            // 
-            this.LblCheckDetails.AutoSize = true;
-            this.LblCheckDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblCheckDetails.ForeColor = System.Drawing.Color.Snow;
-            this.LblCheckDetails.Location = new System.Drawing.Point(323, 43);
-            this.LblCheckDetails.Name = "LblCheckDetails";
-            this.LblCheckDetails.Size = new System.Drawing.Size(184, 19);
-            this.LblCheckDetails.TabIndex = 21;
-            this.LblCheckDetails.Text = "Add Cheque";
             // 
             // BtnVoid
             // 
@@ -943,6 +920,27 @@
             this.DTDueDate.Size = new System.Drawing.Size(165, 26);
             this.DTDueDate.TabIndex = 29;
             // 
+            // BtnAddCheque
+            // 
+            this.BtnAddCheque.BackColor = System.Drawing.Color.White;
+            this.BtnAddCheque.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddCheque.Location = new System.Drawing.Point(323, 34);
+            this.BtnAddCheque.Name = "BtnAddCheque";
+            this.BtnAddCheque.Size = new System.Drawing.Size(184, 25);
+            this.BtnAddCheque.TabIndex = 12;
+            this.BtnAddCheque.Text = "Add Cheque";
+            this.BtnAddCheque.UseVisualStyleBackColor = false;
+            // 
+            // CmbChooseCheques
+            // 
+            this.CmbChooseCheques.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbChooseCheques.FormattingEnabled = true;
+            this.CmbChooseCheques.Location = new System.Drawing.Point(513, 34);
+            this.CmbChooseCheques.Name = "CmbChooseCheques";
+            this.CmbChooseCheques.Size = new System.Drawing.Size(165, 24);
+            this.CmbChooseCheques.TabIndex = 30;
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -1037,13 +1035,13 @@
         private System.Windows.Forms.TextBox TxtNextServiceDue;
         private System.Windows.Forms.TextBox TxtCurrentMileage;
         private System.Windows.Forms.Label LblCustomer;
-        private System.Windows.Forms.Label LblCheckDetails;
-        public System.Windows.Forms.Label LblAddCheque;
         private System.Windows.Forms.TextBox TxtChequeNo;
         private System.Windows.Forms.TextBox TxtPayeeName;
         private System.Windows.Forms.TextBox TxtAmount;
         private System.Windows.Forms.ComboBox CmbPaidBy;
         private System.Windows.Forms.ComboBox CmbBank;
         private System.Windows.Forms.DateTimePicker DTDueDate;
+        private System.Windows.Forms.Button BtnAddCheque;
+        private System.Windows.Forms.ComboBox CmbChooseCheques;
     }
 }
