@@ -13,6 +13,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
 namespace SimpleBilling.MasterForms
 {
@@ -928,19 +929,13 @@ namespace SimpleBilling.MasterForms
 
                     Table table = new Table(14, false);
                     string gap = ".        .";
-                    table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                    table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     table.AddHeaderCell("Code");
-                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Item Name");
-                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Unit Price");
-                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Quantity");
-                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Gross Total");
-                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Discount");
-                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Net Total");
 
                     foreach (DataRow d in dt.Rows)
@@ -955,10 +950,10 @@ namespace SimpleBilling.MasterForms
                     }
 
                     document.Add(space);
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
                     table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblSubTotal.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblNetTotal.Text)));
