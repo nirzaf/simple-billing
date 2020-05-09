@@ -124,6 +124,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(bm).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(bm);
                             db.Entry(bm).State = EntityState.Modified;
+                            db.SaveChanges();
                             Info.Mes("Business Info Modified");
                         }
                         else
