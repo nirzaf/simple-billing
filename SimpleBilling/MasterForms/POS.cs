@@ -881,21 +881,19 @@ namespace SimpleBilling.MasterForms
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A5.Rotate());
                     string sb = data.Name;
-                    string address = data.Address + ",   " + data.Contact;
                     StringBuilder RptInfo = new StringBuilder();
-                    RptInfo.Append("Receipt No: " + LblReceiptNo.Text);
+                    RptInfo.AppendLine(data.Address + ",   " + data.Contact);
+                    RptInfo.AppendLine("Receipt No: " + LblReceiptNo.Text);
                     Paragraph BusinessName = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
-                    Paragraph Address = new Paragraph(address).SetTextAlignment(TextAlignment.CENTER).SetFontSize(9);
                     Paragraph ReceiptInfo = new Paragraph(RptInfo.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(9);
                     LineSeparator ls = new LineSeparator(new SolidLine());
                     Paragraph space = new Paragraph("    ");
                     SolidLine sl = new SolidLine();
                     Paragraph billingTo = new Paragraph("Billing To: ").SetTextAlignment(TextAlignment.LEFT).SetFontSize(8);
                     document.Add(BusinessName);
-                    document.Add(Address);
                     document.Add(ReceiptInfo);
                     Table RptDetails = new Table(7, false);
-                    string spc = ".                             .";
+                    string spc = ".                                .";
                     foreach (var ml in mlt)
                     {
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Name)));
@@ -976,10 +974,19 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
                     table.AddFooterCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblNetTotal.Text)));
+
+                    string footer1 = "             .....................                             ......................                  ";
+                    string footer2 = "              Customer Signature                                      Checked by                       ";
+
+                    Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(50, 400, 500).SetFontSize(8);
+                    Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(50,410,500).SetFontSize(8);
+
                     document.Add(billingTo);
                     document.Add(RptDetails);
                     document.Add(ls);
                     document.Add(table);
+                    document.Add(foot1);
+                    document.Add(foot2);
                     document.Close();
                     Info.StartProcess(fileName);
                 }
