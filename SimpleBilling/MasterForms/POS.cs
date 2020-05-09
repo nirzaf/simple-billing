@@ -927,19 +927,25 @@ namespace SimpleBilling.MasterForms
                     }
 
                     Table table = new Table(14, false);
+                    string gap = ".        .";
                     table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
-                    table.AddHeaderCell("Id");
-                    table.AddHeaderCell("       ");
+                    table.AddHeaderCell("Code");
+                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Item Name");
+                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Unit Price");
+                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Quantity");
+                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Gross Total");
+                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Discount");
+                    table.AddHeaderCell(gap).SetFontColor(ColorConstants.WHITE, 1);
                     table.AddHeaderCell("Net Total");
 
                     foreach (DataRow d in dt.Rows)
                     {
-                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[1].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[3].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
