@@ -896,8 +896,8 @@ namespace SimpleBilling.MasterForms
                     document.Add(BusinessName);
                     document.Add(Address);
                     document.Add(ReceiptInfo);
-                    document.Add(ls);
-                    document.Add(space);
+                    //document.Add(ls);
+                    //document.Add(space);
                     Table RptDetails = new Table(7, false);
                     string spc = ".                             .";
                     foreach (var ml in mlt)
@@ -950,10 +950,10 @@ namespace SimpleBilling.MasterForms
                     }
 
                     document.Add(space);
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
                     table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblSubTotal.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblNetTotal.Text)));
