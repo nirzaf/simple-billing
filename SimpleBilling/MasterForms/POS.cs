@@ -927,35 +927,58 @@ namespace SimpleBilling.MasterForms
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
                     }
 
-                    Table table = new Table(7, false);
+                    Table table = new Table(13, false);
                     string gap = ".        .";
                     table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
-                    table.AddHeaderCell("Code").SetFontSize(8);
-                    table.AddHeaderCell("Item Name").SetFontSize(8);
-                    table.AddHeaderCell("Unit Price").SetFontSize(8);
-                    table.AddHeaderCell("Quantity").SetFontSize(8);
-                    table.AddHeaderCell("Gross Total").SetFontSize(8);
-                    table.AddHeaderCell("Discount").SetFontSize(8);
-                    table.AddHeaderCell("Net Total").SetFontSize(8);
+                    table.AddHeaderCell("Code").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell("Item Name").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell("Unit Price").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell("Quantity").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell("Gross Total").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell("Discount").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddHeaderCell("Net Total").SetFontSize(8).SetBorder(Border.NO_BORDER);
 
                     foreach (DataRow d in dt.Rows)
                     {
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[1].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[3].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[6].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                     }
 
                     document.Add(space);
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
-                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
                     table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblSubTotal.Text)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
                     table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblTotalDiscount.Text)));
+                    table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetFontColor(ColorConstants.WHITE).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(gap)));
                     table.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(LblNetTotal.Text)));
                     document.Add(billingTo);
                     document.Add(RptDetails);
