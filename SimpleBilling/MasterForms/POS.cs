@@ -168,7 +168,10 @@ namespace SimpleBilling.MasterForms
                                          header.VehicleNumber,
                                          mileage.Mileage,
                                          Cashier = cashier.EmployeeName,
-                                         header.Remarks
+                                         header.Remarks,
+                                         customer.Name,
+                                         customer.Address,
+                                         customer.Contact
                                      }).ToList();
                     foreach (var a in RptHeader)
                     {
