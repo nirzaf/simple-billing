@@ -146,8 +146,14 @@ namespace SimpleBilling.MasterForms
                     rptBody = Info.ToDataTable(RptBody);
 
                     var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo && c.IsQuotation == false)
-                                     join cashier in db.Employee
+                                     join cashier in db.Employee.Where(c => c.IsDeleted == false)
                                      on header.Cashier equals cashier.EmployeeId
+                                     join vehicle in db.Vehicles.Where(c => c.IsDeleted == false)
+                                     on header.VehicleNumber equals vehicle.VehicleNo
+                                     join mileage in db.MileTracking.Where(c => c.IsDeleted == false)
+                                     on header.ReceiptNo equals mileage.ReceiptNo
+                                     join customer in db.Customers.Where(c => c.IsDeleted == false)
+                                     on header.CustomerId equals customer.CustomerId
                                      select new
                                      {
                                          header.ReceiptNo,
@@ -160,6 +166,7 @@ namespace SimpleBilling.MasterForms
                                          header.Balance,
                                          header.Status,
                                          header.VehicleNumber,
+                                         mileage.Mileage,
                                          Cashier = cashier.EmployeeName,
                                          header.Remarks
                                      }).ToList();
@@ -173,7 +180,9 @@ namespace SimpleBilling.MasterForms
                         LblReceiptNo.Text = a.ReceiptNo;
                         TxtRemarks.Text = a.Remarks;
                         CmbVehicles.Text = a.VehicleNumber;
+                        TxtCurrentMileage.Text = a.Mileage.ToString();
                     }
+
                     TotalCalculator();
                 }
             }

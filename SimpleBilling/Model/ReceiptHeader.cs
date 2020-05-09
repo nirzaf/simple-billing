@@ -33,6 +33,8 @@ namespace SimpleBilling.Model
         [DefaultValue("No Remarks Found")]
         public string Remarks { get; set; }
 
+        public int CustomerId { get; set; }
+
         public string VehicleNumber { get; set; }
         public float PaidAmount { get; set; }
         public float Balance { get; set; }
