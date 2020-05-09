@@ -926,19 +926,19 @@ namespace SimpleBilling.MasterForms
                     Table table = new Table(13, false);
                     string gap = ".        .";
                     table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
-                    table.AddHeaderCell("Code").SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell("Item Name").SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell("Unit Price").SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell("Quantity").SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell("Gross Total").SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell("Discount").SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell(gap).SetFontSize(8).SetBorder(Border.NO_BORDER);
-                    table.AddHeaderCell("Net Total").SetFontSize(8).SetBorder(Border.NO_BORDER);
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Code")));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Item Name")));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Unit Price")));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Quantity")));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Gross Total")));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Discount")));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+                    table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Net Total")));
 
                     foreach (DataRow d in dt.Rows)
                     {
