@@ -884,8 +884,6 @@ namespace SimpleBilling.MasterForms
                     string address = data.Address + ",   " + data.Contact;
                     StringBuilder RptInfo = new StringBuilder();
                     RptInfo.Append("Receipt No: " + LblReceiptNo.Text);
-                    //RptInfo.Append(",Date : " + header.Date);
-                    //RptInfo.Append(",Time : " + header.Time);
                     Paragraph BusinessName = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
                     Paragraph Address = new Paragraph(address).SetTextAlignment(TextAlignment.CENTER).SetFontSize(9);
                     Paragraph ReceiptInfo = new Paragraph(RptInfo.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(9);
@@ -896,8 +894,6 @@ namespace SimpleBilling.MasterForms
                     document.Add(BusinessName);
                     document.Add(Address);
                     document.Add(ReceiptInfo);
-                    //document.Add(ls);
-                    //document.Add(space);
                     Table RptDetails = new Table(7, false);
                     string spc = ".                             .";
                     foreach (var ml in mlt)
