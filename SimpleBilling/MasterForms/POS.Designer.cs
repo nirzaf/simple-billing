@@ -100,11 +100,12 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnSaveAsQutation = new System.Windows.Forms.Button();
+            this.BtnSaveQuotation = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.BtnSaveQuotation = new System.Windows.Forms.Button();
+            this.LstBoxPendingJobs = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -835,9 +836,9 @@
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
             this.BtnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVoid.Location = new System.Drawing.Point(3, 96);
+            this.BtnVoid.Location = new System.Drawing.Point(3, 49);
             this.BtnVoid.Name = "BtnVoid";
-            this.BtnVoid.Size = new System.Drawing.Size(103, 87);
+            this.BtnVoid.Size = new System.Drawing.Size(103, 40);
             this.BtnVoid.TabIndex = 7;
             this.BtnVoid.Text = "Void";
             this.BtnVoid.UseVisualStyleBackColor = false;
@@ -849,7 +850,7 @@
             this.BtnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPrint.Location = new System.Drawing.Point(3, 3);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(103, 87);
+            this.BtnPrint.Size = new System.Drawing.Size(103, 40);
             this.BtnPrint.TabIndex = 6;
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
@@ -881,14 +882,16 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.BtnPrint, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.BtnVoid, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.LstBoxPendingJobs, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(1033, 368);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 186);
             this.tableLayoutPanel4.TabIndex = 8;
@@ -973,6 +976,17 @@
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
             // 
+            // BtnSaveQuotation
+            // 
+            this.BtnSaveQuotation.BackColor = System.Drawing.Color.White;
+            this.BtnSaveQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSaveQuotation.Location = new System.Drawing.Point(3, 39);
+            this.BtnSaveQuotation.Name = "BtnSaveQuotation";
+            this.BtnSaveQuotation.Size = new System.Drawing.Size(103, 66);
+            this.BtnSaveQuotation.TabIndex = 2;
+            this.BtnSaveQuotation.Text = "Save Quotation";
+            this.BtnSaveQuotation.UseVisualStyleBackColor = false;
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
@@ -1009,16 +1023,16 @@
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
             // 
-            // BtnSaveQuotation
+            // LstBoxPendingJobs
             // 
-            this.BtnSaveQuotation.BackColor = System.Drawing.Color.White;
-            this.BtnSaveQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnSaveQuotation.Location = new System.Drawing.Point(3, 39);
-            this.BtnSaveQuotation.Name = "BtnSaveQuotation";
-            this.BtnSaveQuotation.Size = new System.Drawing.Size(103, 66);
-            this.BtnSaveQuotation.TabIndex = 2;
-            this.BtnSaveQuotation.Text = "Save Quotation";
-            this.BtnSaveQuotation.UseVisualStyleBackColor = false;
+            this.LstBoxPendingJobs.BackColor = System.Drawing.Color.White;
+            this.LstBoxPendingJobs.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LstBoxPendingJobs.FormattingEnabled = true;
+            this.LstBoxPendingJobs.ItemHeight = 14;
+            this.LstBoxPendingJobs.Location = new System.Drawing.Point(3, 95);
+            this.LstBoxPendingJobs.Name = "LstBoxPendingJobs";
+            this.LstBoxPendingJobs.Size = new System.Drawing.Size(103, 88);
+            this.LstBoxPendingJobs.TabIndex = 8;
             // 
             // POS
             // 
@@ -1127,5 +1141,6 @@
         private System.Windows.Forms.TextBox TxtEmail;
         private System.Windows.Forms.TextBox TxtContact;
         private System.Windows.Forms.Button BtnSaveQuotation;
+        private System.Windows.Forms.ListBox LstBoxPendingJobs;
     }
 }
