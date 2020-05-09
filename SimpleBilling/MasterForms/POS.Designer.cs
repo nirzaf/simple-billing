@@ -104,6 +104,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.BtnSaveQuotation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -474,6 +475,8 @@
             // 
             // DGVReceiptBody
             // 
+            this.DGVReceiptBody.AllowUserToAddRows = false;
+            this.DGVReceiptBody.AllowUserToDeleteRows = false;
             this.DGVReceiptBody.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVReceiptBody.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVReceiptBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -858,12 +861,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.DGVReceiptBody, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.DownLayout, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.DGVReceiptBody, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -934,15 +937,15 @@
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.BtnDelete, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.BtnSaveAsQutation, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.BtnSaveAsQutation, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.BtnSaveQuotation, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 182);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 4;
+            this.tableLayoutPanel6.RowCount = 3;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(109, 180);
             this.tableLayoutPanel6.TabIndex = 10;
             // 
@@ -952,7 +955,7 @@
             this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(103, 39);
+            this.BtnDelete.Size = new System.Drawing.Size(103, 30);
             this.BtnDelete.TabIndex = 0;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
@@ -963,9 +966,9 @@
             this.BtnSaveAsQutation.BackColor = System.Drawing.Color.White;
             this.BtnSaveAsQutation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSaveAsQutation.ForeColor = System.Drawing.Color.Black;
-            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 138);
+            this.BtnSaveAsQutation.Location = new System.Drawing.Point(3, 111);
             this.BtnSaveAsQutation.Name = "BtnSaveAsQutation";
-            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 39);
+            this.BtnSaveAsQutation.Size = new System.Drawing.Size(103, 66);
             this.BtnSaveAsQutation.TabIndex = 1;
             this.BtnSaveAsQutation.Text = "Print Quotation";
             this.BtnSaveAsQutation.UseVisualStyleBackColor = false;
@@ -1005,6 +1008,17 @@
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
+            // 
+            // BtnSaveQuotation
+            // 
+            this.BtnSaveQuotation.BackColor = System.Drawing.Color.White;
+            this.BtnSaveQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSaveQuotation.Location = new System.Drawing.Point(3, 39);
+            this.BtnSaveQuotation.Name = "BtnSaveQuotation";
+            this.BtnSaveQuotation.Size = new System.Drawing.Size(103, 66);
+            this.BtnSaveQuotation.TabIndex = 2;
+            this.BtnSaveQuotation.Text = "Save Quotation";
+            this.BtnSaveQuotation.UseVisualStyleBackColor = false;
             // 
             // POS
             // 
@@ -1112,5 +1126,6 @@
         private System.Windows.Forms.TextBox TxtAddress;
         private System.Windows.Forms.TextBox TxtEmail;
         private System.Windows.Forms.TextBox TxtContact;
+        private System.Windows.Forms.Button BtnSaveQuotation;
     }
 }
