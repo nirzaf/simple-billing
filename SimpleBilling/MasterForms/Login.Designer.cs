@@ -52,10 +52,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(615, 260);
+            this.tabControl1.Size = new System.Drawing.Size(635, 252);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -65,7 +65,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(607, 228);
+            this.tabPage1.Size = new System.Drawing.Size(627, 220);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cashier Login";
             // 
@@ -73,11 +73,12 @@
             // 
             this.TxtLogin.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtLogin.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLogin.Location = new System.Drawing.Point(123, 58);
+            this.TxtLogin.Location = new System.Drawing.Point(127, 56);
             this.TxtLogin.Name = "TxtLogin";
             this.TxtLogin.PasswordChar = '*';
-            this.TxtLogin.Size = new System.Drawing.Size(354, 39);
+            this.TxtLogin.Size = new System.Drawing.Size(366, 39);
             this.TxtLogin.TabIndex = 0;
+            this.TxtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLogin_KeyDown);
             // 
             // tabPage2
             // 
@@ -86,7 +87,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(607, 228);
+            this.tabPage2.Size = new System.Drawing.Size(627, 220);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Admin Login";
             // 
@@ -94,9 +95,9 @@
             // 
             this.BtnLogin.BackColor = System.Drawing.Color.White;
             this.BtnLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnLogin.Location = new System.Drawing.Point(123, 113);
+            this.BtnLogin.Location = new System.Drawing.Point(127, 109);
             this.BtnLogin.Name = "BtnLogin";
-            this.BtnLogin.Size = new System.Drawing.Size(354, 49);
+            this.BtnLogin.Size = new System.Drawing.Size(366, 47);
             this.BtnLogin.TabIndex = 1;
             this.BtnLogin.Text = "Login";
             this.BtnLogin.UseVisualStyleBackColor = false;
@@ -119,18 +120,20 @@
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.BaseLayout.Size = new System.Drawing.Size(601, 222);
+            this.BaseLayout.Size = new System.Drawing.Size(621, 214);
             this.BaseLayout.TabIndex = 2;
             // 
             // BtnExit
             // 
             this.BtnExit.BackColor = System.Drawing.Color.White;
-            this.BtnExit.Location = new System.Drawing.Point(123, 168);
+            this.BtnExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnExit.Location = new System.Drawing.Point(127, 162);
             this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(354, 49);
+            this.BtnExit.Size = new System.Drawing.Size(366, 49);
             this.BtnExit.TabIndex = 2;
             this.BtnExit.Text = "Exit";
             this.BtnExit.UseVisualStyleBackColor = false;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -151,35 +154,35 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(601, 222);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(621, 214);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // TxtUsername
             // 
             this.TxtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUsername.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsername.Location = new System.Drawing.Point(123, 3);
+            this.TxtUsername.Location = new System.Drawing.Point(127, 3);
             this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(354, 39);
+            this.TxtUsername.Size = new System.Drawing.Size(366, 39);
             this.TxtUsername.TabIndex = 0;
             // 
             // TxtPassword
             // 
             this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtPassword.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPassword.Location = new System.Drawing.Point(123, 47);
+            this.TxtPassword.Location = new System.Drawing.Point(127, 45);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.Size = new System.Drawing.Size(354, 39);
+            this.TxtPassword.Size = new System.Drawing.Size(366, 39);
             this.TxtPassword.TabIndex = 1;
             // 
             // BtnAdminLogin
             // 
             this.BtnAdminLogin.BackColor = System.Drawing.Color.White;
             this.BtnAdminLogin.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAdminLogin.Location = new System.Drawing.Point(123, 91);
+            this.BtnAdminLogin.Location = new System.Drawing.Point(127, 87);
             this.BtnAdminLogin.Name = "BtnAdminLogin";
-            this.BtnAdminLogin.Size = new System.Drawing.Size(354, 38);
+            this.BtnAdminLogin.Size = new System.Drawing.Size(366, 36);
             this.BtnAdminLogin.TabIndex = 2;
             this.BtnAdminLogin.Text = "Login";
             this.BtnAdminLogin.UseVisualStyleBackColor = false;
@@ -187,23 +190,27 @@
             // BtnAdminExit
             // 
             this.BtnAdminExit.BackColor = System.Drawing.Color.White;
+            this.BtnAdminExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAdminExit.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAdminExit.Location = new System.Drawing.Point(123, 135);
+            this.BtnAdminExit.Location = new System.Drawing.Point(127, 129);
             this.BtnAdminExit.Name = "BtnAdminExit";
-            this.BtnAdminExit.Size = new System.Drawing.Size(354, 38);
+            this.BtnAdminExit.Size = new System.Drawing.Size(366, 36);
             this.BtnAdminExit.TabIndex = 3;
             this.BtnAdminExit.Text = "Exit";
             this.BtnAdminExit.UseVisualStyleBackColor = false;
+            this.BtnAdminExit.Click += new System.EventHandler(this.BtnAdminExit_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(639, 284);
+            this.ClientSize = new System.Drawing.Size(639, 255);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.tabControl1.ResumeLayout(false);

@@ -38,9 +38,31 @@ namespace SimpleBilling.MasterForms
                     var data = db.Employee.FirstOrDefault(c => c.SecretCode == TxtLogin.Text.Trim());
                     if (data != null)
                     {
+                        Main m = new Main();
+                        m.Show();
+                        Hide();
+                        Info.CashierId = data.EmployeeId;
                     }
                 }
             }
+        }
+
+        private void TxtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CashierLogin();
+            }
+        }
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BtnAdminExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -226,5 +226,9 @@ namespace SimpleBilling
             };
             mb.Show();
         }
+
+        private void pOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

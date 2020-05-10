@@ -18,6 +18,7 @@ namespace SimpleBilling
     public static class Info
     {
         private static readonly Random random = new Random();
+        public static int CashierId { get; set; }
 
         public static void Mes(string mes)
         {

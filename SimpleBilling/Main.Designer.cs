@@ -39,6 +39,7 @@
             this.ManageCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.pendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,6 +146,13 @@
             this.ManageVehicleToolStripMenuItem.Text = "Manage Vehicle";
             this.ManageVehicleToolStripMenuItem.Click += new System.EventHandler(this.ManageVehicleToolStripMenuItem_Click);
             // 
+            // ManageBankToolStripMenuItem
+            // 
+            this.ManageBankToolStripMenuItem.Name = "ManageBankToolStripMenuItem";
+            this.ManageBankToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.ManageBankToolStripMenuItem.Text = "Manage Bank";
+            this.ManageBankToolStripMenuItem.Click += new System.EventHandler(this.ManageBankToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -191,20 +198,14 @@
             this.pOSToolStripMenuItem.Name = "pOSToolStripMenuItem";
             this.pOSToolStripMenuItem.Size = new System.Drawing.Size(55, 23);
             this.pOSToolStripMenuItem.Text = "POS";
+            this.pOSToolStripMenuItem.Click += new System.EventHandler(this.pOSToolStripMenuItem_Click);
             // 
             // quickSaleToolStripMenuItem
             // 
             this.quickSaleToolStripMenuItem.Name = "quickSaleToolStripMenuItem";
-            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
+            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.quickSaleToolStripMenuItem.Text = "Quick Sale";
             this.quickSaleToolStripMenuItem.Click += new System.EventHandler(this.quickSaleToolStripMenuItem_Click);
-            // 
-            // ManageBankToolStripMenuItem
-            // 
-            this.ManageBankToolStripMenuItem.Name = "ManageBankToolStripMenuItem";
-            this.ManageBankToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.ManageBankToolStripMenuItem.Text = "Manage Bank";
-            this.ManageBankToolStripMenuItem.Click += new System.EventHandler(this.ManageBankToolStripMenuItem_Click);
             // 
             // Main
             // 

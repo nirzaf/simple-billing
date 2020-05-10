@@ -25,7 +25,7 @@ namespace SimpleBilling.MasterForms
         private float Total;
         private float NetTotal;
         private float Discount;
-        private readonly int CashierId = 1;
+        private readonly int CashierId = Info.CashierId;
         private readonly string PaymentType = string.Empty;
         private readonly string ReceiptNo = string.Empty;
         private float ReceiptTotalDiscount;
@@ -210,6 +210,8 @@ namespace SimpleBilling.MasterForms
                 {
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
+                    var cs = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId);
+                    LblCashier.Text = cs.EmployeeName;
                 }
                 LblReceiptNo.Text = GenReceiptNo();
             }
