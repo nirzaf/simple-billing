@@ -1074,6 +1074,7 @@
             this.TxtOverallDiscount.Name = "TxtOverallDiscount";
             this.TxtOverallDiscount.Size = new System.Drawing.Size(166, 26);
             this.TxtOverallDiscount.TabIndex = 32;
+            this.TxtOverallDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtOverallDiscount_KeyPress);
             this.TxtOverallDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtOverallDiscount_KeyUp);
             // 
             // POS

@@ -1384,10 +1384,13 @@ namespace SimpleBilling.MasterForms
         {
             if (TxtOverallDiscount.Text.Length > 0)
             {
-                float OverallDiscount = Convert.ToSingle(TxtOverallDiscount.Text.Trim());
-                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
-                LblBalanceAmount.Text = BalanceAmount.ToString();
+                TotalCalculator();
             }
+        }
+
+        private void TxtOverallDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Info.IsDecimal(e, TxtOverallDiscount);
         }
     }
 }
