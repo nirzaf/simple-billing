@@ -14,7 +14,8 @@ namespace SimpleBilling
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            //Application.Run(new Main());
+            Application.Run(new Login());
             //Application.Run(new ManageCustomers());
             //Application.Run(new ManageCheques());
             //Application.Run(new ManageBanks());
