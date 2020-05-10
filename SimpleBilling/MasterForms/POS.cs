@@ -354,7 +354,7 @@ namespace SimpleBilling.MasterForms
                     if (ChkVehicle.Checked == true)
                         header.VehicleNumber = CmbVehicles.SelectedValue.ToString();
 
-                    var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo);
+                    var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo && c.IsDeleted == false);
 
                     if (result == null)
                     {
