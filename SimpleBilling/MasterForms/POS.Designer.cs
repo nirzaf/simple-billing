@@ -107,6 +107,8 @@
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.BtnAddToPending = new System.Windows.Forms.Button();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtOverallDiscount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -529,6 +531,8 @@
             this.DownLayout.Controls.Add(this.DTDueDate, 3, 5);
             this.DownLayout.Controls.Add(this.BtnAddCheque, 2, 1);
             this.DownLayout.Controls.Add(this.CmbChooseCheques, 3, 1);
+            this.DownLayout.Controls.Add(this.label19, 4, 3);
+            this.DownLayout.Controls.Add(this.TxtOverallDiscount, 5, 3);
             this.DownLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DownLayout.Location = new System.Drawing.Point(3, 368);
             this.DownLayout.Name = "DownLayout";
@@ -1042,6 +1046,7 @@
             // BtnAddToPending
             // 
             this.BtnAddToPending.BackColor = System.Drawing.Color.White;
+            this.BtnAddToPending.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAddToPending.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAddToPending.Location = new System.Drawing.Point(1033, 560);
             this.BtnAddToPending.Name = "BtnAddToPending";
@@ -1050,6 +1055,25 @@
             this.BtnAddToPending.Text = "Add to Pending";
             this.BtnAddToPending.UseVisualStyleBackColor = false;
             this.BtnAddToPending.Click += new System.EventHandler(this.BtnAddToPending_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(684, 90);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(165, 30);
+            this.label19.TabIndex = 31;
+            this.label19.Text = "Overall Discount";
+            // 
+            // TxtOverallDiscount
+            // 
+            this.TxtOverallDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtOverallDiscount.Location = new System.Drawing.Point(855, 93);
+            this.TxtOverallDiscount.Name = "TxtOverallDiscount";
+            this.TxtOverallDiscount.Size = new System.Drawing.Size(166, 26);
+            this.TxtOverallDiscount.TabIndex = 32;
             // 
             // POS
             // 
@@ -1160,5 +1184,7 @@
         private System.Windows.Forms.Button BtnSaveQuotation;
         private System.Windows.Forms.ListBox LstBoxPendingJobs;
         private System.Windows.Forms.Button BtnAddToPending;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TxtOverallDiscount;
     }
 }
