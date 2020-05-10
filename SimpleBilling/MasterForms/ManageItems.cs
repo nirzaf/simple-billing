@@ -58,11 +58,21 @@ namespace SimpleBilling.MasterForms
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                         Barcode = TxtBarcode.Text.Trim(),
                         Categories = cat,
+                        Shelfs = shelve,
                         IsService = GetIsService()
                     };
 
                     if (items.Id == 0)
                     {
+                        items.Id = Convert.ToInt32(TxtItemId.Text.Trim());
+                        items.Code = TxtItemCode.Text.Trim();
+                        items.ItemName = TxtItemName.Text.Trim();
+                        items.Unit = TxtUnit.Text.Trim();
+                        items.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                        items.Barcode = TxtBarcode.Text.Trim();
+                        items.Categories = cat;
+                        items.Shelfs = shelve;
+                        items.IsService = GetIsService();
                         if (db.Entry(items).State == EntityState.Detached)
                             db.Set<Item>().Attach(items);
                         db.Entry(items).State = EntityState.Added;
