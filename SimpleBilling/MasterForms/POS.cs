@@ -571,7 +571,10 @@ namespace SimpleBilling.MasterForms
                                 ReceiptStatus = Result.Status;
                                 LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
                                 ReduceStock(true);
-                                MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
+                                if (Type == 1)
+                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
+                                if (Type == 2)
+                                    MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
                             }
                         }
                     }
