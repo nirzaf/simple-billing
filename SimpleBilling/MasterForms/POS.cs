@@ -83,11 +83,15 @@ namespace SimpleBilling.MasterForms
             {
                 BtnPrint.Enabled = true;
                 BtnVoid.Enabled = false;
+                CRUDPanel.Enabled = true;
+                BtnDelete.Enabled = true;
             }
             else if (ReceiptStatus == 2 || LblReceiptStatus.Text == "Completed")
             {
                 BtnPrint.Enabled = true;
                 BtnVoid.Enabled = true;
+                CRUDPanel.Enabled = false;
+                BtnDelete.Enabled = false;
             }
         }
 
@@ -118,6 +122,7 @@ namespace SimpleBilling.MasterForms
             {
                 LblReceiptNo.Text = GenReceiptNo();
                 DGVReceiptBody.DataSource = null;
+                PrintAndVoid();
             }
         }
 
@@ -217,9 +222,13 @@ namespace SimpleBilling.MasterForms
             {
                 return "Completed";
             }
-            else
+            else if (Status == 0)
             {
                 return "Canceled";
+            }
+            else
+            {
+                return "Quotation";
             }
         }
 
@@ -523,7 +532,7 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void CompleteReceipt()
+        private void CompleteReceipt(int Type)
         {
             try
             {
@@ -551,13 +560,15 @@ namespace SimpleBilling.MasterForms
                                 Result.PaidAmount = GivenAmount;
                                 Result.Balance = BalanceAmount;
                                 Result.PaymentType = GetPaymentType();
-                                Result.Status = 2;
+                                if (Type == 1) Result.Status = 2;
+                                if (Type == 2) Result.Status = 3;
                                 Result.UpdatedDate = DateTime.Now;
                                 Result.Remarks = TxtRemarks.Text.Trim();
                                 if (db.Entry(Result).State == EntityState.Detached)
                                     db.Set<ReceiptHeader>().Attach(Result);
                                 db.Entry(Result).State = EntityState.Modified;
                                 db.SaveChanges();
+                                ReceiptStatus = Result.Status;
                                 LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
                                 ReduceStock(true);
                                 MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
@@ -655,10 +666,7 @@ namespace SimpleBilling.MasterForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (BalanceAmount >= 0)
-                {
-                    CompleteReceipt();
-                }
+                CompleteReceipt(1);
             }
         }
 
@@ -1256,6 +1264,40 @@ namespace SimpleBilling.MasterForms
                 BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
                 LblBalanceAmount.Text = BalanceAmount.ToString();
             }
+        }
+
+        private void BtnAddToPending_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string RcptNo = LblReceiptNo.Text;
+                LstBoxPendingJobs.Items.Add(RcptNo);
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
+        private void LstBoxPendingJobs_DoubleClick(object sender, EventArgs e)
+        {
+            string RcptNo = LstBoxPendingJobs.SelectedItem.ToString();
+            SystemTimer_Tick(sender, e);
+            DGVLoad(RcptNo);
+            PrintAndVoid();
+            TxtCustomer.Focus();
+            HideCheque();
+            ChkVehicle.Enabled = false;
+            TxtCurrentMileage.Enabled = false;
+            TxtNextServiceDue.Enabled = false;
+            HideAddCustomer();
+            BtnAddCheque.Visible = false;
+            CmbChooseCheques.Visible = false;
+        }
+
+        private void BtnSaveQuotation_Click(object sender, EventArgs e)
+        {
+            CompleteReceipt(2);
         }
     }
 }

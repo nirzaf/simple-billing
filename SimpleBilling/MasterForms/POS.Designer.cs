@@ -35,7 +35,7 @@
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
             this.CmbAddItem = new System.Windows.Forms.ComboBox();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.CRUDPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TxtAddress = new System.Windows.Forms.TextBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TxtContact = new System.Windows.Forms.TextBox();
@@ -106,8 +106,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.BtnAddToPending = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.CRUDPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.DownLayout.SuspendLayout();
@@ -162,52 +163,52 @@
             this.CmbAddItem.Enter += new System.EventHandler(this.CmbAddItem_Enter);
             this.CmbAddItem.Leave += new System.EventHandler(this.CmbAddItem_Leave);
             // 
-            // tableLayoutPanel1
+            // CRUDPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.Controls.Add(this.TxtAddress, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.TxtEmail, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.TxtContact, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.LblReceiptNo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LblCustomer, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TxtCustomer, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.CmbVehicles, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ChkVehicle, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TxtQuantity, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.TxtDiscount, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.TxtSubTotal, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.TxtNetTotal, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.TxtBarCode, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.TxtProductCode, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.CmbAddItem, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.TxtUnitPrice, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.TxtName, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 173);
-            this.tableLayoutPanel1.TabIndex = 5;
+            this.CRUDPanel.ColumnCount = 5;
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.CRUDPanel.Controls.Add(this.TxtAddress, 3, 1);
+            this.CRUDPanel.Controls.Add(this.TxtEmail, 2, 1);
+            this.CRUDPanel.Controls.Add(this.TxtContact, 1, 1);
+            this.CRUDPanel.Controls.Add(this.LblReceiptNo, 0, 0);
+            this.CRUDPanel.Controls.Add(this.LblCustomer, 1, 0);
+            this.CRUDPanel.Controls.Add(this.TxtCustomer, 2, 0);
+            this.CRUDPanel.Controls.Add(this.CmbVehicles, 3, 0);
+            this.CRUDPanel.Controls.Add(this.ChkVehicle, 4, 0);
+            this.CRUDPanel.Controls.Add(this.TxtQuantity, 0, 5);
+            this.CRUDPanel.Controls.Add(this.TxtDiscount, 1, 5);
+            this.CRUDPanel.Controls.Add(this.TxtSubTotal, 2, 5);
+            this.CRUDPanel.Controls.Add(this.TxtNetTotal, 3, 5);
+            this.CRUDPanel.Controls.Add(this.label5, 0, 4);
+            this.CRUDPanel.Controls.Add(this.label6, 1, 4);
+            this.CRUDPanel.Controls.Add(this.label7, 2, 4);
+            this.CRUDPanel.Controls.Add(this.label8, 3, 4);
+            this.CRUDPanel.Controls.Add(this.TxtBarCode, 0, 3);
+            this.CRUDPanel.Controls.Add(this.TxtProductCode, 1, 3);
+            this.CRUDPanel.Controls.Add(this.CmbAddItem, 2, 3);
+            this.CRUDPanel.Controls.Add(this.TxtUnitPrice, 3, 3);
+            this.CRUDPanel.Controls.Add(this.label1, 0, 2);
+            this.CRUDPanel.Controls.Add(this.label2, 1, 2);
+            this.CRUDPanel.Controls.Add(this.label3, 2, 2);
+            this.CRUDPanel.Controls.Add(this.label4, 3, 2);
+            this.CRUDPanel.Controls.Add(this.TxtName, 0, 1);
+            this.CRUDPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CRUDPanel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CRUDPanel.Location = new System.Drawing.Point(3, 3);
+            this.CRUDPanel.Name = "CRUDPanel";
+            this.CRUDPanel.RowCount = 6;
+            this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.CRUDPanel.Size = new System.Drawing.Size(1024, 173);
+            this.CRUDPanel.TabIndex = 5;
             // 
             // TxtAddress
             // 
@@ -861,13 +862,14 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.CRUDPanel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.DownLayout, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel7, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.DGVReceiptBody, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.BtnAddToPending, 1, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -906,6 +908,7 @@
             this.LstBoxPendingJobs.Name = "LstBoxPendingJobs";
             this.LstBoxPendingJobs.Size = new System.Drawing.Size(103, 88);
             this.LstBoxPendingJobs.TabIndex = 8;
+            this.LstBoxPendingJobs.DoubleClick += new System.EventHandler(this.LstBoxPendingJobs_DoubleClick);
             // 
             // tableLayoutPanel5
             // 
@@ -997,6 +1000,7 @@
             this.BtnSaveQuotation.TabIndex = 2;
             this.BtnSaveQuotation.Text = "Save Quotation";
             this.BtnSaveQuotation.UseVisualStyleBackColor = false;
+            this.BtnSaveQuotation.Click += new System.EventHandler(this.BtnSaveQuotation_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -1034,6 +1038,18 @@
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
             // 
+            // BtnAddToPending
+            // 
+            this.BtnAddToPending.BackColor = System.Drawing.Color.White;
+            this.BtnAddToPending.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddToPending.Location = new System.Drawing.Point(1033, 560);
+            this.BtnAddToPending.Name = "BtnAddToPending";
+            this.BtnAddToPending.Size = new System.Drawing.Size(109, 30);
+            this.BtnAddToPending.TabIndex = 12;
+            this.BtnAddToPending.Text = "Add to Pending";
+            this.BtnAddToPending.UseVisualStyleBackColor = false;
+            this.BtnAddToPending.Click += new System.EventHandler(this.BtnAddToPending_Click);
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -1048,8 +1064,8 @@
             this.Text = "POS";
             this.Load += new System.EventHandler(this.POS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.CRUDPanel.ResumeLayout(false);
+            this.CRUDPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.DownLayout.ResumeLayout(false);
@@ -1071,7 +1087,7 @@
         private System.Windows.Forms.Timer SystemTimer;
         private System.Windows.Forms.BindingSource customersBindingSource;
         private System.Windows.Forms.ComboBox CmbAddItem;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel CRUDPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -1142,5 +1158,6 @@
         private System.Windows.Forms.TextBox TxtContact;
         private System.Windows.Forms.Button BtnSaveQuotation;
         private System.Windows.Forms.ListBox LstBoxPendingJobs;
+        private System.Windows.Forms.Button BtnAddToPending;
     }
 }
