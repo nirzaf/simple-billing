@@ -323,6 +323,21 @@ namespace SimpleBilling.MasterForms
                         TxtProductCode.Text = data.Code;
                         TxtDiscount.Text = "0";
                     }
+                    try
+                    {
+                        if (Info.IsEmpty(TxtUnitPrice) && Info.IsEmpty(TxtQuantity))
+                        {
+                            UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                            Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                            Total = UnitPrice * Qty;
+                            TxtSubTotal.Text = Total.ToString();
+                            CalculateItemPrices();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Exp(ex);
+                    }
                 }
             }
         }
@@ -372,7 +387,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var customer = db.Customers.FirstOrDefault(c => c.IsDeleted == false && c.Contact == TxtContact.Text.Trim());
+                    var customer = db.Customers.FirstOrDefault(c => c.IsDeleted == false && c.Contact == TxtCustomer.Text.Trim());
                     ReceiptHeader header = new ReceiptHeader
                     {
                         ReceiptNo = LblReceiptNo.Text.ToString(),
@@ -678,25 +693,37 @@ namespace SimpleBilling.MasterForms
 
         private void TxtDiscount_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Info.IsEmpty(TxtDiscount)
-                && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitPrice))
+            CalculateItemPrices();
+        }
+
+        private void CalculateItemPrices()
+        {
+            try
             {
-                UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
-                Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
-                Total = UnitPrice * Qty;
-                TxtSubTotal.Text = Total.ToString();
-                Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
-                NetTotal = Total - Discount;
-                TxtNetTotal.Text = NetTotal.ToString();
+                if (Info.IsEmpty(TxtDiscount) && Info.IsEmpty(TxtQuantity)
+                    && Info.IsEmpty(TxtUnitPrice))
+                {
+                    UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                    Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                    Total = UnitPrice * Qty;
+                    TxtSubTotal.Text = Total.ToString();
+                    Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                    NetTotal = Total - Discount;
+                    TxtNetTotal.Text = NetTotal.ToString();
+                }
+                else if (Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitPrice))
+                {
+                    UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
+                    Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
+                    Total = UnitPrice * Qty;
+                    TxtSubTotal.Text = Total.ToString();
+                    TxtNetTotal.Text = Total.ToString();
+                    TxtSubTotal.Text = Total.ToString();
+                }
             }
-            else if (Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitPrice))
+            catch (Exception ex)
             {
-                UnitPrice = Convert.ToSingle(TxtUnitPrice.Text.Trim());
-                Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
-                Total = UnitPrice * Qty;
-                TxtSubTotal.Text = Total.ToString();
-                TxtNetTotal.Text = Total.ToString();
-                TxtSubTotal.Text = Total.ToString();
+                Info.Mes(ex.Message);
             }
         }
 
@@ -783,7 +810,7 @@ namespace SimpleBilling.MasterForms
                     Qty = Convert.ToSingle(TxtQuantity.Text.Trim());
                     Total = UnitPrice * Qty;
                     TxtSubTotal.Text = Total.ToString();
-                    TxtDiscount_KeyUp(sender, e);
+                    CalculateItemPrices();
                 }
             }
             catch (Exception ex)

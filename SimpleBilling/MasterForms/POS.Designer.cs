@@ -901,6 +901,7 @@
             // LstBoxPendingJobs
             // 
             this.LstBoxPendingJobs.BackColor = System.Drawing.Color.White;
+            this.LstBoxPendingJobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LstBoxPendingJobs.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstBoxPendingJobs.FormattingEnabled = true;
             this.LstBoxPendingJobs.ItemHeight = 14;
