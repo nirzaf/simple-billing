@@ -540,6 +540,9 @@ namespace SimpleBilling.MasterForms
             ReceiptTotalDiscount = Info.GetDGVSum(DGVReceiptBody, 6);
             ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
 
+            if (Info.IsEmpty(TxtOverallDiscount))
+                ReceiptTotalDiscount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
+
             LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
             LblNetTotal.Text = ReceiptNetTotal.ToString();
             ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;
