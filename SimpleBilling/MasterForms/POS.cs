@@ -710,6 +710,8 @@ namespace SimpleBilling.MasterForms
                     Total = UnitPrice * Qty;
                     TxtSubTotal.Text = Total.ToString();
                     Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                    if (Info.IsEmpty(TxtOverallDiscount))
+                        Discount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
                     NetTotal = Total - Discount;
                     TxtNetTotal.Text = NetTotal.ToString();
                 }
@@ -1375,6 +1377,16 @@ namespace SimpleBilling.MasterForms
         private void BtnSaveQuotation_Click(object sender, EventArgs e)
         {
             CompleteReceipt(2);
+        }
+
+        private void TxtOverallDiscount_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TxtOverallDiscount.Text.Length > 0)
+            {
+                float OverallDiscount = Convert.ToSingle(TxtOverallDiscount.Text.Trim());
+                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
+                LblBalanceAmount.Text = BalanceAmount.ToString();
+            }
         }
     }
 }
