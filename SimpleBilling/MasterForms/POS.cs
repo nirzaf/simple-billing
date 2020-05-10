@@ -884,8 +884,6 @@ namespace SimpleBilling.MasterForms
                     string sb = data.Name;
                     StringBuilder RptInfo = new StringBuilder();
                     string Address = data.Address + ",   " + data.Contact;
-                    //RptInfo.Append(data.Address + ",   " + data.Contact);
-                    //RptInfo.Append(",            Receipt No: " + LblReceiptNo.Text);
                     Table bus = new Table(3, false);
                     Paragraph BusinessName = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
                     Paragraph ReceiptInfo = new Paragraph(RptInfo.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(8);
