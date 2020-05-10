@@ -224,18 +224,38 @@ namespace SimpleBilling.MasterForms
         {
             if (Status == 1)
             {
+                CRUDPanel.Enabled = true;
+                BtnDelete.Enabled = true;
+                BtnPrint.Enabled = false;
+                BtnPrintQuotation.Enabled = false;
+                BtnVoid.Enabled = false;
                 return "On Process";
             }
-            else if (Status == 2)
+            if (Status == 2)
             {
+                CRUDPanel.Enabled = false;
+                BtnDelete.Enabled = false;
+                BtnPrint.Enabled = true;
+                BtnPrintQuotation.Enabled = false;
+                BtnVoid.Enabled = true;
                 return "Completed";
             }
-            else if (Status == 0)
+            if (Status == 0)
             {
+                CRUDPanel.Enabled = false;
+                BtnDelete.Enabled = false;
+                BtnPrint.Enabled = true;
+                BtnPrintQuotation.Enabled = false;
+                BtnVoid.Enabled = true;
                 return "Canceled";
             }
             else
             {
+                CRUDPanel.Enabled = false;
+                BtnDelete.Enabled = false;
+                BtnPrint.Enabled = false;
+                BtnPrintQuotation.Enabled = true;
+                BtnVoid.Enabled = false;
                 return "Quotation";
             }
         }
@@ -468,6 +488,8 @@ namespace SimpleBilling.MasterForms
                         db.Entry(Result).State = EntityState.Modified;
                     }
                     db.SaveChanges();
+                    ReceiptStatus = 1;
+                    LblReceiptStatus.Text = GetReceiptStatus(ReceiptStatus);
                 }
             }
             catch (Exception ex)
