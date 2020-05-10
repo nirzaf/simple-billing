@@ -335,6 +335,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
+                    var customer = db.Customers.FirstOrDefault(c => c.IsDeleted == false && c.Contact == TxtContact.Text.Trim());
                     ReceiptHeader header = new ReceiptHeader
                     {
                         ReceiptNo = LblReceiptNo.Text.ToString(),
@@ -350,6 +351,8 @@ namespace SimpleBilling.MasterForms
                         Status = 1,
                         CreatedDate = DateTime.Now
                     };
+                    if (customer != null)
+                        header.CustomerId = customer.CustomerId;
                     if (ChkVehicle.Checked == true)
                         header.VehicleNumber = CmbVehicles.SelectedValue.ToString();
 
@@ -365,6 +368,17 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
+                        result.ReceiptNo = LblReceiptNo.Text.ToString();
+                        result.Date = LblDate.Text;
+                        result.Time = LblTime.Text;
+                        result.TotalDiscount = Convert.ToSingle(LblTotalDiscount.Text);
+                        result.SubTotal = Convert.ToSingle(LblSubTotal.Text);
+                        result.NetTotal = Convert.ToSingle(LblNetTotal.Text);
+                        result.UpdatedDate = DateTime.Now;
+                        if (db.Entry(result).State == EntityState.Detached)
+                            db.Set<ReceiptHeader>().Attach(result);
+                        db.Entry(result).State = EntityState.Modified;
+                        db.SaveChanges();
                         return result.ReceiptNo;
                     }
                 }
