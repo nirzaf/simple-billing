@@ -205,7 +205,7 @@ namespace SimpleBilling.MasterForms
 
         private string GenReceiptNo()
         {
-            return (Info.RandomString(5) + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
+            return ("CW" + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
         }
 
         private string GetReceiptStatus(int Status)
@@ -985,12 +985,10 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.Balance.ToString())));
 
                     string footer1 = "........................................                                                                                                                                                                ...........................";
-                    string footer2 = "     Customer Signature                                                                                                                                                                          Checked by";
-                    string footer3 = "Please Note : Credit balance should be settled within 30 days ";
+                    string footer2 = "     Customer Signature                                                                   Please Note : Credit balance should be settled within 30 days                                          Checked by";
                     iText.Kernel.Geom.PageSize ps = pdf.GetDefaultPageSize();
                     Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
                     Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
-                    Paragraph foot3 = new Paragraph(footer3).SetTextAlignment(TextAlignment.CENTER).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin(), ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
 
                     document.Add(billingTo);
                     document.Add(RptDetails);
@@ -998,7 +996,6 @@ namespace SimpleBilling.MasterForms
                     document.Add(table);
                     document.Add(foot1);
                     document.Add(foot2);
-                    document.Add(foot3);
                     document.Close();
                     Info.StartProcess(fileName);
                 }

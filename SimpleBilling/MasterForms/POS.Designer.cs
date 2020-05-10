@@ -94,6 +94,7 @@
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.LstBoxPendingJobs = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnLoadReceipt = new System.Windows.Forms.Button();
             this.BtnNewReceipt = new System.Windows.Forms.Button();
@@ -105,7 +106,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.LstBoxPendingJobs = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -896,6 +896,17 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 186);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
+            // LstBoxPendingJobs
+            // 
+            this.LstBoxPendingJobs.BackColor = System.Drawing.Color.White;
+            this.LstBoxPendingJobs.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LstBoxPendingJobs.FormattingEnabled = true;
+            this.LstBoxPendingJobs.ItemHeight = 14;
+            this.LstBoxPendingJobs.Location = new System.Drawing.Point(3, 95);
+            this.LstBoxPendingJobs.Name = "LstBoxPendingJobs";
+            this.LstBoxPendingJobs.Size = new System.Drawing.Size(103, 88);
+            this.LstBoxPendingJobs.TabIndex = 8;
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -1022,17 +1033,6 @@
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(928, 19);
             this.TxtRemarks.TabIndex = 1;
-            // 
-            // LstBoxPendingJobs
-            // 
-            this.LstBoxPendingJobs.BackColor = System.Drawing.Color.White;
-            this.LstBoxPendingJobs.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LstBoxPendingJobs.FormattingEnabled = true;
-            this.LstBoxPendingJobs.ItemHeight = 14;
-            this.LstBoxPendingJobs.Location = new System.Drawing.Point(3, 95);
-            this.LstBoxPendingJobs.Name = "LstBoxPendingJobs";
-            this.LstBoxPendingJobs.Size = new System.Drawing.Size(103, 88);
-            this.LstBoxPendingJobs.TabIndex = 8;
             // 
             // POS
             // 
