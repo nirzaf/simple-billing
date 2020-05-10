@@ -387,7 +387,7 @@ namespace SimpleBilling.MasterForms
                             {
                                 item.Id,
                                 item.Code,
-                                item.ItemName,
+                                item.PrintableName,
                                 body.UnitPrice,
                                 body.Quantity,
                                 body.SubTotal,

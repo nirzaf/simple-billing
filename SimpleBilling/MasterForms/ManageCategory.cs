@@ -41,7 +41,7 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = true;
             BtnSave.Enabled = true;
             TxtCategoryName.Focus();
-            TxtCatId.ReadOnly = false;
+            TxtCatId.Text = "0";
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
@@ -96,14 +96,16 @@ namespace SimpleBilling.MasterForms
                     Category cat = db.Categories.FirstOrDefault(c => c.CategoryId == CatId);
                     if (cat == null)
                     {
-                        cat.CategoryId = CatId;
                         if (Info.IsEmpty(TxtCategoryName))
                         {
-                            cat.CategoryName = TxtCategoryName.Text.Trim();
-                            cat.CreatedDate = Info.Today();
-                            if (db.Entry(cat).State == EntityState.Detached)
-                                db.Set<Category>().Attach(cat);
-                            db.Entry(cat).State = EntityState.Added;
+                            Category ca = new Category
+                            {
+                                CategoryName = TxtCategoryName.Text.Trim(),
+                                CreatedDate = Info.Today()
+                            };
+                            if (db.Entry(ca).State == EntityState.Detached)
+                                db.Set<Category>().Attach(ca);
+                            db.Entry(ca).State = EntityState.Added;
                             Info.Mes("Category Added");
                             db.SaveChanges();
                         }

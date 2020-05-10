@@ -57,6 +57,7 @@ namespace SimpleBilling.MasterForms
                         Unit = TxtUnit.Text.Trim(),
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                         Barcode = TxtBarcode.Text.Trim(),
+                        PrintableName = TxtPrintableName.Text.Trim(),
                         Categories = cat,
                         Shelfs = shelve,
                         IsService = GetIsService()
@@ -70,6 +71,7 @@ namespace SimpleBilling.MasterForms
                         items.Unit = TxtUnit.Text.Trim();
                         items.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
                         items.Barcode = TxtBarcode.Text.Trim();
+                        items.PrintableName = TxtPrintableName.Text.Trim();
                         items.Categories = cat;
                         items.Shelfs = shelve;
                         items.IsService = GetIsService();
@@ -90,6 +92,7 @@ namespace SimpleBilling.MasterForms
                             result.Unit = TxtUnit.Text.Trim();
                             result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
                             result.Barcode = TxtBarcode.Text.Trim();
+                            result.PrintableName = TxtPrintableName.Text.Trim();
                             result.Categories = cat;
                             result.Shelfs = shelve;
                             result.IsService = GetIsService();
@@ -134,8 +137,6 @@ namespace SimpleBilling.MasterForms
                 BtnSave.Enabled = false;
                 DGVItems.Refresh();
                 LoadDGV();
-                int lastRow = DGVItems.Rows.Count;
-                DGVItems.CurrentCell = DGVItems.Rows[lastRow - 1].Cells[0];
             }
         }
 
@@ -156,6 +157,7 @@ namespace SimpleBilling.MasterForms
                                 item.Unit,
                                 item.UnitCost,
                                 item.Barcode,
+                                item.PrintableName,
                                 item.Categories.CategoryName,
                                 item.Shelfs.ShelfName
                             }).ToList();
@@ -200,8 +202,9 @@ namespace SimpleBilling.MasterForms
                 TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
                 TxtUnitCost.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
                 TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
-                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
-                CmbShelf.Text = DGVItems.SelectedRows[0].Cells[7].Value + string.Empty;
+                TxtPrintableName.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
+                CmbCategories.Text = DGVItems.SelectedRows[0].Cells[7].Value + string.Empty;
+                CmbShelf.Text = DGVItems.SelectedRows[0].Cells[8].Value + string.Empty;
                 using (BillingContext db = new BillingContext())
                 {
                     var item = db.Items.FirstOrDefault(c => c.Id == Id);
@@ -281,16 +284,6 @@ namespace SimpleBilling.MasterForms
             ManageShelves manageShelve = new ManageShelves();
             manageShelve.Show();
             Hide();
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -452,6 +452,10 @@
     <Compile Include="Migrations\202005090128359_billing33.designer.cs">
       <DependentUpon>202005090128359_billing33.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005100822193_billing34.cs" />
+    <Compile Include="Migrations\202005100822193_billing34.designer.cs">
+      <DependentUpon>202005100822193_billing34.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bank.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -679,6 +683,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005090128359_billing33.resx">
       <DependentUpon>202005090128359_billing33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005100822193_billing34.resx">
+      <DependentUpon>202005100822193_billing34.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
