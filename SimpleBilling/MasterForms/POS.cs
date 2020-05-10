@@ -47,6 +47,11 @@ namespace SimpleBilling.MasterForms
         private void POS_Load(object sender, EventArgs e)
         {
             SystemTimer_Tick(sender, e);
+            FormLoad();
+        }
+
+        private void FormLoad()
+        {
             DGVLoad(ReceiptNo);
             PrintAndVoid();
             TxtCustomer.Focus();
@@ -57,6 +62,8 @@ namespace SimpleBilling.MasterForms
             HideAddCustomer();
             BtnAddCheque.Visible = false;
             CmbChooseCheques.Visible = false;
+            BtnPrint.Enabled = false;
+            BtnPrintQuotation.Enabled = false;
         }
 
         private void LoabCMB()
@@ -81,7 +88,7 @@ namespace SimpleBilling.MasterForms
         {
             if (ReceiptStatus != 2 || LblReceiptStatus.Text != "Completed")
             {
-                BtnPrint.Enabled = true;
+                BtnPrint.Enabled = false;
                 BtnVoid.Enabled = false;
                 CRUDPanel.Enabled = true;
                 BtnDelete.Enabled = true;
@@ -99,6 +106,7 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
+                FormLoad();
                 TxtCustomer.Text = string.Empty;
                 TxtBarCode.Text = string.Empty;
                 TxtProductCode.Text = string.Empty;
@@ -560,8 +568,16 @@ namespace SimpleBilling.MasterForms
                                 Result.PaidAmount = GivenAmount;
                                 Result.Balance = BalanceAmount;
                                 Result.PaymentType = GetPaymentType();
-                                if (Type == 1) Result.Status = 2;
-                                if (Type == 2) Result.Status = 3;
+                                if (Type == 1)
+                                {
+                                    Result.Status = 2;
+                                    Result.IsQuotation = false;
+                                }
+                                if (Type == 2)
+                                {
+                                    Result.Status = 3;
+                                    Result.IsQuotation = true;
+                                }
                                 Result.UpdatedDate = DateTime.Now;
                                 Result.Remarks = TxtRemarks.Text.Trim();
                                 if (db.Entry(Result).State == EntityState.Detached)
@@ -580,7 +596,7 @@ namespace SimpleBilling.MasterForms
                                 if (Type == 2)
                                 {
                                     MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
-                                    BtnPrintQutation.Enabled = true;
+                                    BtnPrintQuotation.Enabled = true;
                                 }
                             }
                         }

@@ -100,7 +100,7 @@
             this.BtnNewReceipt = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnPrintQutation = new System.Windows.Forms.Button();
+            this.BtnPrintQuotation = new System.Windows.Forms.Button();
             this.BtnSaveQuotation = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label14 = new System.Windows.Forms.Label();
@@ -954,7 +954,7 @@
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.BtnDelete, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.BtnPrintQutation, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.BtnPrintQuotation, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.BtnSaveQuotation, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 182);
@@ -978,17 +978,17 @@
             this.BtnDelete.UseVisualStyleBackColor = false;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // BtnPrintQutation
+            // BtnPrintQuotation
             // 
-            this.BtnPrintQutation.BackColor = System.Drawing.Color.White;
-            this.BtnPrintQutation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnPrintQutation.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrintQutation.Location = new System.Drawing.Point(3, 111);
-            this.BtnPrintQutation.Name = "BtnPrintQutation";
-            this.BtnPrintQutation.Size = new System.Drawing.Size(103, 66);
-            this.BtnPrintQutation.TabIndex = 1;
-            this.BtnPrintQutation.Text = "Print Quotation";
-            this.BtnPrintQutation.UseVisualStyleBackColor = false;
+            this.BtnPrintQuotation.BackColor = System.Drawing.Color.White;
+            this.BtnPrintQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnPrintQuotation.ForeColor = System.Drawing.Color.Black;
+            this.BtnPrintQuotation.Location = new System.Drawing.Point(3, 111);
+            this.BtnPrintQuotation.Name = "BtnPrintQuotation";
+            this.BtnPrintQuotation.Size = new System.Drawing.Size(103, 66);
+            this.BtnPrintQuotation.TabIndex = 1;
+            this.BtnPrintQuotation.Text = "Print Quotation";
+            this.BtnPrintQuotation.UseVisualStyleBackColor = false;
             // 
             // BtnSaveQuotation
             // 
@@ -1131,7 +1131,7 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.ComboBox CmbPaymentOption;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button BtnPrintQutation;
+        private System.Windows.Forms.Button BtnPrintQuotation;
         private System.Windows.Forms.ComboBox CmbVehicles;
         private System.Windows.Forms.CheckBox ChkVehicle;
         private System.Windows.Forms.ToolTip ToolTipHelp;
