@@ -91,6 +91,7 @@ namespace SimpleBilling.MasterForms
                             result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
                             result.Barcode = TxtBarcode.Text.Trim();
                             result.Categories = cat;
+                            result.Shelfs = shelve;
                             result.IsService = GetIsService();
                             if (db.Entry(result).State == EntityState.Detached)
                                 db.Set<Item>().Attach(result);
@@ -162,11 +163,11 @@ namespace SimpleBilling.MasterForms
 
                 CmbCategories.ValueMember = "CategoryId";
                 CmbCategories.DisplayMember = "CategoryName";
-                CmbCategories.DataSource = db.Categories.ToList();
+                CmbCategories.DataSource = db.Categories.Where(c => c.IsDeleted == false).ToList();
 
                 CmbShelf.ValueMember = "ShelfId";
                 CmbShelf.DisplayMember = "ShelfName";
-                CmbShelf.DataSource = db.Shelves.ToList();
+                CmbShelf.DataSource = db.Shelves.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -280,6 +281,16 @@ namespace SimpleBilling.MasterForms
             ManageShelves manageShelve = new ManageShelves();
             manageShelve.Show();
             Hide();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

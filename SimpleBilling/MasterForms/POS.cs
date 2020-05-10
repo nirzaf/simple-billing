@@ -9,7 +9,6 @@ using SimpleBilling.Model;
 using System;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -282,7 +281,7 @@ namespace SimpleBilling.MasterForms
                     var data = db.Items.FirstOrDefault(c => c.Id == ItemId);
                     if (data != null)
                     {
-                        TxtUnitPrice.Text = data.SellingPrice.ToString();
+                        TxtUnitPrice.Text = data.UnitCost.ToString();
                         TxtBarCode.Text = data.Barcode;
                         TxtProductCode.Text = data.Code;
                         TxtDiscount.Text = "0";
