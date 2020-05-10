@@ -880,21 +880,28 @@ namespace SimpleBilling.MasterForms
                     PdfWriter writer = new PdfWriter(fileName);
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A5.Rotate());
+                    document.SetMargins(10, 40, 10, 40);
                     string sb = data.Name;
                     StringBuilder RptInfo = new StringBuilder();
+                    string Address = data.Address + ",   " + data.Contact;
                     RptInfo.Append(data.Address + ",   " + data.Contact);
                     RptInfo.Append(",            Receipt No: " + LblReceiptNo.Text);
-
+                    Table bus = new Table(3, false);
                     Paragraph BusinessName = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
                     Paragraph ReceiptInfo = new Paragraph(RptInfo.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(8);
+                    string spc = ".                                      .";
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(sb)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Address)));
+                    bus.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Receipt No: " + LblReceiptNo.Text)));
+
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(8);
                     Paragraph space = new Paragraph("    ");
                     SolidLine sl = new SolidLine();
                     Paragraph billingTo = new Paragraph("Billing To: ").SetTextAlignment(TextAlignment.LEFT).SetFontSize(8);
-                    document.Add(BusinessName);
-                    document.Add(ReceiptInfo);
+                    document.Add(bus);
                     Table RptDetails = new Table(7, false);
-                    string spc = ".                                         .";
+
                     foreach (var ml in mlt)
                     {
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Name)));
@@ -977,13 +984,13 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Balance Amount")));
                     table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.Balance.ToString())));
 
-                    string footer1 = ".              ........................................                                        ...........................                  ";
-                    string footer2 = ".                   Customer Signature                                               Checked by                       ";
-                    string footer3 = ".      Please Note : Credit balance should be settled within 30 days ";
+                    string footer1 = ".              ........................................                                                                                           ...........................";
+                    string footer2 = ".                   Customer Signature                                                                                            Checked by";
+                    string footer3 = "Please Note : Credit balance should be settled within 30 days ";
                     iText.Kernel.Geom.PageSize ps = pdf.GetDefaultPageSize();
                     Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
                     Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
-                    Paragraph foot3 = new Paragraph(footer3).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin(), ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
+                    Paragraph foot3 = new Paragraph(footer3).SetTextAlignment(TextAlignment.CENTER).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin(), ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
 
                     document.Add(billingTo);
                     document.Add(RptDetails);
