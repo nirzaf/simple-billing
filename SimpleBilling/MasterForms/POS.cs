@@ -710,8 +710,8 @@ namespace SimpleBilling.MasterForms
                     Total = UnitPrice * Qty;
                     TxtSubTotal.Text = Total.ToString();
                     Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
-                    if (Info.IsEmpty(TxtOverallDiscount))
-                        Discount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
+                    //if (Info.IsEmpty(TxtOverallDiscount))
+                    //    Discount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
                     NetTotal = Total - Discount;
                     TxtNetTotal.Text = NetTotal.ToString();
                 }
