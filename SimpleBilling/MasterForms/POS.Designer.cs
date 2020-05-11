@@ -90,6 +90,8 @@
             this.DTDueDate = new System.Windows.Forms.DateTimePicker();
             this.BtnAddCheque = new System.Windows.Forms.Button();
             this.CmbChooseCheques = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtOverallDiscount = new System.Windows.Forms.TextBox();
             this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -107,8 +109,6 @@
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.BtnAddToPending = new System.Windows.Forms.Button();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.label19 = new System.Windows.Forms.Label();
-            this.TxtOverallDiscount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -837,6 +837,28 @@
             this.CmbChooseCheques.TabIndex = 30;
             this.CmbChooseCheques.SelectedIndexChanged += new System.EventHandler(this.CmbChooseCheques_SelectedIndexChanged);
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(684, 90);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(165, 30);
+            this.label19.TabIndex = 31;
+            this.label19.Text = "Overall Discount";
+            // 
+            // TxtOverallDiscount
+            // 
+            this.TxtOverallDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtOverallDiscount.Location = new System.Drawing.Point(855, 93);
+            this.TxtOverallDiscount.Name = "TxtOverallDiscount";
+            this.TxtOverallDiscount.Size = new System.Drawing.Size(166, 26);
+            this.TxtOverallDiscount.TabIndex = 32;
+            this.TxtOverallDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtOverallDiscount_KeyDown);
+            this.TxtOverallDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtOverallDiscount_KeyPress);
+            this.TxtOverallDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtOverallDiscount_KeyUp);
+            // 
             // BtnVoid
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
@@ -1055,27 +1077,6 @@
             this.BtnAddToPending.Text = "Add to Pending";
             this.BtnAddToPending.UseVisualStyleBackColor = false;
             this.BtnAddToPending.Click += new System.EventHandler(this.BtnAddToPending_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(684, 90);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(165, 30);
-            this.label19.TabIndex = 31;
-            this.label19.Text = "Overall Discount";
-            // 
-            // TxtOverallDiscount
-            // 
-            this.TxtOverallDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtOverallDiscount.Location = new System.Drawing.Point(855, 93);
-            this.TxtOverallDiscount.Name = "TxtOverallDiscount";
-            this.TxtOverallDiscount.Size = new System.Drawing.Size(166, 26);
-            this.TxtOverallDiscount.TabIndex = 32;
-            this.TxtOverallDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtOverallDiscount_KeyPress);
-            this.TxtOverallDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtOverallDiscount_KeyUp);
             // 
             // POS
             // 

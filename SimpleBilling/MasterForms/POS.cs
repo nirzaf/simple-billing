@@ -1392,5 +1392,13 @@ namespace SimpleBilling.MasterForms
         {
             Info.IsDecimal(e, TxtOverallDiscount);
         }
+
+        private void TxtOverallDiscount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CompleteReceipt(1);
+            }
+        }
     }
 }
