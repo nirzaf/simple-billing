@@ -15,10 +15,11 @@ namespace SimpleBilling.MasterForms
         private float TotalDiscount = 0;
         private float NetTotal = 0;
         private int LineNo;
+
         public ManageGRN(string GRN_Init_Code)
         {
             InitializeComponent();
-            GRN_Code = GRN_Init_Code; 
+            GRN_Code = GRN_Init_Code;
         }
 
         private void ManageGRN_Load(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = (from details in db.GRNDetails.Where(a=>a.IsDeleted == true && a.GRNCode == GRN_New_Code)
+                    var data = (from details in db.GRNDetails.Where(a => a.IsDeleted == true && a.GRNCode == GRN_New_Code)
                                 join item in db.Items
                                 on details.ProductId equals item.Id
                                 select new
@@ -53,18 +54,17 @@ namespace SimpleBilling.MasterForms
                                 }).ToList();
                     DGVGRNList.DataSource = data;
                 }
-            
 
-            TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
-                             where row.Cells[0].FormattedValue.ToString() != string.Empty
-                             select Convert.ToSingle(row.Cells[4].FormattedValue)).Sum();
-            NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
-                        where row.Cells[0].FormattedValue.ToString() != string.Empty
-                        select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
-            LblTotalDiscount.Text = TotalDiscount.ToString();
-            LblNetTotal.Text = NetTotal.ToString();
-            float GrossTotal = TotalDiscount + NetTotal;
-            LblGrossTotal.Text = GrossTotal.ToString();
+                TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
+                                 where row.Cells[0].FormattedValue.ToString() != string.Empty
+                                 select Convert.ToSingle(row.Cells[4].FormattedValue)).Sum();
+                NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
+                            where row.Cells[0].FormattedValue.ToString() != string.Empty
+                            select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+                LblTotalDiscount.Text = TotalDiscount.ToString();
+                LblNetTotal.Text = NetTotal.ToString();
+                float GrossTotal = TotalDiscount + NetTotal;
+                LblGrossTotal.Text = GrossTotal.ToString();
 
                 using (BillingContext db = new BillingContext())
                 {
@@ -110,22 +110,19 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Info(ex.ToString());
-                throw;
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
+                return ex.ToString();
             }
-
         }
+
         private void LoadCmb()
         {
-            using (BillingContext db = new BillingContext()) 
+            using (BillingContext db = new BillingContext())
             {
                 itemBindingSource.DataSource = db.Items.ToList();
                 supplierBindingSource.DataSource = db.Suppliers.ToList();
             }
-        }
-        private void Info(string Message)
-        {
-            LblMessage.Text = Message;
         }
 
         private void MessageTimer_Tick(object sender, EventArgs e)
@@ -154,7 +151,7 @@ namespace SimpleBilling.MasterForms
 
                     var isGRNExist = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == header.GRN_No);
 
-                    if(isGRNExist == null)
+                    if (isGRNExist == null)
                     {
                         if (db.Entry(header).State == EntityState.Detached)
                             db.Set<GRNHeader>().Attach(header);
@@ -215,16 +212,17 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
             }
             finally
             {
-                TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows 
-                                         where row.Cells[0].FormattedValue.ToString() != string.Empty
-                                         select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
+                TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
+                                 where row.Cells[0].FormattedValue.ToString() != string.Empty
+                                 select Convert.ToInt32(row.Cells[5].FormattedValue)).Sum();
                 NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
-                                      where row.Cells[0].FormattedValue.ToString() != string.Empty
-                                      select Convert.ToInt32(row.Cells[6].FormattedValue)).Sum();
+                            where row.Cells[0].FormattedValue.ToString() != string.Empty
+                            select Convert.ToInt32(row.Cells[6].FormattedValue)).Sum();
                 LblTotalDiscount.Text = TotalDiscount.ToString();
                 LblNetTotal.Text = NetTotal.ToString();
                 float GrossTotal = TotalDiscount + NetTotal;
@@ -244,7 +242,6 @@ namespace SimpleBilling.MasterForms
                     header.TotalDiscout = TotalDiscount;
                     header.NetTotal = NetTotal;
                     header.Status = 2;
-      
 
                     if (db.Entry(header).State == EntityState.Detached)
                         db.Set<GRNHeader>().Attach(header);
@@ -255,7 +252,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Info(ex.ToString());
+                Info.Mes(ex.ToString());
             }
             finally
             {

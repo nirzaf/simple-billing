@@ -10,6 +10,7 @@ namespace SimpleBilling.MasterForms
     public partial class ManageVehicles : Form
     {
         private string VehicleNum;
+
         public ManageVehicles()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
+                ExportJSON.Add(ex);
                 Info.Mes(ex.Message);
             }
             finally
@@ -50,7 +52,6 @@ namespace SimpleBilling.MasterForms
                                 cus.Name
                             }).ToList();
                 DGVVehicles.DataSource = data;
-
 
                 CmbVehicleOwner.ValueMember = "CustomerId";
                 CmbVehicleOwner.DisplayMember = "Name";
@@ -83,6 +84,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
+                ExportJSON.Add(ex);
                 Info.Mes(ex.Message);
             }
             finally
@@ -139,12 +141,12 @@ namespace SimpleBilling.MasterForms
                             db.SaveChanges();
                         }
                     }
-                 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
             }
             finally
             {
@@ -161,6 +163,7 @@ namespace SimpleBilling.MasterForms
             BtnEdit.Enabled = true;
             tableLayoutPanel2.Enabled = false;
         }
+
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             tableLayoutPanel2.Enabled = true;

@@ -57,6 +57,7 @@ namespace SimpleBilling.MasterForms
         {
             Add();
         }
+
         private void Add()
         {
             shelfBindingSource.Add(new Shelf());
@@ -78,6 +79,7 @@ namespace SimpleBilling.MasterForms
             BtnSave.Enabled = true;
             TxtShelfName.Focus();
         }
+
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -102,6 +104,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
+                ExportJSON.Add(ex);
                 Info(ex.ToString());
             }
             finally
@@ -154,6 +157,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
+                ExportJSON.Add(ex);
                 Info(ex.Message);
             }
             finally
@@ -162,6 +166,7 @@ namespace SimpleBilling.MasterForms
                 Save();
             }
         }
+
         private void Save()
         {
             BtnSave.Enabled = false;

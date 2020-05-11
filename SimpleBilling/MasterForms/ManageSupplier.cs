@@ -41,6 +41,7 @@ namespace SimpleBilling.MasterForms
         {
             LblMessage.Text = Message;
         }
+
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = true;
@@ -63,9 +64,7 @@ namespace SimpleBilling.MasterForms
                 {
                     using (BillingContext db = new BillingContext())
                     {
-                        Supplier sup = supplierBindingSource.Current as Supplier;
-
-                        if (sup != null)
+                        if (supplierBindingSource.Current is Supplier sup)
                         {
                             if (db.Entry(sup).State == EntityState.Detached)
                                 db.Set<Supplier>().Attach(sup);
@@ -122,6 +121,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
+                ExportJSON.Add(ex);
                 Info(ex.ToString());
             }
             finally
