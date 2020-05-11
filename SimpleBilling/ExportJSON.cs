@@ -13,16 +13,35 @@ namespace SimpleBilling
     {
         public static void Add(Exception ex)
         {
-            string jsonFile = "C:\\Orion\\Exceptions.Json";
             try
             {
-                Exp e = new Exp();
+                string jsonFile = "C:\\Orion\\Exceptions.Json";
+                string rawJson = File.ReadAllText(jsonFile);
+                ExpCollection result = JsonConvert.DeserializeObject<ExpCollection>(rawJson);
+                int Count = result.Exps.Count;
+                Exp Exps = new Exp
+                {
+                    Id = ++Count,
+                    _Time = DateTime.Now.ToShortTimeString(),
+                    _Date = DateTime.Today.ToShortDateString(),
+                    _Message = ex.Message.ToString(),
+                    _StackTrace = ex.StackTrace.ToString()
+                };
+
+                string serializedJson = JsonConvert.SerializeObject(Exps);
+                File.WriteAllText("C:\\Orion\\", "Exceptions.Json");
             }
             catch (Exception e)
             {
                 Console.WriteLine("Add Error : " + e.Message.ToString());
             }
         }
+    }
+
+    public class ExpCollection
+    {
+        private List<Exp> exps;
+        public List<Exp> Exps { get => exps; set => exps = value; }
     }
 
     public class Exp
@@ -39,19 +58,7 @@ namespace SimpleBilling
         [JsonProperty("Message")]
         public string _Message { get; set; }
 
-        public void Message(Exception ex)
-        {
-            _Message = ex.Message.ToString();
-        }
-
-        public void Time()
-        {
-            _Time = DateTime.Now.ToShortTimeString();
-        }
-
-        public void Date()
-        {
-            _Date = DateTime.Today.ToShortDateString();
-        }
+        [JsonProperty("StackTrace")]
+        public string _StackTrace { get; set; }
     }
 }

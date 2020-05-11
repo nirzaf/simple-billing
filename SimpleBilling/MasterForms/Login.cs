@@ -31,19 +31,26 @@ namespace SimpleBilling.MasterForms
 
         private void CashierLogin()
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                if (Info.IsEmpty(TxtLogin))
+                using (BillingContext db = new BillingContext())
                 {
-                    var data = db.Employee.FirstOrDefault(c => c.SecretCode == TxtLogin.Text.Trim());
-                    if (data != null)
+                    if (Info.IsEmpty(TxtLogin))
                     {
-                        Main m = new Main();
-                        m.Show();
-                        Hide();
-                        Info.CashierId = data.EmployeeId;
+                        var data = db.Employee.FirstOrDefault(c => c.SecretCode == TxtLogin.Text.Trim());
+                        if (data != null)
+                        {
+                            Main m = new Main();
+                            m.Show();
+                            Hide();
+                            Info.CashierId = data.EmployeeId;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
             }
         }
 
