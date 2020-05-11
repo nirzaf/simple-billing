@@ -24,7 +24,6 @@ namespace SimpleBilling.MasterForms
 
         private void ManageGRN_Load(object sender, EventArgs e)
         {
-            LblMessage.Text = string.Empty;
             BtnApprove.Enabled = false;
             LoadCmb();
             if (!string.IsNullOrEmpty(GRN_Code))
@@ -123,11 +122,6 @@ namespace SimpleBilling.MasterForms
                 itemBindingSource.DataSource = db.Items.ToList();
                 supplierBindingSource.DataSource = db.Suppliers.ToList();
             }
-        }
-
-        private void MessageTimer_Tick(object sender, EventArgs e)
-        {
-            LblMessage.Text = string.Empty;
         }
 
         private void BtnAddItem_Click(object sender, EventArgs e)

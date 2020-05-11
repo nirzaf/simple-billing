@@ -56,7 +56,6 @@
             this.LblStatus = new System.Windows.Forms.Label();
             this.BtnAddItem = new System.Windows.Forms.Button();
             this.itemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
             this.BtnComplete = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -73,6 +72,8 @@
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnGRNReturn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -364,21 +365,10 @@
             // 
             this.itemBindingSource1.DataSource = typeof(SimpleBilling.Model.Item);
             // 
-            // LblMessage
-            // 
-            this.LblMessage.AutoSize = true;
-            this.LblMessage.ForeColor = System.Drawing.Color.Lime;
-            this.LblMessage.Location = new System.Drawing.Point(3, 0);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(54, 19);
-            this.LblMessage.TabIndex = 2;
-            this.LblMessage.Text = "label8";
-            // 
             // MessageTimer
             // 
             this.MessageTimer.Enabled = true;
             this.MessageTimer.Interval = 10000;
-            this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
             // 
             // BtnComplete
             // 
@@ -559,6 +549,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.BtnLoadInvoice, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.BtnGRNReturn, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(875, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -573,8 +564,8 @@
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel5.Controls.Add(this.LblMessage, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 379);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -582,6 +573,28 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(866, 94);
             this.tableLayoutPanel5.TabIndex = 7;
+            // 
+            // BtnGRNReturn
+            // 
+            this.BtnGRNReturn.Location = new System.Drawing.Point(3, 62);
+            this.BtnGRNReturn.Name = "BtnGRNReturn";
+            this.BtnGRNReturn.Size = new System.Drawing.Size(131, 54);
+            this.BtnGRNReturn.TabIndex = 16;
+            this.BtnGRNReturn.Text = "button1";
+            this.BtnGRNReturn.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(513, 88);
+            this.tableLayoutPanel6.TabIndex = 5;
             // 
             // ManageGRN
             // 
@@ -611,7 +624,6 @@
             this.BaseLayout.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -638,7 +650,6 @@
         private System.Windows.Forms.BindingSource supplierBindingSource;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtDiscount;
-        private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer MessageTimer;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtGRNNo;
@@ -661,5 +672,7 @@
         private System.Windows.Forms.TableLayoutPanel BaseLayout;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button BtnGRNReturn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
     }
 }
