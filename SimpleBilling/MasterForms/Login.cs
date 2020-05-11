@@ -44,6 +44,7 @@ namespace SimpleBilling.MasterForms
                             m.Show();
                             Hide();
                             Info.CashierId = data.EmployeeId;
+                            Info.CashierId = Convert.ToInt32(data.Email.ToString());
                         }
                     }
                 }
