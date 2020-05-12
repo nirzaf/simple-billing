@@ -804,6 +804,7 @@
             this.BtnAddToReturn.TabIndex = 18;
             this.BtnAddToReturn.Text = "Add To Return";
             this.BtnAddToReturn.UseVisualStyleBackColor = false;
+            this.BtnAddToReturn.Click += new System.EventHandler(this.BtnAddToReturn_Click);
             // 
             // BtnUpdateReturn
             // 

@@ -311,7 +311,11 @@ namespace SimpleBilling.MasterForms
             if (DGVGRNList.SelectedRows.Count > 0)
             {
                 GRN_Code = DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty;
-                LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty);
+                LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
+                CmbProduct.Text = DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtUnitCost.Text = DGVGRNList.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtDiscount.Text = DGVGRNList.SelectedRows[0].Cells[4].Value + string.Empty;
             }
         }
 
@@ -501,6 +505,16 @@ namespace SimpleBilling.MasterForms
         private void BtnGRNReturn_Click(object sender, EventArgs e)
         {
             BtnAddToReturn.Enabled = true;
+        }
+
+        private void BtnAddToReturn_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (DGVGRNList.SelectedRows.Count > 0)
+                {
+                }
+            }
         }
     }
 }
