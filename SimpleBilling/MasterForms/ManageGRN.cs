@@ -299,19 +299,22 @@ namespace SimpleBilling.MasterForms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (DGVGRNList.SelectedRows.Count > 0)
             {
-                using (BillingContext db = new BillingContext())
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
-                    Result.IsDeleted = false;
-                    if (db.Entry(Result).State == EntityState.Detached)
-                        db.Set<GRNDetails>().Attach(Result);
-                    Result.UpdatedDate = DateTime.Now;
-                    db.Entry(Result).State = EntityState.Modified;
-                    db.SaveChanges();
-                    LoadDetails(GRN_Code);
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
+                        Result.IsDeleted = false;
+                        if (db.Entry(Result).State == EntityState.Detached)
+                            db.Set<GRNDetails>().Attach(Result);
+                        Result.UpdatedDate = DateTime.Now;
+                        db.Entry(Result).State = EntityState.Modified;
+                        db.SaveChanges();
+                        LoadDetails(GRN_Code);
+                    }
                 }
             }
         }
