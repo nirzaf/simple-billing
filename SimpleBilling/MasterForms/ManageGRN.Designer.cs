@@ -90,6 +90,7 @@
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
             this.CmbBank = new System.Windows.Forms.ComboBox();
             this.LblPaymentStatus = new System.Windows.Forms.Label();
+            this.BtnAddToReturn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -471,6 +472,7 @@
             this.tableLayoutPanel3.Controls.Add(this.BtnApprove, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.BtnDelete, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.BtnComplete, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.BtnAddToReturn, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(1065, 128);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -499,7 +501,6 @@
             // BtnDelete
             // 
             this.BtnDelete.BackColor = System.Drawing.Color.White;
-            this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(161, 33);
@@ -791,6 +792,16 @@
             this.LblPaymentStatus.TabIndex = 9;
             this.LblPaymentStatus.Text = "Payment Status";
             // 
+            // BtnAddToReturn
+            // 
+            this.BtnAddToReturn.BackColor = System.Drawing.Color.White;
+            this.BtnAddToReturn.Location = new System.Drawing.Point(3, 42);
+            this.BtnAddToReturn.Name = "BtnAddToReturn";
+            this.BtnAddToReturn.Size = new System.Drawing.Size(161, 33);
+            this.BtnAddToReturn.TabIndex = 18;
+            this.BtnAddToReturn.Text = "Add To Return";
+            this.BtnAddToReturn.UseVisualStyleBackColor = false;
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -890,5 +901,6 @@
         private System.Windows.Forms.ComboBox CmbBank;
         private System.Windows.Forms.ComboBox CmbChooseCheques;
         private System.Windows.Forms.Label LblPaymentStatus;
+        private System.Windows.Forms.Button BtnAddToReturn;
     }
 }

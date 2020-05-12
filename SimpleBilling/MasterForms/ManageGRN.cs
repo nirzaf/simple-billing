@@ -40,6 +40,7 @@ namespace SimpleBilling.MasterForms
             CmbChooseCheques.Visible = false;
             TxtGivenAmount.Enabled = false;
             LayoutCheque.Visible = false;
+            BtnGRNReturn.Enabled = false;
         }
 
         private void LoadDetails(string GRN_New_Code)
@@ -62,6 +63,18 @@ namespace SimpleBilling.MasterForms
                                     Sub_Total = details.SubTotal
                                 }).ToList();
                     DGVGRNList.DataSource = data;
+
+                    var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code && c.IsDeleted == false);
+                    TxtGRNNo.Text = GRN_New_Code;
+                    TxtReference.Text = header.ReferenceNo;
+                    DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
+                    CMBSupplier.SelectedItem = header.Supplier;
+                    LblStatus.Text = Invoice_Status(header.Status);
+                    LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
+                    if (header.Status == 3)
+                    {
+                        BtnGRNReturn.Enabled = true;
+                    }
                 }
 
                 TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
@@ -74,17 +87,6 @@ namespace SimpleBilling.MasterForms
                 LblNetTotal.Text = NetTotal.ToString();
                 float GrossTotal = TotalDiscount + NetTotal;
                 LblGrossTotal.Text = GrossTotal.ToString();
-
-                using (BillingContext db = new BillingContext())
-                {
-                    GRNHeader header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code);
-                    TxtGRNNo.Text = GRN_New_Code;
-                    TxtReference.Text = header.ReferenceNo;
-                    DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
-                    CMBSupplier.SelectedItem = header.Supplier;
-                    LblStatus.Text = Invoice_Status(GRN_New_Code);
-                    LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
-                }
             }
         }
 
@@ -96,41 +98,26 @@ namespace SimpleBilling.MasterForms
                 return "Not Paid";
         }
 
-        private string Invoice_Status(string GRN_New_Code)
+        private string Invoice_Status(int Status)
         {
-            try
+            string CurrentStatus;
+            if (Status == 1)
             {
-                string CurrentStatus = string.Empty;
-                int Status;
-                using (BillingContext db = new BillingContext())
-                {
-                    GRNHeader header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code);
-                    Status = header.Status;
-                    if (Status == 1)
-                    {
-                        CurrentStatus = "Created";
-                        BtnApprove.Enabled = false;
-                        return CurrentStatus;
-                    }
-                    else if (Status == 2)
-                    {
-                        CurrentStatus = "Completed";
-                        BtnApprove.Enabled = true;
-                        return CurrentStatus;
-                    }
-                    else
-                    {
-                        CurrentStatus = "Approved";
-                        BtnApprove.Enabled = false;
-                        return CurrentStatus;
-                    }
-                }
+                CurrentStatus = "Created";
+                BtnApprove.Enabled = false;
+                return CurrentStatus;
             }
-            catch (Exception ex)
+            else if (Status == 2)
             {
-                ExportJSON.Add(ex);
-                Info.Mes(ex.Message);
-                return ex.ToString();
+                CurrentStatus = "Completed";
+                BtnApprove.Enabled = true;
+                return CurrentStatus;
+            }
+            else
+            {
+                CurrentStatus = "Approved";
+                BtnApprove.Enabled = false;
+                return CurrentStatus;
             }
         }
 
@@ -252,6 +239,7 @@ namespace SimpleBilling.MasterForms
                 LblNetTotal.Text = NetTotal.ToString();
                 float GrossTotal = TotalDiscount + NetTotal;
                 LblGrossTotal.Text = GrossTotal.ToString();
+                BtnDelete.Enabled = true;
             }
         }
 
