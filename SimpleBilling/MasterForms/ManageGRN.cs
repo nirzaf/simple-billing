@@ -130,8 +130,8 @@ namespace SimpleBilling.MasterForms
                 CmbChooseCheques.DisplayMember = "ChequeNo";
                 CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
 
-                CmbPaidBy.ValueMember = "Id";
-                CmbPaidBy.DisplayMember = "ItemName";
+                CmbPaidBy.ValueMember = "CustomerId";
+                CmbPaidBy.DisplayMember = "Name";
                 CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
             }
         }
