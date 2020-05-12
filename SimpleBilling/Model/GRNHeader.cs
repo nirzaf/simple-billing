@@ -15,6 +15,9 @@ namespace SimpleBilling.Model
         [MaxLength(10)]
         public string PaymentType { get; set; }
 
+        [DefaultValue(false)]
+        public bool IsPaid { get; set; }
+
         public virtual Supplier Supplier { get; set; }
         public float GrossTotal { get; set; }
 
