@@ -619,6 +619,7 @@
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(308, 26);
             this.TxtGivenAmount.TabIndex = 6;
+            this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
             // 
             // label13
             // 

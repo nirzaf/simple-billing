@@ -1,4 +1,5 @@
-﻿using SimpleBilling.Model;
+﻿using SimpleBilling.Migrations;
+using SimpleBilling.Model;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -454,6 +455,30 @@ namespace SimpleBilling.MasterForms
                 else
                 {
                     GRNLoad();
+                }
+            }
+        }
+
+        private void TxtGivenAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            //GRNPayment();
+        }
+
+        private void GRNPayment(string GRNNo)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var grn = db.GRNHeaders.FirstOrDefault(c => c.IsDeleted == false && c.GRN_No == GRNNo);
+                if (grn != null)
+                {
+                    if (grn.Status == 3)
+                    {
+                        grn.Status = 4;
+                    }
+                    else
+                    {
+                        Info.Mes("Cannot Pay before approve the Invoice");
+                    }
                 }
             }
         }
