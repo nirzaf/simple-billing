@@ -77,10 +77,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CmbPaymentOptions = new System.Windows.Forms.ComboBox();
             this.BtnAddCheque = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TxtChequeNumber = new System.Windows.Forms.TextBox();
+            this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
@@ -105,7 +105,7 @@
             this.DGVGRNList.Location = new System.Drawing.Point(3, 128);
             this.DGVGRNList.Name = "DGVGRNList";
             this.DGVGRNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVGRNList.Size = new System.Drawing.Size(866, 223);
+            this.DGVGRNList.Size = new System.Drawing.Size(1056, 198);
             this.DGVGRNList.TabIndex = 0;
             this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
             // 
@@ -119,7 +119,7 @@
             this.CRUDPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CRUDPanel.Location = new System.Drawing.Point(3, 3);
             this.CRUDPanel.Name = "CRUDPanel";
-            this.CRUDPanel.Size = new System.Drawing.Size(866, 119);
+            this.CRUDPanel.Size = new System.Drawing.Size(1056, 119);
             this.CRUDPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -158,7 +158,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.65812F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.17094F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(866, 119);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1056, 119);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label4
@@ -168,7 +168,7 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(3, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(167, 22);
+            this.label4.Size = new System.Drawing.Size(205, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "Product";
             // 
@@ -182,7 +182,7 @@
             this.CmbProduct.FormattingEnabled = true;
             this.CmbProduct.Location = new System.Drawing.Point(3, 74);
             this.CmbProduct.Name = "CmbProduct";
-            this.CmbProduct.Size = new System.Drawing.Size(167, 27);
+            this.CmbProduct.Size = new System.Drawing.Size(205, 27);
             this.CmbProduct.TabIndex = 9;
             this.CmbProduct.ValueMember = "Id";
             this.CmbProduct.SelectedIndexChanged += new System.EventHandler(this.CmbProduct_SelectedIndexChanged);
@@ -196,18 +196,18 @@
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(176, 49);
+            this.label5.Location = new System.Drawing.Point(214, 49);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 22);
+            this.label5.Size = new System.Drawing.Size(205, 22);
             this.label5.TabIndex = 4;
             this.label5.Text = "Quantity";
             // 
             // TxtQuantity
             // 
             this.TxtQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtQuantity.Location = new System.Drawing.Point(176, 74);
+            this.TxtQuantity.Location = new System.Drawing.Point(214, 74);
             this.TxtQuantity.Name = "TxtQuantity";
-            this.TxtQuantity.Size = new System.Drawing.Size(167, 26);
+            this.TxtQuantity.Size = new System.Drawing.Size(205, 26);
             this.TxtQuantity.TabIndex = 3;
             // 
             // label6
@@ -215,18 +215,18 @@
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(349, 49);
+            this.label6.Location = new System.Drawing.Point(425, 49);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(167, 22);
+            this.label6.Size = new System.Drawing.Size(205, 22);
             this.label6.TabIndex = 5;
             this.label6.Text = "Unit Cost";
             // 
             // TxtUnitCost
             // 
             this.TxtUnitCost.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtUnitCost.Location = new System.Drawing.Point(349, 74);
+            this.TxtUnitCost.Location = new System.Drawing.Point(425, 74);
             this.TxtUnitCost.Name = "TxtUnitCost";
-            this.TxtUnitCost.Size = new System.Drawing.Size(167, 26);
+            this.TxtUnitCost.Size = new System.Drawing.Size(205, 26);
             this.TxtUnitCost.TabIndex = 4;
             // 
             // label1
@@ -234,18 +234,18 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(522, 49);
+            this.label1.Location = new System.Drawing.Point(636, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 22);
+            this.label1.Size = new System.Drawing.Size(205, 22);
             this.label1.TabIndex = 16;
             this.label1.Text = "Discount";
             // 
             // TxtDiscount
             // 
             this.TxtDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtDiscount.Location = new System.Drawing.Point(522, 74);
+            this.TxtDiscount.Location = new System.Drawing.Point(636, 74);
             this.TxtDiscount.Name = "TxtDiscount";
-            this.TxtDiscount.Size = new System.Drawing.Size(167, 26);
+            this.TxtDiscount.Size = new System.Drawing.Size(205, 26);
             this.TxtDiscount.TabIndex = 5;
             // 
             // CMBSupplier
@@ -256,9 +256,9 @@
             this.CMBSupplier.DisplayMember = "Name";
             this.CMBSupplier.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CMBSupplier.FormattingEnabled = true;
-            this.CMBSupplier.Location = new System.Drawing.Point(522, 22);
+            this.CMBSupplier.Location = new System.Drawing.Point(636, 22);
             this.CMBSupplier.Name = "CMBSupplier";
-            this.CMBSupplier.Size = new System.Drawing.Size(167, 27);
+            this.CMBSupplier.Size = new System.Drawing.Size(205, 27);
             this.CMBSupplier.TabIndex = 13;
             this.CMBSupplier.ValueMember = "SupplierId";
             // 
@@ -271,9 +271,9 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(522, 0);
+            this.label7.Location = new System.Drawing.Point(636, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 19);
+            this.label7.Size = new System.Drawing.Size(205, 19);
             this.label7.TabIndex = 12;
             this.label7.Text = "Supplier";
             // 
@@ -281,9 +281,9 @@
             // 
             this.DTPDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DTPDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPDate.Location = new System.Drawing.Point(349, 22);
+            this.DTPDate.Location = new System.Drawing.Point(425, 22);
             this.DTPDate.Name = "DTPDate";
-            this.DTPDate.Size = new System.Drawing.Size(167, 26);
+            this.DTPDate.Size = new System.Drawing.Size(205, 26);
             this.DTPDate.TabIndex = 7;
             // 
             // label2
@@ -291,18 +291,18 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(349, 0);
+            this.label2.Location = new System.Drawing.Point(425, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 19);
+            this.label2.Size = new System.Drawing.Size(205, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Date";
             // 
             // TxtReference
             // 
             this.TxtReference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtReference.Location = new System.Drawing.Point(176, 22);
+            this.TxtReference.Location = new System.Drawing.Point(214, 22);
             this.TxtReference.Name = "TxtReference";
-            this.TxtReference.Size = new System.Drawing.Size(167, 26);
+            this.TxtReference.Size = new System.Drawing.Size(205, 26);
             this.TxtReference.TabIndex = 1;
             // 
             // label3
@@ -310,9 +310,9 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(176, 0);
+            this.label3.Location = new System.Drawing.Point(214, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(167, 19);
+            this.label3.Size = new System.Drawing.Size(205, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Reference No";
             // 
@@ -323,7 +323,7 @@
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 19);
+            this.label8.Size = new System.Drawing.Size(205, 19);
             this.label8.TabIndex = 18;
             this.label8.Text = "GRN No";
             // 
@@ -332,7 +332,7 @@
             this.TxtGRNNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtGRNNo.Location = new System.Drawing.Point(3, 22);
             this.TxtGRNNo.Name = "TxtGRNNo";
-            this.TxtGRNNo.Size = new System.Drawing.Size(167, 26);
+            this.TxtGRNNo.Size = new System.Drawing.Size(205, 26);
             this.TxtGRNNo.TabIndex = 0;
             // 
             // label12
@@ -340,9 +340,9 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(695, 0);
+            this.label12.Location = new System.Drawing.Point(847, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(168, 19);
+            this.label12.Size = new System.Drawing.Size(206, 19);
             this.label12.TabIndex = 19;
             this.label12.Text = "Status";
             // 
@@ -351,9 +351,9 @@
             this.LblStatus.AutoSize = true;
             this.LblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblStatus.ForeColor = System.Drawing.Color.Yellow;
-            this.LblStatus.Location = new System.Drawing.Point(695, 19);
+            this.LblStatus.Location = new System.Drawing.Point(847, 19);
             this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(168, 30);
+            this.LblStatus.Size = new System.Drawing.Size(206, 30);
             this.LblStatus.TabIndex = 20;
             this.LblStatus.Text = "Invoice Status";
             // 
@@ -362,9 +362,9 @@
             this.BtnAddItem.BackColor = System.Drawing.Color.White;
             this.BtnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddItem.Location = new System.Drawing.Point(695, 74);
+            this.BtnAddItem.Location = new System.Drawing.Point(847, 74);
             this.BtnAddItem.Name = "BtnAddItem";
-            this.BtnAddItem.Size = new System.Drawing.Size(168, 42);
+            this.BtnAddItem.Size = new System.Drawing.Size(206, 42);
             this.BtnAddItem.TabIndex = 15;
             this.BtnAddItem.Text = "Add";
             this.BtnAddItem.UseVisualStyleBackColor = false;
@@ -383,9 +383,9 @@
             // 
             this.BtnComplete.BackColor = System.Drawing.Color.White;
             this.BtnComplete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnComplete.Location = new System.Drawing.Point(3, 179);
+            this.BtnComplete.Location = new System.Drawing.Point(3, 159);
             this.BtnComplete.Name = "BtnComplete";
-            this.BtnComplete.Size = new System.Drawing.Size(131, 41);
+            this.BtnComplete.Size = new System.Drawing.Size(161, 36);
             this.BtnComplete.TabIndex = 3;
             this.BtnComplete.Text = "Done";
             this.BtnComplete.UseVisualStyleBackColor = false;
@@ -397,8 +397,8 @@
             this.tableLayoutPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.98649F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.01351F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.LblGrossTotal, 1, 0);
@@ -406,20 +406,21 @@
             this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(522, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(636, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(341, 110);
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(417, 135);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 37);
+            this.label10.Location = new System.Drawing.Point(4, 34);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 19);
             this.label10.TabIndex = 1;
@@ -428,7 +429,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 73);
+            this.label11.Location = new System.Drawing.Point(4, 67);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 19);
             this.label11.TabIndex = 2;
@@ -437,7 +438,7 @@
             // LblGrossTotal
             // 
             this.LblGrossTotal.AutoSize = true;
-            this.LblGrossTotal.Location = new System.Drawing.Point(170, 1);
+            this.LblGrossTotal.Location = new System.Drawing.Point(212, 1);
             this.LblGrossTotal.Name = "LblGrossTotal";
             this.LblGrossTotal.Size = new System.Drawing.Size(18, 19);
             this.LblGrossTotal.TabIndex = 3;
@@ -446,7 +447,7 @@
             // LblTotalDiscount
             // 
             this.LblTotalDiscount.AutoSize = true;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(170, 37);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(212, 34);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
             this.LblTotalDiscount.Size = new System.Drawing.Size(18, 19);
             this.LblTotalDiscount.TabIndex = 4;
@@ -455,7 +456,7 @@
             // LblNetTotal
             // 
             this.LblNetTotal.AutoSize = true;
-            this.LblNetTotal.Location = new System.Drawing.Point(170, 73);
+            this.LblNetTotal.Location = new System.Drawing.Point(212, 67);
             this.LblNetTotal.Name = "LblNetTotal";
             this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
             this.LblNetTotal.TabIndex = 5;
@@ -478,7 +479,7 @@
             this.tableLayoutPanel3.Controls.Add(this.BtnDelete, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.BtnComplete, 0, 4);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(875, 128);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(1065, 128);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -487,16 +488,16 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(137, 223);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(167, 198);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // BtnApprove
             // 
             this.BtnApprove.BackColor = System.Drawing.Color.White;
             this.BtnApprove.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnApprove.Location = new System.Drawing.Point(3, 135);
+            this.BtnApprove.Location = new System.Drawing.Point(3, 120);
             this.BtnApprove.Name = "BtnApprove";
-            this.BtnApprove.Size = new System.Drawing.Size(131, 38);
+            this.BtnApprove.Size = new System.Drawing.Size(161, 33);
             this.BtnApprove.TabIndex = 17;
             this.BtnApprove.Text = "Approve";
             this.BtnApprove.UseVisualStyleBackColor = false;
@@ -508,7 +509,7 @@
             this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(131, 38);
+            this.BtnDelete.Size = new System.Drawing.Size(161, 33);
             this.BtnDelete.TabIndex = 16;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
@@ -526,7 +527,7 @@
             this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 3);
             this.BtnLoadInvoice.Name = "BtnLoadInvoice";
-            this.BtnLoadInvoice.Size = new System.Drawing.Size(131, 53);
+            this.BtnLoadInvoice.Size = new System.Drawing.Size(161, 53);
             this.BtnLoadInvoice.TabIndex = 15;
             this.BtnLoadInvoice.Text = "Load Invoice";
             this.BtnLoadInvoice.UseVisualStyleBackColor = false;
@@ -547,10 +548,10 @@
             this.BaseLayout.Name = "BaseLayout";
             this.BaseLayout.RowCount = 4;
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.61753F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.30279F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.63745F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.28287F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.BaseLayout.Size = new System.Drawing.Size(1015, 502);
+            this.BaseLayout.Size = new System.Drawing.Size(1235, 502);
             this.BaseLayout.TabIndex = 6;
             // 
             // tableLayoutPanel4
@@ -560,22 +561,24 @@
             this.tableLayoutPanel4.Controls.Add(this.BtnLoadInvoice, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.BtnGRNReturn, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(875, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1065, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(137, 119);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(167, 119);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
             // BtnGRNReturn
             // 
+            this.BtnGRNReturn.BackColor = System.Drawing.Color.White;
+            this.BtnGRNReturn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnGRNReturn.Location = new System.Drawing.Point(3, 62);
             this.BtnGRNReturn.Name = "BtnGRNReturn";
-            this.BtnGRNReturn.Size = new System.Drawing.Size(131, 54);
+            this.BtnGRNReturn.Size = new System.Drawing.Size(161, 54);
             this.BtnGRNReturn.TabIndex = 16;
-            this.BtnGRNReturn.Text = "button1";
-            this.BtnGRNReturn.UseVisualStyleBackColor = true;
+            this.BtnGRNReturn.Text = "Return Invoice";
+            this.BtnGRNReturn.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel5
             // 
@@ -585,11 +588,11 @@
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.PaymentLayout, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 357);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 332);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(866, 116);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1056, 141);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
             // PaymentLayout
@@ -597,13 +600,13 @@
             this.PaymentLayout.ColumnCount = 2;
             this.PaymentLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.PaymentLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PaymentLayout.Controls.Add(this.textBox2, 1, 2);
+            this.PaymentLayout.Controls.Add(this.TxtGivenAmount, 1, 2);
             this.PaymentLayout.Controls.Add(this.label13, 0, 0);
             this.PaymentLayout.Controls.Add(this.label14, 0, 2);
             this.PaymentLayout.Controls.Add(this.label15, 0, 3);
-            this.PaymentLayout.Controls.Add(this.comboBox1, 1, 0);
+            this.PaymentLayout.Controls.Add(this.CmbPaymentOptions, 1, 0);
             this.PaymentLayout.Controls.Add(this.BtnAddCheque, 0, 1);
-            this.PaymentLayout.Controls.Add(this.textBox1, 1, 1);
+            this.PaymentLayout.Controls.Add(this.TxtChequeNumber, 1, 1);
             this.PaymentLayout.Controls.Add(this.LblBalanceAmount, 1, 3);
             this.PaymentLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PaymentLayout.Location = new System.Drawing.Point(3, 3);
@@ -613,7 +616,7 @@
             this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PaymentLayout.Size = new System.Drawing.Size(513, 110);
+            this.PaymentLayout.Size = new System.Drawing.Size(627, 135);
             this.PaymentLayout.TabIndex = 5;
             // 
             // label13
@@ -630,7 +633,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(3, 54);
+            this.label14.Location = new System.Drawing.Point(3, 66);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(116, 19);
             this.label14.TabIndex = 1;
@@ -640,50 +643,54 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(3, 81);
+            this.label15.Location = new System.Drawing.Point(3, 99);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(134, 19);
             this.label15.TabIndex = 2;
             this.label15.Text = "Balance Amount";
             // 
-            // comboBox1
+            // CmbPaymentOptions
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(259, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(251, 27);
-            this.comboBox1.TabIndex = 3;
+            this.CmbPaymentOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbPaymentOptions.FormattingEnabled = true;
+            this.CmbPaymentOptions.Items.AddRange(new object[] {
+            "Cheque",
+            "Cash",
+            "Credit"});
+            this.CmbPaymentOptions.Location = new System.Drawing.Point(316, 3);
+            this.CmbPaymentOptions.Name = "CmbPaymentOptions";
+            this.CmbPaymentOptions.Size = new System.Drawing.Size(308, 27);
+            this.CmbPaymentOptions.TabIndex = 3;
             // 
             // BtnAddCheque
             // 
             this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddCheque.Location = new System.Drawing.Point(3, 30);
+            this.BtnAddCheque.Location = new System.Drawing.Point(3, 36);
             this.BtnAddCheque.Name = "BtnAddCheque";
-            this.BtnAddCheque.Size = new System.Drawing.Size(250, 21);
+            this.BtnAddCheque.Size = new System.Drawing.Size(250, 23);
             this.BtnAddCheque.TabIndex = 4;
             this.BtnAddCheque.Text = "Add Cheque";
             this.BtnAddCheque.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // TxtChequeNumber
             // 
-            this.textBox1.Location = new System.Drawing.Point(259, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(251, 26);
-            this.textBox1.TabIndex = 5;
+            this.TxtChequeNumber.Location = new System.Drawing.Point(316, 36);
+            this.TxtChequeNumber.Name = "TxtChequeNumber";
+            this.TxtChequeNumber.Size = new System.Drawing.Size(251, 26);
+            this.TxtChequeNumber.TabIndex = 5;
             // 
-            // textBox2
+            // TxtGivenAmount
             // 
-            this.textBox2.Location = new System.Drawing.Point(259, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(251, 26);
-            this.textBox2.TabIndex = 6;
+            this.TxtGivenAmount.Location = new System.Drawing.Point(316, 69);
+            this.TxtGivenAmount.Name = "TxtGivenAmount";
+            this.TxtGivenAmount.Size = new System.Drawing.Size(251, 26);
+            this.TxtGivenAmount.TabIndex = 6;
             // 
             // LblBalanceAmount
             // 
             this.LblBalanceAmount.AutoSize = true;
             this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(259, 81);
+            this.LblBalanceAmount.Location = new System.Drawing.Point(316, 99);
             this.LblBalanceAmount.Name = "LblBalanceAmount";
             this.LblBalanceAmount.Size = new System.Drawing.Size(18, 19);
             this.LblBalanceAmount.TabIndex = 7;
@@ -694,7 +701,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1015, 502);
+            this.ClientSize = new System.Drawing.Size(1235, 502);
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -772,10 +779,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CmbPaymentOptions;
         private System.Windows.Forms.Button BtnAddCheque;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtGivenAmount;
+        private System.Windows.Forms.TextBox TxtChequeNumber;
         private System.Windows.Forms.Label LblBalanceAmount;
     }
 }
