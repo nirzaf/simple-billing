@@ -914,6 +914,10 @@ namespace SimpleBilling.MasterForms
                     CmbChooseCheques.Visible = true;
                     LoabCMB();
                 }
+                else
+                {
+                    HideCheque();
+                }
             }
         }
 
