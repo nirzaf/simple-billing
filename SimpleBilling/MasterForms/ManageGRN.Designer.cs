@@ -83,6 +83,12 @@
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             this.LayoutCheque = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtChequeNo = new System.Windows.Forms.TextBox();
+            this.TxtPayeeName = new System.Windows.Forms.TextBox();
+            this.TxtAmount = new System.Windows.Forms.TextBox();
+            this.DTChequeDueDate = new System.Windows.Forms.DateTimePicker();
+            this.CmbPaidBy = new System.Windows.Forms.ComboBox();
+            this.CmbBank = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -96,6 +102,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.PaymentLayout.SuspendLayout();
+            this.LayoutCheque.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVGRNList
@@ -710,6 +717,12 @@
             this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.Controls.Add(this.TxtAmount, 2, 0);
+            this.LayoutCheque.Controls.Add(this.TxtPayeeName, 1, 0);
+            this.LayoutCheque.Controls.Add(this.TxtChequeNo, 0, 0);
+            this.LayoutCheque.Controls.Add(this.DTChequeDueDate, 3, 0);
+            this.LayoutCheque.Controls.Add(this.CmbPaidBy, 4, 0);
+            this.LayoutCheque.Controls.Add(this.CmbBank, 5, 0);
             this.LayoutCheque.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutCheque.Location = new System.Drawing.Point(3, 468);
             this.LayoutCheque.Name = "LayoutCheque";
@@ -719,6 +732,57 @@
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutCheque.Size = new System.Drawing.Size(1056, 31);
             this.LayoutCheque.TabIndex = 8;
+            // 
+            // TxtChequeNo
+            // 
+            this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNo.Location = new System.Drawing.Point(3, 3);
+            this.TxtChequeNo.Name = "TxtChequeNo";
+            this.TxtChequeNo.Size = new System.Drawing.Size(170, 26);
+            this.TxtChequeNo.TabIndex = 0;
+            // 
+            // TxtPayeeName
+            // 
+            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.Location = new System.Drawing.Point(179, 3);
+            this.TxtPayeeName.Name = "TxtPayeeName";
+            this.TxtPayeeName.Size = new System.Drawing.Size(169, 26);
+            this.TxtPayeeName.TabIndex = 1;
+            // 
+            // TxtAmount
+            // 
+            this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtAmount.Location = new System.Drawing.Point(354, 3);
+            this.TxtAmount.Name = "TxtAmount";
+            this.TxtAmount.Size = new System.Drawing.Size(169, 26);
+            this.TxtAmount.TabIndex = 2;
+            // 
+            // DTChequeDueDate
+            // 
+            this.DTChequeDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DTChequeDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTChequeDueDate.Location = new System.Drawing.Point(529, 3);
+            this.DTChequeDueDate.Name = "DTChequeDueDate";
+            this.DTChequeDueDate.Size = new System.Drawing.Size(169, 26);
+            this.DTChequeDueDate.TabIndex = 3;
+            // 
+            // CmbPaidBy
+            // 
+            this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbPaidBy.FormattingEnabled = true;
+            this.CmbPaidBy.Location = new System.Drawing.Point(704, 3);
+            this.CmbPaidBy.Name = "CmbPaidBy";
+            this.CmbPaidBy.Size = new System.Drawing.Size(169, 27);
+            this.CmbPaidBy.TabIndex = 4;
+            // 
+            // CmbBank
+            // 
+            this.CmbBank.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbBank.FormattingEnabled = true;
+            this.CmbBank.Location = new System.Drawing.Point(879, 3);
+            this.CmbBank.Name = "CmbBank";
+            this.CmbBank.Size = new System.Drawing.Size(174, 27);
+            this.CmbBank.TabIndex = 5;
             // 
             // ManageGRN
             // 
@@ -750,6 +814,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.PaymentLayout.ResumeLayout(false);
             this.PaymentLayout.PerformLayout();
+            this.LayoutCheque.ResumeLayout(false);
+            this.LayoutCheque.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -809,5 +875,11 @@
         private System.Windows.Forms.TextBox TxtChequeNumber;
         private System.Windows.Forms.Label LblBalanceAmount;
         private System.Windows.Forms.TableLayoutPanel LayoutCheque;
+        private System.Windows.Forms.TextBox TxtAmount;
+        private System.Windows.Forms.TextBox TxtPayeeName;
+        private System.Windows.Forms.TextBox TxtChequeNo;
+        private System.Windows.Forms.DateTimePicker DTChequeDueDate;
+        private System.Windows.Forms.ComboBox CmbPaidBy;
+        private System.Windows.Forms.ComboBox CmbBank;
     }
 }
