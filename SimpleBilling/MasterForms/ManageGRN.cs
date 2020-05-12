@@ -84,15 +84,18 @@ namespace SimpleBilling.MasterForms
                     }
 
                     var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code && !c.IsDeleted);
-                    TxtGRNNo.Text = GRN_New_Code;
-                    TxtReference.Text = header.ReferenceNo;
-                    DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
-                    CMBSupplier.SelectedItem = header.Supplier;
-                    LblStatus.Text = Invoice_Status(header.Status);
-                    LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
-                    if (header.Status == 3)
+                    if (header != null)
                     {
-                        BtnGRNReturn.Enabled = true;
+                        TxtGRNNo.Text = GRN_New_Code;
+                        TxtReference.Text = header.ReferenceNo;
+                        DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
+                        CMBSupplier.SelectedItem = header.Supplier;
+                        LblStatus.Text = Invoice_Status(header.Status);
+                        LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
+                        if (header.Status == 3)
+                        {
+                            BtnGRNReturn.Enabled = true;
+                        }
                     }
                 }
 
