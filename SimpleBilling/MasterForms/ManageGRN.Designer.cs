@@ -71,8 +71,8 @@
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnGRNReturn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
@@ -559,6 +559,15 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(137, 119);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
+            // BtnGRNReturn
+            // 
+            this.BtnGRNReturn.Location = new System.Drawing.Point(3, 62);
+            this.BtnGRNReturn.Name = "BtnGRNReturn";
+            this.BtnGRNReturn.Size = new System.Drawing.Size(131, 54);
+            this.BtnGRNReturn.TabIndex = 16;
+            this.BtnGRNReturn.Text = "button1";
+            this.BtnGRNReturn.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -573,15 +582,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(866, 94);
             this.tableLayoutPanel5.TabIndex = 7;
-            // 
-            // BtnGRNReturn
-            // 
-            this.BtnGRNReturn.Location = new System.Drawing.Point(3, 62);
-            this.BtnGRNReturn.Name = "BtnGRNReturn";
-            this.BtnGRNReturn.Size = new System.Drawing.Size(131, 54);
-            this.BtnGRNReturn.TabIndex = 16;
-            this.BtnGRNReturn.Text = "button1";
-            this.BtnGRNReturn.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel6
             // 
