@@ -74,18 +74,18 @@
             this.BtnGRNReturn = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.PaymentLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.CmbPaymentOptions = new System.Windows.Forms.ComboBox();
             this.BtnAddCheque = new System.Windows.Forms.Button();
             this.TxtChequeNumber = new System.Windows.Forms.TextBox();
-            this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.LblBalanceAmount = new System.Windows.Forms.Label();
             this.LayoutCheque = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtChequeNo = new System.Windows.Forms.TextBox();
-            this.TxtPayeeName = new System.Windows.Forms.TextBox();
             this.TxtAmount = new System.Windows.Forms.TextBox();
+            this.TxtPayeeName = new System.Windows.Forms.TextBox();
+            this.TxtChequeNo = new System.Windows.Forms.TextBox();
             this.DTChequeDueDate = new System.Windows.Forms.DateTimePicker();
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
             this.CmbBank = new System.Windows.Forms.ComboBox();
@@ -116,10 +116,6 @@
             this.DGVGRNList.Size = new System.Drawing.Size(1056, 197);
             this.DGVGRNList.TabIndex = 0;
             this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
-            // 
-            // gRNDetailsBindingSource
-            // 
-            this.gRNDetailsBindingSource.DataSource = typeof(SimpleBilling.Model.GRNDetails);
             // 
             // CRUDPanel
             // 
@@ -195,10 +191,6 @@
             this.CmbProduct.ValueMember = "Id";
             this.CmbProduct.SelectedIndexChanged += new System.EventHandler(this.CmbProduct_SelectedIndexChanged);
             // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -269,10 +261,6 @@
             this.CMBSupplier.Size = new System.Drawing.Size(205, 27);
             this.CMBSupplier.TabIndex = 13;
             this.CMBSupplier.ValueMember = "SupplierId";
-            // 
-            // supplierBindingSource
-            // 
-            this.supplierBindingSource.DataSource = typeof(SimpleBilling.Model.Supplier);
             // 
             // label7
             // 
@@ -377,10 +365,6 @@
             this.BtnAddItem.Text = "Add";
             this.BtnAddItem.UseVisualStyleBackColor = false;
             this.BtnAddItem.Click += new System.EventHandler(this.BtnAddItem_Click);
-            // 
-            // itemBindingSource1
-            // 
-            this.itemBindingSource1.DataSource = typeof(SimpleBilling.Model.Item);
             // 
             // MessageTimer
             // 
@@ -628,6 +612,14 @@
             this.PaymentLayout.Size = new System.Drawing.Size(627, 125);
             this.PaymentLayout.TabIndex = 5;
             // 
+            // TxtGivenAmount
+            // 
+            this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtGivenAmount.Location = new System.Drawing.Point(316, 65);
+            this.TxtGivenAmount.Name = "TxtGivenAmount";
+            this.TxtGivenAmount.Size = new System.Drawing.Size(308, 26);
+            this.TxtGivenAmount.TabIndex = 6;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -690,14 +682,6 @@
             this.TxtChequeNumber.Size = new System.Drawing.Size(308, 26);
             this.TxtChequeNumber.TabIndex = 5;
             // 
-            // TxtGivenAmount
-            // 
-            this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtGivenAmount.Location = new System.Drawing.Point(316, 65);
-            this.TxtGivenAmount.Name = "TxtGivenAmount";
-            this.TxtGivenAmount.Size = new System.Drawing.Size(308, 26);
-            this.TxtGivenAmount.TabIndex = 6;
-            // 
             // LblBalanceAmount
             // 
             this.LblBalanceAmount.AutoSize = true;
@@ -728,40 +712,46 @@
             this.LayoutCheque.Name = "LayoutCheque";
             this.LayoutCheque.RowCount = 1;
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.LayoutCheque.Size = new System.Drawing.Size(1056, 31);
             this.LayoutCheque.TabIndex = 8;
+            // 
+            // TxtAmount
+            // 
+            this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtAmount.Location = new System.Drawing.Point(353, 3);
+            this.TxtAmount.Name = "TxtAmount";
+            this.TxtAmount.Size = new System.Drawing.Size(169, 26);
+            this.TxtAmount.TabIndex = 2;
+            this.TxtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
+            this.TxtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
+            // 
+            // TxtPayeeName
+            // 
+            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.Location = new System.Drawing.Point(178, 3);
+            this.TxtPayeeName.Name = "TxtPayeeName";
+            this.TxtPayeeName.Size = new System.Drawing.Size(169, 26);
+            this.TxtPayeeName.TabIndex = 1;
+            this.TxtPayeeName.Enter += new System.EventHandler(this.TxtPayeeName_Enter);
+            this.TxtPayeeName.Leave += new System.EventHandler(this.TxtPayeeName_Leave);
             // 
             // TxtChequeNo
             // 
             this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtChequeNo.Location = new System.Drawing.Point(3, 3);
             this.TxtChequeNo.Name = "TxtChequeNo";
-            this.TxtChequeNo.Size = new System.Drawing.Size(170, 26);
+            this.TxtChequeNo.Size = new System.Drawing.Size(169, 26);
             this.TxtChequeNo.TabIndex = 0;
-            // 
-            // TxtPayeeName
-            // 
-            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPayeeName.Location = new System.Drawing.Point(179, 3);
-            this.TxtPayeeName.Name = "TxtPayeeName";
-            this.TxtPayeeName.Size = new System.Drawing.Size(169, 26);
-            this.TxtPayeeName.TabIndex = 1;
-            // 
-            // TxtAmount
-            // 
-            this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtAmount.Location = new System.Drawing.Point(354, 3);
-            this.TxtAmount.Name = "TxtAmount";
-            this.TxtAmount.Size = new System.Drawing.Size(169, 26);
-            this.TxtAmount.TabIndex = 2;
+            this.TxtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
+            this.TxtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // DTChequeDueDate
             // 
             this.DTChequeDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DTChequeDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTChequeDueDate.Location = new System.Drawing.Point(529, 3);
+            this.DTChequeDueDate.Location = new System.Drawing.Point(528, 3);
             this.DTChequeDueDate.Name = "DTChequeDueDate";
             this.DTChequeDueDate.Size = new System.Drawing.Size(169, 26);
             this.DTChequeDueDate.TabIndex = 3;
@@ -770,7 +760,7 @@
             // 
             this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CmbPaidBy.FormattingEnabled = true;
-            this.CmbPaidBy.Location = new System.Drawing.Point(704, 3);
+            this.CmbPaidBy.Location = new System.Drawing.Point(703, 3);
             this.CmbPaidBy.Name = "CmbPaidBy";
             this.CmbPaidBy.Size = new System.Drawing.Size(169, 27);
             this.CmbPaidBy.TabIndex = 4;
@@ -779,9 +769,9 @@
             // 
             this.CmbBank.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CmbBank.FormattingEnabled = true;
-            this.CmbBank.Location = new System.Drawing.Point(879, 3);
+            this.CmbBank.Location = new System.Drawing.Point(878, 3);
             this.CmbBank.Name = "CmbBank";
-            this.CmbBank.Size = new System.Drawing.Size(174, 27);
+            this.CmbBank.Size = new System.Drawing.Size(175, 27);
             this.CmbBank.TabIndex = 5;
             // 
             // ManageGRN

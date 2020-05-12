@@ -341,5 +341,35 @@ namespace SimpleBilling.MasterForms
                 }
             }
         }
+
+        private void TxtChequeNo_Enter(object sender, EventArgs e)
+        {
+            Info.Enter(TxtChequeNo, "Cheque No");
+        }
+
+        private void TxtChequeNo_Leave(object sender, EventArgs e)
+        {
+            Info.Enter(TxtChequeNo, "Cheque No");
+        }
+
+        private void TxtPayeeName_Enter(object sender, EventArgs e)
+        {
+            Info.Enter(TxtPayeeName, "Payee Name");
+        }
+
+        private void TxtPayeeName_Leave(object sender, EventArgs e)
+        {
+            Info.Enter(TxtPayeeName, "Payee Name");
+        }
+
+        private void TxtAmount_Enter(object sender, EventArgs e)
+        {
+            Info.Enter(TxtAmount, "Amount");
+        }
+
+        private void TxtAmount_Leave(object sender, EventArgs e)
+        {
+            Info.Enter(TxtAmount, "Amount");
+        }
     }
 }
