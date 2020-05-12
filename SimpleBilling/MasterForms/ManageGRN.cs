@@ -44,12 +44,12 @@ namespace SimpleBilling.MasterForms
 
         private void LoadDetails(string GRN_New_Code)
         {
-            GRN_New_Code = GRN_Code;
+            GRN_Code = GRN_New_Code;
             if (!string.IsNullOrEmpty(GRN_New_Code))
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (!BtnGRNReturn.Enabled)
+                    if (!BtnAddToReturn.Enabled)
                     {
                         var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
                                     join item in db.Items
@@ -525,6 +525,8 @@ namespace SimpleBilling.MasterForms
         private void BtnGRNReturn_Click(object sender, EventArgs e)
         {
             BtnAddToReturn.Enabled = true;
+            if (Info.IsEmpty(TxtGRNNo))
+                LoadDetails(TxtGRNNo.Text.Trim());
         }
 
         private void BtnAddToReturn_Click(object sender, EventArgs e)
