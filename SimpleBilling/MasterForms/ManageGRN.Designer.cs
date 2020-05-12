@@ -653,6 +653,7 @@
             // CmbPaymentOptions
             // 
             this.CmbPaymentOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbPaymentOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbPaymentOptions.FormattingEnabled = true;
             this.CmbPaymentOptions.Items.AddRange(new object[] {
             "Cheque",
@@ -662,6 +663,7 @@
             this.CmbPaymentOptions.Name = "CmbPaymentOptions";
             this.CmbPaymentOptions.Size = new System.Drawing.Size(308, 27);
             this.CmbPaymentOptions.TabIndex = 3;
+            this.CmbPaymentOptions.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentOptions_SelectedIndexChanged);
             // 
             // BtnAddCheque
             // 

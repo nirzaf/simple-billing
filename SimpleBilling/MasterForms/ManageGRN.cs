@@ -26,17 +26,18 @@ namespace SimpleBilling.MasterForms
         {
             BtnApprove.Enabled = false;
             LoadCmb();
-            Load();
+            GRNLoad();
             if (!string.IsNullOrEmpty(GRN_Code))
             {
                 LoadDetails(GRN_Code);
             }
         }
 
-        private void Load()
+        private void GRNLoad()
         {
             BtnAddCheque.Visible = false;
             CmbChooseCheques.Visible = false;
+            TxtGivenAmount.Enabled = false;
         }
 
         private void LoadDetails(string GRN_New_Code)
@@ -396,6 +397,23 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAddCheque_Click(object sender, EventArgs e)
         {
+        }
+
+        private void CmbPaymentOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CmbPaymentOptions.Text))
+            {
+                TxtGivenAmount.Enabled = true;
+                if (CmbPaymentOptions.SelectedItem.ToString() == "Cheque")
+                {
+                    LayoutCheque.Visible = true;
+                    BtnAddCheque.Visible = true;
+                    CmbChooseCheques.Visible = true;
+                    TxtPayeeName.Focus();
+                    TxtAmount.Focus();
+                    TxtChequeNo.Focus();
+                }
+            }
         }
     }
 }
