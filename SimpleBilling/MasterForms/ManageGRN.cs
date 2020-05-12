@@ -398,6 +398,43 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAddCheque_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    if (Info.IsEmpty(TxtChequeNo) && Info.IsEmpty(TxtPayeeName) && Info.IsEmpty(TxtAmount))
+                    {
+                        Cheque ch = new Cheque
+                        {
+                            ChequeNo = TxtChequeNo.Text.Trim(),
+                            PayeeName = TxtPayeeName.Text.Trim(),
+                            Amount = Convert.ToSingle(TxtAmount.Text.Trim()),
+                            DueDate = DTChequeDueDate.Value.ToShortDateString(),
+                            PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString()),
+                            Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString()),
+                            CreatedDate = DateTime.Today
+                        };
+                        if (db.Entry(ch).State == EntityState.Detached)
+                            db.Set<Cheque>().Attach(ch);
+                        db.Entry(ch).State = EntityState.Added;
+                        db.SaveChanges();
+                        CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                    }
+                    else
+                    {
+                        Info.Required();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                GRNLoad();
+            }
         }
 
         private void CmbPaymentOptions_SelectedIndexChanged(object sender, EventArgs e)
