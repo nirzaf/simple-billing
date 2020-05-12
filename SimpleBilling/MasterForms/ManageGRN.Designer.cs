@@ -105,7 +105,7 @@
             this.DGVGRNList.Location = new System.Drawing.Point(3, 128);
             this.DGVGRNList.Name = "DGVGRNList";
             this.DGVGRNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVGRNList.Size = new System.Drawing.Size(1056, 198);
+            this.DGVGRNList.Size = new System.Drawing.Size(1056, 197);
             this.DGVGRNList.TabIndex = 0;
             this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
             // 
@@ -385,7 +385,7 @@
             this.BtnComplete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnComplete.Location = new System.Drawing.Point(3, 159);
             this.BtnComplete.Name = "BtnComplete";
-            this.BtnComplete.Size = new System.Drawing.Size(161, 36);
+            this.BtnComplete.Size = new System.Drawing.Size(161, 35);
             this.BtnComplete.TabIndex = 3;
             this.BtnComplete.Text = "Done";
             this.BtnComplete.UseVisualStyleBackColor = false;
@@ -414,13 +414,13 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(417, 135);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(417, 125);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 34);
+            this.label10.Location = new System.Drawing.Point(4, 32);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 19);
             this.label10.TabIndex = 1;
@@ -429,7 +429,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 67);
+            this.label11.Location = new System.Drawing.Point(4, 63);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 19);
             this.label11.TabIndex = 2;
@@ -447,7 +447,7 @@
             // LblTotalDiscount
             // 
             this.LblTotalDiscount.AutoSize = true;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(212, 34);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(212, 32);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
             this.LblTotalDiscount.Size = new System.Drawing.Size(18, 19);
             this.LblTotalDiscount.TabIndex = 4;
@@ -456,7 +456,7 @@
             // LblNetTotal
             // 
             this.LblNetTotal.AutoSize = true;
-            this.LblNetTotal.Location = new System.Drawing.Point(212, 67);
+            this.LblNetTotal.Location = new System.Drawing.Point(212, 63);
             this.LblNetTotal.Name = "LblNetTotal";
             this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
             this.LblNetTotal.TabIndex = 5;
@@ -488,7 +488,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(167, 198);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(167, 197);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // BtnApprove
@@ -549,8 +549,8 @@
             this.BaseLayout.RowCount = 4;
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.63745F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.28287F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.49004F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.171315F));
             this.BaseLayout.Size = new System.Drawing.Size(1235, 502);
             this.BaseLayout.TabIndex = 6;
             // 
@@ -588,11 +588,11 @@
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.PaymentLayout, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 332);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 331);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1056, 141);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1056, 131);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
             // PaymentLayout
@@ -616,7 +616,7 @@
             this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PaymentLayout.Size = new System.Drawing.Size(627, 135);
+            this.PaymentLayout.Size = new System.Drawing.Size(627, 125);
             this.PaymentLayout.TabIndex = 5;
             // 
             // label13
@@ -633,7 +633,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(3, 66);
+            this.label14.Location = new System.Drawing.Point(3, 62);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(116, 19);
             this.label14.TabIndex = 1;
@@ -643,7 +643,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(3, 99);
+            this.label15.Location = new System.Drawing.Point(3, 93);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(134, 19);
             this.label15.TabIndex = 2;
@@ -664,33 +664,36 @@
             // 
             // BtnAddCheque
             // 
+            this.BtnAddCheque.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddCheque.Location = new System.Drawing.Point(3, 36);
+            this.BtnAddCheque.Location = new System.Drawing.Point(3, 34);
             this.BtnAddCheque.Name = "BtnAddCheque";
-            this.BtnAddCheque.Size = new System.Drawing.Size(250, 23);
+            this.BtnAddCheque.Size = new System.Drawing.Size(307, 25);
             this.BtnAddCheque.TabIndex = 4;
             this.BtnAddCheque.Text = "Add Cheque";
             this.BtnAddCheque.UseVisualStyleBackColor = true;
             // 
             // TxtChequeNumber
             // 
-            this.TxtChequeNumber.Location = new System.Drawing.Point(316, 36);
+            this.TxtChequeNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNumber.Location = new System.Drawing.Point(316, 34);
             this.TxtChequeNumber.Name = "TxtChequeNumber";
-            this.TxtChequeNumber.Size = new System.Drawing.Size(251, 26);
+            this.TxtChequeNumber.Size = new System.Drawing.Size(308, 26);
             this.TxtChequeNumber.TabIndex = 5;
             // 
             // TxtGivenAmount
             // 
-            this.TxtGivenAmount.Location = new System.Drawing.Point(316, 69);
+            this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtGivenAmount.Location = new System.Drawing.Point(316, 65);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
-            this.TxtGivenAmount.Size = new System.Drawing.Size(251, 26);
+            this.TxtGivenAmount.Size = new System.Drawing.Size(308, 26);
             this.TxtGivenAmount.TabIndex = 6;
             // 
             // LblBalanceAmount
             // 
             this.LblBalanceAmount.AutoSize = true;
             this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(316, 99);
+            this.LblBalanceAmount.Location = new System.Drawing.Point(316, 93);
             this.LblBalanceAmount.Name = "LblBalanceAmount";
             this.LblBalanceAmount.Size = new System.Drawing.Size(18, 19);
             this.LblBalanceAmount.TabIndex = 7;
