@@ -121,6 +121,18 @@ namespace SimpleBilling.MasterForms
             {
                 itemBindingSource.DataSource = db.Items.ToList();
                 supplierBindingSource.DataSource = db.Suppliers.ToList();
+
+                CmbBank.ValueMember = "BankId";
+                CmbBank.DisplayMember = "BankName";
+                CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
+
+                CmbChooseCheques.ValueMember = "ChequeNo";
+                CmbChooseCheques.DisplayMember = "ChequeNo";
+                CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
+
+                CmbPaidBy.ValueMember = "Id";
+                CmbPaidBy.DisplayMember = "ItemName";
+                CmbPaidBy.DataSource = db.Items.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
@@ -370,6 +382,10 @@ namespace SimpleBilling.MasterForms
         private void TxtAmount_Leave(object sender, EventArgs e)
         {
             Info.Enter(TxtAmount, "Amount");
+        }
+
+        private void BtnAddCheque_Click(object sender, EventArgs e)
+        {
         }
     }
 }
