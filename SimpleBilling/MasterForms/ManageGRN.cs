@@ -132,7 +132,7 @@ namespace SimpleBilling.MasterForms
 
                 CmbPaidBy.ValueMember = "Id";
                 CmbPaidBy.DisplayMember = "ItemName";
-                CmbPaidBy.DataSource = db.Items.Where(c => c.IsDeleted == false).ToList();
+                CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
             }
         }
 
