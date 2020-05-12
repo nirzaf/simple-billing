@@ -610,6 +610,10 @@ namespace SimpleBilling.MasterForms
                                 Result.PaidAmount = GivenAmount;
                                 Result.Balance = BalanceAmount;
                                 Result.PaymentType = GetPaymentType();
+                                if (Result.PaymentType == "Cheque")
+                                {
+                                    Result.ChequeNo = CmbChooseCheques.Text;
+                                }
                                 if (Type == 1)
                                 {
                                     Result.Status = 2;

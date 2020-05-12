@@ -83,8 +83,17 @@ namespace SimpleBilling.MasterForms
                     DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
                     CMBSupplier.SelectedItem = header.Supplier;
                     LblStatus.Text = Invoice_Status(GRN_New_Code);
+                    LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
                 }
             }
+        }
+
+        private string PaymentStatus(bool isPaid)
+        {
+            if (isPaid)
+                return "Paid";
+            else
+                return "Not Paid";
         }
 
         private string Invoice_Status(string GRN_New_Code)
@@ -461,7 +470,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtGivenAmount_KeyDown(object sender, KeyEventArgs e)
         {
-            //GRNPayment();
+            GRNPayment(TxtGRNNo.Text.Trim());
         }
 
         private void GRNPayment(string GRNNo)
@@ -475,6 +484,8 @@ namespace SimpleBilling.MasterForms
                     {
                         grn.IsPaid = true;
                         grn.PaymentType = CmbPaymentOptions.Text;
+                        if (CmbChooseCheques.Text != null)
+                            grn.ChequeNo = CmbChooseCheques.Text;
                         if (db.Entry(grn).State == EntityState.Detached)
                             db.Set<GRNHeader>().Attach(grn);
                         db.Entry(grn).State = EntityState.Modified;
