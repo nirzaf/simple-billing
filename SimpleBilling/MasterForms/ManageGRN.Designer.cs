@@ -808,7 +808,7 @@
             // BtnUpdateReturn
             // 
             this.BtnUpdateReturn.BackColor = System.Drawing.Color.White;
-            this.BtnUpdateReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnUpdateReturn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnUpdateReturn.Location = new System.Drawing.Point(3, 81);
             this.BtnUpdateReturn.Name = "BtnUpdateReturn";
             this.BtnUpdateReturn.Size = new System.Drawing.Size(161, 33);
