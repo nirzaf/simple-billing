@@ -82,6 +82,7 @@
             this.TxtChequeNumber = new System.Windows.Forms.TextBox();
             this.TxtGivenAmount = new System.Windows.Forms.TextBox();
             this.LblBalanceAmount = new System.Windows.Forms.Label();
+            this.LayoutCheque = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -543,6 +544,7 @@
             this.BaseLayout.Controls.Add(this.CRUDPanel, 0, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel5, 0, 2);
+            this.BaseLayout.Controls.Add(this.LayoutCheque, 0, 3);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -699,6 +701,25 @@
             this.LblBalanceAmount.TabIndex = 7;
             this.LblBalanceAmount.Text = "0";
             // 
+            // LayoutCheque
+            // 
+            this.LayoutCheque.ColumnCount = 6;
+            this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.LayoutCheque.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutCheque.Location = new System.Drawing.Point(3, 468);
+            this.LayoutCheque.Name = "LayoutCheque";
+            this.LayoutCheque.RowCount = 1;
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutCheque.Size = new System.Drawing.Size(1056, 31);
+            this.LayoutCheque.TabIndex = 8;
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -787,5 +808,6 @@
         private System.Windows.Forms.TextBox TxtGivenAmount;
         private System.Windows.Forms.TextBox TxtChequeNumber;
         private System.Windows.Forms.Label LblBalanceAmount;
+        private System.Windows.Forms.TableLayoutPanel LayoutCheque;
     }
 }
