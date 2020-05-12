@@ -49,19 +49,39 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
-                                join item in db.Items
-                                on details.ProductId equals item.Id
-                                select new
-                                {
-                                    Line_No = details.LineId,
-                                    Item_Name = item.ItemName,
-                                    details.Quantity,
-                                    Unit_Cost = details.UnitCost,
-                                    details.Discount,
-                                    Sub_Total = details.SubTotal
-                                }).ToList();
-                    DGVGRNList.DataSource = data;
+                    if (!BtnGRNReturn.Enabled)
+                    {
+                        var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
+                                    join item in db.Items
+                                    on details.ProductId equals item.Id
+                                    select new
+                                    {
+                                        Line_No = details.LineId,
+                                        Item_Name = item.ItemName,
+                                        details.Quantity,
+                                        Unit_Cost = details.UnitCost,
+                                        details.Discount,
+                                        Sub_Total = details.SubTotal
+                                    }).ToList();
+                        DGVGRNList.DataSource = data;
+                    }
+                    else
+                    {
+                        var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
+                                    join item in db.Items
+                                    on details.ProductId equals item.Id
+                                    select new
+                                    {
+                                        Line_No = details.LineId,
+                                        Item_Name = item.ItemName,
+                                        details.Quantity,
+                                        Unit_Cost = details.UnitCost,
+                                        details.Discount,
+                                        Sub_Total = details.SubTotal,
+                                        details.IsReturned
+                                    }).ToList();
+                        DGVGRNList.DataSource = data;
+                    }
 
                     var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code && !c.IsDeleted);
                     TxtGRNNo.Text = GRN_New_Code;

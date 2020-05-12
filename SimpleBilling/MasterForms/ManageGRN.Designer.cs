@@ -68,6 +68,8 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnApprove = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnAddToReturn = new System.Windows.Forms.Button();
+            this.BtnUpdateReturn = new System.Windows.Forms.Button();
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -90,8 +92,6 @@
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
             this.CmbBank = new System.Windows.Forms.ComboBox();
             this.LblPaymentStatus = new System.Windows.Forms.Label();
-            this.BtnAddToReturn = new System.Windows.Forms.Button();
-            this.BtnUpdateReturn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -511,6 +511,28 @@
             this.BtnDelete.UseVisualStyleBackColor = false;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
+            // BtnAddToReturn
+            // 
+            this.BtnAddToReturn.BackColor = System.Drawing.Color.White;
+            this.BtnAddToReturn.Location = new System.Drawing.Point(3, 42);
+            this.BtnAddToReturn.Name = "BtnAddToReturn";
+            this.BtnAddToReturn.Size = new System.Drawing.Size(161, 33);
+            this.BtnAddToReturn.TabIndex = 18;
+            this.BtnAddToReturn.Text = "Add To Return";
+            this.BtnAddToReturn.UseVisualStyleBackColor = false;
+            this.BtnAddToReturn.Click += new System.EventHandler(this.BtnAddToReturn_Click);
+            // 
+            // BtnUpdateReturn
+            // 
+            this.BtnUpdateReturn.BackColor = System.Drawing.Color.White;
+            this.BtnUpdateReturn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnUpdateReturn.Location = new System.Drawing.Point(3, 81);
+            this.BtnUpdateReturn.Name = "BtnUpdateReturn";
+            this.BtnUpdateReturn.Size = new System.Drawing.Size(161, 33);
+            this.BtnUpdateReturn.TabIndex = 19;
+            this.BtnUpdateReturn.Text = "Update Return";
+            this.BtnUpdateReturn.UseVisualStyleBackColor = false;
+            // 
             // BtnLoadInvoice
             // 
             this.BtnLoadInvoice.BackColor = System.Drawing.Color.White;
@@ -794,28 +816,6 @@
             this.LblPaymentStatus.Size = new System.Drawing.Size(129, 19);
             this.LblPaymentStatus.TabIndex = 9;
             this.LblPaymentStatus.Text = "Payment Status";
-            // 
-            // BtnAddToReturn
-            // 
-            this.BtnAddToReturn.BackColor = System.Drawing.Color.White;
-            this.BtnAddToReturn.Location = new System.Drawing.Point(3, 42);
-            this.BtnAddToReturn.Name = "BtnAddToReturn";
-            this.BtnAddToReturn.Size = new System.Drawing.Size(161, 33);
-            this.BtnAddToReturn.TabIndex = 18;
-            this.BtnAddToReturn.Text = "Add To Return";
-            this.BtnAddToReturn.UseVisualStyleBackColor = false;
-            this.BtnAddToReturn.Click += new System.EventHandler(this.BtnAddToReturn_Click);
-            // 
-            // BtnUpdateReturn
-            // 
-            this.BtnUpdateReturn.BackColor = System.Drawing.Color.White;
-            this.BtnUpdateReturn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnUpdateReturn.Location = new System.Drawing.Point(3, 81);
-            this.BtnUpdateReturn.Name = "BtnUpdateReturn";
-            this.BtnUpdateReturn.Size = new System.Drawing.Size(161, 33);
-            this.BtnUpdateReturn.TabIndex = 19;
-            this.BtnUpdateReturn.Text = "Update Return";
-            this.BtnUpdateReturn.UseVisualStyleBackColor = false;
             // 
             // ManageGRN
             // 
