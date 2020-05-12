@@ -73,7 +73,15 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnGRNReturn = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.PaymentLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.BtnAddCheque = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.LblBalanceAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
@@ -86,6 +94,7 @@
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.PaymentLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVGRNList
@@ -96,7 +105,7 @@
             this.DGVGRNList.Location = new System.Drawing.Point(3, 128);
             this.DGVGRNList.Name = "DGVGRNList";
             this.DGVGRNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVGRNList.Size = new System.Drawing.Size(866, 245);
+            this.DGVGRNList.Size = new System.Drawing.Size(866, 223);
             this.DGVGRNList.TabIndex = 0;
             this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
             // 
@@ -374,9 +383,9 @@
             // 
             this.BtnComplete.BackColor = System.Drawing.Color.White;
             this.BtnComplete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnComplete.Location = new System.Drawing.Point(3, 199);
+            this.BtnComplete.Location = new System.Drawing.Point(3, 179);
             this.BtnComplete.Name = "BtnComplete";
-            this.BtnComplete.Size = new System.Drawing.Size(131, 43);
+            this.BtnComplete.Size = new System.Drawing.Size(131, 41);
             this.BtnComplete.TabIndex = 3;
             this.BtnComplete.Text = "Done";
             this.BtnComplete.UseVisualStyleBackColor = false;
@@ -404,13 +413,13 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(341, 88);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(341, 110);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 30);
+            this.label10.Location = new System.Drawing.Point(4, 37);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 19);
             this.label10.TabIndex = 1;
@@ -419,7 +428,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 59);
+            this.label11.Location = new System.Drawing.Point(4, 73);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 19);
             this.label11.TabIndex = 2;
@@ -437,7 +446,7 @@
             // LblTotalDiscount
             // 
             this.LblTotalDiscount.AutoSize = true;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(170, 30);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(170, 37);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
             this.LblTotalDiscount.Size = new System.Drawing.Size(18, 19);
             this.LblTotalDiscount.TabIndex = 4;
@@ -446,7 +455,7 @@
             // LblNetTotal
             // 
             this.LblNetTotal.AutoSize = true;
-            this.LblNetTotal.Location = new System.Drawing.Point(170, 59);
+            this.LblNetTotal.Location = new System.Drawing.Point(170, 73);
             this.LblNetTotal.Name = "LblNetTotal";
             this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
             this.LblNetTotal.TabIndex = 5;
@@ -478,16 +487,16 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(137, 245);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(137, 223);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // BtnApprove
             // 
             this.BtnApprove.BackColor = System.Drawing.Color.White;
             this.BtnApprove.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnApprove.Location = new System.Drawing.Point(3, 150);
+            this.BtnApprove.Location = new System.Drawing.Point(3, 135);
             this.BtnApprove.Name = "BtnApprove";
-            this.BtnApprove.Size = new System.Drawing.Size(131, 43);
+            this.BtnApprove.Size = new System.Drawing.Size(131, 38);
             this.BtnApprove.TabIndex = 17;
             this.BtnApprove.Text = "Approve";
             this.BtnApprove.UseVisualStyleBackColor = false;
@@ -499,7 +508,7 @@
             this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(131, 43);
+            this.BtnDelete.Size = new System.Drawing.Size(131, 38);
             this.BtnDelete.TabIndex = 16;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
@@ -538,8 +547,8 @@
             this.BaseLayout.Name = "BaseLayout";
             this.BaseLayout.RowCount = 4;
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.61753F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.30279F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.BaseLayout.Size = new System.Drawing.Size(1015, 502);
             this.BaseLayout.TabIndex = 6;
@@ -574,27 +583,111 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.PaymentLayout, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 379);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 357);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(866, 94);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(866, 116);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
-            // tableLayoutPanel6
+            // PaymentLayout
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(513, 88);
-            this.tableLayoutPanel6.TabIndex = 5;
+            this.PaymentLayout.ColumnCount = 2;
+            this.PaymentLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PaymentLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PaymentLayout.Controls.Add(this.textBox2, 1, 2);
+            this.PaymentLayout.Controls.Add(this.label13, 0, 0);
+            this.PaymentLayout.Controls.Add(this.label14, 0, 2);
+            this.PaymentLayout.Controls.Add(this.label15, 0, 3);
+            this.PaymentLayout.Controls.Add(this.comboBox1, 1, 0);
+            this.PaymentLayout.Controls.Add(this.BtnAddCheque, 0, 1);
+            this.PaymentLayout.Controls.Add(this.textBox1, 1, 1);
+            this.PaymentLayout.Controls.Add(this.LblBalanceAmount, 1, 3);
+            this.PaymentLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PaymentLayout.Location = new System.Drawing.Point(3, 3);
+            this.PaymentLayout.Name = "PaymentLayout";
+            this.PaymentLayout.RowCount = 4;
+            this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PaymentLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PaymentLayout.Size = new System.Drawing.Size(513, 110);
+            this.PaymentLayout.TabIndex = 5;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(3, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(140, 19);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Payment Options";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(3, 54);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(116, 19);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Given Amount";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(3, 81);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(134, 19);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Balance Amount";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(259, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(251, 27);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // BtnAddCheque
+            // 
+            this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddCheque.Location = new System.Drawing.Point(3, 30);
+            this.BtnAddCheque.Name = "BtnAddCheque";
+            this.BtnAddCheque.Size = new System.Drawing.Size(250, 21);
+            this.BtnAddCheque.TabIndex = 4;
+            this.BtnAddCheque.Text = "Add Cheque";
+            this.BtnAddCheque.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(259, 30);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(251, 26);
+            this.textBox1.TabIndex = 5;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(259, 57);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(251, 26);
+            this.textBox2.TabIndex = 6;
+            // 
+            // LblBalanceAmount
+            // 
+            this.LblBalanceAmount.AutoSize = true;
+            this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
+            this.LblBalanceAmount.Location = new System.Drawing.Point(259, 81);
+            this.LblBalanceAmount.Name = "LblBalanceAmount";
+            this.LblBalanceAmount.Size = new System.Drawing.Size(18, 19);
+            this.LblBalanceAmount.TabIndex = 7;
+            this.LblBalanceAmount.Text = "0";
             // 
             // ManageGRN
             // 
@@ -624,6 +717,8 @@
             this.BaseLayout.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.PaymentLayout.ResumeLayout(false);
+            this.PaymentLayout.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -673,6 +768,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button BtnGRNReturn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel PaymentLayout;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button BtnAddCheque;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label LblBalanceAmount;
     }
 }
