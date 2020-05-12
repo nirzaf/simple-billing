@@ -598,9 +598,9 @@
             this.PaymentLayout.Controls.Add(this.label14, 0, 2);
             this.PaymentLayout.Controls.Add(this.label15, 0, 3);
             this.PaymentLayout.Controls.Add(this.CmbPaymentOptions, 1, 0);
-            this.PaymentLayout.Controls.Add(this.BtnAddCheque, 0, 1);
             this.PaymentLayout.Controls.Add(this.LblBalanceAmount, 1, 3);
             this.PaymentLayout.Controls.Add(this.CmbChooseCheques, 1, 1);
+            this.PaymentLayout.Controls.Add(this.BtnAddCheque, 0, 1);
             this.PaymentLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PaymentLayout.Location = new System.Drawing.Point(3, 3);
             this.PaymentLayout.Name = "PaymentLayout";
@@ -667,11 +667,11 @@
             // 
             // BtnAddCheque
             // 
-            this.BtnAddCheque.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddCheque.Dock = System.Windows.Forms.DockStyle.Right;
             this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddCheque.Location = new System.Drawing.Point(3, 34);
+            this.BtnAddCheque.Location = new System.Drawing.Point(164, 34);
             this.BtnAddCheque.Name = "BtnAddCheque";
-            this.BtnAddCheque.Size = new System.Drawing.Size(307, 25);
+            this.BtnAddCheque.Size = new System.Drawing.Size(146, 25);
             this.BtnAddCheque.TabIndex = 4;
             this.BtnAddCheque.Text = "Add Cheque";
             this.BtnAddCheque.UseVisualStyleBackColor = true;

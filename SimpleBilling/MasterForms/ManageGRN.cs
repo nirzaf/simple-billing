@@ -38,6 +38,7 @@ namespace SimpleBilling.MasterForms
             BtnAddCheque.Visible = false;
             CmbChooseCheques.Visible = false;
             TxtGivenAmount.Enabled = false;
+            LayoutCheque.Visible = false;
         }
 
         private void LoadDetails(string GRN_New_Code)
@@ -401,17 +402,21 @@ namespace SimpleBilling.MasterForms
 
         private void CmbPaymentOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(CmbPaymentOptions.Text))
+            if (!string.IsNullOrWhiteSpace(CmbPaymentOptions.Text))
             {
-                TxtGivenAmount.Enabled = true;
                 if (CmbPaymentOptions.SelectedItem.ToString() == "Cheque")
                 {
+                    TxtGivenAmount.Enabled = true;
                     LayoutCheque.Visible = true;
                     BtnAddCheque.Visible = true;
                     CmbChooseCheques.Visible = true;
                     TxtPayeeName.Focus();
                     TxtAmount.Focus();
                     TxtChequeNo.Focus();
+                }
+                else
+                {
+                    GRNLoad();
                 }
             }
         }
