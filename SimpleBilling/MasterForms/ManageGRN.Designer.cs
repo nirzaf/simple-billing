@@ -93,6 +93,7 @@
             this.LblPaymentStatus = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.DGVGRNList = new System.Windows.Forms.DataGridView();
+            this.DGVGRNReturned = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,6 +109,7 @@
             this.LayoutCheque.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVGRNReturned)).BeginInit();
             this.SuspendLayout();
             // 
             // CRUDPanel
@@ -813,6 +815,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.Controls.Add(this.DGVGRNList, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.DGVGRNReturned, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 128);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -834,6 +837,18 @@
             this.DGVGRNList.Size = new System.Drawing.Size(1050, 92);
             this.DGVGRNList.TabIndex = 0;
             this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
+            // 
+            // DGVGRNReturned
+            // 
+            this.DGVGRNReturned.AllowUserToAddRows = false;
+            this.DGVGRNReturned.AllowUserToDeleteRows = false;
+            this.DGVGRNReturned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVGRNReturned.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVGRNReturned.Location = new System.Drawing.Point(3, 101);
+            this.DGVGRNReturned.Name = "DGVGRNReturned";
+            this.DGVGRNReturned.ReadOnly = true;
+            this.DGVGRNReturned.Size = new System.Drawing.Size(1050, 93);
+            this.DGVGRNReturned.TabIndex = 1;
             // 
             // ManageGRN
             // 
@@ -869,6 +884,7 @@
             this.LayoutCheque.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVGRNReturned)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -937,5 +953,6 @@
         private System.Windows.Forms.Button BtnUpdateReturn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.DataGridView DGVGRNList;
+        private System.Windows.Forms.DataGridView DGVGRNReturned;
     }
 }
