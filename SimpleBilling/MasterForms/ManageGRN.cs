@@ -1,4 +1,5 @@
-﻿using iText.Signatures;
+﻿using iText.Kernel.Geom;
+using iText.Signatures;
 using SimpleBilling.Migrations;
 using SimpleBilling.Model;
 using System;
@@ -513,6 +514,12 @@ namespace SimpleBilling.MasterForms
             {
                 if (DGVGRNList.SelectedRows.Count > 0)
                 {
+                    int LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
+                    string GRNNo = TxtGRNNo.Text.Trim();
+                    var GrnItem = db.GRNDetails.FirstOrDefault(c => c.IsDeleted == false && c.LineId == LineNo && c.GRNCode == GRNNo);
+                    if (GrnItem != null)
+                    {
+                    }
                 }
             }
         }
