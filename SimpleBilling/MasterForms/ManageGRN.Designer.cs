@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageGRN));
-            this.DGVGRNList = new System.Windows.Forms.DataGridView();
             this.gRNDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -92,7 +91,8 @@
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
             this.CmbBank = new System.Windows.Forms.ComboBox();
             this.LblPaymentStatus = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.DGVGRNList = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -106,19 +106,9 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.PaymentLayout.SuspendLayout();
             this.LayoutCheque.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // DGVGRNList
-            // 
-            this.DGVGRNList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVGRNList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVGRNList.Location = new System.Drawing.Point(3, 128);
-            this.DGVGRNList.Name = "DGVGRNList";
-            this.DGVGRNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVGRNList.Size = new System.Drawing.Size(1056, 197);
-            this.DGVGRNList.TabIndex = 0;
-            this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
             // 
             // CRUDPanel
             // 
@@ -557,12 +547,12 @@
             this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86F));
             this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14F));
             this.BaseLayout.Controls.Add(this.tableLayoutPanel3, 1, 1);
-            this.BaseLayout.Controls.Add(this.DGVGRNList, 0, 1);
             this.BaseLayout.Controls.Add(this.CRUDPanel, 0, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel5, 0, 2);
             this.BaseLayout.Controls.Add(this.LayoutCheque, 0, 3);
             this.BaseLayout.Controls.Add(this.LblPaymentStatus, 1, 3);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel6, 0, 1);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -817,6 +807,34 @@
             this.LblPaymentStatus.TabIndex = 9;
             this.LblPaymentStatus.Text = "Payment Status";
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.DGVGRNList, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 128);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1056, 197);
+            this.tableLayoutPanel6.TabIndex = 10;
+            // 
+            // DGVGRNList
+            // 
+            this.DGVGRNList.AllowUserToAddRows = false;
+            this.DGVGRNList.AllowUserToDeleteRows = false;
+            this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVGRNList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVGRNList.Location = new System.Drawing.Point(3, 3);
+            this.DGVGRNList.Name = "DGVGRNList";
+            this.DGVGRNList.ReadOnly = true;
+            this.DGVGRNList.Size = new System.Drawing.Size(1050, 92);
+            this.DGVGRNList.TabIndex = 0;
+            this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -831,7 +849,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Good Received Note";
             this.Load += new System.EventHandler(this.ManageGRN_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -850,13 +867,13 @@
             this.PaymentLayout.PerformLayout();
             this.LayoutCheque.ResumeLayout(false);
             this.LayoutCheque.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView DGVGRNList;
         private System.Windows.Forms.Panel CRUDPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label5;
@@ -918,5 +935,7 @@
         private System.Windows.Forms.Label LblPaymentStatus;
         private System.Windows.Forms.Button BtnAddToReturn;
         private System.Windows.Forms.Button BtnUpdateReturn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.DataGridView DGVGRNList;
     }
 }

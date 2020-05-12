@@ -326,19 +326,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void DGVGRNList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DGVGRNList.SelectedRows.Count > 0)
-            {
-                GRN_Code = DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty;
-                LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
-                CmbProduct.Text = DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty;
-                TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
-                TxtUnitCost.Text = DGVGRNList.SelectedRows[0].Cells[3].Value + string.Empty;
-                TxtDiscount.Text = DGVGRNList.SelectedRows[0].Cells[4].Value + string.Empty;
-            }
-        }
-
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             if (DGVGRNList.SelectedRows.Count > 0)
@@ -556,6 +543,19 @@ namespace SimpleBilling.MasterForms
             {
                 ExportJSON.Add(ex);
                 Info.Mes(ex.Message);
+            }
+        }
+
+        private void DGVGRNList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVGRNList.SelectedRows.Count > 0)
+            {
+                GRN_Code = DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty;
+                LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
+                CmbProduct.Text = DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtUnitCost.Text = DGVGRNList.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtDiscount.Text = DGVGRNList.SelectedRows[0].Cells[4].Value + string.Empty;
             }
         }
     }
