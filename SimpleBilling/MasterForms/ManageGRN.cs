@@ -1,9 +1,5 @@
-﻿using iText.Kernel.Geom;
-using iText.Signatures;
-using SimpleBilling.Migrations;
-using SimpleBilling.Model;
+﻿using SimpleBilling.Model;
 using System;
-using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -14,7 +10,7 @@ namespace SimpleBilling.MasterForms
     public partial class ManageGRN : Form
     {
         private int GRN_Id = int.MaxValue;
-        private string GRN_Code = string.Empty;
+        private string GRN_Code;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
         private int LineNo;
@@ -53,7 +49,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = (from details in db.GRNDetails.Where(a => a.IsDeleted == true && a.GRNCode == GRN_New_Code)
+                    var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
                                 join item in db.Items
                                 on details.ProductId equals item.Id
                                 select new
@@ -67,7 +63,7 @@ namespace SimpleBilling.MasterForms
                                 }).ToList();
                     DGVGRNList.DataSource = data;
 
-                    var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code && c.IsDeleted == false);
+                    var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code && !c.IsDeleted);
                     TxtGRNNo.Text = GRN_New_Code;
                     TxtReference.Text = header.ReferenceNo;
                     DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
@@ -133,15 +129,15 @@ namespace SimpleBilling.MasterForms
 
                 CmbBank.ValueMember = "BankId";
                 CmbBank.DisplayMember = "BankName";
-                CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
+                CmbBank.DataSource = db.Banks.Where(c => !c.IsDeleted).ToList();
 
                 CmbChooseCheques.ValueMember = "ChequeNo";
                 CmbChooseCheques.DisplayMember = "ChequeNo";
-                CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
+                CmbChooseCheques.DataSource = db.Cheques.Where(c => !c.IsDeleted).ToList();
 
                 CmbPaidBy.ValueMember = "CustomerId";
                 CmbPaidBy.DisplayMember = "Name";
-                CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
+                CmbPaidBy.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
             }
         }
 
@@ -351,7 +347,7 @@ namespace SimpleBilling.MasterForms
                 {
                     foreach (GRNDetails details in db.GRNDetails)
                     {
-                        if (details.GRNCode == GRN_Code && details.IsDeleted == true)
+                        if (details.GRNCode == GRN_Code && details.IsDeleted)
                         {
                             using (BillingContext db1 = new BillingContext())
                             {
@@ -481,10 +477,10 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var grn = db.GRNHeaders.FirstOrDefault(c => c.IsDeleted == false && c.GRN_No == GRNNo);
+                var grn = db.GRNHeaders.FirstOrDefault(c => !c.IsDeleted && c.GRN_No == GRNNo);
                 if (grn != null)
                 {
-                    if (grn.Status == 3 && grn.IsPaid == false)
+                    if (grn.Status == 3 && !grn.IsPaid)
                     {
                         grn.IsPaid = true;
                         grn.PaymentType = CmbPaymentOptions.Text;
@@ -514,11 +510,16 @@ namespace SimpleBilling.MasterForms
             {
                 if (DGVGRNList.SelectedRows.Count > 0)
                 {
-                    int LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
+                    int Line = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
                     string GRNNo = TxtGRNNo.Text.Trim();
-                    var GrnItem = db.GRNDetails.FirstOrDefault(c => c.IsDeleted == false && c.LineId == LineNo && c.GRNCode == GRNNo);
+                    var GrnItem = db.GRNDetails.FirstOrDefault(c => !c.IsDeleted && c.LineId == Line && c.GRNCode == GRNNo);
                     if (GrnItem != null)
                     {
+                        GrnItem.IsReturned = true;
+                        if (db.Entry(GrnItem).State == EntityState.Detached)
+                            db.Set<GRNDetails>().Attach(GrnItem);
+                        db.Entry(GrnItem).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
             }
