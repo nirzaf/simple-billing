@@ -526,22 +526,31 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAddToReturn_Click(object sender, EventArgs e)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                if (DGVGRNList.SelectedRows.Count > 0)
+                using (BillingContext db = new BillingContext())
                 {
-                    int Line = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
-                    string GRNNo = TxtGRNNo.Text.Trim();
-                    var GrnItem = db.GRNDetails.FirstOrDefault(c => !c.IsDeleted && c.LineId == Line && c.GRNCode == GRNNo);
-                    if (GrnItem != null)
+                    if (DGVGRNList.SelectedRows.Count > 0)
                     {
-                        GrnItem.IsReturned = true;
-                        if (db.Entry(GrnItem).State == EntityState.Detached)
-                            db.Set<GRNDetails>().Attach(GrnItem);
-                        db.Entry(GrnItem).State = EntityState.Modified;
-                        db.SaveChanges();
+                        int Line = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
+                        string GRNNo = TxtGRNNo.Text.Trim();
+                        var GrnItem = db.GRNDetails.FirstOrDefault(c => !c.IsDeleted && c.LineId == Line && c.GRNCode == GRNNo);
+                        if (GrnItem != null)
+                        {
+                            GrnItem.IsReturned = true;
+                            if (db.Entry(GrnItem).State == EntityState.Detached)
+                                db.Set<GRNDetails>().Attach(GrnItem);
+                            db.Entry(GrnItem).State = EntityState.Modified;
+                            db.SaveChanges();
+                            LoadDetails(GRNNo);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
             }
         }
     }
