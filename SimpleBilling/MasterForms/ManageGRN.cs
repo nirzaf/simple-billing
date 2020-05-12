@@ -26,10 +26,17 @@ namespace SimpleBilling.MasterForms
         {
             BtnApprove.Enabled = false;
             LoadCmb();
+            Load();
             if (!string.IsNullOrEmpty(GRN_Code))
             {
                 LoadDetails(GRN_Code);
             }
+        }
+
+        private void Load()
+        {
+            BtnAddCheque.Visible = false;
+            CmbChooseCheques.Visible = false;
         }
 
         private void LoadDetails(string GRN_New_Code)
