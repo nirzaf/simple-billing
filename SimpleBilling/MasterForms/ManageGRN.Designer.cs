@@ -94,6 +94,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.DGVGRNList = new System.Windows.Forms.DataGridView();
             this.DGVGRNReturned = new System.Windows.Forms.DataGridView();
+            this.BtnNewInvoice = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -537,7 +538,7 @@
             this.BtnLoadInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLoadInvoice.Location = new System.Drawing.Point(3, 3);
             this.BtnLoadInvoice.Name = "BtnLoadInvoice";
-            this.BtnLoadInvoice.Size = new System.Drawing.Size(161, 53);
+            this.BtnLoadInvoice.Size = new System.Drawing.Size(161, 33);
             this.BtnLoadInvoice.TabIndex = 15;
             this.BtnLoadInvoice.Text = "Load Invoice";
             this.BtnLoadInvoice.UseVisualStyleBackColor = false;
@@ -569,15 +570,17 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.BtnLoadInvoice, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.BtnGRNReturn, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.BtnGRNReturn, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.BtnNewInvoice, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(1065, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(167, 119);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
@@ -585,9 +588,9 @@
             // 
             this.BtnGRNReturn.BackColor = System.Drawing.Color.White;
             this.BtnGRNReturn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnGRNReturn.Location = new System.Drawing.Point(3, 62);
+            this.BtnGRNReturn.Location = new System.Drawing.Point(3, 81);
             this.BtnGRNReturn.Name = "BtnGRNReturn";
-            this.BtnGRNReturn.Size = new System.Drawing.Size(161, 54);
+            this.BtnGRNReturn.Size = new System.Drawing.Size(161, 35);
             this.BtnGRNReturn.TabIndex = 16;
             this.BtnGRNReturn.Text = "Return Invoice";
             this.BtnGRNReturn.UseVisualStyleBackColor = false;
@@ -850,6 +853,16 @@
             this.DGVGRNReturned.Size = new System.Drawing.Size(1050, 93);
             this.DGVGRNReturned.TabIndex = 1;
             // 
+            // BtnNewInvoice
+            // 
+            this.BtnNewInvoice.BackColor = System.Drawing.Color.White;
+            this.BtnNewInvoice.Location = new System.Drawing.Point(3, 42);
+            this.BtnNewInvoice.Name = "BtnNewInvoice";
+            this.BtnNewInvoice.Size = new System.Drawing.Size(161, 33);
+            this.BtnNewInvoice.TabIndex = 17;
+            this.BtnNewInvoice.Text = "New GRN Invoice";
+            this.BtnNewInvoice.UseVisualStyleBackColor = false;
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -954,5 +967,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.DataGridView DGVGRNList;
         private System.Windows.Forms.DataGridView DGVGRNReturned;
+        private System.Windows.Forms.Button BtnNewInvoice;
     }
 }
