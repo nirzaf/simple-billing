@@ -484,7 +484,7 @@ namespace SimpleBilling.MasterForms
                     {
                         grn.IsPaid = true;
                         grn.PaymentType = CmbPaymentOptions.Text;
-                        if (CmbChooseCheques.Text != null)
+                        if (CmbChooseCheques.Text == "Cheque")
                             grn.ChequeNo = CmbChooseCheques.Text;
                         if (db.Entry(grn).State == EntityState.Detached)
                             db.Set<GRNHeader>().Attach(grn);
