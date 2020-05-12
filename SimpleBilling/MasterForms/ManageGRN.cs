@@ -471,9 +471,14 @@ namespace SimpleBilling.MasterForms
                 var grn = db.GRNHeaders.FirstOrDefault(c => c.IsDeleted == false && c.GRN_No == GRNNo);
                 if (grn != null)
                 {
-                    if (grn.Status == 3)
+                    if (grn.Status == 3 && grn.IsPaid == false)
                     {
-                        grn.Status = 4;
+                        grn.IsPaid = true;
+                        grn.PaymentType = CmbPaymentOptions.Text;
+                        if (db.Entry(grn).State == EntityState.Detached)
+                            db.Set<GRNHeader>().Attach(grn);
+                        db.Entry(grn).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                     else
                     {

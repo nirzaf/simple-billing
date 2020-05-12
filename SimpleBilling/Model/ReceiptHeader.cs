@@ -44,5 +44,8 @@ namespace SimpleBilling.Model
 
         [DefaultValue(false)]
         public bool IsQuotation { get; set; }
+
+        [MaxLength(30)]
+        public string ChequeNo { get; set; }
     }
 }
