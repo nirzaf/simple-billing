@@ -230,5 +230,23 @@ namespace SimpleBilling
         private void pOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
+
+        private void configsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(Settings))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            Settings s = new Settings()
+            {
+                MdiParent = this
+            };
+            s.Show();
+        }
     }
 }

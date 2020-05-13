@@ -47,6 +47,8 @@
             this.pendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSM2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.configsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +57,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mASTERToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.pOSToolStripMenuItem});
+            this.pOSToolStripMenuItem,
+            this.TSM2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 3, 0, 3);
@@ -203,9 +206,25 @@
             // quickSaleToolStripMenuItem
             // 
             this.quickSaleToolStripMenuItem.Name = "quickSaleToolStripMenuItem";
-            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.quickSaleToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
             this.quickSaleToolStripMenuItem.Text = "Quick Sale";
             this.quickSaleToolStripMenuItem.Click += new System.EventHandler(this.quickSaleToolStripMenuItem_Click);
+            // 
+            // TSM2
+            // 
+            this.TSM2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configsToolStripMenuItem});
+            this.TSM2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TSM2.Name = "TSM2";
+            this.TSM2.Size = new System.Drawing.Size(84, 23);
+            this.TSM2.Text = "Settings";
+            // 
+            // configsToolStripMenuItem
+            // 
+            this.configsToolStripMenuItem.Name = "configsToolStripMenuItem";
+            this.configsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.configsToolStripMenuItem.Text = "Configs";
+            this.configsToolStripMenuItem.Click += new System.EventHandler(this.configsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -249,5 +268,7 @@
         private System.Windows.Forms.ToolStripMenuItem ManageBusinessInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageBankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TSM2;
+        private System.Windows.Forms.ToolStripMenuItem configsToolStripMenuItem;
     }
 }

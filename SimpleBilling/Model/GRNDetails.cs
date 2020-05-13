@@ -34,5 +34,7 @@ namespace SimpleBilling.Model
 
         [Required]
         public float SubTotal { get; set; }
+
+        public float GrossTotal { get; set; }
     }
 }
