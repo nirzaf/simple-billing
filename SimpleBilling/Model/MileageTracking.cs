@@ -8,6 +8,7 @@ namespace SimpleBilling.Model
         public int MileageId { get; set; }
 
         public int Mileage { get; set; }
+        public int NextServiceDue { get; set; }
         public string VehicleNo { get; set; }
         public string ReceiptNo { get; set; }
     }

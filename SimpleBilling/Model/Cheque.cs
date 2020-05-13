@@ -1,5 +1,4 @@
-﻿using Microsoft.OData.Edm;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
@@ -15,7 +14,7 @@ namespace SimpleBilling.Model
         public string DueDate { get; set; }
 
         public float Amount { get; set; }
-        public int PaidBy { get; set; }
+        public string PaidBy { get; set; }
         public int Bank { get; set; }
     }
 }

@@ -26,9 +26,9 @@ namespace SimpleBilling.MasterForms
             CRUDPanel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                var data = (from ch in db.Cheques.Where(c => c.IsDeleted == false)
-                            join cus in db.Customers
-                            on ch.PaidBy equals cus.CustomerId
+                var data = (from ch in db.Cheques.Where(c => !c.IsDeleted)
+                            join cus in db.Customers.Where(c => !c.IsDeleted)
+                            on ch.PaidBy equals cus.CustomerId.ToString()
                             join bk in db.Banks
                             on ch.Bank equals bk.BankId
                             select new
@@ -80,14 +80,14 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var chd = db.Cheques.FirstOrDefault(c => c.IsDeleted == false && c.ChequeNo == TxtChequeNumber.Text);
+                    var chd = db.Cheques.FirstOrDefault(c => c.ChequeNo == TxtChequeNumber.Text && !c.IsDeleted);
 
                     if (chd != null)
                     {
                         chd.PayeeName = TxtPayeeName.Text.Trim();
                         chd.Amount = Convert.ToSingle(TxtChequeAmount.Text.Trim());
                         chd.DueDate = DTDueDate.Value.ToShortDateString();
-                        chd.PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString());
+                        chd.PaidBy = CmbPaidBy.SelectedValue.ToString();
                         chd.Bank = Convert.ToInt32(CmbBankName.SelectedValue.ToString());
                         chd.UpdatedDate = DateTime.Today;
                         if (db.Entry(chd).State == System.Data.Entity.EntityState.Detached)
@@ -103,7 +103,7 @@ namespace SimpleBilling.MasterForms
                             PayeeName = TxtPayeeName.Text.Trim(),
                             Amount = Convert.ToSingle(TxtChequeAmount.Text.Trim()),
                             DueDate = DTDueDate.Value.ToShortDateString(),
-                            PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString()),
+                            PaidBy = CmbPaidBy.SelectedValue.ToString(),
                             Bank = Convert.ToInt32(CmbBankName.SelectedValue.ToString()),
                             CreatedDate = DateTime.Today
                         };

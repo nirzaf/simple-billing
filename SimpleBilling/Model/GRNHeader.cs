@@ -10,6 +10,7 @@ namespace SimpleBilling.Model
 
         public string GRN_No { get; set; }
         public string GRN_Date { get; set; }
+        public string Time { get; set; }
         public string ReferenceNo { get; set; }
 
         [MaxLength(10)]

@@ -175,6 +175,7 @@ namespace SimpleBilling.MasterForms
                                          header.Balance,
                                          header.Status,
                                          header.VehicleNumber,
+                                         header.PaymentType,
                                          Cashier = cashier.EmployeeName,
                                          header.Remarks,
                                          customer.Name,
@@ -184,7 +185,10 @@ namespace SimpleBilling.MasterForms
 
                     var Mileage = db.MileTracking.FirstOrDefault(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo);
                     if (Mileage != null)
+                    {
                         TxtCurrentMileage.Text = Mileage.Mileage.ToString();
+                        TxtNextServiceDue.Text = Mileage.NextServiceDue.ToString();
+                    }
                     foreach (var a in RptHeader)
                     {
                         LblCashier.Text = a.Cashier;
@@ -195,6 +199,7 @@ namespace SimpleBilling.MasterForms
                         LblReceiptNo.Text = a.ReceiptNo;
                         TxtRemarks.Text = a.Remarks;
                         TxtCustomer.Text = a.Contact;
+                        CmbPaymentOption.Text = a.PaymentType;
                         if (!string.IsNullOrWhiteSpace(a.VehicleNumber))
                             CmbVehicles.Text = a.VehicleNumber;
                     }
@@ -466,14 +471,14 @@ namespace SimpleBilling.MasterForms
 
         private void AddReceiptBody()
         {
-            string ReceiptNo = AddReceiptHeader();
+            string RptNo = AddReceiptHeader();
             try
             {
                 using (BillingContext db = new BillingContext())
                 {
                     ReceiptBody body = new ReceiptBody
                     {
-                        ReceiptNo = ReceiptNo,
+                        ReceiptNo = RptNo,
                         ProductId = ItemId,
                         UnitPrice = UnitPrice,
                         Quantity = Convert.ToInt32(Qty),
@@ -481,7 +486,7 @@ namespace SimpleBilling.MasterForms
                         SubTotal = Total,
                         NetTotal = NetTotal
                     };
-                    var Result = db.ReceiptBodies.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.ProductId == ItemId);
+                    var Result = db.ReceiptBodies.FirstOrDefault(c => c.ReceiptNo == RptNo && c.ProductId == ItemId);
                     if (Result == null)
                     {
                         if (db.Entry(body).State == EntityState.Detached)
@@ -513,7 +518,7 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
-                LoadDGV(ReceiptNo);
+                LoadDGV(RptNo);
                 TotalCalculator();
             }
         }
@@ -559,6 +564,7 @@ namespace SimpleBilling.MasterForms
                         ReceiptNo = LblReceiptNo.Text.Trim(),
                         VehicleNo = CmbVehicles.SelectedValue.ToString(),
                         Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
+                        NextServiceDue = Convert.ToInt32(TxtNextServiceDue.Text.Trim()),
                         CreatedDate = DateTime.Now
                     };
                     if (db.Entry(mt).State == EntityState.Detached)
@@ -571,6 +577,7 @@ namespace SimpleBilling.MasterForms
                     mlt.VehicleNo = CmbVehicles.Text;
                     mlt.ReceiptNo = LblReceiptNo.Text.Trim();
                     mlt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                    mlt.NextServiceDue = Convert.ToInt32(TxtNextServiceDue.Text.Trim());
                     mlt.UpdatedDate = DateTime.Now;
                     if (db.Entry(mlt).State == EntityState.Detached)
                         db.Set<MileageTracking>().Attach(mlt);
@@ -1125,7 +1132,8 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                ExportJSON.Add(ex); Info.Mes(ex.Message);
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
             }
         }
 
@@ -1315,7 +1323,7 @@ namespace SimpleBilling.MasterForms
                             PayeeName = TxtPayeeName.Text.Trim(),
                             Amount = Convert.ToSingle(TxtAmount.Text.Trim()),
                             DueDate = DTDueDate.Value.ToShortDateString(),
-                            PaidBy = Convert.ToInt32(CmbPaidBy.SelectedValue.ToString()),
+                            PaidBy = CmbPaidBy.SelectedValue.ToString(),
                             Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString()),
                             CreatedDate = DateTime.Today
                         };

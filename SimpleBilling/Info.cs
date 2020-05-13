@@ -205,7 +205,7 @@ namespace SimpleBilling
             p.Start();
             p.WaitForInputIdle();
             System.Threading.Thread.Sleep(3000);
-            if (false == p.CloseMainWindow())
+            if (!p.CloseMainWindow())
                 p.Kill();
         }
 

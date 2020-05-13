@@ -24,7 +24,7 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                supplierBindingSource.DataSource = db.Suppliers.Where(c => c.IsDeleted == false).ToList();
+                supplierBindingSource.DataSource = db.Suppliers.Where(c => !c.IsDeleted).ToList();
             }
         }
 

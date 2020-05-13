@@ -700,7 +700,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(148, 19);
             this.label18.TabIndex = 18;
-            this.label18.Text = "Next Serrvice Due";
+            this.label18.Text = "Next Service Due";
             // 
             // TxtCurrentMileage
             // 
