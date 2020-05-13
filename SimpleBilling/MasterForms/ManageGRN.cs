@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -20,6 +21,7 @@ namespace SimpleBilling.MasterForms
     {
         private int GRN_Id = int.MaxValue;
         private string GRN_Code;
+        private float GrossTotal = 0;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
         private float Returns = 0;
@@ -85,10 +87,11 @@ namespace SimpleBilling.MasterForms
                                     Line_No = details.LineId,
                                     item.Code,
                                     Item_Name = item.ItemName,
+                                    UnitPrice = details.UnitCost,
                                     details.Quantity,
-                                    Unit_Cost = details.UnitCost,
+                                    SubTotal = details.GrossTotal,
                                     details.Discount,
-                                    Sub_Total = details.SubTotal
+                                    NetTotal = details.SubTotal
                                 }).ToList();
                     DGVGRNList.DataSource = data;
                     dtGRN = Info.ToDataTable(data);
@@ -100,10 +103,11 @@ namespace SimpleBilling.MasterForms
                                         Line_No = details.LineId,
                                         item.Code,
                                         Item_Name = item.ItemName,
+                                        UnitPrice = details.UnitCost,
                                         details.Quantity,
-                                        Unit_Cost = details.UnitCost,
+                                        SubTotal = details.GrossTotal,
                                         details.Discount,
-                                        Sub_Total = details.SubTotal
+                                        NetTotal = details.SubTotal
                                     }).ToList();
                     DGVGRNReturned.DataSource = returned;
                     dtGRNReturn = Info.ToDataTable(returned);
@@ -151,21 +155,25 @@ namespace SimpleBilling.MasterForms
                     }
                 }
 
-                TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
-                                 where row.Cells[0].FormattedValue.ToString() != string.Empty
-                                 select Convert.ToSingle(row.Cells[4].FormattedValue)).Sum();
+                TotalDiscount = Info.GetDGVSum(DGVGRNList, 6);
+                NetTotal = Info.GetDGVSum(DGVGRNList, 7);
+                Returns = Info.GetDGVSum(DGVGRNReturned, 7);
+                GrossTotal = Info.GetDGVSum(DGVGRNList, 5) + Returns;
 
-                Returns = (from DataGridViewRow row in DGVGRNReturned.Rows
-                           where row.Cells[0].FormattedValue.ToString() != string.Empty
-                           select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+                //TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
+                //                 where row.Cells[0].FormattedValue.ToString() != string.Empty
+                //                 select Convert.ToSingle(row.Cells[4].FormattedValue)).Sum();
 
-                NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
-                            where row.Cells[0].FormattedValue.ToString() != string.Empty
-                            select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+                //Returns = (from DataGridViewRow row in DGVGRNReturned.Rows
+                //           where row.Cells[0].FormattedValue.ToString() != string.Empty
+                //           select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+
+                //NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
+                //            where row.Cells[0].FormattedValue.ToString() != string.Empty
+                //            select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
                 LblTotalDiscount.Text = TotalDiscount.ToString();
                 LblReturns.Text = Returns.ToString();
                 LblNetTotal.Text = NetTotal.ToString();
-                float GrossTotal = TotalDiscount + NetTotal + Returns;
                 LblGrossTotal.Text = GrossTotal.ToString();
             }
         }
@@ -292,9 +300,6 @@ namespace SimpleBilling.MasterForms
 
                         details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
 
-                        if (db.Entry(details).State == EntityState.Detached)
-                            db.Set<GRNDetails>().Attach(details);
-
                         var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == details.GRN_Id
                         && b.GRNCode == details.GRNCode
                         && b.ProductId == details.ProductId);
@@ -317,6 +322,8 @@ namespace SimpleBilling.MasterForms
                         }
                         else
                         {
+                            if (db.Entry(details).State == EntityState.Detached)
+                                db.Set<GRNDetails>().Attach(details);
                             db.Entry(details).State = EntityState.Added;
                             db.SaveChanges();
                         }
@@ -759,7 +766,7 @@ namespace SimpleBilling.MasterForms
                     string sb = data.Name;
                     string Address = data.Address + ",   " + data.Contact;
                     Table bus = new Table(3, false);
-                    string spc = ".                                      .";
+                    string spc = ".                                                                       .";
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(sb)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Address)));
@@ -788,7 +795,7 @@ namespace SimpleBilling.MasterForms
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Time : ")));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time.ToString())));
 
-                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(supplier.Contact)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
@@ -875,9 +882,12 @@ namespace SimpleBilling.MasterForms
 
                     table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Payment Type")));
                     table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PaymentType)));
-
-                    string footer1 = "........................................                                                                                                                                                                ...........................";
-                    string footer2 = "     Supplier Signature                                Please Note : Credit balance should be settled within 30 days                                          Checked by";
+                    StringBuilder footerGap1 = new StringBuilder();
+                    for (int i = 0; i < 100; i++) footerGap1.Append(" ");
+                    StringBuilder footerGap2 = new StringBuilder();
+                    for (int i = 0; i < 50; i++) footerGap2.Append(" ");
+                    string footer1 = "........................................" + footerGap1 + "...........................";
+                    string footer2 = "     Supplier Signature" + footerGap2 + "Please Note : Credit balance should be settled within 30 days" + footerGap2 + "Checked by";
                     iText.Kernel.Geom.PageSize ps = pdf.GetDefaultPageSize();
                     Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
                     Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);

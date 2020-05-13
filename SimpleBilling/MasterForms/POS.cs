@@ -664,18 +664,18 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    int ItemId = Convert.ToInt32(dgv.Cells[0].Value);
-                    int Qty = Convert.ToInt32(dgv.Cells[4].Value);
-                    var Result = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                    int itemId = Convert.ToInt32(dgv.Cells[0].Value);
+                    int quantity = Convert.ToInt32(dgv.Cells[4].Value);
+                    var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
                     if (Result != null)
                     {
                         if (value)
                         {
-                            Result.StockQty -= Qty;
+                            Result.StockQty -= quantity;
                         }
                         if (!value)
                         {
-                            Result.StockQty += Qty;
+                            Result.StockQty += quantity;
                         }
                         if (db.Entry(Result).State == EntityState.Detached)
                             db.Set<Item>().Attach(Result);
@@ -857,10 +857,10 @@ namespace SimpleBilling.MasterForms
             if (DGVReceiptBody.SelectedRows.Count > 0)
             {
                 int Id = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty);
-                string ReceiptNo = LblReceiptNo.Text.Trim();
+                string RptNo = LblReceiptNo.Text.Trim();
                 using (BillingContext db = new BillingContext())
                 {
-                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == ReceiptNo && !c.IsDeleted);
+                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == RptNo && !c.IsDeleted);
                     if (Item != null)
                     {
                         Item.IsDeleted = true;
@@ -868,7 +868,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<ReceiptBody>().Attach(Item);
                         db.Entry(Item).State = EntityState.Modified;
                         db.SaveChanges();
-                        DGVLoad(ReceiptNo);
+                        DGVLoad(RptNo);
                     }
                 }
             }
