@@ -1,14 +1,8 @@
-﻿using SimpleBilling.Migrations;
+﻿using iText.Kernel.Colors;
 using SimpleBilling.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -64,7 +58,56 @@ namespace SimpleBilling.MasterForms
             {
                 var data = db.Settings.FirstOrDefault(c => c.UserId == Info.CashierId);
                 TxtDefaultPath.Text = data.DefaultPath;
+                LblRed.Text = data.Red.ToString();
+                LblGreen.Text = data.Green.ToString();
+                LblBlue.Text = data.Blue.ToString();
+                TBRed.Value = data.Red;
+                TBGreen.Value = data.Green;
+                TBBlue.Value = data.Blue;
             }
+        }
+
+        private void TBRed_Scroll(object sender, EventArgs e)
+        {
+            LblRed.Text = TBRed.Value.ToString();
+            BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
+        }
+
+        private void TBGreen_Scroll(object sender, EventArgs e)
+        {
+            LblGreen.Text = TBGreen.Value.ToString();
+            BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
+        }
+
+        private void TBBlue_Scroll(object sender, EventArgs e)
+        {
+            LblBlue.Text = TBBlue.Value.ToString();
+            BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Settings.FirstOrDefault(c => c.UserId == Info.CashierId && !c.IsDeleted);
+                if (data != null)
+                {
+                    data.Red = TBRed.Value;
+                    data.Green = TBGreen.Value;
+                    data.Blue = TBBlue.Value;
+                    if (db.Entry(data).State == EntityState.Detached)
+                        db.Set<Setting>().Attach(data);
+                    db.Entry(data).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            TBRed.Value = 105;
+            TBGreen.Value = 105;
+            TBBlue.Value = 105;
         }
     }
 }
