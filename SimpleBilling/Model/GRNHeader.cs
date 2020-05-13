@@ -24,6 +24,9 @@ namespace SimpleBilling.Model
         [DefaultValue(0)]
         public float TotalDiscout { get; set; }
 
+        [DefaultValue(0)]
+        public float Returns { get; set; }
+
         public float NetTotal { get; set; }
         public int Status { get; set; }
         public virtual Employee Employee { get; set; }

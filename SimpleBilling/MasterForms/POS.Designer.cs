@@ -801,7 +801,6 @@
             this.CmbPaidBy.Name = "CmbPaidBy";
             this.CmbPaidBy.Size = new System.Drawing.Size(165, 27);
             this.CmbPaidBy.TabIndex = 27;
-            this.CmbPaidBy.SelectedIndexChanged += new System.EventHandler(this.CmbPaidBy_SelectedIndexChanged);
             // 
             // DTDueDate
             // 

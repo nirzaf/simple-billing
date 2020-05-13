@@ -10,7 +10,6 @@ using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -27,7 +26,7 @@ namespace SimpleBilling.MasterForms
         private float Discount;
         private readonly int CashierId = Info.CashierId;
         private readonly string PaymentType = string.Empty;
-        private readonly string ReceiptNo = string.Empty;
+        private readonly string ReceiptNo;
         private float ReceiptTotalDiscount;
         private float ReceiptSubTotal;
         private float ReceiptNetTotal;
@@ -72,15 +71,15 @@ namespace SimpleBilling.MasterForms
             {
                 CmbPaidBy.ValueMember = "CustomerId";
                 CmbPaidBy.DisplayMember = "Name";
-                CmbPaidBy.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
+                CmbPaidBy.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
 
                 CmbBank.ValueMember = "BankId";
                 CmbBank.DisplayMember = "BankName";
-                CmbBank.DataSource = db.Banks.Where(c => c.IsDeleted == false).ToList();
+                CmbBank.DataSource = db.Banks.Where(c => !c.IsDeleted).ToList();
 
                 CmbChooseCheques.ValueMember = "ChequeNo";
                 CmbChooseCheques.DisplayMember = "ChequeNo";
-                CmbChooseCheques.DataSource = db.Cheques.Where(c => c.IsDeleted == false).ToList();
+                CmbChooseCheques.DataSource = db.Cheques.Where(c => !c.IsDeleted).ToList();
             }
         }
 
@@ -142,7 +141,7 @@ namespace SimpleBilling.MasterForms
                 {
                     customersBindingSource.DataSource = db.Customers.ToList();
                     itemBindingSource.DataSource = db.Items.ToList();
-                    var RptBody = (from body in db.ReceiptBodies.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
+                    var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
                                    join item in db.Items
                                    on body.ProductId equals item.Id
                                    select new
@@ -159,14 +158,14 @@ namespace SimpleBilling.MasterForms
                     DGVReceiptBody.DataSource = RptBody;
                     rptBody = Info.ToDataTable(RptBody);
 
-                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo && c.IsQuotation == false)
-                                     join cashier in db.Employee.Where(c => c.IsDeleted == false)
+                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo && !c.IsQuotation)
+                                     join cashier in db.Employee.Where(c => !c.IsDeleted)
                                      on header.Cashier equals cashier.EmployeeId
-                                     join vehicle in db.Vehicles.Where(c => c.IsDeleted == false)
+                                     join vehicle in db.Vehicles.Where(c => !c.IsDeleted)
                                      on header.VehicleNumber equals vehicle.VehicleNo
-                                     join mileage in db.MileTracking.Where(c => c.IsDeleted == false)
+                                     join mileage in db.MileTracking.Where(c => !c.IsDeleted)
                                      on header.ReceiptNo equals mileage.ReceiptNo
-                                     join customer in db.Customers.Where(c => c.IsDeleted == false)
+                                     join customer in db.Customers.Where(c => !c.IsDeleted)
                                      on header.CustomerId equals customer.CustomerId
                                      select new
                                      {
@@ -389,7 +388,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var customer = db.Customers.FirstOrDefault(c => c.IsDeleted == false && c.Contact == TxtCustomer.Text.Trim());
+                    var customer = db.Customers.FirstOrDefault(c => !c.IsDeleted && c.Contact == TxtCustomer.Text.Trim());
                     ReceiptHeader header = new ReceiptHeader
                     {
                         ReceiptNo = LblReceiptNo.Text.ToString(),
@@ -407,10 +406,10 @@ namespace SimpleBilling.MasterForms
                     };
                     if (customer != null)
                         header.CustomerId = customer.CustomerId;
-                    if (ChkVehicle.Checked == true)
+                    if (ChkVehicle.Checked)
                         header.VehicleNumber = CmbVehicles.SelectedValue.ToString();
 
-                    var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo && c.IsDeleted == false);
+                    var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == header.ReceiptNo && !c.IsDeleted);
 
                     if (result == null)
                     {
@@ -448,7 +447,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && c.IsDeleted == false)
+                var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted)
                             join item in db.Items
                             on body.ProductId equals item.Id
                             select new
@@ -553,7 +552,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && c.IsDeleted == false);
+                var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && !c.IsDeleted);
                 if (mlt == null)
                 {
                     MileageTracking mt = new MileageTracking
@@ -592,58 +591,52 @@ namespace SimpleBilling.MasterForms
                     BalanceAmount = GivenAmount - ReceiptNetTotal;
                     using (BillingContext db = new BillingContext())
                     {
-                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && c.IsDeleted == false);
-                        if (Result != null)
+                        var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && !c.IsDeleted);
+                        if (Result != null && Result.Status == 1)
                         {
-                            if (Result.Status == 1)
+                            if (!string.IsNullOrWhiteSpace(Result.VehicleNumber) && Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
                             {
-                                if (!string.IsNullOrWhiteSpace(Result.VehicleNumber))
-                                {
-                                    if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
-                                    {
-                                        InsertMileage();
-                                    }
-                                }
-                                Result.NetTotal = ReceiptNetTotal;
-                                Result.TotalDiscount = ReceiptTotalDiscount;
-                                Result.SubTotal = ReceiptSubTotal;
-                                Result.PaidAmount = GivenAmount;
-                                Result.Balance = BalanceAmount;
-                                Result.PaymentType = GetPaymentType();
-                                if (Result.PaymentType == "Cheque")
-                                {
-                                    Result.ChequeNo = CmbChooseCheques.Text;
-                                }
-                                if (Type == 1)
-                                {
-                                    Result.Status = 2;
-                                    Result.IsQuotation = false;
-                                }
-                                if (Type == 2)
-                                {
-                                    Result.Status = 3;
-                                    Result.IsQuotation = true;
-                                }
-                                Result.UpdatedDate = DateTime.Now;
-                                Result.Remarks = TxtRemarks.Text.Trim();
-                                if (db.Entry(Result).State == EntityState.Detached)
-                                    db.Set<ReceiptHeader>().Attach(Result);
-                                db.Entry(Result).State = EntityState.Modified;
-                                db.SaveChanges();
-                                ReceiptStatus = Result.Status;
-                                LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                                ReduceStock(true);
-                                if (Type == 1)
-                                {
-                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
-                                    BtnPrint.Enabled = true;
-                                }
+                                InsertMileage();
+                            }
+                            Result.NetTotal = ReceiptNetTotal;
+                            Result.TotalDiscount = ReceiptTotalDiscount;
+                            Result.SubTotal = ReceiptSubTotal;
+                            Result.PaidAmount = GivenAmount;
+                            Result.Balance = BalanceAmount;
+                            Result.PaymentType = GetPaymentType();
+                            if (Result.PaymentType == "Cheque")
+                            {
+                                Result.ChequeNo = CmbChooseCheques.Text;
+                            }
+                            if (Type == 1)
+                            {
+                                Result.Status = 2;
+                                Result.IsQuotation = false;
+                            }
+                            if (Type == 2)
+                            {
+                                Result.Status = 3;
+                                Result.IsQuotation = true;
+                            }
+                            Result.UpdatedDate = DateTime.Now;
+                            Result.Remarks = TxtRemarks.Text.Trim();
+                            if (db.Entry(Result).State == EntityState.Detached)
+                                db.Set<ReceiptHeader>().Attach(Result);
+                            db.Entry(Result).State = EntityState.Modified;
+                            db.SaveChanges();
+                            ReceiptStatus = Result.Status;
+                            LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
+                            ReduceStock(true);
+                            if (Type == 1)
+                            {
+                                MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
+                                BtnPrint.Enabled = true;
+                            }
 
-                                if (Type == 2)
-                                {
-                                    MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
-                                    BtnPrintQuotation.Enabled = true;
-                                }
+                            if (Type == 2)
+                            {
+                                MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
+                                BtnPrintQuotation.Enabled = true;
                             }
                         }
                     }
@@ -740,8 +733,8 @@ namespace SimpleBilling.MasterForms
         {
             if (TxtGivenAmount.Text.Length > 0)
             {
-                float GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
+                float givenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                BalanceAmount = givenAmount - Convert.ToSingle(LblNetTotal.Text);
                 LblBalanceAmount.Text = BalanceAmount.ToString();
             }
         }
@@ -763,7 +756,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && c.IsDeleted == false && c.Status == 2);
+                var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted && c.Status == 2);
                 if (result != null)
                 {
                     result.Status = 0;
@@ -861,7 +854,7 @@ namespace SimpleBilling.MasterForms
                 string ReceiptNo = LblReceiptNo.Text.Trim();
                 using (BillingContext db = new BillingContext())
                 {
-                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == ReceiptNo && c.IsDeleted == false);
+                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == ReceiptNo && !c.IsDeleted);
                     if (Item != null)
                     {
                         Item.IsDeleted = true;
@@ -883,7 +876,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var RptBody = (from body in db.ReceiptBodies.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
+                var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
                                join item in db.Items
                                on body.ProductId equals item.Id
                                select new
@@ -968,14 +961,13 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = db.BusinessModels.FirstOrDefault(c => c.IsActive == true && c.IsDeleted == false);
-                    var header = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == RptNo && c.IsDeleted == false);
-                    var customerDetails = db.Customers.FirstOrDefault(c => c.Contact == TxtCustomer.Text.Trim() && c.IsDeleted == false);
-                    var vehicleDetails = db.Vehicles.FirstOrDefault(c => c.VehicleNo == CmbVehicles.SelectedText.Trim() && c.IsDeleted == false);
-                    var mlt = (from ml in db.MileTracking.Where(c => c.IsDeleted == false && c.ReceiptNo == RptNo)
-                               join vl in db.Vehicles.Where(c => c.IsDeleted == false)
+                    var data = db.BusinessModels.FirstOrDefault(c => c.IsActive && !c.IsDeleted);
+                    var header = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == RptNo && !c.IsDeleted);
+                    var customerDetails = db.Customers.FirstOrDefault(c => c.Contact == TxtCustomer.Text.Trim() && !c.IsDeleted);
+                    var mlt = (from ml in db.MileTracking.Where(c => !c.IsDeleted && c.ReceiptNo == RptNo)
+                               join vl in db.Vehicles.Where(c => !c.IsDeleted)
                                on ml.VehicleNo equals vl.VehicleNo
-                               join hr in db.ReceiptHeaders.Where(c => c.IsDeleted == false)
+                               join hr in db.ReceiptHeaders.Where(c => !c.IsDeleted)
                                on ml.ReceiptNo equals hr.ReceiptNo
                                select new
                                {
@@ -985,17 +977,14 @@ namespace SimpleBilling.MasterForms
                                    vl.VehicleNo
                                }).ToList();
 
-                    string fileName = "C:\\Orion\\" + Info.RandomString(4) + ".pdf";
+                    string fileName = $"C:\\Orion\\{Info.RandomString(4)}.pdf";
                     PdfWriter writer = new PdfWriter(fileName);
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A5.Rotate());
                     document.SetMargins(10, 40, 10, 40);
                     string sb = data.Name;
-                    StringBuilder RptInfo = new StringBuilder();
                     string Address = data.Address + ",   " + data.Contact;
                     Table bus = new Table(3, false);
-                    Paragraph BusinessName = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
-                    Paragraph ReceiptInfo = new Paragraph(RptInfo.ToString()).SetTextAlignment(TextAlignment.CENTER).SetFontSize(8);
                     string spc = ".                                      .";
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(sb)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
@@ -1004,7 +993,6 @@ namespace SimpleBilling.MasterForms
 
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(8);
                     Paragraph space = new Paragraph("    ");
-                    SolidLine sl = new SolidLine();
                     Paragraph billingTo = new Paragraph("Billing To: ").SetTextAlignment(TextAlignment.LEFT).SetFontSize(8);
                     document.Add(bus);
                     Table RptDetails = new Table(7, false);
@@ -1115,7 +1103,7 @@ namespace SimpleBilling.MasterForms
 
         private void ChkVehicle_CheckedChanged(object sender, EventArgs e)
         {
-            if (ChkVehicle.Checked == true)
+            if (ChkVehicle.Checked)
             {
                 TxtCurrentMileage.Enabled = true;
                 TxtNextServiceDue.Enabled = true;
@@ -1143,14 +1131,11 @@ namespace SimpleBilling.MasterForms
 
         private void TxtCustomer_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && LblCustomer.Text == "Customer")
             {
-                if (LblCustomer.Text == "Customer")
-                {
-                    ShowAddCustomer();
-                    TxtName.Focus();
-                    TxtContact.Text = TxtCustomer.Text.Trim();
-                }
+                ShowAddCustomer();
+                TxtName.Focus();
+                TxtContact.Text = TxtCustomer.Text.Trim();
             }
         }
 
@@ -1158,10 +1143,6 @@ namespace SimpleBilling.MasterForms
         {
             ManageCheques mc = new ManageCheques();
             mc.ShowDialog();
-        }
-
-        private void CmbPaidBy_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         private void TxtAddress_KeyDown(object sender, KeyEventArgs e)
@@ -1335,7 +1316,7 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 string ChequeNo = CmbChooseCheques.SelectedValue.ToString();
-                var data = db.Cheques.FirstOrDefault(c => c.ChequeNo == ChequeNo && c.IsDeleted == false);
+                var data = db.Cheques.FirstOrDefault(c => c.ChequeNo == ChequeNo && !c.IsDeleted);
                 if (data != null)
                 {
                     TxtGivenAmount.Text = data.Amount.ToString();

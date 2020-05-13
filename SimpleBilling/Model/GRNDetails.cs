@@ -32,9 +32,6 @@ namespace SimpleBilling.Model
         [DefaultValue(0)]
         public float Discount { get; set; }
 
-        [DefaultValue(0)]
-        public float Returns { get; set; }
-
         [Required]
         public float SubTotal { get; set; }
     }
