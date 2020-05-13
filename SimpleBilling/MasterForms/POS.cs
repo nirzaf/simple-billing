@@ -51,18 +51,18 @@ namespace SimpleBilling.MasterForms
 
         private void FormLoad()
         {
-            DGVLoad(ReceiptNo);
-            PrintAndVoid();
-            TxtCustomer.Focus();
-            HideCheque();
-            ChkVehicle.Enabled = false;
-            TxtCurrentMileage.Enabled = false;
-            TxtNextServiceDue.Enabled = false;
-            HideAddCustomer();
             BtnAddCheque.Visible = false;
             CmbChooseCheques.Visible = false;
             BtnPrint.Enabled = false;
             BtnPrintQuotation.Enabled = false;
+            ChkVehicle.Enabled = false;
+            TxtCurrentMileage.Enabled = false;
+            TxtNextServiceDue.Enabled = false;
+            DGVLoad(ReceiptNo);
+            PrintAndVoid();
+            TxtCustomer.Focus();
+            HideCheque();
+            HideAddCustomer();
         }
 
         private void LoabCMB()
@@ -161,10 +161,6 @@ namespace SimpleBilling.MasterForms
                     var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo && !c.IsQuotation)
                                      join cashier in db.Employee.Where(c => !c.IsDeleted)
                                      on header.Cashier equals cashier.EmployeeId
-                                     join vehicle in db.Vehicles.Where(c => !c.IsDeleted)
-                                     on header.VehicleNumber equals vehicle.VehicleNo
-                                     join mileage in db.MileTracking.Where(c => !c.IsDeleted)
-                                     on header.ReceiptNo equals mileage.ReceiptNo
                                      join customer in db.Customers.Where(c => !c.IsDeleted)
                                      on header.CustomerId equals customer.CustomerId
                                      select new
@@ -179,13 +175,16 @@ namespace SimpleBilling.MasterForms
                                          header.Balance,
                                          header.Status,
                                          header.VehicleNumber,
-                                         mileage.Mileage,
                                          Cashier = cashier.EmployeeName,
                                          header.Remarks,
                                          customer.Name,
                                          customer.Address,
                                          customer.Contact
                                      }).ToList();
+
+                    var Mileage = db.MileTracking.FirstOrDefault(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo);
+                    if (Mileage != null)
+                        TxtCurrentMileage.Text = Mileage.Mileage.ToString();
                     foreach (var a in RptHeader)
                     {
                         LblCashier.Text = a.Cashier;
@@ -195,9 +194,9 @@ namespace SimpleBilling.MasterForms
                         LblReceiptStatus.Text = GetReceiptStatus(a.Status);
                         LblReceiptNo.Text = a.ReceiptNo;
                         TxtRemarks.Text = a.Remarks;
-                        CmbVehicles.Text = a.VehicleNumber;
-                        TxtCurrentMileage.Text = a.Mileage.ToString();
                         TxtCustomer.Text = a.Contact;
+                        if (!string.IsNullOrWhiteSpace(a.VehicleNumber))
+                            CmbVehicles.Text = a.VehicleNumber;
                     }
 
                     TotalCalculator();
@@ -977,8 +976,9 @@ namespace SimpleBilling.MasterForms
                                    hr.ReceiptNo,
                                    vl.VehicleNo
                                }).ToList();
-
-                    string fileName = $@"C:\Orion\{Info.RandomString(4)}.pdf";
+                    if (!Path.EndsWith(@"\"))
+                        Path += @"\";
+                    string fileName = Path + Info.RandomString(4) + ".pdf";
                     PdfWriter writer = new PdfWriter(fileName);
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A5.Rotate());
@@ -1020,6 +1020,33 @@ namespace SimpleBilling.MasterForms
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Next Service Due :")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph((ml.ServiceMileageDue + ml.Mileage + " km").ToString())));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Cashier : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
+                    }
+
+                    if (mlt.Count == 0)
+                    {
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Name)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Vehicle Number :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("N/A")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Date : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Date)));
+
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Address)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Current Mileage :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("N/A")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Time : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time)));
+
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Contact)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Next Service Due :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("N/A")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Cashier : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
@@ -1330,8 +1357,8 @@ namespace SimpleBilling.MasterForms
         {
             if (TxtGivenAmount.Text.Length > 0)
             {
-                float GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
+                float givenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                BalanceAmount = givenAmount - Convert.ToSingle(LblNetTotal.Text);
                 LblBalanceAmount.Text = BalanceAmount.ToString();
             }
         }
