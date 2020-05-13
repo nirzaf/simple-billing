@@ -530,6 +530,7 @@
             this.BtnRemoveReturn.TabIndex = 19;
             this.BtnRemoveReturn.Text = "Remove Return";
             this.BtnRemoveReturn.UseVisualStyleBackColor = false;
+            this.BtnRemoveReturn.Click += new System.EventHandler(this.BtnRemoveReturn_Click);
             // 
             // BtnLoadInvoice
             // 

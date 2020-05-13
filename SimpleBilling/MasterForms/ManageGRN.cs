@@ -41,6 +41,7 @@ namespace SimpleBilling.MasterForms
             LayoutCheque.Visible = false;
             BtnGRNReturn.Enabled = false;
             BtnAddToReturn.Visible = false;
+            BtnRemoveReturn.Visible = false;
             int count = 0;
             foreach (RowStyle rs in DGVPanel.RowStyles)
             {
@@ -149,8 +150,8 @@ namespace SimpleBilling.MasterForms
                             select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
                 LblTotalDiscount.Text = TotalDiscount.ToString();
                 LblReturns.Text = Returns.ToString();
-                LblNetTotal.Text = (NetTotal - Returns).ToString();
-                float GrossTotal = TotalDiscount + NetTotal;
+                LblNetTotal.Text = NetTotal.ToString();
+                float GrossTotal = TotalDiscount + NetTotal + Returns;
                 LblGrossTotal.Text = GrossTotal.ToString();
             }
         }
@@ -581,7 +582,7 @@ namespace SimpleBilling.MasterForms
                             int id = GrnItem.ProductId;
                             int Qty = GrnItem.Quantity;
                             var item = db.Items.FirstOrDefault(c => c.Id == id && !c.IsDeleted);
-                            item.StockQty += Qty;
+                            item.StockQty -= Qty;
                             if (db.Entry(item).State == EntityState.Detached)
                                 db.Set<Item>().Attach(item);
                             item.UpdatedDate = DateTime.Now;
@@ -636,6 +637,60 @@ namespace SimpleBilling.MasterForms
             if (DGVGRNReturned.SelectedRows.Count > 0)
             {
                 BtnRemoveReturn.Visible = true;
+            }
+        }
+
+        private void BtnRemoveReturn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    if (DGVGRNReturned.SelectedRows.Count > 0)
+                    {
+                        int Line = Convert.ToInt32(DGVGRNReturned.SelectedRows[0].Cells[0].Value + string.Empty);
+                        string GRNNo = TxtGRNNo.Text.Trim();
+                        var GrnItem = db.GRNDetails.FirstOrDefault(c => !c.IsDeleted && c.LineId == Line && c.GRNCode == GRNNo);
+                        if (GrnItem != null)
+                        {
+                            GrnItem.IsReturned = false;
+                            int id = GrnItem.ProductId;
+                            int Qty = GrnItem.Quantity;
+                            var item = db.Items.FirstOrDefault(c => c.Id == id && !c.IsDeleted);
+                            item.StockQty += Qty;
+                            if (db.Entry(item).State == EntityState.Detached)
+                                db.Set<Item>().Attach(item);
+                            item.UpdatedDate = DateTime.Now;
+                            db.Entry(item).State = EntityState.Modified;
+                            db.SaveChanges();
+
+                            if (db.Entry(GrnItem).State == EntityState.Detached)
+                                db.Set<GRNDetails>().Attach(GrnItem);
+                            GrnItem.UpdatedDate = DateTime.Now;
+                            db.Entry(GrnItem).State = EntityState.Modified;
+                            db.SaveChanges();
+                            LoadDetails(GRNNo);
+                        }
+
+                        var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
+
+                        header.GrossTotal = NetTotal + TotalDiscount + Returns;
+                        header.TotalDiscout = TotalDiscount;
+                        header.NetTotal = NetTotal;
+
+                        if (db.Entry(header).State == EntityState.Detached)
+                            db.Set<GRNHeader>().Attach(header);
+                        header.UpdatedDate = DateTime.Now;
+                        db.Entry(header).State = EntityState.Modified;
+                        db.SaveChanges();
+                        LoadDetails(GRN_Code);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
+                Info.Mes(ex.Message);
             }
         }
     }
