@@ -595,6 +595,19 @@ namespace SimpleBilling.MasterForms
                             db.SaveChanges();
                             LoadDetails(GRNNo);
                         }
+
+                        var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
+
+                        header.GrossTotal = NetTotal + TotalDiscount + Returns;
+                        header.TotalDiscout = TotalDiscount;
+                        header.NetTotal = NetTotal;
+
+                        if (db.Entry(header).State == EntityState.Detached)
+                            db.Set<GRNHeader>().Attach(header);
+                        header.UpdatedDate = DateTime.Now;
+                        db.Entry(header).State = EntityState.Modified;
+                        db.SaveChanges();
+                        LoadDetails(GRN_Code);
                     }
                 }
             }
