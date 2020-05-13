@@ -303,12 +303,15 @@ namespace SimpleBilling.MasterForms
                         {
                             result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
                             result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                            result.GrossTotal = result.Quantity * result.UnitCost;
                             if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
                                 result.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
                             else
                                 result.Discount = 0;
 
                             result.SubTotal = (result.UnitCost * Convert.ToSingle(result.Quantity)) - result.Discount;
+                            if (db.Entry(result).State == EntityState.Detached)
+                                db.Set<GRNDetails>().Attach(result);
                             db.Entry(result).State = EntityState.Modified;
                             db.SaveChanges();
                         }
