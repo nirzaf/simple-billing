@@ -108,6 +108,10 @@ namespace SimpleBilling.MasterForms
             TBRed.Value = 105;
             TBGreen.Value = 105;
             TBBlue.Value = 105;
+            LblRed.Text = "105";
+            LblGreen.Text = "105";
+            LblBlue.Text = "105";
+            BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
         }
     }
 }
