@@ -270,6 +270,12 @@
     <Compile Include="MasterForms\PrintPreview.Designer.cs">
       <DependentUpon>PrintPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202004270054318_billing.cs" />
     <Compile Include="Migrations\202004270054318_billing.designer.cs">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>
@@ -486,6 +492,14 @@
     <Compile Include="Migrations\202005130136089_billing39.designer.cs">
       <DependentUpon>202005130136089_billing39.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005130636174_billing40.cs" />
+    <Compile Include="Migrations\202005130636174_billing40.designer.cs">
+      <DependentUpon>202005130636174_billing40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005130648304_billing41.cs" />
+    <Compile Include="Migrations\202005130648304_billing41.designer.cs">
+      <DependentUpon>202005130648304_billing41.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bank.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -502,6 +516,7 @@
     <Compile Include="Model\MileageTracking.cs" />
     <Compile Include="Model\ReceiptBody.cs" />
     <Compile Include="Model\ReceiptHeader.cs" />
+    <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\Shelf.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Users.cs" />
@@ -572,6 +587,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\PrintPreview.resx">
       <DependentUpon>PrintPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004270054318_billing.resx">
       <DependentUpon>202004270054318_billing.cs</DependentUpon>
@@ -734,6 +752,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005130136089_billing39.resx">
       <DependentUpon>202005130136089_billing39.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130636174_billing40.resx">
+      <DependentUpon>202005130636174_billing40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130648304_billing41.resx">
+      <DependentUpon>202005130648304_billing41.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

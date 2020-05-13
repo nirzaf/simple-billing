@@ -693,5 +693,9 @@ namespace SimpleBilling.MasterForms
                 Info.Mes(ex.Message);
             }
         }
+
+        private void BtnPrintGRN_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

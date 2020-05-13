@@ -20,7 +20,8 @@ namespace SimpleBilling
             //Application.Run(new ManageCheques());
             //Application.Run(new ManageBanks());
             //Application.Run(new ManageStock());
-            Application.Run(new ManageGRN(string.Empty));
+            Application.Run(new Settings());
+            //Application.Run(new ManageGRN(string.Empty));
             //Application.Run(new POS(string.Empty));
             //Application.Run(new BusinessInfo());
             //Application.Run(new ManageVehicles());
