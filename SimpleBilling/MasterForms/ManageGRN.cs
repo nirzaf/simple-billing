@@ -13,6 +13,7 @@ namespace SimpleBilling.MasterForms
         private string GRN_Code;
         private float TotalDiscount = 0;
         private float NetTotal = 0;
+        private float Returns = 0;
         private int LineNo;
 
         public ManageGRN(string GRN_Init_Code)
@@ -39,7 +40,22 @@ namespace SimpleBilling.MasterForms
             TxtGivenAmount.Enabled = false;
             LayoutCheque.Visible = false;
             BtnGRNReturn.Enabled = false;
-            BtnAddToReturn.Enabled = false;
+            BtnAddToReturn.Visible = false;
+            int count = 0;
+            foreach (RowStyle rs in DGVPanel.RowStyles)
+            {
+                count++;
+                if (count == 2)
+                {
+                    rs.SizeType = SizeType.Percent;
+                    rs.Height = 0;
+                }
+                if (count == 1)
+                {
+                    rs.SizeType = SizeType.Percent;
+                    rs.Height = 100;
+                }
+            }
         }
 
         private void LoadDetails(string GRN_New_Code)
@@ -49,9 +65,21 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (!BtnAddToReturn.Enabled)
-                    {
-                        var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
+                    var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code && !a.IsReturned)
+                                join item in db.Items
+                                on details.ProductId equals item.Id
+                                select new
+                                {
+                                    Line_No = details.LineId,
+                                    Item_Name = item.ItemName,
+                                    details.Quantity,
+                                    Unit_Cost = details.UnitCost,
+                                    details.Discount,
+                                    Sub_Total = details.SubTotal
+                                }).ToList();
+                    DGVGRNList.DataSource = data;
+
+                    var returned = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code && a.IsReturned)
                                     join item in db.Items
                                     on details.ProductId equals item.Id
                                     select new
@@ -63,24 +91,33 @@ namespace SimpleBilling.MasterForms
                                         details.Discount,
                                         Sub_Total = details.SubTotal
                                     }).ToList();
-                        DGVGRNList.DataSource = data;
+                    DGVGRNReturned.DataSource = returned;
+                    if (returned.Count > 0)
+                    {
+                        foreach (RowStyle rs in DGVPanel.RowStyles)
+                        {
+                            rs.SizeType = SizeType.Percent;
+                            rs.Height = 50;
+                        }
                     }
                     else
                     {
-                        var data = (from details in db.GRNDetails.Where(a => !a.IsDeleted && a.GRNCode == GRN_New_Code)
-                                    join item in db.Items
-                                    on details.ProductId equals item.Id
-                                    select new
-                                    {
-                                        Line_No = details.LineId,
-                                        Item_Name = item.ItemName,
-                                        details.Quantity,
-                                        Unit_Cost = details.UnitCost,
-                                        details.Discount,
-                                        Sub_Total = details.SubTotal,
-                                        details.IsReturned
-                                    }).ToList();
-                        DGVGRNList.DataSource = data;
+                        int count = 0;
+                        foreach (RowStyle rs in DGVPanel.RowStyles)
+                        {
+                            count++;
+                            if (count == 1)
+                            {
+                                rs.SizeType = SizeType.Percent;
+                                rs.Height = 100;
+                            }
+                            if (count == 2)
+                            {
+                                rs.SizeType = SizeType.Percent;
+                                rs.Height = 0;
+                            }
+                        }
+                        BtnRemoveReturn.Visible = false;
                     }
 
                     var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRN_New_Code && !c.IsDeleted);
@@ -102,11 +139,17 @@ namespace SimpleBilling.MasterForms
                 TotalDiscount = (from DataGridViewRow row in DGVGRNList.Rows
                                  where row.Cells[0].FormattedValue.ToString() != string.Empty
                                  select Convert.ToSingle(row.Cells[4].FormattedValue)).Sum();
+
+                Returns = (from DataGridViewRow row in DGVGRNReturned.Rows
+                           where row.Cells[0].FormattedValue.ToString() != string.Empty
+                           select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
+
                 NetTotal = (from DataGridViewRow row in DGVGRNList.Rows
                             where row.Cells[0].FormattedValue.ToString() != string.Empty
                             select Convert.ToSingle(row.Cells[5].FormattedValue)).Sum();
                 LblTotalDiscount.Text = TotalDiscount.ToString();
-                LblNetTotal.Text = NetTotal.ToString();
+                LblReturns.Text = Returns.ToString();
+                LblNetTotal.Text = (NetTotal - Returns).ToString();
                 float GrossTotal = TotalDiscount + NetTotal;
                 LblGrossTotal.Text = GrossTotal.ToString();
             }
@@ -511,9 +554,14 @@ namespace SimpleBilling.MasterForms
 
         private void BtnGRNReturn_Click(object sender, EventArgs e)
         {
-            BtnAddToReturn.Enabled = true;
+            BtnAddToReturn.Visible = true;
             if (Info.IsEmpty(TxtGRNNo))
                 LoadDetails(TxtGRNNo.Text.Trim());
+            foreach (RowStyle rs in DGVPanel.RowStyles)
+            {
+                rs.SizeType = SizeType.Percent;
+                rs.Height = 50;
+            }
         }
 
         private void BtnAddToReturn_Click(object sender, EventArgs e)
@@ -530,8 +578,19 @@ namespace SimpleBilling.MasterForms
                         if (GrnItem != null)
                         {
                             GrnItem.IsReturned = true;
+                            int id = GrnItem.ProductId;
+                            int Qty = GrnItem.Quantity;
+                            var item = db.Items.FirstOrDefault(c => c.Id == id && !c.IsDeleted);
+                            item.StockQty += Qty;
+                            if (db.Entry(item).State == EntityState.Detached)
+                                db.Set<Item>().Attach(item);
+                            item.UpdatedDate = DateTime.Now;
+                            db.Entry(item).State = EntityState.Modified;
+                            db.SaveChanges();
+
                             if (db.Entry(GrnItem).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(GrnItem);
+                            GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
                             db.SaveChanges();
                             LoadDetails(GRNNo);
@@ -556,6 +615,14 @@ namespace SimpleBilling.MasterForms
                 TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
                 TxtUnitCost.Text = DGVGRNList.SelectedRows[0].Cells[3].Value + string.Empty;
                 TxtDiscount.Text = DGVGRNList.SelectedRows[0].Cells[4].Value + string.Empty;
+            }
+        }
+
+        private void DGVGRNReturned_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVGRNReturned.SelectedRows.Count > 0)
+            {
+                BtnRemoveReturn.Visible = true;
             }
         }
     }

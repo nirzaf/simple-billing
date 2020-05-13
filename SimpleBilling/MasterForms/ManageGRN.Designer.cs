@@ -68,7 +68,7 @@
             this.BtnApprove = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnAddToReturn = new System.Windows.Forms.Button();
-            this.BtnUpdateReturn = new System.Windows.Forms.Button();
+            this.BtnRemoveReturn = new System.Windows.Forms.Button();
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -91,10 +91,12 @@
             this.CmbPaidBy = new System.Windows.Forms.ComboBox();
             this.CmbBank = new System.Windows.Forms.ComboBox();
             this.LblPaymentStatus = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.DGVPanel = new System.Windows.Forms.TableLayoutPanel();
             this.DGVGRNList = new System.Windows.Forms.DataGridView();
             this.DGVGRNReturned = new System.Windows.Forms.DataGridView();
             this.BtnNewInvoice = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.LblReturns = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,7 +110,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.PaymentLayout.SuspendLayout();
             this.LayoutCheque.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
+            this.DGVPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNReturned)).BeginInit();
             this.SuspendLayout();
@@ -388,11 +390,13 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.LblGrossTotal, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.LblTotalDiscount, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.LblNetTotal, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LblReturns, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(636, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -402,6 +406,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(417, 125);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
@@ -417,7 +422,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 63);
+            this.label11.Location = new System.Drawing.Point(4, 94);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 19);
             this.label11.TabIndex = 2;
@@ -444,7 +449,7 @@
             // LblNetTotal
             // 
             this.LblNetTotal.AutoSize = true;
-            this.LblNetTotal.Location = new System.Drawing.Point(212, 63);
+            this.LblNetTotal.Location = new System.Drawing.Point(212, 94);
             this.LblNetTotal.Name = "LblNetTotal";
             this.LblNetTotal.Size = new System.Drawing.Size(18, 19);
             this.LblNetTotal.TabIndex = 5;
@@ -467,7 +472,7 @@
             this.tableLayoutPanel3.Controls.Add(this.BtnDelete, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.BtnComplete, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.BtnAddToReturn, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.BtnUpdateReturn, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.BtnRemoveReturn, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(1065, 128);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -515,16 +520,16 @@
             this.BtnAddToReturn.UseVisualStyleBackColor = false;
             this.BtnAddToReturn.Click += new System.EventHandler(this.BtnAddToReturn_Click);
             // 
-            // BtnUpdateReturn
+            // BtnRemoveReturn
             // 
-            this.BtnUpdateReturn.BackColor = System.Drawing.Color.White;
-            this.BtnUpdateReturn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnUpdateReturn.Location = new System.Drawing.Point(3, 81);
-            this.BtnUpdateReturn.Name = "BtnUpdateReturn";
-            this.BtnUpdateReturn.Size = new System.Drawing.Size(161, 33);
-            this.BtnUpdateReturn.TabIndex = 19;
-            this.BtnUpdateReturn.Text = "Update Return";
-            this.BtnUpdateReturn.UseVisualStyleBackColor = false;
+            this.BtnRemoveReturn.BackColor = System.Drawing.Color.White;
+            this.BtnRemoveReturn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnRemoveReturn.Location = new System.Drawing.Point(3, 81);
+            this.BtnRemoveReturn.Name = "BtnRemoveReturn";
+            this.BtnRemoveReturn.Size = new System.Drawing.Size(161, 33);
+            this.BtnRemoveReturn.TabIndex = 19;
+            this.BtnRemoveReturn.Text = "Remove Return";
+            this.BtnRemoveReturn.UseVisualStyleBackColor = false;
             // 
             // BtnLoadInvoice
             // 
@@ -555,7 +560,7 @@
             this.BaseLayout.Controls.Add(this.tableLayoutPanel5, 0, 2);
             this.BaseLayout.Controls.Add(this.LayoutCheque, 0, 3);
             this.BaseLayout.Controls.Add(this.LblPaymentStatus, 1, 3);
-            this.BaseLayout.Controls.Add(this.tableLayoutPanel6, 0, 1);
+            this.BaseLayout.Controls.Add(this.DGVPanel, 0, 1);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -812,26 +817,28 @@
             this.LblPaymentStatus.TabIndex = 9;
             this.LblPaymentStatus.Text = "Payment Status";
             // 
-            // tableLayoutPanel6
+            // DGVPanel
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.Controls.Add(this.DGVGRNList, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.DGVGRNReturned, 0, 1);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 128);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(1056, 197);
-            this.tableLayoutPanel6.TabIndex = 10;
+            this.DGVPanel.ColumnCount = 1;
+            this.DGVPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.DGVPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.DGVPanel.Controls.Add(this.DGVGRNList, 0, 0);
+            this.DGVPanel.Controls.Add(this.DGVGRNReturned, 0, 1);
+            this.DGVPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVPanel.Location = new System.Drawing.Point(3, 128);
+            this.DGVPanel.Name = "DGVPanel";
+            this.DGVPanel.RowCount = 2;
+            this.DGVPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.DGVPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.DGVPanel.Size = new System.Drawing.Size(1056, 197);
+            this.DGVPanel.TabIndex = 10;
             // 
             // DGVGRNList
             // 
             this.DGVGRNList.AllowUserToAddRows = false;
             this.DGVGRNList.AllowUserToDeleteRows = false;
+            this.DGVGRNList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVGRNList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVGRNList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVGRNList.Location = new System.Drawing.Point(3, 3);
@@ -845,6 +852,8 @@
             // 
             this.DGVGRNReturned.AllowUserToAddRows = false;
             this.DGVGRNReturned.AllowUserToDeleteRows = false;
+            this.DGVGRNReturned.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVGRNReturned.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVGRNReturned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVGRNReturned.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVGRNReturned.Location = new System.Drawing.Point(3, 101);
@@ -852,6 +861,7 @@
             this.DGVGRNReturned.ReadOnly = true;
             this.DGVGRNReturned.Size = new System.Drawing.Size(1050, 93);
             this.DGVGRNReturned.TabIndex = 1;
+            this.DGVGRNReturned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNReturned_CellClick);
             // 
             // BtnNewInvoice
             // 
@@ -862,6 +872,24 @@
             this.BtnNewInvoice.TabIndex = 17;
             this.BtnNewInvoice.Text = "New GRN Invoice";
             this.BtnNewInvoice.UseVisualStyleBackColor = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(4, 63);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(70, 19);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Returns";
+            // 
+            // LblReturns
+            // 
+            this.LblReturns.AutoSize = true;
+            this.LblReturns.Location = new System.Drawing.Point(212, 63);
+            this.LblReturns.Name = "LblReturns";
+            this.LblReturns.Size = new System.Drawing.Size(18, 19);
+            this.LblReturns.TabIndex = 7;
+            this.LblReturns.Text = "0";
             // 
             // ManageGRN
             // 
@@ -895,7 +923,7 @@
             this.PaymentLayout.PerformLayout();
             this.LayoutCheque.ResumeLayout(false);
             this.LayoutCheque.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
+            this.DGVPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNReturned)).EndInit();
             this.ResumeLayout(false);
@@ -963,10 +991,12 @@
         private System.Windows.Forms.ComboBox CmbChooseCheques;
         private System.Windows.Forms.Label LblPaymentStatus;
         private System.Windows.Forms.Button BtnAddToReturn;
-        private System.Windows.Forms.Button BtnUpdateReturn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button BtnRemoveReturn;
+        private System.Windows.Forms.TableLayoutPanel DGVPanel;
         private System.Windows.Forms.DataGridView DGVGRNList;
         private System.Windows.Forms.DataGridView DGVGRNReturned;
         private System.Windows.Forms.Button BtnNewInvoice;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label LblReturns;
     }
 }
