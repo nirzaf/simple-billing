@@ -43,6 +43,8 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnReset = new System.Windows.Forms.Button();
+            this.RDOBackColor = new System.Windows.Forms.RadioButton();
+            this.RDOForeColor = new System.Windows.Forms.RadioButton();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -140,6 +142,8 @@
             this.tableLayoutPanel3.Controls.Add(this.LblRed, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.LblGreen, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.LblBlue, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.RDOBackColor, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.RDOForeColor, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(300, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -154,6 +158,7 @@
             // 
             this.LblRed.AutoSize = true;
             this.LblRed.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LblRed.ForeColor = System.Drawing.Color.White;
             this.LblRed.Location = new System.Drawing.Point(234, 0);
             this.LblRed.Name = "LblRed";
             this.LblRed.Size = new System.Drawing.Size(54, 35);
@@ -164,6 +169,7 @@
             // 
             this.LblGreen.AutoSize = true;
             this.LblGreen.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LblGreen.ForeColor = System.Drawing.Color.White;
             this.LblGreen.Location = new System.Drawing.Point(234, 35);
             this.LblGreen.Name = "LblGreen";
             this.LblGreen.Size = new System.Drawing.Size(54, 35);
@@ -174,6 +180,7 @@
             // 
             this.LblBlue.AutoSize = true;
             this.LblBlue.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LblBlue.ForeColor = System.Drawing.Color.White;
             this.LblBlue.Location = new System.Drawing.Point(234, 70);
             this.LblBlue.Name = "LblBlue";
             this.LblBlue.Size = new System.Drawing.Size(54, 37);
@@ -237,11 +244,35 @@
             this.BtnReset.UseVisualStyleBackColor = false;
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
+            // RDOBackColor
+            // 
+            this.RDOBackColor.AutoSize = true;
+            this.RDOBackColor.ForeColor = System.Drawing.Color.White;
+            this.RDOBackColor.Location = new System.Drawing.Point(3, 3);
+            this.RDOBackColor.Name = "RDOBackColor";
+            this.RDOBackColor.Size = new System.Drawing.Size(112, 23);
+            this.RDOBackColor.TabIndex = 3;
+            this.RDOBackColor.TabStop = true;
+            this.RDOBackColor.Text = "Back Color";
+            this.RDOBackColor.UseVisualStyleBackColor = true;
+            // 
+            // RDOForeColor
+            // 
+            this.RDOForeColor.AutoSize = true;
+            this.RDOForeColor.ForeColor = System.Drawing.Color.White;
+            this.RDOForeColor.Location = new System.Drawing.Point(3, 73);
+            this.RDOForeColor.Name = "RDOForeColor";
+            this.RDOForeColor.Size = new System.Drawing.Size(108, 23);
+            this.RDOForeColor.TabIndex = 4;
+            this.RDOForeColor.TabStop = true;
+            this.RDOForeColor.Text = "Fore Color";
+            this.RDOForeColor.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(891, 454);
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -281,5 +312,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button BtnReset;
         private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.RadioButton RDOBackColor;
+        private System.Windows.Forms.RadioButton RDOForeColor;
     }
 }

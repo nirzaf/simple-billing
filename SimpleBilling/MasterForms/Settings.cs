@@ -64,6 +64,7 @@ namespace SimpleBilling.MasterForms
                 TBRed.Value = data.Red;
                 TBGreen.Value = data.Green;
                 TBBlue.Value = data.Blue;
+                RDOBackColor.Checked = true;
             }
         }
 
@@ -99,6 +100,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<Setting>().Attach(data);
                     db.Entry(data).State = EntityState.Modified;
                     db.SaveChanges();
+                    Info.Mes("Settings Saved Successfully");
                 }
             }
         }
