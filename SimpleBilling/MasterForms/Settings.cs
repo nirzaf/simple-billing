@@ -9,6 +9,8 @@ namespace SimpleBilling.MasterForms
 {
     public partial class Settings : Form
     {
+        private int UserId = 1;
+
         public Settings()
         {
             InitializeComponent();
@@ -16,39 +18,47 @@ namespace SimpleBilling.MasterForms
 
         private void BtnSetSavePath_Click(object sender, EventArgs e)
         {
-            var folderBrowserDialog1 = new FolderBrowserDialog();
-
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            try
             {
-                string folderName = folderBrowserDialog1.SelectedPath;
-                TxtDefaultPath.Text = folderName;
-                using (BillingContext db = new BillingContext())
-                {
-                    Setting s = new Setting
-                    {
-                        DefaultPath = folderName,
-                        CreatedDate = DateTime.Now
-                    };
+                var folderBrowserDialog1 = new FolderBrowserDialog();
 
-                    var r = db.Settings.FirstOrDefault(c => c.UserId == Info.CashierId && !c.IsDeleted);
-                    if (r == null)
+                DialogResult result = folderBrowserDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string folderName = folderBrowserDialog1.SelectedPath;
+                    TxtDefaultPath.Text = folderName;
+                    using (BillingContext db = new BillingContext())
                     {
-                        if (db.Entry(s).State == EntityState.Detached)
-                            db.Set<Setting>().Attach(s);
-                        db.Entry(s).State = EntityState.Added;
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        r.DefaultPath = folderName;
-                        r.UpdatedDate = DateTime.Now;
-                        if (db.Entry(r).State == EntityState.Detached)
-                            db.Set<Setting>().Attach(r);
-                        db.Entry(r).State = EntityState.Modified;
-                        db.SaveChanges();
+                        Setting s = new Setting
+                        {
+                            DefaultPath = folderName,
+                            CreatedDate = DateTime.Now
+                        };
+
+                        var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
+                        if (r == null)
+                        {
+                            if (db.Entry(s).State == EntityState.Detached)
+                                db.Set<Setting>().Attach(s);
+                            db.Entry(s).State = EntityState.Added;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            r.DefaultPath = folderName;
+                            r.UpdatedDate = DateTime.Now;
+                            if (db.Entry(r).State == EntityState.Detached)
+                                db.Set<Setting>().Attach(r);
+                            db.Entry(r).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+                ExportJSON.Add(ex);
             }
         }
 
@@ -56,7 +66,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = db.Settings.FirstOrDefault(c => c.UserId == Info.CashierId);
+                var data = db.Settings.FirstOrDefault(c => c.UserId == UserId);
                 TxtDefaultPath.Text = data.DefaultPath;
                 LblRed.Text = data.Red.ToString();
                 LblGreen.Text = data.Green.ToString();
@@ -111,7 +121,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = db.Settings.FirstOrDefault(c => c.UserId == Info.CashierId && !c.IsDeleted);
+                var data = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                 if (data != null)
                 {
                     if (RDOBackColor.Checked)
@@ -120,8 +130,15 @@ namespace SimpleBilling.MasterForms
                         data.Green = TBGreen.Value;
                         data.Blue = TBBlue.Value;
                     }
+                    if (RDOForeColor.Checked)
+                    {
+                        data.ForeRed = TBRed.Value;
+                        data.ForeGreen = TBGreen.Value;
+                        data.ForeBlue = TBBlue.Value;
+                    }
                     if (db.Entry(data).State == EntityState.Detached)
                         db.Set<Setting>().Attach(data);
+                    data.UpdatedDate = DateTime.Now;
                     db.Entry(data).State = EntityState.Modified;
                     db.SaveChanges();
                     Info.Mes("Settings Saved Successfully");
@@ -131,19 +148,71 @@ namespace SimpleBilling.MasterForms
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
-            TBRed.Value = 105;
-            TBGreen.Value = 105;
-            TBBlue.Value = 105;
-            LblRed.Text = "105";
-            LblGreen.Text = "105";
-            LblBlue.Text = "105";
             if (RDOBackColor.Checked)
             {
+                TBRed.Value = 105;
+                TBGreen.Value = 105;
+                TBBlue.Value = 105;
+                LblRed.Text = "105";
+                LblGreen.Text = "105";
+                LblBlue.Text = "105";
                 BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
             }
             if (RDOForeColor.Checked)
             {
+                TBRed.Value = 0;
+                TBGreen.Value = 0;
+                TBBlue.Value = 0;
+                LblRed.Text = "0";
+                LblGreen.Text = "0";
+                LblBlue.Text = "0";
                 ForeColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
+            }
+        }
+
+        private void BtnDefaultGRNPath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var folderBrowserDialog1 = new FolderBrowserDialog();
+
+                DialogResult result = folderBrowserDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string folderName = folderBrowserDialog1.SelectedPath;
+                    TxtDefaultPath.Text = folderName;
+                    using (BillingContext db = new BillingContext())
+                    {
+                        Setting s = new Setting
+                        {
+                            GRNPath = folderName,
+                            CreatedDate = DateTime.Now
+                        };
+
+                        var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
+                        if (r == null)
+                        {
+                            if (db.Entry(s).State == EntityState.Detached)
+                                db.Set<Setting>().Attach(s);
+                            db.Entry(s).State = EntityState.Added;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            r.GRNPath = folderName;
+                            r.UpdatedDate = DateTime.Now;
+                            if (db.Entry(r).State == EntityState.Detached)
+                                db.Set<Setting>().Attach(r);
+                            db.Entry(r).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+                ExportJSON.Add(ex);
             }
         }
     }

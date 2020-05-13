@@ -892,7 +892,8 @@ namespace SimpleBilling.MasterForms
                                }).ToList();
                 DGVReceiptBody.DataSource = RptBody;
                 DataTable dt = Info.ToDataTable(RptBody);
-                SalesReceiptAsPDF(dt, LblReceiptNo.Text);
+                var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
+                SalesReceiptAsPDF(dt, LblReceiptNo.Text, path.DefaultPath);
             }
         }
 
@@ -955,7 +956,7 @@ namespace SimpleBilling.MasterForms
             Reset();
         }
 
-        public void SalesReceiptAsPDF(DataTable dt, string RptNo)
+        public void SalesReceiptAsPDF(DataTable dt, string RptNo, string Path)
         {
             try
             {

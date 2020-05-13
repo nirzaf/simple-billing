@@ -10,6 +10,7 @@ namespace SimpleBilling.Model
 
         public int UserId { get; set; }
         public string DefaultPath { get; set; }
+        public string GRNPath { get; set; }
 
         [DefaultValue(105)]
         public int Red { get; set; } = 105;
@@ -20,8 +21,13 @@ namespace SimpleBilling.Model
         [DefaultValue(105)]
         public int Blue { get; set; } = 105;
 
+        [DefaultValue(255)]
         public int ForeRed { get; set; } = 255;
+
+        [DefaultValue(255)]
         public int ForeGreen { get; set; } = 255;
+
+        [DefaultValue(255)]
         public int ForeBlue { get; set; } = 255;
     }
 }

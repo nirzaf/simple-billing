@@ -33,26 +33,30 @@
             this.BtnSetSavePath = new System.Windows.Forms.Button();
             this.TxtDefaultPath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.TBBlue = new System.Windows.Forms.TrackBar();
+            this.TBGreen = new System.Windows.Forms.TrackBar();
             this.TBRed = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.LblRed = new System.Windows.Forms.Label();
             this.LblGreen = new System.Windows.Forms.Label();
             this.LblBlue = new System.Windows.Forms.Label();
-            this.TBGreen = new System.Windows.Forms.TrackBar();
-            this.TBBlue = new System.Windows.Forms.TrackBar();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnSave = new System.Windows.Forms.Button();
-            this.BtnReset = new System.Windows.Forms.Button();
             this.RDOBackColor = new System.Windows.Forms.RadioButton();
             this.RDOForeColor = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnReset = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnDefaultGRNPath = new System.Windows.Forms.Button();
+            this.TxtDefaultGRN = new System.Windows.Forms.TextBox();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TBBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TBGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBRed)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TBGreen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TBBlue)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // BaseLayout
@@ -65,6 +69,7 @@
             this.BaseLayout.Controls.Add(this.tableLayoutPanel2, 2, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel4, 2, 1);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -93,16 +98,19 @@
             // 
             // BtnSetSavePath
             // 
+            this.BtnSetSavePath.BackColor = System.Drawing.Color.White;
+            this.BtnSetSavePath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSetSavePath.Location = new System.Drawing.Point(3, 3);
             this.BtnSetSavePath.Name = "BtnSetSavePath";
             this.BtnSetSavePath.Size = new System.Drawing.Size(285, 29);
             this.BtnSetSavePath.TabIndex = 0;
-            this.BtnSetSavePath.Text = "Set Default Folder";
-            this.BtnSetSavePath.UseVisualStyleBackColor = true;
+            this.BtnSetSavePath.Text = "Set Default Receipt Folder";
+            this.BtnSetSavePath.UseVisualStyleBackColor = false;
             this.BtnSetSavePath.Click += new System.EventHandler(this.BtnSetSavePath_Click);
             // 
             // TxtDefaultPath
             // 
+            this.TxtDefaultPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDefaultPath.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultPath.Name = "TxtDefaultPath";
             this.TxtDefaultPath.Size = new System.Drawing.Size(285, 26);
@@ -124,6 +132,24 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(291, 107);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // TBBlue
+            // 
+            this.TBBlue.Location = new System.Drawing.Point(3, 73);
+            this.TBBlue.Maximum = 255;
+            this.TBBlue.Name = "TBBlue";
+            this.TBBlue.Size = new System.Drawing.Size(285, 31);
+            this.TBBlue.TabIndex = 2;
+            this.TBBlue.Scroll += new System.EventHandler(this.TBBlue_Scroll);
+            // 
+            // TBGreen
+            // 
+            this.TBGreen.Location = new System.Drawing.Point(3, 38);
+            this.TBGreen.Maximum = 255;
+            this.TBGreen.Name = "TBGreen";
+            this.TBGreen.Size = new System.Drawing.Size(285, 29);
+            this.TBGreen.TabIndex = 1;
+            this.TBGreen.Scroll += new System.EventHandler(this.TBGreen_Scroll);
             // 
             // TBRed
             // 
@@ -187,63 +213,6 @@
             this.LblBlue.TabIndex = 2;
             this.LblBlue.Text = "label3";
             // 
-            // TBGreen
-            // 
-            this.TBGreen.Location = new System.Drawing.Point(3, 38);
-            this.TBGreen.Maximum = 255;
-            this.TBGreen.Name = "TBGreen";
-            this.TBGreen.Size = new System.Drawing.Size(285, 29);
-            this.TBGreen.TabIndex = 1;
-            this.TBGreen.Scroll += new System.EventHandler(this.TBGreen_Scroll);
-            // 
-            // TBBlue
-            // 
-            this.TBBlue.Location = new System.Drawing.Point(3, 73);
-            this.TBBlue.Maximum = 255;
-            this.TBBlue.Name = "TBBlue";
-            this.TBBlue.Size = new System.Drawing.Size(285, 31);
-            this.TBBlue.TabIndex = 2;
-            this.TBBlue.Scroll += new System.EventHandler(this.TBBlue_Scroll);
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.BtnReset, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.BtnSave, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(597, 116);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(291, 107);
-            this.tableLayoutPanel4.TabIndex = 3;
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.BackColor = System.Drawing.Color.White;
-            this.BtnSave.Location = new System.Drawing.Point(3, 3);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(139, 29);
-            this.BtnSave.TabIndex = 0;
-            this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // BtnReset
-            // 
-            this.BtnReset.BackColor = System.Drawing.Color.White;
-            this.BtnReset.Location = new System.Drawing.Point(148, 3);
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(139, 29);
-            this.BtnReset.TabIndex = 1;
-            this.BtnReset.Text = "Reset";
-            this.BtnReset.UseVisualStyleBackColor = false;
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
             // RDOBackColor
             // 
             this.RDOBackColor.AutoSize = true;
@@ -268,6 +237,80 @@
             this.RDOForeColor.Text = "Fore Color";
             this.RDOForeColor.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.BtnReset, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.BtnSave, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(597, 116);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(291, 107);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.BackColor = System.Drawing.Color.White;
+            this.BtnReset.Location = new System.Drawing.Point(148, 3);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(139, 29);
+            this.BtnReset.TabIndex = 1;
+            this.BtnReset.Text = "Reset";
+            this.BtnReset.UseVisualStyleBackColor = false;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // BtnSave
+            // 
+            this.BtnSave.BackColor = System.Drawing.Color.White;
+            this.BtnSave.Location = new System.Drawing.Point(3, 3);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(139, 29);
+            this.BtnSave.TabIndex = 0;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.BtnDefaultGRNPath, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.TxtDefaultGRN, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 116);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(291, 107);
+            this.tableLayoutPanel5.TabIndex = 4;
+            // 
+            // BtnDefaultGRNPath
+            // 
+            this.BtnDefaultGRNPath.BackColor = System.Drawing.Color.White;
+            this.BtnDefaultGRNPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDefaultGRNPath.Location = new System.Drawing.Point(3, 3);
+            this.BtnDefaultGRNPath.Name = "BtnDefaultGRNPath";
+            this.BtnDefaultGRNPath.Size = new System.Drawing.Size(285, 29);
+            this.BtnDefaultGRNPath.TabIndex = 0;
+            this.BtnDefaultGRNPath.Text = "Set Default GRN Folder";
+            this.BtnDefaultGRNPath.UseVisualStyleBackColor = false;
+            this.BtnDefaultGRNPath.Click += new System.EventHandler(this.BtnDefaultGRNPath_Click);
+            // 
+            // TxtDefaultGRN
+            // 
+            this.TxtDefaultGRN.Location = new System.Drawing.Point(3, 38);
+            this.TxtDefaultGRN.Name = "TxtDefaultGRN";
+            this.TxtDefaultGRN.Size = new System.Drawing.Size(285, 26);
+            this.TxtDefaultGRN.TabIndex = 1;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -285,12 +328,14 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TBBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TBGreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBRed)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TBGreen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TBBlue)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -314,5 +359,8 @@
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.RadioButton RDOBackColor;
         private System.Windows.Forms.RadioButton RDOForeColor;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button BtnDefaultGRNPath;
+        private System.Windows.Forms.TextBox TxtDefaultGRN;
     }
 }
