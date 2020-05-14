@@ -37,7 +37,6 @@ namespace SimpleBilling.MasterForms
                                 Gross_Total = header.GrossTotal,
                                 Total_Discount = header.TotalDiscout,
                                 Net_Total = header.NetTotal
-
                             }).ToList();
                 DGVInvoices.DataSource = data;
             }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBilling.Model
@@ -8,7 +9,8 @@ namespace SimpleBilling.Model
         [Key]
         public int SupplierId { get; set; }
         [MaxLength(150)]
-        [Required][Index(IsUnique = true)]
+        [Required]
+        [Index(IsUnique = true)]
         public string Name { get; set; }
         [MaxLength(25)]
         [Required]
@@ -17,6 +19,7 @@ namespace SimpleBilling.Model
         [EmailAddress]
         public string Email { get; set; }
         public string CodeNumber { get; set; }
+        public virtual ICollection<GRNHeader> GRNHeaders { get; set; }
 
     }
 }
