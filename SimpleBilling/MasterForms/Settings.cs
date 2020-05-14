@@ -1,5 +1,4 @@
-﻿using iText.Kernel.Colors;
-using SimpleBilling.Model;
+﻿using SimpleBilling.Model;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -41,7 +40,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(s).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(s);
                             db.Entry(s).State = EntityState.Added;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                         }
                         else
                         {
@@ -50,7 +49,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(r);
                             db.Entry(r).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                         }
                     }
                 }
@@ -140,7 +139,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<Setting>().Attach(data);
                     data.UpdatedDate = DateTime.Now;
                     db.Entry(data).State = EntityState.Modified;
-                    db.SaveChanges();
+                    db.BulkSaveChanges();
                     Info.Mes("Settings Saved Successfully");
                 }
             }
@@ -195,7 +194,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(s).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(s);
                             db.Entry(s).State = EntityState.Added;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                         }
                         else
                         {
@@ -204,7 +203,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(r);
                             db.Entry(r).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                         }
                     }
                 }

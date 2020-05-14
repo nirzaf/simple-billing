@@ -259,7 +259,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<GRNHeader>().Attach(header);
                             header.CreatedDate = DateTime.Now;
                             db.Entry(header).State = EntityState.Added;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             GRN_Id = header.GRN_Id;
                             GRN_Code = TxtGRNNo.Text.Trim();
                         }
@@ -269,7 +269,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<GRNHeader>().Attach(grn);
                             grn.UpdatedDate = DateTime.Now;
                             db.Entry(grn).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             GRN_Id = grn.GRN_Id;
                             GRN_Code = TxtGRNNo.Text.Trim();
 
@@ -293,7 +293,7 @@ namespace SimpleBilling.MasterForms
                                     db.Set<GRNDetails>().Attach(result);
                                 result.UpdatedDate = DateTime.Now;
                                 db.Entry(result).State = EntityState.Modified;
-                                db.SaveChanges();
+                                db.BulkSaveChanges();
                             }
                             else
                             {
@@ -316,7 +316,7 @@ namespace SimpleBilling.MasterForms
                                 if (db.Entry(details).State == EntityState.Detached)
                                     db.Set<GRNDetails>().Attach(details);
                                 db.Entry(details).State = EntityState.Added;
-                                db.SaveChanges();
+                                db.BulkSaveChanges();
                                 if (details.GRN_Id != 0)
                                 {
                                     LoadDetails(GRN_Code);
@@ -370,7 +370,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<GRNHeader>().Attach(header);
                     header.UpdatedDate = DateTime.Now;
                     db.Entry(header).State = EntityState.Modified;
-                    db.SaveChanges();
+                    db.BulkSaveChanges();
                 }
             }
             catch (Exception ex)
@@ -420,7 +420,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<GRNDetails>().Attach(Result);
                         Result.UpdatedDate = DateTime.Now;
                         db.Entry(Result).State = EntityState.Modified;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                         LoadDetails(GRN_Code);
                     }
                 }
@@ -448,7 +448,7 @@ namespace SimpleBilling.MasterForms
                                     db1.Set<Item>().Attach(item);
                                 item.UpdatedDate = DateTime.Now;
                                 db1.Entry(item).State = EntityState.Modified;
-                                db1.SaveChanges();
+                                db1.BulkSaveChanges();
                             }
                         }
                     }
@@ -459,7 +459,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<GRNHeader>().Attach(Result);
                     Result.UpdatedDate = DateTime.Now;
                     db.Entry(Result).State = EntityState.Modified;
-                    db.SaveChanges();
+                    db.BulkSaveChanges();
                     LoadDetails(GRN_Code);
                 }
             }
@@ -516,7 +516,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(ch).State == EntityState.Detached)
                             db.Set<Cheque>().Attach(ch);
                         db.Entry(ch).State = EntityState.Added;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                         CmbChooseCheques.SelectedValue = ch.ChequeNo;
                     }
                     else
@@ -589,7 +589,7 @@ namespace SimpleBilling.MasterForms
                                         db.Set<GRNHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
-                                    db.SaveChanges();
+                                    db.BulkSaveChanges();
                                     Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
                                 }
                                 else
@@ -607,7 +607,7 @@ namespace SimpleBilling.MasterForms
                                         db.Set<GRNHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
-                                    db.SaveChanges();
+                                    db.BulkSaveChanges();
                                     Info.Mes("Payment Completed Successfully");
                                 }
                             }
@@ -668,13 +668,13 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(item);
                             item.UpdatedDate = DateTime.Now;
                             db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             LoadDetails(GRNNo);
                         }
 
@@ -689,7 +689,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<GRNHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
                         db.Entry(header).State = EntityState.Modified;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                         LoadDetails(GRN_Code);
                     }
                 }
@@ -744,13 +744,13 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(item);
                             item.UpdatedDate = DateTime.Now;
                             db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                         }
 
                         var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
@@ -762,7 +762,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<GRNHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
                         db.Entry(header).State = EntityState.Modified;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                         LoadDetails(GRN_Code);
                     }
                 }

@@ -96,7 +96,7 @@ namespace SimpleBilling.MasterForms
                             shelve.IsDeleted = true;
                             shelve.UpdatedDate = DateTime.Now;
                             db.Entry(shelve).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             Info("Shelve Deleted Successfully");
                         }
                     }
@@ -151,7 +151,7 @@ namespace SimpleBilling.MasterForms
                             db.Entry(shelve).State = EntityState.Modified;
                             Info("Shelf Modified");
                         }
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                     }
                 }
             }

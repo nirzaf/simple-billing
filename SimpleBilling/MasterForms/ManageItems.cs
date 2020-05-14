@@ -1,8 +1,8 @@
-﻿using System;
-using SimpleBilling.Model;
-using System.Windows.Forms;
+﻿using SimpleBilling.Model;
+using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
 {
@@ -79,7 +79,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<Item>().Attach(items);
                         db.Entry(items).State = EntityState.Added;
                         items.CreatedDate = DateTime.Today;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                         Info.Mes("Item Added Successfully");
                     }
                     else
@@ -100,7 +100,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(result);
                             result.UpdatedDate = DateTime.Now;
                             db.Entry(result).State = EntityState.Modified;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             Info.Mes("Item Modified Successfully");
                         }
                     }
@@ -237,7 +237,7 @@ namespace SimpleBilling.MasterForms
                             items.UpdatedDate = DateTime.Now;
                             db.Entry(items).State = EntityState.Modified;
                             items.UpdatedDate = DateTime.Now;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             Info.Mes("Item Deleted Successfully");
                         }
                     }

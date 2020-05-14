@@ -81,7 +81,7 @@ namespace SimpleBilling
                             cat.UpdatedDate = DateTime.Now;
                             Info("Customer Modified");
                         }
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                     }
                 }
             }
@@ -116,7 +116,7 @@ namespace SimpleBilling
                             cus.UpdatedDate = DateTime.Now;
                             db.Entry(cus).State = EntityState.Modified;
                             cus.UpdatedDate = DateTime.Now;
-                            db.SaveChanges();
+                            db.BulkSaveChanges();
                             Info("Customer Deleted Successfully");
                         }
                     }

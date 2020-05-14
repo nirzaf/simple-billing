@@ -47,10 +47,10 @@ namespace SimpleBilling.MasterForms
             {
                 var Item = db.Items.FirstOrDefault(c => c.Id.Equals(ItemId));
                 Item.SellingPrice = Price;
-                if(db.Entry(Item).State == EntityState.Detached)
+                if (db.Entry(Item).State == EntityState.Detached)
                     db.Set<Item>().Attach(Item);
                 db.Entry(Item).State = EntityState.Modified;
-                db.SaveChanges();
+                db.BulkSaveChanges();
                 LoadDGV();
             }
         }

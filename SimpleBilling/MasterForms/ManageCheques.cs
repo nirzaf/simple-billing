@@ -53,16 +53,18 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            CRUDPanel.Enabled = true;
-            BtnSave.Enabled = true;
-            BtnCancel.Enabled = true;
+            AddEdit();
         }
 
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private void AddEdit()
         {
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
+        }
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            AddEdit();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -93,7 +95,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(chd).State == System.Data.Entity.EntityState.Detached)
                             db.Set<Cheque>().Attach(chd);
                         db.Entry(chd).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                     }
                     else
                     {
@@ -110,7 +112,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(ch).State == System.Data.Entity.EntityState.Detached)
                             db.Set<Cheque>().Attach(ch);
                         db.Entry(ch).State = System.Data.Entity.EntityState.Added;
-                        db.SaveChanges();
+                        db.BulkSaveChanges();
                     }
                 }
             }
