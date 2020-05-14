@@ -36,7 +36,7 @@ namespace SimpleBilling.MasterForms
             BtnCancel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                var data = (from bm in db.BusinessModels.Where(c => c.IsDeleted == false)
+                var data = (from bm in db.BusinessModels.Where(c => !c.IsDeleted)
                             select new
                             {
                                 bm.Id,
@@ -69,7 +69,7 @@ namespace SimpleBilling.MasterForms
                         }
                         item.IsActive = true;
                         db.Entry(item).State = EntityState.Modified;
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                     }
                 }
             }
@@ -104,7 +104,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(bm).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(bm);
                             db.Entry(bm).State = EntityState.Added;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                             Info.Mes("Business Info Added");
                         }
                         else
@@ -124,7 +124,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(bm).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(bm);
                             db.Entry(bm).State = EntityState.Modified;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                             Info.Mes("Business Info Modified");
                         }
                         else

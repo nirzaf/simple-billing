@@ -23,7 +23,7 @@ namespace SimpleBilling.Report
         {
             using (BillingContext db = new BillingContext())
             {
-                var RptHeader = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
+                var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
                                  join cashier in db.Employee
                                  on header.Cashier equals cashier.EmployeeId
                                  select new
@@ -40,7 +40,7 @@ namespace SimpleBilling.Report
                                  }).ToList();
                 ReceiptHeader.DataSource = RptHeader;
 
-                var RptBody = (from body in db.ReceiptBodies.Where(c => c.IsDeleted == false && c.ReceiptNo == ReceiptNo)
+                var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
                                join item in db.Items
                                on body.ProductId equals item.Id
                                select new

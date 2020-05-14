@@ -23,7 +23,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                shelfBindingSource.DataSource = db.Shelves.Where(c => c.IsDeleted == false).ToList();
+                shelfBindingSource.DataSource = db.Shelves.Where(c => !c.IsDeleted).ToList();
             }
         }
 
@@ -96,7 +96,7 @@ namespace SimpleBilling.MasterForms
                             shelve.IsDeleted = true;
                             shelve.UpdatedDate = DateTime.Now;
                             db.Entry(shelve).State = EntityState.Modified;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                             Info("Shelve Deleted Successfully");
                         }
                     }
@@ -151,7 +151,7 @@ namespace SimpleBilling.MasterForms
                             db.Entry(shelve).State = EntityState.Modified;
                             Info("Shelf Modified");
                         }
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                     }
                 }
             }

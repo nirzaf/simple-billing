@@ -25,7 +25,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from header in db.ReceiptHeaders.Where(c => c.IsDeleted == false && c.IsQuotation == false)
+                var data = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && !c.IsQuotation)
                             join cashier in db.Employee
                             on header.Cashier equals cashier.EmployeeId
                             select new
@@ -89,7 +89,7 @@ namespace SimpleBilling.MasterForms
                     if (FilterByReceipt.Length > 0)
                     {
                         var data = (from header in db.ReceiptHeaders
-                                    .Where(c => c.IsDeleted == false && c.IsQuotation == false
+                                    .Where(c => !c.IsDeleted && !c.IsQuotation
                                     && c.ReceiptNo.Contains(FilterByReceipt))
                                     join cashier in db.Employee
                                     on header.Cashier equals cashier.EmployeeId
@@ -109,7 +109,7 @@ namespace SimpleBilling.MasterForms
                     else
                     {
                         var data = (from header in db.ReceiptHeaders
-                                    .Where(c => c.IsDeleted == false && c.IsQuotation == false)
+                                    .Where(c => !c.IsDeleted && !c.IsQuotation)
                                     join cashier in db.Employee
                                     on header.Cashier equals cashier.EmployeeId
                                     select new
@@ -143,7 +143,7 @@ namespace SimpleBilling.MasterForms
                     if (date.Length > 0)
                     {
                         var data = (from header in db.ReceiptHeaders
-                                    .Where(c => c.IsDeleted == false && c.IsQuotation == false
+                                    .Where(c => !c.IsDeleted && !c.IsQuotation
                                     && c.Date == date)
                                     join cashier in db.Employee
                                     on header.Cashier equals cashier.EmployeeId
@@ -173,7 +173,7 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 var data = (from header in db.ReceiptHeaders
-                .Where(c => c.IsDeleted == false && c.IsQuotation == false)
+                .Where(c => !c.IsDeleted && !c.IsQuotation)
                             join cashier in db.Employee
                             on header.Cashier equals cashier.EmployeeId
                             select new

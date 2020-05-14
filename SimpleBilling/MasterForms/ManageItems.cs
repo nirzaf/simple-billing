@@ -79,7 +79,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<Item>().Attach(items);
                         db.Entry(items).State = EntityState.Added;
                         items.CreatedDate = DateTime.Today;
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                         Info.Mes("Item Added Successfully");
                     }
                     else
@@ -100,7 +100,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(result);
                             result.UpdatedDate = DateTime.Now;
                             db.Entry(result).State = EntityState.Modified;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                             Info.Mes("Item Modified Successfully");
                         }
                     }
@@ -144,7 +144,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from item in db.Items.Where(c => c.IsDeleted == false)
+                var data = (from item in db.Items.Where(c => !c.IsDeleted)
                             join cat in db.Categories
                             on item.Categories.CategoryId equals cat.CategoryId
                             join shelve in db.Shelves
@@ -165,11 +165,11 @@ namespace SimpleBilling.MasterForms
 
                 CmbCategories.ValueMember = "CategoryId";
                 CmbCategories.DisplayMember = "CategoryName";
-                CmbCategories.DataSource = db.Categories.Where(c => c.IsDeleted == false).ToList();
+                CmbCategories.DataSource = db.Categories.Where(c => !c.IsDeleted).ToList();
 
                 CmbShelf.ValueMember = "ShelfId";
                 CmbShelf.DisplayMember = "ShelfName";
-                CmbShelf.DataSource = db.Shelves.Where(c => c.IsDeleted == false).ToList();
+                CmbShelf.DataSource = db.Shelves.Where(c => !c.IsDeleted).ToList();
             }
         }
 
@@ -237,7 +237,7 @@ namespace SimpleBilling.MasterForms
                             items.UpdatedDate = DateTime.Now;
                             db.Entry(items).State = EntityState.Modified;
                             items.UpdatedDate = DateTime.Now;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                             Info.Mes("Item Deleted Successfully");
                         }
                     }

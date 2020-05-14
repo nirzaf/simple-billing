@@ -63,7 +63,7 @@ namespace SimpleBilling.MasterForms
             BtnEdit.Enabled = true;
             using (BillingContext db = new BillingContext())
             {
-                var data = (from bank in db.Banks.Where(c => c.IsDeleted == false)
+                var data = (from bank in db.Banks.Where(c => !c.IsDeleted)
                             select new
                             {
                                 bank.BankId,
@@ -95,20 +95,20 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(b).State == EntityState.Detached)
                                 db.Set<Bank>().Attach(b);
                             db.Entry(b).State = EntityState.Added;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                         }
                         else if (Info.IsEmpty(TxtBankName))
                         {
                             if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
                             {
-                                var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && c.IsDeleted == false);
+                                var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && !c.IsDeleted);
                                 if (b != null)
                                 {
                                     b.BankName = TxtBankName.Text.Trim();
                                     if (db.Entry(b).State == EntityState.Detached)
                                         db.Set<Bank>().Attach(b);
                                     db.Entry(b).State = EntityState.Modified;
-                                    db.BulkSaveChanges();
+                                    db.BulkSaveChangesAsync();
                                 }
                             }
                         }
@@ -141,14 +141,14 @@ namespace SimpleBilling.MasterForms
                         {
                             if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
                             {
-                                var b = db.Banks.FirstOrDefault(c => c.BankId == BankId && c.IsDeleted == false);
+                                var b = db.Banks.FirstOrDefault(c => c.BankId == BankId && !c.IsDeleted);
                                 if (b != null)
                                 {
                                     b.IsDeleted = true;
                                     if (db.Entry(b).State == EntityState.Detached)
                                         db.Set<Bank>().Attach(b);
                                     db.Entry(b).State = EntityState.Modified;
-                                    db.BulkSaveChanges();
+                                    db.BulkSaveChangesAsync();
                                 }
                             }
                         }

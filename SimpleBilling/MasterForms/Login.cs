@@ -46,6 +46,10 @@ namespace SimpleBilling.MasterForms
                             Hide();
                             Info.CashierId = data.EmployeeId;
                         }
+                        else
+                        {
+                            Info.Mes("Pass code is not valid, Please try again");
+                        }
                     }
                 }
             }

@@ -50,7 +50,7 @@ namespace SimpleBilling.MasterForms
                 if (db.Entry(Item).State == EntityState.Detached)
                     db.Set<Item>().Attach(Item);
                 db.Entry(Item).State = EntityState.Modified;
-                db.BulkSaveChanges();
+                db.BulkSaveChangesAsync();
                 LoadDGV();
             }
         }

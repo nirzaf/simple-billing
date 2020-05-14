@@ -95,7 +95,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(chd).State == System.Data.Entity.EntityState.Detached)
                             db.Set<Cheque>().Attach(chd);
                         db.Entry(chd).State = System.Data.Entity.EntityState.Modified;
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                     }
                     else
                     {
@@ -112,7 +112,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(ch).State == System.Data.Entity.EntityState.Detached)
                             db.Set<Cheque>().Attach(ch);
                         db.Entry(ch).State = System.Data.Entity.EntityState.Added;
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                     }
                 }
             }

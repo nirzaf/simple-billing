@@ -37,7 +37,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from ve in db.Vehicles.Where(c => c.IsDeleted == false)
+                var data = (from ve in db.Vehicles.Where(c => !c.IsDeleted)
                             join cus in db.Customers
                             on ve.OwnerId equals cus.CustomerId
                             select new
@@ -65,7 +65,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var r = db.Vehicles.FirstOrDefault(c => c.VehicleNo == VehicleNum && c.IsDeleted == false);
+                    var r = db.Vehicles.FirstOrDefault(c => c.VehicleNo == VehicleNum && !c.IsDeleted);
                     if (r != null)
                     {
                         if (db.Entry(r).State == EntityState.Detached)
@@ -73,7 +73,7 @@ namespace SimpleBilling.MasterForms
                         r.IsDeleted = true;
                         r.UpdatedDate = Info.Today();
                         db.Entry(r).State = EntityState.Added;
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                         Info.Mes("Selected Vehicle Deleted Successfully");
                     }
                     else
@@ -100,7 +100,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var r = db.Vehicles.FirstOrDefault(c => c.VehicleNo == TxtVehicleNumber.Text.Trim() && c.IsDeleted == false);
+                    var r = db.Vehicles.FirstOrDefault(c => c.VehicleNo == TxtVehicleNumber.Text.Trim() && !c.IsDeleted);
                     if (r == null)
                     {
                         if (Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtServiceMileageDue))
@@ -120,7 +120,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(v).State == EntityState.Detached)
                                 db.Set<Vehicle>().Attach(v);
                             db.Entry(v).State = EntityState.Added;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                         }
                     }
                     else
@@ -138,7 +138,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Vehicle>().Attach(r);
                             db.Entry(r).State = EntityState.Modified;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                         }
                     }
                 }

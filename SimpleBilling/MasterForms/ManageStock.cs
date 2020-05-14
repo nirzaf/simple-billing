@@ -1,6 +1,5 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -25,7 +24,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = (from i in db.Items.Where(c => c.IsDeleted == false && c.IsService == false)
+                var data = (from i in db.Items.Where(c => !c.IsDeleted && !c.IsService)
                             select new
                             {
                                 i.Id,
@@ -60,8 +59,7 @@ namespace SimpleBilling.MasterForms
                                     .Where(c => c.Code.Contains(Filter)
                                     || c.Barcode.Contains(Filter)
                                     || c.ItemName.Contains(Filter)
-                                    && c.IsDeleted == false
-                                    && c.IsService == false)
+                                    && !c.IsDeleted && !c.IsService)
                                     select new
                                     {
                                         i.Id,
@@ -74,7 +72,7 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
-                        var data = (from i in db.Items.Where(c => c.IsDeleted == false && c.IsService == false)
+                        var data = (from i in db.Items.Where(c => !c.IsDeleted && !c.IsService)
                                     select new
                                     {
                                         i.Id,
@@ -114,7 +112,7 @@ namespace SimpleBilling.MasterForms
                                     if (db.Entry(data).State == EntityState.Detached)
                                         db.Set<Item>().Attach(data);
                                     db.Entry(data).State = EntityState.Modified;
-                                    db.BulkSaveChanges();
+                                    db.BulkSaveChangesAsync();
                                 }
                                 else
                                 {

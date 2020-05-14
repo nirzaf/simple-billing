@@ -27,7 +27,7 @@ namespace SimpleBilling
             BtnDelete.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                customersBindingSource1.DataSource = db.Customers.Where(c => c.IsDeleted == false).ToList();
+                customersBindingSource1.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
             }
         }
 
@@ -81,7 +81,7 @@ namespace SimpleBilling
                             cat.UpdatedDate = DateTime.Now;
                             Info("Customer Modified");
                         }
-                        db.BulkSaveChanges();
+                        db.BulkSaveChangesAsync();
                     }
                 }
             }
@@ -116,7 +116,7 @@ namespace SimpleBilling
                             cus.UpdatedDate = DateTime.Now;
                             db.Entry(cus).State = EntityState.Modified;
                             cus.UpdatedDate = DateTime.Now;
-                            db.BulkSaveChanges();
+                            db.BulkSaveChangesAsync();
                             Info("Customer Deleted Successfully");
                         }
                     }
