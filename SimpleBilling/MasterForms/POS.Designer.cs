@@ -34,6 +34,7 @@
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
             this.CmbAddItem = new System.Windows.Forms.ComboBox();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TxtAddress = new System.Windows.Forms.TextBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
@@ -90,6 +91,11 @@
             this.CmbChooseCheques = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.TxtOverallDiscount = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.LblPaidAmount = new System.Windows.Forms.Label();
+            this.LblPendingAmount = new System.Windows.Forms.Label();
+            this.LblPaymentStatus = new System.Windows.Forms.Label();
             this.BtnVoid = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -107,13 +113,8 @@
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.BtnAddToPending = new System.Windows.Forms.Button();
             this.ToolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.LblPaidAmount = new System.Windows.Forms.Label();
-            this.LblPendingAmount = new System.Windows.Forms.Label();
-            this.LblPaymentStatus = new System.Windows.Forms.Label();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.DownLayout.SuspendLayout();
@@ -122,7 +123,6 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -869,6 +869,61 @@
             this.TxtOverallDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtOverallDiscount_KeyPress);
             this.TxtOverallDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtOverallDiscount_KeyUp);
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(3, 71);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(148, 19);
+            this.label20.TabIndex = 33;
+            this.label20.Text = "Paid Amount";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(3, 101);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(148, 19);
+            this.label21.TabIndex = 34;
+            this.label21.Text = "Pending Amount";
+            // 
+            // LblPaidAmount
+            // 
+            this.LblPaidAmount.AutoSize = true;
+            this.LblPaidAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblPaidAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblPaidAmount.Location = new System.Drawing.Point(157, 71);
+            this.LblPaidAmount.Name = "LblPaidAmount";
+            this.LblPaidAmount.Size = new System.Drawing.Size(160, 19);
+            this.LblPaidAmount.TabIndex = 35;
+            this.LblPaidAmount.Text = "0";
+            // 
+            // LblPendingAmount
+            // 
+            this.LblPendingAmount.AutoSize = true;
+            this.LblPendingAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblPendingAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblPendingAmount.Location = new System.Drawing.Point(157, 101);
+            this.LblPendingAmount.Name = "LblPendingAmount";
+            this.LblPendingAmount.Size = new System.Drawing.Size(160, 19);
+            this.LblPendingAmount.TabIndex = 36;
+            this.LblPendingAmount.Text = "0";
+            // 
+            // LblPaymentStatus
+            // 
+            this.LblPaymentStatus.AutoSize = true;
+            this.LblPaymentStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LblPaymentStatus.ForeColor = System.Drawing.Color.White;
+            this.LblPaymentStatus.Location = new System.Drawing.Point(513, 131);
+            this.LblPaymentStatus.Name = "LblPaymentStatus";
+            this.LblPaymentStatus.Size = new System.Drawing.Size(165, 19);
+            this.LblPaymentStatus.TabIndex = 37;
+            this.LblPaymentStatus.Text = "Payment Status";
+            // 
             // BtnVoid
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
@@ -1088,61 +1143,6 @@
             this.BtnAddToPending.UseVisualStyleBackColor = false;
             this.BtnAddToPending.Click += new System.EventHandler(this.BtnAddToPending_Click);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(3, 71);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(148, 19);
-            this.label20.TabIndex = 33;
-            this.label20.Text = "Paid Amount";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(3, 101);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(148, 19);
-            this.label21.TabIndex = 34;
-            this.label21.Text = "Pending Amount";
-            // 
-            // LblPaidAmount
-            // 
-            this.LblPaidAmount.AutoSize = true;
-            this.LblPaidAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblPaidAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.LblPaidAmount.Location = new System.Drawing.Point(157, 71);
-            this.LblPaidAmount.Name = "LblPaidAmount";
-            this.LblPaidAmount.Size = new System.Drawing.Size(160, 19);
-            this.LblPaidAmount.TabIndex = 35;
-            this.LblPaidAmount.Text = "0";
-            // 
-            // LblPendingAmount
-            // 
-            this.LblPendingAmount.AutoSize = true;
-            this.LblPendingAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblPendingAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.LblPendingAmount.Location = new System.Drawing.Point(157, 101);
-            this.LblPendingAmount.Name = "LblPendingAmount";
-            this.LblPendingAmount.Size = new System.Drawing.Size(160, 19);
-            this.LblPendingAmount.TabIndex = 36;
-            this.LblPendingAmount.Text = "0";
-            // 
-            // LblPaymentStatus
-            // 
-            this.LblPaymentStatus.AutoSize = true;
-            this.LblPaymentStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblPaymentStatus.ForeColor = System.Drawing.Color.White;
-            this.LblPaymentStatus.Location = new System.Drawing.Point(513, 131);
-            this.LblPaymentStatus.Name = "LblPaymentStatus";
-            this.LblPaymentStatus.Size = new System.Drawing.Size(165, 19);
-            this.LblPaymentStatus.TabIndex = 37;
-            this.LblPaymentStatus.Text = "Payment Status";
-            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -1156,6 +1156,7 @@
             this.Name = "POS";
             this.Text = "POS";
             this.Load += new System.EventHandler(this.POS_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.CRUDPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
@@ -1167,7 +1168,6 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             this.ResumeLayout(false);
 

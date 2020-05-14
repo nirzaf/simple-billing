@@ -185,6 +185,7 @@ namespace SimpleBilling.MasterForms
                                              header.PaymentType,
                                              header.IsPaid,
                                              header.PendingValue,
+                                             header.PaidValue,
                                              header.IsQuotation,
                                              Cashier = cashier.EmployeeName,
                                              header.Remarks,
@@ -201,7 +202,7 @@ namespace SimpleBilling.MasterForms
                         }
                         foreach (var a in RptHeader)
                         {
-                            PaidValue = a.PaidAmount;
+                            PaidValue = a.PaidValue;
                             PendingValue = a.PendingValue;
                             LblPaidAmount.Text = PaidValue.ToString();
                             LblPendingAmount.Text = PendingValue.ToString();
@@ -627,51 +628,66 @@ namespace SimpleBilling.MasterForms
                     using (BillingContext db = new BillingContext())
                     {
                         var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && !c.IsDeleted);
-                        if (Result != null && Result.Status == 1)
+                        if (Result != null)
                         {
-                            if (!string.IsNullOrWhiteSpace(Result.VehicleNumber) && Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
+                            if (!Result.IsPaid)
                             {
-                                InsertMileage();
-                            }
-                            Result.NetTotal = ReceiptNetTotal;
-                            Result.TotalDiscount = ReceiptTotalDiscount;
-                            Result.SubTotal = ReceiptSubTotal;
-                            Result.PaidAmount = GivenAmount;
-                            Result.Balance = BalanceAmount;
-                            Result.PaymentType = GetPaymentType();
-                            if (Result.PaymentType == "Cheque")
-                            {
-                                Result.ChequeNo = CmbChooseCheques.Text;
-                            }
-                            if (Type == 1)
-                            {
-                                Result.Status = 2;
-                                Result.IsQuotation = false;
-                            }
-                            if (Type == 2)
-                            {
-                                Result.Status = 3;
-                                Result.IsQuotation = true;
-                            }
-                            Result.UpdatedDate = DateTime.Now;
-                            Result.Remarks = TxtRemarks.Text.Trim();
-                            if (db.Entry(Result).State == EntityState.Detached)
-                                db.Set<ReceiptHeader>().Attach(Result);
-                            db.Entry(Result).State = EntityState.Modified;
-                            db.SaveChanges();
-                            ReceiptStatus = Result.Status;
-                            LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                            ReduceStock(true);
-                            if (Type == 1)
-                            {
-                                MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
-                                BtnPrint.Enabled = true;
-                            }
+                                if (!string.IsNullOrWhiteSpace(Result.VehicleNumber) && Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
+                                {
+                                    InsertMileage();
+                                }
+                                Result.NetTotal = ReceiptNetTotal;
+                                Result.TotalDiscount = ReceiptTotalDiscount;
+                                Result.SubTotal = ReceiptSubTotal;
+                                Result.PaidAmount = GivenAmount;
+                                if ((Result.PaidValue + GivenAmount) > ReceiptNetTotal)
+                                    Result.PaidValue = ReceiptNetTotal;
+                                else
+                                    Result.PaidValue += GivenAmount;
+                                Result.Balance = BalanceAmount;
+                                Result.PendingValue = PendingValue;
+                                Result.PaymentType = GetPaymentType();
+                                if (PendingValue == 0)
+                                    Result.IsPaid = true;
 
-                            if (Type == 2)
+                                if (Result.PaymentType == "Cheque")
+                                {
+                                    Result.ChequeNo = CmbChooseCheques.Text;
+                                }
+                                if (Type == 1)
+                                {
+                                    Result.Status = 2;
+                                    Result.IsQuotation = false;
+                                }
+                                if (Type == 2)
+                                {
+                                    Result.Status = 3;
+                                    Result.IsQuotation = true;
+                                }
+                                Result.UpdatedDate = DateTime.Now;
+                                Result.Remarks = TxtRemarks.Text.Trim();
+                                if (db.Entry(Result).State == EntityState.Detached)
+                                    db.Set<ReceiptHeader>().Attach(Result);
+                                db.Entry(Result).State = EntityState.Modified;
+                                db.SaveChanges();
+                                ReceiptStatus = Result.Status;
+                                LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
+                                ReduceStock(true);
+                                if (Type == 1)
+                                {
+                                    MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
+                                    BtnPrint.Enabled = true;
+                                }
+
+                                if (Type == 2)
+                                {
+                                    MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
+                                    BtnPrintQuotation.Enabled = true;
+                                }
+                            }
+                            else
                             {
-                                MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
-                                BtnPrintQuotation.Enabled = true;
+                                Info.Mes("This receipt had been paid already");
                             }
                         }
                     }
@@ -683,6 +699,7 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
+                DGVLoad(LblReceiptNo.Text.Trim());
                 PrintAndVoid();
             }
         }
@@ -775,8 +792,16 @@ namespace SimpleBilling.MasterForms
 
                 BalanceAmount = GivenAmount - ReceiptNetTotal;
                 LblBalanceAmount.Text = BalanceAmount.ToString();
-                PendingValue = ReceiptNetTotal;
-                LblPendingAmount.Text = PendingValue.ToString();
+                PendingValue = ReceiptNetTotal - GivenAmount;
+                if (PendingValue > 0)
+                {
+                    LblPendingAmount.Text = PendingValue.ToString();
+                }
+                else
+                {
+                    PendingValue = 0;
+                    LblPendingAmount.Text = PendingValue.ToString();
+                }
                 PaidValue = Convert.ToSingle(TxtGivenAmount.Text.Trim());
             }
         }
@@ -918,24 +943,8 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
-                               join item in db.Items
-                               on body.ProductId equals item.Id
-                               select new
-                               {
-                                   item.Id,
-                                   item.Code,
-                                   item.ItemName,
-                                   body.UnitPrice,
-                                   body.Quantity,
-                                   body.SubTotal,
-                                   body.Discount,
-                                   body.NetTotal
-                               }).ToList();
-                DGVReceiptBody.DataSource = RptBody;
-                DataTable dt = Info.ToDataTable(RptBody);
                 var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
-                SalesReceiptAsPDF(dt, LblReceiptNo.Text, path.DefaultPath);
+                SalesReceiptAsPDF(rptBody, LblReceiptNo.Text, path.DefaultPath);
             }
         }
 
@@ -1145,10 +1154,13 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
 
                     table.AddFooterCell(new Cell(1, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Paid Amount")));
-                    table.AddFooterCell(new Cell(1, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PaidAmount.ToString())));
+                    table.AddFooterCell(new Cell(1, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PaidValue.ToString())));
 
                     table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Balance Amount")));
                     table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.Balance.ToString())));
+
+                    table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Pending Amount")));
+                    table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PendingValue.ToString())));
 
                     string footer1 = "........................................                                                                                                                                                                ...........................";
                     string footer2 = "     Customer Signature                                Please Note : Credit balance should be settled within 30 days                                          Checked by";
@@ -1401,8 +1413,8 @@ namespace SimpleBilling.MasterForms
         {
             if (TxtGivenAmount.Text.Length > 0)
             {
-                float givenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                BalanceAmount = givenAmount - Convert.ToSingle(LblNetTotal.Text);
+                GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                BalanceAmount = GivenAmount - Convert.ToSingle(LblNetTotal.Text);
                 LblBalanceAmount.Text = BalanceAmount.ToString();
             }
         }

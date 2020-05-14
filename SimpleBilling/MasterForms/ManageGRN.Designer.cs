@@ -98,11 +98,11 @@
             this.DGVGRNList = new System.Windows.Forms.DataGridView();
             this.DGVGRNReturned = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.LblPendingAmount = new System.Windows.Forms.Label();
             this.BtnPrintGRN = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.LblPaidAmount = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.LblPendingAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -231,6 +231,7 @@
             this.TxtUnitCost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUnitCost.Location = new System.Drawing.Point(425, 74);
             this.TxtUnitCost.Name = "TxtUnitCost";
+            this.TxtUnitCost.ReadOnly = true;
             this.TxtUnitCost.Size = new System.Drawing.Size(205, 26);
             this.TxtUnitCost.TabIndex = 4;
             // 
@@ -922,6 +923,16 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(167, 131);
             this.tableLayoutPanel6.TabIndex = 11;
             // 
+            // LblPendingAmount
+            // 
+            this.LblPendingAmount.AutoSize = true;
+            this.LblPendingAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblPendingAmount.Location = new System.Drawing.Point(3, 106);
+            this.LblPendingAmount.Name = "LblPendingAmount";
+            this.LblPendingAmount.Size = new System.Drawing.Size(18, 19);
+            this.LblPendingAmount.TabIndex = 4;
+            this.LblPendingAmount.Text = "0";
+            // 
             // BtnPrintGRN
             // 
             this.BtnPrintGRN.BackColor = System.Drawing.Color.White;
@@ -962,16 +973,6 @@
             this.label18.Size = new System.Drawing.Size(136, 19);
             this.label18.TabIndex = 3;
             this.label18.Text = "Pending Amount";
-            // 
-            // LblPendingAmount
-            // 
-            this.LblPendingAmount.AutoSize = true;
-            this.LblPendingAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.LblPendingAmount.Location = new System.Drawing.Point(3, 106);
-            this.LblPendingAmount.Name = "LblPendingAmount";
-            this.LblPendingAmount.Size = new System.Drawing.Size(18, 19);
-            this.LblPendingAmount.TabIndex = 4;
-            this.LblPendingAmount.Text = "0";
             // 
             // ManageGRN
             // 

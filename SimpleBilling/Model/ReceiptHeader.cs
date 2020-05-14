@@ -36,6 +36,7 @@ namespace SimpleBilling.Model
 
         public string VehicleNumber { get; set; }
         public float PaidAmount { get; set; }
+        public float PaidValue { get; set; }
         public float PendingValue { get; set; }
         public float Balance { get; set; }
 

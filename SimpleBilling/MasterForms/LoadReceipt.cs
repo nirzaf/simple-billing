@@ -60,9 +60,17 @@ namespace SimpleBilling.MasterForms
 
         private void OpenOPS()
         {
-            POS pos = new POS(ReceiptNo);
-            pos.Show();
-            Hide();
+            try
+            {
+                POS pos = new POS(ReceiptNo);
+                pos.Show();
+                Hide();
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
+            }
+
         }
 
         private void DGVLoadReceipt_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
