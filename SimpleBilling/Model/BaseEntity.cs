@@ -7,7 +7,7 @@ namespace SimpleBilling.Model
     {
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool IsDeleted { get; set; }
     }
 }
