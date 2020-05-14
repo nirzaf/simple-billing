@@ -265,20 +265,13 @@ namespace SimpleBilling.MasterForms
                         }
                         else
                         {
-                            try
-                            {
-                                if (db.Entry(grn).State == EntityState.Detached)
-                                    db.Set<GRNHeader>().Attach(grn);
-                                grn.UpdatedDate = DateTime.Now;
-                                db.Entry(grn).State = EntityState.Modified;
-                                db.SaveChanges();
-                                GRN_Id = grn.GRN_Id;
-                                GRN_Code = TxtGRNNo.Text.Trim();
-                            }
-                            catch (System.Data.Entity.Core.UpdateException ex)
-                            {
-                                ExportJSON.Add(ex.InnerException);
-                            }
+                            if (db.Entry(grn).State == EntityState.Detached)
+                                db.Set<GRNHeader>().Attach(grn);
+                            grn.UpdatedDate = DateTime.Now;
+                            db.Entry(grn).State = EntityState.Modified;
+                            db.SaveChanges();
+                            GRN_Id = grn.GRN_Id;
+                            GRN_Code = TxtGRNNo.Text.Trim();
 
                             int ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
                             var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == GRN_Id
@@ -300,7 +293,7 @@ namespace SimpleBilling.MasterForms
                                     db.Set<GRNDetails>().Attach(result);
                                 result.UpdatedDate = DateTime.Now;
                                 db.Entry(result).State = EntityState.Modified;
-                                db.BulkSaveChanges();
+                                db.SaveChanges();
                             }
                             else
                             {
@@ -323,14 +316,15 @@ namespace SimpleBilling.MasterForms
                                 if (db.Entry(details).State == EntityState.Detached)
                                     db.Set<GRNDetails>().Attach(details);
                                 db.Entry(details).State = EntityState.Added;
-                                db.BulkSaveChanges();
+                                db.SaveChanges();
                                 if (details.GRN_Id != 0)
                                 {
                                     LoadDetails(GRN_Code);
                                 }
                             }
+
+                            Calculate();
                         }
-                        Calculate();
                     }
                     else
                     {
