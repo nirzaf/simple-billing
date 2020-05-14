@@ -744,14 +744,12 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(item);
                             item.UpdatedDate = DateTime.Now;
                             db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
                             db.SaveChanges();
-                            LoadDetails(GRNNo);
                         }
 
                         var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
