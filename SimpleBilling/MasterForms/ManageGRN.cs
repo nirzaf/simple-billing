@@ -322,7 +322,6 @@ namespace SimpleBilling.MasterForms
                                     LoadDetails(GRN_Code);
                                 }
                             }
-
                             Calculate();
                         }
                     }
@@ -584,8 +583,8 @@ namespace SimpleBilling.MasterForms
                                     grn.PaymentType = CmbPaymentOptions.Text;
                                     if (CmbChooseCheques.Text == "Cheque")
                                         grn.ChequeNo = CmbChooseCheques.Text;
-                                    grn.PaidAmount += GivenValue;
-                                    grn.PendingAmount = BalanceValue;
+                                    grn.PaidAmount += Convert.ToSingle(LblNetTotal.Text);
+                                    grn.PendingAmount = 0;
                                     if (db.Entry(grn).State == EntityState.Detached)
                                         db.Set<GRNHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
@@ -598,7 +597,10 @@ namespace SimpleBilling.MasterForms
                                     grn.PaymentType = CmbPaymentOptions.Text;
                                     if (CmbChooseCheques.Text == "Cheque")
                                         grn.ChequeNo = CmbChooseCheques.Text;
-                                    grn.PaidAmount += GivenValue;
+                                    if (grn.PaidAmount + GivenValue > grn.NetTotal)
+                                        grn.PaidAmount = grn.NetTotal;
+                                    else
+                                        grn.PaidAmount += GivenValue;
                                     grn.PendingAmount = 0;
                                     grn.IsPaid = true;
                                     if (db.Entry(grn).State == EntityState.Detached)
