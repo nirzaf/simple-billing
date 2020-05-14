@@ -30,6 +30,8 @@ namespace SimpleBilling.MasterForms
         private float ReceiptTotalDiscount;
         private float ReceiptSubTotal;
         private float ReceiptNetTotal;
+        private float PaidValue;
+        private float PendingValue;
         private float GivenAmount;
         private float BalanceAmount;
         private int ReceiptStatus;
@@ -120,6 +122,9 @@ namespace SimpleBilling.MasterForms
                 LblBalanceAmount.Text = "0";
                 TxtGivenAmount.Text = string.Empty;
                 LblTotalDiscount.Text = "0";
+                LblPaidAmount.Text = "0";
+                LblPendingAmount.Text = "0";
+                LblPaymentStatus.Text = "Payment Status";
             }
             catch (Exception ex)
             {
@@ -176,6 +181,9 @@ namespace SimpleBilling.MasterForms
                                          header.Status,
                                          header.VehicleNumber,
                                          header.PaymentType,
+                                         header.IsPaid,
+                                         header.PendingValue,
+                                         header.IsQuotation,
                                          Cashier = cashier.EmployeeName,
                                          header.Remarks,
                                          customer.Name,
@@ -199,6 +207,7 @@ namespace SimpleBilling.MasterForms
                         LblReceiptNo.Text = a.ReceiptNo;
                         TxtRemarks.Text = a.Remarks;
                         TxtCustomer.Text = a.Contact;
+                        LblPaymentStatus.Text = GetPaymentStatus(a.IsPaid);
                         CmbPaymentOption.Text = a.PaymentType;
                         if (!string.IsNullOrWhiteSpace(a.VehicleNumber))
                             CmbVehicles.Text = a.VehicleNumber;
@@ -218,6 +227,14 @@ namespace SimpleBilling.MasterForms
                 }
                 LblReceiptNo.Text = GenReceiptNo();
             }
+        }
+
+        private string GetPaymentStatus(bool status)
+        {
+            if (status)
+                return "Paid";
+            else
+                return "Pending";
         }
 
         private string GenReceiptNo()

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace SimpleBilling
 {
@@ -58,6 +58,10 @@ namespace SimpleBilling
             catch (Exception e)
             {
                 Add(e);
+            }
+            finally
+            {
+                Info.Mes(ex.Message);
             }
         }
     }

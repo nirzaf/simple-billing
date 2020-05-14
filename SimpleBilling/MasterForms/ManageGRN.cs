@@ -27,6 +27,8 @@ namespace SimpleBilling.MasterForms
         private float Returns = 0;
         private float PaidValue;
         private float BalanceValue;
+        private float GivenValue;
+        private float PendingValue;
         private int LineNo;
         private DataTable dtGRN;
         private DataTable dtGRNReturn;
@@ -52,7 +54,6 @@ namespace SimpleBilling.MasterForms
         {
             BtnAddCheque.Visible = false;
             CmbChooseCheques.Visible = false;
-            TxtGivenAmount.Enabled = false;
             LayoutCheque.Visible = false;
             BtnGRNReturn.Enabled = false;
             BtnAddToReturn.Visible = false;
@@ -61,15 +62,18 @@ namespace SimpleBilling.MasterForms
             foreach (RowStyle rs in DGVPanel.RowStyles)
             {
                 count++;
-                if (count == 2)
+                if (DGVGRNReturned.Rows.Count == 0)
                 {
-                    rs.SizeType = SizeType.Percent;
-                    rs.Height = 0;
-                }
-                if (count == 1)
-                {
-                    rs.SizeType = SizeType.Percent;
-                    rs.Height = 100;
+                    if (count == 2)
+                    {
+                        rs.SizeType = SizeType.Percent;
+                        rs.Height = 0;
+                    }
+                    if (count == 1)
+                    {
+                        rs.SizeType = SizeType.Percent;
+                        rs.Height = 100;
+                    }
                 }
             }
         }
@@ -146,12 +150,13 @@ namespace SimpleBilling.MasterForms
                     {
                         TxtGRNNo.Text = GRN_New_Code;
                         TxtReference.Text = header.ReferenceNo;
+                        LblNetTotal.Text = header.NetTotal.ToString();
                         DTPDate.Value = Convert.ToDateTime(header.GRN_Date, CultureInfo.InvariantCulture);
                         CMBSupplier.SelectedItem = header.Supplier;
                         LblStatus.Text = Invoice_Status(header.Status);
                         LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
                         LblPaidAmount.Text = header.PaidAmount.ToString();
-                        LblPendingAmount.Text = header.PendingAmount.ToString();
+                        LblPendingAmount.Text = (Convert.ToSingle(LblNetTotal.Text) - Convert.ToSingle(LblPaidAmount.Text)).ToString();
                         if (header.Status == 3)
                         {
                             BtnGRNReturn.Enabled = true;
@@ -568,43 +573,66 @@ namespace SimpleBilling.MasterForms
 
         private void GRNPayment(string GRNNo)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                var grn = db.GRNHeaders.FirstOrDefault(c => !c.IsDeleted && c.GRN_No == GRNNo);
-                if (grn != null)
+                using (BillingContext db = new BillingContext())
                 {
-                    if (grn.Status == 3)
+                    var grn = db.GRNHeaders.FirstOrDefault(c => !c.IsDeleted && c.GRN_No == GRNNo);
+                    if (grn != null)
                     {
-                        if (BalanceValue > 0)
+                        if (grn.Status == 3)
                         {
-                            grn.PaymentType = CmbPaymentOptions.Text;
-                            if (CmbChooseCheques.Text == "Cheque")
-                                grn.ChequeNo = CmbChooseCheques.Text;
-                            grn.PaidAmount += PaidValue;
-                            grn.PendingAmount = BalanceValue;
-                            if (db.Entry(grn).State == EntityState.Detached)
-                                db.Set<GRNHeader>().Attach(grn);
-                            db.Entry(grn).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (!grn.IsPaid)
+                            {
+                                if (BalanceValue > 0)
+                                {
+                                    grn.PaymentType = CmbPaymentOptions.Text;
+                                    if (CmbChooseCheques.Text == "Cheque")
+                                        grn.ChequeNo = CmbChooseCheques.Text;
+                                    grn.PaidAmount += GivenValue;
+                                    grn.PendingAmount = BalanceValue;
+                                    if (db.Entry(grn).State == EntityState.Detached)
+                                        db.Set<GRNHeader>().Attach(grn);
+                                    grn.UpdatedDate = DateTime.Now;
+                                    db.Entry(grn).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
+                                }
+                                else
+                                {
+                                    grn.PaymentType = CmbPaymentOptions.Text;
+                                    if (CmbChooseCheques.Text == "Cheque")
+                                        grn.ChequeNo = CmbChooseCheques.Text;
+                                    grn.PaidAmount += GivenValue;
+                                    grn.PendingAmount = 0;
+                                    grn.IsPaid = true;
+                                    if (db.Entry(grn).State == EntityState.Detached)
+                                        db.Set<GRNHeader>().Attach(grn);
+                                    grn.UpdatedDate = DateTime.Now;
+                                    db.Entry(grn).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    Info.Mes("Payment Completed Successfully");
+                                }
+                            }
+                            else
+                            {
+                                Info.Mes("This Invoice has been paid already");
+                            }
                         }
                         else
                         {
-                            grn.PaymentType = CmbPaymentOptions.Text;
-                            if (CmbChooseCheques.Text == "Cheque")
-                                grn.ChequeNo = CmbChooseCheques.Text;
-                            grn.PaidAmount = PaidValue;
-                            grn.PendingAmount = BalanceValue;
-                            if (db.Entry(grn).State == EntityState.Detached)
-                                db.Set<GRNHeader>().Attach(grn);
-                            db.Entry(grn).State = EntityState.Modified;
-                            db.SaveChanges();
+                            Info.Mes("Cannot Pay before approve the Invoice");
                         }
                     }
-                    else
-                    {
-                        Info.Mes("Cannot Pay before approve the Invoice");
-                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
+            }
+            finally
+            {
+                LoadDetails(TxtGRNNo.Text.Trim());
             }
         }
 
@@ -730,11 +758,10 @@ namespace SimpleBilling.MasterForms
                         }
 
                         var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
-
-                        header.GrossTotal = NetTotal + TotalDiscount + Returns;
-                        header.TotalDiscout = TotalDiscount;
-                        header.NetTotal = NetTotal;
+                        header.TotalDiscout = Convert.ToSingle(LblTotalDiscount.Text);
+                        header.NetTotal = Convert.ToSingle(LblNetTotal.Text);
                         header.Returns = Convert.ToSingle(LblReturns.Text);
+                        header.GrossTotal = header.TotalDiscout + header.NetTotal + header.Returns;
                         if (db.Entry(header).State == EntityState.Detached)
                             db.Set<GRNHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
@@ -984,10 +1011,22 @@ namespace SimpleBilling.MasterForms
             if (Info.IsEmpty(TxtGivenAmount))
             {
                 NetTotal = Convert.ToSingle(LblNetTotal.Text.Trim());
-                PaidValue = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                BalanceValue = NetTotal - PaidValue;
+                PaidValue = Convert.ToSingle(LblPaidAmount.Text.Trim());
+                GivenValue = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                PendingValue = Convert.ToSingle(LblPendingAmount.Text.Trim());
+                BalanceValue = PendingValue - GivenValue;
                 LblBalanceAmount.Text = BalanceValue.ToString();
             }
+        }
+
+        private void BtnNewInvoice_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void Reset()
+        {
+            LoadDetails(string.Empty);
         }
     }
 }

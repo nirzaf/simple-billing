@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
@@ -37,6 +36,7 @@ namespace SimpleBilling.Model
 
         public string VehicleNumber { get; set; }
         public float PaidAmount { get; set; }
+        public float PendingValue { get; set; }
         public float Balance { get; set; }
 
         [DefaultValue(0)]
@@ -44,6 +44,8 @@ namespace SimpleBilling.Model
 
         [DefaultValue(false)]
         public bool IsQuotation { get; set; }
+        [DefaultValue(false)]
+        public bool IsPaid { get; set; }
 
         [MaxLength(30)]
         public string ChequeNo { get; set; }

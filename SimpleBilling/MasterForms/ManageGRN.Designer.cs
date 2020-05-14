@@ -637,6 +637,7 @@
             this.BtnNewInvoice.TabIndex = 17;
             this.BtnNewInvoice.Text = "New GRN Invoice";
             this.BtnNewInvoice.UseVisualStyleBackColor = false;
+            this.BtnNewInvoice.Click += new System.EventHandler(this.BtnNewInvoice_Click);
             // 
             // tableLayoutPanel5
             // 
