@@ -99,6 +99,10 @@
             this.DGVGRNReturned = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnPrintGRN = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.LblPaidAmount = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.LblPendingAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -681,6 +685,7 @@
             this.TxtGivenAmount.Size = new System.Drawing.Size(308, 26);
             this.TxtGivenAmount.TabIndex = 6;
             this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
+            this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
             // 
             // label13
             // 
@@ -900,26 +905,72 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.BtnPrintGRN, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.LblPendingAmount, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.BtnPrintGRN, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label17, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.LblPaidAmount, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label18, 0, 3);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1065, 331);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowCount = 5;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(167, 131);
             this.tableLayoutPanel6.TabIndex = 11;
             // 
             // BtnPrintGRN
             // 
             this.BtnPrintGRN.BackColor = System.Drawing.Color.White;
-            this.BtnPrintGRN.Location = new System.Drawing.Point(3, 46);
+            this.BtnPrintGRN.Location = new System.Drawing.Point(3, 3);
             this.BtnPrintGRN.Name = "BtnPrintGRN";
             this.BtnPrintGRN.Size = new System.Drawing.Size(161, 37);
             this.BtnPrintGRN.TabIndex = 0;
             this.BtnPrintGRN.Text = "Print GRN Invoice";
             this.BtnPrintGRN.UseVisualStyleBackColor = false;
             this.BtnPrintGRN.Click += new System.EventHandler(this.BtnPrintGRN_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(3, 43);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(106, 19);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "Paid Amount";
+            // 
+            // LblPaidAmount
+            // 
+            this.LblPaidAmount.AutoSize = true;
+            this.LblPaidAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblPaidAmount.Location = new System.Drawing.Point(3, 64);
+            this.LblPaidAmount.Name = "LblPaidAmount";
+            this.LblPaidAmount.Size = new System.Drawing.Size(18, 19);
+            this.LblPaidAmount.TabIndex = 2;
+            this.LblPaidAmount.Text = "0";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(3, 85);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(136, 19);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Pending Amount";
+            // 
+            // LblPendingAmount
+            // 
+            this.LblPendingAmount.AutoSize = true;
+            this.LblPendingAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblPendingAmount.Location = new System.Drawing.Point(3, 106);
+            this.LblPendingAmount.Name = "LblPendingAmount";
+            this.LblPendingAmount.Size = new System.Drawing.Size(18, 19);
+            this.LblPendingAmount.TabIndex = 4;
+            this.LblPendingAmount.Text = "0";
             // 
             // ManageGRN
             // 
@@ -957,6 +1008,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGRNReturned)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1031,5 +1083,9 @@
         private System.Windows.Forms.Label LblReturns;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button BtnPrintGRN;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label LblPaidAmount;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label LblPendingAmount;
     }
 }

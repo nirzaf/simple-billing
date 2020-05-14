@@ -34,5 +34,11 @@ namespace SimpleBilling.Model
 
         [MaxLength(30)]
         public string ChequeNo { get; set; }
+
+        [DefaultValue(0)]
+        public float PaidAmount { get; set; }
+
+        [DefaultValue(0)]
+        public float PendingAmount { get; set; }
     }
 }
