@@ -140,92 +140,104 @@ namespace SimpleBilling.MasterForms
 
         private void DGVLoad(string ReceiptNo)
         {
-            if (!string.IsNullOrEmpty(ReceiptNo))
+            try
             {
-                using (BillingContext db = new BillingContext())
+                if (!string.IsNullOrEmpty(ReceiptNo))
                 {
-                    customersBindingSource.DataSource = db.Customers.ToList();
-                    itemBindingSource.DataSource = db.Items.ToList();
-                    var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
-                                   join item in db.Items
-                                   on body.ProductId equals item.Id
-                                   select new
-                                   {
-                                       item.Id,
-                                       item.Code,
-                                       item.ItemName,
-                                       body.UnitPrice,
-                                       body.Quantity,
-                                       body.SubTotal,
-                                       body.Discount,
-                                       body.NetTotal
-                                   }).ToList();
-                    DGVReceiptBody.DataSource = RptBody;
-                    rptBody = Info.ToDataTable(RptBody);
-
-                    var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo && !c.IsQuotation)
-                                     join cashier in db.Employee.Where(c => !c.IsDeleted)
-                                     on header.Cashier equals cashier.EmployeeId
-                                     join customer in db.Customers.Where(c => !c.IsDeleted)
-                                     on header.CustomerId equals customer.CustomerId
-                                     select new
-                                     {
-                                         header.ReceiptNo,
-                                         header.Date,
-                                         header.Time,
-                                         header.TotalDiscount,
-                                         header.SubTotal,
-                                         header.NetTotal,
-                                         header.PaidAmount,
-                                         header.Balance,
-                                         header.Status,
-                                         header.VehicleNumber,
-                                         header.PaymentType,
-                                         header.IsPaid,
-                                         header.PendingValue,
-                                         header.IsQuotation,
-                                         Cashier = cashier.EmployeeName,
-                                         header.Remarks,
-                                         customer.Name,
-                                         customer.Address,
-                                         customer.Contact
-                                     }).ToList();
-
-                    var Mileage = db.MileTracking.FirstOrDefault(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo);
-                    if (Mileage != null)
+                    using (BillingContext db = new BillingContext())
                     {
-                        TxtCurrentMileage.Text = Mileage.Mileage.ToString();
-                        TxtNextServiceDue.Text = Mileage.NextServiceDue.ToString();
-                    }
-                    foreach (var a in RptHeader)
-                    {
-                        LblCashier.Text = a.Cashier;
-                        LblBalanceAmount.Text = a.Balance.ToString();
-                        TxtGivenAmount.Text = a.PaidAmount.ToString();
-                        ReceiptStatus = a.Status;
-                        LblReceiptStatus.Text = GetReceiptStatus(a.Status);
-                        LblReceiptNo.Text = a.ReceiptNo;
-                        TxtRemarks.Text = a.Remarks;
-                        TxtCustomer.Text = a.Contact;
-                        LblPaymentStatus.Text = GetPaymentStatus(a.IsPaid);
-                        CmbPaymentOption.Text = a.PaymentType;
-                        if (!string.IsNullOrWhiteSpace(a.VehicleNumber))
-                            CmbVehicles.Text = a.VehicleNumber;
-                    }
+                        customersBindingSource.DataSource = db.Customers.ToList();
+                        itemBindingSource.DataSource = db.Items.ToList();
+                        var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
+                                       join item in db.Items
+                                       on body.ProductId equals item.Id
+                                       select new
+                                       {
+                                           item.Id,
+                                           item.Code,
+                                           item.ItemName,
+                                           body.UnitPrice,
+                                           body.Quantity,
+                                           body.SubTotal,
+                                           body.Discount,
+                                           body.NetTotal
+                                       }).ToList();
+                        DGVReceiptBody.DataSource = RptBody;
+                        rptBody = Info.ToDataTable(RptBody);
 
-                    TotalCalculator();
+                        var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo && !c.IsQuotation)
+                                         join cashier in db.Employee.Where(c => !c.IsDeleted)
+                                         on header.Cashier equals cashier.EmployeeId
+                                         join customer in db.Customers.Where(c => !c.IsDeleted)
+                                         on header.CustomerId equals customer.CustomerId
+                                         select new
+                                         {
+                                             header.ReceiptNo,
+                                             header.Date,
+                                             header.Time,
+                                             header.TotalDiscount,
+                                             header.SubTotal,
+                                             header.NetTotal,
+                                             header.PaidAmount,
+                                             header.Balance,
+                                             header.Status,
+                                             header.VehicleNumber,
+                                             header.PaymentType,
+                                             header.IsPaid,
+                                             header.PendingValue,
+                                             header.IsQuotation,
+                                             Cashier = cashier.EmployeeName,
+                                             header.Remarks,
+                                             customer.Name,
+                                             customer.Address,
+                                             customer.Contact
+                                         }).ToList();
+
+                        var Mileage = db.MileTracking.FirstOrDefault(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo);
+                        if (Mileage != null)
+                        {
+                            TxtCurrentMileage.Text = Mileage.Mileage.ToString();
+                            TxtNextServiceDue.Text = Mileage.NextServiceDue.ToString();
+                        }
+                        foreach (var a in RptHeader)
+                        {
+                            PaidValue = a.PaidAmount;
+                            PendingValue = a.PendingValue;
+                            LblPaidAmount.Text = PaidValue.ToString();
+                            LblPendingAmount.Text = PendingValue.ToString();
+                            LblCashier.Text = a.Cashier;
+                            LblBalanceAmount.Text = a.Balance.ToString();
+                            TxtGivenAmount.Text = a.PaidAmount.ToString();
+                            ReceiptStatus = a.Status;
+                            LblReceiptStatus.Text = GetReceiptStatus(a.Status);
+                            LblReceiptNo.Text = a.ReceiptNo;
+                            TxtRemarks.Text = a.Remarks;
+                            TxtCustomer.Text = a.Contact;
+
+                            LblPaymentStatus.Text = GetPaymentStatus(a.IsPaid);
+                            CmbPaymentOption.Text = a.PaymentType;
+                            if (!string.IsNullOrWhiteSpace(a.VehicleNumber))
+                                CmbVehicles.Text = a.VehicleNumber;
+                        }
+
+                        TotalCalculator();
+                    }
+                }
+                else
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        customersBindingSource.DataSource = db.Customers.ToList();
+                        itemBindingSource.DataSource = db.Items.ToList();
+                        var cs = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId);
+                        LblCashier.Text = cs.EmployeeName;
+                    }
+                    LblReceiptNo.Text = GenReceiptNo();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                using (BillingContext db = new BillingContext())
-                {
-                    customersBindingSource.DataSource = db.Customers.ToList();
-                    itemBindingSource.DataSource = db.Items.ToList();
-                    var cs = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId);
-                    LblCashier.Text = cs.EmployeeName;
-                }
-                LblReceiptNo.Text = GenReceiptNo();
+                ExportJSON.Add(ex);
             }
         }
 
@@ -756,9 +768,16 @@ namespace SimpleBilling.MasterForms
         {
             if (TxtGivenAmount.Text.Length > 0)
             {
-                float givenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                BalanceAmount = givenAmount - Convert.ToSingle(LblNetTotal.Text);
+                GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                ReceiptNetTotal = Convert.ToSingle(LblNetTotal.Text);
+                ReceiptSubTotal = Convert.ToSingle(LblSubTotal.Text);
+                ReceiptTotalDiscount = Convert.ToSingle(LblTotalDiscount.Text);
+
+                BalanceAmount = GivenAmount - ReceiptNetTotal;
                 LblBalanceAmount.Text = BalanceAmount.ToString();
+                PendingValue = ReceiptNetTotal;
+                LblPendingAmount.Text = PendingValue.ToString();
+                PaidValue = Convert.ToSingle(TxtGivenAmount.Text.Trim());
             }
         }
 
@@ -1441,6 +1460,11 @@ namespace SimpleBilling.MasterForms
             {
                 CompleteReceipt(1);
             }
+        }
+
+        private void TxtGivenAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Info.IsDecimal(e, TxtGivenAmount);
         }
     }
 }

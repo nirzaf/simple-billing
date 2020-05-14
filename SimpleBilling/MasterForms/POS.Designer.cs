@@ -34,7 +34,6 @@
             this.LblTime = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
             this.CmbAddItem = new System.Windows.Forms.ComboBox();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TxtAddress = new System.Windows.Forms.TextBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
@@ -60,7 +59,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
-            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.DownLayout = new System.Windows.Forms.TableLayoutPanel();
             this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
@@ -114,9 +112,9 @@
             this.LblPaidAmount = new System.Windows.Forms.Label();
             this.LblPendingAmount = new System.Windows.Forms.Label();
             this.LblPaymentStatus = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).BeginInit();
             this.DownLayout.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -124,6 +122,8 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LblDate
@@ -752,6 +752,7 @@
             this.TxtGivenAmount.TabIndex = 9;
             this.TxtGivenAmount.Enter += new System.EventHandler(this.TxtGivenAmount_Enter);
             this.TxtGivenAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyDown);
+            this.TxtGivenAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGivenAmount_KeyPress);
             this.TxtGivenAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGivenAmount_KeyUp);
             // 
             // label12
@@ -1155,10 +1156,8 @@
             this.Name = "POS";
             this.Text = "POS";
             this.Load += new System.EventHandler(this.POS_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.CRUDPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceiptBody)).EndInit();
             this.DownLayout.ResumeLayout(false);
             this.DownLayout.PerformLayout();
@@ -1168,6 +1167,8 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
