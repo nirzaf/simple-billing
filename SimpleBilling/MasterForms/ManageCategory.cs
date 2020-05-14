@@ -69,7 +69,7 @@ namespace SimpleBilling.MasterForms
                             cat.IsDeleted = true;
                             cat.UpdatedDate = Info.Today();
                             db.Entry(cat).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info.Mes("Category Deleted Successfully");
                         }
                     }
@@ -107,7 +107,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Category>().Attach(ca);
                             db.Entry(ca).State = EntityState.Added;
                             Info.Mes("Category Added");
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                     }
                     else
@@ -120,7 +120,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Category>().Attach(cat);
                             db.Entry(cat).State = EntityState.Modified;
                             Info.Mes("Category Modified");
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                     }
                 }

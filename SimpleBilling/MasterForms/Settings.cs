@@ -40,7 +40,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(s).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(s);
                             db.Entry(s).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                         else
                         {
@@ -49,7 +49,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(r);
                             db.Entry(r).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                     }
                 }
@@ -139,7 +139,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<Setting>().Attach(data);
                     data.UpdatedDate = DateTime.Now;
                     db.Entry(data).State = EntityState.Modified;
-                    db.BulkSaveChangesAsync();
+                    db.SaveChanges();
                     Info.Mes("Settings Saved Successfully");
                 }
             }
@@ -194,7 +194,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(s).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(s);
                             db.Entry(s).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                         else
                         {
@@ -203,7 +203,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(r);
                             db.Entry(r).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                     }
                 }

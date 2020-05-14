@@ -95,7 +95,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(b).State == EntityState.Detached)
                                 db.Set<Bank>().Attach(b);
                             db.Entry(b).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                         else if (Info.IsEmpty(TxtBankName))
                         {
@@ -108,7 +108,7 @@ namespace SimpleBilling.MasterForms
                                     if (db.Entry(b).State == EntityState.Detached)
                                         db.Set<Bank>().Attach(b);
                                     db.Entry(b).State = EntityState.Modified;
-                                    db.BulkSaveChangesAsync();
+                                    db.SaveChanges();
                                 }
                             }
                         }
@@ -148,7 +148,7 @@ namespace SimpleBilling.MasterForms
                                     if (db.Entry(b).State == EntityState.Detached)
                                         db.Set<Bank>().Attach(b);
                                     db.Entry(b).State = EntityState.Modified;
-                                    db.BulkSaveChangesAsync();
+                                    db.SaveChanges();
                                 }
                             }
                         }

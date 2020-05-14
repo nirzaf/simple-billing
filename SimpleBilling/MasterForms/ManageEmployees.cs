@@ -62,7 +62,7 @@ namespace SimpleBilling.MasterForms
                             emp.UpdatedDate = DateTime.Now;
                             db.Entry(emp).State = EntityState.Modified;
                             emp.UpdatedDate = DateTime.Now;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info("Employee Deleted Successfully");
                         }
                     }
@@ -112,7 +112,7 @@ namespace SimpleBilling.MasterForms
                             emp.UpdatedDate = DateTime.Now;
                             Info("Employee Modified");
                         }
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                     }
                 }
             }

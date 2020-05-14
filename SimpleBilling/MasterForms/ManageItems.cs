@@ -79,7 +79,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<Item>().Attach(items);
                         db.Entry(items).State = EntityState.Added;
                         items.CreatedDate = DateTime.Today;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         Info.Mes("Item Added Successfully");
                     }
                     else
@@ -100,7 +100,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(result);
                             result.UpdatedDate = DateTime.Now;
                             db.Entry(result).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info.Mes("Item Modified Successfully");
                         }
                     }
@@ -237,7 +237,7 @@ namespace SimpleBilling.MasterForms
                             items.UpdatedDate = DateTime.Now;
                             db.Entry(items).State = EntityState.Modified;
                             items.UpdatedDate = DateTime.Now;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info.Mes("Item Deleted Successfully");
                         }
                     }

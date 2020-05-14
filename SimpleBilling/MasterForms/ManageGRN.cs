@@ -230,104 +230,121 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAddItem_Click(object sender, EventArgs e)
         {
+            AddItem();
+        }
+
+        private void AddItem()
+        {
             try
             {
                 using (BillingContext db = new BillingContext())
                 {
                     var emp = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
                     var grn = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == TxtGRNNo.Text.Trim());
-
-                    if (Info.IsEmpty(TxtGRNNo) && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitCost))
+                    using (DbContextTransaction transaction = db.Database.BeginTransaction())
                     {
-                        if (grn == null)
+                        if (Info.IsEmpty(TxtGRNNo) && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitCost))
                         {
-                            GRNHeader header = new GRNHeader
+                            try
                             {
-                                ReferenceNo = TxtReference.Text.Trim(),
-                                GRN_No = TxtGRNNo.Text.Trim(),
-                                GRN_Date = DTPDate.Value.ToShortDateString(),
-                                Time = DateTime.Now.ToShortTimeString(),
-                                Supplier = (Supplier)CMBSupplier.SelectedItem,
-                                GrossTotal = 0,
-                                NetTotal = 0,
-                                TotalDiscout = 0,
-                                Employee = emp,
-                                Status = 1
-                            };
+                                if (grn == null)
+                                {
+                                    GRNHeader header = new GRNHeader
+                                    {
+                                        ReferenceNo = TxtReference.Text.Trim(),
+                                        GRN_No = TxtGRNNo.Text.Trim(),
+                                        GRN_Date = DTPDate.Value.ToShortDateString(),
+                                        Time = DateTime.Now.ToShortTimeString(),
+                                        Supplier = (Supplier)CMBSupplier.SelectedItem,
+                                        GrossTotal = 0,
+                                        NetTotal = 0,
+                                        TotalDiscout = 0,
+                                        Employee = emp,
+                                        Status = 1
+                                    };
 
-                            if (db.Entry(header).State == EntityState.Detached)
-                                db.Set<GRNHeader>().Attach(header);
-                            header.CreatedDate = DateTime.Now;
-                            db.Entry(header).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
-                            GRN_Id = header.GRN_Id;
-                            GRN_Code = TxtGRNNo.Text.Trim();
+                                    if (db.Entry(header).State == EntityState.Detached)
+                                        db.Set<GRNHeader>().Attach(header);
+                                    header.CreatedDate = DateTime.Now;
+                                    db.Entry(header).State = EntityState.Added;
+                                    db.SaveChanges();
+                                    GRN_Id = header.GRN_Id;
+                                    GRN_Code = TxtGRNNo.Text.Trim();
+                                }
+                                else
+                                {
+                                    if (db.Entry(grn).State == EntityState.Detached)
+                                        db.Set<GRNHeader>().Attach(grn);
+                                    grn.UpdatedDate = DateTime.Now;
+                                    db.Entry(grn).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    GRN_Id = grn.GRN_Id;
+                                    GRN_Code = TxtGRNNo.Text.Trim();
+
+                                    int ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
+                                    var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == GRN_Id
+                                                && b.GRNCode == GRN_Code
+                                                && b.ProductId == ProductId);
+                                    int LineCount = DGVGRNList.Rows.Count;
+                                    if (result != null)
+                                    {
+                                        result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
+                                        result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                                        result.GrossTotal = result.Quantity * result.UnitCost;
+                                        if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
+                                            result.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                                        else
+                                            result.Discount = 0;
+
+                                        result.SubTotal = result.GrossTotal - result.Discount;
+                                        if (db.Entry(result).State == EntityState.Detached)
+                                            db.Set<GRNDetails>().Attach(result);
+                                        result.UpdatedDate = DateTime.Now;
+                                        db.Entry(result).State = EntityState.Modified;
+                                        db.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        GRNDetails details = new GRNDetails
+                                        {
+                                            GRN_Id = GRN_Id,
+                                            GRNCode = GRN_Code,
+                                            LineId = ++LineCount,
+                                            ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
+                                            UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
+                                            Quantity = Convert.ToInt32(TxtQuantity.Text.Trim()),
+                                            GrossTotal = Convert.ToSingle(TxtUnitCost.Text.Trim()) * Convert.ToInt32(TxtQuantity.Text.Trim())
+                                        };
+                                        if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
+                                            details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                                        else
+                                            details.Discount = 0;
+
+                                        details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
+                                        if (db.Entry(details).State == EntityState.Detached)
+                                            db.Set<GRNDetails>().Attach(details);
+                                        details.CreatedDate = DateTime.Now;
+                                        db.Entry(details).State = EntityState.Added;
+                                        db.SaveChanges();
+                                        transaction.Commit();
+                                        if (details.GRN_Id != 0)
+                                        {
+                                            LoadDetails(GRN_Code);
+                                        }
+                                    }
+                                    Calculate();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                ExportJSON.Add(ex);
+                            }
                         }
                         else
                         {
-                            if (db.Entry(grn).State == EntityState.Detached)
-                                db.Set<GRNHeader>().Attach(grn);
-                            grn.UpdatedDate = DateTime.Now;
-                            db.Entry(grn).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
-                            GRN_Id = grn.GRN_Id;
-                            GRN_Code = TxtGRNNo.Text.Trim();
-
-                            int ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
-                            var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == GRN_Id
-                                        && b.GRNCode == GRN_Code
-                                        && b.ProductId == ProductId);
-                            int LineCount = DGVGRNList.Rows.Count;
-                            if (result != null)
-                            {
-                                result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
-                                result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
-                                result.GrossTotal = result.Quantity * result.UnitCost;
-                                if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
-                                    result.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
-                                else
-                                    result.Discount = 0;
-
-                                result.SubTotal = result.GrossTotal - result.Discount;
-                                if (db.Entry(result).State == EntityState.Detached)
-                                    db.Set<GRNDetails>().Attach(result);
-                                result.UpdatedDate = DateTime.Now;
-                                db.Entry(result).State = EntityState.Modified;
-                                db.BulkSaveChangesAsync();
-                            }
-                            else
-                            {
-                                GRNDetails details = new GRNDetails
-                                {
-                                    GRN_Id = GRN_Id,
-                                    GRNCode = GRN_Code,
-                                    LineId = ++LineCount,
-                                    ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
-                                    UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
-                                    Quantity = Convert.ToInt32(TxtQuantity.Text.Trim()),
-                                    GrossTotal = Convert.ToSingle(TxtUnitCost.Text.Trim()) * Convert.ToInt32(TxtQuantity.Text.Trim())
-                                };
-                                if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
-                                    details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
-                                else
-                                    details.Discount = 0;
-
-                                details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
-                                if (db.Entry(details).State == EntityState.Detached)
-                                    db.Set<GRNDetails>().Attach(details);
-                                db.Entry(details).State = EntityState.Added;
-                                db.BulkSaveChangesAsync();
-                                if (details.GRN_Id != 0)
-                                {
-                                    LoadDetails(GRN_Code);
-                                }
-                            }
-                            Calculate();
+                            Info.Required();
                         }
-                    }
-                    else
-                    {
-                        Info.Required();
                     }
                 }
             }
@@ -370,7 +387,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<GRNHeader>().Attach(header);
                     header.UpdatedDate = DateTime.Now;
                     db.Entry(header).State = EntityState.Modified;
-                    db.BulkSaveChangesAsync();
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -407,23 +424,28 @@ namespace SimpleBilling.MasterForms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (DGVGRNList.SelectedRows.Count > 0)
+            try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (DGVGRNList.SelectedRows.Count > 0)
                 {
-                    using (BillingContext db = new BillingContext())
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode.Equals(GRN_Code) && c.LineId.Equals(LineNo));
-                        Result.IsDeleted = false;
-                        if (db.Entry(Result).State == EntityState.Detached)
-                            db.Set<GRNDetails>().Attach(Result);
-                        Result.UpdatedDate = DateTime.Now;
-                        db.Entry(Result).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
-                        LoadDetails(GRN_Code);
+                        using (BillingContext db = new BillingContext())
+                        {
+                            var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode == GRN_Code && c.LineId == LineNo);
+                            if (db.Entry(Result).State == EntityState.Detached)
+                                db.Set<GRNDetails>().Attach(Result);
+                            db.Entry(Result).State = EntityState.Deleted;
+                            db.SaveChanges();
+                            LoadDetails(GRN_Code);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExportJSON.Add(ex);
             }
         }
 
@@ -459,7 +481,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<GRNHeader>().Attach(Result);
                     Result.UpdatedDate = DateTime.Now;
                     db.Entry(Result).State = EntityState.Modified;
-                    db.BulkSaveChangesAsync();
+                    db.SaveChanges();
                     LoadDetails(GRN_Code);
                 }
             }
@@ -516,7 +538,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(ch).State == EntityState.Detached)
                             db.Set<Cheque>().Attach(ch);
                         db.Entry(ch).State = EntityState.Added;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         CmbChooseCheques.SelectedValue = ch.ChequeNo;
                     }
                     else
@@ -589,7 +611,7 @@ namespace SimpleBilling.MasterForms
                                         db.Set<GRNHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
-                                    db.BulkSaveChangesAsync();
+                                    db.SaveChanges();
                                     Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
                                 }
                                 else
@@ -607,7 +629,7 @@ namespace SimpleBilling.MasterForms
                                         db.Set<GRNHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
-                                    db.BulkSaveChangesAsync();
+                                    db.SaveChanges();
                                     Info.Mes("Payment Completed Successfully");
                                 }
                             }
@@ -668,13 +690,13 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(item);
                             item.UpdatedDate = DateTime.Now;
                             db.Entry(item).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             LoadDetails(GRNNo);
                         }
 
@@ -689,7 +711,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<GRNHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
                         db.Entry(header).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         LoadDetails(GRN_Code);
                     }
                 }
@@ -705,7 +727,7 @@ namespace SimpleBilling.MasterForms
         {
             if (DGVGRNList.SelectedRows.Count > 0)
             {
-                GRN_Code = DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty;
+                GRN_Code = TxtGRNNo.Text.Trim();
                 LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
                 CmbProduct.Text = DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty;
                 TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
@@ -744,13 +766,13 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Item>().Attach(item);
                             item.UpdatedDate = DateTime.Now;
                             db.Entry(item).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
 
                         var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
@@ -762,7 +784,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<GRNHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
                         db.Entry(header).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         LoadDetails(GRN_Code);
                     }
                 }
@@ -1023,6 +1045,14 @@ namespace SimpleBilling.MasterForms
         private void Reset()
         {
             LoadDetails(string.Empty);
+        }
+
+        private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddItem();
+            }
         }
     }
 }

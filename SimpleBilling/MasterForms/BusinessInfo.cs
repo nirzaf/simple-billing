@@ -69,7 +69,7 @@ namespace SimpleBilling.MasterForms
                         }
                         item.IsActive = true;
                         db.Entry(item).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                     }
                 }
             }
@@ -104,7 +104,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(bm).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(bm);
                             db.Entry(bm).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info.Mes("Business Info Added");
                         }
                         else
@@ -124,7 +124,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(bm).State == EntityState.Detached)
                                 db.Set<BusinessModel>().Attach(bm);
                             db.Entry(bm).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info.Mes("Business Info Modified");
                         }
                         else

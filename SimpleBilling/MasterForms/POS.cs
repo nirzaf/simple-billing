@@ -450,7 +450,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(header).State == EntityState.Detached)
                             db.Set<ReceiptHeader>().Attach(header);
                         db.Entry(header).State = EntityState.Added;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         return header.ReceiptNo;
                     }
                     else
@@ -465,7 +465,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(result).State == EntityState.Detached)
                             db.Set<ReceiptHeader>().Attach(result);
                         db.Entry(result).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         return result.ReceiptNo;
                     }
                 }
@@ -537,7 +537,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<ReceiptBody>().Attach(Result);
                         db.Entry(Result).State = EntityState.Modified;
                     }
-                    db.BulkSaveChangesAsync();
+                    db.SaveChanges();
                     ReceiptStatus = 1;
                     LblReceiptStatus.Text = GetReceiptStatus(ReceiptStatus);
                 }
@@ -600,7 +600,7 @@ namespace SimpleBilling.MasterForms
                     if (db.Entry(mt).State == EntityState.Detached)
                         db.Set<MileageTracking>().Attach(mt);
                     db.Entry(mt).State = EntityState.Added;
-                    db.BulkSaveChangesAsync();
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -612,7 +612,7 @@ namespace SimpleBilling.MasterForms
                     if (db.Entry(mlt).State == EntityState.Detached)
                         db.Set<MileageTracking>().Attach(mlt);
                     db.Entry(mlt).State = EntityState.Modified;
-                    db.BulkSaveChangesAsync();
+                    db.SaveChanges();
                 }
             }
         }
@@ -669,7 +669,7 @@ namespace SimpleBilling.MasterForms
                                 if (db.Entry(Result).State == EntityState.Detached)
                                     db.Set<ReceiptHeader>().Attach(Result);
                                 db.Entry(Result).State = EntityState.Modified;
-                                db.BulkSaveChangesAsync();
+                                db.SaveChanges();
                                 ReceiptStatus = Result.Status;
                                 LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
                                 ReduceStock(true);
@@ -726,7 +726,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(Result).State == EntityState.Detached)
                             db.Set<Item>().Attach(Result);
                         db.Entry(Result).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                     }
                 }
             }
@@ -831,7 +831,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<ReceiptHeader>().Attach(result);
                     db.Entry(result).State = EntityState.Modified;
                 }
-                db.BulkSaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -928,7 +928,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(Item).State == EntityState.Detached)
                             db.Set<ReceiptBody>().Attach(Item);
                         db.Entry(Item).State = EntityState.Modified;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         DGVLoad(RptNo);
                     }
                 }
@@ -1251,7 +1251,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(cu).State == EntityState.Detached)
                                 db.Set<Customers>().Attach(cu);
                             db.Entry(cu).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info.Mes("Customer Added Successfully");
                             TxtCustomer.Text = cu.Contact;
                             HideAddCustomer();
@@ -1378,7 +1378,7 @@ namespace SimpleBilling.MasterForms
                         if (db.Entry(ch).State == EntityState.Detached)
                             db.Set<Cheque>().Attach(ch);
                         db.Entry(ch).State = EntityState.Added;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         LoabCMB();
                         HideCheque();
                         CmbChooseCheques.SelectedValue = ch.ChequeNo;

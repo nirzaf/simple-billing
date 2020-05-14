@@ -214,6 +214,7 @@
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(205, 26);
             this.TxtQuantity.TabIndex = 3;
+            this.TxtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
             // 
             // label6
             // 

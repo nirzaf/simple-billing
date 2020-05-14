@@ -71,7 +71,7 @@ namespace SimpleBilling.MasterForms
                             sup.UpdatedDate = DateTime.Now;
                             sup.IsDeleted = true;
                             db.Entry(sup).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                             Info("Supplier Deleted Successfully");
                         }
                     }
@@ -115,7 +115,7 @@ namespace SimpleBilling.MasterForms
                             db.Entry(sup).State = EntityState.Modified;
                             Info("Supplier Modified");
                         }
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                     }
                 }
             }

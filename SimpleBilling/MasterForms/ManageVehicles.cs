@@ -73,7 +73,7 @@ namespace SimpleBilling.MasterForms
                         r.IsDeleted = true;
                         r.UpdatedDate = Info.Today();
                         db.Entry(r).State = EntityState.Added;
-                        db.BulkSaveChangesAsync();
+                        db.SaveChanges();
                         Info.Mes("Selected Vehicle Deleted Successfully");
                     }
                     else
@@ -120,7 +120,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(v).State == EntityState.Detached)
                                 db.Set<Vehicle>().Attach(v);
                             db.Entry(v).State = EntityState.Added;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                     }
                     else
@@ -138,7 +138,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Vehicle>().Attach(r);
                             db.Entry(r).State = EntityState.Modified;
-                            db.BulkSaveChangesAsync();
+                            db.SaveChanges();
                         }
                     }
                 }
