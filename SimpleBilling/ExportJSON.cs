@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using SimpleBilling.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SimpleBilling
 {
@@ -11,48 +13,53 @@ namespace SimpleBilling
         {
             try
             {
-                string path = @"C:\Orion\Exp.json";
-                string rawJson;
-                if (!File.Exists(path))
+                using (BillingContext db = new BillingContext())
                 {
-                    File.Create(path);
-                }
+                    var data = db.Settings.FirstOrDefault(c => c.UserId == 1);
+                    string path = data.ExceptionPath;
+                    string fileName = path + "exception.json";
+                    string rawJson;
+                    if (!File.Exists(fileName))
+                    {
+                        File.Create(fileName);
+                    }
 
-                rawJson = File.ReadAllText(path);
-                var ec = JsonConvert.DeserializeObject<ExpCollection>(rawJson);
+                    rawJson = File.ReadAllText(fileName);
+                    var ec = JsonConvert.DeserializeObject<ExpCollection>(rawJson);
 
-                if (ec != null)
-                {
-                    int Count = ec.Exceptions.Count;
-                    Exp Exps = new Exp
+                    if (ec != null)
                     {
-                        Id = ++Count,
-                        Time = DateTime.Now.ToShortTimeString(),
-                        Date = DateTime.Today.ToShortDateString(),
-                        Message = ex.Message.ToString(),
-                        StackTrace = ex.StackTrace.ToString()
-                    };
-                    ec.Exceptions.Add(Exps);
-                    string serializedJson = JsonConvert.SerializeObject(ec, Formatting.Indented);
-                    File.WriteAllText(path, serializedJson);
-                }
-                else
-                {
-                    ExpCollection exp = new ExpCollection
+                        int Count = ec.Exceptions.Count;
+                        Exp Exps = new Exp
+                        {
+                            Id = ++Count,
+                            Time = DateTime.Now.ToShortTimeString(),
+                            Date = DateTime.Today.ToShortDateString(),
+                            Message = ex.Message.ToString(),
+                            StackTrace = ex.StackTrace.ToString()
+                        };
+                        ec.Exceptions.Add(Exps);
+                        string serializedJson = JsonConvert.SerializeObject(ec, Formatting.Indented);
+                        File.WriteAllText(path, serializedJson);
+                    }
+                    else
                     {
-                        Exceptions = new List<Exp>()
-                    };
-                    Exp Exps = new Exp
-                    {
-                        Id = 1,
-                        Time = DateTime.Now.ToShortTimeString(),
-                        Date = DateTime.Today.ToShortDateString(),
-                        Message = ex.Message.ToString(),
-                        StackTrace = ex.StackTrace.ToString()
-                    };
-                    exp.Exceptions.Add(Exps);
-                    string serializedJson = JsonConvert.SerializeObject(exp, Formatting.Indented);
-                    File.WriteAllText(path, serializedJson);
+                        ExpCollection exp = new ExpCollection
+                        {
+                            Exceptions = new List<Exp>()
+                        };
+                        Exp Exps = new Exp
+                        {
+                            Id = 1,
+                            Time = DateTime.Now.ToShortTimeString(),
+                            Date = DateTime.Today.ToShortDateString(),
+                            Message = ex.Message.ToString(),
+                            StackTrace = ex.StackTrace.ToString()
+                        };
+                        exp.Exceptions.Add(Exps);
+                        string serializedJson = JsonConvert.SerializeObject(exp, Formatting.Indented);
+                        File.WriteAllText(path, serializedJson);
+                    }
                 }
             }
             catch (Exception e)
