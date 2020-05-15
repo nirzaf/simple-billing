@@ -66,6 +66,8 @@ namespace SimpleBilling.MasterForms
             {
                 var data = db.Settings.FirstOrDefault(c => c.UserId == UserId);
                 TxtDefaultPath.Text = data.DefaultPath;
+                TxtDefaultGRN.Text = data.GRNPath;
+                TxtDefaultExceptionFolder.Text = data.DefaultPath;
                 LblRed.Text = data.Red.ToString();
                 LblGreen.Text = data.Green.ToString();
                 LblBlue.Text = data.Blue.ToString();

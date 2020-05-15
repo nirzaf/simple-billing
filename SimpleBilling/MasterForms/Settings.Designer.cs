@@ -222,10 +222,11 @@
             // RDOBackColor
             // 
             this.RDOBackColor.AutoSize = true;
+            this.RDOBackColor.Dock = System.Windows.Forms.DockStyle.Right;
             this.RDOBackColor.ForeColor = System.Drawing.Color.White;
-            this.RDOBackColor.Location = new System.Drawing.Point(3, 3);
+            this.RDOBackColor.Location = new System.Drawing.Point(30, 3);
             this.RDOBackColor.Name = "RDOBackColor";
-            this.RDOBackColor.Size = new System.Drawing.Size(112, 23);
+            this.RDOBackColor.Size = new System.Drawing.Size(112, 29);
             this.RDOBackColor.TabIndex = 3;
             this.RDOBackColor.TabStop = true;
             this.RDOBackColor.Text = "Back Color";
@@ -234,10 +235,11 @@
             // RDOForeColor
             // 
             this.RDOForeColor.AutoSize = true;
+            this.RDOForeColor.Dock = System.Windows.Forms.DockStyle.Right;
             this.RDOForeColor.ForeColor = System.Drawing.Color.White;
-            this.RDOForeColor.Location = new System.Drawing.Point(3, 73);
+            this.RDOForeColor.Location = new System.Drawing.Point(34, 73);
             this.RDOForeColor.Name = "RDOForeColor";
-            this.RDOForeColor.Size = new System.Drawing.Size(108, 23);
+            this.RDOForeColor.Size = new System.Drawing.Size(108, 31);
             this.RDOForeColor.TabIndex = 4;
             this.RDOForeColor.TabStop = true;
             this.RDOForeColor.Text = "Fore Color";
