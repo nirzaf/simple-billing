@@ -703,30 +703,33 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Right;
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(3, 0);
+            this.label13.Location = new System.Drawing.Point(170, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(140, 19);
+            this.label13.Size = new System.Drawing.Size(140, 31);
             this.label13.TabIndex = 0;
             this.label13.Text = "Payment Options";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Right;
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(3, 62);
+            this.label14.Location = new System.Drawing.Point(194, 62);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(116, 19);
+            this.label14.Size = new System.Drawing.Size(116, 31);
             this.label14.TabIndex = 1;
             this.label14.Text = "Given Amount";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Right;
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(3, 93);
+            this.label15.Location = new System.Drawing.Point(176, 93);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(134, 19);
+            this.label15.Size = new System.Drawing.Size(134, 32);
             this.label15.TabIndex = 2;
             this.label15.Text = "Balance Amount";
             // 
@@ -796,8 +799,8 @@
             this.LayoutCheque.Name = "LayoutCheque";
             this.LayoutCheque.RowCount = 1;
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.LayoutCheque.Size = new System.Drawing.Size(1056, 31);
             this.LayoutCheque.TabIndex = 8;
             // 
