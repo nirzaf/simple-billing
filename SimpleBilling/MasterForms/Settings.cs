@@ -8,7 +8,7 @@ namespace SimpleBilling.MasterForms
 {
     public partial class Settings : Form
     {
-        private int UserId = 1;
+        private readonly int UserId = 1;
 
         public Settings()
         {
