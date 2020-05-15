@@ -118,6 +118,7 @@
             this.TxtDefaultPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDefaultPath.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultPath.Name = "TxtDefaultPath";
+            this.TxtDefaultPath.ReadOnly = true;
             this.TxtDefaultPath.Size = new System.Drawing.Size(285, 26);
             this.TxtDefaultPath.TabIndex = 1;
             // 
@@ -313,6 +314,7 @@
             // 
             this.TxtDefaultGRN.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultGRN.Name = "TxtDefaultGRN";
+            this.TxtDefaultGRN.ReadOnly = true;
             this.TxtDefaultGRN.Size = new System.Drawing.Size(285, 26);
             this.TxtDefaultGRN.TabIndex = 1;
             // 
@@ -349,6 +351,7 @@
             // 
             this.TxtDefaultExceptionFolder.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultExceptionFolder.Name = "TxtDefaultExceptionFolder";
+            this.TxtDefaultExceptionFolder.ReadOnly = true;
             this.TxtDefaultExceptionFolder.Size = new System.Drawing.Size(285, 26);
             this.TxtDefaultExceptionFolder.TabIndex = 1;
             // 

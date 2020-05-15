@@ -178,7 +178,7 @@ namespace SimpleBilling.MasterForms
                 if (result == DialogResult.OK)
                 {
                     string folderName = folderBrowserDialog1.SelectedPath;
-                    TxtDefaultPath.Text = folderName;
+                    TxtDefaultGRN.Text = folderName;
                     using (BillingContext db = new BillingContext())
                     {
                         Setting s = new Setting
