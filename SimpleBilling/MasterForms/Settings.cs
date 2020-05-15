@@ -56,7 +56,6 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Info.Mes(ex.Message);
                 ExportJSON.Add(ex);
             }
         }
@@ -210,7 +209,6 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Info.Mes(ex.Message);
                 ExportJSON.Add(ex);
             }
         }
@@ -256,7 +254,6 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Info.Mes(ex.Message);
                 ExportJSON.Add(ex);
             }
         }
