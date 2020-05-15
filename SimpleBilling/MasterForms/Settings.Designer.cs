@@ -48,6 +48,9 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnDefaultGRNPath = new System.Windows.Forms.Button();
             this.TxtDefaultGRN = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnSetDefaultExceptionFolder = new System.Windows.Forms.Button();
+            this.TxtDefaultExceptionFolder = new System.Windows.Forms.TextBox();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -57,6 +60,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // BaseLayout
@@ -70,6 +74,7 @@
             this.BaseLayout.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel4, 2, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel5, 0, 1);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel6, 0, 2);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -311,6 +316,42 @@
             this.TxtDefaultGRN.Size = new System.Drawing.Size(285, 26);
             this.TxtDefaultGRN.TabIndex = 1;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.BtnSetDefaultExceptionFolder, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.TxtDefaultExceptionFolder, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 229);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(291, 107);
+            this.tableLayoutPanel6.TabIndex = 5;
+            // 
+            // BtnSetDefaultExceptionFolder
+            // 
+            this.BtnSetDefaultExceptionFolder.BackColor = System.Drawing.Color.White;
+            this.BtnSetDefaultExceptionFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetDefaultExceptionFolder.Location = new System.Drawing.Point(3, 3);
+            this.BtnSetDefaultExceptionFolder.Name = "BtnSetDefaultExceptionFolder";
+            this.BtnSetDefaultExceptionFolder.Size = new System.Drawing.Size(285, 29);
+            this.BtnSetDefaultExceptionFolder.TabIndex = 0;
+            this.BtnSetDefaultExceptionFolder.Text = "Set Default Exception Folder";
+            this.BtnSetDefaultExceptionFolder.UseVisualStyleBackColor = false;
+            this.BtnSetDefaultExceptionFolder.Click += new System.EventHandler(this.BtnSetDefaultExceptionFolder_Click);
+            // 
+            // TxtDefaultExceptionFolder
+            // 
+            this.TxtDefaultExceptionFolder.Location = new System.Drawing.Point(3, 38);
+            this.TxtDefaultExceptionFolder.Name = "TxtDefaultExceptionFolder";
+            this.TxtDefaultExceptionFolder.Size = new System.Drawing.Size(285, 26);
+            this.TxtDefaultExceptionFolder.TabIndex = 1;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -336,6 +377,8 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -362,5 +405,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button BtnDefaultGRNPath;
         private System.Windows.Forms.TextBox TxtDefaultGRN;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button BtnSetDefaultExceptionFolder;
+        private System.Windows.Forms.TextBox TxtDefaultExceptionFolder;
     }
 }

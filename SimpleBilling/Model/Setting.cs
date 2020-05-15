@@ -12,6 +12,8 @@ namespace SimpleBilling.Model
         public string DefaultPath { get; set; }
         public string GRNPath { get; set; }
 
+        public string ExceptionPath { get; set; }
+
         [DefaultValue(105)]
         public int Red { get; set; } = 105;
 

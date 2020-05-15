@@ -214,5 +214,51 @@ namespace SimpleBilling.MasterForms
                 ExportJSON.Add(ex);
             }
         }
+
+        private void BtnSetDefaultExceptionFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var folderBrowserDialog1 = new FolderBrowserDialog();
+
+                DialogResult result = folderBrowserDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string folderName = folderBrowserDialog1.SelectedPath;
+                    TxtDefaultExceptionFolder.Text = folderName;
+                    using (BillingContext db = new BillingContext())
+                    {
+                        Setting s = new Setting
+                        {
+                            ExceptionPath = folderName,
+                            CreatedDate = DateTime.Now
+                        };
+
+                        var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
+                        if (r == null)
+                        {
+                            if (db.Entry(s).State == EntityState.Detached)
+                                db.Set<Setting>().Attach(s);
+                            db.Entry(s).State = EntityState.Added;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            r.ExceptionPath = folderName;
+                            r.UpdatedDate = DateTime.Now;
+                            if (db.Entry(r).State == EntityState.Detached)
+                                db.Set<Setting>().Attach(r);
+                            db.Entry(r).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+                ExportJSON.Add(ex);
+            }
+        }
     }
 }
