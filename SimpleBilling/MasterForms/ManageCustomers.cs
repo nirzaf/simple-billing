@@ -87,7 +87,7 @@ namespace SimpleBilling
             }
             catch (Exception ex)
             {
-                ExportJSON.Add(ex);
+                ExportJson.Add(ex);
                 Info(ex.ToString());
             }
             finally
@@ -124,7 +124,7 @@ namespace SimpleBilling
             }
             catch (Exception ex)
             {
-                ExportJSON.Add(ex);
+                ExportJson.Add(ex);
                 Info(ex.ToString());
             }
             finally

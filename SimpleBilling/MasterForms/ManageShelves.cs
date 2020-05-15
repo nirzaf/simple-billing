@@ -104,7 +104,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                ExportJSON.Add(ex);
+                ExportJson.Add(ex);
                 Info(ex.ToString());
             }
             finally
@@ -157,7 +157,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                ExportJSON.Add(ex);
+                ExportJson.Add(ex);
                 Info(ex.Message);
             }
             finally

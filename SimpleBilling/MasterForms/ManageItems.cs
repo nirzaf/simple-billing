@@ -245,7 +245,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                ExportJSON.Add(ex);
+                ExportJson.Add(ex);
                 Info.Mes(ex.ToString());
             }
             finally

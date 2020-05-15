@@ -154,7 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExportJSON.cs" />
+    <Compile Include="ExportJson.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>

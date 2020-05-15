@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SimpleBilling
 {
-    public static class ExportJSON
+    public static class ExportJson
     {
         public static void Add(Exception ex)
         {
