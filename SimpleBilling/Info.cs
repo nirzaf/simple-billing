@@ -25,6 +25,8 @@ namespace SimpleBilling
             MessageBox.Show(mes);
         }
 
+
+
         public static void Enter(TextBox Txt, string PlaceHolder)
         {
             if (Txt.Text == PlaceHolder)
@@ -36,10 +38,19 @@ namespace SimpleBilling
 
         public static void Leave(TextBox Txt, string PlaceHolder)
         {
-            if (Txt.Text == string.Empty)
+            if (Txt.Text == PlaceHolder)
             {
                 Txt.Text = PlaceHolder;
                 Txt.ForeColor = System.Drawing.Color.DimGray;
+            }
+        }
+
+        public static void PlaceHolder(TextBox tb)
+        {
+            if (tb.Focused)
+            {
+                tb.Text = string.Empty;
+                tb.ForeColor = System.Drawing.Color.Black;
             }
         }
 

@@ -500,34 +500,35 @@ namespace SimpleBilling.MasterForms
             }
         }
 
+
         private void TxtChequeNo_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtChequeNo, "Cheque No");
+            Info.PlaceHolder(TxtChequeNo);
         }
 
         private void TxtChequeNo_Leave(object sender, EventArgs e)
         {
-            Info.Enter(TxtChequeNo, "Cheque No");
+            Info.Leave(TxtChequeNo, "Cheque No");
         }
 
         private void TxtPayeeName_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtPayeeName, "Payee Name");
+            Info.PlaceHolder(TxtPayeeName);
         }
 
         private void TxtPayeeName_Leave(object sender, EventArgs e)
         {
-            Info.Enter(TxtPayeeName, "Payee Name");
+            Info.Leave(TxtPayeeName, "Payee Name");
         }
 
         private void TxtAmount_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtAmount, "Amount");
+            Info.PlaceHolder(TxtAmount);
         }
 
         private void TxtAmount_Leave(object sender, EventArgs e)
         {
-            Info.Enter(TxtAmount, "Amount");
+            Info.Leave(TxtAmount, "Amount");
         }
 
         private void BtnAddCheque_Click(object sender, EventArgs e)
@@ -581,9 +582,6 @@ namespace SimpleBilling.MasterForms
                     LayoutCheque.Visible = true;
                     BtnAddCheque.Visible = true;
                     CmbChooseCheques.Visible = true;
-                    TxtPayeeName.Focus();
-                    TxtAmount.Focus();
-                    TxtChequeNo.Focus();
                 }
                 else
                 {
@@ -1064,16 +1062,6 @@ namespace SimpleBilling.MasterForms
             {
                 AddItem();
             }
-        }
-
-        private void TxtGRNNo_KeyUp(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void TxtReference_KeyUp(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void TxtGRNNo_Leave(object sender, EventArgs e)

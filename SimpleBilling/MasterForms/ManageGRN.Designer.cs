@@ -209,6 +209,7 @@
             // 
             // TxtQuantity
             // 
+            this.TxtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtQuantity.Location = new System.Drawing.Point(214, 74);
             this.TxtQuantity.Name = "TxtQuantity";
@@ -249,6 +250,7 @@
             // 
             // TxtDiscount
             // 
+            this.TxtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDiscount.Location = new System.Drawing.Point(636, 74);
             this.TxtDiscount.Name = "TxtDiscount";
@@ -302,12 +304,12 @@
             // 
             // TxtReference
             // 
+            this.TxtReference.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtReference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtReference.Location = new System.Drawing.Point(214, 22);
             this.TxtReference.Name = "TxtReference";
             this.TxtReference.Size = new System.Drawing.Size(205, 26);
             this.TxtReference.TabIndex = 1;
-            this.TxtReference.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtReference_KeyUp);
             this.TxtReference.Leave += new System.EventHandler(this.TxtReference_Leave);
             // 
             // label3
@@ -334,12 +336,12 @@
             // 
             // TxtGRNNo
             // 
+            this.TxtGRNNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtGRNNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtGRNNo.Location = new System.Drawing.Point(3, 22);
             this.TxtGRNNo.Name = "TxtGRNNo";
             this.TxtGRNNo.Size = new System.Drawing.Size(205, 26);
             this.TxtGRNNo.TabIndex = 0;
-            this.TxtGRNNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyUp);
             this.TxtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
             // 
             // label12
@@ -689,6 +691,7 @@
             // 
             // TxtGivenAmount
             // 
+            this.TxtGivenAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtGivenAmount.Location = new System.Drawing.Point(316, 65);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
@@ -800,31 +803,40 @@
             // 
             // TxtAmount
             // 
+            this.TxtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtAmount.ForeColor = System.Drawing.Color.Gray;
             this.TxtAmount.Location = new System.Drawing.Point(353, 3);
             this.TxtAmount.Name = "TxtAmount";
             this.TxtAmount.Size = new System.Drawing.Size(169, 26);
             this.TxtAmount.TabIndex = 2;
+            this.TxtAmount.Text = "Amount";
             this.TxtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
             this.TxtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
             // 
             // TxtPayeeName
             // 
+            this.TxtPayeeName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.ForeColor = System.Drawing.Color.Gray;
             this.TxtPayeeName.Location = new System.Drawing.Point(178, 3);
             this.TxtPayeeName.Name = "TxtPayeeName";
             this.TxtPayeeName.Size = new System.Drawing.Size(169, 26);
             this.TxtPayeeName.TabIndex = 1;
+            this.TxtPayeeName.Text = "Payee Name";
             this.TxtPayeeName.Enter += new System.EventHandler(this.TxtPayeeName_Enter);
             this.TxtPayeeName.Leave += new System.EventHandler(this.TxtPayeeName_Leave);
             // 
             // TxtChequeNo
             // 
+            this.TxtChequeNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNo.ForeColor = System.Drawing.Color.Gray;
             this.TxtChequeNo.Location = new System.Drawing.Point(3, 3);
             this.TxtChequeNo.Name = "TxtChequeNo";
             this.TxtChequeNo.Size = new System.Drawing.Size(169, 26);
             this.TxtChequeNo.TabIndex = 0;
+            this.TxtChequeNo.Text = "Cheque No";
             this.TxtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
             this.TxtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
@@ -1078,7 +1090,6 @@
         private System.Windows.Forms.TableLayoutPanel LayoutCheque;
         private System.Windows.Forms.TextBox TxtAmount;
         private System.Windows.Forms.TextBox TxtPayeeName;
-        private System.Windows.Forms.TextBox TxtChequeNo;
         private System.Windows.Forms.DateTimePicker DTChequeDueDate;
         private System.Windows.Forms.ComboBox CmbPaidBy;
         private System.Windows.Forms.ComboBox CmbBank;
@@ -1098,5 +1109,6 @@
         private System.Windows.Forms.Label LblPaidAmount;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label LblPendingAmount;
+        public System.Windows.Forms.TextBox TxtChequeNo;
     }
 }
