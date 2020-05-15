@@ -307,6 +307,8 @@
             this.TxtReference.Name = "TxtReference";
             this.TxtReference.Size = new System.Drawing.Size(205, 26);
             this.TxtReference.TabIndex = 1;
+            this.TxtReference.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtReference_KeyUp);
+            this.TxtReference.Leave += new System.EventHandler(this.TxtReference_Leave);
             // 
             // label3
             // 
@@ -337,6 +339,8 @@
             this.TxtGRNNo.Name = "TxtGRNNo";
             this.TxtGRNNo.Size = new System.Drawing.Size(205, 26);
             this.TxtGRNNo.TabIndex = 0;
+            this.TxtGRNNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyUp);
+            this.TxtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
             // 
             // label12
             // 
@@ -363,11 +367,11 @@
             // BtnAddItem
             // 
             this.BtnAddItem.BackColor = System.Drawing.Color.White;
-            this.BtnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddItem.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAddItem.Location = new System.Drawing.Point(847, 74);
             this.BtnAddItem.Name = "BtnAddItem";
-            this.BtnAddItem.Size = new System.Drawing.Size(206, 42);
+            this.BtnAddItem.Size = new System.Drawing.Size(206, 27);
             this.BtnAddItem.TabIndex = 15;
             this.BtnAddItem.Text = "Add";
             this.BtnAddItem.UseVisualStyleBackColor = false;
@@ -528,6 +532,7 @@
             // BtnDelete
             // 
             this.BtnDelete.BackColor = System.Drawing.Color.White;
+            this.BtnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDelete.Location = new System.Drawing.Point(3, 3);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(161, 33);
@@ -539,6 +544,7 @@
             // BtnAddToReturn
             // 
             this.BtnAddToReturn.BackColor = System.Drawing.Color.White;
+            this.BtnAddToReturn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAddToReturn.Location = new System.Drawing.Point(3, 42);
             this.BtnAddToReturn.Name = "BtnAddToReturn";
             this.BtnAddToReturn.Size = new System.Drawing.Size(161, 33);
@@ -633,6 +639,7 @@
             // BtnNewInvoice
             // 
             this.BtnNewInvoice.BackColor = System.Drawing.Color.White;
+            this.BtnNewInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnNewInvoice.Location = new System.Drawing.Point(3, 42);
             this.BtnNewInvoice.Name = "BtnNewInvoice";
             this.BtnNewInvoice.Size = new System.Drawing.Size(161, 33);
@@ -937,6 +944,7 @@
             // BtnPrintGRN
             // 
             this.BtnPrintGRN.BackColor = System.Drawing.Color.White;
+            this.BtnPrintGRN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPrintGRN.Location = new System.Drawing.Point(3, 3);
             this.BtnPrintGRN.Name = "BtnPrintGRN";
             this.BtnPrintGRN.Size = new System.Drawing.Size(161, 37);

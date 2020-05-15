@@ -534,6 +534,22 @@
     <Compile Include="Migrations\202005142148340_billing51.designer.cs">
       <DependentUpon>202005142148340_billing51.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005150000289_billing52.cs" />
+    <Compile Include="Migrations\202005150000289_billing52.designer.cs">
+      <DependentUpon>202005150000289_billing52.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150015584_billing53.cs" />
+    <Compile Include="Migrations\202005150015584_billing53.designer.cs">
+      <DependentUpon>202005150015584_billing53.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150103568_billing54.cs" />
+    <Compile Include="Migrations\202005150103568_billing54.designer.cs">
+      <DependentUpon>202005150103568_billing54.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150107125_billing55.cs" />
+    <Compile Include="Migrations\202005150107125_billing55.designer.cs">
+      <DependentUpon>202005150107125_billing55.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bank.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -819,6 +835,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005142148340_billing51.resx">
       <DependentUpon>202005142148340_billing51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150000289_billing52.resx">
+      <DependentUpon>202005150000289_billing52.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150015584_billing53.resx">
+      <DependentUpon>202005150015584_billing53.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150103568_billing54.resx">
+      <DependentUpon>202005150103568_billing54.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150107125_billing55.resx">
+      <DependentUpon>202005150107125_billing55.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

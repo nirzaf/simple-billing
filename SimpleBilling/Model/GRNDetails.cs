@@ -13,11 +13,8 @@ namespace SimpleBilling.Model
         [Key]
         [Column(Order = 2)]
         public string GRNCode { get; set; }
-
         [Key]
         [Column(Order = 3)]
-        public int LineId { get; set; }
-
         public int ProductId { get; set; }
 
         [DefaultValue(false)]

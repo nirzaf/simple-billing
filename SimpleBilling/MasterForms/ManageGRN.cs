@@ -19,6 +19,7 @@ namespace SimpleBilling.MasterForms
 {
     public partial class ManageGRN : Form
     {
+        private bool isGrnExist = false;
         private int GRN_Id;
         private string GRN_Code;
         private float GrossTotal = 0;
@@ -29,7 +30,6 @@ namespace SimpleBilling.MasterForms
         private float BalanceValue;
         private float GivenValue;
         private float PendingValue;
-        private int LineNo;
         private DataTable dtGRN;
         private DataTable dtGRNReturn;
 
@@ -90,7 +90,7 @@ namespace SimpleBilling.MasterForms
                                 on details.ProductId equals item.Id
                                 select new
                                 {
-                                    Line_No = details.LineId,
+                                    details.GRN_Id,
                                     item.Code,
                                     Item_Name = item.ItemName,
                                     UnitPrice = details.UnitCost,
@@ -106,7 +106,7 @@ namespace SimpleBilling.MasterForms
                                     on details.ProductId equals item.Id
                                     select new
                                     {
-                                        Line_No = details.LineId,
+                                        details.GRN_Id,
                                         item.Code,
                                         Item_Name = item.ItemName,
                                         UnitPrice = details.UnitCost,
@@ -237,12 +237,12 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                using (BillingContext db = new BillingContext())
+                if (!isGrnExist)
                 {
-                    var emp = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
-                    var grn = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == TxtGRNNo.Text.Trim());
-                    using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                    using (BillingContext db = new BillingContext())
                     {
+                        var emp = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
+                        var grn = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == TxtGRNNo.Text.Trim());
                         if (Info.IsEmpty(TxtGRNNo) && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitCost))
                         {
                             try
@@ -282,10 +282,9 @@ namespace SimpleBilling.MasterForms
                                     GRN_Code = TxtGRNNo.Text.Trim();
 
                                     int ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
-                                    var result = db.GRNDetails.SingleOrDefault(b => b.GRN_Id == GRN_Id
+                                    var result = db.GRNDetails.FirstOrDefault(b => b.GRN_Id == GRN_Id
                                                 && b.GRNCode == GRN_Code
                                                 && b.ProductId == ProductId);
-                                    int LineCount = DGVGRNList.Rows.Count;
                                     if (result != null)
                                     {
                                         result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
@@ -302,6 +301,10 @@ namespace SimpleBilling.MasterForms
                                         result.UpdatedDate = DateTime.Now;
                                         db.Entry(result).State = EntityState.Modified;
                                         db.SaveChanges();
+                                        if (result.GRN_Id != 0)
+                                        {
+                                            LoadDetails(GRN_Code);
+                                        }
                                     }
                                     else
                                     {
@@ -309,7 +312,6 @@ namespace SimpleBilling.MasterForms
                                         {
                                             GRN_Id = GRN_Id,
                                             GRNCode = GRN_Code,
-                                            LineId = ++LineCount,
                                             ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
                                             UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
                                             Quantity = Convert.ToInt32(TxtQuantity.Text.Trim()),
@@ -321,15 +323,22 @@ namespace SimpleBilling.MasterForms
                                             details.Discount = 0;
 
                                         details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
-                                        if (db.Entry(details).State == EntityState.Detached)
-                                            db.Set<GRNDetails>().Attach(details);
-                                        details.CreatedDate = DateTime.Now;
-                                        db.Entry(details).State = EntityState.Added;
-                                        db.SaveChanges();
-                                        transaction.Commit();
-                                        if (details.GRN_Id != 0)
+
+                                        try
                                         {
-                                            LoadDetails(GRN_Code);
+                                            if (db.Entry(details).State == EntityState.Detached)
+                                                db.Set<GRNDetails>().Attach(details);
+                                            details.CreatedDate = DateTime.Now;
+                                            db.Entry(details).State = EntityState.Added;
+                                            db.SaveChanges();
+                                            if (details.GRN_Id != 0)
+                                            {
+                                                LoadDetails(GRN_Code);
+                                            }
+                                        }
+                                        catch (System.Data.Entity.Core.EntityException ex)
+                                        {
+                                            ExportJSON.Add(ex);
                                         }
                                     }
                                     Calculate();
@@ -337,8 +346,8 @@ namespace SimpleBilling.MasterForms
                             }
                             catch (Exception ex)
                             {
-                                transaction.Rollback();
                                 ExportJSON.Add(ex);
+                                throw;
                             }
                         }
                         else
@@ -346,6 +355,10 @@ namespace SimpleBilling.MasterForms
                             Info.Required();
                         }
                     }
+                }
+                else
+                {
+                    Info.Mes("This GRN Invoice seems to be entered already! please check and try again");
                 }
             }
             catch (Exception ex)
@@ -433,7 +446,7 @@ namespace SimpleBilling.MasterForms
                     {
                         using (BillingContext db = new BillingContext())
                         {
-                            var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode == GRN_Code && c.LineId == LineNo);
+                            var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode == GRN_Code && c.GRN_Id == GRN_Id);
                             if (db.Entry(Result).State == EntityState.Detached)
                                 db.Set<GRNDetails>().Attach(Result);
                             db.Entry(Result).State = EntityState.Deleted;
@@ -600,29 +613,12 @@ namespace SimpleBilling.MasterForms
                         {
                             if (!grn.IsPaid)
                             {
-                                if (BalanceValue > 0)
+                                if (BalanceValue < 0)
                                 {
                                     grn.PaymentType = CmbPaymentOptions.Text;
                                     if (CmbChooseCheques.Text == "Cheque")
                                         grn.ChequeNo = CmbChooseCheques.Text;
                                     grn.PaidAmount += Convert.ToSingle(LblNetTotal.Text);
-                                    grn.PendingAmount = 0;
-                                    if (db.Entry(grn).State == EntityState.Detached)
-                                        db.Set<GRNHeader>().Attach(grn);
-                                    grn.UpdatedDate = DateTime.Now;
-                                    db.Entry(grn).State = EntityState.Modified;
-                                    db.SaveChanges();
-                                    Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
-                                }
-                                else
-                                {
-                                    grn.PaymentType = CmbPaymentOptions.Text;
-                                    if (CmbChooseCheques.Text == "Cheque")
-                                        grn.ChequeNo = CmbChooseCheques.Text;
-                                    if (grn.PaidAmount + GivenValue > grn.NetTotal)
-                                        grn.PaidAmount = grn.NetTotal;
-                                    else
-                                        grn.PaidAmount += GivenValue;
                                     grn.PendingAmount = 0;
                                     grn.IsPaid = true;
                                     if (db.Entry(grn).State == EntityState.Detached)
@@ -631,6 +627,23 @@ namespace SimpleBilling.MasterForms
                                     db.Entry(grn).State = EntityState.Modified;
                                     db.SaveChanges();
                                     Info.Mes("Payment Completed Successfully");
+                                }
+                                else
+                                {
+                                    grn.PaymentType = CmbPaymentOptions.Text;
+                                    if (CmbChooseCheques.Text == "Cheque")
+                                        grn.ChequeNo = CmbChooseCheques.Text;
+                                    if (PaidValue + GivenValue > grn.NetTotal)
+                                        grn.PaidAmount = grn.NetTotal;
+                                    else
+                                        grn.PaidAmount += GivenValue;
+                                    grn.PendingAmount = grn.NetTotal - grn.PaidAmount;
+                                    if (db.Entry(grn).State == EntityState.Detached)
+                                        db.Set<GRNHeader>().Attach(grn);
+                                    grn.UpdatedDate = DateTime.Now;
+                                    db.Entry(grn).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
                                 }
                             }
                             else
@@ -675,9 +688,8 @@ namespace SimpleBilling.MasterForms
                 {
                     if (DGVGRNList.SelectedRows.Count > 0)
                     {
-                        int Line = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
                         string GRNNo = TxtGRNNo.Text.Trim();
-                        var GrnItem = db.GRNDetails.FirstOrDefault(c => !c.IsDeleted && c.LineId == Line && c.GRNCode == GRNNo);
+                        var GrnItem = db.GRNDetails.FirstOrDefault(c => c.GRN_Id == GRN_Id && c.GRNCode == GRNNo && !c.IsDeleted);
                         if (GrnItem != null)
                         {
                             GrnItem.IsReturned = true;
@@ -700,7 +712,7 @@ namespace SimpleBilling.MasterForms
                             LoadDetails(GRNNo);
                         }
 
-                        var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRNNo) && !c.IsDeleted);
+                        var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRNNo && !c.IsDeleted);
 
                         header.GrossTotal = NetTotal + TotalDiscount + Returns;
                         header.TotalDiscout = TotalDiscount;
@@ -728,11 +740,11 @@ namespace SimpleBilling.MasterForms
             if (DGVGRNList.SelectedRows.Count > 0)
             {
                 GRN_Code = TxtGRNNo.Text.Trim();
-                LineNo = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
-                CmbProduct.Text = DGVGRNList.SelectedRows[0].Cells[1].Value + string.Empty;
-                TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
+                GRN_Id = Convert.ToInt32(DGVGRNList.SelectedRows[0].Cells[0].Value + string.Empty);
+                CmbProduct.Text = DGVGRNList.SelectedRows[0].Cells[2].Value + string.Empty;
                 TxtUnitCost.Text = DGVGRNList.SelectedRows[0].Cells[3].Value + string.Empty;
-                TxtDiscount.Text = DGVGRNList.SelectedRows[0].Cells[4].Value + string.Empty;
+                TxtQuantity.Text = DGVGRNList.SelectedRows[0].Cells[4].Value + string.Empty;
+                TxtDiscount.Text = DGVGRNList.SelectedRows[0].Cells[6].Value + string.Empty;
             }
         }
 
@@ -752,9 +764,8 @@ namespace SimpleBilling.MasterForms
                 {
                     if (DGVGRNReturned.SelectedRows.Count > 0)
                     {
-                        int Line = Convert.ToInt32(DGVGRNReturned.SelectedRows[0].Cells[0].Value + string.Empty);
                         string GRNNo = TxtGRNNo.Text.Trim();
-                        var GrnItem = db.GRNDetails.FirstOrDefault(c => !c.IsDeleted && c.LineId == Line && c.GRNCode == GRNNo);
+                        var GrnItem = db.GRNDetails.FirstOrDefault(c => c.GRNCode == GRNNo && c.GRN_Id == GRN_Id && !c.IsDeleted);
                         if (GrnItem != null)
                         {
                             GrnItem.IsReturned = false;
@@ -1052,6 +1063,52 @@ namespace SimpleBilling.MasterForms
             if (e.KeyCode == Keys.Enter)
             {
                 AddItem();
+            }
+        }
+
+        private void TxtGRNNo_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TxtReference_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TxtGRNNo_Leave(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                string grnNo = TxtGRNNo.Text.Trim();
+                var data = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == grnNo);
+                if (data != null)
+                {
+                    Info.Mes("This GRN No already exist, Please enter some other value");
+                    isGrnExist = true;
+                }
+                else
+                {
+                    isGrnExist = false;
+                }
+            }
+        }
+
+        private void TxtReference_Leave(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                string refNo = TxtReference.Text.Trim();
+                var data = db.GRNHeaders.FirstOrDefault(c => c.ReferenceNo == refNo);
+                if (data != null)
+                {
+                    Info.Mes("This Reference No already exist, Please enter some other value");
+                    isGrnExist = true;
+                }
+                else
+                {
+                    isGrnExist = false;
+                }
             }
         }
     }
