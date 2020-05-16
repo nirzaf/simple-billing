@@ -157,6 +157,7 @@ namespace SimpleBilling.MasterForms
                         LblPaymentStatus.Text = PaymentStatus(header.IsPaid);
                         LblPaidAmount.Text = header.PaidAmount.ToString();
                         LblPendingAmount.Text = (Convert.ToSingle(LblNetTotal.Text) - Convert.ToSingle(LblPaidAmount.Text)).ToString();
+                        TxtRemarks.Text = header.Remarks;
                         if (header.Status == 3)
                         {
                             BtnGRNReturn.Enabled = true;

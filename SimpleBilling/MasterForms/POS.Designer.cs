@@ -780,29 +780,35 @@
             // TxtChequeNo
             // 
             this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNo.ForeColor = System.Drawing.Color.DarkGray;
             this.TxtChequeNo.Location = new System.Drawing.Point(3, 153);
             this.TxtChequeNo.Name = "TxtChequeNo";
             this.TxtChequeNo.Size = new System.Drawing.Size(148, 26);
             this.TxtChequeNo.TabIndex = 24;
+            this.TxtChequeNo.Text = "Cheque No";
             this.TxtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
             this.TxtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // TxtPayeeName
             // 
             this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.ForeColor = System.Drawing.Color.DarkGray;
             this.TxtPayeeName.Location = new System.Drawing.Point(157, 153);
             this.TxtPayeeName.Name = "TxtPayeeName";
             this.TxtPayeeName.Size = new System.Drawing.Size(160, 26);
             this.TxtPayeeName.TabIndex = 25;
+            this.TxtPayeeName.Text = "Payee Name";
             this.TxtPayeeName.Enter += new System.EventHandler(this.TxtPayeeName_Enter);
             this.TxtPayeeName.Leave += new System.EventHandler(this.TxtPayeeName_Leave);
             // 
             // TxtAmount
             // 
+            this.TxtAmount.ForeColor = System.Drawing.Color.DarkGray;
             this.TxtAmount.Location = new System.Drawing.Point(323, 153);
             this.TxtAmount.Name = "TxtAmount";
             this.TxtAmount.Size = new System.Drawing.Size(184, 26);
             this.TxtAmount.TabIndex = 26;
+            this.TxtAmount.Text = "Amount";
             this.TxtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
             this.TxtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
             // 

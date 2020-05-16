@@ -959,9 +959,6 @@ namespace SimpleBilling.MasterForms
                 if (CmbPaymentOption.SelectedItem.ToString() == "Cheque")
                 {
                     ShowCheque();
-                    TxtPayeeName.Focus();
-                    TxtAmount.Focus();
-                    TxtChequeNo.Focus();
                     BtnAddCheque.Visible = true;
                     CmbChooseCheques.Visible = true;
                     LoabCMB();
@@ -1332,7 +1329,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtChequeNo_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtChequeNo, "Cheque Number");
+            Info.PlaceHolder(TxtChequeNo);
         }
 
         private void TxtChequeNo_Leave(object sender, EventArgs e)
@@ -1342,7 +1339,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtPayeeName_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtPayeeName, "Payee Name");
+            Info.PlaceHolder(TxtPayeeName);
         }
 
         private void TxtPayeeName_Leave(object sender, EventArgs e)
@@ -1352,7 +1349,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtAmount_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtAmount, "Amount");
+            Info.PlaceHolder(TxtAmount);
         }
 
         private void TxtAmount_Leave(object sender, EventArgs e)

@@ -38,10 +38,10 @@ namespace SimpleBilling
 
         public static void Leave(TextBox Txt, string PlaceHolder)
         {
-            if (Txt.Text == PlaceHolder)
+            if (string.IsNullOrWhiteSpace(Txt.Text.Trim()))
             {
                 Txt.Text = PlaceHolder;
-                Txt.ForeColor = System.Drawing.Color.DimGray;
+                Txt.ForeColor = System.Drawing.Color.DarkGray;
             }
         }
 
@@ -190,7 +190,7 @@ namespace SimpleBilling
 
                     document.Add(table);
                     document.Close();
-                    StartProcess(sfd.FileName);
+                    StartProcess(fileName);
                 }
             }
             catch (Exception ex)
