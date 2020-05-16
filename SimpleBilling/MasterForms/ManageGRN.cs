@@ -395,7 +395,7 @@ namespace SimpleBilling.MasterForms
                     header.TotalDiscout = TotalDiscount;
                     header.NetTotal = NetTotal;
                     header.Status = 2;
-
+                    header.Remarks = TxtRemarks.Text.Trim();
                     if (db.Entry(header).State == EntityState.Detached)
                         db.Set<GRNHeader>().Attach(header);
                     header.UpdatedDate = DateTime.Now;
