@@ -483,7 +483,7 @@ namespace SimpleBilling.MasterForms
                                     db1.Set<Item>().Attach(item);
                                 item.UpdatedDate = DateTime.Now;
                                 db1.Entry(item).State = EntityState.Modified;
-                                db1.BulkSaveChanges();
+                                db1.SaveChanges();
                             }
                         }
                     }
@@ -1072,7 +1072,6 @@ namespace SimpleBilling.MasterForms
                 var data = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == grnNo);
                 if (data != null)
                 {
-                    Info.Mes("This GRN No already exist, Please enter some other value");
                     isGrnExist = true;
                 }
                 else

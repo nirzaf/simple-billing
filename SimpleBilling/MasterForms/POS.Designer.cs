@@ -36,8 +36,6 @@
             this.CmbAddItem = new System.Windows.Forms.ComboBox();
             this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtAddress = new System.Windows.Forms.TextBox();
-            this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TxtContact = new System.Windows.Forms.TextBox();
             this.LblReceiptNo = new System.Windows.Forms.Label();
             this.LblCustomer = new System.Windows.Forms.Label();
@@ -60,6 +58,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
+            this.TxtAddress = new System.Windows.Forms.TextBox();
+            this.TxtEmail = new System.Windows.Forms.TextBox();
             this.DGVReceiptBody = new System.Windows.Forms.DataGridView();
             this.DownLayout = new System.Windows.Forms.TableLayoutPanel();
             this.TxtNextServiceDue = new System.Windows.Forms.TextBox();
@@ -179,7 +179,7 @@
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.CRUDPanel.Controls.Add(this.TxtContact, 1, 1);
             this.CRUDPanel.Controls.Add(this.LblReceiptNo, 0, 0);
             this.CRUDPanel.Controls.Add(this.LblCustomer, 1, 0);
@@ -219,33 +219,6 @@
             this.CRUDPanel.Size = new System.Drawing.Size(1024, 173);
             this.CRUDPanel.TabIndex = 5;
             // 
-            // TxtAddress
-            // 
-            this.TxtAddress.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TxtAddress.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtAddress.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtAddress.Location = new System.Drawing.Point(399, 31);
-            this.TxtAddress.Name = "TxtAddress";
-            this.TxtAddress.Size = new System.Drawing.Size(390, 22);
-            this.TxtAddress.TabIndex = 24;
-            this.TxtAddress.Text = "Address";
-            this.TxtAddress.Enter += new System.EventHandler(this.TxtAddress_Enter);
-            this.TxtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAddress_KeyDown);
-            this.TxtAddress.Leave += new System.EventHandler(this.TxtAddress_Leave);
-            // 
-            // TxtEmail
-            // 
-            this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TxtEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEmail.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtEmail.Location = new System.Drawing.Point(795, 31);
-            this.TxtEmail.Name = "TxtEmail";
-            this.TxtEmail.Size = new System.Drawing.Size(192, 22);
-            this.TxtEmail.TabIndex = 23;
-            this.TxtEmail.Text = "Email";
-            this.TxtEmail.Enter += new System.EventHandler(this.TxtEmail_Enter);
-            this.TxtEmail.Leave += new System.EventHandler(this.TxtEmail_Leave);
-            // 
             // TxtContact
             // 
             this.TxtContact.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -283,6 +256,8 @@
             // 
             // TxtCustomer
             // 
+            this.TxtCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TxtCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TxtCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtCustomer.Location = new System.Drawing.Point(399, 3);
             this.TxtCustomer.Name = "TxtCustomer";
@@ -490,6 +465,33 @@
             this.TxtName.Text = "Customer Name";
             this.TxtName.Enter += new System.EventHandler(this.TxtName_Enter);
             this.TxtName.Leave += new System.EventHandler(this.TxtName_Leave);
+            // 
+            // TxtAddress
+            // 
+            this.TxtAddress.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.TxtAddress.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtAddress.ForeColor = System.Drawing.Color.DimGray;
+            this.TxtAddress.Location = new System.Drawing.Point(399, 31);
+            this.TxtAddress.Name = "TxtAddress";
+            this.TxtAddress.Size = new System.Drawing.Size(390, 22);
+            this.TxtAddress.TabIndex = 24;
+            this.TxtAddress.Text = "Address";
+            this.TxtAddress.Enter += new System.EventHandler(this.TxtAddress_Enter);
+            this.TxtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAddress_KeyDown);
+            this.TxtAddress.Leave += new System.EventHandler(this.TxtAddress_Leave);
+            // 
+            // TxtEmail
+            // 
+            this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.TxtEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEmail.ForeColor = System.Drawing.Color.DimGray;
+            this.TxtEmail.Location = new System.Drawing.Point(795, 31);
+            this.TxtEmail.Name = "TxtEmail";
+            this.TxtEmail.Size = new System.Drawing.Size(192, 22);
+            this.TxtEmail.TabIndex = 23;
+            this.TxtEmail.Text = "Email";
+            this.TxtEmail.Enter += new System.EventHandler(this.TxtEmail_Enter);
+            this.TxtEmail.Leave += new System.EventHandler(this.TxtEmail_Leave);
             // 
             // DGVReceiptBody
             // 

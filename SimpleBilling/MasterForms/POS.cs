@@ -65,6 +65,7 @@ namespace SimpleBilling.MasterForms
             TxtCustomer.Focus();
             HideCheque();
             HideAddCustomer();
+            CustomersAutocomplete();
         }
 
         private void LoabCMB()
@@ -1477,6 +1478,18 @@ namespace SimpleBilling.MasterForms
         private void TxtGivenAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             Info.IsDecimal(e, TxtGivenAmount);
+        }
+
+        private void CustomersAutocomplete()
+        {
+            AutoCompleteStringCollection Customers = new AutoCompleteStringCollection();
+
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Customers.Select(c => c.Contact).ToList();
+                Customers.AddRange(data.ToArray());
+                TxtCustomer.AutoCompleteCustomSource = Customers;
+            }
         }
     }
 }
