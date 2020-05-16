@@ -66,6 +66,8 @@ namespace SimpleBilling.MasterForms
             HideCheque();
             HideAddCustomer();
             CustomersAutocomplete();
+            BarCodeAutocomplete();
+            ProductCodeAutocomplete();
         }
 
         private void LoabCMB()
@@ -1489,6 +1491,34 @@ namespace SimpleBilling.MasterForms
                 var data = db.Customers.Select(c => c.Contact).ToList();
                 Customers.AddRange(data.ToArray());
                 TxtCustomer.AutoCompleteCustomSource = Customers;
+            }
+        }
+
+        private void BarCodeAutocomplete()
+        {
+            AutoCompleteStringCollection Barcode = new AutoCompleteStringCollection();
+
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Items.Select(c => c.Barcode).ToList();
+                Barcode.AddRange(data.ToArray());
+                TxtBarCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                TxtBarCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                TxtBarCode.AutoCompleteCustomSource = Barcode;
+            }
+        }
+
+        private void ProductCodeAutocomplete()
+        {
+            AutoCompleteStringCollection Code = new AutoCompleteStringCollection();
+
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Items.Select(c => c.Code).ToList();
+                Code.AddRange(data.ToArray());
+                TxtProductCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                TxtProductCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                TxtProductCode.AutoCompleteCustomSource = Code;
             }
         }
     }
