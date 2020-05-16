@@ -489,6 +489,7 @@ namespace SimpleBilling.MasterForms
                     }
 
                     var Result = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRN_Code));
+                    Result.Remarks = TxtRemarks.Text.Trim();
                     Result.Status = 3;
                     if (db.Entry(Result).State == EntityState.Detached)
                         db.Set<GRNHeader>().Attach(Result);
