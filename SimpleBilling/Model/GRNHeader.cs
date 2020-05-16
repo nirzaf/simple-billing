@@ -40,5 +40,7 @@ namespace SimpleBilling.Model
 
         [DefaultValue(0)]
         public float PendingAmount { get; set; }
+
+        public string Remarks { get; set; }
     }
 }

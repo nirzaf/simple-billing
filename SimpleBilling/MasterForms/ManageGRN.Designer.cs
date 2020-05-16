@@ -103,6 +103,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.LblPaidAmount = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.TxtRemarks = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gRNDetailsBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -599,15 +600,17 @@
             this.BaseLayout.Controls.Add(this.LblPaymentStatus, 1, 3);
             this.BaseLayout.Controls.Add(this.DGVPanel, 0, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel6, 1, 2);
+            this.BaseLayout.Controls.Add(this.TxtRemarks, 0, 4);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
-            this.BaseLayout.RowCount = 4;
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.63745F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.49004F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.171315F));
-            this.BaseLayout.Size = new System.Drawing.Size(1235, 502);
+            this.BaseLayout.RowCount = 5;
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.65996F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.45922F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.01653F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.786921F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.077371F));
+            this.BaseLayout.Size = new System.Drawing.Size(1235, 529);
             this.BaseLayout.TabIndex = 6;
             // 
             // tableLayoutPanel4
@@ -802,7 +805,7 @@
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.LayoutCheque.Size = new System.Drawing.Size(1056, 31);
+            this.LayoutCheque.Size = new System.Drawing.Size(1056, 29);
             this.LayoutCheque.TabIndex = 8;
             // 
             // TxtAmount
@@ -999,12 +1002,21 @@
             this.label18.TabIndex = 3;
             this.label18.Text = "Pending Amount";
             // 
+            // TxtRemarks
+            // 
+            this.TxtRemarks.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.TxtRemarks.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRemarks.Location = new System.Drawing.Point(3, 504);
+            this.TxtRemarks.Name = "TxtRemarks";
+            this.TxtRemarks.Size = new System.Drawing.Size(1056, 22);
+            this.TxtRemarks.TabIndex = 12;
+            // 
             // ManageGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1235, 502);
+            this.ClientSize = new System.Drawing.Size(1235, 529);
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1114,5 +1126,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label LblPendingAmount;
         public System.Windows.Forms.TextBox TxtChequeNo;
+        private System.Windows.Forms.TextBox TxtRemarks;
     }
 }
