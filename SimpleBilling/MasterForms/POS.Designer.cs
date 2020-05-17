@@ -157,9 +157,9 @@
             this.CmbAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CmbAddItem.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbAddItem.FormattingEnabled = true;
-            this.CmbAddItem.Location = new System.Drawing.Point(399, 87);
+            this.CmbAddItem.Location = new System.Drawing.Point(322, 87);
             this.CmbAddItem.Name = "CmbAddItem";
-            this.CmbAddItem.Size = new System.Drawing.Size(390, 22);
+            this.CmbAddItem.Size = new System.Drawing.Size(459, 22);
             this.CmbAddItem.TabIndex = 2;
             this.CmbAddItem.ValueMember = "Id";
             this.CmbAddItem.SelectedIndexChanged += new System.EventHandler(this.CmbAddItem_SelectedIndexChanged);
@@ -169,11 +169,11 @@
             // CRUDPanel
             // 
             this.CRUDPanel.ColumnCount = 5;
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.73134F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.00995F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.26866F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.99005F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.CRUDPanel.Controls.Add(this.TxtContact, 1, 1);
             this.CRUDPanel.Controls.Add(this.LblReceiptNo, 0, 0);
             this.CRUDPanel.Controls.Add(this.LblCustomer, 1, 0);
@@ -218,9 +218,9 @@
             this.TxtContact.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtContact.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtContact.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtContact.Location = new System.Drawing.Point(201, 31);
+            this.TxtContact.Location = new System.Drawing.Point(141, 31);
             this.TxtContact.Name = "TxtContact";
-            this.TxtContact.Size = new System.Drawing.Size(192, 22);
+            this.TxtContact.Size = new System.Drawing.Size(175, 22);
             this.TxtContact.TabIndex = 22;
             this.TxtContact.Text = "Contact No";
             this.TxtContact.Enter += new System.EventHandler(this.TxtContact_Enter);
@@ -233,7 +233,7 @@
             this.LblReceiptNo.ForeColor = System.Drawing.Color.Wheat;
             this.LblReceiptNo.Location = new System.Drawing.Point(3, 0);
             this.LblReceiptNo.Name = "LblReceiptNo";
-            this.LblReceiptNo.Size = new System.Drawing.Size(192, 19);
+            this.LblReceiptNo.Size = new System.Drawing.Size(132, 19);
             this.LblReceiptNo.TabIndex = 18;
             this.LblReceiptNo.Text = "ReceiptNo";
             // 
@@ -242,7 +242,7 @@
             this.LblCustomer.AutoSize = true;
             this.LblCustomer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblCustomer.ForeColor = System.Drawing.Color.Lime;
-            this.LblCustomer.Location = new System.Drawing.Point(201, 0);
+            this.LblCustomer.Location = new System.Drawing.Point(141, 0);
             this.LblCustomer.Name = "LblCustomer";
             this.LblCustomer.Size = new System.Drawing.Size(84, 19);
             this.LblCustomer.TabIndex = 17;
@@ -254,9 +254,9 @@
             this.TxtCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TxtCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtCustomer.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCustomer.Location = new System.Drawing.Point(399, 3);
+            this.TxtCustomer.Location = new System.Drawing.Point(322, 3);
             this.TxtCustomer.Name = "TxtCustomer";
-            this.TxtCustomer.Size = new System.Drawing.Size(390, 25);
+            this.TxtCustomer.Size = new System.Drawing.Size(459, 25);
             this.TxtCustomer.TabIndex = 1;
             this.TxtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyDown);
             this.TxtCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyUp);
@@ -267,9 +267,9 @@
             this.CmbVehicles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbVehicles.Enabled = false;
             this.CmbVehicles.FormattingEnabled = true;
-            this.CmbVehicles.Location = new System.Drawing.Point(795, 3);
+            this.CmbVehicles.Location = new System.Drawing.Point(787, 3);
             this.CmbVehicles.Name = "CmbVehicles";
-            this.CmbVehicles.Size = new System.Drawing.Size(192, 27);
+            this.CmbVehicles.Size = new System.Drawing.Size(215, 27);
             this.CmbVehicles.TabIndex = 19;
             // 
             // ChkVehicle
@@ -277,9 +277,9 @@
             this.ChkVehicle.AutoSize = true;
             this.ChkVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkVehicle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ChkVehicle.Location = new System.Drawing.Point(993, 3);
+            this.ChkVehicle.Location = new System.Drawing.Point(1008, 3);
             this.ChkVehicle.Name = "ChkVehicle";
-            this.ChkVehicle.Size = new System.Drawing.Size(28, 22);
+            this.ChkVehicle.Size = new System.Drawing.Size(13, 22);
             this.ChkVehicle.TabIndex = 20;
             this.ChkVehicle.UseVisualStyleBackColor = true;
             this.ChkVehicle.CheckedChanged += new System.EventHandler(this.ChkVehicle_CheckedChanged);
@@ -291,7 +291,7 @@
             this.TxtQuantity.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtQuantity.Location = new System.Drawing.Point(3, 143);
             this.TxtQuantity.Name = "TxtQuantity";
-            this.TxtQuantity.Size = new System.Drawing.Size(192, 25);
+            this.TxtQuantity.Size = new System.Drawing.Size(132, 25);
             this.TxtQuantity.TabIndex = 3;
             this.TxtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuantity_KeyDown);
             this.TxtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQuantity_KeyPress);
@@ -301,9 +301,9 @@
             // 
             this.TxtDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDiscount.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDiscount.Location = new System.Drawing.Point(201, 143);
+            this.TxtDiscount.Location = new System.Drawing.Point(141, 143);
             this.TxtDiscount.Name = "TxtDiscount";
-            this.TxtDiscount.Size = new System.Drawing.Size(192, 25);
+            this.TxtDiscount.Size = new System.Drawing.Size(175, 25);
             this.TxtDiscount.TabIndex = 4;
             this.TxtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDiscount_KeyDown);
             this.TxtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDiscount_KeyPress);
@@ -313,19 +313,19 @@
             // 
             this.TxtSubTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtSubTotal.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSubTotal.Location = new System.Drawing.Point(399, 143);
+            this.TxtSubTotal.Location = new System.Drawing.Point(322, 143);
             this.TxtSubTotal.Name = "TxtSubTotal";
-            this.TxtSubTotal.Size = new System.Drawing.Size(390, 25);
+            this.TxtSubTotal.Size = new System.Drawing.Size(459, 25);
             this.TxtSubTotal.TabIndex = 7;
             // 
             // TxtNetTotal
             // 
             this.TxtNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtNetTotal.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNetTotal.Location = new System.Drawing.Point(795, 143);
+            this.TxtNetTotal.Location = new System.Drawing.Point(787, 143);
             this.TxtNetTotal.Name = "TxtNetTotal";
             this.TxtNetTotal.ReadOnly = true;
-            this.TxtNetTotal.Size = new System.Drawing.Size(192, 25);
+            this.TxtNetTotal.Size = new System.Drawing.Size(215, 25);
             this.TxtNetTotal.TabIndex = 8;
             // 
             // label5
@@ -337,7 +337,7 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(3, 123);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(192, 17);
+            this.label5.Size = new System.Drawing.Size(132, 17);
             this.label5.TabIndex = 6;
             this.label5.Text = "Quantity";
             // 
@@ -348,9 +348,9 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(201, 123);
+            this.label6.Location = new System.Drawing.Point(141, 123);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(192, 17);
+            this.label6.Size = new System.Drawing.Size(175, 17);
             this.label6.TabIndex = 7;
             this.label6.Text = "Discount";
             // 
@@ -361,9 +361,9 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(399, 123);
+            this.label7.Location = new System.Drawing.Point(322, 123);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(390, 17);
+            this.label7.Size = new System.Drawing.Size(459, 17);
             this.label7.TabIndex = 8;
             this.label7.Text = "Sub Total";
             // 
@@ -374,9 +374,9 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label8.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(795, 123);
+            this.label8.Location = new System.Drawing.Point(787, 123);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(192, 17);
+            this.label8.Size = new System.Drawing.Size(215, 17);
             this.label8.TabIndex = 9;
             this.label8.Text = "Net Total";
             // 
@@ -386,7 +386,7 @@
             this.TxtBarCode.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBarCode.Location = new System.Drawing.Point(3, 87);
             this.TxtBarCode.Name = "TxtBarCode";
-            this.TxtBarCode.Size = new System.Drawing.Size(192, 25);
+            this.TxtBarCode.Size = new System.Drawing.Size(132, 25);
             this.TxtBarCode.TabIndex = 5;
             this.TxtBarCode.Enter += new System.EventHandler(this.TxtBarCode_Enter);
             this.TxtBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtBarCode_KeyUp);
@@ -395,19 +395,19 @@
             // 
             this.TxtProductCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtProductCode.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProductCode.Location = new System.Drawing.Point(201, 87);
+            this.TxtProductCode.Location = new System.Drawing.Point(141, 87);
             this.TxtProductCode.Name = "TxtProductCode";
-            this.TxtProductCode.Size = new System.Drawing.Size(192, 25);
+            this.TxtProductCode.Size = new System.Drawing.Size(175, 25);
             this.TxtProductCode.TabIndex = 6;
             // 
             // TxtUnitPrice
             // 
             this.TxtUnitPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUnitPrice.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUnitPrice.Location = new System.Drawing.Point(795, 87);
+            this.TxtUnitPrice.Location = new System.Drawing.Point(787, 87);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.ReadOnly = true;
-            this.TxtUnitPrice.Size = new System.Drawing.Size(192, 25);
+            this.TxtUnitPrice.Size = new System.Drawing.Size(215, 25);
             this.TxtUnitPrice.TabIndex = 12;
             this.TxtUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUnitPrice_KeyPress);
             // 
@@ -420,7 +420,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 17);
+            this.label1.Size = new System.Drawing.Size(132, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Bar Code";
             // 
@@ -431,9 +431,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(201, 67);
+            this.label2.Location = new System.Drawing.Point(141, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(192, 17);
+            this.label2.Size = new System.Drawing.Size(175, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Product Code";
             // 
@@ -444,9 +444,9 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(399, 67);
+            this.label3.Location = new System.Drawing.Point(322, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(390, 17);
+            this.label3.Size = new System.Drawing.Size(459, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Item Description";
             // 
@@ -457,9 +457,9 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(795, 67);
+            this.label4.Location = new System.Drawing.Point(787, 67);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(192, 17);
+            this.label4.Size = new System.Drawing.Size(215, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "Unit Price";
             // 
@@ -470,7 +470,7 @@
             this.TxtName.ForeColor = System.Drawing.Color.DimGray;
             this.TxtName.Location = new System.Drawing.Point(3, 31);
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(192, 22);
+            this.TxtName.Size = new System.Drawing.Size(132, 22);
             this.TxtName.TabIndex = 21;
             this.TxtName.Text = "Customer Name";
             this.TxtName.Enter += new System.EventHandler(this.TxtName_Enter);
@@ -481,9 +481,9 @@
             this.TxtAddress.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtAddress.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtAddress.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtAddress.Location = new System.Drawing.Point(399, 31);
+            this.TxtAddress.Location = new System.Drawing.Point(322, 31);
             this.TxtAddress.Name = "TxtAddress";
-            this.TxtAddress.Size = new System.Drawing.Size(390, 22);
+            this.TxtAddress.Size = new System.Drawing.Size(459, 22);
             this.TxtAddress.TabIndex = 24;
             this.TxtAddress.Text = "Address";
             this.TxtAddress.Enter += new System.EventHandler(this.TxtAddress_Enter);
@@ -495,9 +495,9 @@
             this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEmail.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtEmail.Location = new System.Drawing.Point(795, 31);
+            this.TxtEmail.Location = new System.Drawing.Point(787, 31);
             this.TxtEmail.Name = "TxtEmail";
-            this.TxtEmail.Size = new System.Drawing.Size(192, 22);
+            this.TxtEmail.Size = new System.Drawing.Size(215, 22);
             this.TxtEmail.TabIndex = 23;
             this.TxtEmail.Text = "Email";
             this.TxtEmail.Enter += new System.EventHandler(this.TxtEmail_Enter);
