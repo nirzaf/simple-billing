@@ -576,6 +576,18 @@
     <Compile Include="Migrations\202005170253276_billing60.designer.cs">
       <DependentUpon>202005170253276_billing60.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005170702046_billing61.cs" />
+    <Compile Include="Migrations\202005170702046_billing61.designer.cs">
+      <DependentUpon>202005170702046_billing61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005170736242_billing62.cs" />
+    <Compile Include="Migrations\202005170736242_billing62.designer.cs">
+      <DependentUpon>202005170736242_billing62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005170741196_billing63.cs" />
+    <Compile Include="Migrations\202005170741196_billing63.designer.cs">
+      <DependentUpon>202005170741196_billing63.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bank.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -590,7 +602,9 @@
     <Compile Include="Model\GrnHeader.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\MileageTracking.cs" />
+    <Compile Include="Model\OrderedItem.cs" />
     <Compile Include="Model\PendingJob.cs" />
+    <Compile Include="Model\PurchaseOrder.cs" />
     <Compile Include="Model\ReceiptBody.cs" />
     <Compile Include="Model\ReceiptHeader.cs" />
     <Compile Include="Model\Setting.cs" />
@@ -892,6 +906,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005170253276_billing60.resx">
       <DependentUpon>202005170253276_billing60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005170702046_billing61.resx">
+      <DependentUpon>202005170702046_billing61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005170736242_billing62.resx">
+      <DependentUpon>202005170736242_billing62.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005170741196_billing63.resx">
+      <DependentUpon>202005170741196_billing63.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

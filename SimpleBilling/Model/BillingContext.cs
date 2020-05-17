@@ -26,5 +26,7 @@ namespace SimpleBilling.Model
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<PendingJob> PendingJobs { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public DbSet<OrderedItem> OrderedItems { get; set; }
     }
 }

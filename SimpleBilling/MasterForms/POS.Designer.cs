@@ -133,7 +133,7 @@
             this.LblDate.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblDate.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblDate.ForeColor = System.Drawing.Color.Lime;
-            this.LblDate.Location = new System.Drawing.Point(3, 118);
+            this.LblDate.Location = new System.Drawing.Point(3, 113);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(148, 17);
             this.LblDate.TabIndex = 0;
@@ -144,7 +144,7 @@
             this.LblTime.AutoSize = true;
             this.LblTime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblTime.ForeColor = System.Drawing.Color.Lime;
-            this.LblTime.Location = new System.Drawing.Point(157, 118);
+            this.LblTime.Location = new System.Drawing.Point(157, 113);
             this.LblTime.Name = "LblTime";
             this.LblTime.Size = new System.Drawing.Size(160, 17);
             this.LblTime.TabIndex = 1;
@@ -161,7 +161,7 @@
             this.CmbAddItem.FormattingEnabled = true;
             this.CmbAddItem.Location = new System.Drawing.Point(320, 86);
             this.CmbAddItem.Name = "CmbAddItem";
-            this.CmbAddItem.Size = new System.Drawing.Size(458, 23);
+            this.CmbAddItem.Size = new System.Drawing.Size(457, 23);
             this.CmbAddItem.TabIndex = 2;
             this.CmbAddItem.ValueMember = "Id";
             this.CmbAddItem.SelectedIndexChanged += new System.EventHandler(this.CmbAddItem_SelectedIndexChanged);
@@ -175,7 +175,7 @@
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.00995F));
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.26866F));
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.99005F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.CRUDPanel.Controls.Add(this.TxtContact, 1, 1);
             this.CRUDPanel.Controls.Add(this.LblReceiptNo, 0, 0);
             this.CRUDPanel.Controls.Add(this.LblCustomer, 1, 0);
@@ -260,7 +260,7 @@
             this.TxtCustomer.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCustomer.Location = new System.Drawing.Point(320, 3);
             this.TxtCustomer.Name = "TxtCustomer";
-            this.TxtCustomer.Size = new System.Drawing.Size(458, 22);
+            this.TxtCustomer.Size = new System.Drawing.Size(457, 22);
             this.TxtCustomer.TabIndex = 1;
             this.TxtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyDown);
             this.TxtCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyUp);
@@ -272,7 +272,7 @@
             this.CmbVehicles.Enabled = false;
             this.CmbVehicles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbVehicles.FormattingEnabled = true;
-            this.CmbVehicles.Location = new System.Drawing.Point(784, 3);
+            this.CmbVehicles.Location = new System.Drawing.Point(783, 3);
             this.CmbVehicles.Name = "CmbVehicles";
             this.CmbVehicles.Size = new System.Drawing.Size(214, 24);
             this.CmbVehicles.TabIndex = 19;
@@ -282,9 +282,9 @@
             this.ChkVehicle.AutoSize = true;
             this.ChkVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkVehicle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ChkVehicle.Location = new System.Drawing.Point(1004, 3);
+            this.ChkVehicle.Location = new System.Drawing.Point(1003, 3);
             this.ChkVehicle.Name = "ChkVehicle";
-            this.ChkVehicle.Size = new System.Drawing.Size(17, 26);
+            this.ChkVehicle.Size = new System.Drawing.Size(18, 26);
             this.ChkVehicle.TabIndex = 20;
             this.ChkVehicle.UseVisualStyleBackColor = true;
             this.ChkVehicle.CheckedChanged += new System.EventHandler(this.ChkVehicle_CheckedChanged);
@@ -320,14 +320,14 @@
             this.TxtSubTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSubTotal.Location = new System.Drawing.Point(320, 134);
             this.TxtSubTotal.Name = "TxtSubTotal";
-            this.TxtSubTotal.Size = new System.Drawing.Size(458, 22);
+            this.TxtSubTotal.Size = new System.Drawing.Size(457, 22);
             this.TxtSubTotal.TabIndex = 7;
             // 
             // TxtNetTotal
             // 
             this.TxtNetTotal.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtNetTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNetTotal.Location = new System.Drawing.Point(784, 134);
+            this.TxtNetTotal.Location = new System.Drawing.Point(783, 134);
             this.TxtNetTotal.Name = "TxtNetTotal";
             this.TxtNetTotal.ReadOnly = true;
             this.TxtNetTotal.Size = new System.Drawing.Size(214, 22);
@@ -368,7 +368,7 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(320, 114);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(458, 17);
+            this.label7.Size = new System.Drawing.Size(457, 17);
             this.label7.TabIndex = 8;
             this.label7.Text = "Sub Total";
             // 
@@ -379,7 +379,7 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label8.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(784, 114);
+            this.label8.Location = new System.Drawing.Point(783, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(214, 17);
             this.label8.TabIndex = 9;
@@ -409,7 +409,7 @@
             // 
             this.TxtUnitPrice.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtUnitPrice.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUnitPrice.Location = new System.Drawing.Point(784, 86);
+            this.TxtUnitPrice.Location = new System.Drawing.Point(783, 86);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.ReadOnly = true;
             this.TxtUnitPrice.Size = new System.Drawing.Size(214, 22);
@@ -451,7 +451,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(320, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(458, 17);
+            this.label3.Size = new System.Drawing.Size(457, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Item Description";
             // 
@@ -462,7 +462,7 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(784, 66);
+            this.label4.Location = new System.Drawing.Point(783, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(214, 17);
             this.label4.TabIndex = 5;
@@ -488,7 +488,7 @@
             this.TxtAddress.ForeColor = System.Drawing.Color.DimGray;
             this.TxtAddress.Location = new System.Drawing.Point(320, 35);
             this.TxtAddress.Name = "TxtAddress";
-            this.TxtAddress.Size = new System.Drawing.Size(458, 22);
+            this.TxtAddress.Size = new System.Drawing.Size(457, 22);
             this.TxtAddress.TabIndex = 24;
             this.TxtAddress.Text = "Address";
             this.TxtAddress.Enter += new System.EventHandler(this.TxtAddress_Enter);
@@ -500,7 +500,7 @@
             this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEmail.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtEmail.Location = new System.Drawing.Point(784, 35);
+            this.TxtEmail.Location = new System.Drawing.Point(783, 35);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(214, 22);
             this.TxtEmail.TabIndex = 23;
@@ -585,7 +585,7 @@
             // TxtNextServiceDue
             // 
             this.TxtNextServiceDue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtNextServiceDue.Location = new System.Drawing.Point(157, 30);
+            this.TxtNextServiceDue.Location = new System.Drawing.Point(157, 29);
             this.TxtNextServiceDue.Name = "TxtNextServiceDue";
             this.TxtNextServiceDue.Size = new System.Drawing.Size(160, 25);
             this.TxtNextServiceDue.TabIndex = 20;
@@ -595,7 +595,7 @@
             this.LblCashier.AutoSize = true;
             this.LblCashier.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblCashier.ForeColor = System.Drawing.Color.Lime;
-            this.LblCashier.Location = new System.Drawing.Point(323, 118);
+            this.LblCashier.Location = new System.Drawing.Point(323, 113);
             this.LblCashier.Name = "LblCashier";
             this.LblCashier.Size = new System.Drawing.Size(184, 17);
             this.LblCashier.TabIndex = 12;
@@ -606,7 +606,7 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label11.ForeColor = System.Drawing.Color.Yellow;
-            this.label11.Location = new System.Drawing.Point(684, 118);
+            this.label11.Location = new System.Drawing.Point(684, 113);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(165, 17);
             this.label11.TabIndex = 10;
@@ -617,7 +617,7 @@
             this.LblReceiptStatus.AutoSize = true;
             this.LblReceiptStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblReceiptStatus.ForeColor = System.Drawing.Color.Yellow;
-            this.LblReceiptStatus.Location = new System.Drawing.Point(855, 118);
+            this.LblReceiptStatus.Location = new System.Drawing.Point(855, 113);
             this.LblReceiptStatus.Name = "LblReceiptStatus";
             this.LblReceiptStatus.Size = new System.Drawing.Size(166, 17);
             this.LblReceiptStatus.TabIndex = 11;
@@ -628,9 +628,9 @@
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(684, 54);
+            this.label13.Location = new System.Drawing.Point(684, 52);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(165, 27);
+            this.label13.Size = new System.Drawing.Size(165, 26);
             this.label13.TabIndex = 4;
             this.label13.Text = "Net Total";
             // 
@@ -642,9 +642,9 @@
             this.LblNetTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblNetTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNetTotal.ForeColor = System.Drawing.Color.White;
-            this.LblNetTotal.Location = new System.Drawing.Point(855, 54);
+            this.LblNetTotal.Location = new System.Drawing.Point(855, 52);
             this.LblNetTotal.Name = "LblNetTotal";
-            this.LblNetTotal.Size = new System.Drawing.Size(166, 27);
+            this.LblNetTotal.Size = new System.Drawing.Size(166, 26);
             this.LblNetTotal.TabIndex = 5;
             this.LblNetTotal.Text = "0";
             // 
@@ -653,9 +653,9 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(684, 27);
+            this.label10.Location = new System.Drawing.Point(684, 26);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(165, 27);
+            this.label10.Size = new System.Drawing.Size(165, 26);
             this.label10.TabIndex = 1;
             this.label10.Text = "Total Discount";
             // 
@@ -667,9 +667,9 @@
             this.LblTotalDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblTotalDiscount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTotalDiscount.ForeColor = System.Drawing.Color.White;
-            this.LblTotalDiscount.Location = new System.Drawing.Point(855, 27);
+            this.LblTotalDiscount.Location = new System.Drawing.Point(855, 26);
             this.LblTotalDiscount.Name = "LblTotalDiscount";
-            this.LblTotalDiscount.Size = new System.Drawing.Size(166, 27);
+            this.LblTotalDiscount.Size = new System.Drawing.Size(166, 26);
             this.LblTotalDiscount.TabIndex = 3;
             this.LblTotalDiscount.Text = "0";
             // 
@@ -680,7 +680,7 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(684, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(165, 27);
+            this.label9.Size = new System.Drawing.Size(165, 26);
             this.label9.TabIndex = 0;
             this.label9.Text = "Gross Total";
             // 
@@ -694,7 +694,7 @@
             this.LblSubTotal.ForeColor = System.Drawing.Color.White;
             this.LblSubTotal.Location = new System.Drawing.Point(855, 0);
             this.LblSubTotal.Name = "LblSubTotal";
-            this.LblSubTotal.Size = new System.Drawing.Size(166, 27);
+            this.LblSubTotal.Size = new System.Drawing.Size(166, 26);
             this.LblSubTotal.TabIndex = 2;
             this.LblSubTotal.Text = "0";
             // 
@@ -719,7 +719,7 @@
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(323, 10);
+            this.label16.Location = new System.Drawing.Point(323, 9);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(184, 17);
             this.label16.TabIndex = 16;
@@ -730,7 +730,7 @@
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(3, 10);
+            this.label17.Location = new System.Drawing.Point(3, 9);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(148, 17);
             this.label17.TabIndex = 17;
@@ -741,7 +741,7 @@
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label18.ForeColor = System.Drawing.Color.Snow;
-            this.label18.Location = new System.Drawing.Point(3, 37);
+            this.label18.Location = new System.Drawing.Point(3, 35);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(148, 17);
             this.label18.TabIndex = 18;
@@ -761,7 +761,7 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(323, 91);
+            this.label15.Location = new System.Drawing.Point(323, 87);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(184, 17);
             this.label15.TabIndex = 14;
@@ -772,7 +772,7 @@
             this.LblBalanceAmount.AutoSize = true;
             this.LblBalanceAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblBalanceAmount.ForeColor = System.Drawing.Color.White;
-            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 91);
+            this.LblBalanceAmount.Location = new System.Drawing.Point(513, 87);
             this.LblBalanceAmount.Name = "LblBalanceAmount";
             this.LblBalanceAmount.Size = new System.Drawing.Size(165, 17);
             this.LblBalanceAmount.TabIndex = 9;
@@ -781,7 +781,7 @@
             // TxtGivenAmount
             // 
             this.TxtGivenAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 57);
+            this.TxtGivenAmount.Location = new System.Drawing.Point(513, 55);
             this.TxtGivenAmount.Name = "TxtGivenAmount";
             this.TxtGivenAmount.Size = new System.Drawing.Size(165, 25);
             this.TxtGivenAmount.TabIndex = 9;
@@ -795,7 +795,7 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(323, 64);
+            this.label12.Location = new System.Drawing.Point(323, 61);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(184, 17);
             this.label12.TabIndex = 13;
@@ -806,7 +806,7 @@
             this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtChequeNo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtChequeNo.ForeColor = System.Drawing.Color.DarkGray;
-            this.TxtChequeNo.Location = new System.Drawing.Point(3, 138);
+            this.TxtChequeNo.Location = new System.Drawing.Point(3, 133);
             this.TxtChequeNo.Name = "TxtChequeNo";
             this.TxtChequeNo.Size = new System.Drawing.Size(148, 22);
             this.TxtChequeNo.TabIndex = 24;
@@ -819,7 +819,7 @@
             this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtPayeeName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPayeeName.ForeColor = System.Drawing.Color.DarkGray;
-            this.TxtPayeeName.Location = new System.Drawing.Point(157, 138);
+            this.TxtPayeeName.Location = new System.Drawing.Point(157, 133);
             this.TxtPayeeName.Name = "TxtPayeeName";
             this.TxtPayeeName.Size = new System.Drawing.Size(160, 22);
             this.TxtPayeeName.TabIndex = 25;
@@ -832,7 +832,7 @@
             this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtAmount.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtAmount.ForeColor = System.Drawing.Color.DarkGray;
-            this.TxtAmount.Location = new System.Drawing.Point(323, 138);
+            this.TxtAmount.Location = new System.Drawing.Point(323, 133);
             this.TxtAmount.Name = "TxtAmount";
             this.TxtAmount.Size = new System.Drawing.Size(184, 22);
             this.TxtAmount.TabIndex = 26;
@@ -845,7 +845,7 @@
             this.CmbBank.Dock = System.Windows.Forms.DockStyle.Top;
             this.CmbBank.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbBank.FormattingEnabled = true;
-            this.CmbBank.Location = new System.Drawing.Point(855, 138);
+            this.CmbBank.Location = new System.Drawing.Point(855, 133);
             this.CmbBank.Name = "CmbBank";
             this.CmbBank.Size = new System.Drawing.Size(166, 24);
             this.CmbBank.TabIndex = 28;
@@ -855,7 +855,7 @@
             this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Top;
             this.CmbPaidBy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbPaidBy.FormattingEnabled = true;
-            this.CmbPaidBy.Location = new System.Drawing.Point(684, 138);
+            this.CmbPaidBy.Location = new System.Drawing.Point(684, 133);
             this.CmbPaidBy.Name = "CmbPaidBy";
             this.CmbPaidBy.Size = new System.Drawing.Size(165, 24);
             this.CmbPaidBy.TabIndex = 27;
@@ -865,7 +865,7 @@
             this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Top;
             this.DTDueDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTDueDate.Location = new System.Drawing.Point(513, 138);
+            this.DTDueDate.Location = new System.Drawing.Point(513, 133);
             this.DTDueDate.Name = "DTDueDate";
             this.DTDueDate.Size = new System.Drawing.Size(165, 22);
             this.DTDueDate.TabIndex = 29;
@@ -875,9 +875,9 @@
             this.BtnAddCheque.BackColor = System.Drawing.Color.White;
             this.BtnAddCheque.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAddCheque.Location = new System.Drawing.Point(323, 30);
+            this.BtnAddCheque.Location = new System.Drawing.Point(323, 29);
             this.BtnAddCheque.Name = "BtnAddCheque";
-            this.BtnAddCheque.Size = new System.Drawing.Size(184, 21);
+            this.BtnAddCheque.Size = new System.Drawing.Size(184, 20);
             this.BtnAddCheque.TabIndex = 12;
             this.BtnAddCheque.Text = "Add Cheque";
             this.BtnAddCheque.UseVisualStyleBackColor = false;
@@ -889,7 +889,7 @@
             this.CmbChooseCheques.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbChooseCheques.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbChooseCheques.FormattingEnabled = true;
-            this.CmbChooseCheques.Location = new System.Drawing.Point(513, 30);
+            this.CmbChooseCheques.Location = new System.Drawing.Point(513, 29);
             this.CmbChooseCheques.Name = "CmbChooseCheques";
             this.CmbChooseCheques.Size = new System.Drawing.Size(165, 24);
             this.CmbChooseCheques.TabIndex = 30;
@@ -900,16 +900,16 @@
             this.label19.AutoSize = true;
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(684, 81);
+            this.label19.Location = new System.Drawing.Point(684, 78);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(165, 27);
+            this.label19.Size = new System.Drawing.Size(165, 26);
             this.label19.TabIndex = 31;
             this.label19.Text = "Overall Discount";
             // 
             // TxtOverallDiscount
             // 
             this.TxtOverallDiscount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtOverallDiscount.Location = new System.Drawing.Point(855, 84);
+            this.TxtOverallDiscount.Location = new System.Drawing.Point(855, 81);
             this.TxtOverallDiscount.Name = "TxtOverallDiscount";
             this.TxtOverallDiscount.Size = new System.Drawing.Size(166, 25);
             this.TxtOverallDiscount.TabIndex = 32;
@@ -922,7 +922,7 @@
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(3, 64);
+            this.label20.Location = new System.Drawing.Point(3, 61);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(148, 17);
             this.label20.TabIndex = 33;
@@ -933,7 +933,7 @@
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(3, 91);
+            this.label21.Location = new System.Drawing.Point(3, 87);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(148, 17);
             this.label21.TabIndex = 34;
@@ -944,7 +944,7 @@
             this.LblPaidAmount.AutoSize = true;
             this.LblPaidAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblPaidAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.LblPaidAmount.Location = new System.Drawing.Point(157, 64);
+            this.LblPaidAmount.Location = new System.Drawing.Point(157, 61);
             this.LblPaidAmount.Name = "LblPaidAmount";
             this.LblPaidAmount.Size = new System.Drawing.Size(160, 17);
             this.LblPaidAmount.TabIndex = 35;
@@ -955,7 +955,7 @@
             this.LblPendingAmount.AutoSize = true;
             this.LblPendingAmount.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblPendingAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.LblPendingAmount.Location = new System.Drawing.Point(157, 91);
+            this.LblPendingAmount.Location = new System.Drawing.Point(157, 87);
             this.LblPendingAmount.Name = "LblPendingAmount";
             this.LblPendingAmount.Size = new System.Drawing.Size(160, 17);
             this.LblPendingAmount.TabIndex = 36;
@@ -966,7 +966,7 @@
             this.LblPaymentStatus.AutoSize = true;
             this.LblPaymentStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LblPaymentStatus.ForeColor = System.Drawing.Color.White;
-            this.LblPaymentStatus.Location = new System.Drawing.Point(513, 118);
+            this.LblPaymentStatus.Location = new System.Drawing.Point(513, 113);
             this.LblPaymentStatus.Name = "LblPaymentStatus";
             this.LblPaymentStatus.Size = new System.Drawing.Size(165, 17);
             this.LblPaymentStatus.TabIndex = 37;
