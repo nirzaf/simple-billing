@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrder));
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.DGVOrderedItems = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
             this.TxtUnitType = new System.Windows.Forms.TextBox();
             this.BtnAddToOrder = new System.Windows.Forms.Button();
             this.BtnRemove = new System.Windows.Forms.Button();
+            this.LblDate = new System.Windows.Forms.Label();
             this.BaseLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVOrderedItems)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -69,6 +71,7 @@
             this.BaseLayout.Controls.Add(this.label1, 0, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel1, 1, 1);
             this.BaseLayout.Controls.Add(this.tabControl1, 2, 1);
+            this.BaseLayout.Controls.Add(this.LblDate, 2, 0);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -77,38 +80,42 @@
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.922912F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.07709F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.BaseLayout.Size = new System.Drawing.Size(782, 512);
+            this.BaseLayout.Size = new System.Drawing.Size(1201, 512);
             this.BaseLayout.TabIndex = 0;
             // 
             // DGVOrderedItems
             // 
+            this.DGVOrderedItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVOrderedItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVOrderedItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVOrderedItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVOrderedItems.Location = new System.Drawing.Point(4, 40);
             this.DGVOrderedItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVOrderedItems.Name = "DGVOrderedItems";
-            this.DGVOrderedItems.Size = new System.Drawing.Size(217, 434);
+            this.DGVOrderedItems.Size = new System.Drawing.Size(421, 434);
             this.DGVOrderedItems.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 0);
+            this.label1.Location = new System.Drawing.Point(4, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 18);
+            this.label1.Size = new System.Drawing.Size(421, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "Ordered items";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(229, 0);
+            this.label2.Location = new System.Drawing.Point(433, 19);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 18);
+            this.label2.Size = new System.Drawing.Size(443, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Items to order";
             // 
@@ -119,29 +126,32 @@
             this.tableLayoutPanel1.Controls.Add(this.DGVItemsToOrder, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.TxtFilterItems, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(228, 40);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(432, 40);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.587257F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.41274F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(230, 434);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.912442F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.08755F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(445, 434);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // TxtFilterItems
             // 
+            this.TxtFilterItems.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TxtFilterItems.Location = new System.Drawing.Point(3, 3);
             this.TxtFilterItems.Name = "TxtFilterItems";
-            this.TxtFilterItems.Size = new System.Drawing.Size(224, 26);
+            this.TxtFilterItems.Size = new System.Drawing.Size(439, 26);
             this.TxtFilterItems.TabIndex = 0;
             // 
             // DGVItemsToOrder
             // 
+            this.DGVItemsToOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVItemsToOrder.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVItemsToOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVItemsToOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVItemsToOrder.Location = new System.Drawing.Point(4, 40);
+            this.DGVItemsToOrder.Location = new System.Drawing.Point(4, 32);
             this.DGVItemsToOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVItemsToOrder.Name = "DGVItemsToOrder";
-            this.DGVItemsToOrder.Size = new System.Drawing.Size(222, 391);
+            this.DGVItemsToOrder.Size = new System.Drawing.Size(437, 399);
             this.DGVItemsToOrder.TabIndex = 5;
             // 
             // tabControl1
@@ -149,7 +159,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(464, 40);
+            this.tabControl1.Location = new System.Drawing.Point(883, 40);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(315, 434);
@@ -225,6 +235,7 @@
             this.BtnCreateOrder.TabIndex = 1;
             this.BtnCreateOrder.Text = "Create Order";
             this.BtnCreateOrder.UseVisualStyleBackColor = false;
+            this.BtnCreateOrder.Click += new System.EventHandler(this.BtnCreateOrder_Click);
             // 
             // label3
             // 
@@ -293,6 +304,7 @@
             this.BtnAddToOrder.TabIndex = 8;
             this.BtnAddToOrder.Text = "Add To Order";
             this.BtnAddToOrder.UseVisualStyleBackColor = false;
+            this.BtnAddToOrder.Click += new System.EventHandler(this.BtnAddToOrder_Click);
             // 
             // BtnRemove
             // 
@@ -305,14 +317,25 @@
             this.BtnRemove.Text = "Remove from Order";
             this.BtnRemove.UseVisualStyleBackColor = false;
             // 
+            // LblDate
+            // 
+            this.LblDate.AutoSize = true;
+            this.LblDate.ForeColor = System.Drawing.Color.Lime;
+            this.LblDate.Location = new System.Drawing.Point(883, 0);
+            this.LblDate.Name = "LblDate";
+            this.LblDate.Size = new System.Drawing.Size(50, 18);
+            this.LblDate.TabIndex = 6;
+            this.LblDate.Text = "label6";
+            // 
             // PurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(782, 512);
+            this.ClientSize = new System.Drawing.Size(1201, 512);
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PurchaseOrder";
             this.Text = "Purchase Order";
@@ -354,5 +377,6 @@
         private System.Windows.Forms.Button BtnRemove;
         private System.Windows.Forms.Button BtnAddToOrder;
         private System.Windows.Forms.TextBox TxtUnitType;
+        private System.Windows.Forms.Label LblDate;
     }
 }

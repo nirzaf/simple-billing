@@ -1,5 +1,6 @@
 ﻿using SimpleBilling.Model;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace SimpleBilling.MasterForms
 {
     public partial class PurchaseOrder : Form
     {
+        private int PurchaseOrderId;
         public PurchaseOrder()
         {
             InitializeComponent();
@@ -41,9 +43,73 @@ namespace SimpleBilling.MasterForms
                                 item.Code,
                                 item.PrintableName,
                                 item.StockQty
-                            }).OrderByDescending(c => c.StockQty).ToList();
+                            }).OrderBy(c => c.StockQty).ToList();
                 DGVItemsToOrder.DataSource = data;
 
+                LblDate.Text = DateTime.Today.ToShortDateString();
+            }
+        }
+
+        private void BtnAddToOrder_Click(object sender, EventArgs e)
+        {
+            AddToOrder();
+        }
+
+        private void AddToOrder()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (DGVItemsToOrder.SelectedRows.Count > 0)
+                {
+                    string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
+                    var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code);
+                    if (OrdItem == null)
+                    {
+                        OrderedItem oi = new OrderedItem
+                        {
+                            ItemCode = Code,
+                            Quantity = Info.ToInt(TxtOrderQuantity),
+                            UnitType = Info.ToString(TxtUnitType),
+                            PurchaseOrderId =
+                        };
+                    }
+                }
+            }
+        }
+
+        private void BtnCreateOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.PurchaseOrders.FirstOrDefault(c => c.Date == DtpOrderDate.Value.ToShortDateString());
+                    if (data != null)
+                    {
+                        bool result = Info.YesNoConfirmation("For Selected date you have already created a purchase order, would you like to create again", "Confirmation");
+                        if (result)
+                        {
+                            Model.PurchaseOrder po = new Model.PurchaseOrder
+                            {
+                                Date = DtpOrderDate.Value.ToShortDateString(),
+                                CreatedDate = DateTime.Today
+                            };
+                            if (db.Entry(po).State == EntityState.Detached)
+                                db.Set<Model.PurchaseOrder>().Attach(po);
+                            db.Entry(po).State = EntityState.Added;
+                            db.SaveChanges();
+                            PurchaseOrderId = po.PurchaseOrderId;
+                        }
+                        else
+                        {
+                            FormLoad(DtpOrderDate.Value.ToShortDateString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExportJson.Add(ex);
             }
         }
     }

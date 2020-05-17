@@ -114,7 +114,7 @@ namespace SimpleBilling.MasterForms
 
         private bool GetIsService()
         {
-            if (ChkBoxIsService.Checked == true)
+            if (ChkBoxIsService.Checked)
                 return true;
             else
                 return false;
@@ -208,7 +208,7 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     var item = db.Items.FirstOrDefault(c => c.Id == Id);
-                    if (item.IsService == true) ChkBoxIsService.Checked = true; else ChkBoxIsService.Checked = false;
+                    if (item.IsService) ChkBoxIsService.Checked = true; else ChkBoxIsService.Checked = false;
                 }
             }
         }

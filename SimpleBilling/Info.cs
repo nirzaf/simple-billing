@@ -25,7 +25,30 @@ namespace SimpleBilling
             MessageBox.Show(mes);
         }
 
+        public static int ToInt(TextBox tb)
+        {
+            if (IsEmpty(tb))
+            {
+                return Convert.ToInt32(tb.Text.Trim());
+            }
+            else
+            {
+                Mes("Input value cannot be empty");
+                return 0;
+            }
+        }
 
+        public static bool YesNoConfirmation(string message, string title)
+        {
+            DialogResult dialogResult = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
 
         public static void Enter(TextBox Txt, string PlaceHolder)
         {
@@ -122,6 +145,18 @@ namespace SimpleBilling
                 e.Handled = true;
         }
 
+        public static string ToString(TextBox tb)
+        {
+            if (IsEmpty(tb))
+            {
+                return tb.Text.Trim();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         public static bool IsEmpty(TextBox t)
         {
             if (string.IsNullOrWhiteSpace(t.Text.Trim()))
@@ -130,6 +165,7 @@ namespace SimpleBilling
             }
             else
             {
+                Mes("Input value cannot be empty");
                 return true;
             }
         }
