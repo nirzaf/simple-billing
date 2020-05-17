@@ -7,9 +7,11 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using SimpleBilling.Model;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -131,7 +133,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                ExportJson.Add(ex); Info.Mes(ex.Message);
+                ExportJson.Add(ex);
             }
             finally
             {
@@ -158,7 +160,7 @@ namespace SimpleBilling.MasterForms
                                        {
                                            item.Id,
                                            item.Code,
-                                           item.ItemName,
+                                           item.PrintableName,
                                            body.UnitPrice,
                                            body.Quantity,
                                            body.SubTotal,
@@ -255,7 +257,29 @@ namespace SimpleBilling.MasterForms
 
         private string GenReceiptNo()
         {
-            return ("CW" + LblDate.Text + LblTime.Text).Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty);
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.ReceiptHeaders.Select(c => c.ReceiptNo).ToList();
+                List<int> intList = new List<int>();
+                if (data.Count > 0)
+                {
+                    int RptNo;
+                    foreach (var i in data)
+                    {
+                        Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
+                        Match result = re.Match(i);
+                        string num = result.Groups[2].Value;
+                        intList.Add(Convert.ToInt32(num));
+                    }
+                    RptNo = intList.Max();
+                    RptNo++;
+                    return ("CW" + RptNo.ToString());
+                }
+                else
+                {
+                    return ("CW" + "1000");
+                }
+            }
         }
 
         private string GetReceiptStatus(int Status)
@@ -374,7 +398,7 @@ namespace SimpleBilling.MasterForms
                     }
                     catch (Exception ex)
                     {
-                        Exp(ex);
+                        ExportJson.Add(ex);
                     }
                 }
             }
@@ -475,8 +499,8 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
-                Exp(ex);
-                throw;
+                ExportJson.Add(ex);
+                return ex.Message;
             }
         }
 
@@ -1289,7 +1313,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtName_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtName, "Customer Name");
+            Info.PlaceHolder(TxtName);
         }
 
         private void TxtName_Leave(object sender, EventArgs e)
@@ -1299,7 +1323,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtContact_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtContact, "Contact No");
+            Info.PlaceHolder(TxtContact);
         }
 
         private void TxtContact_Leave(object sender, EventArgs e)
@@ -1309,7 +1333,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtEmail_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtEmail, "Email");
+            Info.PlaceHolder(TxtEmail);
         }
 
         private void TxtEmail_Leave(object sender, EventArgs e)
@@ -1319,7 +1343,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtAddress_Enter(object sender, EventArgs e)
         {
-            Info.Enter(TxtAddress, "Address");
+            Info.PlaceHolder(TxtAddress);
         }
 
         private void TxtAddress_Leave(object sender, EventArgs e)
@@ -1424,19 +1448,21 @@ namespace SimpleBilling.MasterForms
             try
             {
                 string RcptNo = LblReceiptNo.Text;
-                LstBoxPendingJobs.Items.Add(RcptNo);
+                string VehicleNo = CmbVehicles.Text;
+                LstBoxPendingJobs.Items.Add(VehicleNo + " " + RcptNo);
             }
             catch (Exception ex)
             {
-                ExportJson.Add(ex); Info.Mes(ex.Message);
+                ExportJson.Add(ex);
             }
         }
 
         private void LstBoxPendingJobs_DoubleClick(object sender, EventArgs e)
         {
             string RcptNo = LstBoxPendingJobs.SelectedItem.ToString();
+            string RptNo = RcptNo.Split(' ').Last();
             SystemTimer_Tick(sender, e);
-            DGVLoad(RcptNo);
+            DGVLoad(RptNo);
             PrintAndVoid();
             TxtCustomer.Focus();
             HideCheque();

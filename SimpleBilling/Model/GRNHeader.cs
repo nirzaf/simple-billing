@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
-    public class GRNHeader : BaseEntity
+    public class GrnHeader : BaseEntity
     {
         [Key]
         public int GRN_Id { get; set; }

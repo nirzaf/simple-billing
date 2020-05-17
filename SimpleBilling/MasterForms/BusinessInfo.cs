@@ -1,6 +1,5 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
@@ -21,6 +20,7 @@ namespace SimpleBilling.MasterForms
             CRUDLayout.Enabled = true;
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
+            TxtId.Text = "0";
             TxtName.Focus();
         }
 
@@ -200,7 +200,7 @@ namespace SimpleBilling.MasterForms
         {
             foreach (DataGridViewRow Myrow in DGVBusinessInfo.Rows)
             {
-                if (Convert.ToBoolean(Myrow.Cells[4].Value) == true)
+                if (Convert.ToBoolean(Myrow.Cells[4].Value))
                 {
                     Myrow.DefaultCellStyle.BackColor = Color.SkyBlue;
                 }

@@ -250,7 +250,7 @@ namespace SimpleBilling.MasterForms
                             {
                                 if (grn == null)
                                 {
-                                    GRNHeader header = new GRNHeader
+                                    GrnHeader header = new GrnHeader
                                     {
                                         ReferenceNo = TxtReference.Text.Trim(),
                                         GRN_No = TxtGRNNo.Text.Trim(),
@@ -265,7 +265,7 @@ namespace SimpleBilling.MasterForms
                                     };
 
                                     if (db.Entry(header).State == EntityState.Detached)
-                                        db.Set<GRNHeader>().Attach(header);
+                                        db.Set<GrnHeader>().Attach(header);
                                     header.CreatedDate = DateTime.Now;
                                     db.Entry(header).State = EntityState.Added;
                                     db.SaveChanges();
@@ -275,7 +275,7 @@ namespace SimpleBilling.MasterForms
                                 else
                                 {
                                     if (db.Entry(grn).State == EntityState.Detached)
-                                        db.Set<GRNHeader>().Attach(grn);
+                                        db.Set<GrnHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
                                     db.SaveChanges();
@@ -298,7 +298,7 @@ namespace SimpleBilling.MasterForms
 
                                         result.SubTotal = result.GrossTotal - result.Discount;
                                         if (db.Entry(result).State == EntityState.Detached)
-                                            db.Set<GRNDetails>().Attach(result);
+                                            db.Set<GrnDetails>().Attach(result);
                                         result.UpdatedDate = DateTime.Now;
                                         db.Entry(result).State = EntityState.Modified;
                                         db.SaveChanges();
@@ -309,7 +309,7 @@ namespace SimpleBilling.MasterForms
                                     }
                                     else
                                     {
-                                        GRNDetails details = new GRNDetails
+                                        GrnDetails details = new GrnDetails
                                         {
                                             GRN_Id = GRN_Id,
                                             GRNCode = GRN_Code,
@@ -328,7 +328,7 @@ namespace SimpleBilling.MasterForms
                                         try
                                         {
                                             if (db.Entry(details).State == EntityState.Detached)
-                                                db.Set<GRNDetails>().Attach(details);
+                                                db.Set<GrnDetails>().Attach(details);
                                             details.CreatedDate = DateTime.Now;
                                             db.Entry(details).State = EntityState.Added;
                                             db.SaveChanges();
@@ -398,7 +398,7 @@ namespace SimpleBilling.MasterForms
                     header.Status = 2;
                     header.Remarks = TxtRemarks.Text.Trim();
                     if (db.Entry(header).State == EntityState.Detached)
-                        db.Set<GRNHeader>().Attach(header);
+                        db.Set<GrnHeader>().Attach(header);
                     header.UpdatedDate = DateTime.Now;
                     db.Entry(header).State = EntityState.Modified;
                     db.SaveChanges();
@@ -449,7 +449,7 @@ namespace SimpleBilling.MasterForms
                         {
                             var Result = db.GRNDetails.FirstOrDefault(c => c.GRNCode == GRN_Code && c.GRN_Id == GRN_Id);
                             if (db.Entry(Result).State == EntityState.Detached)
-                                db.Set<GRNDetails>().Attach(Result);
+                                db.Set<GrnDetails>().Attach(Result);
                             db.Entry(Result).State = EntityState.Deleted;
                             db.SaveChanges();
                             LoadDetails(GRN_Code);
@@ -470,7 +470,7 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    foreach (GRNDetails details in db.GRNDetails)
+                    foreach (GrnDetails details in db.GRNDetails)
                     {
                         if (details.GRNCode == GRN_Code && details.IsDeleted)
                         {
@@ -493,7 +493,7 @@ namespace SimpleBilling.MasterForms
                     Result.Remarks = TxtRemarks.Text.Trim();
                     Result.Status = 3;
                     if (db.Entry(Result).State == EntityState.Detached)
-                        db.Set<GRNHeader>().Attach(Result);
+                        db.Set<GrnHeader>().Attach(Result);
                     Result.UpdatedDate = DateTime.Now;
                     db.Entry(Result).State = EntityState.Modified;
                     db.SaveChanges();
@@ -622,7 +622,7 @@ namespace SimpleBilling.MasterForms
                                     grn.PendingAmount = 0;
                                     grn.IsPaid = true;
                                     if (db.Entry(grn).State == EntityState.Detached)
-                                        db.Set<GRNHeader>().Attach(grn);
+                                        db.Set<GrnHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
                                     db.SaveChanges();
@@ -639,7 +639,7 @@ namespace SimpleBilling.MasterForms
                                         grn.PaidAmount += GivenValue;
                                     grn.PendingAmount = grn.NetTotal - grn.PaidAmount;
                                     if (db.Entry(grn).State == EntityState.Detached)
-                                        db.Set<GRNHeader>().Attach(grn);
+                                        db.Set<GrnHeader>().Attach(grn);
                                     grn.UpdatedDate = DateTime.Now;
                                     db.Entry(grn).State = EntityState.Modified;
                                     db.SaveChanges();
@@ -705,7 +705,7 @@ namespace SimpleBilling.MasterForms
                             db.SaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
-                                db.Set<GRNDetails>().Attach(GrnItem);
+                                db.Set<GrnDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
                             db.SaveChanges();
@@ -720,7 +720,7 @@ namespace SimpleBilling.MasterForms
                         header.Returns = Convert.ToSingle(LblReturns.Text);
 
                         if (db.Entry(header).State == EntityState.Detached)
-                            db.Set<GRNHeader>().Attach(header);
+                            db.Set<GrnHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
                         db.Entry(header).State = EntityState.Modified;
                         db.SaveChanges();
@@ -780,7 +780,7 @@ namespace SimpleBilling.MasterForms
                             db.SaveChanges();
 
                             if (db.Entry(GrnItem).State == EntityState.Detached)
-                                db.Set<GRNDetails>().Attach(GrnItem);
+                                db.Set<GrnDetails>().Attach(GrnItem);
                             GrnItem.UpdatedDate = DateTime.Now;
                             db.Entry(GrnItem).State = EntityState.Modified;
                             db.SaveChanges();
@@ -792,7 +792,7 @@ namespace SimpleBilling.MasterForms
                         header.Returns = Convert.ToSingle(LblReturns.Text);
                         header.GrossTotal = header.TotalDiscout + header.NetTotal + header.Returns;
                         if (db.Entry(header).State == EntityState.Detached)
-                            db.Set<GRNHeader>().Attach(header);
+                            db.Set<GrnHeader>().Attach(header);
                         header.UpdatedDate = DateTime.Now;
                         db.Entry(header).State = EntityState.Modified;
                         db.SaveChanges();

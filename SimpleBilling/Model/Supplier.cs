@@ -19,7 +19,7 @@ namespace SimpleBilling.Model
         [EmailAddress]
         public string Email { get; set; }
         public string CodeNumber { get; set; }
-        public virtual ICollection<GRNHeader> GRNHeaders { get; set; }
+        public virtual ICollection<GrnHeader> GRNHeaders { get; set; }
 
     }
 }

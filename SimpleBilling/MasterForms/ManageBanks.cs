@@ -1,6 +1,5 @@
 ﻿using SimpleBilling.Model;
 using System;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -97,19 +96,16 @@ namespace SimpleBilling.MasterForms
                             db.Entry(b).State = EntityState.Added;
                             db.SaveChanges();
                         }
-                        else if (Info.IsEmpty(TxtBankName))
+                        else if (Info.IsEmpty(TxtBankName) && Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
                         {
-                            if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                            var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && !c.IsDeleted);
+                            if (b != null)
                             {
-                                var b = db.Banks.FirstOrDefault(c => c.BankId == Convert.ToInt32(TxtBankId.Text.Trim()) && !c.IsDeleted);
-                                if (b != null)
-                                {
-                                    b.BankName = TxtBankName.Text.Trim();
-                                    if (db.Entry(b).State == EntityState.Detached)
-                                        db.Set<Bank>().Attach(b);
-                                    db.Entry(b).State = EntityState.Modified;
-                                    db.SaveChanges();
-                                }
+                                b.BankName = TxtBankName.Text.Trim();
+                                if (db.Entry(b).State == EntityState.Detached)
+                                    db.Set<Bank>().Attach(b);
+                                db.Entry(b).State = EntityState.Modified;
+                                db.SaveChanges();
                             }
                         }
                     }
@@ -137,19 +133,16 @@ namespace SimpleBilling.MasterForms
                     if (DGVBanks.SelectedRows.Count > 0)
                     {
                         DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Bank?", "Confirmation delete", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
+                        if (dialogResult == DialogResult.Yes && Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
                         {
-                            if (Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
+                            var b = db.Banks.FirstOrDefault(c => c.BankId == BankId && !c.IsDeleted);
+                            if (b != null)
                             {
-                                var b = db.Banks.FirstOrDefault(c => c.BankId == BankId && !c.IsDeleted);
-                                if (b != null)
-                                {
-                                    b.IsDeleted = true;
-                                    if (db.Entry(b).State == EntityState.Detached)
-                                        db.Set<Bank>().Attach(b);
-                                    db.Entry(b).State = EntityState.Modified;
-                                    db.SaveChanges();
-                                }
+                                b.IsDeleted = true;
+                                if (db.Entry(b).State == EntityState.Detached)
+                                    db.Set<Bank>().Attach(b);
+                                db.Entry(b).State = EntityState.Modified;
+                                db.SaveChanges();
                             }
                         }
                     }
