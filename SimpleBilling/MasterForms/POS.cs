@@ -383,6 +383,11 @@ namespace SimpleBilling.MasterForms
                         TxtUnitPrice.Text = data.UnitCost.ToString();
                         TxtBarCode.Text = data.Barcode;
                         TxtProductCode.Text = data.Code;
+                        LblStockOnHand.Text = data.StockQty.ToString();
+                        if (data.StockQty < 10)
+                            LblStockOnHand.ForeColor = System.Drawing.Color.Red;
+                        else
+                            LblStockOnHand.ForeColor = System.Drawing.Color.Lime;
                         TxtDiscount.Text = "0";
                     }
                     try

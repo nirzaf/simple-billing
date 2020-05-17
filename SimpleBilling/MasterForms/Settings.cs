@@ -68,54 +68,9 @@ namespace SimpleBilling.MasterForms
                 TxtDefaultPath.Text = data.DefaultPath;
                 TxtDefaultGRN.Text = data.GRNPath;
                 TxtDefaultExceptionFolder.Text = data.DefaultPath;
-                LblRed.Text = data.Red.ToString();
-                LblGreen.Text = data.Green.ToString();
-                LblBlue.Text = data.Blue.ToString();
-                TBRed.Value = data.Red;
-                TBGreen.Value = data.Green;
-                TBBlue.Value = data.Blue;
-                RDOBackColor.Checked = true;
             }
         }
 
-        private void TBRed_Scroll(object sender, EventArgs e)
-        {
-            LblRed.Text = TBRed.Value.ToString();
-            if (RDOBackColor.Checked)
-            {
-                BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-            if (RDOForeColor.Checked)
-            {
-                ForeColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-        }
-
-        private void TBGreen_Scroll(object sender, EventArgs e)
-        {
-            LblGreen.Text = TBGreen.Value.ToString();
-            if (RDOBackColor.Checked)
-            {
-                BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-            if (RDOForeColor.Checked)
-            {
-                ForeColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-        }
-
-        private void TBBlue_Scroll(object sender, EventArgs e)
-        {
-            LblBlue.Text = TBBlue.Value.ToString();
-            if (RDOBackColor.Checked)
-            {
-                BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-            if (RDOForeColor.Checked)
-            {
-                ForeColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-        }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -124,18 +79,6 @@ namespace SimpleBilling.MasterForms
                 var data = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                 if (data != null)
                 {
-                    if (RDOBackColor.Checked)
-                    {
-                        data.Red = TBRed.Value;
-                        data.Green = TBGreen.Value;
-                        data.Blue = TBBlue.Value;
-                    }
-                    if (RDOForeColor.Checked)
-                    {
-                        data.ForeRed = TBRed.Value;
-                        data.ForeGreen = TBGreen.Value;
-                        data.ForeBlue = TBBlue.Value;
-                    }
                     if (db.Entry(data).State == EntityState.Detached)
                         db.Set<Setting>().Attach(data);
                     data.UpdatedDate = DateTime.Now;
@@ -143,30 +86,6 @@ namespace SimpleBilling.MasterForms
                     db.SaveChanges();
                     Info.Mes("Settings Saved Successfully");
                 }
-            }
-        }
-
-        private void BtnReset_Click(object sender, EventArgs e)
-        {
-            if (RDOBackColor.Checked)
-            {
-                TBRed.Value = 105;
-                TBGreen.Value = 105;
-                TBBlue.Value = 105;
-                LblRed.Text = "105";
-                LblGreen.Text = "105";
-                LblBlue.Text = "105";
-                BackColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
-            }
-            if (RDOForeColor.Checked)
-            {
-                TBRed.Value = 0;
-                TBGreen.Value = 0;
-                TBBlue.Value = 0;
-                LblRed.Text = "0";
-                LblGreen.Text = "0";
-                LblBlue.Text = "0";
-                ForeColor = System.Drawing.Color.FromArgb(TBRed.Value, TBGreen.Value, TBBlue.Value);
             }
         }
 

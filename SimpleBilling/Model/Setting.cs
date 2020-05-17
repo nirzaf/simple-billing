@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
@@ -13,23 +12,5 @@ namespace SimpleBilling.Model
         public string GRNPath { get; set; }
 
         public string ExceptionPath { get; set; }
-
-        [DefaultValue(105)]
-        public int Red { get; set; } = 105;
-
-        [DefaultValue(105)]
-        public int Green { get; set; } = 105;
-
-        [DefaultValue(105)]
-        public int Blue { get; set; } = 105;
-
-        [DefaultValue(255)]
-        public int ForeRed { get; set; } = 255;
-
-        [DefaultValue(255)]
-        public int ForeGreen { get; set; } = 255;
-
-        [DefaultValue(255)]
-        public int ForeBlue { get; set; } = 255;
     }
 }
