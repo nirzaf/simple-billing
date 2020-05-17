@@ -799,11 +799,12 @@
             // 
             // TxtChequeNo
             // 
-            this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtChequeNo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtChequeNo.ForeColor = System.Drawing.Color.DarkGray;
             this.TxtChequeNo.Location = new System.Drawing.Point(3, 138);
             this.TxtChequeNo.Name = "TxtChequeNo";
-            this.TxtChequeNo.Size = new System.Drawing.Size(148, 25);
+            this.TxtChequeNo.Size = new System.Drawing.Size(148, 22);
             this.TxtChequeNo.TabIndex = 24;
             this.TxtChequeNo.Text = "Cheque No";
             this.TxtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
@@ -811,11 +812,12 @@
             // 
             // TxtPayeeName
             // 
-            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtPayeeName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPayeeName.ForeColor = System.Drawing.Color.DarkGray;
             this.TxtPayeeName.Location = new System.Drawing.Point(157, 138);
             this.TxtPayeeName.Name = "TxtPayeeName";
-            this.TxtPayeeName.Size = new System.Drawing.Size(160, 25);
+            this.TxtPayeeName.Size = new System.Drawing.Size(160, 22);
             this.TxtPayeeName.TabIndex = 25;
             this.TxtPayeeName.Text = "Payee Name";
             this.TxtPayeeName.Enter += new System.EventHandler(this.TxtPayeeName_Enter);
@@ -823,10 +825,12 @@
             // 
             // TxtAmount
             // 
+            this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtAmount.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtAmount.ForeColor = System.Drawing.Color.DarkGray;
             this.TxtAmount.Location = new System.Drawing.Point(323, 138);
             this.TxtAmount.Name = "TxtAmount";
-            this.TxtAmount.Size = new System.Drawing.Size(184, 25);
+            this.TxtAmount.Size = new System.Drawing.Size(184, 22);
             this.TxtAmount.TabIndex = 26;
             this.TxtAmount.Text = "Amount";
             this.TxtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
@@ -834,36 +838,39 @@
             // 
             // CmbBank
             // 
-            this.CmbBank.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbBank.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CmbBank.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbBank.FormattingEnabled = true;
             this.CmbBank.Location = new System.Drawing.Point(855, 138);
             this.CmbBank.Name = "CmbBank";
-            this.CmbBank.Size = new System.Drawing.Size(166, 25);
+            this.CmbBank.Size = new System.Drawing.Size(166, 24);
             this.CmbBank.TabIndex = 28;
             // 
             // CmbPaidBy
             // 
-            this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CmbPaidBy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbPaidBy.FormattingEnabled = true;
             this.CmbPaidBy.Location = new System.Drawing.Point(684, 138);
             this.CmbPaidBy.Name = "CmbPaidBy";
-            this.CmbPaidBy.Size = new System.Drawing.Size(165, 25);
+            this.CmbPaidBy.Size = new System.Drawing.Size(165, 24);
             this.CmbPaidBy.TabIndex = 27;
             // 
             // DTDueDate
             // 
-            this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DTDueDate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DTDueDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTDueDate.Location = new System.Drawing.Point(513, 138);
             this.DTDueDate.Name = "DTDueDate";
-            this.DTDueDate.Size = new System.Drawing.Size(165, 25);
+            this.DTDueDate.Size = new System.Drawing.Size(165, 22);
             this.DTDueDate.TabIndex = 29;
             // 
             // BtnAddCheque
             // 
             this.BtnAddCheque.BackColor = System.Drawing.Color.White;
             this.BtnAddCheque.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddCheque.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAddCheque.Location = new System.Drawing.Point(323, 30);
             this.BtnAddCheque.Name = "BtnAddCheque";
             this.BtnAddCheque.Size = new System.Drawing.Size(184, 21);
