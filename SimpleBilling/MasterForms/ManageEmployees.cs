@@ -42,7 +42,7 @@ namespace SimpleBilling.MasterForms
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             TxtEmployeeName.Focus();
-            Employee emp = employeeBindingSource1.Current as Employee;
+            _ = employeeBindingSource1.Current as Employee;
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)

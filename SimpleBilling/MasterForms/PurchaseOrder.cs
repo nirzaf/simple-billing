@@ -34,7 +34,6 @@ namespace SimpleBilling.MasterForms
                                         it.PrintableName,
                                         oi.Quantity
                                     }).ToList();
-
                 DGVOrderedItems.DataSource = orderedItems;
 
                 var data = (from item in db.Items.Where(c => !c.IsDeleted)
@@ -45,6 +44,9 @@ namespace SimpleBilling.MasterForms
                                 item.StockQty
                             }).OrderBy(c => c.StockQty).ToList();
                 DGVItemsToOrder.DataSource = data;
+
+                var pendingOrders = db.PurchaseOrders.Where(c => !c.IsReceived && !c.IsDeleted).Select(c => c.Date).ToList();
+                LstBoxPendingOrders.DataSource = pendingOrders;
 
                 LblDate.Text = DateTime.Today.ToShortDateString();
                 if (orderedItems.Count == 0)
@@ -117,10 +119,10 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                string Date = DtpOrderDate.Value.ToShortDateString();
+                PurchaseOrderDate = DtpOrderDate.Value.ToShortDateString();
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = db.PurchaseOrders.FirstOrDefault(c => c.Date == Date);
+                    var data = db.PurchaseOrders.FirstOrDefault(c => c.Date == PurchaseOrderDate);
                     if (data != null)
                     {
                         bool result = Info.YesNoConfirmation("For Selected date you have already created a purchase order, would you like to update again", "Confirmation");
@@ -135,7 +137,7 @@ namespace SimpleBilling.MasterForms
                     {
                         Model.PurchaseOrder po = new Model.PurchaseOrder
                         {
-                            Date = Date,
+                            Date = PurchaseOrderDate,
                             CreatedDate = DateTime.Today
                         };
                         if (db.Entry(po).State == EntityState.Detached)
@@ -181,8 +183,8 @@ namespace SimpleBilling.MasterForms
 
         private void DtpOrderDate_ValueChanged(object sender, EventArgs e)
         {
-            string Date = DtpOrderDate.Value.ToShortDateString();
-            FormLoad(Date);
+            PurchaseOrderDate = DtpOrderDate.Value.ToShortDateString();
+            FormLoad(PurchaseOrderDate);
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
@@ -191,19 +193,66 @@ namespace SimpleBilling.MasterForms
             {
                 if (DGVOrderedItems.SelectedRows.Count > 0)
                 {
-                    string Date = DtpOrderDate.Value.ToShortDateString();
+                    PurchaseOrderDate = DtpOrderDate.Value.ToShortDateString();
                     string code = DGVOrderedItems.SelectedRows[0].Cells[0].Value + string.Empty;
-                    var item = db.OrderedItems.FirstOrDefault(c => c.ItemCode == code && c.OrderedDate == Date);
+                    var item = db.OrderedItems.FirstOrDefault(c => c.ItemCode == code && c.OrderedDate == PurchaseOrderDate);
                     if (item != null)
                     {
                         if (db.Entry(item).State == EntityState.Detached)
                             db.Set<OrderedItem>().Attach(item);
                         db.Entry(item).State = EntityState.Deleted;
                         db.SaveChanges();
-                        FormLoad(Date);
+                        FormLoad(PurchaseOrderDate);
                     }
                 }
             }
+        }
+
+        private void LstBoxPendingOrders_DoubleClick(object sender, EventArgs e)
+        {
+            PurchaseOrderDate = LstBoxPendingOrders.SelectedItem.ToString();
+            ViewPendingOrders(PurchaseOrderDate);
+        }
+
+        private void ViewPendingOrders(string Date)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
+                                    join oi in db.OrderedItems.Where(c => !c.IsDeleted)
+                                    on po.Date equals oi.OrderedDate
+                                    join it in db.Items.Where(c => !c.IsDeleted)
+                                    on oi.ItemCode equals it.Code
+                                    select new
+                                    {
+                                        oi.ItemCode,
+                                        it.PrintableName,
+                                        oi.Quantity
+                                    }).ToList();
+                DGVOrderedItems.DataSource = orderedItems;
+
+                var data = (from item in db.Items.Where(c => !c.IsDeleted)
+                            select new
+                            {
+                                item.Code,
+                                item.PrintableName,
+                                item.StockQty
+                            }).OrderBy(c => c.StockQty).ToList();
+                DGVItemsToOrder.DataSource = data;
+
+                LblDate.Text = DateTime.Today.ToShortDateString();
+                if (orderedItems.Count == 0)
+                {
+                    BtnAddToOrder.Enabled = false;
+                    BtnRemove.Enabled = false;
+                }
+                else
+                {
+                    BtnAddToOrder.Enabled = true;
+                    BtnRemove.Enabled = true;
+                }
+            }
+
         }
     }
 }

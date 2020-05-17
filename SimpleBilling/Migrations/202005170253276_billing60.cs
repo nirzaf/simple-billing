@@ -1,8 +1,7 @@
 ﻿namespace SimpleBilling.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class billing60 : DbMigration
     {
         public override void Up()
@@ -15,7 +14,7 @@
             DropColumn("dbo.Settings", "ForeGreen");
             DropColumn("dbo.Settings", "ForeBlue");
         }
-        
+
         public override void Down()
         {
             AddColumn("dbo.Settings", "ForeBlue", c => c.Int(nullable: false));
