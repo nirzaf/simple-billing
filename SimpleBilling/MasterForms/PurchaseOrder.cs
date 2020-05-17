@@ -57,40 +57,52 @@ namespace SimpleBilling.MasterForms
 
         private void AddToOrder()
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                if (DGVItemsToOrder.SelectedRows.Count > 0)
+                using (BillingContext db = new BillingContext())
                 {
-                    string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
-                    var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.PurchaseOrderId == PurchaseOrderId);
-                    if (OrdItem == null)
+                    if (DGVItemsToOrder.SelectedRows.Count > 0)
                     {
-                        OrderedItem oi = new OrderedItem
+                        string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
+                        var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.PurchaseOrderId == PurchaseOrderId);
+                        if (OrdItem == null)
                         {
-                            ItemCode = Code,
-                            Quantity = Info.ToInt(TxtOrderQuantity),
-                            UnitType = Info.ToString(TxtUnitType),
-                            CreatedDate = DateTime.Today,
-                            PurchaseOrderId = PurchaseOrderId
-                        };
-                        if (db.Entry(oi).State == EntityState.Detached)
-                            db.Set<OrderedItem>().Attach(oi);
-                        db.Entry(oi).State = EntityState.Added;
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        OrdItem.Quantity = Info.ToInt(TxtOrderQuantity);
-                        OrdItem.UnitType = Info.ToString(TxtUnitType);
-                        OrdItem.UpdatedDate = DateTime.Today;
-                        OrdItem.PurchaseOrderId = PurchaseOrderId;
-                        if (db.Entry(OrdItem).State == EntityState.Detached)
-                            db.Set<OrderedItem>().Attach(OrdItem);
-                        db.Entry(OrdItem).State = EntityState.Modified;
-                        db.SaveChanges();
+                            OrderedItem oi = new OrderedItem
+                            {
+                                ItemCode = Code,
+                                Quantity = Info.ToInt(TxtOrderQuantity),
+                                UnitType = Info.ToString(TxtUnitType),
+                                CreatedDate = DateTime.Today,
+                                PurchaseOrderId = PurchaseOrderId
+                            };
+                            if (db.Entry(oi).State == EntityState.Detached)
+                                db.Set<OrderedItem>().Attach(oi);
+                            db.Entry(oi).State = EntityState.Added;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            OrdItem.Quantity = Info.ToInt(TxtOrderQuantity);
+                            OrdItem.UnitType = Info.ToString(TxtUnitType);
+                            OrdItem.UpdatedDate = DateTime.Today;
+                            OrdItem.PurchaseOrderId = PurchaseOrderId;
+                            if (db.Entry(OrdItem).State == EntityState.Detached)
+                                db.Set<OrderedItem>().Attach(OrdItem);
+                            db.Entry(OrdItem).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                ExportJson.Add(ex);
+            }
+            finally
+            {
+                FormLoad(DtpOrderDate.Value.ToShortDateString());
+            }
+
         }
 
         private void BtnCreateOrder_Click(object sender, EventArgs e)
