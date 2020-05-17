@@ -68,6 +68,7 @@ namespace SimpleBilling.MasterForms
                 TxtDefaultPath.Text = data.DefaultPath;
                 TxtDefaultGRN.Text = data.GRNPath;
                 TxtDefaultExceptionFolder.Text = data.DefaultPath;
+                TxtMinReorderValue.Text = data.SetMinValue.ToString();
             }
         }
 
@@ -185,14 +186,16 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    Setting s = new Setting
+                    var s = db.Settings.FirstOrDefault(c => c.UserId == 1);
+                    if (s != null)
                     {
-                        SetMinValue = Convert.ToInt32(TxtMinReorderValue.Text)
-                    };
-                    if (db.Entry(s).State == EntityState.Detached)
-                        db.Set<Setting>().Attach(s);
-                    db.Entry(s).State = EntityState.Modified;
-                    db.SaveChanges();
+                        s.SetMinValue = Convert.ToInt32(TxtMinReorderValue.Text.Trim());
+                        if (db.Entry(s).State == EntityState.Detached)
+                            db.Set<Setting>().Attach(s);
+                        db.Entry(s).State = EntityState.Modified;
+                        db.SaveChanges();
+                        Info.Mes("Minimum Reorder Notification Value Updated Successfully");
+                    }
                 }
             }
         }
