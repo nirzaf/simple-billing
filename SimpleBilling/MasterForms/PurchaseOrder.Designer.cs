@@ -94,6 +94,7 @@
             this.DGVOrderedItems.Name = "DGVOrderedItems";
             this.DGVOrderedItems.Size = new System.Drawing.Size(421, 434);
             this.DGVOrderedItems.TabIndex = 1;
+            this.DGVOrderedItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVOrderedItems_CellClick);
             // 
             // label1
             // 
@@ -213,8 +214,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.83123F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.57934F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(301, 397);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -301,7 +302,7 @@
             this.BtnAddToOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnAddToOrder.Location = new System.Drawing.Point(3, 315);
             this.BtnAddToOrder.Name = "BtnAddToOrder";
-            this.BtnAddToOrder.Size = new System.Drawing.Size(295, 33);
+            this.BtnAddToOrder.Size = new System.Drawing.Size(295, 36);
             this.BtnAddToOrder.TabIndex = 8;
             this.BtnAddToOrder.Text = "Add To Order";
             this.BtnAddToOrder.UseVisualStyleBackColor = false;
@@ -311,9 +312,9 @@
             // 
             this.BtnRemove.BackColor = System.Drawing.Color.White;
             this.BtnRemove.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnRemove.Location = new System.Drawing.Point(3, 354);
+            this.BtnRemove.Location = new System.Drawing.Point(3, 357);
             this.BtnRemove.Name = "BtnRemove";
-            this.BtnRemove.Size = new System.Drawing.Size(295, 40);
+            this.BtnRemove.Size = new System.Drawing.Size(295, 37);
             this.BtnRemove.TabIndex = 9;
             this.BtnRemove.Text = "Remove from Order";
             this.BtnRemove.UseVisualStyleBackColor = false;

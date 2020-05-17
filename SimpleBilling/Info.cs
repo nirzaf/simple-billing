@@ -33,7 +33,6 @@ namespace SimpleBilling
             }
             else
             {
-                Mes("Input value cannot be empty");
                 return 0;
             }
         }
@@ -161,11 +160,11 @@ namespace SimpleBilling
         {
             if (string.IsNullOrWhiteSpace(t.Text.Trim()))
             {
+                Mes("Input value cannot be empty");
                 return false;
             }
             else
             {
-                Mes("Input value cannot be empty");
                 return true;
             }
         }
