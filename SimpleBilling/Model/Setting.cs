@@ -12,5 +12,7 @@ namespace SimpleBilling.Model
         public string GRNPath { get; set; }
 
         public string ExceptionPath { get; set; }
+
+        public int SetMinValue { get; set; }
     }
 }

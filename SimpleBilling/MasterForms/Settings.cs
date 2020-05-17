@@ -178,5 +178,23 @@ namespace SimpleBilling.MasterForms
                 ExportJson.Add(ex);
             }
         }
+
+        private void BtnSave_Click_1(object sender, EventArgs e)
+        {
+            if (Info.IsEmpty(TxtMinReorderValue))
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    Setting s = new Setting
+                    {
+                        SetMinValue = Convert.ToInt32(TxtMinReorderValue.Text)
+                    };
+                    if (db.Entry(s).State == EntityState.Detached)
+                        db.Set<Setting>().Attach(s);
+                    db.Entry(s).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }
