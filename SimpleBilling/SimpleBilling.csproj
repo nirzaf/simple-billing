@@ -264,6 +264,12 @@
     <Compile Include="MasterForms\POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\PurchaseOrder.Designer.cs">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -651,6 +657,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\PurchaseOrder.resx">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
