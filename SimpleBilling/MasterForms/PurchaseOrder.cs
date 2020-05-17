@@ -8,7 +8,7 @@ namespace SimpleBilling.MasterForms
 {
     public partial class PurchaseOrder : Form
     {
-        private int PurchaseOrderId;
+        private string PurchaseOrderDate;
         public PurchaseOrder()
         {
             InitializeComponent();
@@ -16,7 +16,7 @@ namespace SimpleBilling.MasterForms
 
         private void PurchaseOrder_Load(object sender, EventArgs e)
         {
-            FormLoad(string.Empty);
+            FormLoad(DateTime.Today.ToShortDateString());
         }
 
         private void FormLoad(string Date)
@@ -25,7 +25,7 @@ namespace SimpleBilling.MasterForms
             {
                 var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
                                     join oi in db.OrderedItems.Where(c => !c.IsDeleted)
-                                    on po.PurchaseOrderId equals oi.PurchaseOrderId
+                                    on po.Date equals oi.OrderedDate
                                     join it in db.Items.Where(c => !c.IsDeleted)
                                     on oi.ItemCode equals it.Code
                                     select new
@@ -47,8 +47,16 @@ namespace SimpleBilling.MasterForms
                 DGVItemsToOrder.DataSource = data;
 
                 LblDate.Text = DateTime.Today.ToShortDateString();
-                BtnAddToOrder.Enabled = false;
-                BtnRemove.Enabled = false;
+                if (orderedItems.Count == 0)
+                {
+                    BtnAddToOrder.Enabled = false;
+                    BtnRemove.Enabled = false;
+                }
+                else
+                {
+                    BtnAddToOrder.Enabled = true;
+                    BtnRemove.Enabled = true;
+                }
             }
         }
 
@@ -67,7 +75,7 @@ namespace SimpleBilling.MasterForms
                     if (DGVItemsToOrder.SelectedRows.Count > 0)
                     {
                         string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
-                        var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.PurchaseOrderId == PurchaseOrderId);
+                        var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.OrderedDate == Date);
                         if (OrdItem == null)
                         {
                             OrderedItem oi = new OrderedItem
@@ -76,7 +84,7 @@ namespace SimpleBilling.MasterForms
                                 Quantity = Info.ToInt(TxtOrderQuantity),
                                 UnitType = Info.ToString(TxtUnitType),
                                 CreatedDate = DateTime.Today,
-                                PurchaseOrderId = PurchaseOrderId
+                                OrderedDate = Date
                             };
                             if (db.Entry(oi).State == EntityState.Detached)
                                 db.Set<OrderedItem>().Attach(oi);
@@ -89,7 +97,7 @@ namespace SimpleBilling.MasterForms
                             OrdItem.Quantity = Info.ToInt(TxtOrderQuantity);
                             OrdItem.UnitType = Info.ToString(TxtUnitType);
                             OrdItem.UpdatedDate = DateTime.Today;
-                            OrdItem.PurchaseOrderId = PurchaseOrderId;
+                            OrdItem.OrderedDate = Date;
                             if (db.Entry(OrdItem).State == EntityState.Detached)
                                 db.Set<OrderedItem>().Attach(OrdItem);
                             db.Entry(OrdItem).State = EntityState.Modified;
@@ -115,23 +123,12 @@ namespace SimpleBilling.MasterForms
                     var data = db.PurchaseOrders.FirstOrDefault(c => c.Date == Date);
                     if (data != null)
                     {
-                        bool result = Info.YesNoConfirmation("For Selected date you have already created a purchase order, would you like to create again", "Confirmation");
+                        bool result = Info.YesNoConfirmation("For Selected date you have already created a purchase order, would you like to update again", "Confirmation");
                         if (result)
                         {
-                            Model.PurchaseOrder po = new Model.PurchaseOrder
-                            {
-                                Date = Date,
-                                CreatedDate = DateTime.Today
-                            };
-                            if (db.Entry(po).State == EntityState.Detached)
-                                db.Set<Model.PurchaseOrder>().Attach(po);
-                            db.Entry(po).State = EntityState.Added;
-                            db.SaveChanges();
-                            PurchaseOrderId = po.PurchaseOrderId;
-                        }
-                        else
-                        {
                             FormLoad(DtpOrderDate.Value.ToShortDateString());
+                            BtnAddToOrder.Enabled = true;
+                            BtnRemove.Enabled = true;
                         }
                     }
                     else
@@ -145,7 +142,9 @@ namespace SimpleBilling.MasterForms
                             db.Set<Model.PurchaseOrder>().Attach(po);
                         db.Entry(po).State = EntityState.Added;
                         db.SaveChanges();
-                        PurchaseOrderId = po.PurchaseOrderId;
+                        PurchaseOrderDate = po.Date;
+                        BtnAddToOrder.Enabled = true;
+                        BtnRemove.Enabled = true;
                     }
                 }
             }
@@ -153,11 +152,6 @@ namespace SimpleBilling.MasterForms
             {
                 Info.Mes(ex.Message);
                 ExportJson.Add(ex);
-            }
-            finally
-            {
-                BtnAddToOrder.Enabled = true;
-                BtnRemove.Enabled = true;
             }
         }
 
@@ -182,6 +176,33 @@ namespace SimpleBilling.MasterForms
             if (DGVOrderedItems.SelectedRows.Count > 0)
             {
                 BtnRemove.Enabled = true;
+            }
+        }
+
+        private void DtpOrderDate_ValueChanged(object sender, EventArgs e)
+        {
+            string Date = DtpOrderDate.Value.ToShortDateString();
+            FormLoad(Date);
+        }
+
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (DGVOrderedItems.SelectedRows.Count > 0)
+                {
+                    string Date = DtpOrderDate.Value.ToShortDateString();
+                    string code = DGVOrderedItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                    var item = db.OrderedItems.FirstOrDefault(c => c.ItemCode == code && c.OrderedDate == Date);
+                    if (item != null)
+                    {
+                        if (db.Entry(item).State == EntityState.Detached)
+                            db.Set<OrderedItem>().Attach(item);
+                        db.Entry(item).State = EntityState.Deleted;
+                        db.SaveChanges();
+                        FormLoad(Date);
+                    }
+                }
             }
         }
     }
