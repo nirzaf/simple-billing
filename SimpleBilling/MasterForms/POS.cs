@@ -1449,20 +1449,21 @@ namespace SimpleBilling.MasterForms
             {
                 string RcptNo = LblReceiptNo.Text;
                 string VehicleNo = CmbVehicles.Text;
-                LstBoxPendingJobs.Items.Add(VehicleNo + " " + RcptNo);
                 using (BillingContext db = new BillingContext())
                 {
-                    PendingJob pj = new PendingJob();
-                    pj.ReceiptNo = RcptNo;
-                    pj.VehicleNumber = VehicleNo;
-                    pj.Date = LblDate.Text.Trim();
-                    pj.CreatedDate = DateTime.Today;
+                    PendingJob pj = new PendingJob
+                    {
+                        ReceiptNo = RcptNo,
+                        VehicleNumber = VehicleNo,
+                        Date = LblDate.Text.Trim(),
+                        CreatedDate = DateTime.Today
+                    };
                     if (db.Entry(pj).State == EntityState.Detached)
                         db.Set<PendingJob>().Attach(pj);
                     db.Entry(pj).State = EntityState.Added;
                     db.SaveChanges();
 
-                    var data = db.PendingJobs.Where(s => s.ReceiptNo == RcptNo && s.VehicleNumber == VehicleNo && s.Date == LblDate.Text.Trim() && !s.IsDeleted).Select(c => c.VehicleNumber).ToList();
+                    var data = db.PendingJobs.Where(s => s.ReceiptNo == RcptNo && s.VehicleNumber == VehicleNo && s.Date == LblDate.Text.Trim() && !s.IsDeleted).Select(c => c.VehicleNumber + "   " + c.ReceiptNo).ToList();
                     foreach (var item in data)
                     {
                         LstBoxPendingJobs.Items.Add(item);
