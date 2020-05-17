@@ -182,8 +182,8 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.20618F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.79382F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TxtMinReorderValue, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnSave, 1, 1);
@@ -200,27 +200,31 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(25, 0);
+            this.label1.Location = new System.Drawing.Point(6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 53);
+            this.label1.Size = new System.Drawing.Size(107, 53);
             this.label1.TabIndex = 0;
             this.label1.Text = "Set Minimum Reorder Value";
             // 
             // TxtMinReorderValue
             // 
-            this.TxtMinReorderValue.Location = new System.Drawing.Point(148, 3);
+            this.TxtMinReorderValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtMinReorderValue.Location = new System.Drawing.Point(119, 3);
             this.TxtMinReorderValue.Name = "TxtMinReorderValue";
-            this.TxtMinReorderValue.Size = new System.Drawing.Size(140, 26);
+            this.TxtMinReorderValue.Size = new System.Drawing.Size(169, 26);
             this.TxtMinReorderValue.TabIndex = 1;
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(148, 56);
+            this.BtnSave.BackColor = System.Drawing.Color.White;
+            this.BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSave.ForeColor = System.Drawing.Color.Black;
+            this.BtnSave.Location = new System.Drawing.Point(119, 56);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(140, 48);
+            this.BtnSave.Size = new System.Drawing.Size(169, 48);
             this.BtnSave.TabIndex = 2;
             this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.UseVisualStyleBackColor = false;
             // 
             // Settings
             // 
