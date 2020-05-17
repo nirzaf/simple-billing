@@ -62,6 +62,7 @@ namespace SimpleBilling.MasterForms
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
         }
+
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             AddEdit();

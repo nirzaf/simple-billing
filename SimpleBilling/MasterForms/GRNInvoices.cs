@@ -62,6 +62,7 @@ namespace SimpleBilling.MasterForms
             grn.Show();
             Close();
         }
+
         private void DGVInvoices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             LoadGRNInvoice();

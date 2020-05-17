@@ -9,7 +9,8 @@ namespace SimpleBilling.MasterForms
     public partial class ConfigureSellingPrice : Form
     {
         private int ItemId;
-        float Price;
+        private float Price;
+
         public ConfigureSellingPrice()
         {
             InitializeComponent();
@@ -32,7 +33,6 @@ namespace SimpleBilling.MasterForms
         {
             ItemId = Convert.ToInt32(DGVSellingPrice.SelectedRows[0].Cells[0].Value + string.Empty);
             TxtSellingPrice.Text = DGVSellingPrice.SelectedRows[0].Cells[3].Value + string.Empty;
-
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)

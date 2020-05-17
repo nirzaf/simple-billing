@@ -70,7 +70,6 @@ namespace SimpleBilling.MasterForms
             {
                 ExportJson.Add(ex);
             }
-
         }
 
         private void DGVLoadReceipt_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -502,7 +502,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-
         private void TxtChequeNo_Enter(object sender, EventArgs e)
         {
             Info.PlaceHolder(TxtChequeNo);
