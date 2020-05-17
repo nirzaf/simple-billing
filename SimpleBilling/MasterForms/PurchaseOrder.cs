@@ -47,8 +47,8 @@ namespace SimpleBilling.MasterForms
                 DGVItemsToOrder.DataSource = data;
 
                 LblDate.Text = DateTime.Today.ToShortDateString();
-                BtnAddToOrder.Visible = false;
-                BtnRemove.Visible = false;
+                BtnAddToOrder.Enabled = false;
+                BtnRemove.Enabled = false;
             }
         }
 
@@ -61,6 +61,7 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
+                string Date = DtpOrderDate.Value.ToShortDateString();
                 using (BillingContext db = new BillingContext())
                 {
                     if (DGVItemsToOrder.SelectedRows.Count > 0)
@@ -69,25 +70,19 @@ namespace SimpleBilling.MasterForms
                         var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.PurchaseOrderId == PurchaseOrderId);
                         if (OrdItem == null)
                         {
-                            if (Info.IsEmpty(TxtOrderQuantity) && Info.IsEmpty(TxtUnitType))
+                            OrderedItem oi = new OrderedItem
                             {
-                                OrderedItem oi = new OrderedItem
-                                {
-                                    ItemCode = Code,
-                                    Quantity = Info.ToInt(TxtOrderQuantity),
-                                    UnitType = Info.ToString(TxtUnitType),
-                                    CreatedDate = DateTime.Today,
-                                    PurchaseOrderId = PurchaseOrderId
-                                };
-                                if (db.Entry(oi).State == EntityState.Detached)
-                                    db.Set<OrderedItem>().Attach(oi);
-                                db.Entry(oi).State = EntityState.Added;
-                                db.SaveChanges();
-                            }
-                            else
-                            {
-                                Info.Required();
-                            }
+                                ItemCode = Code,
+                                Quantity = Info.ToInt(TxtOrderQuantity),
+                                UnitType = Info.ToString(TxtUnitType),
+                                CreatedDate = DateTime.Today,
+                                PurchaseOrderId = PurchaseOrderId
+                            };
+                            if (db.Entry(oi).State == EntityState.Detached)
+                                db.Set<OrderedItem>().Attach(oi);
+                            db.Entry(oi).State = EntityState.Added;
+                            db.SaveChanges();
+                            FormLoad(Date);
                         }
                         else
                         {
@@ -99,6 +94,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<OrderedItem>().Attach(OrdItem);
                             db.Entry(OrdItem).State = EntityState.Modified;
                             db.SaveChanges();
+                            FormLoad(Date);
                         }
                     }
                 }
@@ -107,11 +103,6 @@ namespace SimpleBilling.MasterForms
             {
                 ExportJson.Add(ex);
             }
-            finally
-            {
-                FormLoad(DtpOrderDate.Value.ToShortDateString());
-            }
-
         }
 
         private void BtnCreateOrder_Click(object sender, EventArgs e)
@@ -165,8 +156,8 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
-                BtnAddToOrder.Visible = true;
-                BtnRemove.Visible = true;
+                BtnAddToOrder.Enabled = true;
+                BtnRemove.Enabled = true;
             }
         }
 
@@ -190,7 +181,7 @@ namespace SimpleBilling.MasterForms
         {
             if (DGVOrderedItems.SelectedRows.Count > 0)
             {
-                BtnRemove.Visible = true;
+                BtnRemove.Enabled = true;
             }
         }
     }
