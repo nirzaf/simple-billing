@@ -230,10 +230,11 @@
             // 
             this.LblReceiptNo.AutoSize = true;
             this.LblReceiptNo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LblReceiptNo.ForeColor = System.Drawing.Color.Wheat;
+            this.LblReceiptNo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblReceiptNo.ForeColor = System.Drawing.Color.Lime;
             this.LblReceiptNo.Location = new System.Drawing.Point(3, 0);
             this.LblReceiptNo.Name = "LblReceiptNo";
-            this.LblReceiptNo.Size = new System.Drawing.Size(131, 19);
+            this.LblReceiptNo.Size = new System.Drawing.Size(131, 16);
             this.LblReceiptNo.TabIndex = 18;
             this.LblReceiptNo.Text = "ReceiptNo";
             // 
@@ -241,10 +242,11 @@
             // 
             this.LblCustomer.AutoSize = true;
             this.LblCustomer.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.LblCustomer.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCustomer.ForeColor = System.Drawing.Color.Lime;
             this.LblCustomer.Location = new System.Drawing.Point(140, 0);
             this.LblCustomer.Name = "LblCustomer";
-            this.LblCustomer.Size = new System.Drawing.Size(84, 19);
+            this.LblCustomer.Size = new System.Drawing.Size(68, 16);
             this.LblCustomer.TabIndex = 17;
             this.LblCustomer.Text = "Customer";
             // 
