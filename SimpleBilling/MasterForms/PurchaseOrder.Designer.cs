@@ -153,6 +153,7 @@
             this.DGVItemsToOrder.Name = "DGVItemsToOrder";
             this.DGVItemsToOrder.Size = new System.Drawing.Size(437, 399);
             this.DGVItemsToOrder.TabIndex = 5;
+            this.DGVItemsToOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVItemsToOrder_CellClick);
             // 
             // tabControl1
             // 

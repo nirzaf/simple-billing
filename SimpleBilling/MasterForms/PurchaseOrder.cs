@@ -62,7 +62,7 @@ namespace SimpleBilling.MasterForms
                 if (DGVItemsToOrder.SelectedRows.Count > 0)
                 {
                     string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
-                    var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code);
+                    var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.PurchaseOrderId == PurchaseOrderId);
                     if (OrdItem == null)
                     {
                         OrderedItem oi = new OrderedItem
@@ -70,8 +70,24 @@ namespace SimpleBilling.MasterForms
                             ItemCode = Code,
                             Quantity = Info.ToInt(TxtOrderQuantity),
                             UnitType = Info.ToString(TxtUnitType),
-                            PurchaseOrderId =
+                            CreatedDate = DateTime.Today,
+                            PurchaseOrderId = PurchaseOrderId
                         };
+                        if (db.Entry(oi).State == EntityState.Detached)
+                            db.Set<OrderedItem>().Attach(oi);
+                        db.Entry(oi).State = EntityState.Added;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        OrdItem.Quantity = Info.ToInt(TxtOrderQuantity);
+                        OrdItem.UnitType = Info.ToString(TxtUnitType);
+                        OrdItem.UpdatedDate = DateTime.Today;
+                        OrdItem.PurchaseOrderId = PurchaseOrderId;
+                        if (db.Entry(OrdItem).State == EntityState.Detached)
+                            db.Set<OrderedItem>().Attach(OrdItem);
+                        db.Entry(OrdItem).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
                 }
             }
@@ -110,6 +126,22 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
+            }
+        }
+
+        private void DGVItemsToOrder_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVItemsToOrder.SelectedRows.Count > 0)
+            {
+                string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
+                using (BillingContext db = new BillingContext())
+                {
+                    var item = db.Items.FirstOrDefault(c => c.Code == Code);
+                    if (item != null)
+                    {
+                        TxtUnitType.Text = item.Unit;
+                    }
+                }
             }
         }
     }
