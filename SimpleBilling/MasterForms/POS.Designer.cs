@@ -955,9 +955,9 @@
             // 
             this.BtnVoid.BackColor = System.Drawing.Color.White;
             this.BtnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVoid.Location = new System.Drawing.Point(3, 49);
+            this.BtnVoid.Location = new System.Drawing.Point(3, 114);
             this.BtnVoid.Name = "BtnVoid";
-            this.BtnVoid.Size = new System.Drawing.Size(103, 40);
+            this.BtnVoid.Size = new System.Drawing.Size(103, 68);
             this.BtnVoid.TabIndex = 7;
             this.BtnVoid.Text = "Void";
             this.BtnVoid.UseVisualStyleBackColor = false;
@@ -967,9 +967,9 @@
             // 
             this.BtnPrint.BackColor = System.Drawing.Color.White;
             this.BtnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnPrint.Location = new System.Drawing.Point(3, 3);
+            this.BtnPrint.Location = new System.Drawing.Point(3, 40);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(103, 40);
+            this.BtnPrint.Size = new System.Drawing.Size(103, 68);
             this.BtnPrint.TabIndex = 6;
             this.BtnPrint.Text = "Print";
             this.BtnPrint.UseVisualStyleBackColor = false;
@@ -1004,16 +1004,14 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.BtnPrint, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.BtnVoid, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.LstBoxPendingJobs, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.LstBoxPendingJobs, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(1033, 368);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(109, 186);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
@@ -1024,9 +1022,9 @@
             this.LstBoxPendingJobs.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstBoxPendingJobs.FormattingEnabled = true;
             this.LstBoxPendingJobs.ItemHeight = 14;
-            this.LstBoxPendingJobs.Location = new System.Drawing.Point(3, 95);
+            this.LstBoxPendingJobs.Location = new System.Drawing.Point(3, 3);
             this.LstBoxPendingJobs.Name = "LstBoxPendingJobs";
-            this.LstBoxPendingJobs.Size = new System.Drawing.Size(103, 88);
+            this.LstBoxPendingJobs.Size = new System.Drawing.Size(103, 180);
             this.LstBoxPendingJobs.TabIndex = 8;
             this.LstBoxPendingJobs.DoubleClick += new System.EventHandler(this.LstBoxPendingJobs_DoubleClick);
             // 
@@ -1077,6 +1075,8 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.BtnVoid, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.BtnPrint, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.BtnDelete, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1033, 177);
@@ -1103,6 +1103,7 @@
             // BtnPrintQuotation
             // 
             this.BtnPrintQuotation.BackColor = System.Drawing.Color.White;
+            this.BtnPrintQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPrintQuotation.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrintQuotation.ForeColor = System.Drawing.Color.Black;
             this.BtnPrintQuotation.Location = new System.Drawing.Point(3, 129);
@@ -1115,6 +1116,7 @@
             // BtnSaveQuotation
             // 
             this.BtnSaveQuotation.BackColor = System.Drawing.Color.White;
+            this.BtnSaveQuotation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSaveQuotation.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaveQuotation.Location = new System.Drawing.Point(3, 87);
             this.BtnSaveQuotation.Name = "BtnSaveQuotation";
