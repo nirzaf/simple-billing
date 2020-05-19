@@ -269,6 +269,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<Model.PurchaseOrder>().Attach(data);
                         db.Entry(data).State = EntityState.Modified;
                         db.SaveChanges();
+                        FormLoad(PurchaseOrderDate);
                     }
                 }
             }
