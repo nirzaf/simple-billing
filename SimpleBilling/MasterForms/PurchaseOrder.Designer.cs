@@ -469,19 +469,20 @@
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 3;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.68821F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.31179F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.340659F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.65934F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(531, 403);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // LstReceivedOrders
             // 
+            this.LstReceivedOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LstReceivedOrders.FormattingEnabled = true;
             this.LstReceivedOrders.ItemHeight = 18;
-            this.LstReceivedOrders.Location = new System.Drawing.Point(3, 39);
+            this.LstReceivedOrders.Location = new System.Drawing.Point(3, 37);
             this.LstReceivedOrders.Name = "LstReceivedOrders";
-            this.LstReceivedOrders.Size = new System.Drawing.Size(523, 220);
+            this.LstReceivedOrders.Size = new System.Drawing.Size(525, 324);
             this.LstReceivedOrders.TabIndex = 0;
             // 
             // dateTimePicker1
@@ -505,7 +506,7 @@
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(525, 30);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(525, 28);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // label6
