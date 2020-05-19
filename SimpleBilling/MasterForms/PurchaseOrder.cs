@@ -254,5 +254,29 @@ namespace SimpleBilling.MasterForms
             }
 
         }
+
+        private void BtnMarkReceived_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(PurchaseOrderDate))
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.PurchaseOrders.FirstOrDefault(c => c.Date == PurchaseOrderDate);
+                    if (data != null)
+                    {
+                        data.IsReceived = true;
+                        if (db.Entry(data).State == EntityState.Detached)
+                            db.Set<Model.PurchaseOrder>().Attach(data);
+                        db.Entry(data).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        private void LstBoxPendingOrders_Click(object sender, EventArgs e)
+        {
+            PurchaseOrderDate = LstBoxPendingOrders.SelectedItem.ToString();
+        }
     }
 }
