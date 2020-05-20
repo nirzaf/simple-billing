@@ -1,5 +1,6 @@
 ﻿using SimpleBilling.Model;
 using System;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -378,6 +379,33 @@ namespace SimpleBilling.MasterForms
                     db.SaveChanges();
                     ViewPendingOrders(PurchaseOrderDate, 2);
                 }
+            }
+        }
+
+        private void BtnExportPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == PurchaseOrderDate && !c.IsDeleted)
+                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                        on po.Date equals oi.OrderedDate
+                                        join it in db.Items.Where(c => !c.IsDeleted)
+                                        on oi.ItemCode equals it.Code
+                                        select new
+                                        {
+                                            oi.ItemCode,
+                                            it.PrintableName,
+                                            oi.Quantity
+                                        }).ToList();
+                    DataTable Orders = Info.ToDataTable(orderedItems);
+                    Info.ExpPDF(Orders);
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Add(ex);
             }
         }
     }

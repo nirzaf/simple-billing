@@ -293,6 +293,90 @@ namespace SimpleBilling
             }
         }
 
+        public static void ExporPurchaseOrdersAsPDF(DataTable dt)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "PDF (*.pdf)|*.pdf",
+                FileName = "test"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Spire.DataExport.PDF.PDFExport PDFExport = new Spire.DataExport.PDF.PDFExport
+                {
+                    DataSource = Spire.DataExport.Common.ExportSource.DataTable,
+                    DataTable = dt,
+                    ActionAfterExport = Spire.DataExport.Common.ActionType.OpenView
+                };
+                PDFExport.PDFOptions.PageOptions.Orientation = Spire.DataExport.Common.PageOrientation.Portrait;
+                PDFExport.SaveToFile(sfd.FileName);
+            }
+        }
+
+        public static void ExportPurchaseOrders(DataTable dt, string Date)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "PDF (*.pdf)|*.pdf",
+                    FileName = RandomString(5) + DateTime.Now.ToShortDateString().Replace("/", "")
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = sfd.FileName;
+                    PdfWriter writer = new PdfWriter(sfd.FileName);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A4.Rotate());
+                    Paragraph header = new Paragraph("Ordered Items").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
+                    Paragraph subheader = new Paragraph("Oder due date : " + Date).SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Paragraph dl = new Paragraph(".             .").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    LineSeparator ls = new LineSeparator(new SolidLine());
+                    document.Add(header);
+                    document.Add(subheader);
+                    document.Add(ls);
+                    document.Add(dl);
+                    Table table = new Table(6, false);
+                    table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                    table.SetVerticalAlignment(VerticalAlignment.TOP);
+                    table.AddHeaderCell("Item Code");
+                    table.AddHeaderCell("");
+                    table.AddHeaderCell("Item Name");
+                    table.AddHeaderCell("");
+                    table.AddHeaderCell("Ordered Quantity");
+
+                    foreach (DataRow d in dt.Rows)
+                    {
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[1].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetFontColor(ColorConstants.WHITE).Add(new Paragraph(dl.ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetFontColor(ColorConstants.WHITE).Add(new Paragraph(dl.ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[3].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetFontColor(ColorConstants.WHITE).Add(new Paragraph(dl.ToString())));
+                    }
+
+                    float subTotal = GetDTSum(dt, 4);
+                    float discoutTotal = GetDTSum(dt, 5);
+                    float netTotal = GetDTSum(dt, 6);
+
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(subTotal.ToString())));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(discoutTotal.ToString())));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(netTotal.ToString())));
+
+                    document.Add(table);
+                    document.Close();
+                    StartProcess(fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mes(ex.Message);
+            }
+        }
+
         public static float GetDGVSum(DataGridView dt, int cell)
         {
             float sum = (from DataGridViewRow row in dt.Rows
