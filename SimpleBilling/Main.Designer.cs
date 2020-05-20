@@ -49,6 +49,7 @@
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSM2 = new System.Windows.Forms.ToolStripMenuItem();
             this.configsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +79,8 @@
             this.ManageCategoryToolStripMenuItem,
             this.ManageBusinessInfoToolStripMenuItem,
             this.ManageVehicleToolStripMenuItem,
-            this.ManageBankToolStripMenuItem});
+            this.ManageBankToolStripMenuItem,
+            this.purchaseOrderToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(76, 23);
@@ -222,9 +224,16 @@
             // configsToolStripMenuItem
             // 
             this.configsToolStripMenuItem.Name = "configsToolStripMenuItem";
-            this.configsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.configsToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
             this.configsToolStripMenuItem.Text = "Configs";
             this.configsToolStripMenuItem.Click += new System.EventHandler(this.configsToolStripMenuItem_Click);
+            // 
+            // purchaseOrderToolStripMenuItem
+            // 
+            this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
+            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
+            this.purchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -270,5 +279,6 @@
         private System.Windows.Forms.ToolStripMenuItem ManageBankToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TSM2;
         private System.Windows.Forms.ToolStripMenuItem configsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrderToolStripMenuItem;
     }
 }

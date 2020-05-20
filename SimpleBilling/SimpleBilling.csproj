@@ -186,10 +186,10 @@
     <Compile Include="MasterForms\LoadReceipt.Designer.cs">
       <DependentUpon>LoadReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterForms\Login.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterForms\Login.Designer.cs">
+    <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterForms\ManageBanks.cs">
@@ -645,7 +645,7 @@
     <EmbeddedResource Include="MasterForms\LoadReceipt.resx">
       <DependentUpon>LoadReceipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterForms\Login.resx">
+    <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\ManageBanks.resx">

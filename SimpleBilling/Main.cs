@@ -248,5 +248,23 @@ namespace SimpleBilling
             };
             s.Show();
         }
+
+        private void purchaseOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(PurchaseOrder))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            PurchaseOrder po = new PurchaseOrder()
+            {
+                MdiParent = this
+            };
+            po.Show();
+        }
     }
 }

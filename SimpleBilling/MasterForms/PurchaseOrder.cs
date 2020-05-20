@@ -318,5 +318,23 @@ namespace SimpleBilling.MasterForms
             PurchaseOrderDate = LstReceivedOrders.SelectedItem.ToString();
             ViewPendingOrders(PurchaseOrderDate, 2);
         }
+
+        private void DGVOrderedItems_DoubleClick(object sender, EventArgs e)
+        {
+            string Code = DGVOrderedItems.SelectedRows[0].Cells[0].Value + string.Empty;
+            PurchaseOrderDate = DTReceivedOrder.Value.ToShortDateString();
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.OrderedItems.FirstOrDefault(c => c.OrderedDate == PurchaseOrderDate && c.ItemCode == Code && !c.IsDeleted);
+                if (data != null)
+                {
+                    data.IsReceived = true;
+                    if (db.Entry(data).State == EntityState.Detached)
+                        db.Set<OrderedItem>().Attach(data);
+                    db.Entry(data).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }
