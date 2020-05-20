@@ -65,6 +65,8 @@
             this.DGVOrderedItems = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnExportPDF = new System.Windows.Forms.Button();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.DGVReceivedItems = new System.Windows.Forms.DataGridView();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVItemsToOrder)).BeginInit();
@@ -80,6 +82,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVOrderedItems)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVReceivedItems)).BeginInit();
             this.SuspendLayout();
             // 
             // BaseLayout
@@ -330,7 +334,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(377, 403);
+            this.tabPage2.Size = new System.Drawing.Size(378, 403);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pending Orders";
             // 
@@ -346,7 +350,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.5592F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.44081F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(371, 397);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(372, 397);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // LstBoxPendingOrders
@@ -356,7 +360,7 @@
             this.LstBoxPendingOrders.ItemHeight = 18;
             this.LstBoxPendingOrders.Location = new System.Drawing.Point(3, 3);
             this.LstBoxPendingOrders.Name = "LstBoxPendingOrders";
-            this.LstBoxPendingOrders.Size = new System.Drawing.Size(365, 289);
+            this.LstBoxPendingOrders.Size = new System.Drawing.Size(366, 289);
             this.LstBoxPendingOrders.TabIndex = 0;
             this.LstBoxPendingOrders.Click += new System.EventHandler(this.LstBoxPendingOrders_Click);
             this.LstBoxPendingOrders.DoubleClick += new System.EventHandler(this.LstBoxPendingOrders_DoubleClick);
@@ -373,7 +377,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.58333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.29167F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.16667F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(365, 96);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(366, 96);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // BtnMarkReceived
@@ -381,7 +385,7 @@
             this.BtnMarkReceived.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnMarkReceived.Location = new System.Drawing.Point(3, 3);
             this.BtnMarkReceived.Name = "BtnMarkReceived";
-            this.BtnMarkReceived.Size = new System.Drawing.Size(359, 31);
+            this.BtnMarkReceived.Size = new System.Drawing.Size(360, 31);
             this.BtnMarkReceived.TabIndex = 0;
             this.BtnMarkReceived.Text = "Mark As Received";
             this.BtnMarkReceived.UseVisualStyleBackColor = true;
@@ -393,7 +397,7 @@
             this.tabPage3.Controls.Add(this.tableLayoutPanel7);
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(377, 403);
+            this.tabPage3.Size = new System.Drawing.Size(378, 403);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Received Orders";
             // 
@@ -411,7 +415,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.340659F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.65934F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(377, 403);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(378, 403);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // LstReceivedOrders
@@ -421,7 +425,7 @@
             this.LstReceivedOrders.ItemHeight = 18;
             this.LstReceivedOrders.Location = new System.Drawing.Point(3, 37);
             this.LstReceivedOrders.Name = "LstReceivedOrders";
-            this.LstReceivedOrders.Size = new System.Drawing.Size(371, 324);
+            this.LstReceivedOrders.Size = new System.Drawing.Size(372, 324);
             this.LstReceivedOrders.TabIndex = 0;
             this.LstReceivedOrders.DoubleClick += new System.EventHandler(this.LstReceivedOrders_DoubleClick);
             // 
@@ -437,14 +441,14 @@
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(371, 28);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(372, 28);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // DTReceivedOrder
             // 
             this.DTReceivedOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DTReceivedOrder.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTReceivedOrder.Location = new System.Drawing.Point(188, 3);
+            this.DTReceivedOrder.Location = new System.Drawing.Point(189, 3);
             this.DTReceivedOrder.Name = "DTReceivedOrder";
             this.DTReceivedOrder.Size = new System.Drawing.Size(180, 26);
             this.DTReceivedOrder.TabIndex = 1;
@@ -466,7 +470,7 @@
             this.BtnViewAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnViewAll.Location = new System.Drawing.Point(3, 367);
             this.BtnViewAll.Name = "BtnViewAll";
-            this.BtnViewAll.Size = new System.Drawing.Size(371, 33);
+            this.BtnViewAll.Size = new System.Drawing.Size(372, 33);
             this.BtnViewAll.TabIndex = 3;
             this.BtnViewAll.Text = "View All";
             this.BtnViewAll.UseVisualStyleBackColor = false;
@@ -486,7 +490,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.DGVOrderedItems, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel9, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 40);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -505,7 +509,7 @@
             this.DGVOrderedItems.Location = new System.Drawing.Point(4, 3);
             this.DGVOrderedItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVOrderedItems.Name = "DGVOrderedItems";
-            this.DGVOrderedItems.Size = new System.Drawing.Size(400, 428);
+            this.DGVOrderedItems.Size = new System.Drawing.Size(394, 208);
             this.DGVOrderedItems.TabIndex = 1;
             this.DGVOrderedItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVOrderedItems_CellClick);
             this.DGVOrderedItems.DoubleClick += new System.EventHandler(this.DGVOrderedItems_DoubleClick);
@@ -535,6 +539,30 @@
             this.BtnExportPDF.TabIndex = 0;
             this.BtnExportPDF.Text = "Export As PDF";
             this.BtnExportPDF.UseVisualStyleBackColor = false;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Controls.Add(this.DGVOrderedItems, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.DGVReceivedItems, 0, 1);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(402, 428);
+            this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // DGVReceivedItems
+            // 
+            this.DGVReceivedItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVReceivedItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVReceivedItems.Location = new System.Drawing.Point(3, 217);
+            this.DGVReceivedItems.Name = "DGVReceivedItems";
+            this.DGVReceivedItems.Size = new System.Drawing.Size(396, 208);
+            this.DGVReceivedItems.TabIndex = 2;
             // 
             // PurchaseOrder
             // 
@@ -568,6 +596,8 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVOrderedItems)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVReceivedItems)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -610,5 +640,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnViewAll;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.DataGridView DGVReceivedItems;
     }
 }

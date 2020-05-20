@@ -227,10 +227,6 @@ namespace SimpleBilling
             mb.Show();
         }
 
-        private void pOSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void configsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)

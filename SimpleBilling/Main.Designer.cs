@@ -203,7 +203,6 @@
             this.pOSToolStripMenuItem.Name = "pOSToolStripMenuItem";
             this.pOSToolStripMenuItem.Size = new System.Drawing.Size(55, 23);
             this.pOSToolStripMenuItem.Text = "POS";
-            this.pOSToolStripMenuItem.Click += new System.EventHandler(this.pOSToolStripMenuItem_Click);
             // 
             // quickSaleToolStripMenuItem
             // 
