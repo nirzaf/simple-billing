@@ -67,6 +67,7 @@
             this.BtnExportPDF = new System.Windows.Forms.Button();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.DGVReceivedItems = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVItemsToOrder)).BeginInit();
@@ -543,15 +544,17 @@
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.DGVOrderedItems, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.DGVReceivedItems, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.DGVReceivedItems, 0, 2);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowCount = 3;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(402, 428);
             this.tableLayoutPanel9.TabIndex = 0;
             // 
@@ -561,11 +564,23 @@
             this.DGVReceivedItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVReceivedItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReceivedItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVReceivedItems.Location = new System.Drawing.Point(3, 217);
+            this.DGVReceivedItems.Location = new System.Drawing.Point(3, 234);
             this.DGVReceivedItems.Name = "DGVReceivedItems";
-            this.DGVReceivedItems.Size = new System.Drawing.Size(396, 208);
+            this.DGVReceivedItems.Size = new System.Drawing.Size(396, 191);
             this.DGVReceivedItems.TabIndex = 2;
             this.DGVReceivedItems.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DGVReceivedItems_MouseClick);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(4, 214);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(394, 17);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Received items";
             // 
             // PurchaseOrder
             // 
@@ -600,6 +615,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVOrderedItems)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReceivedItems)).EndInit();
             this.ResumeLayout(false);
 
@@ -645,5 +661,6 @@
         private System.Windows.Forms.Button BtnViewAll;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.DataGridView DGVReceivedItems;
+        private System.Windows.Forms.Label label7;
     }
 }
