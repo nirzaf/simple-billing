@@ -78,6 +78,15 @@ namespace SimpleBilling
         public List<Exp> Exceptions { get; set; }
     }
 
+    public class ConnectionString
+    {
+        public string Database { get; set; }
+        public string Source { get; set; }
+        public bool IntegratedSecurity { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
+    }
+
     public class Exp
     {
         [JsonProperty]

@@ -63,8 +63,24 @@ namespace SimpleBilling.MasterForms
             }
         }
 
+        private void LoadCS()
+        {
+            string fileName = "conString.json";
+            string rawJson = File.ReadAllText(fileName);
+            var cs = JsonConvert.DeserializeObject<ConnectionString>(rawJson);
+            TxtDbName.Text = cs.Database;
+            TxtServerName.Text = cs.Source;
+            TxtUsername.Text = cs.UserId;
+            TxtPassword.Text = cs.Password;
+            if (cs.IntegratedSecurity)
+                ChkTrustedConnection.Checked = true;
+            else
+                ChkTrustedConnection.Checked = false;
+        }
+
         private void Settings_Load(object sender, EventArgs e)
         {
+            LoadCS();
             using (BillingContext db = new BillingContext())
             {
                 var data = db.Settings.FirstOrDefault(c => c.UserId == UserId);

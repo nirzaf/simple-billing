@@ -43,14 +43,14 @@
             this.TxtMinReorderValue = new System.Windows.Forms.TextBox();
             this.BtnSave = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtPassword = new System.Windows.Forms.TextBox();
+            this.TxtUsername = new System.Windows.Forms.TextBox();
+            this.TxtServerName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtDbName = new System.Windows.Forms.TextBox();
-            this.TxtServerName = new System.Windows.Forms.TextBox();
-            this.TxtUsername = new System.Windows.Forms.TextBox();
-            this.TxtPassword = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSaveConnectionString = new System.Windows.Forms.Button();
             this.ChkTrustedConnection = new System.Windows.Forms.CheckBox();
@@ -270,6 +270,33 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(440, 107);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
+            // TxtPassword
+            // 
+            this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPassword.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPassword.Location = new System.Drawing.Point(145, 81);
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.Size = new System.Drawing.Size(292, 22);
+            this.TxtPassword.TabIndex = 7;
+            // 
+            // TxtUsername
+            // 
+            this.TxtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtUsername.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUsername.Location = new System.Drawing.Point(145, 55);
+            this.TxtUsername.Name = "TxtUsername";
+            this.TxtUsername.Size = new System.Drawing.Size(292, 22);
+            this.TxtUsername.TabIndex = 6;
+            // 
+            // TxtServerName
+            // 
+            this.TxtServerName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtServerName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtServerName.Location = new System.Drawing.Point(145, 29);
+            this.TxtServerName.Name = "TxtServerName";
+            this.TxtServerName.Size = new System.Drawing.Size(292, 22);
+            this.TxtServerName.TabIndex = 5;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -318,33 +345,6 @@
             this.TxtDbName.Name = "TxtDbName";
             this.TxtDbName.Size = new System.Drawing.Size(292, 22);
             this.TxtDbName.TabIndex = 4;
-            // 
-            // TxtServerName
-            // 
-            this.TxtServerName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtServerName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtServerName.Location = new System.Drawing.Point(145, 29);
-            this.TxtServerName.Name = "TxtServerName";
-            this.TxtServerName.Size = new System.Drawing.Size(292, 22);
-            this.TxtServerName.TabIndex = 5;
-            // 
-            // TxtUsername
-            // 
-            this.TxtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtUsername.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsername.Location = new System.Drawing.Point(145, 55);
-            this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(292, 22);
-            this.TxtUsername.TabIndex = 6;
-            // 
-            // TxtPassword
-            // 
-            this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPassword.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPassword.Location = new System.Drawing.Point(145, 81);
-            this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Size = new System.Drawing.Size(292, 22);
-            this.TxtPassword.TabIndex = 7;
             // 
             // tableLayoutPanel4
             // 
