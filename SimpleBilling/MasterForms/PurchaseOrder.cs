@@ -21,6 +21,7 @@ namespace SimpleBilling.MasterForms
 
         private void FormLoad(string Date)
         {
+            FormLoadAll(string.Empty);
             using (BillingContext db = new BillingContext())
             {
                 var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
@@ -211,10 +212,10 @@ namespace SimpleBilling.MasterForms
         private void LstBoxPendingOrders_DoubleClick(object sender, EventArgs e)
         {
             PurchaseOrderDate = LstBoxPendingOrders.SelectedItem.ToString();
-            ViewPendingOrders(PurchaseOrderDate);
+            ViewPendingOrders(PurchaseOrderDate, 1);
         }
 
-        private void ViewPendingOrders(string Date)
+        private void ViewPendingOrders(string Date, int type)
         {
             using (BillingContext db = new BillingContext())
             {
@@ -241,7 +242,7 @@ namespace SimpleBilling.MasterForms
                 DGVItemsToOrder.DataSource = data;
 
                 LblDate.Text = DateTime.Today.ToShortDateString();
-                if (orderedItems.Count == 0)
+                if (orderedItems.Count == 0 || type == 2)
                 {
                     BtnAddToOrder.Enabled = false;
                     BtnRemove.Enabled = false;
@@ -252,7 +253,6 @@ namespace SimpleBilling.MasterForms
                     BtnRemove.Enabled = true;
                 }
             }
-
         }
 
         private void BtnMarkReceived_Click(object sender, EventArgs e)
@@ -278,6 +278,45 @@ namespace SimpleBilling.MasterForms
         private void LstBoxPendingOrders_Click(object sender, EventArgs e)
         {
             PurchaseOrderDate = LstBoxPendingOrders.SelectedItem.ToString();
+        }
+
+        private void BtnViewAll_Click(object sender, EventArgs e)
+        {
+            FormLoadAll(string.Empty);
+        }
+
+        private void FormLoadAll(string Date)
+        {
+
+            using (BillingContext db = new BillingContext())
+            {
+                if (string.IsNullOrWhiteSpace(Date))
+                {
+                    var pendingOrders = db.PurchaseOrders.Where(c => c.IsReceived && !c.IsDeleted).Select(c => c.Date).ToList();
+                    LstReceivedOrders.DataSource = pendingOrders;
+                }
+                else
+                {
+                    var pendingOrders = db.PurchaseOrders.Where(c => c.Date == Date && c.IsReceived && !c.IsDeleted).Select(c => c.Date).ToList();
+                    LstReceivedOrders.DataSource = pendingOrders;
+                }
+
+                LblDate.Text = DateTime.Today.ToShortDateString();
+                BtnAddToOrder.Enabled = false;
+                BtnRemove.Enabled = false;
+            }
+        }
+
+        private void DTReceivedOrder_ValueChanged(object sender, EventArgs e)
+        {
+            string Date = DTReceivedOrder.Value.ToShortDateString();
+            FormLoadAll(Date);
+        }
+
+        private void LstReceivedOrders_DoubleClick(object sender, EventArgs e)
+        {
+            PurchaseOrderDate = LstReceivedOrders.SelectedItem.ToString();
+            ViewPendingOrders(PurchaseOrderDate, 2);
         }
     }
 }

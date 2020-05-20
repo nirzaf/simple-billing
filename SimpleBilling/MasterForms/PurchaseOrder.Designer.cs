@@ -61,7 +61,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.LstReceivedOrders = new System.Windows.Forms.ListBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DTReceivedOrder = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.BtnViewAll = new System.Windows.Forms.Button();
@@ -486,22 +486,24 @@
             this.LstReceivedOrders.Name = "LstReceivedOrders";
             this.LstReceivedOrders.Size = new System.Drawing.Size(370, 324);
             this.LstReceivedOrders.TabIndex = 0;
+            this.LstReceivedOrders.DoubleClick += new System.EventHandler(this.LstReceivedOrders_DoubleClick);
             // 
-            // dateTimePicker1
+            // DTReceivedOrder
             // 
-            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(188, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(179, 26);
-            this.dateTimePicker1.TabIndex = 1;
+            this.DTReceivedOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DTReceivedOrder.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTReceivedOrder.Location = new System.Drawing.Point(188, 3);
+            this.DTReceivedOrder.Name = "DTReceivedOrder";
+            this.DTReceivedOrder.Size = new System.Drawing.Size(179, 26);
+            this.DTReceivedOrder.TabIndex = 1;
+            this.DTReceivedOrder.ValueChanged += new System.EventHandler(this.DTReceivedOrder_ValueChanged);
             // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.dateTimePicker1, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.DTReceivedOrder, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
@@ -531,6 +533,7 @@
             this.BtnViewAll.TabIndex = 3;
             this.BtnViewAll.Text = "View All";
             this.BtnViewAll.UseVisualStyleBackColor = false;
+            this.BtnViewAll.Click += new System.EventHandler(this.BtnViewAll_Click);
             // 
             // PurchaseOrder
             // 
@@ -602,7 +605,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.ListBox LstReceivedOrders;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DTReceivedOrder;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnViewAll;
