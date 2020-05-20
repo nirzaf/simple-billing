@@ -4,11 +4,17 @@ using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Newtonsoft.Json;
+using SimpleBilling.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -299,6 +305,107 @@ namespace SimpleBilling
         {
             float sum = dt.AsEnumerable().Sum(c => c.Field<float>(cell));
             return sum;
+        }
+
+        public static void Add(Exception ex)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.Settings.FirstOrDefault(c => c.UserId == 1);
+                    string path = data.ExceptionPath;
+                    string fileName = path + "exception.json";
+                    string rawJson;
+                    if (!File.Exists(fileName))
+                    {
+                        File.Create(fileName);
+                    }
+
+                    rawJson = File.ReadAllText(fileName);
+                    var ec = JsonConvert.DeserializeObject<ExpCollection>(rawJson);
+
+                    if (ec != null)
+                    {
+                        int Count = ec.Exceptions.Count;
+                        Exp Exps = new Exp
+                        {
+                            Id = ++Count,
+                            Time = DateTime.Now.ToShortTimeString(),
+                            Date = DateTime.Today.ToShortDateString(),
+                            Message = ex.Message.ToString(),
+                            StackTrace = ex.StackTrace.ToString()
+                        };
+                        ec.Exceptions.Add(Exps);
+                        string serializedJson = JsonConvert.SerializeObject(ec, Formatting.Indented);
+                        File.WriteAllText(path, serializedJson);
+                    }
+                    else
+                    {
+                        ExpCollection exp = new ExpCollection
+                        {
+                            Exceptions = new List<Exp>()
+                        };
+                        Exp Exps = new Exp
+                        {
+                            Id = 1,
+                            Time = DateTime.Now.ToShortTimeString(),
+                            Date = DateTime.Today.ToShortDateString(),
+                            Message = ex.Message.ToString(),
+                            StackTrace = ex.StackTrace.ToString()
+                        };
+                        exp.Exceptions.Add(Exps);
+                        string serializedJson = JsonConvert.SerializeObject(exp, Formatting.Indented);
+                        File.WriteAllText(path, serializedJson);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Add(e);
+            }
+            finally
+            {
+                Mes(ex.Message);
+            }
+        }
+
+        public static DbConnection ConString()
+        {
+            try
+            {
+                string fileName = "conString.json";
+                string rawJson = File.ReadAllText(fileName);
+                var cs = JsonConvert.DeserializeObject<ConnectionString>(rawJson);
+                return GetSqlConnection(cs.Source, cs.Database, cs.UserId, cs.Password, cs.IntegratedSecurity);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static DbConnection GetSqlConnection(string dataSource, string dbName, string uId, string pW, bool trusted)
+        {
+            var sqlConnStringBuilder = new SqlConnectionStringBuilder
+            {
+                DataSource = dataSource,
+                MultipleActiveResultSets = true
+            };
+
+            if (trusted)
+            {
+                sqlConnStringBuilder.IntegratedSecurity = true;
+            }
+            else
+            {
+                sqlConnStringBuilder.UserID = uId;
+                sqlConnStringBuilder.Password = pW;
+            }
+
+            var sqlConnFact = new SqlConnectionFactory(sqlConnStringBuilder.ConnectionString);
+            var sqlConn = sqlConnFact.CreateConnection(dbName);
+            return sqlConn;
         }
     }
 }
