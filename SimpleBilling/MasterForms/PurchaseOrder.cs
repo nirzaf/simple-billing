@@ -233,7 +233,7 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
-                                    join oi in db.OrderedItems.Where(c => !c.IsDeleted)
+                                    join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
                                     on po.Date equals oi.OrderedDate
                                     join it in db.Items.Where(c => !c.IsDeleted)
                                     on oi.ItemCode equals it.Code
@@ -244,6 +244,19 @@ namespace SimpleBilling.MasterForms
                                         oi.Quantity
                                     }).ToList();
                 DGVOrderedItems.DataSource = orderedItems;
+
+                var receivedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
+                                     join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
+                                     on po.Date equals oi.OrderedDate
+                                     join it in db.Items.Where(c => !c.IsDeleted)
+                                     on oi.ItemCode equals it.Code
+                                     select new
+                                     {
+                                         oi.ItemCode,
+                                         it.PrintableName,
+                                         oi.Quantity
+                                     }).ToList();
+                DGVReceivedItems.DataSource = receivedItems;
 
                 var data = (from item in db.Items.Where(c => !c.IsDeleted)
                             select new
@@ -335,13 +348,30 @@ namespace SimpleBilling.MasterForms
         private void DGVOrderedItems_DoubleClick(object sender, EventArgs e)
         {
             string Code = DGVOrderedItems.SelectedRows[0].Cells[0].Value + string.Empty;
-            //PurchaseOrderDate = DTReceivedOrder.Value.ToShortDateString();
             using (BillingContext db = new BillingContext())
             {
-                var data = db.OrderedItems.FirstOrDefault(c => c.OrderedDate == PurchaseOrderDate && c.ItemCode == Code && !c.IsDeleted);
+                var data = db.OrderedItems.FirstOrDefault(c => c.OrderedDate == PurchaseOrderDate && c.ItemCode == Code && !c.IsReceived && !c.IsDeleted);
                 if (data != null)
                 {
                     data.IsReceived = true;
+                    if (db.Entry(data).State == EntityState.Detached)
+                        db.Set<OrderedItem>().Attach(data);
+                    db.Entry(data).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewPendingOrders(PurchaseOrderDate, 2);
+                }
+            }
+        }
+
+        private void DGVReceivedItems_MouseClick(object sender, MouseEventArgs e)
+        {
+            string Code = DGVReceivedItems.SelectedRows[0].Cells[0].Value + string.Empty;
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.OrderedItems.FirstOrDefault(c => c.OrderedDate == PurchaseOrderDate && c.ItemCode == Code && c.IsReceived && !c.IsDeleted);
+                if (data != null)
+                {
+                    data.IsReceived = false;
                     if (db.Entry(data).State == EntityState.Detached)
                         db.Set<OrderedItem>().Attach(data);
                     db.Entry(data).State = EntityState.Modified;

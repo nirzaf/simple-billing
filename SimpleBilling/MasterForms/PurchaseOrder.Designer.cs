@@ -557,12 +557,15 @@
             // 
             // DGVReceivedItems
             // 
+            this.DGVReceivedItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVReceivedItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVReceivedItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReceivedItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVReceivedItems.Location = new System.Drawing.Point(3, 217);
             this.DGVReceivedItems.Name = "DGVReceivedItems";
             this.DGVReceivedItems.Size = new System.Drawing.Size(396, 208);
             this.DGVReceivedItems.TabIndex = 2;
+            this.DGVReceivedItems.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DGVReceivedItems_MouseClick);
             // 
             // PurchaseOrder
             // 
