@@ -400,7 +400,7 @@ namespace SimpleBilling.MasterForms
                                             oi.Quantity
                                         }).ToList();
                     DataTable Orders = Info.ToDataTable(orderedItems);
-                    Info.ExpPDF(Orders);
+                    Info.ExportPurchaseOrders(Orders, PurchaseOrderDate);
                 }
             }
             catch (Exception ex)

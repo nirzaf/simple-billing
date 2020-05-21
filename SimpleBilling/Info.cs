@@ -327,45 +327,34 @@ namespace SimpleBilling
                     string fileName = sfd.FileName;
                     PdfWriter writer = new PdfWriter(sfd.FileName);
                     PdfDocument pdf = new PdfDocument(writer);
-                    Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A4.Rotate());
+                    Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A4);
                     Paragraph header = new Paragraph("Ordered Items").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
                     Paragraph subheader = new Paragraph("Oder due date : " + Date).SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
-                    Paragraph dl = new Paragraph(".             .").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Paragraph dl = new Paragraph(".       .").SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).SetFontColor(ColorConstants.WHITE);
                     LineSeparator ls = new LineSeparator(new SolidLine());
                     document.Add(header);
                     document.Add(subheader);
                     document.Add(ls);
                     document.Add(dl);
-                    Table table = new Table(6, false);
+                    int FontSize = 10;
+                    Table table = new Table(3, false);
                     table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
                     table.SetVerticalAlignment(VerticalAlignment.TOP);
-                    table.AddHeaderCell("Item Code");
-                    table.AddHeaderCell("");
-                    table.AddHeaderCell("Item Name");
-                    table.AddHeaderCell("");
-                    table.AddHeaderCell("Ordered Quantity");
+                    table.AddHeaderCell("Item Code").SetFontSize(FontSize);
+                    table.AddHeaderCell("Item Name").SetFontSize(FontSize);
+                    table.AddHeaderCell("Quantity").SetFontSize(FontSize);
 
                     foreach (DataRow d in dt.Rows)
                     {
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[1].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetFontColor(ColorConstants.WHITE).Add(new Paragraph(dl.ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[2].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetFontColor(ColorConstants.WHITE).Add(new Paragraph(dl.ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(d[3].ToString())));
-                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetFontColor(ColorConstants.WHITE).Add(new Paragraph(dl.ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetFontSize(FontSize).Add(new Paragraph(d[0].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).SetFontSize(FontSize).Add(new Paragraph(d[1].ToString())));
+                        table.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(FontSize).Add(new Paragraph(d[2].ToString())));
                     }
 
-                    float subTotal = GetDTSum(dt, 4);
-                    float discoutTotal = GetDTSum(dt, 5);
-                    float netTotal = GetDTSum(dt, 6);
-
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(string.Empty)));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(subTotal.ToString())));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(discoutTotal.ToString())));
-                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.GRAY).Add(new Paragraph(netTotal.ToString())));
-
+                    int TotalOrderedQty = GetDTIntegerSum(dt, 2);
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(FontSize).Add(new Paragraph(string.Empty)));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(FontSize).Add(new Paragraph("Total Ordered Quantity")));
+                    table.AddFooterCell(new Cell(1, 1).SetTextAlignment(TextAlignment.RIGHT).SetFontSize(FontSize).Add(new Paragraph(TotalOrderedQty.ToString())));
                     document.Add(table);
                     document.Close();
                     StartProcess(fileName);
@@ -388,6 +377,12 @@ namespace SimpleBilling
         public static float GetDTSum(DataTable dt, int cell)
         {
             float sum = dt.AsEnumerable().Sum(c => c.Field<float>(cell));
+            return sum;
+        }
+
+        public static int GetDTIntegerSum(DataTable dt, int cell)
+        {
+            int sum = dt.AsEnumerable().Sum(c => c.Field<int>(cell));
             return sum;
         }
 
