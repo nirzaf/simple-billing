@@ -81,6 +81,11 @@ namespace SimpleBilling.MasterForms
         private void Settings_Load(object sender, EventArgs e)
         {
             LoadCS();
+            LoadForm();
+        }
+
+        private void LoadForm()
+        {
             using (BillingContext db = new BillingContext())
             {
                 var data = db.Settings.FirstOrDefault(c => c.UserId == UserId);
@@ -358,8 +363,8 @@ namespace SimpleBilling.MasterForms
                 {
                     UId = Convert.ToInt32(DGVUsers.SelectedRows[0].Cells[0].Value + string.Empty);
                     var user = db.Users.FirstOrDefault(c => c.UserId == UId && !c.IsDeleted);
-                    TxtUsername.Text = user.Username;
-                    TxtPassword.Text = user.Password;
+                    TxtUName.Text = user.Username;
+                    TxtPWord.Text = user.Password;
                     if (user.UserType == 1)
                         CmbUserType.Text = "Admin";
                     if (user.UserType == 2)
@@ -380,8 +385,8 @@ namespace SimpleBilling.MasterForms
                     {
                         Users user = new Users
                         {
-                            Username = TxtUsername.Text.Trim(),
-                            Password = TxtPassword.Text.Trim()
+                            Username = TxtUName.Text.Trim(),
+                            Password = TxtPWord.Text.Trim()
                         };
                         if (CmbUserType.Text == "Admin")
                             user.UserType = 1;
@@ -396,8 +401,8 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
-                        u.Username = TxtUsername.Text.Trim();
-                        u.Password = TxtPassword.Text.Trim();
+                        u.Username = TxtUName.Text.Trim();
+                        u.Password = TxtPWord.Text.Trim();
                         if (CmbUserType.Text == "Admin")
                             u.UserType = 1;
                         if (CmbUserType.Text == "Manager")
@@ -409,6 +414,7 @@ namespace SimpleBilling.MasterForms
                         db.Entry(u).State = EntityState.Modified;
                         db.SaveChanges();
                     }
+                    LoadForm();
                 }
             }
             catch (Exception ex)

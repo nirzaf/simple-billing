@@ -63,8 +63,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TxtUName = new System.Windows.Forms.TextBox();
+            this.TxtPWord = new System.Windows.Forms.TextBox();
             this.CmbUserType = new System.Windows.Forms.ComboBox();
             this.CmbEmployee = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -451,12 +451,12 @@
             this.TLPUserGenerate.ColumnCount = 2;
             this.TLPUserGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.25F));
             this.TLPUserGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.75F));
-            this.TLPUserGenerate.Controls.Add(this.textBox2, 1, 1);
+            this.TLPUserGenerate.Controls.Add(this.TxtPWord, 1, 1);
             this.TLPUserGenerate.Controls.Add(this.UserName, 0, 0);
             this.TLPUserGenerate.Controls.Add(this.label6, 0, 1);
             this.TLPUserGenerate.Controls.Add(this.label7, 0, 2);
             this.TLPUserGenerate.Controls.Add(this.label8, 0, 3);
-            this.TLPUserGenerate.Controls.Add(this.textBox1, 1, 0);
+            this.TLPUserGenerate.Controls.Add(this.TxtUName, 1, 0);
             this.TLPUserGenerate.Controls.Add(this.CmbUserType, 1, 2);
             this.TLPUserGenerate.Controls.Add(this.CmbEmployee, 1, 3);
             this.TLPUserGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -472,6 +472,8 @@
             // 
             // DGVUsers
             // 
+            this.DGVUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVUsers.Location = new System.Drawing.Point(711, 3);
@@ -486,9 +488,9 @@
             this.UserName.ForeColor = System.Drawing.Color.White;
             this.UserName.Location = new System.Drawing.Point(3, 0);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(89, 19);
+            this.UserName.Size = new System.Drawing.Size(87, 19);
             this.UserName.TabIndex = 0;
-            this.UserName.Text = "UserName";
+            this.UserName.Text = "Username";
             // 
             // label6
             // 
@@ -520,25 +522,26 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Employee";
             // 
-            // textBox1
+            // TxtUName
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(143, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(302, 22);
-            this.textBox1.TabIndex = 4;
+            this.TxtUName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtUName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtUName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUName.Location = new System.Drawing.Point(143, 3);
+            this.TxtUName.Name = "TxtUName";
+            this.TxtUName.Size = new System.Drawing.Size(302, 22);
+            this.TxtUName.TabIndex = 4;
             // 
-            // textBox2
+            // TxtPWord
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(143, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(302, 22);
-            this.textBox2.TabIndex = 5;
+            this.TxtPWord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtPWord.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPWord.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPWord.Location = new System.Drawing.Point(143, 29);
+            this.TxtPWord.Name = "TxtPWord";
+            this.TxtPWord.PasswordChar = '*';
+            this.TxtPWord.Size = new System.Drawing.Size(302, 22);
+            this.TxtPWord.TabIndex = 5;
             // 
             // CmbUserType
             // 
@@ -658,12 +661,12 @@
         private System.Windows.Forms.TextBox TxtDefaultQuotationPath;
         private System.Windows.Forms.TableLayoutPanel TLPUserGenerate;
         private System.Windows.Forms.DataGridView DGVUsers;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TxtPWord;
         private System.Windows.Forms.Label UserName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtUName;
         private System.Windows.Forms.ComboBox CmbUserType;
         private System.Windows.Forms.ComboBox CmbEmployee;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;

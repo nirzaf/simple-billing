@@ -30,11 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.TxtLogin = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.BtnLogin = new System.Windows.Forms.Button();
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnLogin = new System.Windows.Forms.Button();
+            this.TxtLogin = new System.Windows.Forms.TextBox();
             this.BtnExit = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtUsername = new System.Windows.Forms.TextBox();
             this.TxtPassword = new System.Windows.Forms.TextBox();
@@ -42,8 +42,8 @@
             this.BtnAdminExit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.BaseLayout.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,40 +69,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cashier Login";
             // 
-            // TxtLogin
-            // 
-            this.TxtLogin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtLogin.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLogin.Location = new System.Drawing.Point(127, 56);
-            this.TxtLogin.Name = "TxtLogin";
-            this.TxtLogin.PasswordChar = '*';
-            this.TxtLogin.Size = new System.Drawing.Size(366, 39);
-            this.TxtLogin.TabIndex = 0;
-            this.TxtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLogin_KeyDown);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(627, 220);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Admin Login";
-            // 
-            // BtnLogin
-            // 
-            this.BtnLogin.BackColor = System.Drawing.Color.White;
-            this.BtnLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnLogin.Location = new System.Drawing.Point(127, 109);
-            this.BtnLogin.Name = "BtnLogin";
-            this.BtnLogin.Size = new System.Drawing.Size(366, 47);
-            this.BtnLogin.TabIndex = 1;
-            this.BtnLogin.Text = "Login";
-            this.BtnLogin.UseVisualStyleBackColor = false;
-            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
-            // 
             // BaseLayout
             // 
             this.BaseLayout.ColumnCount = 3;
@@ -123,6 +89,29 @@
             this.BaseLayout.Size = new System.Drawing.Size(621, 214);
             this.BaseLayout.TabIndex = 2;
             // 
+            // BtnLogin
+            // 
+            this.BtnLogin.BackColor = System.Drawing.Color.White;
+            this.BtnLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnLogin.Location = new System.Drawing.Point(127, 109);
+            this.BtnLogin.Name = "BtnLogin";
+            this.BtnLogin.Size = new System.Drawing.Size(366, 47);
+            this.BtnLogin.TabIndex = 1;
+            this.BtnLogin.Text = "Login";
+            this.BtnLogin.UseVisualStyleBackColor = false;
+            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            // 
+            // TxtLogin
+            // 
+            this.TxtLogin.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtLogin.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtLogin.Location = new System.Drawing.Point(127, 56);
+            this.TxtLogin.Name = "TxtLogin";
+            this.TxtLogin.PasswordChar = '*';
+            this.TxtLogin.Size = new System.Drawing.Size(366, 39);
+            this.TxtLogin.TabIndex = 0;
+            this.TxtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLogin_KeyDown);
+            // 
             // BtnExit
             // 
             this.BtnExit.BackColor = System.Drawing.Color.White;
@@ -134,6 +123,17 @@
             this.BtnExit.Text = "Exit";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(627, 220);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Admin Login";
             // 
             // tableLayoutPanel1
             // 
@@ -186,6 +186,7 @@
             this.BtnAdminLogin.TabIndex = 2;
             this.BtnAdminLogin.Text = "Login";
             this.BtnAdminLogin.UseVisualStyleBackColor = false;
+            this.BtnAdminLogin.Click += new System.EventHandler(this.BtnAdminLogin_Click);
             // 
             // BtnAdminExit
             // 
@@ -215,9 +216,9 @@
             this.Load += new System.EventHandler(this.Login_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.BaseLayout.ResumeLayout(false);
             this.BaseLayout.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

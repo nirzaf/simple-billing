@@ -25,6 +25,7 @@ namespace SimpleBilling
     {
         private static readonly Random random = new Random();
         public static int CashierId { get; set; }
+        public static int UserType { get; set; }
 
         public static string CashierName()
         {

@@ -45,6 +45,7 @@ namespace SimpleBilling.MasterForms
                             m.Show();
                             Hide();
                             Info.CashierId = data.EmployeeId;
+                            Info.UserType = 3;
                         }
                         else
                         {
@@ -75,6 +76,28 @@ namespace SimpleBilling.MasterForms
         private void BtnAdminExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void BtnAdminLogin_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                string UName = TxtUsername.Text.Trim();
+                string PWord = TxtPassword.Text.Trim();
+                var users = db.Users.FirstOrDefault(c => c.Username == UName && c.Password == PWord && !c.IsDeleted);
+                if (users != null)
+                {
+                    Main m = new Main();
+                    m.Show();
+                    Hide();
+                    Info.CashierId = users.EmployeeId;
+                    Info.UserType = users.UserType;
+                }
+                else
+                {
+                    Info.Mes("Username or password not valid, Please try again");
+                }
+            }
         }
     }
 }
