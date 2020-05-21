@@ -1,4 +1,5 @@
 ﻿using SimpleBilling.MasterForms;
+using SimpleBilling.Model;
 using System;
 using System.Windows.Forms;
 
@@ -11,6 +12,7 @@ namespace SimpleBilling
         public Main()
         {
             InitializeComponent();
+            LoadUserTypesPrevileges();
             Count = 0;
         }
 
@@ -230,7 +232,7 @@ namespace SimpleBilling
             mb.Show();
         }
 
-        private void configsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ConfigsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
@@ -248,18 +250,18 @@ namespace SimpleBilling
             s.Show();
         }
 
-        private void purchaseOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PurchaseOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form.GetType() == typeof(PurchaseOrder))
+                if (form.GetType() == typeof(MasterForms.PurchaseOrder))
                 {
                     form.Activate();
                     return;
                 }
             }
 
-            PurchaseOrder po = new PurchaseOrder()
+            MasterForms.PurchaseOrder po = new MasterForms.PurchaseOrder()
             {
                 MdiParent = this
             };
@@ -291,6 +293,48 @@ namespace SimpleBilling
         private void Main_KeyPress(object sender, KeyPressEventArgs e)
         {
             Count = 0;
+        }
+
+        private void LoadUserTypesPrevileges()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (Info.UserType == 3)
+                {
+                    ManageItemsToolStripMenuItem.Enabled = false;
+                    ManageSuppliersToolStripMenuItem.Enabled = false;
+                    ManageCustomersToolStripMenuItem.Enabled = false;
+                    ManageStockToolStripMenuItem.Enabled = false;
+                    ManageEmployeesToolStripMenuItem.Enabled = false;
+                    ManageShelvesToolStripMenuItem.Enabled = false;
+                    ManageCategoryToolStripMenuItem.Enabled = false;
+                    ManageBusinessInfoToolStripMenuItem.Enabled = false;
+                    ManageVehicleToolStripMenuItem.Enabled = false;
+                    ManageBankToolStripMenuItem.Enabled = false;
+                    PurchaseOrderToolStripMenuItem.Enabled = false;
+                    ConfigsToolStripMenuItem.Enabled = false;
+                }
+                if (Info.UserType == 2)
+                {
+                    ManageItemsToolStripMenuItem.Enabled = true;
+                    ManageSuppliersToolStripMenuItem.Enabled = true;
+                    ManageCustomersToolStripMenuItem.Enabled = true;
+                    ManageStockToolStripMenuItem.Enabled = true;
+                    ManageEmployeesToolStripMenuItem.Enabled = true;
+                    ManageShelvesToolStripMenuItem.Enabled = true;
+                    ManageCategoryToolStripMenuItem.Enabled = true;
+                    ManageBusinessInfoToolStripMenuItem.Enabled = true;
+                    ManageVehicleToolStripMenuItem.Enabled = true;
+                    ManageBankToolStripMenuItem.Enabled = true;
+                    PurchaseOrderToolStripMenuItem.Enabled = true;
+                    ConfigsToolStripMenuItem.Enabled = false;
+                }
+            }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            LoadUserTypesPrevileges();
         }
     }
 }

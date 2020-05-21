@@ -41,7 +41,7 @@
             this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PurchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +50,7 @@
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSM2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.configsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConfigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblAutoLogOut = new System.Windows.Forms.Label();
             this.AutoLogOut = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
@@ -83,7 +83,7 @@
             this.ManageBusinessInfoToolStripMenuItem,
             this.ManageVehicleToolStripMenuItem,
             this.ManageBankToolStripMenuItem,
-            this.purchaseOrderToolStripMenuItem});
+            this.PurchaseOrderToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(76, 23);
@@ -161,12 +161,12 @@
             this.ManageBankToolStripMenuItem.Text = "Manage Bank";
             this.ManageBankToolStripMenuItem.Click += new System.EventHandler(this.ManageBankToolStripMenuItem_Click);
             // 
-            // purchaseOrderToolStripMenuItem
+            // PurchaseOrderToolStripMenuItem
             // 
-            this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
-            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
-            this.purchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderToolStripMenuItem_Click);
+            this.PurchaseOrderToolStripMenuItem.Name = "PurchaseOrderToolStripMenuItem";
+            this.PurchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.PurchaseOrderToolStripMenuItem.Text = "Purchase Order";
+            this.PurchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -224,18 +224,18 @@
             // TSM2
             // 
             this.TSM2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configsToolStripMenuItem});
+            this.ConfigsToolStripMenuItem});
             this.TSM2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TSM2.Name = "TSM2";
             this.TSM2.Size = new System.Drawing.Size(84, 23);
             this.TSM2.Text = "Settings";
             // 
-            // configsToolStripMenuItem
+            // ConfigsToolStripMenuItem
             // 
-            this.configsToolStripMenuItem.Name = "configsToolStripMenuItem";
-            this.configsToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
-            this.configsToolStripMenuItem.Text = "Configs";
-            this.configsToolStripMenuItem.Click += new System.EventHandler(this.configsToolStripMenuItem_Click);
+            this.ConfigsToolStripMenuItem.Name = "ConfigsToolStripMenuItem";
+            this.ConfigsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.ConfigsToolStripMenuItem.Text = "Configs";
+            this.ConfigsToolStripMenuItem.Click += new System.EventHandler(this.ConfigsToolStripMenuItem_Click);
             // 
             // LblAutoLogOut
             // 
@@ -247,6 +247,7 @@
             this.LblAutoLogOut.Size = new System.Drawing.Size(64, 22);
             this.LblAutoLogOut.TabIndex = 3;
             this.LblAutoLogOut.Text = "Timer";
+            this.LblAutoLogOut.Visible = false;
             // 
             // AutoLogOut
             // 
@@ -269,6 +270,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Window";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Main_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Main_KeyPress);
             this.MouseEnter += new System.EventHandler(this.Main_MouseEnter);
             this.MouseHover += new System.EventHandler(this.Main_MouseHover);
@@ -301,8 +303,8 @@
         private System.Windows.Forms.ToolStripMenuItem ManageVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageBankToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TSM2;
-        private System.Windows.Forms.ToolStripMenuItem configsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem purchaseOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ConfigsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PurchaseOrderToolStripMenuItem;
         private System.Windows.Forms.Label LblAutoLogOut;
         private System.Windows.Forms.Timer AutoLogOut;
     }

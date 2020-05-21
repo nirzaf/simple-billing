@@ -41,11 +41,11 @@ namespace SimpleBilling.MasterForms
                         var data = db.Employee.FirstOrDefault(c => c.SecretCode == TxtLogin.Text.Trim());
                         if (data != null)
                         {
+                            Info.CashierId = data.EmployeeId;
+                            Info.UserType = 3;
                             Main m = new Main();
                             m.Show();
                             Hide();
-                            Info.CashierId = data.EmployeeId;
-                            Info.UserType = 3;
                         }
                         else
                         {
@@ -87,11 +87,11 @@ namespace SimpleBilling.MasterForms
                 var users = db.Users.FirstOrDefault(c => c.Username == UName && c.Password == PWord && !c.IsDeleted);
                 if (users != null)
                 {
+                    Info.CashierId = users.EmployeeId;
+                    Info.UserType = users.UserType;
                     Main m = new Main();
                     m.Show();
                     Hide();
-                    Info.CashierId = users.EmployeeId;
-                    Info.UserType = users.UserType;
                 }
                 else
                 {
