@@ -57,6 +57,16 @@
             this.TlpDefaultQuotationPath = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSetDefaultQuotationPath = new System.Windows.Forms.Button();
             this.TxtDefaultQuotationPath = new System.Windows.Forms.TextBox();
+            this.TLPUserGenerate = new System.Windows.Forms.TableLayoutPanel();
+            this.DGVUsers = new System.Windows.Forms.DataGridView();
+            this.UserName = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.CmbUserType = new System.Windows.Forms.ComboBox();
+            this.CmbEmployee = new System.Windows.Forms.ComboBox();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -65,13 +75,16 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.TlpDefaultQuotationPath.SuspendLayout();
+            this.TLPUserGenerate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // BaseLayout
             // 
-            this.BaseLayout.ColumnCount = 2;
-            this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.BaseLayout.ColumnCount = 3;
+            this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.7281F));
+            this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.2719F));
+            this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 453F));
             this.BaseLayout.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel6, 0, 2);
@@ -79,6 +92,8 @@
             this.BaseLayout.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.BaseLayout.Controls.Add(this.TlpDefaultQuotationPath, 0, 3);
+            this.BaseLayout.Controls.Add(this.DGVUsers, 2, 0);
+            this.BaseLayout.Controls.Add(this.TLPUserGenerate, 2, 1);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -87,7 +102,7 @@
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.BaseLayout.Size = new System.Drawing.Size(891, 454);
+            this.BaseLayout.Size = new System.Drawing.Size(1162, 454);
             this.BaseLayout.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -103,7 +118,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(439, 107);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(275, 107);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // BtnSetSavePath
@@ -112,7 +127,7 @@
             this.BtnSetSavePath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSetSavePath.Location = new System.Drawing.Point(3, 3);
             this.BtnSetSavePath.Name = "BtnSetSavePath";
-            this.BtnSetSavePath.Size = new System.Drawing.Size(433, 29);
+            this.BtnSetSavePath.Size = new System.Drawing.Size(269, 29);
             this.BtnSetSavePath.TabIndex = 0;
             this.BtnSetSavePath.Text = "Set Default Receipt Folder";
             this.BtnSetSavePath.UseVisualStyleBackColor = false;
@@ -124,7 +139,7 @@
             this.TxtDefaultPath.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultPath.Name = "TxtDefaultPath";
             this.TxtDefaultPath.ReadOnly = true;
-            this.TxtDefaultPath.Size = new System.Drawing.Size(433, 26);
+            this.TxtDefaultPath.Size = new System.Drawing.Size(269, 26);
             this.TxtDefaultPath.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -140,7 +155,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(439, 107);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(275, 107);
             this.tableLayoutPanel5.TabIndex = 4;
             // 
             // BtnDefaultGRNPath
@@ -149,7 +164,7 @@
             this.BtnDefaultGRNPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnDefaultGRNPath.Location = new System.Drawing.Point(3, 3);
             this.BtnDefaultGRNPath.Name = "BtnDefaultGRNPath";
-            this.BtnDefaultGRNPath.Size = new System.Drawing.Size(433, 29);
+            this.BtnDefaultGRNPath.Size = new System.Drawing.Size(269, 29);
             this.BtnDefaultGRNPath.TabIndex = 0;
             this.BtnDefaultGRNPath.Text = "Set Default GRN Folder";
             this.BtnDefaultGRNPath.UseVisualStyleBackColor = false;
@@ -161,7 +176,7 @@
             this.TxtDefaultGRN.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultGRN.Name = "TxtDefaultGRN";
             this.TxtDefaultGRN.ReadOnly = true;
-            this.TxtDefaultGRN.Size = new System.Drawing.Size(433, 26);
+            this.TxtDefaultGRN.Size = new System.Drawing.Size(269, 26);
             this.TxtDefaultGRN.TabIndex = 1;
             // 
             // tableLayoutPanel6
@@ -178,7 +193,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(439, 107);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(275, 107);
             this.tableLayoutPanel6.TabIndex = 5;
             // 
             // BtnSetDefaultExceptionFolder
@@ -187,7 +202,7 @@
             this.BtnSetDefaultExceptionFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSetDefaultExceptionFolder.Location = new System.Drawing.Point(3, 3);
             this.BtnSetDefaultExceptionFolder.Name = "BtnSetDefaultExceptionFolder";
-            this.BtnSetDefaultExceptionFolder.Size = new System.Drawing.Size(433, 29);
+            this.BtnSetDefaultExceptionFolder.Size = new System.Drawing.Size(269, 29);
             this.BtnSetDefaultExceptionFolder.TabIndex = 0;
             this.BtnSetDefaultExceptionFolder.Text = "Set Default Exception Folder";
             this.BtnSetDefaultExceptionFolder.UseVisualStyleBackColor = false;
@@ -199,7 +214,7 @@
             this.TxtDefaultExceptionFolder.Location = new System.Drawing.Point(3, 38);
             this.TxtDefaultExceptionFolder.Name = "TxtDefaultExceptionFolder";
             this.TxtDefaultExceptionFolder.ReadOnly = true;
-            this.TxtDefaultExceptionFolder.Size = new System.Drawing.Size(433, 26);
+            this.TxtDefaultExceptionFolder.Size = new System.Drawing.Size(269, 26);
             this.TxtDefaultExceptionFolder.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -211,12 +226,12 @@
             this.tableLayoutPanel2.Controls.Add(this.TxtMinReorderValue, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnSave, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(448, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(284, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(440, 107);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 107);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
             // label1
@@ -226,16 +241,16 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 53);
+            this.label1.Size = new System.Drawing.Size(204, 53);
             this.label1.TabIndex = 0;
             this.label1.Text = "Set Minimum Reorder Value";
             // 
             // TxtMinReorderValue
             // 
             this.TxtMinReorderValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtMinReorderValue.Location = new System.Drawing.Point(223, 3);
+            this.TxtMinReorderValue.Location = new System.Drawing.Point(213, 3);
             this.TxtMinReorderValue.Name = "TxtMinReorderValue";
-            this.TxtMinReorderValue.Size = new System.Drawing.Size(214, 26);
+            this.TxtMinReorderValue.Size = new System.Drawing.Size(205, 26);
             this.TxtMinReorderValue.TabIndex = 1;
             // 
             // BtnSave
@@ -243,9 +258,9 @@
             this.BtnSave.BackColor = System.Drawing.Color.White;
             this.BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSave.ForeColor = System.Drawing.Color.Black;
-            this.BtnSave.Location = new System.Drawing.Point(223, 56);
+            this.BtnSave.Location = new System.Drawing.Point(213, 56);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(214, 48);
+            this.BtnSave.Size = new System.Drawing.Size(205, 48);
             this.BtnSave.TabIndex = 2;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = false;
@@ -265,41 +280,41 @@
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.TxtDbName, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(448, 116);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(284, 116);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(440, 107);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(421, 107);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // TxtPassword
             // 
             this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtPassword.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPassword.Location = new System.Drawing.Point(145, 81);
+            this.TxtPassword.Location = new System.Drawing.Point(138, 81);
             this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Size = new System.Drawing.Size(292, 22);
+            this.TxtPassword.Size = new System.Drawing.Size(280, 22);
             this.TxtPassword.TabIndex = 7;
             // 
             // TxtUsername
             // 
             this.TxtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUsername.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsername.Location = new System.Drawing.Point(145, 55);
+            this.TxtUsername.Location = new System.Drawing.Point(138, 55);
             this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(292, 22);
+            this.TxtUsername.Size = new System.Drawing.Size(280, 22);
             this.TxtUsername.TabIndex = 6;
             // 
             // TxtServerName
             // 
             this.TxtServerName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtServerName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtServerName.Location = new System.Drawing.Point(145, 29);
+            this.TxtServerName.Location = new System.Drawing.Point(138, 29);
             this.TxtServerName.Name = "TxtServerName";
-            this.TxtServerName.Size = new System.Drawing.Size(292, 22);
+            this.TxtServerName.Size = new System.Drawing.Size(280, 22);
             this.TxtServerName.TabIndex = 5;
             // 
             // label2
@@ -308,7 +323,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 19);
+            this.label2.Size = new System.Drawing.Size(91, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Date Base Name";
             // 
@@ -346,9 +361,9 @@
             // 
             this.TxtDbName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDbName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDbName.Location = new System.Drawing.Point(145, 3);
+            this.TxtDbName.Location = new System.Drawing.Point(138, 3);
             this.TxtDbName.Name = "TxtDbName";
-            this.TxtDbName.Size = new System.Drawing.Size(292, 22);
+            this.TxtDbName.Size = new System.Drawing.Size(280, 22);
             this.TxtDbName.TabIndex = 4;
             // 
             // tableLayoutPanel4
@@ -359,21 +374,21 @@
             this.tableLayoutPanel4.Controls.Add(this.BtnSaveConnectionString, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.ChkTrustedConnection, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(448, 229);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(284, 229);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(440, 107);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(421, 107);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // BtnSaveConnectionString
             // 
             this.BtnSaveConnectionString.BackColor = System.Drawing.Color.White;
             this.BtnSaveConnectionString.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnSaveConnectionString.Location = new System.Drawing.Point(223, 3);
+            this.BtnSaveConnectionString.Location = new System.Drawing.Point(213, 3);
             this.BtnSaveConnectionString.Name = "BtnSaveConnectionString";
-            this.BtnSaveConnectionString.Size = new System.Drawing.Size(214, 47);
+            this.BtnSaveConnectionString.Size = new System.Drawing.Size(205, 47);
             this.BtnSaveConnectionString.TabIndex = 0;
             this.BtnSaveConnectionString.Text = "Save";
             this.BtnSaveConnectionString.UseVisualStyleBackColor = false;
@@ -385,7 +400,7 @@
             this.ChkTrustedConnection.ForeColor = System.Drawing.Color.White;
             this.ChkTrustedConnection.Location = new System.Drawing.Point(3, 3);
             this.ChkTrustedConnection.Name = "ChkTrustedConnection";
-            this.ChkTrustedConnection.Size = new System.Drawing.Size(213, 23);
+            this.ChkTrustedConnection.Size = new System.Drawing.Size(204, 23);
             this.ChkTrustedConnection.TabIndex = 1;
             this.ChkTrustedConnection.Text = "Windows Authentication";
             this.ChkTrustedConnection.UseVisualStyleBackColor = true;
@@ -403,7 +418,7 @@
             this.TlpDefaultQuotationPath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TlpDefaultQuotationPath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TlpDefaultQuotationPath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.TlpDefaultQuotationPath.Size = new System.Drawing.Size(439, 109);
+            this.TlpDefaultQuotationPath.Size = new System.Drawing.Size(275, 109);
             this.TlpDefaultQuotationPath.TabIndex = 9;
             // 
             // BtnSetDefaultQuotationPath
@@ -412,7 +427,7 @@
             this.BtnSetDefaultQuotationPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnSetDefaultQuotationPath.Location = new System.Drawing.Point(3, 3);
             this.BtnSetDefaultQuotationPath.Name = "BtnSetDefaultQuotationPath";
-            this.BtnSetDefaultQuotationPath.Size = new System.Drawing.Size(433, 30);
+            this.BtnSetDefaultQuotationPath.Size = new System.Drawing.Size(269, 30);
             this.BtnSetDefaultQuotationPath.TabIndex = 0;
             this.BtnSetDefaultQuotationPath.Text = "Set Default Quotation Path";
             this.BtnSetDefaultQuotationPath.UseVisualStyleBackColor = false;
@@ -424,15 +439,131 @@
             this.TxtDefaultQuotationPath.Location = new System.Drawing.Point(3, 39);
             this.TxtDefaultQuotationPath.Name = "TxtDefaultQuotationPath";
             this.TxtDefaultQuotationPath.ReadOnly = true;
-            this.TxtDefaultQuotationPath.Size = new System.Drawing.Size(433, 26);
+            this.TxtDefaultQuotationPath.Size = new System.Drawing.Size(269, 26);
             this.TxtDefaultQuotationPath.TabIndex = 1;
+            // 
+            // TLPUserGenerate
+            // 
+            this.TLPUserGenerate.ColumnCount = 2;
+            this.TLPUserGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.25F));
+            this.TLPUserGenerate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.75F));
+            this.TLPUserGenerate.Controls.Add(this.textBox2, 1, 1);
+            this.TLPUserGenerate.Controls.Add(this.UserName, 0, 0);
+            this.TLPUserGenerate.Controls.Add(this.label6, 0, 1);
+            this.TLPUserGenerate.Controls.Add(this.label7, 0, 2);
+            this.TLPUserGenerate.Controls.Add(this.label8, 0, 3);
+            this.TLPUserGenerate.Controls.Add(this.textBox1, 1, 0);
+            this.TLPUserGenerate.Controls.Add(this.CmbUserType, 1, 2);
+            this.TLPUserGenerate.Controls.Add(this.CmbEmployee, 1, 3);
+            this.TLPUserGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TLPUserGenerate.Location = new System.Drawing.Point(711, 116);
+            this.TLPUserGenerate.Name = "TLPUserGenerate";
+            this.TLPUserGenerate.RowCount = 4;
+            this.TLPUserGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPUserGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPUserGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPUserGenerate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.TLPUserGenerate.Size = new System.Drawing.Size(448, 107);
+            this.TLPUserGenerate.TabIndex = 10;
+            // 
+            // DGVUsers
+            // 
+            this.DGVUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVUsers.Location = new System.Drawing.Point(711, 3);
+            this.DGVUsers.Name = "DGVUsers";
+            this.DGVUsers.Size = new System.Drawing.Size(448, 107);
+            this.DGVUsers.TabIndex = 11;
+            // 
+            // UserName
+            // 
+            this.UserName.AutoSize = true;
+            this.UserName.ForeColor = System.Drawing.Color.White;
+            this.UserName.Location = new System.Drawing.Point(3, 0);
+            this.UserName.Name = "UserName";
+            this.UserName.Size = new System.Drawing.Size(89, 19);
+            this.UserName.TabIndex = 0;
+            this.UserName.Text = "UserName";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(3, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 19);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Password";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(3, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 19);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "User Type";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(3, 78);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 19);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Employee";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(143, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(302, 22);
+            this.textBox1.TabIndex = 4;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(143, 29);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(302, 22);
+            this.textBox2.TabIndex = 5;
+            // 
+            // CmbUserType
+            // 
+            this.CmbUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbUserType.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbUserType.FormattingEnabled = true;
+            this.CmbUserType.Items.AddRange(new object[] {
+            "Manager",
+            "Admin"});
+            this.CmbUserType.Location = new System.Drawing.Point(143, 55);
+            this.CmbUserType.Name = "CmbUserType";
+            this.CmbUserType.Size = new System.Drawing.Size(302, 24);
+            this.CmbUserType.TabIndex = 6;
+            // 
+            // CmbEmployee
+            // 
+            this.CmbEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbEmployee.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbEmployee.FormattingEnabled = true;
+            this.CmbEmployee.Location = new System.Drawing.Point(143, 81);
+            this.CmbEmployee.Name = "CmbEmployee";
+            this.CmbEmployee.Size = new System.Drawing.Size(302, 24);
+            this.CmbEmployee.TabIndex = 7;
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(891, 454);
+            this.ClientSize = new System.Drawing.Size(1162, 454);
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -454,6 +585,9 @@
             this.tableLayoutPanel4.PerformLayout();
             this.TlpDefaultQuotationPath.ResumeLayout(false);
             this.TlpDefaultQuotationPath.PerformLayout();
+            this.TLPUserGenerate.ResumeLayout(false);
+            this.TLPUserGenerate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,5 +623,15 @@
         private System.Windows.Forms.TableLayoutPanel TlpDefaultQuotationPath;
         private System.Windows.Forms.Button BtnSetDefaultQuotationPath;
         private System.Windows.Forms.TextBox TxtDefaultQuotationPath;
+        private System.Windows.Forms.TableLayoutPanel TLPUserGenerate;
+        private System.Windows.Forms.DataGridView DGVUsers;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label UserName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox CmbUserType;
+        private System.Windows.Forms.ComboBox CmbEmployee;
     }
 }

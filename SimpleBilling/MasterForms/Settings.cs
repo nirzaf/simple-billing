@@ -88,6 +88,11 @@ namespace SimpleBilling.MasterForms
                 TxtDefaultGRN.Text = data.GRNPath;
                 TxtDefaultExceptionFolder.Text = data.DefaultPath;
                 TxtMinReorderValue.Text = data.SetMinValue.ToString();
+                TxtDefaultQuotationPath.Text = data.QuotationPath;
+
+                CmbEmployee.ValueMember = "EmployeeId";
+                CmbEmployee.DisplayMember = "EmployeeName";
+                CmbEmployee.DataSource = db.Employee.Where(c => !c.IsDeleted).ToList();
             }
         }
 
@@ -299,12 +304,12 @@ namespace SimpleBilling.MasterForms
                 if (result == DialogResult.OK)
                 {
                     string folderName = folderBrowserDialog1.SelectedPath;
-                    TxtDefaultExceptionFolder.Text = folderName;
+                    TxtDefaultQuotationPath.Text = folderName;
                     using (BillingContext db = new BillingContext())
                     {
                         Setting s = new Setting
                         {
-                            ExceptionPath = folderName,
+                            QuotationPath = folderName,
                             CreatedDate = DateTime.Now
                         };
 
@@ -318,7 +323,7 @@ namespace SimpleBilling.MasterForms
                         }
                         else
                         {
-                            r.ExceptionPath = folderName;
+                            r.QuotationPath = folderName;
                             r.UpdatedDate = DateTime.Now;
                             if (db.Entry(r).State == EntityState.Detached)
                                 db.Set<Setting>().Attach(r);
