@@ -67,6 +67,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.CmbUserType = new System.Windows.Forms.ComboBox();
             this.CmbEmployee = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnSaveUsers = new System.Windows.Forms.Button();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -77,6 +79,7 @@
             this.TlpDefaultQuotationPath.SuspendLayout();
             this.TLPUserGenerate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // BaseLayout
@@ -94,6 +97,7 @@
             this.BaseLayout.Controls.Add(this.TlpDefaultQuotationPath, 0, 3);
             this.BaseLayout.Controls.Add(this.DGVUsers, 2, 0);
             this.BaseLayout.Controls.Add(this.TLPUserGenerate, 2, 1);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel7, 2, 2);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -474,6 +478,7 @@
             this.DGVUsers.Name = "DGVUsers";
             this.DGVUsers.Size = new System.Drawing.Size(448, 107);
             this.DGVUsers.TabIndex = 11;
+            this.DGVUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsers_CellClick);
             // 
             // UserName
             // 
@@ -558,6 +563,33 @@
             this.CmbEmployee.Size = new System.Drawing.Size(302, 24);
             this.CmbEmployee.TabIndex = 7;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.BtnSaveUsers, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(711, 229);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(448, 107);
+            this.tableLayoutPanel7.TabIndex = 12;
+            // 
+            // BtnSaveUsers
+            // 
+            this.BtnSaveUsers.BackColor = System.Drawing.Color.White;
+            this.BtnSaveUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSaveUsers.Location = new System.Drawing.Point(227, 3);
+            this.BtnSaveUsers.Name = "BtnSaveUsers";
+            this.BtnSaveUsers.Size = new System.Drawing.Size(218, 47);
+            this.BtnSaveUsers.TabIndex = 0;
+            this.BtnSaveUsers.Text = "Save or Update";
+            this.BtnSaveUsers.UseVisualStyleBackColor = false;
+            this.BtnSaveUsers.Click += new System.EventHandler(this.BtnSaveUsers_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -588,6 +620,7 @@
             this.TLPUserGenerate.ResumeLayout(false);
             this.TLPUserGenerate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -633,5 +666,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox CmbUserType;
         private System.Windows.Forms.ComboBox CmbEmployee;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button BtnSaveUsers;
     }
 }

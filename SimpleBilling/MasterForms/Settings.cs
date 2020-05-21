@@ -12,7 +12,7 @@ namespace SimpleBilling.MasterForms
     public partial class Settings : Form
     {
         private readonly int UserId = 1;
-
+        private int UId;
         public Settings()
         {
             InitializeComponent();
@@ -93,6 +93,17 @@ namespace SimpleBilling.MasterForms
                 CmbEmployee.ValueMember = "EmployeeId";
                 CmbEmployee.DisplayMember = "EmployeeName";
                 CmbEmployee.DataSource = db.Employee.Where(c => !c.IsDeleted).ToList();
+
+                var users = (from u in db.Users.Where(c => !c.IsDeleted)
+                             join emp in db.Employee.Where(c => !c.IsDeleted)
+                             on u.EmployeeId equals emp.EmployeeId
+                             select new
+                             {
+                                 u.UserId,
+                                 u.Username,
+                                 emp.EmployeeName
+                             }).ToList();
+                DGVUsers.DataSource = users;
             }
         }
 
@@ -336,6 +347,58 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
+            }
+        }
+
+        private void DGVUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVUsers.SelectedRows.Count > 0)
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    UId = Convert.ToInt32(DGVUsers.SelectedRows[0].Cells[0].Value + string.Empty);
+                    var user = db.Users.FirstOrDefault(c => c.UserId == UId && !c.IsDeleted);
+                    TxtUsername.Text = user.Username;
+                    TxtPassword.Text = user.Password;
+                    if (user.UserType == 1)
+                        CmbUserType.Text = "Admin";
+                    if (user.UserType == 2)
+                        CmbUserType.Text = "Manager";
+                    CmbEmployee.SelectedValue = user.EmployeeId;
+                }
+            }
+        }
+
+        private void BtnSaveUsers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    var u = db.Users.FirstOrDefault(c => c.UserId == UId && !c.IsDeleted);
+                    if (u == null)
+                    {
+                        Users user = new Users
+                        {
+                            Username = TxtUsername.Text.Trim(),
+                            Password = TxtPassword.Text.Trim()
+                        };
+                        if (CmbUserType.Text == "Admin")
+                            user.UserType = 1;
+                        if (CmbUserType.Text == "Manager")
+                            user.UserType = 2;
+                        user.EmployeeId = Convert.ToInt32(CmbEmployee.SelectedValue.ToString());
+                        user.CreatedDate = DateTime.Today;
+                        if (db.Entry(user).State == EntityState.Detached)
+                            db.Set<Users>().Attach(user);
+                        db.Entry(user).State = EntityState.Added;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Add(ex);
             }
         }
     }
