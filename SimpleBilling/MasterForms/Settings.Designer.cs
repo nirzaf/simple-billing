@@ -54,6 +54,9 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSaveConnectionString = new System.Windows.Forms.Button();
             this.ChkTrustedConnection = new System.Windows.Forms.CheckBox();
+            this.TlpDefaultQuotationPath = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnSetDefaultQuotationPath = new System.Windows.Forms.Button();
+            this.TxtDefaultQuotationPath = new System.Windows.Forms.TextBox();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -61,6 +64,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.TlpDefaultQuotationPath.SuspendLayout();
             this.SuspendLayout();
             // 
             // BaseLayout
@@ -74,6 +78,7 @@
             this.BaseLayout.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel4, 1, 2);
+            this.BaseLayout.Controls.Add(this.TlpDefaultQuotationPath, 0, 3);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -385,6 +390,43 @@
             this.ChkTrustedConnection.Text = "Windows Authentication";
             this.ChkTrustedConnection.UseVisualStyleBackColor = true;
             // 
+            // TlpDefaultQuotationPath
+            // 
+            this.TlpDefaultQuotationPath.ColumnCount = 1;
+            this.TlpDefaultQuotationPath.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TlpDefaultQuotationPath.Controls.Add(this.BtnSetDefaultQuotationPath, 0, 0);
+            this.TlpDefaultQuotationPath.Controls.Add(this.TxtDefaultQuotationPath, 0, 1);
+            this.TlpDefaultQuotationPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TlpDefaultQuotationPath.Location = new System.Drawing.Point(3, 342);
+            this.TlpDefaultQuotationPath.Name = "TlpDefaultQuotationPath";
+            this.TlpDefaultQuotationPath.RowCount = 3;
+            this.TlpDefaultQuotationPath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.TlpDefaultQuotationPath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.TlpDefaultQuotationPath.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.TlpDefaultQuotationPath.Size = new System.Drawing.Size(439, 109);
+            this.TlpDefaultQuotationPath.TabIndex = 9;
+            // 
+            // BtnSetDefaultQuotationPath
+            // 
+            this.BtnSetDefaultQuotationPath.BackColor = System.Drawing.Color.White;
+            this.BtnSetDefaultQuotationPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetDefaultQuotationPath.Location = new System.Drawing.Point(3, 3);
+            this.BtnSetDefaultQuotationPath.Name = "BtnSetDefaultQuotationPath";
+            this.BtnSetDefaultQuotationPath.Size = new System.Drawing.Size(433, 30);
+            this.BtnSetDefaultQuotationPath.TabIndex = 0;
+            this.BtnSetDefaultQuotationPath.Text = "Set Default Quotation Path";
+            this.BtnSetDefaultQuotationPath.UseVisualStyleBackColor = false;
+            this.BtnSetDefaultQuotationPath.Click += new System.EventHandler(this.BtnSetDefaultQuotationPath_Click);
+            // 
+            // TxtDefaultQuotationPath
+            // 
+            this.TxtDefaultQuotationPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtDefaultQuotationPath.Location = new System.Drawing.Point(3, 39);
+            this.TxtDefaultQuotationPath.Name = "TxtDefaultQuotationPath";
+            this.TxtDefaultQuotationPath.ReadOnly = true;
+            this.TxtDefaultQuotationPath.Size = new System.Drawing.Size(433, 26);
+            this.TxtDefaultQuotationPath.TabIndex = 1;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -410,6 +452,8 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.TlpDefaultQuotationPath.ResumeLayout(false);
+            this.TlpDefaultQuotationPath.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -442,5 +486,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button BtnSaveConnectionString;
         private System.Windows.Forms.CheckBox ChkTrustedConnection;
+        private System.Windows.Forms.TableLayoutPanel TlpDefaultQuotationPath;
+        private System.Windows.Forms.Button BtnSetDefaultQuotationPath;
+        private System.Windows.Forms.TextBox TxtDefaultQuotationPath;
     }
 }
