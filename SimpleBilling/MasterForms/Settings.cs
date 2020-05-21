@@ -394,6 +394,21 @@ namespace SimpleBilling.MasterForms
                         db.Entry(user).State = EntityState.Added;
                         db.SaveChanges();
                     }
+                    else
+                    {
+                        u.Username = TxtUsername.Text.Trim();
+                        u.Password = TxtPassword.Text.Trim();
+                        if (CmbUserType.Text == "Admin")
+                            u.UserType = 1;
+                        if (CmbUserType.Text == "Manager")
+                            u.UserType = 2;
+                        u.EmployeeId = Convert.ToInt32(CmbEmployee.SelectedValue.ToString());
+                        u.UpdatedDate = DateTime.Today;
+                        if (db.Entry(u).State == EntityState.Detached)
+                            db.Set<Users>().Attach(u);
+                        db.Entry(u).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
             }
             catch (Exception ex)
