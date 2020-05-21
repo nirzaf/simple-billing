@@ -1568,5 +1568,25 @@ namespace SimpleBilling.MasterForms
                 TxtProductCode.AutoCompleteCustomSource = Code;
             }
         }
+
+        private void CRUDPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DownLayout_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void tableLayoutPanel5_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void tableLayoutPanel3_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
     }
 }

@@ -214,6 +214,7 @@
             this.CRUDPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.52478F));
             this.CRUDPanel.Size = new System.Drawing.Size(1024, 158);
             this.CRUDPanel.TabIndex = 5;
+            this.CRUDPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CRUDPanel_MouseMove);
             // 
             // TxtContact
             // 
@@ -581,6 +582,7 @@
             this.DownLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.DownLayout.Size = new System.Drawing.Size(1024, 162);
             this.DownLayout.TabIndex = 7;
+            this.DownLayout.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DownLayout_MouseMove);
             // 
             // TxtNextServiceDue
             // 
@@ -1020,6 +1022,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.733558F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1145, 593);
             this.tableLayoutPanel3.TabIndex = 9;
+            this.tableLayoutPanel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel3_MouseMove);
             // 
             // tableLayoutPanel4
             // 
@@ -1067,6 +1070,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(109, 158);
             this.tableLayoutPanel5.TabIndex = 9;
+            this.tableLayoutPanel5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel5_MouseMove);
             // 
             // BtnLoadReceipt
             // 

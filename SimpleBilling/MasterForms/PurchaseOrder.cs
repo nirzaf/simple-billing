@@ -408,5 +408,30 @@ namespace SimpleBilling.MasterForms
                 Info.Add(ex);
             }
         }
+
+        private void BaseLayout_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void tabControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DGVItemsToOrder_MouseUp(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DGVOrderedItems_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DGVReceivedItems_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
     }
 }

@@ -6,10 +6,12 @@ namespace SimpleBilling
 {
     public partial class Main : Form
     {
-        private int Count = 0;
+        public static int Count { get; set; }
+
         public Main()
         {
             InitializeComponent();
+            Count = 0;
         }
 
         private void ManageItemsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -268,6 +270,27 @@ namespace SimpleBilling
         {
             Count++;
             LblAutoLogOut.Text = Count.ToString();
+            if (Count == 900)
+            {
+                Login l = new Login();
+                l.Show();
+                Close();
+            }
+        }
+
+        private void Main_MouseHover(object sender, EventArgs e)
+        {
+            Count = 0;
+        }
+
+        private void Main_MouseEnter(object sender, EventArgs e)
+        {
+            Count = 0;
+        }
+
+        private void Main_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Count = 0;
         }
     }
 }

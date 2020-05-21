@@ -67,5 +67,15 @@ namespace SimpleBilling.MasterForms
         {
             LoadGRNInvoice();
         }
+
+        private void BaseLayout_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DGVInvoices_MouseUp(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
     }
 }

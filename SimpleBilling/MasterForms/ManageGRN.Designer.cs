@@ -170,6 +170,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(949, 112);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel1_MouseMove);
             // 
             // label4
             // 
@@ -618,6 +619,7 @@
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.077371F));
             this.BaseLayout.Size = new System.Drawing.Size(1111, 501);
             this.BaseLayout.TabIndex = 6;
+            this.BaseLayout.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BaseLayout_MouseMove);
             // 
             // tableLayoutPanel4
             // 
@@ -635,6 +637,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(150, 112);
             this.tableLayoutPanel4.TabIndex = 6;
+            this.tableLayoutPanel4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel4_MouseMove);
             // 
             // BtnGRNReturn
             // 
@@ -676,6 +679,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(949, 124);
             this.tableLayoutPanel5.TabIndex = 7;
+            this.tableLayoutPanel5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel5_MouseMove);
             // 
             // PaymentLayout
             // 
@@ -811,8 +815,8 @@
             this.LayoutCheque.Name = "LayoutCheque";
             this.LayoutCheque.RowCount = 1;
             this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.LayoutCheque.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.LayoutCheque.Size = new System.Drawing.Size(949, 28);
             this.LayoutCheque.TabIndex = 8;
             // 
@@ -922,6 +926,7 @@
             this.DGVGRNList.Size = new System.Drawing.Size(943, 87);
             this.DGVGRNList.TabIndex = 0;
             this.DGVGRNList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNList_CellClick);
+            this.DGVGRNList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DGVGRNList_MouseMove);
             // 
             // DGVGRNReturned
             // 
@@ -937,6 +942,7 @@
             this.DGVGRNReturned.Size = new System.Drawing.Size(943, 87);
             this.DGVGRNReturned.TabIndex = 1;
             this.DGVGRNReturned.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVGRNReturned_CellClick);
+            this.DGVGRNReturned.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DGVGRNReturned_MouseMove);
             // 
             // tableLayoutPanel6
             // 
@@ -1033,7 +1039,7 @@
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManageGRN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Good Received Note";

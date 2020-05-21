@@ -1099,5 +1099,35 @@ namespace SimpleBilling.MasterForms
                 }
             }
         }
+
+        private void BaseLayout_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void tableLayoutPanel4_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void tableLayoutPanel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DGVGRNList_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void DGVGRNReturned_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
+
+        private void tableLayoutPanel5_MouseMove(object sender, MouseEventArgs e)
+        {
+            Main.Count = 0;
+        }
     }
 }
