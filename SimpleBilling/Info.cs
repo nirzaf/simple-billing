@@ -26,6 +26,18 @@ namespace SimpleBilling
         private static readonly Random random = new Random();
         public static int CashierId { get; set; }
 
+        public static string CashierName()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var cas = db.Employee.FirstOrDefault(c => c.EmployeeId == CashierId && !c.IsDeleted);
+                if (cas != null)
+                    return cas.EmployeeName.ToString();
+                else
+                    return string.Empty;
+            }
+        }
+
         public static void Mes(string mes)
         {
             MessageBox.Show(mes);
@@ -328,8 +340,8 @@ namespace SimpleBilling
                     PdfWriter writer = new PdfWriter(sfd.FileName);
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A4);
-                    Paragraph header = new Paragraph("Ordered Items").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20);
-                    Paragraph subheader = new Paragraph("Oder due date : " + Date).SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Paragraph header = new Paragraph("Ordered Items").SetTextAlignment(TextAlignment.CENTER).SetFontSize(15);
+                    Paragraph subheader = new Paragraph("Oder due date : " + Date).SetTextAlignment(TextAlignment.CENTER).SetFontSize(12);
                     Paragraph dl = new Paragraph(".       .").SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).SetFontColor(ColorConstants.WHITE);
                     LineSeparator ls = new LineSeparator(new SolidLine());
                     document.Add(header);

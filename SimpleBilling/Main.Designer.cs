@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mASTERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,7 @@
             this.ManageBusinessInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +51,8 @@
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSM2 = new System.Windows.Forms.ToolStripMenuItem();
             this.configsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LblAutoLogOut = new System.Windows.Forms.Label();
+            this.AutoLogOut = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,6 +161,13 @@
             this.ManageBankToolStripMenuItem.Text = "Manage Bank";
             this.ManageBankToolStripMenuItem.Click += new System.EventHandler(this.ManageBankToolStripMenuItem_Click);
             // 
+            // purchaseOrderToolStripMenuItem
+            // 
+            this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
+            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
+            this.purchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -227,18 +237,29 @@
             this.configsToolStripMenuItem.Text = "Configs";
             this.configsToolStripMenuItem.Click += new System.EventHandler(this.configsToolStripMenuItem_Click);
             // 
-            // purchaseOrderToolStripMenuItem
+            // LblAutoLogOut
             // 
-            this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
-            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
-            this.purchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderToolStripMenuItem_Click);
+            this.LblAutoLogOut.AutoSize = true;
+            this.LblAutoLogOut.BackColor = System.Drawing.Color.Transparent;
+            this.LblAutoLogOut.ForeColor = System.Drawing.Color.Lime;
+            this.LblAutoLogOut.Location = new System.Drawing.Point(1278, 40);
+            this.LblAutoLogOut.Name = "LblAutoLogOut";
+            this.LblAutoLogOut.Size = new System.Drawing.Size(64, 22);
+            this.LblAutoLogOut.TabIndex = 3;
+            this.LblAutoLogOut.Text = "Timer";
+            // 
+            // AutoLogOut
+            // 
+            this.AutoLogOut.Enabled = true;
+            this.AutoLogOut.Interval = 1000;
+            this.AutoLogOut.Tick += new System.EventHandler(this.AutoLogOut_Tick);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 733);
+            this.Controls.Add(this.LblAutoLogOut);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
@@ -279,5 +300,7 @@
         private System.Windows.Forms.ToolStripMenuItem TSM2;
         private System.Windows.Forms.ToolStripMenuItem configsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderToolStripMenuItem;
+        private System.Windows.Forms.Label LblAutoLogOut;
+        private System.Windows.Forms.Timer AutoLogOut;
     }
 }

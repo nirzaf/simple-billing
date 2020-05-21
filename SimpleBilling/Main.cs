@@ -6,6 +6,7 @@ namespace SimpleBilling
 {
     public partial class Main : Form
     {
+        private int Count = 0;
         public Main()
         {
             InitializeComponent();
@@ -261,6 +262,12 @@ namespace SimpleBilling
                 MdiParent = this
             };
             po.Show();
+        }
+
+        private void AutoLogOut_Tick(object sender, EventArgs e)
+        {
+            Count++;
+            LblAutoLogOut.Text = Count.ToString();
         }
     }
 }
