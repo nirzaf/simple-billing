@@ -662,7 +662,7 @@ namespace SimpleBilling.MasterForms
                         var Result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text && !c.IsDeleted);
                         if (Result != null)
                         {
-                            if (!Result.IsPaid)
+                            if (!Result.IsPaid && !Result.IsQuotation)
                             {
                                 if (!string.IsNullOrWhiteSpace(Result.VehicleNumber) && Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
                                 {

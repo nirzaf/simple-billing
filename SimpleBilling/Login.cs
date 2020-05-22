@@ -13,38 +13,47 @@ namespace SimpleBilling.MasterForms
             InitializeComponent();
             using (BillingContext db = new BillingContext())
             {
-                IList<Employee> emp = new List<Employee>
+                var employee = db.Employee.FirstOrDefault(c => c.EmployeeId == 1);
+                if (employee == null)
                 {
-                   new Employee()
-                   {
-                    EmployeeName = "Fazrin",
-                    Contact = "0772949123",
-                    Address = "412, Bulugohotenne, Batugoda, Kandy",
-                    Email = "mfmfazrin1986@gmail.com",
-                    SecretCode = "2222",
-                    Status = 0,
-                    CreatedDate = DateTime.Today
-                   },
-                   new Employee()
-                   {
-                    EmployeeName = "Razmy",
-                    Contact = "0772949123",
-                    Address = "412, Bulugohotenne, Batugoda, Kandy",
-                    Email = "razmy@gmail.com",
-                    SecretCode = "3333",
-                    Status = 0,
-                    CreatedDate = DateTime.Today
-                   }
-                };
+                    IList<Employee> emp = new List<Employee>
+                    {
+                       new Employee()
+                       {
+                        EmployeeName = "Fazrin",
+                        Contact = "0772949123",
+                        Address = "412, Bulugohotenne, Batugoda, Kandy",
+                        Email = "mfmfazrin1986@gmail.com",
+                        SecretCode = "2222",
+                        Status = 0,
+                        CreatedDate = DateTime.Today
+                       },
+                       new Employee()
+                       {
+                        EmployeeName = "Razmy",
+                        Contact = "0772949123",
+                        Address = "412, Bulugohotenne, Batugoda, Kandy",
+                        Email = "razmy@gmail.com",
+                        SecretCode = "3333",
+                        Status = 0,
+                        CreatedDate = DateTime.Today
+                       }
+                    };
+                    db.Employee.AddRange(emp);
+                    db.SaveChanges();
+                }
 
-                IList<Users> users = new List<Users>
+                var user = db.Users.FirstOrDefault(c => c.EmployeeId == 1);
+                if (user == null)
                 {
-                    new Users() { Username = "Admin", Password = "12345", UserType = 1, EmployeeId = 1 },
-                    new Users() { Username = "User", Password = "12345", UserType = 2, EmployeeId = 2 }
-                };
-                db.Employee.AddRange(emp);
-                db.Users.AddRange(users);
-                db.SaveChanges();
+                    IList<Users> users = new List<Users>
+                    {
+                        new Users() { Username = "Admin", Password = "12345", UserType = 1, EmployeeId = 1 },
+                        new Users() { Username = "User", Password = "12345", UserType = 2, EmployeeId = 2 }
+                    };
+                    db.Users.AddRange(users);
+                    db.SaveChanges();
+                }
             }
         }
 
