@@ -1,4 +1,5 @@
 ﻿using SimpleBilling.MasterForms;
+using SimpleBilling.Model;
 using System;
 using System.Windows.Forms;
 
@@ -12,6 +13,8 @@ namespace SimpleBilling
         [STAThread]
         private static void Main()
         {
+            BillingDBInitializer bd = new BillingDBInitializer();
+            BillingDBInitializer bDb = new BillingDBInitializer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());

@@ -6,6 +6,7 @@ namespace SimpleBilling.Model
     {
         public BillingContext() : base("name=con")
         {
+            Database.SetInitializer(new BillingDBInitializer());
         }
 
         public DbSet<Users> Users { get; set; }

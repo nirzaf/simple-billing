@@ -329,6 +329,21 @@ namespace SimpleBilling
                     PurchaseOrderToolStripMenuItem.Enabled = true;
                     ConfigsToolStripMenuItem.Enabled = false;
                 }
+                if (Info.UserType == 1)
+                {
+                    ManageItemsToolStripMenuItem.Enabled = true;
+                    ManageSuppliersToolStripMenuItem.Enabled = true;
+                    ManageCustomersToolStripMenuItem.Enabled = true;
+                    ManageStockToolStripMenuItem.Enabled = true;
+                    ManageEmployeesToolStripMenuItem.Enabled = true;
+                    ManageShelvesToolStripMenuItem.Enabled = true;
+                    ManageCategoryToolStripMenuItem.Enabled = true;
+                    ManageBusinessInfoToolStripMenuItem.Enabled = true;
+                    ManageVehicleToolStripMenuItem.Enabled = true;
+                    ManageBankToolStripMenuItem.Enabled = true;
+                    PurchaseOrderToolStripMenuItem.Enabled = true;
+                    ConfigsToolStripMenuItem.Enabled = true;
+                }
             }
         }
 
