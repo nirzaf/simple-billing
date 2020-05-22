@@ -68,21 +68,12 @@ namespace SimpleBilling
 
         }
 
-        public static void Enter(TextBox Txt, string PlaceHolder)
-        {
-            if (Txt.Text == PlaceHolder)
-            {
-                Txt.Text = string.Empty;
-                Txt.ForeColor = System.Drawing.Color.Black;
-            }
-        }
-
         public static void Leave(TextBox Txt, string PlaceHolder)
         {
             if (string.IsNullOrWhiteSpace(Txt.Text.Trim()))
             {
                 Txt.Text = PlaceHolder;
-                Txt.ForeColor = System.Drawing.Color.DarkGray;
+                Txt.ForeColor = System.Drawing.Color.Black;
             }
         }
 
