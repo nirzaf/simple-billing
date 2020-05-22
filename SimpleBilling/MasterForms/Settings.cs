@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-using SimpleBilling.Model;
+﻿using SimpleBilling.Model;
 using System;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -63,27 +60,8 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void LoadCS()
-        {
-            string fileName = "conString.json";
-            if (File.Exists(fileName))
-            {
-                string rawJson = File.ReadAllText(fileName);
-                var cs = JsonConvert.DeserializeObject<ConnectionString>(rawJson);
-                TxtDbName.Text = cs.Database;
-                TxtServerName.Text = cs.Source;
-                TxtUsername.Text = cs.UserId;
-                TxtPassword.Text = cs.Password;
-                if (cs.IntegratedSecurity)
-                    ChkTrustedConnection.Checked = true;
-                else
-                    ChkTrustedConnection.Checked = false;
-            }
-        }
-
         private void Settings_Load(object sender, EventArgs e)
         {
-            LoadCS();
             LoadForm();
         }
 
@@ -243,75 +221,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void BtnSaveConnectionString_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string Database;
-                string Server;
-                bool Trusted = false;
-                string Username = string.Empty;
-                string Password = string.Empty;
-                StringBuilder cs = new StringBuilder();
-                if (Info.IsEmpty(TxtDbName) && Info.IsEmpty(TxtServerName))
-                {
-                    Database = TxtDbName.Text.Trim();
-                    Server = TxtServerName.Text.Trim();
-                    cs.Append("Data Source = " + Server + ";");
-                    cs.Append(" Initial Catalog = " + Database + ";");
-                    if (ChkTrustedConnection.Checked)
-                    {
-                        Trusted = true;
-                        cs.Append(" Integrated Security = True;");
-                    }
-                    else
-                    {
-                        if (Info.IsEmpty(TxtUsername) && Info.IsEmpty(TxtPassword) && !ChkTrustedConnection.Checked)
-                        {
-                            Username = TxtUsername.Text.Trim();
-                            Password = TxtPassword.Text.Trim();
-                            cs.Append(" User Id = " + Username + ";");
-                            cs.Append(" Password = " + Password + ";");
-                        }
-                        else
-                        {
-                            Info.Required();
-                        }
-                    }
-                    cs.Append(" MultipleActiveResultSets = True");
-
-                    string fileName = "conString.json";
-                    if (!File.Exists(fileName))
-                    {
-                        File.Create(fileName);
-                    }
-                    ConnectionString con = new ConnectionString
-                    {
-                        Database = Database,
-                        Source = Server,
-                        IntegratedSecurity = Trusted,
-                        UserId = Username,
-                        Password = Password
-                    };
-                    string StartupPath = Environment.CurrentDirectory;
-                    if (!StartupPath.EndsWith(@"\"))
-                        StartupPath += @"\";
-                    string Path = StartupPath + fileName;
-                    string serializedJson = JsonConvert.SerializeObject(con, Formatting.Indented);
-                    File.WriteAllText(@Path, serializedJson);
-                    Info.Mes("Connection String Saved Successfully");
-
-                }
-                else
-                {
-                    Info.Required();
-                }
-            }
-            catch (Exception ex)
-            {
-                Info.Add(ex);
-            }
-        }
 
         private void BtnSetDefaultQuotationPath_Click(object sender, EventArgs e)
         {
