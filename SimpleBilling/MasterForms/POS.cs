@@ -944,8 +944,21 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
-                SalesReceiptAsPDF(rptBody, LblReceiptNo.Text, path.DefaultPath);
+                try
+                {
+                    var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
+                    if (path != null)
+                    {
+                        if (path.DefaultPath != null)
+                        {
+                            SalesReceiptAsPDF(rptBody, LblReceiptNo.Text, path.DefaultPath);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.InnerException.Message);
+                }
             }
         }
 
