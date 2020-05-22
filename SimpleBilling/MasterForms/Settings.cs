@@ -70,11 +70,21 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 var data = db.Settings.FirstOrDefault(c => c.UserId == UserId);
-                TxtDefaultPath.Text = data.DefaultPath;
-                TxtDefaultGRN.Text = data.GRNPath;
-                TxtDefaultExceptionFolder.Text = data.DefaultPath;
-                TxtMinReorderValue.Text = data.SetMinValue.ToString();
-                TxtDefaultQuotationPath.Text = data.QuotationPath;
+                if (data != null)
+                {
+                    if (data.DefaultPath != null)
+                        TxtDefaultPath.Text = data.DefaultPath;
+                    if (data.GRNPath != null)
+                        TxtDefaultGRN.Text = data.GRNPath;
+                    if (data.DefaultPath != null)
+                        TxtDefaultExceptionFolder.Text = data.ExceptionPath;
+                    if (data.SetMinValue != 0)
+                        TxtMinReorderValue.Text = data.SetMinValue.ToString();
+                    else
+                        TxtMinReorderValue.Text = "0";
+                    if (data.QuotationPath != null)
+                        TxtDefaultQuotationPath.Text = data.QuotationPath;
+                }
 
                 CmbEmployee.ValueMember = "EmployeeId";
                 CmbEmployee.DisplayMember = "EmployeeName";
