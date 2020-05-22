@@ -39,8 +39,8 @@ namespace SimpleBilling.MasterForms
 
                 IList<Users> users = new List<Users>
                 {
-                    new Users() { Username = "Admin", Password = "12345", UserType = 1, IsDeleted = false, EmployeeId = 1 },
-                    new Users() { Username = "User", Password = "12345", UserType = 2, IsDeleted = false, EmployeeId = 2 }
+                    new Users() { Username = "Admin", Password = "12345", UserType = 1, EmployeeId = 1 },
+                    new Users() { Username = "User", Password = "12345", UserType = 2, EmployeeId = 2 }
                 };
                 db.Employee.AddRange(emp);
                 db.Users.AddRange(users);
