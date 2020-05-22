@@ -330,39 +330,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtCustomer_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
-            {
-                string MobileNumber = TxtCustomer.Text.Trim();
-                using (BillingContext db = new BillingContext())
-                {
-                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
-                    if (data != null)
-                    {
-                        LblCustomer.Text = data.Name;
-
-                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId).ToList();
-                        if (vehicles != null)
-                        {
-                            CmbVehicles.Enabled = true;
-                            CmbVehicles.ValueMember = "VehicleNo";
-                            CmbVehicles.DisplayMember = "VehicleNo";
-                            CmbVehicles.DataSource = vehicles;
-                            ChkVehicle.Enabled = true;
-                        }
-                        else
-                        {
-                            ChkVehicle.Enabled = false;
-                            CmbVehicles.Enabled = false;
-                            ChkVehicle.Checked = false;
-                        }
-                    }
-                    else
-                    {
-                        LblCustomer.Text = "Customer";
-                        CmbVehicles.Enabled = false;
-                    }
-                }
-            }
+            LoadCustomer();
         }
 
         private void CmbAddItem_SelectedIndexChanged(object sender, EventArgs e)
@@ -653,8 +621,10 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(TxtGivenAmount.Text))
+                if (Info.IsEmpty(TxtGivenAmount) || Type == 2)
                 {
+                    if (!Info.IsEmpty(TxtGivenAmount))
+                        TxtGivenAmount.Text = "0";
                     GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
                     BalanceAmount = GivenAmount - ReceiptNetTotal;
                     using (BillingContext db = new BillingContext())
@@ -671,25 +641,25 @@ namespace SimpleBilling.MasterForms
                                 Result.NetTotal = ReceiptNetTotal;
                                 Result.TotalDiscount = ReceiptTotalDiscount;
                                 Result.SubTotal = ReceiptSubTotal;
-                                Result.PaidAmount = GivenAmount;
-                                if ((Result.PaidValue + GivenAmount) > ReceiptNetTotal)
-                                    Result.PaidValue = ReceiptNetTotal;
-                                else
-                                    Result.PaidValue += GivenAmount;
-                                Result.Balance = BalanceAmount;
-                                Result.PendingValue = PendingValue;
-                                Result.PaymentType = GetPaymentType();
-                                if (PendingValue == 0)
-                                    Result.IsPaid = true;
 
-                                if (Result.PaymentType == "Cheque")
-                                {
-                                    Result.ChequeNo = CmbChooseCheques.Text;
-                                }
                                 if (Type == 1)
                                 {
+                                    if (Result.PaymentType == "Cheque")
+                                    {
+                                        Result.ChequeNo = CmbChooseCheques.Text;
+                                    }
+                                    if ((Result.PaidValue + GivenAmount) > ReceiptNetTotal)
+                                        Result.PaidValue = ReceiptNetTotal;
+                                    else
+                                        Result.PaidValue += GivenAmount;
+                                    Result.Balance = BalanceAmount;
+                                    Result.PendingValue = PendingValue;
+                                    Result.PaymentType = GetPaymentType();
                                     Result.Status = 2;
                                     Result.IsQuotation = false;
+                                    if (PendingValue == 0)
+                                        Result.IsPaid = true;
+                                    Result.PaidAmount = GivenAmount;
                                 }
                                 if (Type == 2)
                                 {
@@ -705,14 +675,12 @@ namespace SimpleBilling.MasterForms
                                 ReceiptStatus = Result.Status;
                                 LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
                                 if (Type == 1)
-                                    ReduceStock(true);
-                                if (Type == 1)
                                 {
+                                    ReduceStock(true);
                                     MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
                                     BtnPrint.Enabled = true;
                                 }
-
-                                if (Type == 2)
+                                else if (Type == 2)
                                 {
                                     MessageBox.Show($"Quotation {LblReceiptNo.Text} Created Successfully");
                                     BtnPrintQuotation.Enabled = true;
@@ -1261,38 +1229,44 @@ namespace SimpleBilling.MasterForms
 
         private void TxtAddress_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddCustomer();
+            }
+        }
+
+        private void AddCustomer()
+        {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                using (BillingContext db = new BillingContext())
                 {
-                    using (BillingContext db = new BillingContext())
+                    if (Info.IsEmpty(TxtName) && Info.IsEmpty(TxtContact) && Info.IsEmpty(TxtAddress))
                     {
-                        if (Info.IsEmpty(TxtName) && Info.IsEmpty(TxtContact) && Info.IsEmpty(TxtAddress))
+                        Customers cu = new Customers
                         {
-                            Customers cu = new Customers
-                            {
-                                Name = TxtName.Text.Trim(),
-                                Contact = TxtContact.Text.Trim(),
-                                Email = TxtEmail.Text.Trim(),
-                                Address = TxtAddress.Text.Trim(),
-                                CreatedDate = DateTime.Today
-                            };
+                            Name = TxtName.Text.Trim(),
+                            Contact = TxtContact.Text.Trim(),
+                            Email = TxtEmail.Text.Trim(),
+                            Address = TxtAddress.Text.Trim(),
+                            CreatedDate = DateTime.Today
+                        };
 
-                            if (db.Entry(cu).State == EntityState.Detached)
-                                db.Set<Customers>().Attach(cu);
-                            db.Entry(cu).State = EntityState.Added;
-                            db.SaveChanges();
-                            Info.Mes("Customer Added Successfully");
-                            TxtCustomer.Text = cu.Contact;
-                            HideAddCustomer();
-                            TxtCustomer.Focus();
-                        }
-                        else
-                        {
-                            Info.Required();
-                        }
+                        if (db.Entry(cu).State == EntityState.Detached)
+                            db.Set<Customers>().Attach(cu);
+                        db.Entry(cu).State = EntityState.Added;
+                        db.SaveChanges();
+                        Info.Mes("Customer Added Successfully");
+                        TxtCustomer.Text = cu.Contact;
+                        HideAddCustomer();
+                        TxtCustomer.Focus();
+                    }
+                    else
+                    {
+                        Info.Required();
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -1592,7 +1566,11 @@ namespace SimpleBilling.MasterForms
 
         private void BtnPrintQuotation_Click(object sender, EventArgs e)
         {
-
+            using (BillingContext db = new BillingContext())
+            {
+                var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
+                SalesQuotationAsPDF(rptBody, LblReceiptNo.Text, path.QuotationPath);
+            }
         }
 
         public void SalesQuotationAsPDF(DataTable dt, string RptNo, string Path)
@@ -1741,17 +1719,9 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
 
-                    table.AddFooterCell(new Cell(1, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Value")));
-                    table.AddFooterCell(new Cell(1, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PaidValue.ToString())));
-
-                    table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Balance Amount")));
-                    table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.Balance.ToString())));
-
-                    table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Pending Amount")));
-                    table.AddFooterCell(new Cell(2, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PendingValue.ToString())));
 
                     string footer1 = "........................................                                                                                                                                                                ...........................";
-                    string footer2 = "     Customer Signature                                Please Note : Credit balance should be settled within 30 days                                          Checked by";
+                    string footer2 = "     Customer Signature                                    Please Note : Quotation is only valid for up to 7 days                                               Checked by";
                     iText.Kernel.Geom.PageSize ps = pdf.GetDefaultPageSize();
                     Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
                     Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
@@ -1773,5 +1743,59 @@ namespace SimpleBilling.MasterForms
             }
         }
 
+        private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Info.IsDecimal(e, TxtAmount);
+        }
+
+        private void TxtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddCustomer();
+            }
+        }
+
+        private void LoadCustomer()
+        {
+            if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
+            {
+                string MobileNumber = TxtCustomer.Text.Trim();
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
+                    if (data != null)
+                    {
+                        LblCustomer.Text = data.Name;
+
+                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId).ToList();
+                        if (vehicles != null)
+                        {
+                            CmbVehicles.Enabled = true;
+                            CmbVehicles.ValueMember = "VehicleNo";
+                            CmbVehicles.DisplayMember = "VehicleNo";
+                            CmbVehicles.DataSource = vehicles;
+                            ChkVehicle.Enabled = true;
+                        }
+                        else
+                        {
+                            ChkVehicle.Enabled = false;
+                            CmbVehicles.Enabled = false;
+                            ChkVehicle.Checked = false;
+                        }
+                    }
+                    else
+                    {
+                        LblCustomer.Text = "Customer";
+                        CmbVehicles.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void TxtCustomer_Leave(object sender, EventArgs e)
+        {
+            LoadCustomer();
+        }
     }
 }

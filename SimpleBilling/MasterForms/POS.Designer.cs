@@ -265,6 +265,7 @@
             this.TxtCustomer.TabIndex = 1;
             this.TxtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyDown);
             this.TxtCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyUp);
+            this.TxtCustomer.Leave += new System.EventHandler(this.TxtCustomer_Leave);
             // 
             // CmbVehicles
             // 
@@ -507,6 +508,7 @@
             this.TxtEmail.TabIndex = 23;
             this.TxtEmail.Text = "Email";
             this.TxtEmail.Enter += new System.EventHandler(this.TxtEmail_Enter);
+            this.TxtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEmail_KeyDown);
             this.TxtEmail.Leave += new System.EventHandler(this.TxtEmail_Leave);
             // 
             // DGVReceiptBody
@@ -840,6 +842,7 @@
             this.TxtAmount.TabIndex = 26;
             this.TxtAmount.Text = "Amount";
             this.TxtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
+            this.TxtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAmount_KeyPress);
             this.TxtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
             // 
             // CmbBank
