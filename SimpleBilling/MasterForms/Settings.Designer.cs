@@ -57,14 +57,14 @@
             this.TlpDefaultQuotationPath = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSetDefaultQuotationPath = new System.Windows.Forms.Button();
             this.TxtDefaultQuotationPath = new System.Windows.Forms.TextBox();
-            this.TLPUserGenerate = new System.Windows.Forms.TableLayoutPanel();
             this.DGVUsers = new System.Windows.Forms.DataGridView();
+            this.TLPUserGenerate = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtPWord = new System.Windows.Forms.TextBox();
             this.UserName = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtUName = new System.Windows.Forms.TextBox();
-            this.TxtPWord = new System.Windows.Forms.TextBox();
             this.CmbUserType = new System.Windows.Forms.ComboBox();
             this.CmbEmployee = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -77,8 +77,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.TlpDefaultQuotationPath.SuspendLayout();
-            this.TLPUserGenerate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).BeginInit();
+            this.TLPUserGenerate.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -293,6 +293,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(421, 107);
             this.tableLayoutPanel3.TabIndex = 7;
+            this.tableLayoutPanel3.Visible = false;
             // 
             // TxtPassword
             // 
@@ -385,6 +386,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(421, 107);
             this.tableLayoutPanel4.TabIndex = 8;
+            this.tableLayoutPanel4.Visible = false;
             // 
             // BtnSaveConnectionString
             // 
@@ -446,6 +448,18 @@
             this.TxtDefaultQuotationPath.Size = new System.Drawing.Size(269, 26);
             this.TxtDefaultQuotationPath.TabIndex = 1;
             // 
+            // DGVUsers
+            // 
+            this.DGVUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DGVUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVUsers.Location = new System.Drawing.Point(711, 3);
+            this.DGVUsers.Name = "DGVUsers";
+            this.DGVUsers.Size = new System.Drawing.Size(448, 107);
+            this.DGVUsers.TabIndex = 11;
+            this.DGVUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsers_CellClick);
+            // 
             // TLPUserGenerate
             // 
             this.TLPUserGenerate.ColumnCount = 2;
@@ -470,17 +484,16 @@
             this.TLPUserGenerate.Size = new System.Drawing.Size(448, 107);
             this.TLPUserGenerate.TabIndex = 10;
             // 
-            // DGVUsers
+            // TxtPWord
             // 
-            this.DGVUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.DGVUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVUsers.Location = new System.Drawing.Point(711, 3);
-            this.DGVUsers.Name = "DGVUsers";
-            this.DGVUsers.Size = new System.Drawing.Size(448, 107);
-            this.DGVUsers.TabIndex = 11;
-            this.DGVUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsers_CellClick);
+            this.TxtPWord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtPWord.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPWord.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPWord.Location = new System.Drawing.Point(143, 29);
+            this.TxtPWord.Name = "TxtPWord";
+            this.TxtPWord.PasswordChar = '*';
+            this.TxtPWord.Size = new System.Drawing.Size(302, 22);
+            this.TxtPWord.TabIndex = 5;
             // 
             // UserName
             // 
@@ -531,17 +544,6 @@
             this.TxtUName.Name = "TxtUName";
             this.TxtUName.Size = new System.Drawing.Size(302, 22);
             this.TxtUName.TabIndex = 4;
-            // 
-            // TxtPWord
-            // 
-            this.TxtPWord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtPWord.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPWord.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPWord.Location = new System.Drawing.Point(143, 29);
-            this.TxtPWord.Name = "TxtPWord";
-            this.TxtPWord.PasswordChar = '*';
-            this.TxtPWord.Size = new System.Drawing.Size(302, 22);
-            this.TxtPWord.TabIndex = 5;
             // 
             // CmbUserType
             // 
@@ -620,9 +622,9 @@
             this.tableLayoutPanel4.PerformLayout();
             this.TlpDefaultQuotationPath.ResumeLayout(false);
             this.TlpDefaultQuotationPath.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).EndInit();
             this.TLPUserGenerate.ResumeLayout(false);
             this.TLPUserGenerate.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
