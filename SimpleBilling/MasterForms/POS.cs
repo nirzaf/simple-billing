@@ -704,7 +704,8 @@ namespace SimpleBilling.MasterForms
                                 db.SaveChanges();
                                 ReceiptStatus = Result.Status;
                                 LblReceiptStatus.Text = GetReceiptStatus(Result.Status);
-                                ReduceStock(true);
+                                if (Type == 1)
+                                    ReduceStock(true);
                                 if (Type == 1)
                                 {
                                     MessageBox.Show($"Receipt {LblReceiptNo.Text} Created Successfully");
@@ -1601,7 +1602,7 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     var data = db.BusinessModels.FirstOrDefault(c => c.IsActive && !c.IsDeleted);
-                    var header = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == RptNo && !c.IsDeleted);
+                    var header = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == RptNo && c.IsQuotation && !c.IsDeleted);
                     var customerDetails = db.Customers.FirstOrDefault(c => c.Contact == TxtCustomer.Text.Trim() && !c.IsDeleted);
                     var mlt = (from ml in db.MileTracking.Where(c => !c.IsDeleted && c.ReceiptNo == RptNo)
                                join vl in db.Vehicles.Where(c => !c.IsDeleted)
@@ -1629,11 +1630,11 @@ namespace SimpleBilling.MasterForms
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(sb)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Address)));
-                    bus.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Receipt No: " + LblReceiptNo.Text)));
+                    bus.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Quotation No: " + LblReceiptNo.Text)));
 
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(8);
                     Paragraph space = new Paragraph("    ");
-                    Paragraph billingTo = new Paragraph("Billing To: ").SetTextAlignment(TextAlignment.LEFT).SetFontSize(8);
+                    Paragraph billingTo = new Paragraph("Quotation To: ").SetTextAlignment(TextAlignment.LEFT).SetFontSize(8);
                     document.Add(bus);
                     Table RptDetails = new Table(7, false);
 
@@ -1740,7 +1741,7 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
 
-                    table.AddFooterCell(new Cell(1, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Paid Amount")));
+                    table.AddFooterCell(new Cell(1, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Value")));
                     table.AddFooterCell(new Cell(1, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PaidValue.ToString())));
 
                     table.AddFooterCell(new Cell(2, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Balance Amount")));
