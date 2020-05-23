@@ -77,5 +77,42 @@ namespace SimpleBilling.MasterForms
         {
             Main.Count = 0;
         }
+
+        private void TxtSearchGRNInvoices_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TxtSearchGRNInvoices.Text.Length > 0)
+            {
+                SearchDGV(TxtSearchGRNInvoices.Text.Trim());
+            }
+            else
+            {
+                LoadDGV();
+            }
+        }
+
+        private void SearchDGV(string Text)
+        {
+            BtnLoadInvoice.Enabled = false;
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from header in db.GRNHeaders
+                            join supplier in db.Suppliers
+                            on header.Supplier.SupplierId equals supplier.SupplierId
+                            join employee in db.Employee
+                            on header.Employee.EmployeeId equals employee.EmployeeId
+                            select new
+                            {
+                                header.GRN_Id,
+                                header.GRN_No,
+                                Date = header.GRN_Date,
+                                Supplier = supplier.Name,
+                                Created_By = employee.EmployeeName,
+                                Gross_Total = header.GrossTotal,
+                                Total_Discount = header.TotalDiscout,
+                                Net_Total = header.NetTotal
+                            }).Where(c => c.GRN_No.Contains(Text) || c.Date.Contains(Text) || c.Supplier.Contains(Text) || c.Created_By.Contains(Text)).ToList();
+                DGVInvoices.DataSource = data;
+            }
+        }
     }
 }

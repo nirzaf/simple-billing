@@ -33,9 +33,13 @@
             this.BtnLoadInvoice = new System.Windows.Forms.Button();
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtSearchGRNInvoices = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVInvoices)).BeginInit();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVInvoices
@@ -44,9 +48,9 @@
             this.DGVInvoices.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVInvoices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVInvoices.Location = new System.Drawing.Point(3, 32);
+            this.DGVInvoices.Location = new System.Drawing.Point(3, 40);
             this.DGVInvoices.Name = "DGVInvoices";
-            this.DGVInvoices.Size = new System.Drawing.Size(933, 330);
+            this.DGVInvoices.Size = new System.Drawing.Size(933, 322);
             this.DGVInvoices.TabIndex = 0;
             this.DGVInvoices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoices_CellClick);
             this.DGVInvoices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoices_CellDoubleClick);
@@ -72,12 +76,13 @@
             this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.BaseLayout.Controls.Add(this.DGVInvoices, 0, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
             this.BaseLayout.RowCount = 3;
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.216495F));
-            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.47423F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.068627F));
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.39216F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.30928F));
             this.BaseLayout.Size = new System.Drawing.Size(939, 408);
             this.BaseLayout.TabIndex = 2;
@@ -101,6 +106,46 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(933, 37);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.57556F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.37192F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.29153F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.72026F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.46945F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TxtSearchGRNInvoices, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(933, 31);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(41, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 31);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Search";
+            // 
+            // TxtSearchGRNInvoices
+            // 
+            this.TxtSearchGRNInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtSearchGRNInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSearchGRNInvoices.Location = new System.Drawing.Point(110, 3);
+            this.TxtSearchGRNInvoices.Name = "TxtSearchGRNInvoices";
+            this.TxtSearchGRNInvoices.Size = new System.Drawing.Size(378, 26);
+            this.TxtSearchGRNInvoices.TabIndex = 1;
+            this.TxtSearchGRNInvoices.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchGRNInvoices_KeyUp);
+            // 
             // GRNInvoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,6 +161,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVInvoices)).EndInit();
             this.BaseLayout.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -126,5 +173,8 @@
         private System.Windows.Forms.Button BtnLoadInvoice;
         private System.Windows.Forms.TableLayoutPanel BaseLayout;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TxtSearchGRNInvoices;
     }
 }

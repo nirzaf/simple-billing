@@ -13,7 +13,7 @@ namespace SimpleBilling.MasterForms
             InitializeComponent();
             using (BillingContext db = new BillingContext())
             {
-                var employee = db.Employee.FirstOrDefault(c => c.EmployeeId == 1);
+                var employee = db.Employee.Take(1).FirstOrDefault();
                 if (employee == null)
                 {
                     IList<Employee> emp = new List<Employee>
@@ -43,7 +43,7 @@ namespace SimpleBilling.MasterForms
                     db.SaveChanges();
                 }
 
-                var user = db.Users.FirstOrDefault(c => c.EmployeeId == 1);
+                var user = db.Users.Take(1).FirstOrDefault();
                 if (user == null)
                 {
                     IList<Users> users = new List<Users>
