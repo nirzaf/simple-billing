@@ -946,7 +946,7 @@ namespace SimpleBilling.MasterForms
             {
                 try
                 {
-                    var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
+                    var path = db.Settings.Take(1).FirstOrDefault();
                     if (path != null)
                     {
                         if (path.DefaultPath != null)
@@ -1581,7 +1581,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var path = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
+                var path = db.Settings.Take(1).FirstOrDefault();
                 SalesQuotationAsPDF(rptBody, LblReceiptNo.Text, path.QuotationPath);
             }
         }

@@ -8,7 +8,6 @@ namespace SimpleBilling.MasterForms
 {
     public partial class Settings : Form
     {
-        private readonly int UserId = 1;
         private int UId;
         public Settings()
         {
@@ -35,7 +34,6 @@ namespace SimpleBilling.MasterForms
                         };
 
                         var r = db.Settings.Take(1).FirstOrDefault();
-                        //var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                         if (r == null)
                         {
                             if (db.Entry(s).State == EntityState.Detached)
@@ -70,7 +68,6 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                //var data = db.Settings.FirstOrDefault(c => c.UserId == UserId);
                 var data = db.Settings.Take(1).FirstOrDefault();
                 if (data != null)
                 {
@@ -110,7 +107,6 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                //var data = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                 var data = db.Settings.Take(1).FirstOrDefault();
                 if (data != null)
                 {
@@ -143,7 +139,6 @@ namespace SimpleBilling.MasterForms
                             CreatedDate = DateTime.Now
                         };
 
-                        //var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                         var r = db.Settings.Take(1).FirstOrDefault();
                         if (r == null)
                         {
@@ -189,7 +184,6 @@ namespace SimpleBilling.MasterForms
                             CreatedDate = DateTime.Now
                         };
 
-                        //var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                         var r = db.Settings.Take(1).FirstOrDefault();
                         if (r == null)
                         {
@@ -222,7 +216,6 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    //var s = db.Settings.FirstOrDefault(c => c.UserId == 1);
                     var s = db.Settings.Take(1).FirstOrDefault();
                     if (s != null)
                     {
@@ -257,7 +250,6 @@ namespace SimpleBilling.MasterForms
                             CreatedDate = DateTime.Now
                         };
 
-                        //var r = db.Settings.FirstOrDefault(c => c.UserId == UserId && !c.IsDeleted);
                         var r = db.Settings.Take(1).FirstOrDefault();
                         if (r == null)
                         {
