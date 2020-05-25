@@ -36,6 +36,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtSearchGRNInvoices = new System.Windows.Forms.TextBox();
+            this.BtnExportPDF = new System.Windows.Forms.Button();
+            this.BtnExportExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVInvoices)).BeginInit();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -97,7 +99,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel2.Controls.Add(this.BtnExportExcel, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnLoadInvoice, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnExportPDF, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 368);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -146,6 +150,30 @@
             this.TxtSearchGRNInvoices.TabIndex = 1;
             this.TxtSearchGRNInvoices.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchGRNInvoices_KeyUp);
             // 
+            // BtnExportPDF
+            // 
+            this.BtnExportPDF.BackColor = System.Drawing.Color.White;
+            this.BtnExportPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnExportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportPDF.Location = new System.Drawing.Point(3, 3);
+            this.BtnExportPDF.Name = "BtnExportPDF";
+            this.BtnExportPDF.Size = new System.Drawing.Size(149, 31);
+            this.BtnExportPDF.TabIndex = 2;
+            this.BtnExportPDF.Text = "Export as PDF";
+            this.BtnExportPDF.UseVisualStyleBackColor = false;
+            // 
+            // BtnExportExcel
+            // 
+            this.BtnExportExcel.BackColor = System.Drawing.Color.White;
+            this.BtnExportExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportExcel.Location = new System.Drawing.Point(158, 3);
+            this.BtnExportExcel.Name = "BtnExportExcel";
+            this.BtnExportExcel.Size = new System.Drawing.Size(149, 31);
+            this.BtnExportExcel.TabIndex = 3;
+            this.BtnExportExcel.Text = "Export as Excel";
+            this.BtnExportExcel.UseVisualStyleBackColor = false;
+            // 
             // GRNInvoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,5 +204,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtSearchGRNInvoices;
+        private System.Windows.Forms.Button BtnExportPDF;
+        private System.Windows.Forms.Button BtnExportExcel;
     }
 }
