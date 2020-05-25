@@ -115,7 +115,7 @@
             // 
             this.BtnExportToPdf.BackColor = System.Drawing.Color.White;
             this.BtnExportToPdf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnExportToPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportToPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportToPdf.Location = new System.Drawing.Point(158, 3);
             this.BtnExportToPdf.Name = "BtnExportToPdf";
             this.BtnExportToPdf.Size = new System.Drawing.Size(149, 31);
@@ -127,7 +127,7 @@
             // 
             this.BtnExportToExcel.BackColor = System.Drawing.Color.White;
             this.BtnExportToExcel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnExportToExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportToExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportToExcel.Location = new System.Drawing.Point(3, 3);
             this.BtnExportToExcel.Name = "BtnExportToExcel";
             this.BtnExportToExcel.Size = new System.Drawing.Size(149, 31);

@@ -949,10 +949,11 @@ namespace SimpleBilling.MasterForms
                     var path = db.Settings.Take(1).FirstOrDefault();
                     if (path != null)
                     {
-                        if (path.DefaultPath != null)
+                        if (path.DefaultPath == null)
                         {
-                            SalesReceiptAsPDF(rptBody, LblReceiptNo.Text, path.DefaultPath);
+                            return;
                         }
+                        SalesReceiptAsPDF(rptBody, LblReceiptNo.Text, path.DefaultPath);
                     }
                 }
                 catch (Exception ex)
