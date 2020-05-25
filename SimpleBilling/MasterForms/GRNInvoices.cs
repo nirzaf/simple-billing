@@ -1,5 +1,6 @@
 ﻿using SimpleBilling.Model;
 using System;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -118,6 +119,12 @@ namespace SimpleBilling.MasterForms
         private void BtnExportToExcel_Click(object sender, EventArgs e)
         {
             Info.ExportAsExcel(DGVInvoices);
+        }
+
+        private void BtnExportToPdf_Click(object sender, EventArgs e)
+        {
+            DataTable dt = Info.DGVToDataTable(DGVInvoices);
+            Info.ExpPDF(dt);
         }
     }
 }

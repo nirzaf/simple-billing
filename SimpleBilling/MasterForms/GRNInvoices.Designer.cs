@@ -122,6 +122,7 @@
             this.BtnExportToPdf.TabIndex = 3;
             this.BtnExportToPdf.Text = "Export to PDF";
             this.BtnExportToPdf.UseVisualStyleBackColor = false;
+            this.BtnExportToPdf.Click += new System.EventHandler(this.BtnExportToPdf_Click);
             // 
             // BtnExportToExcel
             // 

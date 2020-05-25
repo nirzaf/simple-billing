@@ -152,6 +152,5 @@ namespace SimpleBilling.MasterForms
                 supplierBindingSource.DataSource = db.Suppliers.Where(c => c.Name.Contains(Text) || c.Address.Contains(Text) || c.CodeNumber.Contains(Text) || c.Contact.Contains(Text) || c.Email.Contains(Text) && !c.IsDeleted).ToList();
             }
         }
-
     }
 }
