@@ -276,6 +276,28 @@ namespace SimpleBilling
             }
         }
 
+        public static void ExportAsExcel(DataGridView Dgv)
+        {
+            if (Dgv.Rows.Count > 0)
+            {
+                Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
+                xcelApp.Application.Workbooks.Add(Type.Missing);
+                for (int i = 1; i < Dgv.Columns.Count + 1; i++)
+                {
+                    xcelApp.Cells[1, i] = Dgv.Columns[i - 1].HeaderText;
+                }
+                for (int i = 0; i < Dgv.Rows.Count; i++)
+                {
+                    for (int j = 0; j < Dgv.Columns.Count; j++)
+                    {
+                        xcelApp.Cells[i + 2, j + 1] = Dgv.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+                xcelApp.Columns.AutoFit();
+                xcelApp.Visible = true;
+            }
+        }
+
         public static void ExpPDF(DataTable dt)
         {
             SaveFileDialog sfd = new SaveFileDialog

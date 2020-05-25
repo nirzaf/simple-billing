@@ -192,24 +192,7 @@ namespace SimpleBilling.MasterForms
 
         private void BtnExportAsExcel_Click(object sender, EventArgs e)
         {
-            if (DGVLoadReceipt.Rows.Count > 0)
-            {
-                Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
-                xcelApp.Application.Workbooks.Add(Type.Missing);
-                for (int i = 1; i < DGVLoadReceipt.Columns.Count + 1; i++)
-                {
-                    xcelApp.Cells[1, i] = DGVLoadReceipt.Columns[i - 1].HeaderText;
-                }
-                for (int i = 0; i < DGVLoadReceipt.Rows.Count; i++)
-                {
-                    for (int j = 0; j < DGVLoadReceipt.Columns.Count; j++)
-                    {
-                        xcelApp.Cells[i + 2, j + 1] = DGVLoadReceipt.Rows[i].Cells[j].Value.ToString();
-                    }
-                }
-                xcelApp.Columns.AutoFit();
-                xcelApp.Visible = true;
-            }
+            Info.ExportAsExcel(DGVLoadReceipt);
         }
 
         private void BtnExportAsPDF_Click(object sender, EventArgs e)

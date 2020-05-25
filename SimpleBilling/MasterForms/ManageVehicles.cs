@@ -208,5 +208,43 @@ namespace SimpleBilling.MasterForms
         {
             Info.IsInt(e);
         }
+
+        private void TxtSearchVehicle_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TxtSearchVehicle.Text.Trim().Length > 0)
+            {
+                SearchDGV(TxtSearchVehicle.Text.Trim());
+            }
+            else
+            {
+                LoadDGV();
+            }
+        }
+
+        private void SearchDGV(string Text)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = (from ve in db.Vehicles.Where(c => !c.IsDeleted)
+                            join cus in db.Customers
+                            on ve.OwnerId equals cus.CustomerId
+                            select new
+                            {
+                                ve.VehicleNo,
+                                ve.Brand,
+                                ve.Model,
+                                ve.Type,
+                                ve.CurrentMileage,
+                                ve.ServiceMileageDue,
+                                ve.AddedDate,
+                                cus.Name
+                            }).Where(c => c.VehicleNo.Contains(Text) || c.Model.Contains(Text) || c.Type.Contains(Text)).ToList();
+                DGVVehicles.DataSource = data;
+
+                CmbVehicleOwner.ValueMember = "CustomerId";
+                CmbVehicleOwner.DisplayMember = "Name";
+                CmbVehicleOwner.DataSource = db.Customers.ToList();
+            }
+        }
     }
 }

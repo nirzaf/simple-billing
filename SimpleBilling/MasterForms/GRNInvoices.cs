@@ -114,5 +114,10 @@ namespace SimpleBilling.MasterForms
                 DGVInvoices.DataSource = data;
             }
         }
+
+        private void BtnExportToExcel_Click(object sender, EventArgs e)
+        {
+            Info.ExportAsExcel(DGVInvoices);
+        }
     }
 }

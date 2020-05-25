@@ -55,12 +55,16 @@
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtSearchVehicle = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVVehicles)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -72,6 +76,7 @@
             this.tableLayoutPanel1.Controls.Add(this.DGVVehicles, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.BtnAdd, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -359,6 +364,41 @@
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.TxtSearchVehicle, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(793, 56);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(330, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 28);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Search";
+            // 
+            // TxtSearchVehicle
+            // 
+            this.TxtSearchVehicle.Location = new System.Drawing.Point(399, 3);
+            this.TxtSearchVehicle.Name = "TxtSearchVehicle";
+            this.TxtSearchVehicle.Size = new System.Drawing.Size(391, 26);
+            this.TxtSearchVehicle.TabIndex = 1;
+            this.TxtSearchVehicle.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchVehicle_KeyUp);
+            // 
             // ManageVehicles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -379,6 +419,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVVehicles)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -410,5 +452,8 @@
         private System.Windows.Forms.BindingSource vehicleBindingSource;
         private System.Windows.Forms.BindingSource customersBindingSource;
         private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TxtSearchVehicle;
     }
 }
