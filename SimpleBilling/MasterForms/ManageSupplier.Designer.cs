@@ -60,11 +60,15 @@
             this.BtnAdd = new System.Windows.Forms.Button();
             this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtSearchSuppliers = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVSupplier
@@ -356,12 +360,50 @@
             this.MessageTimer.Interval = 6000;
             this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 4;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.TxtSearchSuppliers, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(863, 36);
+            this.tableLayoutPanel3.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(72, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(140, 36);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Search Suppliers";
+            // 
+            // TxtSearchSuppliers
+            // 
+            this.TxtSearchSuppliers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtSearchSuppliers.Location = new System.Drawing.Point(218, 3);
+            this.TxtSearchSuppliers.Name = "TxtSearchSuppliers";
+            this.TxtSearchSuppliers.Size = new System.Drawing.Size(209, 26);
+            this.TxtSearchSuppliers.TabIndex = 1;
+            this.TxtSearchSuppliers.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchSuppliers_KeyUp);
+            // 
             // ManageSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(863, 542);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.LblMessage);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.CRUDPanel);
@@ -379,6 +421,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,5 +460,8 @@
         private System.Windows.Forms.BindingSource supplierBindingSource;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer MessageTimer;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox TxtSearchSuppliers;
     }
 }
