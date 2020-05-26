@@ -24,11 +24,23 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            ResetFeilds();
             PanelCRUD.Enabled = true;
             BtnCancel.Enabled = true;
             BtnSave.Enabled = true;
             TxtItemId.Text = "0";
             TxtItemCode.Focus();
+        }
+
+        private void ResetFeilds()
+        {
+            TxtItemCode.Text = string.Empty;
+            TxtItemName.Text = string.Empty;
+            TxtPrintableName.Text = string.Empty;
+            TxtUnit.Text = string.Empty;
+            TxtUnitCost.Text = string.Empty;
+            TxtBarcode.Text = string.Empty;
+
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)

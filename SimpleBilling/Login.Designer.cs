@@ -175,6 +175,7 @@
             this.TxtPassword.PasswordChar = '*';
             this.TxtPassword.Size = new System.Drawing.Size(366, 39);
             this.TxtPassword.TabIndex = 1;
+            this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
             // 
             // BtnAdminLogin
             // 

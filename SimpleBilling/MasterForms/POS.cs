@@ -925,10 +925,9 @@ namespace SimpleBilling.MasterForms
                     var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == RptNo && !c.IsDeleted);
                     if (Item != null)
                     {
-                        Item.IsDeleted = true;
                         if (db.Entry(Item).State == EntityState.Detached)
                             db.Set<ReceiptBody>().Attach(Item);
-                        db.Entry(Item).State = EntityState.Modified;
+                        db.Entry(Item).State = EntityState.Deleted;
                         db.SaveChanges();
                         DGVLoad(RptNo);
                     }

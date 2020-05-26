@@ -125,6 +125,11 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAdminLogin_Click(object sender, EventArgs e)
         {
+            LoginFunction();
+        }
+
+        private void LoginFunction()
+        {
             using (BillingContext db = new BillingContext())
             {
                 string UName = TxtUsername.Text.Trim();
@@ -143,6 +148,11 @@ namespace SimpleBilling.MasterForms
                     Info.Mes("Username or password not valid, Please try again");
                 }
             }
+        }
+
+        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            LoginFunction();
         }
     }
 }
