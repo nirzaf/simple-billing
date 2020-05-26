@@ -31,13 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSupplier));
             this.DGVSupplier = new System.Windows.Forms.DataGridView();
-            this.supplierIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCodeNumber = new System.Windows.Forms.TextBox();
@@ -63,12 +56,19 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtSearchSuppliers = new System.Windows.Forms.TextBox();
+            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.supplierIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVSupplier
@@ -88,46 +88,6 @@
             this.DGVSupplier.Name = "DGVSupplier";
             this.DGVSupplier.Size = new System.Drawing.Size(855, 230);
             this.DGVSupplier.TabIndex = 0;
-            // 
-            // supplierIdDataGridViewTextBoxColumn
-            // 
-            this.supplierIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierId";
-            this.supplierIdDataGridViewTextBoxColumn.HeaderText = "SupplierId";
-            this.supplierIdDataGridViewTextBoxColumn.Name = "supplierIdDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // contactDataGridViewTextBoxColumn
-            // 
-            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
-            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
-            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // codeNumberDataGridViewTextBoxColumn
-            // 
-            this.codeNumberDataGridViewTextBoxColumn.DataPropertyName = "CodeNumber";
-            this.codeNumberDataGridViewTextBoxColumn.HeaderText = "CodeNumber";
-            this.codeNumberDataGridViewTextBoxColumn.Name = "codeNumberDataGridViewTextBoxColumn";
-            // 
-            // supplierBindingSource
-            // 
-            this.supplierBindingSource.DataSource = typeof(SimpleBilling.Model.Supplier);
             // 
             // CRUDPanel
             // 
@@ -397,6 +357,46 @@
             this.TxtSearchSuppliers.TabIndex = 1;
             this.TxtSearchSuppliers.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchSuppliers_KeyUp);
             // 
+            // supplierBindingSource
+            // 
+            this.supplierBindingSource.DataSource = typeof(SimpleBilling.Model.Supplier);
+            // 
+            // supplierIdDataGridViewTextBoxColumn
+            // 
+            this.supplierIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierId";
+            this.supplierIdDataGridViewTextBoxColumn.HeaderText = "SupplierId";
+            this.supplierIdDataGridViewTextBoxColumn.Name = "supplierIdDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // contactDataGridViewTextBoxColumn
+            // 
+            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
+            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
+            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // codeNumberDataGridViewTextBoxColumn
+            // 
+            this.codeNumberDataGridViewTextBoxColumn.DataPropertyName = "CodeNumber";
+            this.codeNumberDataGridViewTextBoxColumn.HeaderText = "CodeNumber";
+            this.codeNumberDataGridViewTextBoxColumn.Name = "codeNumberDataGridViewTextBoxColumn";
+            // 
             // ManageSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -416,13 +416,13 @@
             this.Text = "Manage Supplier";
             this.Load += new System.EventHandler(this.ManageSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

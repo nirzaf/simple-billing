@@ -39,7 +39,7 @@ namespace SimpleBilling.MasterForms
             TxtPrintableName.Text = string.Empty;
             TxtUnit.Text = string.Empty;
             TxtUnitCost.Text = string.Empty;
-            TxtBarcode.Text = string.Empty;
+            TxtSellingPrice.Text = string.Empty;
 
         }
 
@@ -68,7 +68,7 @@ namespace SimpleBilling.MasterForms
                         ItemName = TxtItemName.Text.Trim(),
                         Unit = TxtUnit.Text.Trim(),
                         UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
-                        Barcode = TxtBarcode.Text.Trim(),
+                        Barcode = TxtSellingPrice.Text.Trim(),
                         PrintableName = TxtPrintableName.Text.Trim(),
                         Categories = cat,
                         Shelfs = shelve,
@@ -82,7 +82,7 @@ namespace SimpleBilling.MasterForms
                         items.ItemName = TxtItemName.Text.Trim();
                         items.Unit = TxtUnit.Text.Trim();
                         items.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
-                        items.Barcode = TxtBarcode.Text.Trim();
+                        items.Barcode = TxtSellingPrice.Text.Trim();
                         items.PrintableName = TxtPrintableName.Text.Trim();
                         items.Categories = cat;
                         items.Shelfs = shelve;
@@ -103,7 +103,7 @@ namespace SimpleBilling.MasterForms
                             result.ItemName = TxtItemName.Text.Trim();
                             result.Unit = TxtUnit.Text.Trim();
                             result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
-                            result.Barcode = TxtBarcode.Text.Trim();
+                            result.Barcode = TxtSellingPrice.Text.Trim();
                             result.PrintableName = TxtPrintableName.Text.Trim();
                             result.Categories = cat;
                             result.Shelfs = shelve;
@@ -213,7 +213,7 @@ namespace SimpleBilling.MasterForms
                 TxtItemName.Text = DGVItems.SelectedRows[0].Cells[2].Value + string.Empty;
                 TxtUnit.Text = DGVItems.SelectedRows[0].Cells[3].Value + string.Empty;
                 TxtUnitCost.Text = DGVItems.SelectedRows[0].Cells[4].Value + string.Empty;
-                TxtBarcode.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
+                TxtSellingPrice.Text = DGVItems.SelectedRows[0].Cells[5].Value + string.Empty;
                 TxtPrintableName.Text = DGVItems.SelectedRows[0].Cells[6].Value + string.Empty;
                 CmbCategories.Text = DGVItems.SelectedRows[0].Cells[7].Value + string.Empty;
                 CmbShelf.Text = DGVItems.SelectedRows[0].Cells[8].Value + string.Empty;

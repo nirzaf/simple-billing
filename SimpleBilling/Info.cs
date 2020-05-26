@@ -320,7 +320,7 @@ namespace SimpleBilling
             }
         }
 
-        public static void ExportAsPdf(DataGridView dgv)
+        public static void ExportAsPdf(DataTable dgv)
         {
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -332,7 +332,7 @@ namespace SimpleBilling
                 Spire.DataExport.PDF.PDFExport PDFExport = new Spire.DataExport.PDF.PDFExport
                 {
                     DataSource = Spire.DataExport.Common.ExportSource.DataTable,
-                    DataTable = dgv.DataSource,
+                    DataTable = dgv,
                     ActionAfterExport = Spire.DataExport.Common.ActionType.OpenView
                 };
 

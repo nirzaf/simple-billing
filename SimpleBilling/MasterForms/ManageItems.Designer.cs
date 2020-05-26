@@ -41,7 +41,7 @@
             this.TxtItemCode = new System.Windows.Forms.TextBox();
             this.TxtItemName = new System.Windows.Forms.TextBox();
             this.TxtUnit = new System.Windows.Forms.TextBox();
-            this.TxtBarcode = new System.Windows.Forms.TextBox();
+            this.TxtSellingPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtUnitCost = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@
             this.PanelCRUD.Controls.Add(this.TxtItemCode, 1, 1);
             this.PanelCRUD.Controls.Add(this.TxtItemName, 1, 2);
             this.PanelCRUD.Controls.Add(this.TxtUnit, 1, 3);
-            this.PanelCRUD.Controls.Add(this.TxtBarcode, 1, 5);
+            this.PanelCRUD.Controls.Add(this.TxtSellingPrice, 1, 5);
             this.PanelCRUD.Controls.Add(this.label4, 0, 5);
             this.PanelCRUD.Controls.Add(this.TxtUnitCost, 1, 4);
             this.PanelCRUD.Controls.Add(this.label7, 0, 4);
@@ -228,15 +228,15 @@
             this.TxtUnit.Size = new System.Drawing.Size(341, 26);
             this.TxtUnit.TabIndex = 8;
             // 
-            // TxtBarcode
+            // TxtSellingPrice
             // 
-            this.TxtBarcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBarcode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtBarcode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBarcode.Location = new System.Drawing.Point(126, 178);
-            this.TxtBarcode.Name = "TxtBarcode";
-            this.TxtBarcode.Size = new System.Drawing.Size(341, 26);
-            this.TxtBarcode.TabIndex = 10;
+            this.TxtSellingPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtSellingPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtSellingPrice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSellingPrice.Location = new System.Drawing.Point(126, 178);
+            this.TxtSellingPrice.Name = "TxtSellingPrice";
+            this.TxtSellingPrice.Size = new System.Drawing.Size(341, 26);
+            this.TxtSellingPrice.TabIndex = 10;
             // 
             // label4
             // 
@@ -550,7 +550,7 @@
         private System.Windows.Forms.TextBox TxtItemCode;
         private System.Windows.Forms.TextBox TxtItemName;
         private System.Windows.Forms.TextBox TxtUnit;
-        private System.Windows.Forms.TextBox TxtBarcode;
+        private System.Windows.Forms.TextBox TxtSellingPrice;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnCancel;

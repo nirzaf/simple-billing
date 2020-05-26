@@ -152,7 +152,10 @@ namespace SimpleBilling.MasterForms
 
         private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            LoginFunction();
+            if (e.KeyCode == Keys.Enter)
+            {
+                LoginFunction();
+            }
         }
     }
 }

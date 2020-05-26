@@ -30,11 +30,22 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            ResetValues();
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             supplierBindingSource.Add(new Supplier());
             supplierBindingSource.MoveLast();
             TxtSupplierName.Focus();
+        }
+
+        private void ResetValues()
+        {
+            TxtAddress.Text = string.Empty;
+            TxtCodeNumber.Text = string.Empty;
+            TxtContact.Text = string.Empty;
+            TxtEmail.Text = string.Empty;
+            TxtSupplierName.Text = string.Empty;
+            TxtSupplierId.Text = string.Empty;
         }
 
         private void Info(string Message)
