@@ -810,7 +810,7 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = db.Settings.FirstOrDefault(c => c.UserId == 1 && !c.IsDeleted);
+                var data = db.Settings.Take(1).FirstOrDefault();
                 GRNAsPDF(dtGRN, dtGRNReturn, TxtGRNNo.Text.Trim(), data.GRNPath);
             }
         }
