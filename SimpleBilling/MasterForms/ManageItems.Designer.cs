@@ -34,27 +34,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelCRUD = new System.Windows.Forms.TableLayoutPanel();
-            this.ChkBoxIsService = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CmbShelf = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.TxtPrintableName = new System.Windows.Forms.TextBox();
-            this.TxtSellingPrice = new System.Windows.Forms.TextBox();
-            this.TxtUnitCost = new System.Windows.Forms.TextBox();
             this.TxtItemId = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.BtnAddCategory = new System.Windows.Forms.Button();
             this.BtnAddShelf = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.TxtItemName = new System.Windows.Forms.TextBox();
             this.TxtItemCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtItemName = new System.Windows.Forms.TextBox();
+            this.TxtSellingPrice = new System.Windows.Forms.TextBox();
+            this.ChkBoxIsService = new System.Windows.Forms.CheckBox();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label9 = new System.Windows.Forms.Label();
+            this.TxtUnitCost = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.CmbUnit = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TxtPrintableName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
@@ -64,15 +66,13 @@
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.BaseLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVItems
@@ -153,29 +153,6 @@
             this.PanelCRUD.Size = new System.Drawing.Size(523, 351);
             this.PanelCRUD.TabIndex = 2;
             // 
-            // ChkBoxIsService
-            // 
-            this.ChkBoxIsService.AutoSize = true;
-            this.ChkBoxIsService.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.itemBindingSource, "IsService", true));
-            this.ChkBoxIsService.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChkBoxIsService.ForeColor = System.Drawing.Color.White;
-            this.ChkBoxIsService.Location = new System.Drawing.Point(126, 318);
-            this.ChkBoxIsService.Name = "ChkBoxIsService";
-            this.ChkBoxIsService.Size = new System.Drawing.Size(341, 30);
-            this.ChkBoxIsService.TabIndex = 20;
-            this.ChkBoxIsService.Text = "Check If Yes";
-            this.ChkBoxIsService.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(3, 315);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 20);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Is Service";
-            // 
             // CmbCategories
             // 
             this.CmbCategories.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.categoryBindingSource, "Items", true));
@@ -187,6 +164,10 @@
             this.CmbCategories.Name = "CmbCategories";
             this.CmbCategories.Size = new System.Drawing.Size(341, 28);
             this.CmbCategories.TabIndex = 10;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // CmbShelf
             // 
@@ -220,37 +201,6 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Shelf";
             // 
-            // TxtPrintableName
-            // 
-            this.TxtPrintableName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtPrintableName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPrintableName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrintableName.Location = new System.Drawing.Point(126, 178);
-            this.TxtPrintableName.Name = "TxtPrintableName";
-            this.TxtPrintableName.Size = new System.Drawing.Size(341, 26);
-            this.TxtPrintableName.TabIndex = 22;
-            this.TxtPrintableName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtPrintableName_KeyUp);
-            // 
-            // TxtSellingPrice
-            // 
-            this.TxtSellingPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtSellingPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtSellingPrice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSellingPrice.Location = new System.Drawing.Point(126, 283);
-            this.TxtSellingPrice.Name = "TxtSellingPrice";
-            this.TxtSellingPrice.Size = new System.Drawing.Size(341, 26);
-            this.TxtSellingPrice.TabIndex = 10;
-            // 
-            // TxtUnitCost
-            // 
-            this.TxtUnitCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtUnitCost.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtUnitCost.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUnitCost.Location = new System.Drawing.Point(126, 248);
-            this.TxtUnitCost.Name = "TxtUnitCost";
-            this.TxtUnitCost.Size = new System.Drawing.Size(341, 26);
-            this.TxtUnitCost.TabIndex = 9;
-            // 
             // TxtItemId
             // 
             this.TxtItemId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -262,16 +212,6 @@
             this.TxtItemId.Size = new System.Drawing.Size(341, 26);
             this.TxtItemId.TabIndex = 12;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, 175);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(104, 20);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Printable Name";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -281,26 +221,6 @@
             this.label4.Size = new System.Drawing.Size(89, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Selling Price";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(3, 245);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 20);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Unit Cost";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(3, 210);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Unit";
             // 
             // BtnAddCategory
             // 
@@ -326,16 +246,6 @@
             this.BtnAddShelf.UseVisualStyleBackColor = false;
             this.BtnAddShelf.Click += new System.EventHandler(this.BtnAddShelf_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(3, 140);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Item Name";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -345,6 +255,27 @@
             this.label6.Size = new System.Drawing.Size(52, 20);
             this.label6.TabIndex = 11;
             this.label6.Text = "Item Id";
+            // 
+            // TxtItemCode
+            // 
+            this.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtItemCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtItemCode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtItemCode.Location = new System.Drawing.Point(126, 108);
+            this.TxtItemCode.Name = "TxtItemCode";
+            this.TxtItemCode.Size = new System.Drawing.Size(341, 26);
+            this.TxtItemCode.TabIndex = 6;
+            this.TxtItemCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtItemCode_KeyUp);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(3, 140);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Item Name";
             // 
             // TxtItemName
             // 
@@ -357,16 +288,62 @@
             this.TxtItemName.TabIndex = 7;
             this.TxtItemName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtItemName_KeyUp);
             // 
-            // TxtItemCode
+            // TxtSellingPrice
             // 
-            this.TxtItemCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtItemCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtItemCode.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtItemCode.Location = new System.Drawing.Point(126, 108);
-            this.TxtItemCode.Name = "TxtItemCode";
-            this.TxtItemCode.Size = new System.Drawing.Size(341, 26);
-            this.TxtItemCode.TabIndex = 6;
-            this.TxtItemCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtItemCode_KeyUp);
+            this.TxtSellingPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtSellingPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtSellingPrice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSellingPrice.Location = new System.Drawing.Point(126, 283);
+            this.TxtSellingPrice.Name = "TxtSellingPrice";
+            this.TxtSellingPrice.Size = new System.Drawing.Size(341, 26);
+            this.TxtSellingPrice.TabIndex = 10;
+            // 
+            // ChkBoxIsService
+            // 
+            this.ChkBoxIsService.AutoSize = true;
+            this.ChkBoxIsService.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.itemBindingSource, "IsService", true));
+            this.ChkBoxIsService.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChkBoxIsService.ForeColor = System.Drawing.Color.White;
+            this.ChkBoxIsService.Location = new System.Drawing.Point(126, 318);
+            this.ChkBoxIsService.Name = "ChkBoxIsService";
+            this.ChkBoxIsService.Size = new System.Drawing.Size(341, 30);
+            this.ChkBoxIsService.TabIndex = 20;
+            this.ChkBoxIsService.Text = "Check If Yes";
+            this.ChkBoxIsService.UseVisualStyleBackColor = true;
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(3, 315);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 20);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Is Service";
+            // 
+            // TxtUnitCost
+            // 
+            this.TxtUnitCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtUnitCost.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtUnitCost.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUnitCost.Location = new System.Drawing.Point(126, 248);
+            this.TxtUnitCost.Name = "TxtUnitCost";
+            this.TxtUnitCost.Size = new System.Drawing.Size(341, 26);
+            this.TxtUnitCost.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.Location = new System.Drawing.Point(3, 245);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Unit Cost";
             // 
             // CmbUnit
             // 
@@ -387,6 +364,37 @@
             this.CmbUnit.Name = "CmbUnit";
             this.CmbUnit.Size = new System.Drawing.Size(341, 28);
             this.CmbUnit.TabIndex = 23;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(3, 210);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Unit";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(3, 175);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(104, 20);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Printable Name";
+            // 
+            // TxtPrintableName
+            // 
+            this.TxtPrintableName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtPrintableName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtPrintableName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPrintableName.Location = new System.Drawing.Point(126, 178);
+            this.TxtPrintableName.Name = "TxtPrintableName";
+            this.TxtPrintableName.Size = new System.Drawing.Size(341, 26);
+            this.TxtPrintableName.TabIndex = 22;
+            this.TxtPrintableName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtPrintableName_KeyUp);
             // 
             // tableLayoutPanel2
             // 
@@ -506,14 +514,6 @@
             this.BaseLayout.Size = new System.Drawing.Size(1250, 457);
             this.BaseLayout.TabIndex = 4;
             // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
             // ManageItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -532,11 +532,11 @@
             this.panel1.ResumeLayout(false);
             this.PanelCRUD.ResumeLayout(false);
             this.PanelCRUD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.BaseLayout.ResumeLayout(false);
             this.BaseLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
