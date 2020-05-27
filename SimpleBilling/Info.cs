@@ -39,6 +39,12 @@ namespace SimpleBilling
             }
         }
 
+        public static void ToCapital(TextBox txt)
+        {
+            txt.Text = txt.Text.ToUpper();
+            txt.Select(txt.Text.Length, 0);
+        }
+
         public static void Mes(string mes)
         {
             MessageBox.Show(mes);
