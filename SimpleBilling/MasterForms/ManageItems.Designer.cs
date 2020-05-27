@@ -114,28 +114,28 @@
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.54968F));
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.43692F));
             this.PanelCRUD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0134F));
-            this.PanelCRUD.Controls.Add(this.ChkBoxIsService, 1, 7);
-            this.PanelCRUD.Controls.Add(this.label9, 0, 7);
             this.PanelCRUD.Controls.Add(this.CmbCategories, 1, 0);
             this.PanelCRUD.Controls.Add(this.CmbShelf, 1, 1);
             this.PanelCRUD.Controls.Add(this.label5, 0, 0);
             this.PanelCRUD.Controls.Add(this.label8, 0, 1);
-            this.PanelCRUD.Controls.Add(this.TxtPrintableName, 1, 9);
-            this.PanelCRUD.Controls.Add(this.TxtSellingPrice, 1, 8);
-            this.PanelCRUD.Controls.Add(this.TxtUnitCost, 1, 6);
             this.PanelCRUD.Controls.Add(this.TxtItemId, 1, 2);
-            this.PanelCRUD.Controls.Add(this.label10, 0, 9);
             this.PanelCRUD.Controls.Add(this.label4, 0, 8);
-            this.PanelCRUD.Controls.Add(this.label7, 0, 6);
-            this.PanelCRUD.Controls.Add(this.label3, 0, 5);
             this.PanelCRUD.Controls.Add(this.BtnAddCategory, 2, 0);
             this.PanelCRUD.Controls.Add(this.BtnAddShelf, 2, 1);
             this.PanelCRUD.Controls.Add(this.label6, 0, 2);
-            this.PanelCRUD.Controls.Add(this.CmbUnit, 1, 5);
             this.PanelCRUD.Controls.Add(this.TxtItemCode, 1, 3);
             this.PanelCRUD.Controls.Add(this.label2, 0, 4);
             this.PanelCRUD.Controls.Add(this.label1, 0, 3);
             this.PanelCRUD.Controls.Add(this.TxtItemName, 1, 4);
+            this.PanelCRUD.Controls.Add(this.TxtSellingPrice, 1, 8);
+            this.PanelCRUD.Controls.Add(this.ChkBoxIsService, 1, 9);
+            this.PanelCRUD.Controls.Add(this.label9, 0, 9);
+            this.PanelCRUD.Controls.Add(this.TxtUnitCost, 1, 7);
+            this.PanelCRUD.Controls.Add(this.label7, 0, 7);
+            this.PanelCRUD.Controls.Add(this.CmbUnit, 1, 6);
+            this.PanelCRUD.Controls.Add(this.label3, 0, 6);
+            this.PanelCRUD.Controls.Add(this.label10, 0, 5);
+            this.PanelCRUD.Controls.Add(this.TxtPrintableName, 1, 5);
             this.PanelCRUD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelCRUD.Location = new System.Drawing.Point(0, 0);
             this.PanelCRUD.Name = "PanelCRUD";
@@ -159,9 +159,9 @@
             this.ChkBoxIsService.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.itemBindingSource, "IsService", true));
             this.ChkBoxIsService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkBoxIsService.ForeColor = System.Drawing.Color.White;
-            this.ChkBoxIsService.Location = new System.Drawing.Point(126, 248);
+            this.ChkBoxIsService.Location = new System.Drawing.Point(126, 318);
             this.ChkBoxIsService.Name = "ChkBoxIsService";
-            this.ChkBoxIsService.Size = new System.Drawing.Size(341, 29);
+            this.ChkBoxIsService.Size = new System.Drawing.Size(341, 30);
             this.ChkBoxIsService.TabIndex = 20;
             this.ChkBoxIsService.Text = "Check If Yes";
             this.ChkBoxIsService.UseVisualStyleBackColor = true;
@@ -169,11 +169,10 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(3, 245);
+            this.label9.Location = new System.Drawing.Point(3, 315);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 35);
+            this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 19;
             this.label9.Text = "Is Service";
             // 
@@ -226,10 +225,11 @@
             this.TxtPrintableName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPrintableName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtPrintableName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrintableName.Location = new System.Drawing.Point(126, 318);
+            this.TxtPrintableName.Location = new System.Drawing.Point(126, 178);
             this.TxtPrintableName.Name = "TxtPrintableName";
             this.TxtPrintableName.Size = new System.Drawing.Size(341, 26);
             this.TxtPrintableName.TabIndex = 22;
+            this.TxtPrintableName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtPrintableName_KeyUp);
             // 
             // TxtSellingPrice
             // 
@@ -246,7 +246,7 @@
             this.TxtUnitCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtUnitCost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUnitCost.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUnitCost.Location = new System.Drawing.Point(126, 213);
+            this.TxtUnitCost.Location = new System.Drawing.Point(126, 248);
             this.TxtUnitCost.Name = "TxtUnitCost";
             this.TxtUnitCost.Size = new System.Drawing.Size(341, 26);
             this.TxtUnitCost.TabIndex = 9;
@@ -266,7 +266,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, 315);
+            this.label10.Location = new System.Drawing.Point(3, 175);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(104, 20);
             this.label10.TabIndex = 21;
@@ -286,7 +286,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(3, 210);
+            this.label7.Location = new System.Drawing.Point(3, 245);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(66, 20);
             this.label7.TabIndex = 15;
@@ -296,7 +296,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(3, 175);
+            this.label3.Location = new System.Drawing.Point(3, 210);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 20);
             this.label3.TabIndex = 3;
@@ -383,7 +383,7 @@
             "KILO GRAM",
             "GRAM",
             "MILLI LITRE"});
-            this.CmbUnit.Location = new System.Drawing.Point(126, 178);
+            this.CmbUnit.Location = new System.Drawing.Point(126, 213);
             this.CmbUnit.Name = "CmbUnit";
             this.CmbUnit.Size = new System.Drawing.Size(341, 28);
             this.CmbUnit.TabIndex = 23;

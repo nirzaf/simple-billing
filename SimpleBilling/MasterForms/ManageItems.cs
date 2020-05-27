@@ -310,5 +310,10 @@ namespace SimpleBilling.MasterForms
         {
             Info.ToCapital(TxtItemCode);
         }
+
+        private void TxtPrintableName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtPrintableName);
+        }
     }
 }
