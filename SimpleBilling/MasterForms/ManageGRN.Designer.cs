@@ -313,6 +313,7 @@
             this.TxtReference.Name = "TxtReference";
             this.TxtReference.Size = new System.Drawing.Size(183, 26);
             this.TxtReference.TabIndex = 1;
+            this.TxtReference.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtReference_KeyUp);
             this.TxtReference.Leave += new System.EventHandler(this.TxtReference_Leave);
             // 
             // label3
@@ -345,6 +346,7 @@
             this.TxtGRNNo.Name = "TxtGRNNo";
             this.TxtGRNNo.Size = new System.Drawing.Size(183, 26);
             this.TxtGRNNo.TabIndex = 0;
+            this.TxtGRNNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyUp);
             this.TxtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
             // 
             // label12

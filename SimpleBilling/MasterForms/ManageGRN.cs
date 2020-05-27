@@ -1139,5 +1139,15 @@ namespace SimpleBilling.MasterForms
         {
             Info.ToCapital(TxtRemarks);
         }
+
+        private void TxtReference_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtReference);
+        }
+
+        private void TxtGRNNo_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtGRNNo);
+        }
     }
 }

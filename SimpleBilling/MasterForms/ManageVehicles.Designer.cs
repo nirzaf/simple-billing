@@ -128,6 +128,7 @@
             this.TxtModel.Name = "TxtModel";
             this.TxtModel.Size = new System.Drawing.Size(582, 26);
             this.TxtModel.TabIndex = 6;
+            this.TxtModel.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtModel_KeyUp);
             // 
             // vehicleBindingSource
             // 
@@ -141,6 +142,7 @@
             this.TxtBrand.Name = "TxtBrand";
             this.TxtBrand.Size = new System.Drawing.Size(582, 26);
             this.TxtBrand.TabIndex = 5;
+            this.TxtBrand.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyUp);
             // 
             // label1
             // 
@@ -172,6 +174,7 @@
             this.TxtVehicleNumber.Name = "TxtVehicleNumber";
             this.TxtVehicleNumber.Size = new System.Drawing.Size(582, 26);
             this.TxtVehicleNumber.TabIndex = 4;
+            this.TxtVehicleNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtVehicleNumber_KeyUp);
             // 
             // label5
             // 
@@ -214,6 +217,7 @@
             this.TxtType.Name = "TxtType";
             this.TxtType.Size = new System.Drawing.Size(582, 26);
             this.TxtType.TabIndex = 8;
+            this.TxtType.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtType_KeyUp);
             // 
             // TxtCurrentMileage
             // 

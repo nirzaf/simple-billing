@@ -245,5 +245,25 @@ namespace SimpleBilling.MasterForms
                 CmbVehicleOwner.DataSource = db.Customers.ToList();
             }
         }
+
+        private void TxtVehicleNumber_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtVehicleNumber);
+        }
+
+        private void TxtBrand_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtBrand);
+        }
+
+        private void TxtModel_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtModel);
+        }
+
+        private void TxtType_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtType);
+        }
     }
 }

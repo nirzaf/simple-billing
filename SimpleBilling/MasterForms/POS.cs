@@ -1782,5 +1782,40 @@ namespace SimpleBilling.MasterForms
         {
             LoadCustomer();
         }
+
+        private void TxtName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtName);
+        }
+
+        private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtAddress);
+        }
+
+        private void TxtProductCode_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtProductCode);
+        }
+
+        private void CmbAddItem_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.CmbToCapital(CmbAddItem);
+        }
+
+        private void TxtChequeNo_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtChequeNo);
+        }
+
+        private void TxtPayeeName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtPayeeName);
+        }
+
+        private void TxtRemarks_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtRemarks);
+        }
     }
 }
