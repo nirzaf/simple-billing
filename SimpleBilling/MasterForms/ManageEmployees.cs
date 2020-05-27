@@ -63,7 +63,7 @@ namespace SimpleBilling.MasterForms
                             db.Entry(emp).State = EntityState.Modified;
                             emp.UpdatedDate = DateTime.Now;
                             db.SaveChanges();
-                            Info("Employee Deleted Successfully");
+                            Message("Employee Deleted Successfully");
                         }
                     }
                 }
@@ -71,7 +71,7 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
@@ -80,7 +80,7 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void Info(string Message)
+        private void Message(string Message)
         {
             LblMessage.Text = Message;
         }
@@ -104,13 +104,13 @@ namespace SimpleBilling.MasterForms
                         {
                             db.Entry(emp).State = EntityState.Added;
                             emp.CreatedDate = DateTime.Now;
-                            Info("Employee Added");
+                            Message("Employee Added");
                         }
                         else
                         {
                             db.Entry(emp).State = EntityState.Modified;
                             emp.UpdatedDate = DateTime.Now;
-                            Info("Employee Modified");
+                            Message("Employee Modified");
                         }
                         db.SaveChanges();
                     }
@@ -119,13 +119,23 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
                 DGVEmployees.Refresh();
                 LoadDGV();
             }
+        }
+
+        private void TxtEmployeeName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtEmployeeName);
+        }
+
+        private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtAddress);
         }
     }
 }

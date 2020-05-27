@@ -48,6 +48,12 @@ namespace SimpleBilling.MasterForms
 
         private void TxtFilterProducts_KeyUp(object sender, KeyEventArgs e)
         {
+            Info.ToCapital(TxtFilterProducts);
+            Filter();
+        }
+
+        private void Filter()
+        {
             try
             {
                 string Filter = TxtFilterProducts.Text.Trim();

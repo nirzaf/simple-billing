@@ -196,6 +196,7 @@
             this.TxtAddress.Name = "TxtAddress";
             this.TxtAddress.Size = new System.Drawing.Size(265, 26);
             this.TxtAddress.TabIndex = 9;
+            this.TxtAddress.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtAddress_KeyUp);
             // 
             // TxtContact
             // 
@@ -212,6 +213,7 @@
             this.TxtEmployeeName.Name = "TxtEmployeeName";
             this.TxtEmployeeName.Size = new System.Drawing.Size(265, 26);
             this.TxtEmployeeName.TabIndex = 7;
+            this.TxtEmployeeName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtEmployeeName_KeyUp);
             // 
             // label3
             // 

@@ -45,6 +45,12 @@ namespace SimpleBilling
             txt.Select(txt.Text.Length, 0);
         }
 
+        public static void CmbToCapital(ComboBox txt)
+        {
+            txt.Text = txt.Text.ToUpper();
+            txt.Select(txt.Text.Length, 0);
+        }
+
         public static void Mes(string mes)
         {
             MessageBox.Show(mes);

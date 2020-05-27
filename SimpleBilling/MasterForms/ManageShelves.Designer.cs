@@ -138,6 +138,7 @@
             this.TxtShelfName.Name = "TxtShelfName";
             this.TxtShelfName.Size = new System.Drawing.Size(267, 26);
             this.TxtShelfName.TabIndex = 3;
+            this.TxtShelfName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtShelfName_KeyUp);
             // 
             // label2
             // 

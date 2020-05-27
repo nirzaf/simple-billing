@@ -97,7 +97,7 @@ namespace SimpleBilling.MasterForms
                             shelve.UpdatedDate = DateTime.Now;
                             db.Entry(shelve).State = EntityState.Modified;
                             db.SaveChanges();
-                            Info("Shelve Deleted Successfully");
+                            Message("Shelve Deleted Successfully");
                         }
                     }
                 }
@@ -105,7 +105,7 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
@@ -114,7 +114,7 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void Info(string Message)
+        private void Message(string Message)
         {
             LblMessage.Text = Message;
         }
@@ -143,13 +143,13 @@ namespace SimpleBilling.MasterForms
                         {
                             shelve.CreatedDate = DateTime.Now;
                             db.Entry(shelve).State = EntityState.Added;
-                            Info("Shelf Added");
+                            Message("Shelf Added");
                         }
                         else
                         {
                             shelve.UpdatedDate = DateTime.Now;
                             db.Entry(shelve).State = EntityState.Modified;
-                            Info("Shelf Modified");
+                            Message("Shelf Modified");
                         }
                         db.SaveChanges();
                     }
@@ -158,7 +158,7 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.Message);
+                Message(ex.Message);
             }
             finally
             {
@@ -173,6 +173,11 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = false;
             BtnAdd.Enabled = true;
             BtnEdit.Enabled = true;
+        }
+
+        private void TxtShelfName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtShelfName);
         }
     }
 }

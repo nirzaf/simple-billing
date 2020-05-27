@@ -197,6 +197,7 @@
             this.CmbProduct.TabIndex = 9;
             this.CmbProduct.ValueMember = "Id";
             this.CmbProduct.SelectedIndexChanged += new System.EventHandler(this.CmbProduct_SelectedIndexChanged);
+            this.CmbProduct.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmbProduct_KeyUp);
             // 
             // label5
             // 
@@ -844,6 +845,7 @@
             this.TxtPayeeName.TabIndex = 1;
             this.TxtPayeeName.Text = "Payee Name";
             this.TxtPayeeName.Enter += new System.EventHandler(this.TxtPayeeName_Enter);
+            this.TxtPayeeName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtPayeeName_KeyUp);
             this.TxtPayeeName.Leave += new System.EventHandler(this.TxtPayeeName_Leave);
             // 
             // TxtChequeNo
@@ -1029,6 +1031,7 @@
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(949, 22);
             this.TxtRemarks.TabIndex = 12;
+            this.TxtRemarks.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyUp);
             // 
             // ManageGRN
             // 

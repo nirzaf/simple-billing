@@ -48,7 +48,7 @@ namespace SimpleBilling.MasterForms
             TxtSupplierId.Text = string.Empty;
         }
 
-        private void Info(string Message)
+        private void Message(string Message)
         {
             LblMessage.Text = Message;
         }
@@ -83,14 +83,14 @@ namespace SimpleBilling.MasterForms
                             sup.IsDeleted = true;
                             db.Entry(sup).State = EntityState.Modified;
                             db.SaveChanges();
-                            Info("Supplier Deleted Successfully");
+                            Message("Supplier Deleted Successfully");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
@@ -118,13 +118,13 @@ namespace SimpleBilling.MasterForms
                         {
                             sup.CreatedDate = DateTime.Now;
                             db.Entry(sup).State = EntityState.Added;
-                            Info("Supplier Added");
+                            Message("Supplier Added");
                         }
                         else
                         {
                             sup.UpdatedDate = DateTime.Now;
                             db.Entry(sup).State = EntityState.Modified;
-                            Info("Supplier Modified");
+                            Message("Supplier Modified");
                         }
                         db.SaveChanges();
                     }
@@ -133,7 +133,7 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
@@ -162,6 +162,21 @@ namespace SimpleBilling.MasterForms
             {
                 supplierBindingSource.DataSource = db.Suppliers.Where(c => c.Name.Contains(Text) || c.Address.Contains(Text) || c.CodeNumber.Contains(Text) || c.Contact.Contains(Text) || c.Email.Contains(Text) && !c.IsDeleted).ToList();
             }
+        }
+
+        private void TxtSupplierName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtSupplierName);
+        }
+
+        private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtAddress);
+        }
+
+        private void TxtCodeNumber_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtCodeNumber);
         }
     }
 }

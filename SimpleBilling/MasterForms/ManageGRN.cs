@@ -1124,5 +1124,20 @@ namespace SimpleBilling.MasterForms
         {
             Main.Count = 0;
         }
+
+        private void TxtPayeeName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtPayeeName);
+        }
+
+        private void CmbProduct_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.CmbToCapital(CmbProduct);
+        }
+
+        private void TxtRemarks_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtRemarks);
+        }
     }
 }
