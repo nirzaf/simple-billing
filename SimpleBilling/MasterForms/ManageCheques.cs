@@ -159,5 +159,15 @@ namespace SimpleBilling.MasterForms
         {
             DGVLoad();
         }
+
+        private void TxtPayeeName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtPayeeName);
+        }
+
+        private void TxtChequeNumber_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtChequeNumber);
+        }
     }
 }

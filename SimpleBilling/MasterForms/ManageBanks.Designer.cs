@@ -103,6 +103,7 @@
             this.TxtBankName.Size = new System.Drawing.Size(292, 26);
             this.TxtBankName.TabIndex = 3;
             this.TxtBankName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankName_KeyDown);
+            this.TxtBankName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtBankName_KeyUp);
             // 
             // label1
             // 

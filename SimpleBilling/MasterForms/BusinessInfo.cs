@@ -218,5 +218,15 @@ namespace SimpleBilling.MasterForms
                 TxtContact.Text = DGVBusinessInfo.SelectedRows[0].Cells[3].Value + string.Empty;
             }
         }
+
+        private void TxtName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtName);
+        }
+
+        private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtAddress);
+        }
     }
 }

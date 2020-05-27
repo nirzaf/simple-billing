@@ -83,6 +83,7 @@ namespace SimpleBilling.MasterForms
         {
             if (TxtSearchGRNInvoices.Text.Length > 0)
             {
+                Info.ToCapital(TxtSearchGRNInvoices);
                 SearchDGV(TxtSearchGRNInvoices.Text.Trim());
             }
             else

@@ -90,6 +90,7 @@
             this.TxtCategoryName.Name = "TxtCategoryName";
             this.TxtCategoryName.Size = new System.Drawing.Size(235, 26);
             this.TxtCategoryName.TabIndex = 3;
+            this.TxtCategoryName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCategoryName_KeyUp);
             // 
             // label1
             // 

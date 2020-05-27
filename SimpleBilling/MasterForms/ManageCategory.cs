@@ -146,5 +146,10 @@ namespace SimpleBilling.MasterForms
                 TxtCatId.ReadOnly = true;
             }
         }
+
+        private void TxtCategoryName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtCategoryName);
+        }
     }
 }

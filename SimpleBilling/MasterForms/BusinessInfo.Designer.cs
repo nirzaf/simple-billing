@@ -136,6 +136,7 @@
             this.TxtAddress.Name = "TxtAddress";
             this.TxtAddress.Size = new System.Drawing.Size(375, 26);
             this.TxtAddress.TabIndex = 6;
+            this.TxtAddress.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtAddress_KeyUp);
             // 
             // TxtName
             // 
@@ -144,6 +145,7 @@
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(375, 26);
             this.TxtName.TabIndex = 5;
+            this.TxtName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyUp);
             // 
             // label3
             // 

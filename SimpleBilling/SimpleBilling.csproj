@@ -206,12 +206,6 @@
     <Compile Include="MasterForms\BusinessInfo.Designer.cs">
       <DependentUpon>BusinessInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterForms\ConfigureSellingPrice.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MasterForms\ConfigureSellingPrice.Designer.cs">
-      <DependentUpon>ConfigureSellingPrice.cs</DependentUpon>
-    </Compile>
     <Compile Include="MasterForms\GRNInvoices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,9 +346,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\BusinessInfo.resx">
       <DependentUpon>BusinessInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MasterForms\ConfigureSellingPrice.resx">
-      <DependentUpon>ConfigureSellingPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\GRNInvoices.resx">
       <DependentUpon>GRNInvoices.cs</DependentUpon>

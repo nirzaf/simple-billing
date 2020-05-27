@@ -167,5 +167,10 @@ namespace SimpleBilling.MasterForms
                 Save();
             }
         }
+
+        private void TxtBankName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtBankName);
+        }
     }
 }
