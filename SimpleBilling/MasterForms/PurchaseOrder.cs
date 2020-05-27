@@ -99,7 +99,7 @@ namespace SimpleBilling.MasterForms
                             {
                                 ItemCode = Code,
                                 Quantity = Info.ToInt(TxtOrderQuantity),
-                                UnitType = Info.ToString(TxtUnitType),
+                                UnitType = CmbUnitType.Text,
                                 CreatedDate = DateTime.Today,
                                 OrderedDate = Date
                             };
@@ -112,7 +112,7 @@ namespace SimpleBilling.MasterForms
                         else
                         {
                             OrdItem.Quantity = Info.ToInt(TxtOrderQuantity);
-                            OrdItem.UnitType = Info.ToString(TxtUnitType);
+                            OrdItem.UnitType = CmbUnitType.Text;
                             OrdItem.UpdatedDate = DateTime.Today;
                             OrdItem.OrderedDate = Date;
                             if (db.Entry(OrdItem).State == EntityState.Detached)
@@ -182,7 +182,7 @@ namespace SimpleBilling.MasterForms
                     var item = db.Items.FirstOrDefault(c => c.Code == Code);
                     if (item != null)
                     {
-                        TxtUnitType.Text = item.Unit;
+                        CmbUnitType.Text = item.Unit;
                     }
                 }
             }
@@ -432,6 +432,11 @@ namespace SimpleBilling.MasterForms
         private void DGVReceivedItems_MouseMove(object sender, MouseEventArgs e)
         {
             Main.Count = 0;
+        }
+
+        private void TxtFilterItems_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtFilterItems);
         }
     }
 }
