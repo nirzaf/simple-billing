@@ -31,7 +31,7 @@ namespace SimpleBilling
             }
         }
 
-        private void Info(string Message)
+        private void Message(string Message)
         {
             LblMessage.Text = Message;
         }
@@ -73,13 +73,13 @@ namespace SimpleBilling
                         {
                             db.Entry(cat).State = EntityState.Added;
                             cat.CreatedDate = DateTime.Now;
-                            Info("Customer Added");
+                            Message("Customer Added");
                         }
                         else
                         {
                             db.Entry(cat).State = EntityState.Modified;
                             cat.UpdatedDate = DateTime.Now;
-                            Info("Customer Modified");
+                            Message("Customer Modified");
                         }
                         db.SaveChanges();
                     }
@@ -88,7 +88,7 @@ namespace SimpleBilling
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
@@ -117,7 +117,7 @@ namespace SimpleBilling
                             db.Entry(cus).State = EntityState.Modified;
                             cus.UpdatedDate = DateTime.Now;
                             db.SaveChanges();
-                            Info("Customer Deleted Successfully");
+                            Message("Customer Deleted Successfully");
                         }
                     }
                 }
@@ -125,7 +125,7 @@ namespace SimpleBilling
             catch (Exception ex)
             {
                 ExportJson.Add(ex);
-                Info(ex.ToString());
+                Message(ex.ToString());
             }
             finally
             {
@@ -151,6 +151,16 @@ namespace SimpleBilling
                 BtnEdit.Enabled = true;
                 BtnAdd.Enabled = true;
             }
+        }
+
+        private void TxtName_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtName);
+        }
+
+        private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtAddress);
         }
     }
 }
