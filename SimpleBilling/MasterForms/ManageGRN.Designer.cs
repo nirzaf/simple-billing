@@ -785,6 +785,7 @@
             this.CmbChooseCheques.Name = "CmbChooseCheques";
             this.CmbChooseCheques.Size = new System.Drawing.Size(276, 26);
             this.CmbChooseCheques.TabIndex = 8;
+            this.CmbChooseCheques.SelectedIndexChanged += new System.EventHandler(this.CmbChooseCheques_SelectedIndexChanged);
             // 
             // BtnAddCheque
             // 

@@ -70,6 +70,7 @@ namespace SimpleBilling.MasterForms
             HideAddCustomer();
             CustomersAutocomplete();
             ProductCodeAutocomplete();
+            PayeeAutocomplete();
         }
 
         private void LoabCMB()
@@ -1466,6 +1467,18 @@ namespace SimpleBilling.MasterForms
                 var data = db.Customers.Select(c => c.Contact).ToList();
                 Customers.AddRange(data.ToArray());
                 TxtCustomer.AutoCompleteCustomSource = Customers;
+            }
+        }
+
+        private void PayeeAutocomplete()
+        {
+            AutoCompleteStringCollection Payee = new AutoCompleteStringCollection();
+
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Cheques.Select(c => c.PayeeName).ToList();
+                Payee.AddRange(data.ToArray());
+                TxtPayeeName.AutoCompleteCustomSource = Payee;
             }
         }
 

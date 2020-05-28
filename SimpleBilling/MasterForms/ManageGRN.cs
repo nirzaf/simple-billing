@@ -175,6 +175,23 @@ namespace SimpleBilling.MasterForms
                 LblNetTotal.Text = NetTotal.ToString();
                 LblGrossTotal.Text = GrossTotal.ToString();
             }
+            else
+            {
+                TxtGRNNo.Text = string.Empty;
+                TxtReference.Text = string.Empty;
+                LblStatus.Text = "Ready";
+                CmbProduct.Text = string.Empty;
+                TxtQuantity.Text = string.Empty;
+                TxtUnitCost.Text = string.Empty;
+                TxtDiscount.Text = string.Empty;
+                LblTotalDiscount.Text = "0";
+                LblReturns.Text = "0";
+                LblNetTotal.Text = "0";
+                LblGrossTotal.Text = "0";
+                LblPaymentStatus.Text = "0";
+                TxtGivenAmount.Text = string.Empty;
+                LblBalanceAmount.Text = "0";
+            }
         }
 
         private string PaymentStatus(bool isPaid)
@@ -577,16 +594,18 @@ namespace SimpleBilling.MasterForms
         {
             if (!string.IsNullOrWhiteSpace(CmbPaymentOptions.Text))
             {
+                    TxtGivenAmount.Enabled = true;
                 if (CmbPaymentOptions.SelectedItem.ToString() == "Cheque")
                 {
-                    TxtGivenAmount.Enabled = true;
                     LayoutCheque.Visible = true;
                     BtnAddCheque.Visible = true;
                     CmbChooseCheques.Visible = true;
                 }
                 else
                 {
-                    GRNLoad();
+                    LayoutCheque.Visible = false;
+                    BtnAddCheque.Visible = false;
+                    CmbChooseCheques.Visible = false;
                 }
             }
         }
@@ -1148,6 +1167,23 @@ namespace SimpleBilling.MasterForms
         private void TxtGRNNo_KeyUp(object sender, KeyEventArgs e)
         {
             Info.ToCapital(TxtGRNNo);
+        }
+
+        private void CmbChooseCheques_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ChkNo = CmbChooseCheques.Text;
+            using (BillingContext db = new BillingContext()) 
+            {
+                var data = db.Cheques.FirstOrDefault(c => c.ChequeNo == ChkNo && !c.IsDeleted);
+                if (data != null)
+                {
+                    TxtChequeNo.Text = ChkNo;
+                    TxtPayeeName.Text = data.PayeeName;
+                    TxtAmount.Text = data.Amount.ToString();
+                    DTChequeDueDate.Value = Convert.ToDateTime(data.DueDate);
+                    CmbPaidBy.Text = data.PaidBy;
+                }
+            }
         }
     }
 }
