@@ -18,6 +18,7 @@ namespace SimpleBilling.MasterForms
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
+            TxtBankName.Text = string.Empty;
             TxtBankId.Text = "0";
         }
 
@@ -95,6 +96,7 @@ namespace SimpleBilling.MasterForms
                                 db.Set<Bank>().Attach(b);
                             db.Entry(b).State = EntityState.Added;
                             db.SaveChanges();
+                            TxtBankName.Text = string.Empty;
                         }
                         else if (Info.IsEmpty(TxtBankName) && Info.IsEmpty(TxtBankId) && TxtBankId.Text.Trim() != "0")
                         {

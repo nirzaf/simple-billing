@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
@@ -51,9 +52,12 @@ namespace SimpleBilling.MasterForms
 
         private void GRNLoad()
         {
-            BtnAddCheque.Visible = false;
-            CmbChooseCheques.Visible = false;
-            LayoutCheque.Visible = false;
+            if (CmbPaymentOptions.Text != "Cheque")
+            {
+                CmbChooseCheques.Visible = false;
+                LayoutCheque.Visible = false;
+                BtnAddCheque.Visible = false;
+            }
             BtnGRNReturn.Enabled = false;
             BtnAddToReturn.Visible = false;
             BtnRemoveReturn.Visible = false;
@@ -89,7 +93,7 @@ namespace SimpleBilling.MasterForms
                                 on details.ProductId equals item.Id
                                 select new
                                 {
-                                    details.GRN_Id,
+                                    //details.GRN_Id,
                                     item.Code,
                                     Item_Name = item.ItemName,
                                     UnitPrice = details.UnitCost,
@@ -105,7 +109,7 @@ namespace SimpleBilling.MasterForms
                                     on details.ProductId equals item.Id
                                     select new
                                     {
-                                        details.GRN_Id,
+                                        //details.GRN_Id,
                                         item.Code,
                                         Item_Name = item.ItemName,
                                         UnitPrice = details.UnitCost,
@@ -164,10 +168,10 @@ namespace SimpleBilling.MasterForms
                     }
                 }
 
-                TotalDiscount = Info.GetDGVSum(DGVGRNList, 6);
-                NetTotal = Info.GetDGVSum(DGVGRNList, 7);
-                Returns = Info.GetDGVSum(DGVGRNReturned, 7);
-                GrossTotal = Info.GetDGVSum(DGVGRNList, 5) + Returns;
+                TotalDiscount = Info.GetDGVSum(DGVGRNList, 5);
+                NetTotal = Info.GetDGVSum(DGVGRNList, 6);
+                Returns = Info.GetDGVSum(DGVGRNReturned, 6);
+                GrossTotal = Info.GetDGVSum(DGVGRNList, 4) + Returns;
 
                 LblTotalDiscount.Text = TotalDiscount.ToString();
                 LblReturns.Text = Returns.ToString();
@@ -683,21 +687,43 @@ namespace SimpleBilling.MasterForms
                 {
                     if (Info.IsEmpty(TxtChequeNo) && Info.IsEmpty(TxtPayeeName) && Info.IsEmpty(TxtAmount))
                     {
-                        Cheque ch = new Cheque
+                        var cheque = (from chk in db.Cheques.Where(c => c.ChequeNo == TxtChequeNo.Text.Trim()) select chk).ToList();
+                        if (cheque.Count > 0)
                         {
-                            ChequeNo = TxtChequeNo.Text.Trim(),
-                            PayeeName = TxtPayeeName.Text.Trim(),
-                            Amount = Convert.ToSingle(TxtAmount.Text.Trim()),
-                            DueDate = DTChequeDueDate.Value.ToShortDateString(),
-                            PaidBy = CmbPaidBy.SelectedValue.ToString(),
-                            Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString()),
-                            CreatedDate = DateTime.Today
-                        };
-                        if (db.Entry(ch).State == EntityState.Detached)
-                            db.Set<Cheque>().Attach(ch);
-                        db.Entry(ch).State = EntityState.Added;
-                        db.SaveChanges();
-                        CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                            foreach (var c in cheque) 
+                            {
+                                c.ChequeNo = TxtChequeNo.Text.Trim();
+                                c.PayeeName = TxtPayeeName.Text.Trim();
+                                c.Amount = Convert.ToSingle(TxtAmount.Text.Trim());
+                                c.DueDate = DTChequeDueDate.Value.ToShortDateString();
+                                c.PaidBy = CmbPaidBy.SelectedValue.ToString();
+                                c.Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString());
+                                c.CreatedDate = DateTime.Today;
+                                if (db.Entry(c).State == EntityState.Detached)
+                                    db.Set<Cheque>().Attach(c);
+                                db.Entry(c).State = EntityState.Modified;
+                                db.SaveChanges();
+                                CmbChooseCheques.SelectedValue = c.ChequeNo;
+                            }
+                        }
+                        else
+                        {
+                            Cheque ch = new Cheque
+                            {
+                                ChequeNo = TxtChequeNo.Text.Trim(),
+                                PayeeName = TxtPayeeName.Text.Trim(),
+                                Amount = Convert.ToSingle(TxtAmount.Text.Trim()),
+                                DueDate = DTChequeDueDate.Value.ToShortDateString(),
+                                PaidBy = CmbPaidBy.SelectedValue.ToString(),
+                                Bank = Convert.ToInt32(CmbBank.SelectedValue.ToString()),
+                                CreatedDate = DateTime.Today
+                            };
+                            if (db.Entry(ch).State == EntityState.Detached)
+                                db.Set<Cheque>().Attach(ch);
+                            db.Entry(ch).State = EntityState.Added;
+                            db.SaveChanges();
+                            CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                        }
                     }
                     else
                     {
@@ -972,9 +998,9 @@ namespace SimpleBilling.MasterForms
                     var supplier = db.Suppliers.FirstOrDefault(c => c.CodeNumber == CmbPaidBy.SelectedValue.ToString() && !c.IsDeleted);
                     var employee = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
 
-                    float returnsNetValue = Info.GetDGVSum(DGVGRNReturned, 7);
-                    float grnNetValue = Info.GetDGVSum(DGVGRNList, 7);
-                    float grnGrossValue = Info.GetDGVSum(DGVGRNReturned, 5) + Info.GetDGVSum(DGVGRNList, 5);
+                    float returnsNetValue = Info.GetDGVSum(DGVGRNReturned, 6);
+                    float grnNetValue = Info.GetDGVSum(DGVGRNList, 6);
+                    float grnGrossValue = Info.GetDGVSum(DGVGRNReturned, 4) + Info.GetDGVSum(DGVGRNList, 4);
 
                     //Load Path
                     if (!Path.EndsWith(@"\"))
@@ -990,7 +1016,7 @@ namespace SimpleBilling.MasterForms
                     string Name = data.Name;
                     string Address = data.Address + ",   " + data.Contact;
                     Table bus = new Table(5, false);
-                    string spc = ".                                        .";
+                    string spc = ".                              .";
                     bus.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Name)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
@@ -1046,33 +1072,33 @@ namespace SimpleBilling.MasterForms
 
                     foreach (DataRow d in dt.Rows)
                     {
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
+                        table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[1].ToString())));
                         table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
-                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[2].ToString())));
                         table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[3].ToString())));
                         table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
-                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[4].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
                         table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
                         table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
-
                         table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[6].ToString())));
-                        table.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
-                        table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                     }
                     string devider = "_________________________________________";
                     table.AddFooterCell(new Cell(1, 9).SetBorder(Border.NO_BORDER).SetFontSize(2).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(devider)));
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(2).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(devider)));
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(2).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(devider)));
 
-                    table.AddFooterCell(new Cell(1, 9).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Info.GetDGVSum(DGVGRNList, 5).ToString())));
+                    table.AddFooterCell(new Cell(1, 9).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Info.GetDGVSum(DGVGRNList, 4).ToString())));
+                    table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Info.GetDGVSum(DGVGRNList, 5).ToString())));
                     table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Info.GetDGVSum(DGVGRNList, 6).ToString())));
-                    table.AddFooterCell(new Cell(1, 2).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(Info.GetDGVSum(DGVGRNList, 7).ToString())));
 
                     Table tblReturn = new Table(13, false);
                     tblReturn.SetHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -1105,24 +1131,25 @@ namespace SimpleBilling.MasterForms
 
                         foreach (DataRow d in dt2.Rows)
                         {
+                            tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[0].ToString())));
+                            tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
+
                             tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[1].ToString())));
                             tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
-                            tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                            tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[2].ToString())));
                             tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
                             tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[3].ToString())));
                             tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
-                            tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[4].ToString())));
+                            tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[4].ToString())));
                             tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
 
                             tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
                             tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
-
+                            
                             tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[6].ToString())));
-                            tblReturn.AddCell(new Cell(1, 1).SetFontColor(ColorConstants.WHITE).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(gap)));
-                            tblReturn.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                         }
 
                         tblReturn.AddFooterCell(new Cell(1, 9).SetBorder(Border.NO_BORDER).SetFontSize(2).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(devider)));

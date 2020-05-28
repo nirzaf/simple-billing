@@ -885,6 +885,7 @@
             // CmbBank
             // 
             this.CmbBank.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbBank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBank.FormattingEnabled = true;
             this.CmbBank.Location = new System.Drawing.Point(793, 3);
             this.CmbBank.Name = "CmbBank";
