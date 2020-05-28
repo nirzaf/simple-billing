@@ -793,7 +793,7 @@ namespace SimpleBilling.MasterForms
                                         g.PaidAmount += Convert.ToSingle(LblNetTotal.Text);
                                         g.PendingAmount = 0;
                                         g.IsPaid = true;
-                                        if (db.Entry(grn).State == EntityState.Detached)
+                                        if (db.Entry(g).State == EntityState.Detached)
                                             db.Set<GrnHeader>().Attach(g);
                                         g.UpdatedDate = DateTime.Now;
                                         db.Entry(g).State = EntityState.Modified;
@@ -833,6 +833,7 @@ namespace SimpleBilling.MasterForms
             }
             catch (Exception ex)
             {
+                Info.Mes(ex.Message);
                 ExportJson.Add(ex);
             }
             finally
@@ -1041,7 +1042,6 @@ namespace SimpleBilling.MasterForms
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph("GRN Invoice No: " + RptNo)));
 
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(8);
-                    Paragraph space = new Paragraph("       ");
 
                     Table RptDetails = new Table(7, false);
                     RptDetails.SetHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -1196,7 +1196,6 @@ namespace SimpleBilling.MasterForms
                     Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER);
                     document.SetMargins(10, 40, 10, 40);
                     document.Add(bus);
-                    document.Add(space);
                     document.Add(RptDetails);
                     document.Add(ls);
                     document.Add(table);
