@@ -1019,13 +1019,14 @@ namespace SimpleBilling.MasterForms
                     string Name = data.Name;
                     string Address = data.Address + ",   " + data.Contact;
                     Table bus = new Table(5, false);
-                    string spc = ".                              .";
+                    string g = ".                         .";
+                    string spc = ".                                                        .";
                     bus.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Name)));
-                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
-                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Address)));
-                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(spc)));
-                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetBackgroundColor(ColorConstants.LIGHT_GRAY).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("GRN Invoice No: " + RptNo)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(g)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph(Address)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(g)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.JUSTIFIED).Add(new Paragraph("GRN Invoice No: " + RptNo)));
 
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(8);
                     Paragraph space = new Paragraph("       ");
@@ -1180,8 +1181,8 @@ namespace SimpleBilling.MasterForms
                     string footer1 = "........................................" + footerGap1 + "...........................";
                     string footer2 = "     Supplier Signature" + footerGap2 + "Please Note : Credit balance should be settled within 30 days" + footerGap2 + "Checked by";
                     iText.Kernel.Geom.PageSize ps = pdf.GetDefaultPageSize();
-                    Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
-                    Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
+                    Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER);
+                    Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER);
 
                     document.SetMargins(10, 40, 10, 40);
                     document.Add(bus);
