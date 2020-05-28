@@ -64,19 +64,19 @@
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.TxtFilterItems = new System.Windows.Forms.TextBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.BaseLayout.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVItems
@@ -494,6 +494,7 @@
             // 
             // BaseLayout
             // 
+            this.BaseLayout.BackColor = System.Drawing.Color.DimGray;
             this.BaseLayout.ColumnCount = 2;
             this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.76F));
             this.BaseLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.24F));
@@ -511,14 +512,6 @@
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.90909F));
             this.BaseLayout.Size = new System.Drawing.Size(1250, 457);
             this.BaseLayout.TabIndex = 4;
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
             // 
             // tableLayoutPanel1
             // 
@@ -556,6 +549,14 @@
             this.TxtFilterItems.TabIndex = 1;
             this.TxtFilterItems.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterItems_KeyUp);
             // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
+            // 
             // ManageItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -577,10 +578,10 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.BaseLayout.ResumeLayout(false);
             this.BaseLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
