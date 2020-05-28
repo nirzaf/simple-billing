@@ -192,6 +192,8 @@ namespace SimpleBilling.MasterForms
                 LblPaymentStatus.Text = "0";
                 TxtGivenAmount.Text = string.Empty;
                 LblBalanceAmount.Text = "0";
+                DGVGRNList.DataSource = null;
+                DGVGRNList.Refresh();
             }
         }
 
