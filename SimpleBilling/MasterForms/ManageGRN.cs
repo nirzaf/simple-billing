@@ -93,7 +93,6 @@ namespace SimpleBilling.MasterForms
                                 on details.ProductId equals item.Id
                                 select new
                                 {
-                                    //details.GRN_Id,
                                     item.Code,
                                     Item_Name = item.ItemName,
                                     UnitPrice = details.UnitCost,
@@ -109,7 +108,6 @@ namespace SimpleBilling.MasterForms
                                     on details.ProductId equals item.Id
                                     select new
                                     {
-                                        //details.GRN_Id,
                                         item.Code,
                                         Item_Name = item.ItemName,
                                         UnitPrice = details.UnitCost,
@@ -1002,6 +1000,17 @@ namespace SimpleBilling.MasterForms
                     var supplier = db.Suppliers.FirstOrDefault(c => c.CodeNumber == CmbPaidBy.SelectedValue.ToString() && !c.IsDeleted);
                     var employee = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
 
+                    string PaymentType = "N/A";
+                    string PaymntStatus = "N/A";
+                    string PendingAmount = "N/A";
+                    string PaidAmount = "Not Paid";
+                    if (header != null)
+                    {
+                        PaymentType = header.PaymentType;
+                        PaymntStatus = PaymentStatus(header.IsPaid);
+                        PendingAmount = header.PendingAmount.ToString();
+                        PaidAmount = header.NetTotal.ToString();
+                    }
                     float returnsNetValue = Info.GetDGVSum(DGVGRNReturned, 6);
                     float grnNetValue = Info.GetDGVSum(DGVGRNList, 6);
                     float grnGrossValue = Info.GetDGVSum(DGVGRNReturned, 4) + Info.GetDGVSum(DGVGRNList, 4);
@@ -1037,7 +1046,7 @@ namespace SimpleBilling.MasterForms
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Supplier Info: " + supplier.Name)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Payment Type")));
-                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.PaymentType)));
+                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(PaymentType)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Date : ")));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.GRN_Date)));
@@ -1045,7 +1054,7 @@ namespace SimpleBilling.MasterForms
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(supplier.Address)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Payment Status")));
-                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(PaymentStatus(header.IsPaid))));
+                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(PaymntStatus)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Time : ")));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time.ToString())));
@@ -1053,7 +1062,7 @@ namespace SimpleBilling.MasterForms
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(supplier.Contact)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Pending Amount")));
-                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.PendingAmount.ToString())));
+                    RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(PendingAmount)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetFontColor(ColorConstants.WHITE, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(spc)));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Received By : ")));
                     RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(employee.EmployeeName)));
@@ -1113,7 +1122,7 @@ namespace SimpleBilling.MasterForms
                     if (dt2.Rows.Count == 0)
                     {
                         table.AddFooterCell(new Cell(1, 12).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Paid Amount")));
-                        table.AddFooterCell(new Cell(1, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.NetTotal.ToString())));
+                        table.AddFooterCell(new Cell(1, 13).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(PaidAmount)));
                     }
                     else
                     {

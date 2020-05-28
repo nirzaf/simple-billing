@@ -15,7 +15,8 @@ namespace SimpleBilling
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = db.Settings.FirstOrDefault(c => c.UserId == 1);
+                    Setting data = db.Settings.Take(1).FirstOrDefault();
+                    if (data == null) return;
                     string path = data.ExceptionPath;
                     string fileName = path + "exception.json";
                     string rawJson;

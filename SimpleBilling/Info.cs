@@ -460,7 +460,6 @@ namespace SimpleBilling
                     {
                         File.Create(fileName);
                     }
-
                     rawJson = File.ReadAllText(fileName);
                     var ec = JsonConvert.DeserializeObject<ExpCollection>(rawJson);
 
