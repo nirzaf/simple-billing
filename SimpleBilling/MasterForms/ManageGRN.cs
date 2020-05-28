@@ -838,6 +838,8 @@ namespace SimpleBilling.MasterForms
             }
             finally
             {
+                TxtGivenAmount.Text = string.Empty;
+                LblBalanceAmount.Text = string.Empty;
                 LoadDetails(TxtGRNNo.Text.Trim());
             }
         }
