@@ -19,7 +19,6 @@ namespace SimpleBilling.MasterForms
 {
     public partial class ManageGRN : Form
     {
-        private bool isGrnExist = false;
         private int GRN_Id;
         private string GRN_Code;
         private float GrossTotal = 0;
@@ -253,39 +252,37 @@ namespace SimpleBilling.MasterForms
 
         private void AddItem()
         {
+            bool IsGrnExist;
             try
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    string refNo = TxtReference.Text.Trim();
-                    var data = db.GRNHeaders.FirstOrDefault(c => c.ReferenceNo == refNo && c.IsPaid);
-                    if (data != null)
+                    string GrnNo = TxtGRNNo.Text.Trim();
+                    var grn = (from gh in db.GRNHeaders.Where(c => c.GRN_No == GrnNo && c.Status > 1 || c.IsPaid) select new { gh.GRN_No }).ToList();
+                    if (grn.Count > 0)
                     {
-                        Info.Mes("This Reference No already exist, Please enter some other value");
-                        isGrnExist = true;
+                        Info.Mes("This GRN No already completed, Please enter some other value");
+                        IsGrnExist = true;
                     }
                     else
                     {
-                        isGrnExist = false;
+                        IsGrnExist = false;
                     }
-                }
 
-                using (BillingContext db = new BillingContext())
-                {
-                    string grnNo = TxtGRNNo.Text.Trim();
-                    var data = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == grnNo && c.IsPaid);
-                    if (data != null)
+                    string RefNo = TxtReference.Text.Trim();
+                    var RefNum = (from gh in db.GRNHeaders.Where(c => c.ReferenceNo == RefNo && c.Status > 1 || c.IsPaid) select new { gh.ReferenceNo }).ToList();
+                    if (RefNum.Count > 0)
                     {
-                        isGrnExist = true;
-                        Info.Mes("This GRN No Already Completed");
+                        Info.Mes("This Reference No already completed, Please enter some other value");
+                        IsGrnExist = true;
                     }
                     else
                     {
-                        isGrnExist = false;
+                        IsGrnExist = false;
                     }
                 }
 
-                if (!isGrnExist)
+                if (!IsGrnExist)
                 {
                     using (BillingContext db = new BillingContext())
                     {
@@ -1127,16 +1124,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void TxtGRNNo_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtReference_Leave(object sender, EventArgs e)
-        {
-
-        }
-
         private void BaseLayout_MouseMove(object sender, MouseEventArgs e)
         {
             Main.Count = 0;
@@ -1205,6 +1192,40 @@ namespace SimpleBilling.MasterForms
                     TxtAmount.Text = data.Amount.ToString();
                     DTChequeDueDate.Value = Convert.ToDateTime(data.DueDate);
                     CmbPaidBy.Text = data.PaidBy;
+                }
+            }
+        }
+
+        private void TxtGRNNo_Leave(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                string GrnNo = TxtGRNNo.Text.Trim();
+                var grn = (from gh in db.GRNHeaders.Where(c => c.GRN_No == GrnNo && c.Status > 1 || c.IsPaid) select new { gh.GRN_No }).ToList();
+                if (grn.Count > 0)
+                {
+                    label8.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    label8.ForeColor = System.Drawing.Color.White;
+                }
+            }
+        }
+
+        private void TxtReference_Leave(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                string RefNo = TxtReference.Text.Trim();
+                var RefNum = (from gh in db.GRNHeaders.Where(c => c.ReferenceNo == RefNo && c.Status > 1 || c.IsPaid) select new { gh.ReferenceNo }).ToList();
+                if (RefNum.Count > 0)
+                {
+                    label3.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    label3.ForeColor = System.Drawing.Color.White;
                 }
             }
         }

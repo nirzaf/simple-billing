@@ -21,7 +21,6 @@ namespace SimpleBilling.MasterForms
     public partial class POS : Form
     {
         private int ItemId;
-        private string BarCode;
         private float UnitPrice;
         private float Qty;
         private float Total;
