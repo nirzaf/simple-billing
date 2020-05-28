@@ -828,7 +828,7 @@
             // 
             this.TxtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtAmount.ForeColor = System.Drawing.Color.DarkGray;
+            this.TxtAmount.ForeColor = System.Drawing.Color.DimGray;
             this.TxtAmount.Location = new System.Drawing.Point(319, 3);
             this.TxtAmount.Name = "TxtAmount";
             this.TxtAmount.Size = new System.Drawing.Size(152, 26);
@@ -841,7 +841,7 @@
             // 
             this.TxtPayeeName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPayeeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPayeeName.ForeColor = System.Drawing.Color.DarkGray;
+            this.TxtPayeeName.ForeColor = System.Drawing.Color.DimGray;
             this.TxtPayeeName.Location = new System.Drawing.Point(161, 3);
             this.TxtPayeeName.Name = "TxtPayeeName";
             this.TxtPayeeName.Size = new System.Drawing.Size(152, 26);
@@ -855,7 +855,7 @@
             // 
             this.TxtChequeNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtChequeNo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtChequeNo.ForeColor = System.Drawing.Color.DarkGray;
+            this.TxtChequeNo.ForeColor = System.Drawing.Color.DimGray;
             this.TxtChequeNo.Location = new System.Drawing.Point(3, 3);
             this.TxtChequeNo.Name = "TxtChequeNo";
             this.TxtChequeNo.Size = new System.Drawing.Size(152, 26);

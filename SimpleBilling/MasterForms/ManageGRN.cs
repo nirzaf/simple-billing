@@ -558,8 +558,9 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 MessageBox.Show($"Invoice {TxtGRNNo.Text.Trim()} Completed Successfully! Pending for Approval");
-                LoadDetails(GRN_Code);
-                BtnApprove.Enabled = true;
+                //LoadDetails(GRN_Code);
+                //BtnApprove.Enabled = true;
+                LoadDetails(string.Empty);
             }
         }
 
@@ -1313,7 +1314,7 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 string GrnNo = TxtGRNNo.Text.Trim();
-                var grn = (from gh in db.GRNHeaders.Where(c => c.GRN_No == GrnNo && c.Status > 1 || c.IsPaid) select new { gh.GRN_No }).ToList();
+                var grn = (from gh in db.GRNHeaders.Where(c => (c.GRN_No == GrnNo && c.Status > 1) || (c.GRN_No == GrnNo && c.IsPaid)) select new { gh.GRN_No }).ToList();
                 if (grn.Count > 0)
                 {
                     label8.ForeColor = System.Drawing.Color.Red;
@@ -1330,7 +1331,7 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 string RefNo = TxtReference.Text.Trim();
-                var RefNum = (from gh in db.GRNHeaders.Where(c => c.ReferenceNo == RefNo && c.Status > 1 || c.IsPaid) select new { gh.ReferenceNo }).ToList();
+                var RefNum = (from gh in db.GRNHeaders.Where(c => (c.ReferenceNo == RefNo && c.Status > 1) || (c.ReferenceNo == RefNo && c.IsPaid)) select new { gh.ReferenceNo }).ToList();
                 if (RefNum.Count > 0)
                 {
                     label3.ForeColor = System.Drawing.Color.Red;
