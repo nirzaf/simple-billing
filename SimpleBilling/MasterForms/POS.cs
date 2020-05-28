@@ -69,7 +69,6 @@ namespace SimpleBilling.MasterForms
             HideCheque();
             HideAddCustomer();
             CustomersAutocomplete();
-            BarCodeAutocomplete();
             ProductCodeAutocomplete();
         }
 
@@ -115,7 +114,6 @@ namespace SimpleBilling.MasterForms
             {
                 FormLoad();
                 TxtCustomer.Text = string.Empty;
-                TxtBarCode.Text = string.Empty;
                 TxtProductCode.Text = string.Empty;
                 TxtUnitPrice.Text = string.Empty;
                 TxtQuantity.Text = string.Empty;
@@ -349,8 +347,7 @@ namespace SimpleBilling.MasterForms
                     var data = db.Items.FirstOrDefault(c => c.Id == ItemId);
                     if (data != null)
                     {
-                        TxtUnitPrice.Text = data.UnitCost.ToString();
-                        TxtBarCode.Text = data.Barcode;
+                        TxtUnitPrice.Text = data.SellingPrice.ToString();
                         TxtProductCode.Text = data.Code;
                         LblStockOnHand.Text = data.StockQty.ToString();
                         if (data.StockQty < 10)
@@ -378,25 +375,6 @@ namespace SimpleBilling.MasterForms
             }
         }
 
-        private void GetItemDetailsByBarCode()
-        {
-            if (!string.IsNullOrWhiteSpace(TxtBarCode.Text.Trim()))
-            {
-                BarCode = TxtBarCode.Text.Trim();
-                using (BillingContext db = new BillingContext())
-                {
-                    var data = db.Items.FirstOrDefault(c => c.Barcode == BarCode);
-                    if (data != null)
-                    {
-                        TxtUnitPrice.Text = data.SellingPrice.ToString();
-                        CmbAddItem.Text = data.ItemName;
-                        TxtProductCode.Text = data.Code;
-                        TxtDiscount.Text = "0";
-                    }
-                }
-            }
-        }
-
         private void CmbAddItem_Enter(object sender, EventArgs e)
         {
             GetItemDetailsById();
@@ -405,16 +383,6 @@ namespace SimpleBilling.MasterForms
         private void CmbAddItem_Leave(object sender, EventArgs e)
         {
             GetItemDetailsById();
-        }
-
-        private void TxtBarCode_KeyUp(object sender, KeyEventArgs e)
-        {
-            GetItemDetailsByBarCode();
-        }
-
-        private void TxtBarCode_Enter(object sender, EventArgs e)
-        {
-            GetItemDetailsByBarCode();
         }
 
         private string AddReceiptHeader()
@@ -1498,20 +1466,6 @@ namespace SimpleBilling.MasterForms
                 var data = db.Customers.Select(c => c.Contact).ToList();
                 Customers.AddRange(data.ToArray());
                 TxtCustomer.AutoCompleteCustomSource = Customers;
-            }
-        }
-
-        private void BarCodeAutocomplete()
-        {
-            AutoCompleteStringCollection Barcode = new AutoCompleteStringCollection();
-
-            using (BillingContext db = new BillingContext())
-            {
-                var data = db.Items.Select(c => c.Barcode).ToList();
-                Barcode.AddRange(data.ToArray());
-                TxtBarCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                TxtBarCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                TxtBarCode.AutoCompleteCustomSource = Barcode;
             }
         }
 
