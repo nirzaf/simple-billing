@@ -35,7 +35,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelCRUD = new System.Windows.Forms.TableLayoutPanel();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CmbShelf = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,7 +48,6 @@
             this.TxtItemName = new System.Windows.Forms.TextBox();
             this.TxtSellingPrice = new System.Windows.Forms.TextBox();
             this.ChkBoxIsService = new System.Windows.Forms.CheckBox();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.TxtUnitCost = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,13 +64,19 @@
             this.LblMessage = new System.Windows.Forms.Label();
             this.TimerMessage = new System.Windows.Forms.Timer(this.components);
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TxtFilterItems = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.BaseLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVItems
@@ -164,10 +168,6 @@
             this.CmbCategories.Name = "CmbCategories";
             this.CmbCategories.Size = new System.Drawing.Size(341, 28);
             this.CmbCategories.TabIndex = 10;
-            // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // CmbShelf
             // 
@@ -311,10 +311,6 @@
             this.ChkBoxIsService.Text = "Check If Yes";
             this.ChkBoxIsService.UseVisualStyleBackColor = true;
             // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -348,6 +344,7 @@
             // CmbUnit
             // 
             this.CmbUnit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbUnit.FormattingEnabled = true;
             this.CmbUnit.Items.AddRange(new object[] {
             "PCS",
@@ -504,6 +501,7 @@
             this.BaseLayout.Controls.Add(this.panel1, 1, 1);
             this.BaseLayout.Controls.Add(this.LblMessage, 0, 2);
             this.BaseLayout.Controls.Add(this.DGVItems, 0, 1);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -513,6 +511,50 @@
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.90909F));
             this.BaseLayout.Size = new System.Drawing.Size(1250, 457);
             this.BaseLayout.TabIndex = 4;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.TxtFilterItems, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(715, 43);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(121, 12);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 31);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Search Items";
+            // 
+            // TxtFilterItems
+            // 
+            this.TxtFilterItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtFilterItems.Location = new System.Drawing.Point(217, 15);
+            this.TxtFilterItems.Name = "TxtFilterItems";
+            this.TxtFilterItems.Size = new System.Drawing.Size(495, 26);
+            this.TxtFilterItems.TabIndex = 1;
+            this.TxtFilterItems.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterItems_KeyUp);
             // 
             // ManageItems
             // 
@@ -532,11 +574,13 @@
             this.panel1.ResumeLayout(false);
             this.PanelCRUD.ResumeLayout(false);
             this.PanelCRUD.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.BaseLayout.ResumeLayout(false);
             this.BaseLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -579,5 +623,8 @@
         private System.Windows.Forms.TextBox TxtPrintableName;
         private System.Windows.Forms.TextBox TxtUnitCost;
         private System.Windows.Forms.ComboBox CmbUnit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TxtFilterItems;
     }
 }

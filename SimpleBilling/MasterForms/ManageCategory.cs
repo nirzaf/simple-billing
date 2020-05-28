@@ -40,6 +40,7 @@ namespace SimpleBilling.MasterForms
         {
             PanelCRUD.Enabled = true;
             BtnSave.Enabled = true;
+            TxtCategoryName.Text = string.Empty;
             TxtCategoryName.Focus();
             TxtCatId.Text = "0";
         }
@@ -133,6 +134,7 @@ namespace SimpleBilling.MasterForms
             {
                 DGVCategories.Refresh();
                 LoadDGV();
+                TxtCategoryName.Text = string.Empty;
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using SimpleBilling.Model;
+using Spire.DataExport.PropEditors;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace SimpleBilling.MasterForms
             PanelCRUD.Enabled = false;
             BtnCancel.Enabled = false;
             LblMessage.Text = string.Empty;
-            LoadDGV();
+            LoadDGV(string.Empty);
             DGVItems_CellClick(sender, e as DataGridViewCellEventArgs);
         }
 
@@ -77,27 +78,41 @@ namespace SimpleBilling.MasterForms
 
                     if (items.Id == 0)
                     {
-                        items.Id = Convert.ToInt32(TxtItemId.Text.Trim());
-                        items.Code = TxtItemCode.Text.Trim();
-                        items.ItemName = TxtItemName.Text.Trim();
-                        items.Unit = CmbUnit.Text.Trim();
-                        items.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
-                        items.SellingPrice = Convert.ToSingle(TxtSellingPrice.Text.Trim());
-                        items.PrintableName = TxtPrintableName.Text.Trim();
-                        items.Categories = cat;
-                        items.Shelfs = shelve;
-                        items.IsService = GetIsService();
-                        if (db.Entry(items).State == EntityState.Detached)
-                            db.Set<Item>().Attach(items);
-                        db.Entry(items).State = EntityState.Added;
-                        items.CreatedDate = DateTime.Today;
-                        db.SaveChanges();
-                        Info.Mes("Item Added Successfully");
-                        ResetFeilds();
+                        var IsItemCodeValid = db.Items.FirstOrDefault(c => c.Code == items.Code);
+                        if (IsItemCodeValid == null)
+                        {
+                            items.Id = Convert.ToInt32(TxtItemId.Text.Trim());
+                            items.Code = TxtItemCode.Text.Trim();
+                            items.ItemName = TxtItemName.Text.Trim();
+                            items.Unit = CmbUnit.Text.Trim();
+                            items.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                            items.SellingPrice = Convert.ToSingle(TxtSellingPrice.Text.Trim());
+                            items.PrintableName = TxtPrintableName.Text.Trim();
+                            items.Categories = cat;
+                            items.Shelfs = shelve;
+                            items.IsService = GetIsService();
+                            if (db.Entry(items).State == EntityState.Detached)
+                                db.Set<Item>().Attach(items);
+                            db.Entry(items).State = EntityState.Added;
+                            items.CreatedDate = DateTime.Today;
+                            db.SaveChanges();
+                            Info.Mes("Item Added Successfully");
+                            PanelCRUD.Enabled = false;
+                            BtnCancel.Enabled = false;
+                            BtnSave.Enabled = false;
+                            DGVItems.Refresh();
+                            LoadDGV(string.Empty);
+                            ResetFeilds();
+                        }
+                        else
+                        {
+                            Info.Mes("Item Code Already Exist, Please Use Different Product Code");
+                            TxtItemCode.Focus();
+                        }
                     }
                     else
                     {
-                        var result = db.Items.SingleOrDefault(b => b.Id == items.Id);
+                        var result = db.Items.SingleOrDefault(b => b.Id == items.Id && !b.IsDeleted);
                         if (result != null)
                         {
                             result.Code = TxtItemCode.Text.Trim();
@@ -115,6 +130,11 @@ namespace SimpleBilling.MasterForms
                             db.Entry(result).State = EntityState.Modified;
                             db.SaveChanges();
                             Info.Mes("Item Modified Successfully");
+                            PanelCRUD.Enabled = false;
+                            BtnCancel.Enabled = false;
+                            BtnSave.Enabled = false;
+                            DGVItems.Refresh();
+                            LoadDGV(string.Empty);
                             ResetFeilds();
                         }
                     }
@@ -144,39 +164,55 @@ namespace SimpleBilling.MasterForms
             {
                 Info.Mes(ex.Message.ToString());
             }
-            finally
-            {
-                PanelCRUD.Enabled = false;
-                BtnCancel.Enabled = false;
-                BtnSave.Enabled = false;
-                DGVItems.Refresh();
-                LoadDGV();
-            }
         }
 
-        private void LoadDGV()
+        private void LoadDGV(string Input)
         {
+            
             using (BillingContext db = new BillingContext())
             {
-                var data = (from item in db.Items.Where(c => !c.IsDeleted)
-                            join cat in db.Categories
-                            on item.Categories.CategoryId equals cat.CategoryId
-                            join shelve in db.Shelves
-                            on item.Shelfs.ShelfId equals shelve.ShelfId
-                            select new
-                            {
-                                item.Id,
-                                item.Code,
-                                item.ItemName,
-                                item.Unit,
-                                item.UnitCost,
-                                item.SellingPrice,
-                                item.PrintableName,
-                                item.Categories.CategoryName,
-                                item.Shelfs.ShelfName
-                            }).ToList();
-                DGVItems.DataSource = data;
-
+                if (string.IsNullOrWhiteSpace(Input))
+                {
+                    var data = (from item in db.Items.Where(c => !c.IsDeleted)
+                                join cat in db.Categories
+                                on item.Categories.CategoryId equals cat.CategoryId
+                                join shelve in db.Shelves
+                                on item.Shelfs.ShelfId equals shelve.ShelfId
+                                select new
+                                {
+                                    item.Id,
+                                    item.Code,
+                                    item.ItemName,
+                                    item.Unit,
+                                    item.UnitCost,
+                                    item.SellingPrice,
+                                    item.PrintableName,
+                                    item.Categories.CategoryName,
+                                    item.Shelfs.ShelfName
+                                }).ToList();
+                    DGVItems.DataSource = data;
+                }
+                else
+                {
+                    var data = (from item in db.Items.Where(c => c.Code.Contains(Input) || c.ItemName.Contains(Input) || c.PrintableName.Contains(Input) || c.Unit.Contains(Input) && !c.IsDeleted)
+                                join cat in db.Categories
+                                on item.Categories.CategoryId equals cat.CategoryId
+                                join shelve in db.Shelves
+                                on item.Shelfs.ShelfId equals shelve.ShelfId
+                                select new
+                                {
+                                    item.Id,
+                                    item.Code,
+                                    item.ItemName,
+                                    item.Unit,
+                                    item.UnitCost,
+                                    item.SellingPrice,
+                                    item.PrintableName,
+                                    item.Categories.CategoryName,
+                                    item.Shelfs.ShelfName
+                                }).ToList();
+                    DGVItems.DataSource = data;
+                }
                 CmbCategories.ValueMember = "CategoryId";
                 CmbCategories.DisplayMember = "CategoryName";
                 CmbCategories.DataSource = db.Categories.Where(c => !c.IsDeleted).ToList();
@@ -265,7 +301,7 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 DGVItems.Refresh();
-                LoadDGV();
+                LoadDGV(string.Empty);
             }
         }
 
@@ -314,6 +350,19 @@ namespace SimpleBilling.MasterForms
         private void TxtPrintableName_KeyUp(object sender, KeyEventArgs e)
         {
             Info.ToCapital(TxtPrintableName);
+        }
+
+        private void TxtFilterItems_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                Info.ToCapital(TxtFilterItems);
+                LoadDGV(TxtFilterItems.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                ExportJson.Add(ex);
+            }
         }
     }
 }
