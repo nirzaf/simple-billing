@@ -351,6 +351,7 @@ namespace SimpleBilling.MasterForms
                                             result.UpdatedDate = DateTime.Now;
                                             db.Entry(result).State = EntityState.Modified;
                                             db.SaveChanges();
+                                            GRNItemReset();
                                             if (result.GRN_Id != 0)
                                             {
                                                 LoadDetails(GRN_Code);
@@ -381,6 +382,7 @@ namespace SimpleBilling.MasterForms
                                                 details.CreatedDate = DateTime.Now;
                                                 db.Entry(details).State = EntityState.Added;
                                                 db.SaveChanges();
+                                                GRNItemReset();
                                                 if (details.GRN_Id != 0)
                                                 {
                                                     LoadDetails(GRN_Code);
@@ -395,6 +397,7 @@ namespace SimpleBilling.MasterForms
                                     else
                                     {
                                         Info.Mes("This Grn Invoice for given Invoice No Already Completed");
+                                        LoadDetails(TxtGRNNo.Text.Trim());
                                     }
                                     Calculate();
                                 }
@@ -421,6 +424,14 @@ namespace SimpleBilling.MasterForms
                 ExportJson.Add(ex);
                 Info.Mes(ex.Message);
             }
+        }
+
+        private void GRNItemReset()
+        {
+            CmbProduct.Text = string.Empty;
+            TxtQuantity.Text = "0";
+            TxtUnitCost.Text = "0";
+            TxtDiscount.Text = "0";
         }
 
         private void Calculate()
