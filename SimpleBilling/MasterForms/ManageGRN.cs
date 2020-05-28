@@ -287,7 +287,7 @@ namespace SimpleBilling.MasterForms
                     using (BillingContext db = new BillingContext())
                     {
                         var emp = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
-                        var grn = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == TxtGRNNo.Text.Trim());
+                        var grn =  from gh in db.GRNHeaders.Where(c => c.GRN_No == TxtGRNNo.Text.Trim()) select gh;
                         if (Info.IsEmpty(TxtGRNNo) && Info.IsEmpty(TxtQuantity) && Info.IsEmpty(TxtUnitCost))
                         {
                             try
@@ -318,84 +318,88 @@ namespace SimpleBilling.MasterForms
                                 }
                                 else
                                 {
-                                    if(!grn.IsPaid && grn.Status == 1) 
-                                    { 
-                                        if (db.Entry(grn).State == EntityState.Detached)
-                                            db.Set<GrnHeader>().Attach(grn);
-                                        grn.UpdatedDate = DateTime.Now;
-                                        db.Entry(grn).State = EntityState.Modified;
-                                        db.SaveChanges();
-                                        GRN_Id = grn.GRN_Id;
-                                        GRN_Code = TxtGRNNo.Text.Trim();
-
-                                        int ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
-                                        var result = db.GRNDetails.FirstOrDefault(b => b.GRN_Id == GRN_Id
-                                                    && b.GRNCode == GRN_Code
-                                                    && b.ProductId == ProductId);
-                                        if (result != null)
+                                    foreach(var gh in grn) 
+                                    {
+                                        if (!gh.IsPaid && gh.Status == 1)
                                         {
-                                            result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
-                                            result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
-                                            result.GrossTotal = result.Quantity * result.UnitCost;
-                                            if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
-                                                result.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
-                                            else
-                                                result.Discount = 0;
-
-                                            result.SubTotal = result.GrossTotal - result.Discount;
-                                            if (db.Entry(result).State == EntityState.Detached)
-                                                db.Set<GrnDetails>().Attach(result);
-                                            result.UpdatedDate = DateTime.Now;
-                                            db.Entry(result).State = EntityState.Modified;
+                                            if (db.Entry(gh).State == EntityState.Detached)
+                                                db.Set<GrnHeader>().Attach(gh);
+                                            gh.UpdatedDate = DateTime.Now;
+                                            db.Entry(gh).State = EntityState.Modified;
                                             db.SaveChanges();
-                                            GRNItemReset();
-                                            if (result.GRN_Id != 0)
-                                            {
-                                                LoadDetails(GRN_Code);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            GrnDetails details = new GrnDetails
-                                            {
-                                                GRN_Id = GRN_Id,
-                                                GRNCode = GRN_Code,
-                                                ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
-                                                UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
-                                                Quantity = Convert.ToInt32(TxtQuantity.Text.Trim()),
-                                                GrossTotal = Convert.ToSingle(TxtUnitCost.Text.Trim()) * Convert.ToInt32(TxtQuantity.Text.Trim())
-                                            };
-                                            if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
-                                                details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
-                                            else
-                                                details.Discount = 0;
+                                            GRN_Id = gh.GRN_Id;
+                                            GRN_Code = TxtGRNNo.Text.Trim();
 
-                                            details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
-
-                                            try
+                                            int ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString());
+                                            var result = db.GRNDetails.FirstOrDefault(b => b.GRN_Id == GRN_Id
+                                                        && b.GRNCode == GRN_Code
+                                                        && b.ProductId == ProductId);
+                                            if (result != null)
                                             {
-                                                if (db.Entry(details).State == EntityState.Detached)
-                                                    db.Set<GrnDetails>().Attach(details);
-                                                details.CreatedDate = DateTime.Now;
-                                                db.Entry(details).State = EntityState.Added;
+                                                result.Quantity += Convert.ToInt32(TxtQuantity.Text.Trim());
+                                                result.UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim());
+                                                result.GrossTotal = result.Quantity * result.UnitCost;
+                                                if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
+                                                    result.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                                                else
+                                                    result.Discount = 0;
+
+                                                result.SubTotal = result.GrossTotal - result.Discount;
+                                                if (db.Entry(result).State == EntityState.Detached)
+                                                    db.Set<GrnDetails>().Attach(result);
+                                                result.UpdatedDate = DateTime.Now;
+                                                db.Entry(result).State = EntityState.Modified;
                                                 db.SaveChanges();
                                                 GRNItemReset();
-                                                if (details.GRN_Id != 0)
+                                                if (result.GRN_Id != 0)
                                                 {
                                                     LoadDetails(GRN_Code);
                                                 }
                                             }
-                                            catch (System.Data.Entity.Core.EntityException ex)
+                                            else
                                             {
-                                                ExportJson.Add(ex);
+                                                GrnDetails details = new GrnDetails
+                                                {
+                                                    GRN_Id = GRN_Id,
+                                                    GRNCode = GRN_Code,
+                                                    ProductId = Convert.ToInt32(CmbProduct.SelectedValue.ToString()),
+                                                    UnitCost = Convert.ToSingle(TxtUnitCost.Text.Trim()),
+                                                    Quantity = Convert.ToInt32(TxtQuantity.Text.Trim()),
+                                                    GrossTotal = Convert.ToSingle(TxtUnitCost.Text.Trim()) * Convert.ToInt32(TxtQuantity.Text.Trim())
+                                                };
+                                                if (!string.IsNullOrWhiteSpace(TxtDiscount.Text))
+                                                    details.Discount = Convert.ToSingle(TxtDiscount.Text.Trim());
+                                                else
+                                                    details.Discount = 0;
+
+                                                details.SubTotal = (details.UnitCost * Convert.ToSingle(details.Quantity)) - details.Discount;
+
+                                                try
+                                                {
+                                                    if (db.Entry(details).State == EntityState.Detached)
+                                                        db.Set<GrnDetails>().Attach(details);
+                                                    details.CreatedDate = DateTime.Now;
+                                                    db.Entry(details).State = EntityState.Added;
+                                                    db.SaveChanges();
+                                                    GRNItemReset();
+                                                    if (details.GRN_Id != 0)
+                                                    {
+                                                        LoadDetails(GRN_Code);
+                                                    }
+                                                }
+                                                catch (System.Data.Entity.Core.EntityException ex)
+                                                {
+                                                    ExportJson.Add(ex);
+                                                }
                                             }
                                         }
+                                        else
+                                        {
+                                            Info.Mes("This Grn Invoice for given Invoice No Already Completed");
+                                            LoadDetails(TxtGRNNo.Text.Trim());
+                                        }
                                     }
-                                    else
-                                    {
-                                        Info.Mes("This Grn Invoice for given Invoice No Already Completed");
-                                        LoadDetails(TxtGRNNo.Text.Trim());
-                                    }
+                                    
                                     Calculate();
                                 }
                             }
