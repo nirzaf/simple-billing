@@ -543,7 +543,10 @@ namespace SimpleBilling.MasterForms
             ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
 
             if (Info.IsEmpty(TxtOverallDiscount))
+            {
                 ReceiptTotalDiscount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
+                ReceiptNetTotal -= ReceiptTotalDiscount;
+            }
 
             LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
             LblNetTotal.Text = ReceiptNetTotal.ToString();
