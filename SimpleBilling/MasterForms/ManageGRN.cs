@@ -786,7 +786,7 @@ namespace SimpleBilling.MasterForms
                         {
                             if (!grn.IsPaid)
                             {
-                                if (BalanceValue < 0)
+                                if (BalanceValue <= 0)
                                 {
                                     grn.PaymentType = CmbPaymentOptions.Text;
                                     if (CmbChooseCheques.Text == "Cheque")
