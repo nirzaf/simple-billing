@@ -543,14 +543,11 @@ namespace SimpleBilling.MasterForms
             ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
 
             if (Info.IsEmpty(TxtOverallDiscount))
-            {
                 ReceiptTotalDiscount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
-                ReceiptNetTotal -= ReceiptTotalDiscount; 
-            }
 
             LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
             LblNetTotal.Text = ReceiptNetTotal.ToString();
-            ReceiptSubTotal = Info.GetDGVSum(DGVReceiptBody, 5);
+            ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;
             LblSubTotal.Text = ReceiptSubTotal.ToString();
         }
 
@@ -683,9 +680,9 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    string ItemCode = dgv.Cells[1].Value + string.Empty;
+                    int itemId = Convert.ToInt32(dgv.Cells[0].Value);
                     int quantity = Convert.ToInt32(dgv.Cells[4].Value);
-                    var Result = db.Items.FirstOrDefault(c => c.Code == ItemCode);
+                    var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
                     if (Result != null)
                     {
                         if (value)
