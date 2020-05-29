@@ -151,6 +151,7 @@ namespace SimpleBilling.MasterForms
             {
                 LoadDGV();
                 Save();
+                ResetAdd();
             }
         }
 
@@ -173,10 +174,21 @@ namespace SimpleBilling.MasterForms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            ResetAdd();
             tableLayoutPanel2.Enabled = true;
             BtnSave.Enabled = true;
             BtnCancel.Enabled = true;
             TxtVehicleNumber.ReadOnly = false;
+        }
+
+        private void ResetAdd()
+        {
+            TxtVehicleNumber.Text = string.Empty;
+            TxtType.Text = string.Empty;
+            TxtBrand.Text = string.Empty;
+            TxtModel.Text = string.Empty;
+            TxtCurrentMileage.Text = string.Empty;
+            TxtServiceMileageDue.Text = string.Empty;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

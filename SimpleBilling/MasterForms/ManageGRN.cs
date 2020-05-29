@@ -619,7 +619,7 @@ namespace SimpleBilling.MasterForms
                 {
                     foreach (GrnDetails details in db.GRNDetails)
                     {
-                        if (details.GRNCode == GRN_Code && details.IsDeleted)
+                        if (details.GRNCode == GRN_Code && !details.IsDeleted)
                         {
                             using (BillingContext db1 = new BillingContext())
                             {
@@ -704,7 +704,7 @@ namespace SimpleBilling.MasterForms
                                 db.Entry(c).State = EntityState.Modified;
                                 db.SaveChanges();
                                 LoadCmb();
-                                CmbChooseCheques.SelectedValue = c.ChequeNo;
+                                CmbChooseCheques.Text = c.ChequeNo;
                             }
                         }
                         else
@@ -724,7 +724,7 @@ namespace SimpleBilling.MasterForms
                             db.Entry(ch).State = EntityState.Added;
                             LoadCmb();
                             db.SaveChanges();
-                            CmbChooseCheques.SelectedValue = ch.ChequeNo;
+                            CmbChooseCheques.Text = ch.ChequeNo;
                         }
                     }
                     else
