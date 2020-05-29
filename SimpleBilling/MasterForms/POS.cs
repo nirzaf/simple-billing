@@ -329,6 +329,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtCustomer_KeyUp(object sender, KeyEventArgs e)
         {
+            Info.ToCapital(TxtCustomer);
             LoadCustomer();
         }
 
