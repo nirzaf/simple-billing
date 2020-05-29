@@ -21,6 +21,7 @@ namespace SimpleBilling.MasterForms
     public partial class POS : Form
     {
         private int ItemId;
+        private int CustomerId;
         private float UnitPrice;
         private float Qty;
         private float Total;
@@ -345,6 +346,7 @@ namespace SimpleBilling.MasterForms
                     if (data != null)
                     {
                         LblCustomer.Text = data.Name;
+                        CustomerId = data.CustomerId;
                         var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId && !c.IsDeleted).ToList();
                         if (vehicles != null)
                         {
@@ -367,6 +369,7 @@ namespace SimpleBilling.MasterForms
                         if (customer != null)
                         {
                             LblCustomer.Text = customer.Name;
+                            CustomerId = customer.CustomerId;
                             var vehicles = db.Vehicles.Where(c => c.OwnerId == customer.CustomerId && !c.IsDeleted).ToList();
                             if (vehicles != null)
                             {
@@ -453,7 +456,6 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var customer = db.Customers.FirstOrDefault(c => !c.IsDeleted && c.Contact == TxtCustomer.Text.Trim());
                     ReceiptHeader header = new ReceiptHeader
                     {
                         ReceiptNo = LblReceiptNo.Text.ToString(),
@@ -465,12 +467,12 @@ namespace SimpleBilling.MasterForms
                         NetTotal = 0,
                         PaymentType = PaymentType,
                         PaidAmount = 0,
+                        CustomerId = CustomerId,
                         Balance = 0,
                         Status = 1,
                         CreatedDate = DateTime.Now
                     };
-                    if (customer != null)
-                        header.CustomerId = customer.CustomerId;
+
                     if (ChkVehicle.Checked)
                         header.VehicleNumber = CmbVehicles.SelectedValue.ToString();
 
@@ -1061,6 +1063,14 @@ namespace SimpleBilling.MasterForms
                     var data = db.BusinessModels.FirstOrDefault(c => c.IsActive && !c.IsDeleted);
                     var header = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == RptNo && !c.IsDeleted);
                     var customerDetails = db.Customers.FirstOrDefault(c => c.Contact == TxtCustomer.Text.Trim() && !c.IsDeleted);
+                    if (customerDetails == null)
+                    {
+                        var OwnerId = db.Vehicles.FirstOrDefault(c => c.VehicleNo == TxtCustomer.Text.Trim() && !c.IsDeleted);
+                        if (OwnerId != null)
+                        {
+                            customerDetails = db.Customers.FirstOrDefault(c => c.CustomerId == OwnerId.OwnerId && !c.IsDeleted);
+                        }
+                    }
                     var mlt = (from ml in db.MileTracking.Where(c => !c.IsDeleted && c.ReceiptNo == RptNo)
                                join vl in db.Vehicles.Where(c => !c.IsDeleted)
                                on ml.VehicleNo equals vl.VehicleNo
@@ -1088,11 +1098,10 @@ namespace SimpleBilling.MasterForms
                     bus.SetWidth(UnitValue.CreatePercentValue(100));
                     bus.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     bus.SetFixedLayout();
-                    string spc = ".              .";
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Address)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(ReceiptInfo)));
 
-                    Table RptDetails = new Table(UnitValue.CreatePercentArray(new float[] { 10, 10, 10, 10, 10 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(HorizontalAlignment.CENTER);
+                    Table RptDetails = new Table(UnitValue.CreatePercentArray(new float[] { 20, 10, 5, 5, 5 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     RptDetails.SetWidth(UnitValue.CreatePercentValue(100));
                     RptDetails.SetHorizontalAlignment(HorizontalAlignment.CENTER).SetFontSize(8);
                     RptDetails.SetFixedLayout();
@@ -1100,21 +1109,21 @@ namespace SimpleBilling.MasterForms
                     foreach (var ml in mlt)
                     {
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Billing To: " + customerDetails.Name)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Vehicle Number :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Vehicle Number :")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ml.VehicleNo)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Date : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Date : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Date)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Address)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Current Mileage :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Current Mileage :")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ml.Mileage.ToString() + " km")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Time : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Time : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Contact)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Next Service Due :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Next Service On :")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph((ml.ServiceMileageDue + ml.Mileage + " km").ToString())));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Cashier : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Cashier : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
                     }
 
@@ -1123,19 +1132,19 @@ namespace SimpleBilling.MasterForms
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Billing To: " + customerDetails.Name)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Date : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Date : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Date)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Address)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Time : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Time : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Contact)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Cashier : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Cashier : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
                     }
 
