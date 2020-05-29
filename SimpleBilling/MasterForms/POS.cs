@@ -332,6 +332,67 @@ namespace SimpleBilling.MasterForms
             LoadCustomer();
         }
 
+        private void LoadCustomer()
+        {
+            if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
+            {
+                string MobileNumber = TxtCustomer.Text.Trim();
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber && !c.IsDeleted);
+                    var vehicle = db.Vehicles.FirstOrDefault(c => c.VehicleNo == MobileNumber);
+                    if (data != null)
+                    {
+                        LblCustomer.Text = data.Name;
+                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId && !c.IsDeleted).ToList();
+                        if (vehicles != null)
+                        {
+                            CmbVehicles.Enabled = true;
+                            CmbVehicles.ValueMember = "VehicleNo";
+                            CmbVehicles.DisplayMember = "VehicleNo";
+                            CmbVehicles.DataSource = vehicles;
+                            ChkVehicle.Enabled = true;
+                        }
+                        else
+                        {
+                            ChkVehicle.Enabled = false;
+                            CmbVehicles.Enabled = false;
+                            ChkVehicle.Checked = false;
+                        }
+                    }
+                    else if (vehicle != null)
+                    {
+                        var customer = db.Customers.FirstOrDefault(c => c.CustomerId == vehicle.OwnerId && !c.IsDeleted);
+                        if (customer != null)
+                        {
+                            LblCustomer.Text = customer.Name;
+                            var vehicles = db.Vehicles.Where(c => c.OwnerId == customer.CustomerId && !c.IsDeleted).ToList();
+                            if (vehicles != null)
+                            {
+                                CmbVehicles.Enabled = true;
+                                CmbVehicles.ValueMember = "VehicleNo";
+                                CmbVehicles.DisplayMember = "VehicleNo";
+                                CmbVehicles.DataSource = vehicles;
+                                ChkVehicle.Enabled = true;
+                            }
+                            else
+                            {
+                                ChkVehicle.Enabled = false;
+                                CmbVehicles.Enabled = false;
+                                ChkVehicle.Checked = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        LblCustomer.Text = "Customer";
+                        CmbVehicles.Enabled = false;
+                    }
+                }
+            }
+        }
+
+
         private void CmbAddItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetItemDetailsById();
@@ -1707,43 +1768,6 @@ namespace SimpleBilling.MasterForms
             if (e.KeyCode == Keys.Enter)
             {
                 AddCustomer();
-            }
-        }
-
-        private void LoadCustomer()
-        {
-            if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
-            {
-                string MobileNumber = TxtCustomer.Text.Trim();
-                using (BillingContext db = new BillingContext())
-                {
-                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
-                    if (data != null)
-                    {
-                        LblCustomer.Text = data.Name;
-
-                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId).ToList();
-                        if (vehicles != null)
-                        {
-                            CmbVehicles.Enabled = true;
-                            CmbVehicles.ValueMember = "VehicleNo";
-                            CmbVehicles.DisplayMember = "VehicleNo";
-                            CmbVehicles.DataSource = vehicles;
-                            ChkVehicle.Enabled = true;
-                        }
-                        else
-                        {
-                            ChkVehicle.Enabled = false;
-                            CmbVehicles.Enabled = false;
-                            ChkVehicle.Checked = false;
-                        }
-                    }
-                    else
-                    {
-                        LblCustomer.Text = "Customer";
-                        CmbVehicles.Enabled = false;
-                    }
-                }
             }
         }
 
