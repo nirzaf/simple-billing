@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.MenuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mASTERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -272,6 +273,7 @@
             this.Controls.Add(this.LblAutoLogOut);
             this.Controls.Add(this.MenuStrip1);
             this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.MenuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -279,6 +281,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Window";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Main_KeyPress);
             this.MouseEnter += new System.EventHandler(this.Main_MouseEnter);

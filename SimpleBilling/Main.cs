@@ -356,5 +356,10 @@ namespace SimpleBilling
         {
             Application.Exit();
         }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
