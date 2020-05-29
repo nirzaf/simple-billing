@@ -1148,15 +1148,18 @@ namespace SimpleBilling.MasterForms
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
                     }
 
-                    Table table = new Table(7, false).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(HorizontalAlignment.CENTER);
+                    Table table = new Table(UnitValue.CreatePercentArray(new float[] { 5,18, 4, 3, 4, 4, 4 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(HorizontalAlignment.CENTER);
+                    table.SetWidth(UnitValue.CreatePercentValue(100));
+                    table.SetFixedLayout();
+
                     table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Code")));
                     table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Item Name")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Unit Price")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Qty")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Gross")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Disc.")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Net Total")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Unit Price")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Qty")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Gross")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Disc.")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Net Total")));
 
                     foreach (DataRow d in dt.Rows)
                     {
@@ -1183,12 +1186,14 @@ namespace SimpleBilling.MasterForms
                     table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PendingValue.ToString())));
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(12);
                     StringBuilder footer = new StringBuilder();
+                    Paragraph space = new Paragraph("                  ").SetTextAlignment(TextAlignment.JUSTIFIED_ALL);
                     footer.AppendLine("........................................                                                                                                                                                                ...........................");
                     footer.AppendLine("     Customer Signature                                Please Note : Credit balance should be settled within 30 days                                          Checked by");
                     Paragraph foot = new Paragraph(footer.ToString()).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER);
                     document.Add(RptDetails);
                     document.Add(ls);
                     document.Add(table);
+                    document.Add(space);
                     document.Add(foot);
                     document.Close();
                     Info.StartProcess(fileName);
