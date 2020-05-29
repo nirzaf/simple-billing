@@ -778,52 +778,50 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    var grn = (from gh in db.GRNHeaders.Where(c => c.GRN_No == GRNNo && !c.IsDeleted) select gh).ToList();
-                    if (grn.Count > 0)
+                    var grn = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == GRNNo && !c.IsDeleted);
+                    if (grn != null)
                     {
-                        foreach (var g in grn)
+
+                        if (grn.Status == 3)
                         {
-                            if (g.Status == 3)
+                            if (!grn.IsPaid)
                             {
-                                if (!g.IsPaid)
+                                if (BalanceValue < 0)
                                 {
-                                    if (BalanceValue < 0)
-                                    {
-                                        g.PaymentType = CmbPaymentOptions.Text;
-                                        if (CmbChooseCheques.Text == "Cheque")
-                                            g.ChequeNo = CmbChooseCheques.Text;
-                                        g.PaidAmount += Convert.ToSingle(LblNetTotal.Text);
-                                        g.PendingAmount = 0;
-                                        g.IsPaid = true;
-                                        if (db.Entry(g).State == EntityState.Detached)
-                                            db.Set<GrnHeader>().Attach(g);
-                                        g.UpdatedDate = DateTime.Now;
-                                        db.Entry(g).State = EntityState.Modified;
-                                        db.SaveChanges();
-                                        Info.Mes("Payment Completed Successfully");
-                                    }
-                                    else
-                                    {
-                                        g.PaymentType = CmbPaymentOptions.Text;
-                                        if (CmbChooseCheques.Text == "Cheque")
-                                            g.ChequeNo = CmbChooseCheques.Text;
-                                        if (PaidValue + GivenValue > g.NetTotal)
-                                            g.PaidAmount = g.NetTotal;
-                                        else
-                                            g.PaidAmount += GivenValue;
-                                        g.PendingAmount = g.NetTotal - g.PaidAmount;
-                                        if (db.Entry(grn).State == EntityState.Detached)
-                                            db.Set<GrnHeader>().Attach(g);
-                                        g.UpdatedDate = DateTime.Now;
-                                        db.Entry(g).State = EntityState.Modified;
-                                        db.SaveChanges();
-                                        Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
-                                    }
+                                    grn.PaymentType = CmbPaymentOptions.Text;
+                                    if (CmbChooseCheques.Text == "Cheque")
+                                        grn.ChequeNo = CmbChooseCheques.Text;
+                                    grn.PaidAmount += Convert.ToSingle(LblNetTotal.Text);
+                                    grn.PendingAmount = 0;
+                                    grn.IsPaid = true;
+                                    if (db.Entry(grn).State == EntityState.Detached)
+                                        db.Set<GrnHeader>().Attach(grn);
+                                    grn.UpdatedDate = DateTime.Now;
+                                    db.Entry(grn).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    Info.Mes("Payment Completed Successfully");
                                 }
                                 else
                                 {
-                                    Info.Mes("This Invoice has been paid already");
+                                    grn.PaymentType = CmbPaymentOptions.Text;
+                                    if (CmbChooseCheques.Text == "Cheque")
+                                        grn.ChequeNo = CmbChooseCheques.Text;
+                                    if (PaidValue + GivenValue > grn.NetTotal)
+                                        grn.PaidAmount = grn.NetTotal;
+                                    else
+                                        grn.PaidAmount += GivenValue;
+                                    grn.PendingAmount = grn.NetTotal - grn.PaidAmount;
+                                    if (db.Entry(grn).State == EntityState.Detached)
+                                        db.Set<GrnHeader>().Attach(grn);
+                                    grn.UpdatedDate = DateTime.Now;
+                                    db.Entry(grn).State = EntityState.Modified;
+                                    db.SaveChanges();
+                                    Info.Mes("Payment Added, Pending Amount is " + BalanceValue.ToString());
                                 }
+                            }
+                            else
+                            {
+                                Info.Mes("This Invoice has been paid already");
                             }
                         }
                     }

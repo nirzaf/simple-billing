@@ -680,9 +680,9 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    int itemId = Convert.ToInt32(dgv.Cells[0].Value);
+                    string ItemCode = dgv.Cells[1].Value + string.Empty;
                     int quantity = Convert.ToInt32(dgv.Cells[4].Value);
-                    var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
+                    var Result = db.Items.FirstOrDefault(c => c.Code == ItemCode);
                     if (Result != null)
                     {
                         if (value)
