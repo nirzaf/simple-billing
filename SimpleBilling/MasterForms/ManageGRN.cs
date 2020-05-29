@@ -703,6 +703,7 @@ namespace SimpleBilling.MasterForms
                                     db.Set<Cheque>().Attach(c);
                                 db.Entry(c).State = EntityState.Modified;
                                 db.SaveChanges();
+                                LoadCmb();
                                 CmbChooseCheques.SelectedValue = c.ChequeNo;
                             }
                         }
@@ -721,6 +722,7 @@ namespace SimpleBilling.MasterForms
                             if (db.Entry(ch).State == EntityState.Detached)
                                 db.Set<Cheque>().Attach(ch);
                             db.Entry(ch).State = EntityState.Added;
+                            LoadCmb();
                             db.SaveChanges();
                             CmbChooseCheques.SelectedValue = ch.ChequeNo;
                         }
@@ -1314,7 +1316,8 @@ namespace SimpleBilling.MasterForms
                     TxtPayeeName.Text = data.PayeeName;
                     TxtAmount.Text = data.Amount.ToString();
                     DTChequeDueDate.Value = Convert.ToDateTime(data.DueDate);
-                    CmbPaidBy.Text = data.PaidBy;
+                    CmbPaidBy.SelectedValue = data.PaidBy;
+                    CmbBank.SelectedValue = data.Bank;
                 }
             }
         }

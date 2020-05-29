@@ -4,7 +4,7 @@ namespace SimpleBilling.Model
 {
     public class BillingContext : DbContext
     {
-        public BillingContext() : base("name=con1")
+        public BillingContext() : base("name=con")
         {
             Database.SetInitializer(new BillingDBInitializer());
         }
