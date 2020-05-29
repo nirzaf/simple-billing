@@ -351,5 +351,10 @@ namespace SimpleBilling
         {
             LoadUserTypesPrevileges();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

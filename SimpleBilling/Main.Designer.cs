@@ -53,6 +53,7 @@
             this.ConfigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblAutoLogOut = new System.Windows.Forms.Label();
             this.AutoLogOut = new System.Windows.Forms.Timer(this.components);
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,8 @@
             this.ManageBusinessInfoToolStripMenuItem,
             this.ManageVehicleToolStripMenuItem,
             this.ManageBankToolStripMenuItem,
-            this.PurchaseOrderToolStripMenuItem});
+            this.PurchaseOrderToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
             this.mASTERToolStripMenuItem.Size = new System.Drawing.Size(76, 23);
@@ -233,7 +235,7 @@
             // ConfigsToolStripMenuItem
             // 
             this.ConfigsToolStripMenuItem.Name = "ConfigsToolStripMenuItem";
-            this.ConfigsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.ConfigsToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
             this.ConfigsToolStripMenuItem.Text = "Configs";
             this.ConfigsToolStripMenuItem.Click += new System.EventHandler(this.ConfigsToolStripMenuItem_Click);
             // 
@@ -254,6 +256,13 @@
             this.AutoLogOut.Enabled = true;
             this.AutoLogOut.Interval = 1000;
             this.AutoLogOut.Tick += new System.EventHandler(this.AutoLogOut_Tick);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -307,5 +316,6 @@
         private System.Windows.Forms.ToolStripMenuItem PurchaseOrderToolStripMenuItem;
         private System.Windows.Forms.Label LblAutoLogOut;
         private System.Windows.Forms.Timer AutoLogOut;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
