@@ -40,6 +40,7 @@
             this.TxtPassword = new System.Windows.Forms.TextBox();
             this.BtnAdminLogin = new System.Windows.Forms.Button();
             this.BtnAdminExit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.BaseLayout.SuspendLayout();
@@ -78,6 +79,7 @@
             this.BaseLayout.Controls.Add(this.BtnLogin, 1, 2);
             this.BaseLayout.Controls.Add(this.TxtLogin, 1, 1);
             this.BaseLayout.Controls.Add(this.BtnExit, 1, 3);
+            this.BaseLayout.Controls.Add(this.label1, 1, 0);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(3, 3);
             this.BaseLayout.Name = "BaseLayout";
@@ -202,6 +204,16 @@
             this.BtnAdminExit.UseVisualStyleBackColor = false;
             this.BtnAdminExit.Click += new System.EventHandler(this.BtnAdminExit_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Aqua;
+            this.label1.Location = new System.Drawing.Point(127, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 19);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Version 1.0.0.1";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,5 +254,6 @@
         private System.Windows.Forms.TextBox TxtPassword;
         private System.Windows.Forms.Button BtnAdminLogin;
         private System.Windows.Forms.Button BtnAdminExit;
+        private System.Windows.Forms.Label label1;
     }
 }
