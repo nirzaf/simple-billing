@@ -998,6 +998,10 @@ namespace SimpleBilling.MasterForms
                 {
                     Info.Mes(ex.InnerException.Message);
                 }
+                finally
+                { 
+                    Reset(); 
+                }
             }
         }
 

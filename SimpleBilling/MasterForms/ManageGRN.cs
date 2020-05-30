@@ -612,41 +612,52 @@ namespace SimpleBilling.MasterForms
 
         private void BtnApprove_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to approve this invoice?", "Confirmation Approve", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                using (BillingContext db = new BillingContext())
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to approve this invoice?", "Confirmation Approve", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    foreach (GrnDetails details in db.GRNDetails)
+                    using (BillingContext db = new BillingContext())
                     {
-                        if (details.GRNCode == GRN_Code && !details.IsDeleted)
+                        foreach (GrnDetails details in db.GRNDetails)
                         {
-                            using (BillingContext db1 = new BillingContext())
+                            if (details.GRNCode == GRN_Code && !details.IsDeleted)
                             {
-                                int Item = details.ProductId;
-                                int Qty = details.Quantity;
-                                Item item = db1.Items.FirstOrDefault(c => c.Id.Equals(Item));
-                                item.StockQty += Qty;
-                                if (db1.Entry(item).State == EntityState.Detached)
-                                    db1.Set<Item>().Attach(item);
-                                item.UpdatedDate = DateTime.Now;
-                                db1.Entry(item).State = EntityState.Modified;
-                                db1.SaveChanges();
+                                using (BillingContext db1 = new BillingContext())
+                                {
+                                    int Item = details.ProductId;
+                                    int Qty = details.Quantity;
+                                    Item item = db1.Items.FirstOrDefault(c => c.Id.Equals(Item));
+                                    item.StockQty += Qty;
+                                    if (db1.Entry(item).State == EntityState.Detached)
+                                        db1.Set<Item>().Attach(item);
+                                    item.UpdatedDate = DateTime.Now;
+                                    db1.Entry(item).State = EntityState.Modified;
+                                    db1.SaveChanges();
+                                }
                             }
                         }
-                    }
 
-                    var Result = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRN_Code));
-                    Result.Remarks = TxtRemarks.Text.Trim();
-                    Result.Status = 3;
-                    if (db.Entry(Result).State == EntityState.Detached)
-                        db.Set<GrnHeader>().Attach(Result);
-                    Result.UpdatedDate = DateTime.Now;
-                    db.Entry(Result).State = EntityState.Modified;
-                    db.SaveChanges();
-                    LoadDetails(GRN_Code);
+                        var Result = db.GRNHeaders.FirstOrDefault(c => c.GRN_No.Equals(GRN_Code));
+                        Result.Remarks = TxtRemarks.Text.Trim();
+                        Result.Status = 3;
+                        if (db.Entry(Result).State == EntityState.Detached)
+                            db.Set<GrnHeader>().Attach(Result);
+                        Result.UpdatedDate = DateTime.Now;
+                        db.Entry(Result).State = EntityState.Modified;
+                        db.SaveChanges();
+                        LoadDetails(GRN_Code);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                Reset();
+            }            
         }
 
         private void TxtChequeNo_Enter(object sender, EventArgs e)
