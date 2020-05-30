@@ -779,7 +779,18 @@ namespace SimpleBilling.MasterForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                GRNPayment(TxtGRNNo.Text.Trim());
+                try
+                {
+                    GRNPayment(TxtGRNNo.Text.Trim());
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
+                }
+                finally
+                {
+                    Reset(); 
+                }
             }
         }
 
@@ -996,11 +1007,23 @@ namespace SimpleBilling.MasterForms
 
         private void BtnPrintGRN_Click(object sender, EventArgs e)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                var data = db.Settings.Take(1).FirstOrDefault();
-                GRNAsPDF(dtGRN, dtGRNReturn, TxtGRNNo.Text.Trim(), data.GRNPath);
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.Settings.Take(1).FirstOrDefault();
+                    GRNAsPDF(dtGRN, dtGRNReturn, TxtGRNNo.Text.Trim(), data.GRNPath);
+                }
             }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                Reset();
+            }
+
         }
 
         public void GRNAsPDF(DataTable dt, DataTable dt2, string RptNo, string Path)
