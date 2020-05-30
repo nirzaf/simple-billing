@@ -1539,7 +1539,9 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 var data = db.Customers.Select(c => c.Contact).ToList();
+                var vehicles = db.Vehicles.Select(c => c.VehicleNo).ToList();
                 Customers.AddRange(data.ToArray());
+                Customers.AddRange(vehicles.ToArray());
                 TxtCustomer.AutoCompleteCustomSource = Customers;
             }
         }
