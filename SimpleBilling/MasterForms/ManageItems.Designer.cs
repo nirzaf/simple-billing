@@ -35,6 +35,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelCRUD = new System.Windows.Forms.TableLayoutPanel();
             this.CmbCategories = new System.Windows.Forms.ComboBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CmbShelf = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.TxtItemName = new System.Windows.Forms.TextBox();
             this.TxtSellingPrice = new System.Windows.Forms.TextBox();
             this.ChkBoxIsService = new System.Windows.Forms.CheckBox();
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.TxtUnitCost = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -67,16 +69,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.TxtFilterItems = new System.Windows.Forms.TextBox();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.PanelCRUD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVItems
@@ -168,6 +168,10 @@
             this.CmbCategories.Name = "CmbCategories";
             this.CmbCategories.Size = new System.Drawing.Size(341, 28);
             this.CmbCategories.TabIndex = 10;
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
             // 
             // CmbShelf
             // 
@@ -264,7 +268,7 @@
             this.TxtItemCode.Location = new System.Drawing.Point(126, 108);
             this.TxtItemCode.Name = "TxtItemCode";
             this.TxtItemCode.Size = new System.Drawing.Size(341, 26);
-            this.TxtItemCode.TabIndex = 6;
+            this.TxtItemCode.TabIndex = 1;
             this.TxtItemCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtItemCode_KeyUp);
             // 
             // label2
@@ -285,7 +289,7 @@
             this.TxtItemName.Location = new System.Drawing.Point(126, 143);
             this.TxtItemName.Name = "TxtItemName";
             this.TxtItemName.Size = new System.Drawing.Size(341, 26);
-            this.TxtItemName.TabIndex = 7;
+            this.TxtItemName.TabIndex = 2;
             this.TxtItemName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtItemName_KeyUp);
             // 
             // TxtSellingPrice
@@ -296,7 +300,7 @@
             this.TxtSellingPrice.Location = new System.Drawing.Point(126, 283);
             this.TxtSellingPrice.Name = "TxtSellingPrice";
             this.TxtSellingPrice.Size = new System.Drawing.Size(341, 26);
-            this.TxtSellingPrice.TabIndex = 10;
+            this.TxtSellingPrice.TabIndex = 5;
             // 
             // ChkBoxIsService
             // 
@@ -307,9 +311,13 @@
             this.ChkBoxIsService.Location = new System.Drawing.Point(126, 318);
             this.ChkBoxIsService.Name = "ChkBoxIsService";
             this.ChkBoxIsService.Size = new System.Drawing.Size(341, 30);
-            this.ChkBoxIsService.TabIndex = 20;
+            this.ChkBoxIsService.TabIndex = 6;
             this.ChkBoxIsService.Text = "Check If Yes";
             this.ChkBoxIsService.UseVisualStyleBackColor = true;
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
             // 
             // label9
             // 
@@ -329,7 +337,7 @@
             this.TxtUnitCost.Location = new System.Drawing.Point(126, 248);
             this.TxtUnitCost.Name = "TxtUnitCost";
             this.TxtUnitCost.Size = new System.Drawing.Size(341, 26);
-            this.TxtUnitCost.TabIndex = 9;
+            this.TxtUnitCost.TabIndex = 4;
             // 
             // label7
             // 
@@ -390,7 +398,7 @@
             this.TxtPrintableName.Location = new System.Drawing.Point(126, 178);
             this.TxtPrintableName.Name = "TxtPrintableName";
             this.TxtPrintableName.Size = new System.Drawing.Size(341, 26);
-            this.TxtPrintableName.TabIndex = 22;
+            this.TxtPrintableName.TabIndex = 3;
             this.TxtPrintableName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtPrintableName_KeyUp);
             // 
             // tableLayoutPanel2
@@ -549,14 +557,6 @@
             this.TxtFilterItems.TabIndex = 1;
             this.TxtFilterItems.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterItems_KeyUp);
             // 
-            // categoryBindingSource
-            // 
-            this.categoryBindingSource.DataSource = typeof(SimpleBilling.Model.Category);
-            // 
-            // itemBindingSource
-            // 
-            this.itemBindingSource.DataSource = typeof(SimpleBilling.Model.Item);
-            // 
             // ManageItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -575,13 +575,13 @@
             this.panel1.ResumeLayout(false);
             this.PanelCRUD.ResumeLayout(false);
             this.PanelCRUD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.BaseLayout.ResumeLayout(false);
             this.BaseLayout.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -670,6 +670,9 @@ namespace SimpleBilling.MasterForms
                         {
                             if (!Result.IsPaid && !Result.IsQuotation)
                             {
+
+                                if (ChkVehicle.Checked)
+                                    Result.VehicleNumber = CmbVehicles.SelectedValue.ToString();
                                 if (!string.IsNullOrWhiteSpace(Result.VehicleNumber) && Info.IsEmpty(TxtCurrentMileage) && Info.IsEmpty(TxtNextServiceDue))
                                 {
                                     InsertMileage();
