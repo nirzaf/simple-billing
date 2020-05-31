@@ -122,6 +122,8 @@ namespace SimpleBilling.MasterForms
                 TxtDiscount.Text = string.Empty;
                 TxtSubTotal.Text = string.Empty;
                 TxtNetTotal.Text = string.Empty;
+                TxtCurrentMileage.Text = string.Empty;
+                TxtNextServiceDue.Text = string.Empty;
                 LblReceiptStatus.Text = "Idle";
                 LblSubTotal.Text = "0";
                 LblNetTotal.Text = "0";
@@ -1186,7 +1188,7 @@ namespace SimpleBilling.MasterForms
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                     }
 
-                    pageHeight += 50;
+                    pageHeight += 30;
                     table.AddFooterCell(new Cell(1, 5).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblSubTotal.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
@@ -1821,7 +1823,7 @@ namespace SimpleBilling.MasterForms
 
         private void CmbAddItem_KeyUp(object sender, KeyEventArgs e)
         {
-            Info.CmbToCapital(CmbAddItem);
+            //Info.CmbToCapital(CmbAddItem);
         }
 
         private void TxtChequeNo_KeyUp(object sender, KeyEventArgs e)
