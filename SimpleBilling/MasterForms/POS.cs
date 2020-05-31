@@ -1,4 +1,5 @@
 ﻿using iText.Kernel.Colors;
+using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
@@ -1095,8 +1096,9 @@ namespace SimpleBilling.MasterForms
                     string fileName = Path + Info.RandomString(4) + ".pdf";
                     PdfWriter writer = new PdfWriter(fileName);
                     PdfDocument pdf = new PdfDocument(writer);
-                    Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A4);
-                    document.SetMargins(10, 30, 10, 30);
+                    float pageWidth = PageSize.A4.GetWidth();
+                    float pageHeight = 100;
+
                     string sb = data.Name;
                     Paragraph title = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER);
                     string Address = data.Address + ",   " + data.Contact;
@@ -1112,9 +1114,10 @@ namespace SimpleBilling.MasterForms
                     RptDetails.SetWidth(UnitValue.CreatePercentValue(100));
                     RptDetails.SetHorizontalAlignment(HorizontalAlignment.CENTER).SetFontSize(8);
                     RptDetails.SetFixedLayout();
-
+                    pageHeight += 100;
                     foreach (var ml in mlt)
                     {
+                        pageHeight += 12;
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Billing To: " + customerDetails.Name)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Vehicle Number :")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ml.VehicleNo)));
@@ -1136,6 +1139,7 @@ namespace SimpleBilling.MasterForms
 
                     if (mlt.Count == 0)
                     {
+                        pageHeight += 12;
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Billing To: " + customerDetails.Name)));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
@@ -1160,6 +1164,8 @@ namespace SimpleBilling.MasterForms
                     table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     table.SetFixedLayout();
 
+                    pageHeight += 20;
+
                     table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Code")));
                     table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Item Name")));
                     table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Unit Price")));
@@ -1170,6 +1176,7 @@ namespace SimpleBilling.MasterForms
 
                     foreach (DataRow d in dt.Rows)
                     {
+                        pageHeight += 12;
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[1].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[3].ToString())));
@@ -1179,6 +1186,7 @@ namespace SimpleBilling.MasterForms
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                     }
 
+                    pageHeight += 50;
                     table.AddFooterCell(new Cell(1, 5).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblSubTotal.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
                     table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
@@ -1197,6 +1205,9 @@ namespace SimpleBilling.MasterForms
                     footer.AppendLine("........................................                                                                                                                                                                ...........................");
                     footer.AppendLine("     Customer Signature                                Please Note : Credit balance should be settled within 30 days                                          Checked by");
                     Paragraph foot = new Paragraph(footer.ToString()).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER);
+                    PageSize ps = new PageSize(pageWidth, pageHeight);
+                    Document document = new Document(pdf, ps);
+                    document.SetMargins(10, 30, 10, 30);
                     document.Add(title);
                     document.Add(bus);
                     document.Add(RptDetails);
