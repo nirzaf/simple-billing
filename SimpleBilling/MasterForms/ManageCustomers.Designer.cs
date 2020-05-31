@@ -55,13 +55,18 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
-            this.LblMessage = new System.Windows.Forms.Label();
             this.MessageTimer = new System.Windows.Forms.Timer(this.components);
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtSearchCustomers = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource1)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVCustomers
@@ -79,11 +84,12 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.DGVCustomers.DataSource = this.customersBindingSource1;
-            this.DGVCustomers.Location = new System.Drawing.Point(5, 40);
+            this.DGVCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVCustomers.Location = new System.Drawing.Point(5, 50);
             this.DGVCustomers.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVCustomers.Name = "DGVCustomers";
             this.DGVCustomers.ReadOnly = true;
-            this.DGVCustomers.Size = new System.Drawing.Size(1127, 272);
+            this.DGVCustomers.Size = new System.Drawing.Size(1126, 254);
             this.DGVCustomers.TabIndex = 0;
             this.DGVCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCustomers_CellClick);
             // 
@@ -129,10 +135,11 @@
             // CRUDPanel
             // 
             this.CRUDPanel.Controls.Add(this.tableLayoutPanel1);
-            this.CRUDPanel.Location = new System.Drawing.Point(2, 312);
+            this.CRUDPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CRUDPanel.Location = new System.Drawing.Point(5, 312);
             this.CRUDPanel.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.CRUDPanel.Name = "CRUDPanel";
-            this.CRUDPanel.Size = new System.Drawing.Size(1130, 132);
+            this.CRUDPanel.Size = new System.Drawing.Size(1126, 157);
             this.CRUDPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -275,7 +282,7 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnDelete, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnEdit, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnAdd, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 447);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 476);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -337,21 +344,65 @@
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // LblMessage
-            // 
-            this.LblMessage.AutoSize = true;
-            this.LblMessage.ForeColor = System.Drawing.Color.LawnGreen;
-            this.LblMessage.Location = new System.Drawing.Point(8, 511);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(54, 19);
-            this.LblMessage.TabIndex = 3;
-            this.LblMessage.Text = "label5";
-            // 
             // MessageTimer
             // 
             this.MessageTimer.Enabled = true;
             this.MessageTimer.Interval = 6000;
             this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel2, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.DGVCustomers, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.CRUDPanel, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.93507F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.06493F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 165F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1136, 544);
+            this.tableLayoutPanel3.TabIndex = 4;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.50443F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.49557F));
+            this.tableLayoutPanel4.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.TxtSearchCustomers, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.5F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.5F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1130, 40);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(202, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(151, 27);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Search Customers";
+            // 
+            // TxtSearchCustomers
+            // 
+            this.TxtSearchCustomers.Location = new System.Drawing.Point(359, 3);
+            this.TxtSearchCustomers.Name = "TxtSearchCustomers";
+            this.TxtSearchCustomers.Size = new System.Drawing.Size(416, 26);
+            this.TxtSearchCustomers.TabIndex = 1;
+            this.TxtSearchCustomers.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchCustomers_KeyUp);
             // 
             // ManageCustomers
             // 
@@ -359,10 +410,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1136, 544);
-            this.Controls.Add(this.LblMessage);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.CRUDPanel);
-            this.Controls.Add(this.DGVCustomers);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -376,8 +424,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -399,7 +449,6 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
-        private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer MessageTimer;
         private System.Windows.Forms.TextBox TxtEmail;
         private System.Windows.Forms.Label label2;
@@ -410,5 +459,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.BindingSource customersBindingSource1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox TxtSearchCustomers;
     }
 }

@@ -15,30 +15,34 @@ namespace SimpleBilling
 
         private void ManageCustomers_Load(object sender, EventArgs e)
         {
-            LoadDGV();
+            LoadDGV(string.Empty);
         }
 
-        private void LoadDGV()
+        private void LoadDGV(string Input)
         {
-            LblMessage.Text = "";
             CRUDPanel.Enabled = false;
             BtnSave.Enabled = false;
             BtnCancel.Enabled = false;
             BtnDelete.Enabled = false;
-            using (BillingContext db = new BillingContext())
+            if (!string.IsNullOrWhiteSpace(Input))
             {
-                customersBindingSource1.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
+                using (BillingContext db = new BillingContext())
+                {
+                    customersBindingSource1.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
+                }
+            }
+            else
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    customersBindingSource1.DataSource = db.Customers.Where(c => (c.Name.Contains(Input) || c.Address.Contains(Input) || c.Contact.Contains(Input) || c.Email.Contains(Input)) && !c.IsDeleted).ToList();
+                }
             }
         }
 
         private void Message(string Message)
         {
-            LblMessage.Text = Message;
-        }
-
-        private void MessageTimer_Tick(object sender, EventArgs e)
-        {
-            LblMessage.Text = string.Empty;
+            Info.Mes(Message);
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -93,7 +97,7 @@ namespace SimpleBilling
             finally
             {
                 DGVCustomers.Refresh();
-                LoadDGV();
+                LoadDGV(string.Empty);
             }
         }
 
@@ -130,7 +134,7 @@ namespace SimpleBilling
             finally
             {
                 DGVCustomers.Refresh();
-                LoadDGV();
+                LoadDGV(string.Empty);
             }
         }
 
@@ -161,6 +165,12 @@ namespace SimpleBilling
         private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
         {
             Info.ToCapital(TxtAddress);
+        }
+
+        private void TxtSearchCustomers_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtSearchCustomers);
+            LoadDGV(TxtSearchCustomers.Text.Trim());
         }
     }
 }
