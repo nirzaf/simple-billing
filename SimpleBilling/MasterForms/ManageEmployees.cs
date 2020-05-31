@@ -15,15 +15,15 @@ namespace SimpleBilling.MasterForms
 
         private void ManageEmployees_Load(object sender, EventArgs e)
         {
+            CRUDPanel.Enabled = false;
             LoadDGV(string.Empty);
         }
 
         private void LoadDGV(string Input)
         {
-            CRUDPanel.Enabled = false;
             using (BillingContext db = new BillingContext())
             {
-                if (!string.IsNullOrWhiteSpace(Input))
+                if (string.IsNullOrWhiteSpace(Input))
                 {
                     var data = (from emp in db.Employee.Where(c => !c.IsDeleted)
                                 select new
@@ -32,8 +32,7 @@ namespace SimpleBilling.MasterForms
                                     emp.EmployeeName,
                                     emp.Contact,
                                     emp.Address,
-                                    emp.Email,
-                                    emp.SecretCode
+                                    emp.Email
                                 }).ToList();
                     DGVEmployees.DataSource = data;
                 }
@@ -46,8 +45,7 @@ namespace SimpleBilling.MasterForms
                                     emp.EmployeeName,
                                     emp.Contact,
                                     emp.Address,
-                                    emp.Email,
-                                    emp.SecretCode
+                                    emp.Email
                                 }).Where(a=>a.EmployeeName.Contains(Input) || a.Contact.Contains(Input) || a.Address.Contains(Input) || a.Email.Contains(Input)).ToList();
                     DGVEmployees.DataSource = data;
                 }
@@ -168,6 +166,24 @@ namespace SimpleBilling.MasterForms
         {
             Info.ToCapital(TxtSearchEmployees);
             LoadDGV(TxtSearchEmployees.Text.Trim());
+        }
+
+        private void DGVEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVEmployees.SelectedRows.Count > 0)
+            {
+                TxtEmployeeId.Text = DGVEmployees.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtEmployeeName.Text = DGVEmployees.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtContact.Text = DGVEmployees.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtAddress.Text = DGVEmployees.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtEmail.Text = DGVEmployees.SelectedRows[0].Cells[4].Value + string.Empty;
+                using (BillingContext db = new BillingContext()) 
+                {             
+                    int EmpId = Convert.ToInt32(DGVEmployees.SelectedRows[0].Cells[0].Value + string.Empty);
+                    var emp = db.Employee.FirstOrDefault(c => c.EmployeeId == EmpId && !c.IsDeleted);
+                    TxtSecretCode.Text = emp.SecretCode;
+                }
+            }
         }
     }
 }
