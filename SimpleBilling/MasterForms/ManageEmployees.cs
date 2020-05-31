@@ -15,16 +15,42 @@ namespace SimpleBilling.MasterForms
 
         private void ManageEmployees_Load(object sender, EventArgs e)
         {
-            LoadDGV();
+            LoadDGV(string.Empty);
         }
 
-        private void LoadDGV()
+        private void LoadDGV(string Input)
         {
             CRUDPanel.Enabled = false;
-            LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                employeeBindingSource1.DataSource = db.Employee.Where(c => !c.IsDeleted).ToList();
+                if (!string.IsNullOrWhiteSpace(Input))
+                {
+                    var data = (from emp in db.Employee.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    emp.EmployeeId,
+                                    emp.EmployeeName,
+                                    emp.Contact,
+                                    emp.Address,
+                                    emp.Email,
+                                    emp.SecretCode
+                                }).ToList();
+                    DGVEmployees.DataSource = data;
+                }
+                else
+                {
+                    var data = (from emp in db.Employee.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    emp.EmployeeId,
+                                    emp.EmployeeName,
+                                    emp.Contact,
+                                    emp.Address,
+                                    emp.Email,
+                                    emp.SecretCode
+                                }).Where(a=>a.EmployeeName.Contains(Input) || a.Contact.Contains(Input) || a.Address.Contains(Input) || a.Email.Contains(Input)).ToList();
+                    DGVEmployees.DataSource = data;
+                }
             }
         }
 
@@ -76,13 +102,13 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 DGVEmployees.Refresh();
-                LoadDGV();
+                LoadDGV(string.Empty);
             }
         }
 
         private void Message(string Message)
         {
-            LblMessage.Text = Message;
+            Info.Mes(Message);
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -124,7 +150,7 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 DGVEmployees.Refresh();
-                LoadDGV();
+                LoadDGV(string.Empty);
             }
         }
 
@@ -136,6 +162,12 @@ namespace SimpleBilling.MasterForms
         private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
         {
             Info.ToCapital(TxtAddress);
+        }
+
+        private void TxtSearchEmployees_KeyUp(object sender, KeyEventArgs e)
+        {
+            Info.ToCapital(TxtSearchEmployees);
+            LoadDGV(TxtSearchEmployees.Text.Trim());
         }
     }
 }

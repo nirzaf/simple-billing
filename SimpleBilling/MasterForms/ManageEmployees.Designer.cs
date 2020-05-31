@@ -59,13 +59,18 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
-            this.LblMessage = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtSearchEmployees = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVEmployees
@@ -84,10 +89,11 @@
             this.emailDataGridViewTextBoxColumn,
             this.secretCodeDataGridViewTextBoxColumn});
             this.DGVEmployees.DataSource = this.employeeBindingSource1;
-            this.DGVEmployees.Location = new System.Drawing.Point(2, 41);
+            this.DGVEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVEmployees.Location = new System.Drawing.Point(3, 38);
             this.DGVEmployees.Name = "DGVEmployees";
             this.DGVEmployees.ReadOnly = true;
-            this.DGVEmployees.Size = new System.Drawing.Size(817, 197);
+            this.DGVEmployees.Size = new System.Drawing.Size(815, 242);
             this.DGVEmployees.TabIndex = 0;
             // 
             // employeeIdDataGridViewTextBoxColumn
@@ -139,9 +145,9 @@
             // CRUDPanel
             // 
             this.CRUDPanel.Controls.Add(this.tableLayoutPanel1);
-            this.CRUDPanel.Location = new System.Drawing.Point(2, 256);
+            this.CRUDPanel.Location = new System.Drawing.Point(3, 286);
             this.CRUDPanel.Name = "CRUDPanel";
-            this.CRUDPanel.Size = new System.Drawing.Size(817, 121);
+            this.CRUDPanel.Size = new System.Drawing.Size(815, 118);
             this.CRUDPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -296,11 +302,11 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnDelete, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnEdit, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnAdd, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 383);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 410);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(817, 66);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(815, 66);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // BtnSave
@@ -308,7 +314,7 @@
             this.BtnSave.BackColor = System.Drawing.Color.White;
             this.BtnSave.Location = new System.Drawing.Point(655, 3);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(159, 60);
+            this.BtnSave.Size = new System.Drawing.Size(157, 60);
             this.BtnSave.TabIndex = 4;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = false;
@@ -358,15 +364,58 @@
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // LblMessage
+            // tableLayoutPanel3
             // 
-            this.LblMessage.AutoSize = true;
-            this.LblMessage.ForeColor = System.Drawing.Color.Lime;
-            this.LblMessage.Location = new System.Drawing.Point(11, 453);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(54, 19);
-            this.LblMessage.TabIndex = 3;
-            this.LblMessage.Text = "label6";
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.DGVEmployees, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel2, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.CRUDPanel, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.246377F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.34576F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.67288F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.52795F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(821, 483);
+            this.tableLayoutPanel3.TabIndex = 4;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.TxtSearchEmployees, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(815, 29);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(252, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(152, 29);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Search Employees";
+            // 
+            // TxtSearchEmployees
+            // 
+            this.TxtSearchEmployees.Location = new System.Drawing.Point(410, 3);
+            this.TxtSearchEmployees.Name = "TxtSearchEmployees";
+            this.TxtSearchEmployees.Size = new System.Drawing.Size(402, 26);
+            this.TxtSearchEmployees.TabIndex = 1;
+            this.TxtSearchEmployees.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchEmployees_KeyUp);
             // 
             // ManageEmployees
             // 
@@ -374,10 +423,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(821, 483);
-            this.Controls.Add(this.LblMessage);
-            this.Controls.Add(this.CRUDPanel);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.DGVEmployees);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -393,8 +439,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -420,7 +468,6 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
-        private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.TextBox TxtSecretCode;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.BindingSource employeeBindingSource1;
@@ -430,5 +477,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn secretCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox TxtSearchEmployees;
     }
 }
