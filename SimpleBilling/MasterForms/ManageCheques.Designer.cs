@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageCheques));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DGVChequeDetails = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -99,8 +100,8 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.79365F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.20635F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.45863F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.54137F));
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -114,20 +115,20 @@
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(222, 3);
+            this.textBox1.Location = new System.Drawing.Point(156, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(488, 26);
+            this.textBox1.Size = new System.Drawing.Size(554, 26);
             this.textBox1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 10);
+            this.label1.Location = new System.Drawing.Point(39, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 19);
+            this.label1.Size = new System.Drawing.Size(111, 29);
             this.label1.TabIndex = 1;
             this.label1.Text = "Filter Cheque";
             // 
@@ -349,7 +350,7 @@
             this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CmbPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbPaidBy.FormattingEnabled = true;
-            this.CmbPaidBy.Location = new System.Drawing.Point(170, 116);
+            this.CmbPaidBy.Location = new System.Drawing.Point(170, 115);
             this.CmbPaidBy.Name = "CmbPaidBy";
             this.CmbPaidBy.Size = new System.Drawing.Size(540, 26);
             this.CmbPaidBy.TabIndex = 9;
@@ -368,7 +369,7 @@
             this.CmbBankName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CmbBankName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBankName.FormattingEnabled = true;
-            this.CmbBankName.Location = new System.Drawing.Point(170, 150);
+            this.CmbBankName.Location = new System.Drawing.Point(170, 145);
             this.CmbBankName.Name = "CmbBankName";
             this.CmbBankName.Size = new System.Drawing.Size(540, 26);
             this.CmbBankName.TabIndex = 12;
@@ -407,8 +408,10 @@
             this.ClientSize = new System.Drawing.Size(858, 499);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManageCheques";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Cheques";
             this.Activated += new System.EventHandler(this.ManageCheques_Activated);
             this.Load += new System.EventHandler(this.ManageCheques_Load);

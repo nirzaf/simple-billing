@@ -368,6 +368,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageSupplier";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Supplier";
             this.Load += new System.EventHandler(this.ManageSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).EndInit();

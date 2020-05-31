@@ -162,6 +162,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "ManageStock";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ManageStock";
             this.Load += new System.EventHandler(this.ManageStock_Load);
             this.BaseLayout.ResumeLayout(false);
