@@ -1644,7 +1644,7 @@ namespace SimpleBilling.MasterForms
                     string fileName = Path + Info.RandomString(4) + ".pdf";
                     PdfWriter writer = new PdfWriter(fileName);
                     PdfDocument pdf = new PdfDocument(writer);
-                    Document document = new Document(pdf, iText.Kernel.Geom.PageSize.A5.Rotate());
+                    Document document = new Document(pdf, PageSize.A5.Rotate());
                     document.SetMargins(10, 40, 10, 40);
                     string sb = data.Name;
                     string Address = data.Address + ",   " + data.Contact;
@@ -1767,7 +1767,7 @@ namespace SimpleBilling.MasterForms
 
                     string footer1 = "........................................                                                                                                                                                                ...........................";
                     string footer2 = "     Customer Signature                                    Please Note : Quotation is only valid for up to 7 days                                               Checked by";
-                    iText.Kernel.Geom.PageSize ps = pdf.GetDefaultPageSize();
+                    PageSize ps = pdf.GetDefaultPageSize();
                     Paragraph foot1 = new Paragraph(footer1).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 20, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
                     Paragraph foot2 = new Paragraph(footer2).SetFixedPosition(document.GetLeftMargin(), document.GetBottomMargin() + 10, ps.GetWidth() - document.GetLeftMargin() - document.GetRightMargin()).SetFontSize(8);
 

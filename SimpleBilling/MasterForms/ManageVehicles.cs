@@ -19,6 +19,7 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
+                CustomerAutocomplete();
                 LoadDGV();
             }
             catch (Exception ex)
@@ -152,6 +153,21 @@ namespace SimpleBilling.MasterForms
                 LoadDGV();
                 Save();
                 ResetAdd();
+            }
+        }
+
+
+        private void CustomerAutocomplete()
+        {
+            AutoCompleteStringCollection Customers = new AutoCompleteStringCollection();
+
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.Customers.Select(c => c.Name).ToList();
+                Customers.AddRange(data.ToArray());
+                CmbVehicleOwner.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                CmbVehicleOwner.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                CmbVehicleOwner.AutoCompleteCustomSource = Customers;
             }
         }
 

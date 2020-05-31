@@ -1284,7 +1284,7 @@ namespace SimpleBilling.MasterForms
 
         private void CmbProduct_KeyUp(object sender, KeyEventArgs e)
         {
-            Info.CmbToCapital(CmbProduct);
+            //Info.CmbToCapital(CmbProduct);
         }
 
         private void TxtRemarks_KeyUp(object sender, KeyEventArgs e)
