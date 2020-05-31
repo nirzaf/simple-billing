@@ -56,6 +56,8 @@
             // 
             // DGVShelf
             // 
+            this.DGVShelf.AllowUserToAddRows = false;
+            this.DGVShelf.AllowUserToDeleteRows = false;
             this.DGVShelf.AutoGenerateColumns = false;
             this.DGVShelf.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVShelf.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -66,6 +68,7 @@
             this.DGVShelf.DataSource = this.shelfBindingSource;
             this.DGVShelf.Location = new System.Drawing.Point(5, 38);
             this.DGVShelf.Name = "DGVShelf";
+            this.DGVShelf.ReadOnly = true;
             this.DGVShelf.Size = new System.Drawing.Size(302, 371);
             this.DGVShelf.TabIndex = 0;
             this.DGVShelf.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVShelf_CellClick);
@@ -75,12 +78,14 @@
             this.shelfIdDataGridViewTextBoxColumn.DataPropertyName = "ShelfId";
             this.shelfIdDataGridViewTextBoxColumn.HeaderText = "Shelf Id";
             this.shelfIdDataGridViewTextBoxColumn.Name = "shelfIdDataGridViewTextBoxColumn";
+            this.shelfIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // shelfNameDataGridViewTextBoxColumn
             // 
             this.shelfNameDataGridViewTextBoxColumn.DataPropertyName = "ShelfName";
             this.shelfNameDataGridViewTextBoxColumn.HeaderText = "Shelf Name";
             this.shelfNameDataGridViewTextBoxColumn.Name = "shelfNameDataGridViewTextBoxColumn";
+            this.shelfNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // shelfBindingSource
             // 

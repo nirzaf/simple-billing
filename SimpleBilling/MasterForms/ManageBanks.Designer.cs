@@ -66,6 +66,8 @@
             // 
             // DGVBanks
             // 
+            this.DGVBanks.AllowUserToAddRows = false;
+            this.DGVBanks.AllowUserToDeleteRows = false;
             this.DGVBanks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVBanks.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVBanks.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -73,6 +75,7 @@
             this.DGVBanks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVBanks.Location = new System.Drawing.Point(3, 3);
             this.DGVBanks.Name = "DGVBanks";
+            this.DGVBanks.ReadOnly = true;
             this.DGVBanks.Size = new System.Drawing.Size(470, 285);
             this.DGVBanks.TabIndex = 0;
             this.DGVBanks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVBanks_CellClick);

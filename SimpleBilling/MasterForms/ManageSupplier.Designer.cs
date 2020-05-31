@@ -31,12 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSupplier));
             this.DGVSupplier = new System.Windows.Forms.DataGridView();
-            this.supplierIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -73,57 +67,15 @@
             // 
             // DGVSupplier
             // 
-            this.DGVSupplier.AutoGenerateColumns = false;
+            this.DGVSupplier.AllowUserToAddRows = false;
+            this.DGVSupplier.AllowUserToDeleteRows = false;
             this.DGVSupplier.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVSupplier.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierIdDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.contactDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.codeNumberDataGridViewTextBoxColumn});
-            this.DGVSupplier.DataSource = this.supplierBindingSource;
             this.DGVSupplier.Location = new System.Drawing.Point(5, 45);
             this.DGVSupplier.Name = "DGVSupplier";
+            this.DGVSupplier.ReadOnly = true;
             this.DGVSupplier.Size = new System.Drawing.Size(855, 230);
             this.DGVSupplier.TabIndex = 0;
-            // 
-            // supplierIdDataGridViewTextBoxColumn
-            // 
-            this.supplierIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierId";
-            this.supplierIdDataGridViewTextBoxColumn.HeaderText = "SupplierId";
-            this.supplierIdDataGridViewTextBoxColumn.Name = "supplierIdDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // contactDataGridViewTextBoxColumn
-            // 
-            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
-            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
-            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // codeNumberDataGridViewTextBoxColumn
-            // 
-            this.codeNumberDataGridViewTextBoxColumn.DataPropertyName = "CodeNumber";
-            this.codeNumberDataGridViewTextBoxColumn.HeaderText = "CodeNumber";
-            this.codeNumberDataGridViewTextBoxColumn.Name = "codeNumberDataGridViewTextBoxColumn";
             // 
             // supplierBindingSource
             // 
@@ -264,9 +216,9 @@
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(573, 60);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(115, 19);
+            this.label6.Size = new System.Drawing.Size(140, 19);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Code Number";
+            this.label6.Text = "Opening Balance";
             // 
             // TxtSupplierId
             // 
@@ -454,12 +406,6 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource supplierBindingSource;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer MessageTimer;

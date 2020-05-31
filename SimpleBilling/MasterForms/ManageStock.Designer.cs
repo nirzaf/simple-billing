@@ -62,12 +62,15 @@
             // 
             // DGVManageStocks
             // 
+            this.DGVManageStocks.AllowUserToAddRows = false;
+            this.DGVManageStocks.AllowUserToDeleteRows = false;
             this.DGVManageStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVManageStocks.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVManageStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVManageStocks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVManageStocks.Location = new System.Drawing.Point(3, 37);
             this.DGVManageStocks.Name = "DGVManageStocks";
+            this.DGVManageStocks.ReadOnly = true;
             this.DGVManageStocks.Size = new System.Drawing.Size(601, 436);
             this.DGVManageStocks.TabIndex = 0;
             this.DGVManageStocks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVManageStocks_CellClick);

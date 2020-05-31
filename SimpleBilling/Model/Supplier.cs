@@ -18,7 +18,7 @@ namespace SimpleBilling.Model
         public string Address { get; set; }
         [EmailAddress]
         public string Email { get; set; }
-        public string CodeNumber { get; set; }
+        public float PendingAmount { get; set; }
         public virtual ICollection<GrnHeader> GRNHeaders { get; set; }
 
     }

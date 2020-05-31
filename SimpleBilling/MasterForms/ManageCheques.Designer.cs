@@ -84,12 +84,15 @@
             // 
             // DGVChequeDetails
             // 
+            this.DGVChequeDetails.AllowUserToAddRows = false;
+            this.DGVChequeDetails.AllowUserToDeleteRows = false;
             this.DGVChequeDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVChequeDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVChequeDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVChequeDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVChequeDetails.Location = new System.Drawing.Point(3, 38);
             this.DGVChequeDetails.Name = "DGVChequeDetails";
+            this.DGVChequeDetails.ReadOnly = true;
             this.DGVChequeDetails.Size = new System.Drawing.Size(713, 278);
             this.DGVChequeDetails.TabIndex = 0;
             // 
@@ -346,7 +349,7 @@
             this.CmbPaidBy.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CmbPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbPaidBy.FormattingEnabled = true;
-            this.CmbPaidBy.Location = new System.Drawing.Point(170, 115);
+            this.CmbPaidBy.Location = new System.Drawing.Point(170, 116);
             this.CmbPaidBy.Name = "CmbPaidBy";
             this.CmbPaidBy.Size = new System.Drawing.Size(540, 26);
             this.CmbPaidBy.TabIndex = 9;
@@ -365,7 +368,7 @@
             this.CmbBankName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CmbBankName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBankName.FormattingEnabled = true;
-            this.CmbBankName.Location = new System.Drawing.Point(170, 145);
+            this.CmbBankName.Location = new System.Drawing.Point(170, 150);
             this.CmbBankName.Name = "CmbBankName";
             this.CmbBankName.Size = new System.Drawing.Size(540, 26);
             this.CmbBankName.TabIndex = 12;

@@ -160,7 +160,7 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                supplierBindingSource.DataSource = db.Suppliers.Where(c => c.Name.Contains(Text) || c.Address.Contains(Text) || c.CodeNumber.Contains(Text) || c.Contact.Contains(Text) || c.Email.Contains(Text) && !c.IsDeleted).ToList();
+                supplierBindingSource.DataSource = db.Suppliers.Where(c => c.Name.Contains(Text) || c.Address.Contains(Text) || c.Contact.Contains(Text) || c.Email.Contains(Text) && !c.IsDeleted).ToList();
             }
         }
 

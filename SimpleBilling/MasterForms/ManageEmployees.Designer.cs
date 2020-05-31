@@ -70,6 +70,8 @@
             // 
             // DGVEmployees
             // 
+            this.DGVEmployees.AllowUserToAddRows = false;
+            this.DGVEmployees.AllowUserToDeleteRows = false;
             this.DGVEmployees.AutoGenerateColumns = false;
             this.DGVEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVEmployees.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -84,6 +86,7 @@
             this.DGVEmployees.DataSource = this.employeeBindingSource1;
             this.DGVEmployees.Location = new System.Drawing.Point(2, 41);
             this.DGVEmployees.Name = "DGVEmployees";
+            this.DGVEmployees.ReadOnly = true;
             this.DGVEmployees.Size = new System.Drawing.Size(817, 197);
             this.DGVEmployees.TabIndex = 0;
             // 
@@ -92,36 +95,42 @@
             this.employeeIdDataGridViewTextBoxColumn.DataPropertyName = "EmployeeId";
             this.employeeIdDataGridViewTextBoxColumn.HeaderText = "Id";
             this.employeeIdDataGridViewTextBoxColumn.Name = "employeeIdDataGridViewTextBoxColumn";
+            this.employeeIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // employeeNameDataGridViewTextBoxColumn
             // 
             this.employeeNameDataGridViewTextBoxColumn.DataPropertyName = "EmployeeName";
             this.employeeNameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.employeeNameDataGridViewTextBoxColumn.Name = "employeeNameDataGridViewTextBoxColumn";
+            this.employeeNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contactDataGridViewTextBoxColumn
             // 
             this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
             this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
             this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            this.contactDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // secretCodeDataGridViewTextBoxColumn
             // 
             this.secretCodeDataGridViewTextBoxColumn.DataPropertyName = "SecretCode";
             this.secretCodeDataGridViewTextBoxColumn.HeaderText = "Code";
             this.secretCodeDataGridViewTextBoxColumn.Name = "secretCodeDataGridViewTextBoxColumn";
+            this.secretCodeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // employeeBindingSource1
             // 

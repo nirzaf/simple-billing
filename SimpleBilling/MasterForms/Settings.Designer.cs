@@ -293,12 +293,15 @@
             // 
             // DGVUsers
             // 
+            this.DGVUsers.AllowUserToAddRows = false;
+            this.DGVUsers.AllowUserToDeleteRows = false;
             this.DGVUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVUsers.Location = new System.Drawing.Point(711, 3);
             this.DGVUsers.Name = "DGVUsers";
+            this.DGVUsers.ReadOnly = true;
             this.DGVUsers.Size = new System.Drawing.Size(448, 107);
             this.DGVUsers.TabIndex = 11;
             this.DGVUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVUsers_CellClick);

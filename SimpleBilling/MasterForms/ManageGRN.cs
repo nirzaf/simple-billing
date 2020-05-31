@@ -244,7 +244,7 @@ namespace SimpleBilling.MasterForms
                 CmbChooseCheques.DisplayMember = "ChequeNo";
                 CmbChooseCheques.DataSource = db.Cheques.Where(c => !c.IsDeleted).ToList();
 
-                CmbPaidBy.ValueMember = "CodeNumber";
+                CmbPaidBy.ValueMember = "SupplierId";
                 CmbPaidBy.DisplayMember = "Name";
                 CmbPaidBy.DataSource = db.Suppliers.Where(c => !c.IsDeleted).ToList();
             }
@@ -557,8 +557,6 @@ namespace SimpleBilling.MasterForms
             finally
             {
                 MessageBox.Show($"Invoice {TxtGRNNo.Text.Trim()} Completed Successfully! Pending for Approval");
-                //LoadDetails(GRN_Code);
-                //BtnApprove.Enabled = true;
                 LoadDetails(string.Empty);
             }
         }
@@ -1035,7 +1033,7 @@ namespace SimpleBilling.MasterForms
                     //Retrieve Data
                     var data = db.BusinessModels.FirstOrDefault(c => c.IsActive && !c.IsDeleted);
                     var header = db.GRNHeaders.FirstOrDefault(c => c.GRN_No == RptNo && !c.IsDeleted);
-                    var supplier = db.Suppliers.FirstOrDefault(c => c.CodeNumber == CmbPaidBy.SelectedValue.ToString() && !c.IsDeleted);
+                    var supplier = db.Suppliers.FirstOrDefault(c => c.SupplierId == Convert.ToInt32(CmbPaidBy.SelectedValue.ToString()) && !c.IsDeleted);
                     var employee = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId && !c.IsDeleted);
 
                     string PaymentType = "N/A";
@@ -1073,7 +1071,6 @@ namespace SimpleBilling.MasterForms
                     bus.SetHorizontalAlignment(HorizontalAlignment.CENTER).SetFontSize(8);
                     bus.SetFixedLayout();
 
-                    string g = ".                         .";
                     bus.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(12).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Name)));
                     bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(Address)));
@@ -1109,7 +1106,6 @@ namespace SimpleBilling.MasterForms
                     table.SetWidth(UnitValue.CreatePercentValue(100));
                     table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     table.SetFixedLayout();
-                    string gap = ".        .";
                     table.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(9).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Code")));
                     table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(9).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Item Name")));

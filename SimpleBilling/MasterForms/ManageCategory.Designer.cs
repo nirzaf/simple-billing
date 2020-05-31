@@ -52,6 +52,8 @@
             // 
             // DGVCategories
             // 
+            this.DGVCategories.AllowUserToAddRows = false;
+            this.DGVCategories.AllowUserToDeleteRows = false;
             this.DGVCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCategories.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DGVCategories.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -60,6 +62,7 @@
             this.DGVCategories.Location = new System.Drawing.Point(5, 4);
             this.DGVCategories.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DGVCategories.Name = "DGVCategories";
+            this.DGVCategories.ReadOnly = true;
             this.DGVCategories.Size = new System.Drawing.Size(376, 273);
             this.DGVCategories.TabIndex = 0;
             this.DGVCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategories_CellClick);
