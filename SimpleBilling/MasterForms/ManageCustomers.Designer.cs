@@ -348,7 +348,6 @@
             // 
             this.MessageTimer.Enabled = true;
             this.MessageTimer.Interval = 6000;
-            this.MessageTimer.Tick += new System.EventHandler(this.MessageTimer_Tick);
             // 
             // tableLayoutPanel3
             // 

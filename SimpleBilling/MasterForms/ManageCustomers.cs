@@ -1,4 +1,5 @@
-﻿using SimpleBilling.Model;
+﻿using Microsoft.OData.Edm;
+using SimpleBilling.Model;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -15,29 +16,27 @@ namespace SimpleBilling
 
         private void ManageCustomers_Load(object sender, EventArgs e)
         {
-            LoadDGV(string.Empty);
+            LoadDGV();
         }
 
-        private void LoadDGV(string Input)
+        private void LoadDGV()
         {
-            CRUDPanel.Enabled = false;
-            BtnSave.Enabled = false;
-            BtnCancel.Enabled = false;
-            BtnDelete.Enabled = false;
-            if (!string.IsNullOrWhiteSpace(Input))
+            try
             {
+                CRUDPanel.Enabled = false;
+                BtnSave.Enabled = false;
+                BtnCancel.Enabled = false;
+                BtnDelete.Enabled = false;
                 using (BillingContext db = new BillingContext())
                 {
                     customersBindingSource1.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                using (BillingContext db = new BillingContext())
-                {
-                    customersBindingSource1.DataSource = db.Customers.Where(c => (c.Name.Contains(Input) || c.Address.Contains(Input) || c.Contact.Contains(Input) || c.Email.Contains(Input)) && !c.IsDeleted).ToList();
-                }
+                Info.Mes(ex.Message);
             }
+
         }
 
         private void Message(string Message)
@@ -97,7 +96,7 @@ namespace SimpleBilling
             finally
             {
                 DGVCustomers.Refresh();
-                LoadDGV(string.Empty);
+                LoadDGV();
             }
         }
 
@@ -134,7 +133,7 @@ namespace SimpleBilling
             finally
             {
                 DGVCustomers.Refresh();
-                LoadDGV(string.Empty);
+                LoadDGV();
             }
         }
 
@@ -151,6 +150,12 @@ namespace SimpleBilling
         {
             if (DGVCustomers.SelectedRows.Count > 0)
             {
+                TxtCustomerId.Text = DGVCustomers.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtName.Text = DGVCustomers.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtContact.Text = DGVCustomers.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtEmail.Text = DGVCustomers.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtAddress.Text = DGVCustomers.SelectedRows[0].Cells[4].Value + string.Empty;
+
                 BtnDelete.Enabled = true;
                 BtnEdit.Enabled = true;
                 BtnAdd.Enabled = true;
@@ -170,7 +175,40 @@ namespace SimpleBilling
         private void TxtSearchCustomers_KeyUp(object sender, KeyEventArgs e)
         {
             Info.ToCapital(TxtSearchCustomers);
-            LoadDGV(TxtSearchCustomers.Text.Trim());
+            Search(TxtSearchCustomers.Text.Trim());
+        }
+
+        private void Search(string Input)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                if (!string.IsNullOrWhiteSpace(Input))
+                {
+                    var data = (from cus in db.Customers.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    cus.CustomerId,
+                                    cus.Name,
+                                    cus.Contact,
+                                    cus.Address,
+                                    cus.Email
+                                }).Where(b => b.Name.Contains(Input) || b.Address.Contains(Input) || b.Contact.Contains(Input) || b.Email.Contains(Input)).ToList();
+                    DGVCustomers.DataSource = data;
+                }
+                else
+                {
+                    var data = (from cus in db.Customers.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    cus.CustomerId,
+                                    cus.Name,
+                                    cus.Contact,
+                                    cus.Address,
+                                    cus.Email
+                                }).ToList();
+                    DGVCustomers.DataSource = data;
+                }          
+            } 
         }
     }
 }
