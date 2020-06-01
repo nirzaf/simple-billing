@@ -1,6 +1,7 @@
 ﻿using SimpleBilling.Model;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -33,6 +34,8 @@ namespace SimpleBilling.MasterForms
                                 header.GRN_Id,
                                 header.GRN_No,
                                 Date = header.GRN_Date,
+                                header.IsPaid,
+                                header.Status,
                                 Supplier = supplier.Name,
                                 Created_By = employee.EmployeeName,
                                 Gross_Total = header.GrossTotal,
@@ -40,6 +43,26 @@ namespace SimpleBilling.MasterForms
                                 Net_Total = header.NetTotal
                             }).ToList();
                 DGVInvoices.DataSource = data;
+            }
+        }
+
+        private string Invoice_Status(int Status)
+        {
+            string CurrentStatus;
+            if (Status == 1)
+            {
+                CurrentStatus = "Created";
+                return CurrentStatus;
+            }
+            else if (Status == 2)
+            {
+                CurrentStatus = "Completed";
+                return CurrentStatus;
+            }
+            else
+            {
+                CurrentStatus = "Approved";
+                return CurrentStatus;
             }
         }
 
@@ -107,6 +130,8 @@ namespace SimpleBilling.MasterForms
                                 header.GRN_Id,
                                 header.GRN_No,
                                 Date = header.GRN_Date,
+                                header.IsPaid,
+                                header.Status,
                                 Supplier = supplier.Name,
                                 Created_By = employee.EmployeeName,
                                 Gross_Total = header.GrossTotal,
@@ -126,6 +151,30 @@ namespace SimpleBilling.MasterForms
         {
             DataTable dt = Info.DGVToDataTable(DGVInvoices);
             Info.ExpPDF(dt);
+        }
+
+        private void DGVInvoices_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && e.Value != null)
+            {
+                int quantity = Convert.ToInt32(e.Value);
+
+                if (quantity == 1)
+                {
+                    e.CellStyle.BackColor = Color.Aqua;
+                    e.Value = Invoice_Status(quantity);
+                }
+                if (quantity == 2)
+                {
+                    e.CellStyle.BackColor = Color.Yellow;
+                    e.Value = Invoice_Status(quantity);
+                }
+                if (quantity == 3)
+                {
+                    e.CellStyle.BackColor = Color.Lime;
+                    e.Value = Invoice_Status(quantity);
+                }
+            }
         }
     }
 }
