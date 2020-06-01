@@ -34,13 +34,13 @@
             this.BtnLogin = new System.Windows.Forms.Button();
             this.TxtLogin = new System.Windows.Forms.TextBox();
             this.BtnExit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtUsername = new System.Windows.Forms.TextBox();
             this.TxtPassword = new System.Windows.Forms.TextBox();
             this.BtnAdminLogin = new System.Windows.Forms.Button();
             this.BtnAdminExit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.BaseLayout.SuspendLayout();
@@ -126,6 +126,16 @@
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Aqua;
+            this.label1.Location = new System.Drawing.Point(127, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 19);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Version 1.0.0.2";
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -203,16 +213,6 @@
             this.BtnAdminExit.Text = "Exit";
             this.BtnAdminExit.UseVisualStyleBackColor = false;
             this.BtnAdminExit.Click += new System.EventHandler(this.BtnAdminExit_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Aqua;
-            this.label1.Location = new System.Drawing.Point(127, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 19);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Version 1.0.0.1";
             // 
             // Login
             // 
