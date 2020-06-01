@@ -38,6 +38,11 @@ namespace SimpleBilling.MasterForms
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             PanelCRUD.Enabled = true;
+            if (Info.UserType == 3)
+            {
+                BtnEdit.Enabled = false;
+                BtnDelete.Enabled = false;
+            }
             BtnSave.Enabled = true;
             TxtCategoryName.Text = string.Empty;
             TxtCategoryName.Focus();

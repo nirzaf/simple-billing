@@ -13,6 +13,8 @@ namespace SimpleBilling.MasterForms
             InitializeComponent();
         }
 
+
+
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             CRUDPanel.Enabled = true;
@@ -35,7 +37,7 @@ namespace SimpleBilling.MasterForms
             BtnSave.Enabled = false;
             BtnCancel.Enabled = false;
             BtnAdd.Enabled = true;
-            BtnEdit.Enabled = true;
+            if(Info.UserType != 3)BtnEdit.Enabled = true;
         }
 
         private void DGVBanks_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -44,7 +46,7 @@ namespace SimpleBilling.MasterForms
             {
                 TxtBankId.Text = DGVBanks.SelectedRows[0].Cells[0].Value + string.Empty;
                 TxtBankName.Text = DGVBanks.SelectedRows[0].Cells[1].Value + string.Empty;
-                BtnDelete.Enabled = true;
+                if(Info.UserType != 3)BtnDelete.Enabled = true;
             }
         }
 
@@ -60,7 +62,8 @@ namespace SimpleBilling.MasterForms
             BtnSave.Enabled = false;
             BtnCancel.Enabled = false;
             BtnAdd.Enabled = true;
-            BtnEdit.Enabled = true;
+            if(Info.UserType != 3)
+                BtnEdit.Enabled = true;
             using (BillingContext db = new BillingContext())
             {
                 var data = (from bank in db.Banks.Where(c => !c.IsDeleted)

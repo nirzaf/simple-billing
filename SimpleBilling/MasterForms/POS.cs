@@ -413,12 +413,13 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     var data = db.Items.FirstOrDefault(c => c.Id == ItemId);
+                    var stock = db.Settings.Take(1).FirstOrDefault();
                     if (data != null)
                     {
                         TxtUnitPrice.Text = data.SellingPrice.ToString();
                         TxtProductCode.Text = data.Code;
                         LblStockOnHand.Text = data.StockQty.ToString();
-                        if (data.StockQty < 10)
+                        if (data.StockQty < stock.SetMinValue)
                             LblStockOnHand.ForeColor = System.Drawing.Color.Red;
                         else
                             LblStockOnHand.ForeColor = System.Drawing.Color.Lime;

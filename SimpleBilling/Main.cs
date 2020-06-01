@@ -301,17 +301,17 @@ namespace SimpleBilling
             {
                 if (Info.UserType == 3)
                 {
-                    ManageItemsToolStripMenuItem.Enabled = false;
-                    ManageSuppliersToolStripMenuItem.Enabled = false;
-                    ManageCustomersToolStripMenuItem.Enabled = false;
+                    ManageItemsToolStripMenuItem.Enabled = true;
+                    ManageSuppliersToolStripMenuItem.Enabled = true;
+                    ManageCustomersToolStripMenuItem.Enabled = true;
                     ManageStockToolStripMenuItem.Enabled = false;
                     ManageEmployeesToolStripMenuItem.Enabled = false;
-                    ManageShelvesToolStripMenuItem.Enabled = false;
-                    ManageCategoryToolStripMenuItem.Enabled = false;
+                    ManageShelvesToolStripMenuItem.Enabled = true;
+                    ManageCategoryToolStripMenuItem.Enabled = true;
                     ManageBusinessInfoToolStripMenuItem.Enabled = false;
-                    ManageVehicleToolStripMenuItem.Enabled = false;
-                    ManageBankToolStripMenuItem.Enabled = false;
-                    PurchaseOrderToolStripMenuItem.Enabled = false;
+                    ManageVehicleToolStripMenuItem.Enabled = true;
+                    ManageBankToolStripMenuItem.Enabled = true;
+                    PurchaseOrderToolStripMenuItem.Enabled = true;
                     ConfigsToolStripMenuItem.Enabled = false;
                 }
                 if (Info.UserType == 2)
