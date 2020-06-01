@@ -51,9 +51,9 @@
             this.DGVInvoices.BackgroundColor = System.Drawing.Color.DarkGray;
             this.DGVInvoices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVInvoices.Location = new System.Drawing.Point(3, 40);
+            this.DGVInvoices.Location = new System.Drawing.Point(3, 41);
             this.DGVInvoices.Name = "DGVInvoices";
-            this.DGVInvoices.Size = new System.Drawing.Size(933, 322);
+            this.DGVInvoices.Size = new System.Drawing.Size(933, 338);
             this.DGVInvoices.TabIndex = 0;
             this.DGVInvoices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoices_CellClick);
             this.DGVInvoices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVInvoices_CellDoubleClick);
@@ -68,7 +68,7 @@
             this.BtnLoadInvoice.ForeColor = System.Drawing.Color.Black;
             this.BtnLoadInvoice.Location = new System.Drawing.Point(778, 3);
             this.BtnLoadInvoice.Name = "BtnLoadInvoice";
-            this.BtnLoadInvoice.Size = new System.Drawing.Size(152, 31);
+            this.BtnLoadInvoice.Size = new System.Drawing.Size(152, 32);
             this.BtnLoadInvoice.TabIndex = 1;
             this.BtnLoadInvoice.Text = "Load Invoice";
             this.BtnLoadInvoice.UseVisualStyleBackColor = false;
@@ -84,11 +84,12 @@
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
-            this.BaseLayout.RowCount = 3;
+            this.BaseLayout.RowCount = 4;
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.068627F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.39216F));
             this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.30928F));
-            this.BaseLayout.Size = new System.Drawing.Size(939, 408);
+            this.BaseLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.BaseLayout.Size = new System.Drawing.Size(939, 461);
             this.BaseLayout.TabIndex = 2;
             this.BaseLayout.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BaseLayout_MouseMove);
             // 
@@ -105,11 +106,11 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnLoadInvoice, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnExportToExcel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 368);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 385);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(933, 37);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(933, 38);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // BtnExportToPdf
@@ -119,7 +120,7 @@
             this.BtnExportToPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportToPdf.Location = new System.Drawing.Point(158, 3);
             this.BtnExportToPdf.Name = "BtnExportToPdf";
-            this.BtnExportToPdf.Size = new System.Drawing.Size(149, 31);
+            this.BtnExportToPdf.Size = new System.Drawing.Size(149, 32);
             this.BtnExportToPdf.TabIndex = 3;
             this.BtnExportToPdf.Text = "Export to PDF";
             this.BtnExportToPdf.UseVisualStyleBackColor = false;
@@ -132,7 +133,7 @@
             this.BtnExportToExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportToExcel.Location = new System.Drawing.Point(3, 3);
             this.BtnExportToExcel.Name = "BtnExportToExcel";
-            this.BtnExportToExcel.Size = new System.Drawing.Size(149, 31);
+            this.BtnExportToExcel.Size = new System.Drawing.Size(149, 32);
             this.BtnExportToExcel.TabIndex = 2;
             this.BtnExportToExcel.Text = "Export to Excel";
             this.BtnExportToExcel.UseVisualStyleBackColor = false;
@@ -141,11 +142,11 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.57556F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.37192F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.29153F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.72026F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.46945F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.39657F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.04823F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.32797F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.61415F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.5059F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.TxtSearchGRNInvoices, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -153,7 +154,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(933, 31);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(933, 32);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // label1
@@ -162,9 +163,9 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(41, 0);
+            this.label1.Location = new System.Drawing.Point(31, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 31);
+            this.label1.Size = new System.Drawing.Size(63, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Search";
             // 
@@ -172,9 +173,9 @@
             // 
             this.TxtSearchGRNInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtSearchGRNInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSearchGRNInvoices.Location = new System.Drawing.Point(110, 3);
+            this.TxtSearchGRNInvoices.Location = new System.Drawing.Point(100, 3);
             this.TxtSearchGRNInvoices.Name = "TxtSearchGRNInvoices";
-            this.TxtSearchGRNInvoices.Size = new System.Drawing.Size(378, 26);
+            this.TxtSearchGRNInvoices.Size = new System.Drawing.Size(321, 26);
             this.TxtSearchGRNInvoices.TabIndex = 1;
             this.TxtSearchGRNInvoices.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchGRNInvoices_KeyUp);
             // 
@@ -183,7 +184,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(939, 408);
+            this.ClientSize = new System.Drawing.Size(939, 461);
             this.Controls.Add(this.BaseLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GRNInvoices";
