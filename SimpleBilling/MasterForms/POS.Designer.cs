@@ -526,6 +526,7 @@
             this.TxtSearchByVehicleNumber.Size = new System.Drawing.Size(185, 22);
             this.TxtSearchByVehicleNumber.TabIndex = 2;
             this.TxtSearchByVehicleNumber.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TxtSearchByVehicleNumber_MouseClick);
+            this.TxtSearchByVehicleNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByVehicleNumber_KeyDown);
             this.TxtSearchByVehicleNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByVehicleNumber_KeyUp);
             // 
             // TxtCustomer

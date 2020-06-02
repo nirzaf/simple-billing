@@ -1849,7 +1849,7 @@ namespace SimpleBilling.MasterForms
                         var data = db.Vehicles.FirstOrDefault(c => c.VehicleNo == VehicleNumber && !c.IsDeleted);
                         if (data != null)
                         {
-                            var Customer = db.Customers.FirstOrDefault(c => c.CustomerId == data.OwnerId && !c.IsDeleted);
+                            var Customer = db.Customers.FirstOrDefault(c => c.CustomerId == data.OwnerId);
 
                             if (Customer != null)
                             {
@@ -1883,6 +1883,16 @@ namespace SimpleBilling.MasterForms
                         Info.Mes(ex.Message);
                     }                   
                 }
+            }
+        }
+
+        private void TxtSearchByVehicleNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && LblCustomer.Text == "Customer")
+            {
+                ShowAddCustomer();
+                TxtName.Focus();
+                TxtContact.Text = TxtCustomer.Text.Trim();
             }
         }
     }
