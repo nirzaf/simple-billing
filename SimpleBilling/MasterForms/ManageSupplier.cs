@@ -136,12 +136,14 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
-                        Supplier sup = new Supplier();
-                        sup.Name = TxtSupplierName.Text.Trim();
-                        sup.Address = TxtAddress.Text.Trim();
-                        sup.Contact = TxtContact.Text.Trim();
-                        sup.Email = TxtEmail.Text.Trim();
-                        sup.PendingAmount = Convert.ToInt32(TxtCodeNumber.Text.Trim());
+                        Supplier sup = new Supplier
+                        {
+                            Name = TxtSupplierName.Text.Trim(),
+                            Address = TxtAddress.Text.Trim(),
+                            Contact = TxtContact.Text.Trim(),
+                            Email = TxtEmail.Text.Trim(),
+                            PendingAmount = Convert.ToInt32(TxtCodeNumber.Text.Trim())
+                        };
                         if (db.Entry(sup).State == EntityState.Detached)
                             db.Set<Supplier>().Attach(sup);
                         sup.CreatedDate = DateTime.Now;
