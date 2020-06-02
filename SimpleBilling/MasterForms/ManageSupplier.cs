@@ -24,7 +24,16 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                supplierBindingSource.DataSource = db.Suppliers.Where(c => !c.IsDeleted).ToList();
+                var data = (from s in db.Suppliers.Where(c => !c.IsDeleted)
+                            select new
+                            {
+                                s.SupplierId,
+                                s.Name,
+                                s.Contact,
+                                s.Address,
+                                s.Email
+                            }).ToList();
+                DGVSupplier.DataSource = data;
             }
         }
 
@@ -110,23 +119,35 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext())
                 {
-                    if (supplierBindingSource.Current is Supplier sup)
+                    int SupId = Convert.ToInt32(TxtSupplierId.Text.Trim());
+                    var Sup = db.Suppliers.FirstOrDefault(c => c.SupplierId == SupId && !c.IsDeleted);
+                    if (Sup != null)
                     {
+                        Sup.Name = TxtSupplierName.Text.Trim();
+                        Sup.Address = TxtAddress.Text.Trim();
+                        Sup.Contact = TxtContact.Text.Trim();
+                        Sup.Email = TxtEmail.Text.Trim();
+                        Sup.UpdatedDate = DateTime.Today;
+                        if (db.Entry(Sup).State == EntityState.Detached)
+                            db.Set<Supplier>().Attach(Sup);
+                        db.Entry(Sup).State = EntityState.Modified;
+                        db.SaveChanges();
+                        Message("Supplier Modified Successfully");
+                    }
+                    else
+                    {
+                        Supplier sup = new Supplier();
+                        sup.Name = TxtSupplierName.Text.Trim();
+                        sup.Address = TxtAddress.Text.Trim();
+                        sup.Contact = TxtContact.Text.Trim();
+                        sup.Email = TxtEmail.Text.Trim();
+                        sup.PendingAmount = Convert.ToInt32(TxtCodeNumber.Text.Trim());
                         if (db.Entry(sup).State == EntityState.Detached)
                             db.Set<Supplier>().Attach(sup);
-                        if (sup.SupplierId == 0)
-                        {
-                            sup.CreatedDate = DateTime.Now;
-                            db.Entry(sup).State = EntityState.Added;
-                            Message("Supplier Added");
-                        }
-                        else
-                        {
-                            sup.UpdatedDate = DateTime.Now;
-                            db.Entry(sup).State = EntityState.Modified;
-                            Message("Supplier Modified");
-                        }
+                        sup.CreatedDate = DateTime.Now;
+                        db.Entry(sup).State = EntityState.Added;
                         db.SaveChanges();
+                        Info.Mes("Supplier Added Successfully");
                     }
                 }
             }
@@ -160,7 +181,32 @@ namespace SimpleBilling.MasterForms
             LblMessage.Text = string.Empty;
             using (BillingContext db = new BillingContext())
             {
-                supplierBindingSource.DataSource = db.Suppliers.Where(c => c.Name.Contains(Text) || c.Address.Contains(Text) || c.Contact.Contains(Text) || c.Email.Contains(Text) && !c.IsDeleted).ToList();
+                if (!string.IsNullOrWhiteSpace(Text))
+                {
+                    var data = (from s in db.Suppliers.Where(c => c.Name.Contains(Text) || c.Address.Contains(Text) || c.Contact.Contains(Text) || c.Email.Contains(Text) && !c.IsDeleted)
+                                select new
+                                {
+                                    s.SupplierId,
+                                    s.Name,
+                                    s.Contact,
+                                    s.Address,
+                                    s.Email
+                                }).ToList();
+                    DGVSupplier.DataSource = data;
+                }
+                else
+                {
+                    var data = (from s in db.Suppliers.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    s.SupplierId,
+                                    s.Name,
+                                    s.Contact,
+                                    s.Address,
+                                    s.Email
+                                }).ToList();
+                    DGVSupplier.DataSource = data;
+                }
             }
         }
 
@@ -177,6 +223,34 @@ namespace SimpleBilling.MasterForms
         private void TxtCodeNumber_KeyUp(object sender, KeyEventArgs e)
         {
             Info.ToCapital(TxtCodeNumber);
+        }
+
+        private void DGVSupplier_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVSupplier.SelectedRows.Count > 0)
+            {
+                TxtSupplierId.Text = DGVSupplier.SelectedRows[0].Cells[0].Value + string.Empty;
+                TxtSupplierName.Text = DGVSupplier.SelectedRows[0].Cells[1].Value + string.Empty;
+                TxtContact.Text = DGVSupplier.SelectedRows[0].Cells[2].Value + string.Empty;
+                TxtAddress.Text = DGVSupplier.SelectedRows[0].Cells[3].Value + string.Empty;
+                TxtEmail.Text = DGVSupplier.SelectedRows[0].Cells[4].Value + string.Empty;
+
+
+
+                int SupID = Convert.ToInt32(TxtSupplierId.Text.Trim());
+                using (BillingContext db = new BillingContext()) 
+                {
+                    var sup = db.Suppliers.FirstOrDefault(c => c.SupplierId == SupID && !c.IsDeleted);
+                    float PendingAmount = sup.PendingAmount;
+                    var grn = (from g in db.GRNHeaders.Where(c => c.Supplier.SupplierId == SupID && !c.IsDeleted)
+                               select new { g.PendingAmount }).ToList();
+                    foreach (var g in grn)
+                    {
+                        PendingAmount += g.PendingAmount;
+                    }
+                    TxtCodeNumber.Text = PendingAmount.ToString();
+                }
+            }
         }
     }
 }

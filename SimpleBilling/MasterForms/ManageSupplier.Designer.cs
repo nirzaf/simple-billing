@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSupplier));
             this.DGVSupplier = new System.Windows.Forms.DataGridView();
-            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCodeNumber = new System.Windows.Forms.TextBox();
@@ -57,12 +56,13 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtSearchSuppliers = new System.Windows.Forms.TextBox();
+            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVSupplier
@@ -76,10 +76,7 @@
             this.DGVSupplier.ReadOnly = true;
             this.DGVSupplier.Size = new System.Drawing.Size(855, 230);
             this.DGVSupplier.TabIndex = 0;
-            // 
-            // supplierBindingSource
-            // 
-            this.supplierBindingSource.DataSource = typeof(SimpleBilling.Model.Supplier);
+            this.DGVSupplier.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSupplier_CellClick);
             // 
             // CRUDPanel
             // 
@@ -119,7 +116,7 @@
             // 
             // TxtCodeNumber
             // 
-            this.TxtCodeNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "CodeNumber", true));
+            this.TxtCodeNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "PendingAmount", true));
             this.TxtCodeNumber.Location = new System.Drawing.Point(573, 93);
             this.TxtCodeNumber.Name = "TxtCodeNumber";
             this.TxtCodeNumber.Size = new System.Drawing.Size(278, 26);
@@ -318,9 +315,9 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 4;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.9606F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.84821F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.04635F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.TxtSearchSuppliers, 1, 0);
@@ -337,7 +334,7 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(72, 0);
+            this.label7.Location = new System.Drawing.Point(12, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(140, 36);
             this.label7.TabIndex = 0;
@@ -346,11 +343,15 @@
             // TxtSearchSuppliers
             // 
             this.TxtSearchSuppliers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtSearchSuppliers.Location = new System.Drawing.Point(218, 3);
+            this.TxtSearchSuppliers.Location = new System.Drawing.Point(158, 3);
             this.TxtSearchSuppliers.Name = "TxtSearchSuppliers";
-            this.TxtSearchSuppliers.Size = new System.Drawing.Size(209, 26);
+            this.TxtSearchSuppliers.Size = new System.Drawing.Size(312, 26);
             this.TxtSearchSuppliers.TabIndex = 1;
             this.TxtSearchSuppliers.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSearchSuppliers_KeyUp);
+            // 
+            // supplierBindingSource
+            // 
+            this.supplierBindingSource.DataSource = typeof(SimpleBilling.Model.Supplier);
             // 
             // ManageSupplier
             // 
@@ -372,13 +373,13 @@
             this.Text = "Manage Supplier";
             this.Load += new System.EventHandler(this.ManageSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
