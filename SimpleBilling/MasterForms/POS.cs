@@ -64,6 +64,9 @@ namespace SimpleBilling.MasterForms
             ChkVehicle.Enabled = false;
             TxtCurrentMileage.Enabled = false;
             TxtNextServiceDue.Enabled = false;
+            BtnRemoveReturn.Visible = false;
+            BtnAddtoReturn.Visible = false;
+            BtnReturn.Enabled = false;
             DGVLoad(ReceiptNo);
             PrintAndVoid();
             TxtCustomer.Focus();
@@ -73,6 +76,29 @@ namespace SimpleBilling.MasterForms
             ProductCodeAutocomplete();
             PayeeAutocomplete();
             VehicleNumberAutoComplete();
+            LoadDGVLayout();
+        }
+
+        private void LoadDGVLayout()
+        {
+            int count = 0;
+            foreach (RowStyle rs in RptBodyLayout.RowStyles)
+            {
+                count++;
+                if (DGVReturned.Rows.Count == 0)
+                {
+                    if (count == 2)
+                    {
+                        rs.SizeType = SizeType.Percent;
+                        rs.Height = 0;
+                    }
+                    if (count == 1)
+                    {
+                        rs.SizeType = SizeType.Percent;
+                        rs.Height = 100;
+                    }
+                }
+            }
         }
 
         private void LoabCMB()
@@ -157,7 +183,7 @@ namespace SimpleBilling.MasterForms
                     {
                         customersBindingSource.DataSource = db.Customers.ToList();
                         itemBindingSource.DataSource = db.Items.ToList();
-                        var RptBody = (from body in db.ReceiptBodies.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo)
+                        var RptBody = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsReturned && !c.IsDeleted)
                                        join item in db.Items
                                        on body.ProductId equals item.Id
                                        select new
@@ -965,14 +991,14 @@ namespace SimpleBilling.MasterForms
                 {
                     var path = db.Settings.Take(1).FirstOrDefault();
 
-                    if (Convert.ToSingle(LblPendingAmount.Text.Trim()) >= 0)
+                    if (PendingValue >= 0 )
                     {
                         string sms = "Thank you for choosing Car West Auto Service. Your total bill amount is Rs." + LblNetTotal.Text.Trim() + " Thank you, Come Again.";
                         SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
                     }
                     else 
                     {
-                        string sms = "Thank you for choosing Car West Auto Service. Your pending outstanding balance amount is Rs." + LblPendingAmount.Text.Trim() + " Please pay your due as soon as possible";
+                        string sms = "Thank you for choosing Car West Auto Service. Your pending outstanding balance amount is Rs." + PendingValue.ToString() + " Please pay your due as soon as possible";
                         SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
                     }
                    

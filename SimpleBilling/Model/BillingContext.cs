@@ -7,7 +7,7 @@ namespace SimpleBilling.Model
         /// <summary>
         /// Version 1.0.0.5
         /// </summary>
-        public BillingContext() : base("name=con")
+        public BillingContext() : base("name=con1")
         {
             Database.SetInitializer(new BillingDBInitializer());
         }
