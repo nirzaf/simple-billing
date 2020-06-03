@@ -28,7 +28,6 @@ namespace SimpleBilling.MasterForms
                             select new
                             {
                                 i.Id,
-                                i.Barcode,
                                 i.Code,
                                 Item_Name = i.ItemName,
                                 i.StockQty
@@ -42,7 +41,7 @@ namespace SimpleBilling.MasterForms
             if (DGVManageStocks.SelectedRows.Count > 0)
             {
                 StockId = Convert.ToInt32(DGVManageStocks.SelectedRows[0].Cells[0].Value + string.Empty);
-                TxtUpdateStockCount.Text = DGVManageStocks.SelectedRows[0].Cells[4].Value + string.Empty;
+                TxtUpdateStockCount.Text = DGVManageStocks.SelectedRows[0].Cells[3].Value + string.Empty;
             }
         }
 
@@ -69,7 +68,6 @@ namespace SimpleBilling.MasterForms
                                     select new
                                     {
                                         i.Id,
-                                        i.Barcode,
                                         i.Code,
                                         Item_Name = i.ItemName,
                                         i.StockQty
@@ -82,7 +80,6 @@ namespace SimpleBilling.MasterForms
                                     select new
                                     {
                                         i.Id,
-                                        i.Barcode,
                                         i.Code,
                                         Item_Name = i.ItemName,
                                         i.StockQty
