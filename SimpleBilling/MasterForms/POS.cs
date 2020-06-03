@@ -967,7 +967,7 @@ namespace SimpleBilling.MasterForms
 
                     if (Convert.ToSingle(LblPendingAmount.Text.Trim()) >= 0)
                     {
-                        string sms = "Thank you for choosing Car West Auto Service. Your total bill amount is Rs." + LblPaidAmount.Text.Trim() + " Thank you, Come Again.";
+                        string sms = "Thank you for choosing Car West Auto Service. Your total bill amount is Rs." + LblNetTotal.Text.Trim() + " Thank you, Come Again.";
                         SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
                     }
                     else 

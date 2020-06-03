@@ -77,7 +77,7 @@ namespace SimpleBilling
                             db.Entry(cat).State = EntityState.Added;
                             cat.CreatedDate = DateTime.Now;
                             db.SaveChanges();
-                            SMS.Sender.Send(TxtContact.Text.Trim(), "Greetings " + TxtName.Text.Trim() + ", Welcome to Carwest Auto Services Private Limited");
+                            SMS.Sender.Send(TxtContact.Text.Trim(), "Greetings " + TxtName.Text.Trim() + ", Welcome to Carwest Auto Service");
                             Message("Customer Added");
                         }
                         else
