@@ -5,7 +5,7 @@ namespace SimpleBilling.Model
     public class BillingContext : DbContext
     {
         /// <summary>
-        /// Version 1.0.0.3
+        /// Version 1.0.0.4
         /// </summary>
         public BillingContext() : base("name=con")
         {
