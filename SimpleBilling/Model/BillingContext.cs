@@ -5,9 +5,9 @@ namespace SimpleBilling.Model
     public class BillingContext : DbContext
     {
         /// <summary>
-        /// Version 1.0.0.4
+        /// Version 1.0.0.5
         /// </summary>
-        public BillingContext() : base("name=con1")
+        public BillingContext() : base("name=con")
         {
             Database.SetInitializer(new BillingDBInitializer());
         }
