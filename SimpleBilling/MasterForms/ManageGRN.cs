@@ -59,6 +59,7 @@ namespace SimpleBilling.MasterForms
                 LayoutCheque.Visible = false;
                 BtnAddCheque.Visible = false;
             }
+            TxtGRNNo.Text = GenGRNNo();
             BtnGRNReturn.Enabled = false;
             BtnAddToReturn.Visible = false;
             BtnRemoveReturn.Visible = false;
@@ -204,21 +205,13 @@ namespace SimpleBilling.MasterForms
         {
             using (BillingContext db = new BillingContext())
             {
-                var data = db.ReceiptHeaders.Select(c => c.ReceiptNo).ToList();
-                List<int> intList = new List<int>();
+                var data = db.GRNHeaders.Select(c => c.GRN_Id).ToList();
                 if (data.Count > 0)
                 {
-                    int RptNo;
-                    foreach (var i in data)
-                    {
-                        Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
-                        Match result = re.Match(i);
-                        string num = result.Groups[2].Value;
-                        intList.Add(Convert.ToInt32(num));
-                    }
-                    RptNo = intList.Max();
-                    RptNo++;
-                    return ("GRN" + RptNo.ToString());
+                    int GrnNo;
+                    GrnNo = data.Max();
+                    GrnNo++;
+                    return ("GRN" + GrnNo.ToString());
                 }
                 else
                 {
