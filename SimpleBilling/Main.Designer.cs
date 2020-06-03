@@ -43,6 +43,7 @@
             this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PurchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,7 @@
             this.ConfigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblAutoLogOut = new System.Windows.Forms.Label();
             this.AutoLogOut = new System.Windows.Forms.Timer(this.components);
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageStockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +87,7 @@
             this.ManageVehicleToolStripMenuItem,
             this.ManageBankToolStripMenuItem,
             this.PurchaseOrderToolStripMenuItem,
+            this.ManageStockToolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
@@ -170,6 +172,13 @@
             this.PurchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
             this.PurchaseOrderToolStripMenuItem.Text = "Purchase Order";
             this.PurchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -258,12 +267,12 @@
             this.AutoLogOut.Interval = 1000;
             this.AutoLogOut.Tick += new System.EventHandler(this.AutoLogOut_Tick);
             // 
-            // exitToolStripMenuItem
+            // ManageStockToolStripMenuItem1
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.ManageStockToolStripMenuItem1.Name = "ManageStockToolStripMenuItem1";
+            this.ManageStockToolStripMenuItem1.Size = new System.Drawing.Size(247, 24);
+            this.ManageStockToolStripMenuItem1.Text = "Manage Stock";
+            this.ManageStockToolStripMenuItem1.Click += new System.EventHandler(this.ManageStockToolStripMenuItem1_Click);
             // 
             // Main
             // 
@@ -320,5 +329,6 @@
         private System.Windows.Forms.Label LblAutoLogOut;
         private System.Windows.Forms.Timer AutoLogOut;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManageStockToolStripMenuItem1;
     }
 }

@@ -361,5 +361,23 @@ namespace SimpleBilling
         {
             Application.Exit();
         }
+
+        private void ManageStockToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageStock))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            ManageStock ms = new ManageStock()
+            {
+                MdiParent = this
+            };
+            ms.Show();
+        }
     }
 }
