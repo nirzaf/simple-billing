@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using SimpleBilling.Model;
+using System;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Net;
 using System.Web;
 using System.Windows.Forms;
@@ -27,7 +30,21 @@ namespace SimpleBilling.SMS
             {
                 Debug.WriteLine(request + postData);
                 string result = web.DownloadString(request + postData);
-                MessageBox.Show(result);
+                using (BillingContext db = new BillingContext())
+                {
+                    SMSLog log = new SMSLog
+                    {
+                        CreatedDate = DateTime.Today,
+                        LogKey = Rand.RandomString(15),
+                        LogMessage = Message,
+                        Log = result,
+                        Number = DNumber
+                    };
+                    if (db.Entry(log).State == EntityState.Detached)
+                        db.Set<SMSLog>().Attach(log);
+                    db.Entry(log).State = EntityState.Added;
+                    db.SaveChanges();
+                }
             }
         }
     }

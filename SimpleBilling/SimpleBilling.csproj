@@ -327,12 +327,14 @@
     <Compile Include="Model\ReceiptHeader.cs" />
     <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\Shelf.cs" />
+    <Compile Include="Model\SMSLog.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Model\UserTypeConfigurations.cs" />
     <Compile Include="Model\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMS\Rand.cs" />
     <Compile Include="SMS\Sender.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

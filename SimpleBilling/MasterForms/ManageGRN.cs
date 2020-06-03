@@ -7,11 +7,13 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using SimpleBilling.Model;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -179,7 +181,7 @@ namespace SimpleBilling.MasterForms
             }
             else
             {
-                TxtGRNNo.Text = string.Empty;
+                TxtGRNNo.Text = GenGRNNo();
                 TxtReference.Text = string.Empty;
                 LblStatus.Text = "Ready";
                 CmbProduct.Text = string.Empty;
@@ -195,6 +197,33 @@ namespace SimpleBilling.MasterForms
                 LblBalanceAmount.Text = "0";
                 DGVGRNList.DataSource = null;
                 DGVGRNList.Refresh();
+            }
+        }
+
+        private string GenGRNNo()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.ReceiptHeaders.Select(c => c.ReceiptNo).ToList();
+                List<int> intList = new List<int>();
+                if (data.Count > 0)
+                {
+                    int RptNo;
+                    foreach (var i in data)
+                    {
+                        Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
+                        Match result = re.Match(i);
+                        string num = result.Groups[2].Value;
+                        intList.Add(Convert.ToInt32(num));
+                    }
+                    RptNo = intList.Max();
+                    RptNo++;
+                    return ("GRN" + RptNo.ToString());
+                }
+                else
+                {
+                    return ("GRN" + "1000");
+                }
             }
         }
 

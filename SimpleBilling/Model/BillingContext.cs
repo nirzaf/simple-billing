@@ -29,5 +29,6 @@ namespace SimpleBilling.Model
         public DbSet<PendingJob> PendingJobs { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<OrderedItem> OrderedItems { get; set; }
+        public DbSet<SMSLog> SmsLogs { get; set; }
     }
 }
