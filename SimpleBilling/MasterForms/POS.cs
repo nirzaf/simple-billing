@@ -964,6 +964,18 @@ namespace SimpleBilling.MasterForms
                 try
                 {
                     var path = db.Settings.Take(1).FirstOrDefault();
+
+                    if (Convert.ToSingle(LblPendingAmount.Text.Trim()) >= 0)
+                    {
+                        string sms = "Thank you for choosing Car West Auto Service. Your total bill amount is Rs." + LblPaidAmount.Text.Trim() + " Thank you, Come Again.";
+                        SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
+                    }
+                    else 
+                    {
+                        string sms = "Thank you for choosing Car West Auto Service. Your pending outstanding balance amount is Rs." + LblPendingAmount.Text.Trim() + " Please pay your due as soon as possible";
+                        SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
+                    }
+                   
                     if (path != null)
                     {
                         if (path.DefaultPath == null)
@@ -1854,7 +1866,7 @@ namespace SimpleBilling.MasterForms
                             if (Customer != null)
                             {
                                 LblCustomer.Text = Customer.Name;
-
+                                TxtCustomer.Text = Customer.Contact;
                                 var vehicles = db.Vehicles.Where(c => c.OwnerId == Customer.CustomerId && !c.IsDeleted).ToList();
                                 if (vehicles.Count > 0)
                                 {
