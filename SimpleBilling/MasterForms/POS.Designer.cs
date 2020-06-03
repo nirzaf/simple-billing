@@ -153,7 +153,7 @@
             // 
             // CmbAddItem
             // 
-            this.CmbAddItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CmbAddItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.CmbAddItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CmbAddItem.DataSource = this.itemBindingSource;
             this.CmbAddItem.DisplayMember = "ItemName";
