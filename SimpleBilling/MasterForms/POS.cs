@@ -276,7 +276,6 @@ namespace SimpleBilling.MasterForms
                             BtnRemoveReturn.Visible = false;
                         }
 
-
                         var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo && !c.IsQuotation)
                                          join cashier in db.Employee.Where(c => !c.IsDeleted)
                                          on header.Cashier equals cashier.EmployeeId

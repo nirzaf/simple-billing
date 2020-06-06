@@ -23,57 +23,76 @@ namespace SimpleBilling.MasterForms
         private void FormLoad(string Date)
         {
             FormLoadAll(string.Empty);
+            try
+            {
+                LoabCMB();
+                using (BillingContext db = new BillingContext())
+                {
+                    var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
+                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                        on po.Date equals oi.OrderedDate
+                                        join it in db.Items.Where(c => !c.IsDeleted)
+                                        on oi.ItemCode equals it.Code
+                                        select new
+                                        {
+                                            oi.ItemCode,
+                                            it.PrintableName,
+                                            oi.Quantity
+                                        }).ToList();
+                    DGVOrderedItems.DataSource = orderedItems;
+
+                    var receivedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
+                                         join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
+                                         on po.Date equals oi.OrderedDate
+                                         join it in db.Items.Where(c => !c.IsDeleted)
+                                         on oi.ItemCode equals it.Code
+                                         select new
+                                         {
+                                             oi.ItemCode,
+                                             it.PrintableName,
+                                             oi.Quantity
+                                         }).ToList();
+                    DGVReceivedItems.DataSource = receivedItems;
+
+                    var data = (from item in db.Items.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    item.Code,
+                                    item.PrintableName,
+                                    item.StockQty
+                                }).OrderBy(c => c.StockQty).ToList();
+                    DGVItemsToOrder.DataSource = data;
+
+                    var pendingOrders = db.PurchaseOrders.Where(c => !c.IsReceived && !c.IsDeleted).Select(c => c.Date).ToList();
+                    LstBoxPendingOrders.DataSource = pendingOrders;
+
+                    LblDate.Text = DateTime.Today.ToShortDateString();
+                    if (orderedItems.Count == 0)
+                    {
+                        BtnAddToOrder.Enabled = false;
+                        BtnRemove.Enabled = false;
+                    }
+                    else
+                    {
+                        BtnAddToOrder.Enabled = true;
+                        BtnRemove.Enabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }         
+        }
+
+
+        private void LoabCMB()
+        {
             using (BillingContext db = new BillingContext())
             {
-                var orderedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
-                                    join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
-                                    on po.Date equals oi.OrderedDate
-                                    join it in db.Items.Where(c => !c.IsDeleted)
-                                    on oi.ItemCode equals it.Code
-                                    select new
-                                    {
-                                        oi.ItemCode,
-                                        it.PrintableName,
-                                        oi.Quantity
-                                    }).ToList();
-                DGVOrderedItems.DataSource = orderedItems;
-
-                var receivedItems = (from po in db.PurchaseOrders.Where(c => c.Date == Date && !c.IsDeleted)
-                                     join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
-                                     on po.Date equals oi.OrderedDate
-                                     join it in db.Items.Where(c => !c.IsDeleted)
-                                     on oi.ItemCode equals it.Code
-                                     select new
-                                     {
-                                         oi.ItemCode,
-                                         it.PrintableName,
-                                         oi.Quantity
-                                     }).ToList();
-                DGVReceivedItems.DataSource = receivedItems;
-
-                var data = (from item in db.Items.Where(c => !c.IsDeleted)
-                            select new
-                            {
-                                item.Code,
-                                item.PrintableName,
-                                item.StockQty
-                            }).OrderBy(c => c.StockQty).ToList();
-                DGVItemsToOrder.DataSource = data;
-
-                var pendingOrders = db.PurchaseOrders.Where(c => !c.IsReceived && !c.IsDeleted).Select(c => c.Date).ToList();
-                LstBoxPendingOrders.DataSource = pendingOrders;
-
-                LblDate.Text = DateTime.Today.ToShortDateString();
-                if (orderedItems.Count == 0)
-                {
-                    BtnAddToOrder.Enabled = false;
-                    BtnRemove.Enabled = false;
-                }
-                else
-                {
-                    BtnAddToOrder.Enabled = true;
-                    BtnRemove.Enabled = true;
-                }
+                CmbSuppliers.ValueMember = "SupplierId";
+                CmbSuppliers.DisplayMember = "Name";
+                CmbSuppliers.DataSource = db.Suppliers.Where(c => !c.IsDeleted).ToList();
             }
         }
 
