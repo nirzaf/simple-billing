@@ -52,11 +52,14 @@
             this.DGVLoadReceipt.AllowUserToDeleteRows = false;
             this.DGVLoadReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVLoadReceipt.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DGVLoadReceipt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVLoadReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVLoadReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVLoadReceipt.Location = new System.Drawing.Point(3, 77);
+            this.DGVLoadReceipt.MultiSelect = false;
             this.DGVLoadReceipt.Name = "DGVLoadReceipt";
             this.DGVLoadReceipt.ReadOnly = true;
+            this.DGVLoadReceipt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVLoadReceipt.Size = new System.Drawing.Size(1227, 379);
             this.DGVLoadReceipt.TabIndex = 0;
             this.DGVLoadReceipt.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVLoadReceipt_CellDoubleClick);

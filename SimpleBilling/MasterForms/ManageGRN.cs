@@ -129,6 +129,7 @@ namespace SimpleBilling.MasterForms
                             rs.SizeType = SizeType.Percent;
                             rs.Height = 50;
                         }
+                        BtnRemoveReturn.Visible = true;
                     }
                     else
                     {

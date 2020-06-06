@@ -1,4 +1,5 @@
 ﻿using iText.Kernel.Colors;
+using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
@@ -23,14 +24,17 @@ namespace SimpleBilling.MasterForms
     {
         private int ItemId;
         private int CustomerId;
+        private int ReceiptStatus;
+        private int CashierId = Info.CashierId;
+
+        private string PaymentType = string.Empty;
+        private string ReceiptNo;
+
         private float UnitPrice;
         private float Qty;
         private float Total;
         private float NetTotal;
         private float Discount;
-        private readonly int CashierId = Info.CashierId;
-        private readonly string PaymentType = string.Empty;
-        private readonly string ReceiptNo;
         private float ReceiptTotalDiscount;
         private float ReceiptSubTotal;
         private float ReceiptNetTotal;
@@ -38,8 +42,11 @@ namespace SimpleBilling.MasterForms
         private float PendingValue;
         private float GivenAmount;
         private float BalanceAmount;
-        private int ReceiptStatus;
+        private float TotalReturns;
+        private float PendingAfterReturn;
+
         private DataTable rptBody;
+        private DataTable rptReturned;
 
         public POS(string Receipt)
         {
@@ -97,6 +104,18 @@ namespace SimpleBilling.MasterForms
                         rs.SizeType = SizeType.Percent;
                         rs.Height = 100;
                     }
+                    BtnAddtoReturn.Visible = false;
+                    BtnRemoveReturn.Visible = false;
+                }
+                else
+                {
+                    foreach (RowStyle s in RptBodyLayout.RowStyles)
+                    {
+                        s.SizeType = SizeType.Percent;
+                        s.Height = 50;
+                    }
+                    BtnAddtoReturn.Visible = true;
+                    BtnRemoveReturn.Visible = true;
                 }
             }
         }
@@ -169,7 +188,18 @@ namespace SimpleBilling.MasterForms
             {
                 LblReceiptNo.Text = GenReceiptNo();
                 DGVReceiptBody.DataSource = null;
+                DGVReceiptBody.Refresh();
+                DGVReturned.DataSource = null;
+                DGVReturned.Refresh();
+                using (BillingContext db = new BillingContext())
+                {
+                    customersBindingSource.DataSource = db.Customers.ToList();
+                    itemBindingSource.DataSource = db.Items.ToList();
+                    var cs = db.Employee.FirstOrDefault(c => c.EmployeeId == Info.CashierId);
+                    LblCashier.Text = cs.EmployeeName;
+                }
                 PrintAndVoid();
+                LoadDGVLayout();
             }
         }
 
@@ -199,6 +229,53 @@ namespace SimpleBilling.MasterForms
                                        }).ToList();
                         DGVReceiptBody.DataSource = RptBody;
                         rptBody = Info.ToDataTable(RptBody);
+
+                        var Returned = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && c.IsReturned && !c.IsDeleted)
+                                       join item in db.Items
+                                       on body.ProductId equals item.Id
+                                       select new
+                                       {
+                                           item.Id,
+                                           item.Code,
+                                           item.PrintableName,
+                                           body.UnitPrice,
+                                           body.Quantity,
+                                           body.SubTotal,
+                                           body.Discount,
+                                           body.NetTotal
+                                       }).ToList();
+                        DGVReturned.DataSource = Returned;
+                        rptReturned = Info.ToDataTable(Returned);
+
+                        if (Returned.Count > 0)
+                        {
+                            foreach (RowStyle rs in RptBodyLayout.RowStyles)
+                            {
+                                rs.SizeType = SizeType.Percent;
+                                rs.Height = 50;
+                            }
+                            BtnRemoveReturn.Visible = true;
+                        }
+                        else
+                        {
+                            int count = 0;
+                            foreach (RowStyle rs in RptBodyLayout.RowStyles)
+                            {
+                                count++;
+                                if (count == 1)
+                                {
+                                    rs.SizeType = SizeType.Percent;
+                                    rs.Height = 100;
+                                }
+                                if (count == 2)
+                                {
+                                    rs.SizeType = SizeType.Percent;
+                                    rs.Height = 0;
+                                }
+                            }
+                            BtnRemoveReturn.Visible = false;
+                        }
+
 
                         var RptHeader = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && c.ReceiptNo == ReceiptNo && !c.IsQuotation)
                                          join cashier in db.Employee.Where(c => !c.IsDeleted)
@@ -245,6 +322,10 @@ namespace SimpleBilling.MasterForms
                             LblBalanceAmount.Text = a.Balance.ToString();
                             TxtGivenAmount.Text = a.PaidAmount.ToString();
                             ReceiptStatus = a.Status;
+                            if(ReceiptStatus == 2)
+                            {
+                                BtnReturn.Enabled = true;
+                            }
                             LblReceiptStatus.Text = GetReceiptStatus(a.Status);
                             LblReceiptNo.Text = a.ReceiptNo;
                             TxtRemarks.Text = a.Remarks;
@@ -610,6 +691,10 @@ namespace SimpleBilling.MasterForms
         {
             ReceiptTotalDiscount = Info.GetDGVSum(DGVReceiptBody, 6);
             ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
+            if (DGVReturned.Rows.Count > 0)
+            {
+                TotalReturns = Info.GetDGVSum(DGVReturned, 7);
+            }
 
             if (Info.IsEmpty(TxtOverallDiscount))
             {
@@ -777,6 +862,56 @@ namespace SimpleBilling.MasterForms
             }
         }
 
+        private void IncreaseStock()
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    int itemId = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty);
+                    int quantity = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[3].Value + string.Empty);
+                    var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
+                    if (Result != null)
+                    {
+                        Result.StockQty += quantity;
+                        if (db.Entry(Result).State == EntityState.Detached)
+                            db.Set<Item>().Attach(Result);
+                        db.Entry(Result).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
+        private void DecreaseStock()
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    int itemId = Convert.ToInt32(DGVReturned.SelectedRows[0].Cells[0].Value + string.Empty);
+                    int quantity = Convert.ToInt32(DGVReturned.SelectedRows[0].Cells[3].Value + string.Empty);
+                    var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
+                    if (Result != null)
+                    {
+                        Result.StockQty -= quantity;
+                        if (db.Entry(Result).State == EntityState.Detached)
+                            db.Set<Item>().Attach(Result);
+                        db.Entry(Result).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
         private string GetPaymentType()
         {
             if (!string.IsNullOrWhiteSpace(CmbPaymentOption.Text))
@@ -869,9 +1004,21 @@ namespace SimpleBilling.MasterForms
             using (BillingContext db = new BillingContext())
             {
                 var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted && c.Status == 2);
+                var item = db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsReturned && !c.IsDeleted).ToList();
+                foreach (var i in item)
+                {
+                    i.IsReturned = true;
+                    i.UpdatedDate = DateTime.Today;
+                    if (db.Entry(i).State == EntityState.Detached)
+                        db.Set<ReceiptBody>().Attach(i);
+                    db.Entry(i).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 if (result != null)
                 {
                     result.Status = 0;
+                    result.UpdatedDate = DateTime.Today;
                     if (db.Entry(result).State == EntityState.Detached)
                         db.Set<ReceiptHeader>().Attach(result);
                     db.Entry(result).State = EntityState.Modified;
@@ -991,24 +1138,27 @@ namespace SimpleBilling.MasterForms
                 {
                     var path = db.Settings.Take(1).FirstOrDefault();
 
-                    if (PendingValue >= 0 )
+                    if (rptReturned.Rows.Count == 0)
                     {
-                        string sms = "Thank you for choosing Car West Auto Service. Your total bill amount is Rs." + LblNetTotal.Text.Trim() + " Thank you, Come Again.";
-                        SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
+                        if (PendingValue >= 0)
+                        {
+                            string sms = "Thank you for choosing Car West Auto Service. Your total bill amount is Rs." + LblNetTotal.Text.Trim() + " Thank you, Come Again.";
+                            SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
+                        }
+                        else
+                        {
+                            string sms = "Thank you for choosing Car West Auto Service. Your pending outstanding balance amount is Rs." + PendingValue.ToString() + " Please pay your due as soon as possible";
+                            SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
+                        }
                     }
-                    else 
-                    {
-                        string sms = "Thank you for choosing Car West Auto Service. Your pending outstanding balance amount is Rs." + PendingValue.ToString() + " Please pay your due as soon as possible";
-                        SMS.Sender.Send(TxtCustomer.Text.Trim(), sms);
-                    }
-                   
+
                     if (path != null)
                     {
                         if (path.DefaultPath == null)
                         {
                             return;
                         }
-                        SalesReceiptAsPDF(rptBody, LblReceiptNo.Text, path.DefaultPath);
+                        SalesReceiptAsPDF(rptBody, rptReturned, LblReceiptNo.Text, path.DefaultPath);
                     }
                 }
                 catch (Exception ex)
@@ -1078,7 +1228,7 @@ namespace SimpleBilling.MasterForms
             Reset();
         }
 
-        public void SalesReceiptAsPDF(DataTable dt, string RptNo, string Path)
+        public void SalesReceiptAsPDF(DataTable dt, DataTable dtReturn, string RptNo, string Path)
         {
             try
             {
@@ -1115,16 +1265,24 @@ namespace SimpleBilling.MasterForms
                     float pageWidth = PageSize.A4.GetWidth();
                     float pageHeight = 100;
 
+                    float paidAmount = header.PaidAmount;
+                    float balanceAmount = header.Balance;
+                    float pendingValue = header.PendingValue;
+
+                    PendingAfterReturn = pendingValue - TotalReturns;
+
                     string sb = data.Name;
-                    Paragraph title = new Paragraph(sb).SetTextAlignment(TextAlignment.CENTER);
+                    PdfFont f = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.COURIER_BOLD);
+                    Paragraph title = new Paragraph(sb).SetTextAlignment(TextAlignment.LEFT).SetFont(f).SetFontSize(20).SetBold();
                     string Address = data.Address + ",   " + data.Contact;
                     string ReceiptInfo = "RECEIPT NO: " + LblReceiptNo.Text.Trim();
                     Table bus = new Table(UnitValue.CreatePercentArray(new float[] { 15, 5 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     bus.SetWidth(UnitValue.CreatePercentValue(100));
                     bus.SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     bus.SetFixedLayout();
-                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Address)));
-                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(ReceiptInfo)));
+                    PdfFont font = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.COURIER_BOLD);
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetFont(font).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(Address)));
+                    bus.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetFont(font).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(ReceiptInfo)));
 
                     Table RptDetails = new Table(UnitValue.CreatePercentArray(new float[] { 20, 10, 5, 5, 5 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(HorizontalAlignment.CENTER);
                     RptDetails.SetWidth(UnitValue.CreatePercentValue(100));
@@ -1134,44 +1292,44 @@ namespace SimpleBilling.MasterForms
                     foreach (var ml in mlt)
                     {
                         pageHeight += 12;
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Billing To: " + customerDetails.Name)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Vehicle Number :")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("BILLING TO : " + customerDetails.Name)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("VEHICLE NUMBER : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ml.VehicleNo)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Date : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("DATE : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Date)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Address)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Current Mileage :")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ml.Mileage.ToString() + " km")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Time : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("CURRENT MILEAGE : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ml.Mileage.ToString() + " KM")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("TIME : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Contact)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Next Service On :")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph((ml.ServiceMileageDue + ml.Mileage + " km").ToString())));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Cashier : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("NEXT SERVICE ON : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph((ml.ServiceMileageDue + ml.Mileage + " KM").ToString())));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("CASHIER : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
                     }
 
                     if (mlt.Count == 0)
                     {
                         pageHeight += 12;
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Billing To: " + customerDetails.Name)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Date : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("BILLING TO : " + customerDetails.Name)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(string.Empty)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(string.Empty)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("DATE : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Date)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Address)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Time : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(string.Empty)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(string.Empty)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("TIME : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(header.Time)));
 
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(customerDetails.Contact)));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("")));
-                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Cashier : ")));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(string.Empty)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(string.Empty)));
+                        RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("CASHIER : ")));
                         RptDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblCashier.Text)));
                     }
 
@@ -1182,13 +1340,13 @@ namespace SimpleBilling.MasterForms
 
                     pageHeight += 20;
 
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Code")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Item Name")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Unit Price")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Qty")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Gross")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Disc.")));
-                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("Net Total")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("CODE")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("IITEM NAME")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("UNIT PRICE")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("QTY")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("GROSS")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("DISC")));
+                    table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph("NET TOTAL")));
 
                     foreach (DataRow d in dt.Rows)
                     {
@@ -1202,25 +1360,58 @@ namespace SimpleBilling.MasterForms
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[7].ToString())));
                     }
 
-                    pageHeight += 30;
-                    table.AddFooterCell(new Cell(1, 5).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblSubTotal.Text)));
-                    table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
-                    table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
+                    if (dtReturn.Rows.Count > 0)
+                    {
+                        table.AddCell(new Cell(1,7).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(9).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("RETURNED ITEMS")));
+                        foreach (DataRow dr in dtReturn.Rows)
+                        {
+                            int x = 1;
+                            pageHeight += 12;
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(dr[1].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(dr[2].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(dr[3].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(dr[4].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(dr[5].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(dr[6].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(dr[7].ToString())));
+                        }
+                    }
+                    if (dtReturn.Rows.Count == 0)
+                    {
+                        pageHeight += 30;
+                        table.AddFooterCell(new Cell(1, 5).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblSubTotal.Text)));
+                        table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
+                        table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
 
-                    table.AddFooterCell(new Cell(1, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Paid Amount")));
-                    table.AddFooterCell(new Cell(1, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PaidValue.ToString())));
+                        table.AddFooterCell(new Cell(1, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("PAID AMOUNT")));
+                        table.AddFooterCell(new Cell(1, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(paidAmount.ToString())));
 
-                    table.AddFooterCell(new Cell(2, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Balance Amount")));
-                    table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.Balance.ToString())));
+                        table.AddFooterCell(new Cell(2, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("BALANCE AMOUNT")));
+                        table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(balanceAmount.ToString())));
 
-                    table.AddFooterCell(new Cell(2, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("Pending Amount")));
-                    table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(header.PendingValue.ToString())));
+                        table.AddFooterCell(new Cell(2, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("PENDING AMOUNT")));
+                        table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(pendingValue.ToString())));
+                    }
+                    else
+                    {
+                        pageHeight += 50;
+                        table.AddFooterCell(new Cell(1, 7).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(TotalReturns.ToString())));
+
+                        table.AddFooterCell(new Cell(1, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("RETURNED AMOUNT")));
+                        table.AddFooterCell(new Cell(1, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(TotalReturns.ToString())));
+
+                        table.AddFooterCell(new Cell(2, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("TOTAL VALUE")));
+                        table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph((Convert.ToSingle(LblNetTotal.Text) + TotalReturns).ToString())));
+
+                        table.AddFooterCell(new Cell(2, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("NET TOTAL")));
+                        table.AddFooterCell(new Cell(2, 7).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
+                    }
                     LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(12);
                     StringBuilder footer = new StringBuilder();
                     Paragraph space = new Paragraph("                  ").SetTextAlignment(TextAlignment.JUSTIFIED_ALL);
-                    footer.AppendLine("........................................                                                                                                                                                                ...........................");
-                    footer.AppendLine("     Customer Signature                                Please Note : Credit balance should be settled within 30 days                                          Checked by");
-                    Paragraph foot = new Paragraph(footer.ToString()).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER);
+                    footer.AppendLine("........................................                                                                                                                                                                ........................................");
+                    footer.AppendLine("CUSTOMER SIGNATURE                  PLEASE NOTE : CREDIT BALANCE SHOULD BE SETTLED WITHIN 30 DAYS                CHECKED BY");
+                    Paragraph foot = new Paragraph(footer.ToString()).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT);
                     PageSize ps = new PageSize(pageWidth, pageHeight);
                     Document document = new Document(pdf, ps);
                     document.SetMargins(10, 30, 10, 30);
@@ -1934,6 +2125,114 @@ namespace SimpleBilling.MasterForms
                 ShowAddCustomer();
                 TxtName.Focus();
                 TxtContact.Text = TxtCustomer.Text.Trim();
+            }
+        }
+
+        private void BtnReturn_Click(object sender, EventArgs e)
+        {
+            if (BtnReturn.Text == "Return Receipt")
+            {
+                BtnAddtoReturn.Visible = true;
+                BtnRemoveReturn.Visible = true;
+                BtnReturn.Text = "Complete Return";
+            }
+            else if (BtnReturn.Text == "Complete Return")
+            {
+                BtnAddtoReturn.Visible = false;
+                BtnRemoveReturn.Visible = false;
+                BtnReturn.Text = "Return Receipt";
+            }
+        }
+
+        private void BtnAddtoReturn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGVReceiptBody.SelectedRows.Count > 0)
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == ItemId && c.ReceiptNo == ReceiptNo && !c.IsReturned && !c.IsDeleted);
+                        if (Item != null)
+                        {
+                            Item.IsReturned = true;
+                            Item.UpdatedDate = DateTime.Today;
+                            if (db.Entry(Item).State == EntityState.Detached)
+                                db.Set<ReceiptBody>().Attach(Item);
+                            db.Entry(Item).State = EntityState.Modified;
+                            db.SaveChanges();
+                            IncreaseStock();
+                            DGVLoad(ReceiptNo);
+                        }
+                    }
+                }
+                else
+                {
+                    BtnAddtoReturn.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                TotalCalculator();
+            }
+        }
+
+        private void DGVReceiptBody_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVReceiptBody.SelectedRows.Count > 0)
+            {
+                ReceiptNo = LblReceiptNo.Text.Trim();
+                ItemId = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty);
+            }
+        }
+
+        private void BtnRemoveReturn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGVReturned.SelectedRows.Count > 0)
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == ItemId && c.ReceiptNo == ReceiptNo && c.IsReturned && !c.IsDeleted);
+                        if (Item != null)
+                        {
+                            Item.IsReturned = false;
+                            Item.UpdatedDate = DateTime.Today;
+                            if (db.Entry(Item).State == EntityState.Detached)
+                                db.Set<ReceiptBody>().Attach(Item);
+                            db.Entry(Item).State = EntityState.Modified;
+                            db.SaveChanges();
+                            DecreaseStock();
+                            DGVLoad(ReceiptNo);
+                        }
+                    }
+                }
+                else
+                {
+                    BtnAddtoReturn.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+            finally
+            {
+                TotalCalculator();
+            }
+        }
+
+        private void DGVReturned_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVReturned.SelectedRows.Count > 0)
+            {
+                ReceiptNo = LblReceiptNo.Text.Trim();
+                ItemId = Convert.ToInt32(DGVReturned.SelectedRows[0].Cells[0].Value + string.Empty);
             }
         }
     }

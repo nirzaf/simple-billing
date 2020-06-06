@@ -65,9 +65,12 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                POS pos = new POS(ReceiptNo);
-                pos.Show();
-                Hide();
+                if (DGVLoadReceipt.SelectedRows.Count > 0)
+                {
+                    POS pos = new POS(ReceiptNo);
+                    pos.Show();
+                    Hide();
+                }
             }
             catch (Exception ex)
             {
