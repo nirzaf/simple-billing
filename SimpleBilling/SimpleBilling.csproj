@@ -314,6 +314,14 @@
     <Compile Include="Migrations\202006031315030_billing2.designer.cs">
       <DependentUpon>202006031315030_billing2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006060432204_billing3.cs" />
+    <Compile Include="Migrations\202006060432204_billing3.designer.cs">
+      <DependentUpon>202006060432204_billing3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006060628535_billing4.cs" />
+    <Compile Include="Migrations\202006060628535_billing4.designer.cs">
+      <DependentUpon>202006060628535_billing4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bank.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -409,6 +417,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006031315030_billing2.resx">
       <DependentUpon>202006031315030_billing2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006060432204_billing3.resx">
+      <DependentUpon>202006060432204_billing3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006060628535_billing4.resx">
+      <DependentUpon>202006060628535_billing4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
