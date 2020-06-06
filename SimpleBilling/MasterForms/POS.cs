@@ -450,12 +450,12 @@ namespace SimpleBilling.MasterForms
                 string MobileNumber = TxtCustomer.Text.Trim();
                 using (BillingContext db = new BillingContext())
                 {
-                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber);
+                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber && !c.IsDeleted);
                     if (data != null)
                     {
                         LblCustomer.Text = data.Name;
 
-                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId).ToList();
+                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId && !c.IsDeleted).ToList();
                         if (vehicles != null)
                         {
                             CmbVehicles.Enabled = true;
