@@ -30,7 +30,7 @@ namespace SimpleBilling.MasterForms
                 using (BillingContext db = new BillingContext())
                 {
                     var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
-                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsReceived && !c.IsDeleted)
                                         on po.OrderUniqueId equals oi.OrderId
                                         join it in db.Items.Where(c => !c.IsDeleted)
                                         on oi.ItemCode equals it.Code
@@ -43,7 +43,7 @@ namespace SimpleBilling.MasterForms
                     DGVOrderedItems.DataSource = orderedItems;
 
                     var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
-                                         join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                         join oi in db.OrderedItems.Where(c => !c.IsReceived && c.IsReceived && !c.IsDeleted)
                                          on po.OrderUniqueId equals oi.OrderId
                                          join it in db.Items.Where(c => !c.IsDeleted)
                                          on oi.ItemCode equals it.Code
@@ -111,13 +111,14 @@ namespace SimpleBilling.MasterForms
                     if (DGVItemsToOrder.SelectedRows.Count > 0)
                     {
                         string Code = DGVItemsToOrder.SelectedRows[0].Cells[0].Value + string.Empty;
-                        var OrdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.OrderId == PurchaseOrderId);
+                        var OrdererdItem = db.OrderedItems.FirstOrDefault(c => c.ItemCode == Code && c.OrderId == PurchaseOrderId);
                         if (Info.IsEmpty(TxtOrderQuantity))
                         {
-                            if (OrdItem == null)
+                            if (OrdererdItem == null)
                             {
                                 OrderedItem oi = new OrderedItem
                                 {
+                                    OrderId = PurchaseOrderId,
                                     ItemCode = Code,
                                     Quantity = Info.ToInt(TxtOrderQuantity),
                                     UnitType = CmbUnitType.Text,
@@ -131,12 +132,12 @@ namespace SimpleBilling.MasterForms
                             }
                             else
                             {
-                                OrdItem.Quantity = Info.ToInt(TxtOrderQuantity);
-                                OrdItem.UnitType = CmbUnitType.Text;
-                                OrdItem.UpdatedDate = DateTime.Today;
-                                if (db.Entry(OrdItem).State == EntityState.Detached)
-                                    db.Set<OrderedItem>().Attach(OrdItem);
-                                db.Entry(OrdItem).State = EntityState.Modified;
+                                OrdererdItem.Quantity = Info.ToInt(TxtOrderQuantity);
+                                OrdererdItem.UnitType = CmbUnitType.Text;
+                                OrdererdItem.UpdatedDate = DateTime.Today;
+                                if (db.Entry(OrdererdItem).State == EntityState.Detached)
+                                    db.Set<OrderedItem>().Attach(OrdererdItem);
+                                db.Entry(OrdererdItem).State = EntityState.Modified;
                                 db.SaveChanges();
                                 FormLoad(PurchaseOrderId);
                             }
@@ -379,18 +380,21 @@ namespace SimpleBilling.MasterForms
 
         private void DGVReceivedItems_MouseClick(object sender, MouseEventArgs e)
         {
-            string Code = DGVReceivedItems.SelectedRows[0].Cells[0].Value + string.Empty;
-            using (BillingContext db = new BillingContext())
+            if (DGVReceivedItems.SelectedRows.Count > 0)
             {
-                var data = db.OrderedItems.FirstOrDefault(c => c.OrderId == PurchaseOrderId && c.ItemCode == Code && c.IsReceived && !c.IsDeleted);
-                if (data != null)
+                string Code = DGVReceivedItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                using (BillingContext db = new BillingContext())
                 {
-                    data.IsReceived = false;
-                    if (db.Entry(data).State == EntityState.Detached)
-                        db.Set<OrderedItem>().Attach(data);
-                    db.Entry(data).State = EntityState.Modified;
-                    db.SaveChanges();
-                    ViewPendingOrders(PurchaseOrderId, 2);
+                    var data = db.OrderedItems.FirstOrDefault(c => c.OrderId == PurchaseOrderId && c.ItemCode == Code && c.IsReceived && !c.IsDeleted);
+                    if (data != null)
+                    {
+                        data.IsReceived = false;
+                        if (db.Entry(data).State == EntityState.Detached)
+                            db.Set<OrderedItem>().Attach(data);
+                        db.Entry(data).State = EntityState.Modified;
+                        db.SaveChanges();
+                        ViewPendingOrders(PurchaseOrderId, 2);
+                    }
                 }
             }
         }
