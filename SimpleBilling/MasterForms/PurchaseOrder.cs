@@ -24,8 +24,9 @@ namespace SimpleBilling.MasterForms
 
         private void FormLoad(string OrderId)
         {
-            FormLoadAll(string.Empty);
-           
+            LoabCMB();
+            LblDate.Text = DateTime.Today.ToShortDateString();
+            FormLoadAll(OrderId);       
         }
 
 
@@ -70,7 +71,7 @@ namespace SimpleBilling.MasterForms
                                     db.Set<OrderedItem>().Attach(oi);
                                 db.Entry(oi).State = EntityState.Added;
                                 db.SaveChanges();
-                                FormLoad(PurchaseOrderId);
+                                FormLoadAll(PurchaseOrderId);
                             }
                             else
                             {
@@ -81,7 +82,7 @@ namespace SimpleBilling.MasterForms
                                     db.Set<OrderedItem>().Attach(OrdererdItem);
                                 db.Entry(OrdererdItem).State = EntityState.Modified;
                                 db.SaveChanges();
-                                FormLoad(PurchaseOrderId);
+                                FormLoadAll(PurchaseOrderId);
                             }
                         }
                         else
@@ -190,7 +191,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<OrderedItem>().Attach(item);
                         db.Entry(item).State = EntityState.Deleted;
                         db.SaveChanges();
-                        FormLoad(PurchaseOrderId);
+                        FormLoadAll(PurchaseOrderId);
                     }
                 }
             }
@@ -199,60 +200,8 @@ namespace SimpleBilling.MasterForms
         private void LstBoxPendingOrders_DoubleClick(object sender, EventArgs e)
         {
             PurchaseOrderId = LstBoxPendingOrders.SelectedItem.ToString();
-            ViewPendingOrders(PurchaseOrderId, 1);
-        }
-
-        private void ViewPendingOrders(string OrderId, int type)
-        {
-            using (BillingContext db = new BillingContext())
-            {
-                var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
-                                    join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsReceived && !c.IsDeleted)
-                                    on po.OrderUniqueId equals oi.OrderId
-                                    join it in db.Items.Where(c => !c.IsDeleted)
-                                    on oi.ItemCode equals it.Code
-                                    select new
-                                    {
-                                        oi.ItemCode,
-                                        it.PrintableName,
-                                        oi.Quantity
-                                    }).ToList();
-                DGVOrderedItems.DataSource = orderedItems;
-
-                var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
-                                     join oi in db.OrderedItems.Where(c => !c.IsReceived && c.IsReceived && !c.IsDeleted)
-                                     on po.OrderUniqueId equals oi.OrderId
-                                     join it in db.Items.Where(c => !c.IsDeleted)
-                                     on oi.ItemCode equals it.Code
-                                     select new
-                                     {
-                                         oi.ItemCode,
-                                         it.PrintableName,
-                                         oi.Quantity
-                                     }).ToList();
-                DGVReceivedItems.DataSource = receivedItems;
-
-                var data = (from item in db.Items.Where(c => !c.IsDeleted)
-                            select new
-                            {
-                                item.Code,
-                                item.PrintableName,
-                                item.StockQty
-                            }).OrderBy(c => c.StockQty).ToList();
-                DGVItemsToOrder.DataSource = data;
-
-                LblDate.Text = DateTime.Today.ToShortDateString();
-                if (orderedItems.Count == 0 || type == 2)
-                {
-                    BtnAddToOrder.Enabled = false;
-                    BtnRemove.Enabled = false;
-                }
-                else
-                {
-                    BtnAddToOrder.Enabled = true;
-                    BtnRemove.Enabled = true;
-                }
-            }
+            FormLoadAll(PurchaseOrderId);
+            LblPurchaseOrderId.Text = PurchaseOrderId;
         }
 
         private void BtnMarkReceived_Click(object sender, EventArgs e)
@@ -269,7 +218,7 @@ namespace SimpleBilling.MasterForms
                             db.Set<Model.PurchaseOrder>().Attach(data);
                         db.Entry(data).State = EntityState.Modified;
                         db.SaveChanges();
-                        FormLoad(PurchaseOrderId);
+                        FormLoadAll(PurchaseOrderId);
                     }
                 }
             }
@@ -278,11 +227,11 @@ namespace SimpleBilling.MasterForms
         private void LstBoxPendingOrders_Click(object sender, EventArgs e)
         {
             PurchaseOrderId = LstBoxPendingOrders.SelectedItem.ToString();
+            LblPurchaseOrderId.Text = PurchaseOrderId;
         }
 
         private void BtnViewAll_Click(object sender, EventArgs e)
         {
-            LoabCMB();
             FormLoadAll(string.Empty);
         }
 
@@ -290,81 +239,96 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(OrderId))
+                using (BillingContext db = new BillingContext())
                 {
-                    using (BillingContext db = new BillingContext())
-                    {
-                        var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
-                                            join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsReceived && !c.IsDeleted)
-                                            on po.OrderUniqueId equals oi.OrderId
-                                            join it in db.Items.Where(c => !c.IsDeleted)
-                                            on oi.ItemCode equals it.Code
-                                            select new
-                                            {
-                                                oi.ItemCode,
-                                                it.PrintableName,
-                                                oi.Quantity
-                                            }).ToList();
-                        DGVOrderedItems.DataSource = orderedItems;
+                    //Load Data grid view of Ordered Items 
+                    var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
+                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                        on po.OrderUniqueId equals oi.OrderId
+                                        join it in db.Items.Where(c => !c.IsDeleted)
+                                        on oi.ItemCode equals it.Code
+                                        select new
+                                        {
+                                            oi.ItemCode,
+                                            it.PrintableName,
+                                            oi.Quantity
+                                        }).ToList();
+                    DGVOrderedItems.DataSource = orderedItems;
+                    //Load Data grid view of Received Items 
+                    var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
+                                         join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
+                                         on po.OrderUniqueId equals oi.OrderId
+                                         join it in db.Items.Where(c => !c.IsDeleted)
+                                         on oi.ItemCode equals it.Code
+                                         select new
+                                         {
+                                             oi.ItemCode,
+                                             it.PrintableName,
+                                             oi.Quantity
+                                         }).ToList();
+                    DGVReceivedItems.DataSource = receivedItems;
 
-                        var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
-                                             join oi in db.OrderedItems.Where(c => !c.IsReceived && c.IsReceived && !c.IsDeleted)
-                                             on po.OrderUniqueId equals oi.OrderId
-                                             join it in db.Items.Where(c => !c.IsDeleted)
-                                             on oi.ItemCode equals it.Code
-                                             select new
-                                             {
-                                                 oi.ItemCode,
-                                                 it.PrintableName,
-                                                 oi.Quantity
-                                             }).ToList();
-                        DGVReceivedItems.DataSource = receivedItems;
+                    //Load All Items with on hand Stock Qty
+                    var data = (from item in db.Items.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    item.Code,
+                                    item.PrintableName,
+                                    item.StockQty
+                                }).OrderBy(c => c.StockQty).ToList();
+                    DGVItemsToOrder.DataSource = data;
 
-                        var data = (from item in db.Items.Where(c => !c.IsDeleted)
-                                    select new
-                                    {
-                                        item.Code,
-                                        item.PrintableName,
-                                        item.StockQty
-                                    }).OrderBy(c => c.StockQty).ToList();
-                        DGVItemsToOrder.DataSource = data;
+                    //Fetch List of Received Orders List 
+                    var ReceivedOrders = db.PurchaseOrders.Where(c => c.IsReceived && !c.IsDeleted).Select(c => c.OrderUniqueId).ToList();
+                    LstReceivedOrders.DataSource = ReceivedOrders;
 
-                        //Fetch List of Received Order  
-                        var ReceivedOrders = db.PurchaseOrders.Where(c => c.IsReceived && !c.IsDeleted).Select(c => c.OrderUniqueId).ToList();
-                        LstReceivedOrders.DataSource = ReceivedOrders;
+                    //Fetch List of Pending Orders List 
+                    var pendingOrders = db.PurchaseOrders.Where(c => !c.IsReceived && !c.IsDeleted).Select(c => c.OrderUniqueId).ToList();
+                    LstBoxPendingOrders.DataSource = pendingOrders;
 
-                        LblDate.Text = DateTime.Today.ToShortDateString();
-                        BtnAddToOrder.Enabled = false;
-                        BtnRemove.Enabled = false;
-
-                        var pendingOrders = db.PurchaseOrders.Where(c => !c.IsReceived && !c.IsDeleted).Select(c => c.OrderUniqueId).ToList();
-                        LstBoxPendingOrders.DataSource = pendingOrders;
-
-                        LblDate.Text = DateTime.Today.ToShortDateString();
-                        if (orderedItems.Count == 0)
-                        {
-                            BtnAddToOrder.Enabled = false;
-                            BtnRemove.Enabled = false;
-                        }
-                        else
-                        {
-                            BtnAddToOrder.Enabled = true;
-                            BtnRemove.Enabled = true;
-                        }
-                    }
-                }
-                else
-                {
-                    using (BillingContext db = new BillingContext())
-                    {
-                        var PendingOrders = db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseOrderId && c.IsReceived && !c.IsDeleted).Select(c => c.OrderUniqueId).ToList();
-                        LstReceivedOrders.DataSource = PendingOrders;
-                    }
+                    LblDate.Text = DateTime.Today.ToShortDateString();
                 }
             }
             catch (Exception ex)
             {
                 Info.Mes(ex.Message);
+            }
+            finally
+            {
+                if (!string.IsNullOrWhiteSpace(OrderId))
+                {
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var PurchaseOrderItems = db.PurchaseOrders.FirstOrDefault(c => c.OrderUniqueId == OrderId && !c.IsDeleted);
+                        if (PurchaseOrderItems != null)
+                        {
+                            if (PurchaseOrderItems.IsOrderCompleted)
+                            {
+                                BtnAddToOrder.Enabled = false;
+                                BtnRemove.Enabled = false;
+                                TxtOrderQuantity.Enabled = false;
+                                CmbUnitType.Enabled = false;
+                                BtnCompleteOrdering.Enabled = false;
+                            }
+                            else
+                            {
+                                BtnAddToOrder.Enabled = true;
+                                BtnRemove.Enabled = true;
+                                TxtOrderQuantity.Enabled = false;
+                                CmbUnitType.Enabled = false;
+                                BtnCompleteOrdering.Enabled = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    BtnAddToOrder.Enabled = false;
+                    BtnRemove.Enabled = false;
+                    TxtOrderQuantity.Enabled = false;
+                    CmbUnitType.Enabled = false;
+                    BtnCompleteOrdering.Enabled = false;
+                }
             }
         }
 
@@ -377,15 +341,17 @@ namespace SimpleBilling.MasterForms
         private void LstReceivedOrders_DoubleClick(object sender, EventArgs e)
         {
             PurchaseOrderId = LstReceivedOrders.SelectedItem.ToString();
-            ViewPendingOrders(PurchaseOrderId, 2);
+            LblPurchaseOrderId.Text = PurchaseOrderId;
+            FormLoadAll(PurchaseOrderId);
         }
 
         private void DGVOrderedItems_DoubleClick(object sender, EventArgs e)
         {
             string Code = DGVOrderedItems.SelectedRows[0].Cells[0].Value + string.Empty;
+            string PurchaseId = LblPurchaseOrderId.Text.Trim();
             using (BillingContext db = new BillingContext())
             {
-                var data = db.OrderedItems.FirstOrDefault(c => c.OrderId == PurchaseOrderId && c.ItemCode == Code && !c.IsReceived && !c.IsDeleted);
+                var data = db.OrderedItems.FirstOrDefault(c => c.OrderId == PurchaseId && c.ItemCode == Code && !c.IsReceived && !c.IsDeleted);
                 if (data != null)
                 {
                     data.IsReceived = true;
@@ -393,28 +359,34 @@ namespace SimpleBilling.MasterForms
                         db.Set<OrderedItem>().Attach(data);
                     db.Entry(data).State = EntityState.Modified;
                     db.SaveChanges();
-                    ViewPendingOrders(PurchaseOrderId, 2);
-                }
-            }
-        }
 
-        private void DGVReceivedItems_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (DGVReceivedItems.SelectedRows.Count > 0)
-            {
-                string Code = DGVReceivedItems.SelectedRows[0].Cells[0].Value + string.Empty;
-                using (BillingContext db = new BillingContext())
-                {
-                    var data = db.OrderedItems.FirstOrDefault(c => c.OrderId == PurchaseOrderId && c.ItemCode == Code && c.IsReceived && !c.IsDeleted);
-                    if (data != null)
-                    {
-                        data.IsReceived = false;
-                        if (db.Entry(data).State == EntityState.Detached)
-                            db.Set<OrderedItem>().Attach(data);
-                        db.Entry(data).State = EntityState.Modified;
-                        db.SaveChanges();
-                        ViewPendingOrders(PurchaseOrderId, 2);
-                    }
+                    var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseId && !c.IsDeleted)
+                                         join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
+                                         on po.OrderUniqueId equals oi.OrderId
+                                         join it in db.Items.Where(c => !c.IsDeleted)
+                                         on oi.ItemCode equals it.Code
+                                         select new
+                                         {
+                                             oi.ItemCode,
+                                             it.PrintableName,
+                                             oi.Quantity
+                                         }).ToList();
+                    DGVReceivedItems.DataSource = receivedItems;
+
+
+                    var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseId && !c.IsDeleted)
+                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                        on po.OrderUniqueId equals oi.OrderId
+                                        join it in db.Items.Where(c => !c.IsDeleted)
+                                        on oi.ItemCode equals it.Code
+                                        select new
+                                        {
+                                            oi.ItemCode,
+                                            it.PrintableName,
+                                            oi.Quantity
+                                        }).ToList();
+                    DGVOrderedItems.DataSource = orderedItems;
+
                 }
             }
         }
@@ -500,6 +472,59 @@ namespace SimpleBilling.MasterForms
                     BtnExportPDF.Enabled = true;
                 }
             }
+        }
+
+        private void DGVReceivedItems_DoubleClick(object sender, EventArgs e)
+        {
+            if (DGVReceivedItems.SelectedRows.Count > 0)
+            {
+                string Code = DGVReceivedItems.SelectedRows[0].Cells[0].Value + string.Empty;
+                string PurchaseId = LblPurchaseOrderId.Text.Trim();
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = db.OrderedItems.FirstOrDefault(c => c.OrderId == PurchaseOrderId && c.ItemCode == Code && c.IsReceived && !c.IsDeleted);
+                    if (data != null)
+                    {
+                        data.IsReceived = false;
+                        if (db.Entry(data).State == EntityState.Detached)
+                            db.Set<OrderedItem>().Attach(data);
+                        db.Entry(data).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                        var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseId && !c.IsDeleted)
+                                             join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                             on po.OrderUniqueId equals oi.OrderId
+                                             join it in db.Items.Where(c => !c.IsDeleted)
+                                             on oi.ItemCode equals it.Code
+                                             select new
+                                             {
+                                                 oi.ItemCode,
+                                                 it.PrintableName,
+                                                 oi.Quantity
+                                             }).ToList();
+                        DGVOrderedItems.DataSource = orderedItems;
+
+                        var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseId && !c.IsDeleted)
+                                             join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
+                                             on po.OrderUniqueId equals oi.OrderId
+                                             join it in db.Items.Where(c => !c.IsDeleted)
+                                             on oi.ItemCode equals it.Code
+                                             select new
+                                             {
+                                                 oi.ItemCode,
+                                                 it.PrintableName,
+                                                 oi.Quantity
+                                             }).ToList();
+                        DGVReceivedItems.DataSource = receivedItems;
+                    }
+                }
+            }
+        }
+
+        private void LstReceivedOrders_Click(object sender, EventArgs e)
+        {
+            PurchaseOrderId = LstReceivedOrders.SelectedItem.ToString();
+            LblPurchaseOrderId.Text = PurchaseOrderId;
         }
     }
 }
