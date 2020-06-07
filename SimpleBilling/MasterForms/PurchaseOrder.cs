@@ -1,5 +1,4 @@
 ﻿using iText.Kernel.Colors;
-using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
@@ -7,13 +6,11 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using SimpleBilling.Migrations;
 using SimpleBilling.Model;
 using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -167,6 +164,7 @@ namespace SimpleBilling.MasterForms
                         TxtOrderQuantity.Enabled = false;
                         CmbUnitType.Enabled = false;
                         BtnCompleteOrdering.Text = "Add Some More Items";
+                        BtnCompleteOrdering.Enabled = true;
                     }
                     var item = db.Items.FirstOrDefault(c => c.Code == Code);
                     if (item != null)
@@ -478,7 +476,7 @@ namespace SimpleBilling.MasterForms
                     PdfWriter writer = new PdfWriter(sfd.FileName);
                     PdfDocument pdf = new PdfDocument(writer);
                     int pageHeight = 0;
-                    float pageWidth = PageSize.A5.GetWidth();
+                    float pageWidth = PageSize.A4.GetWidth();
                     using (BillingContext db = new BillingContext())
                     {
                         var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseOrderId && !c.IsDeleted)
@@ -495,8 +493,6 @@ namespace SimpleBilling.MasterForms
                         if (orderedItems.Count > 0)
                         {
                             var data = db.BusinessModels.FirstOrDefault(c => c.IsActive && !c.IsDeleted);
-                            //int SupplierId = db.PurchaseOrders.FirstOrDefault(c => c.OrderUniqueId == LblPurchaseOrderId.Text.Trim() && !c.IsDeleted).SupplierId;
-
                             string SupplierName = db.Suppliers.FirstOrDefault(a => a.SupplierId == db.PurchaseOrders.FirstOrDefault(c => c.OrderUniqueId == LblPurchaseOrderId.Text.Trim() && !c.IsDeleted).SupplierId && !a.IsDeleted).Name;
                             string orderFrom = data.Name;
                             Table titleDetails = new Table(UnitValue.CreatePercentArray(new float[] { 5, 13 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
@@ -504,8 +500,8 @@ namespace SimpleBilling.MasterForms
                             titleDetails.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
                             titleDetails.SetFixedLayout();
 
-                            titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("PURCHASE ORDER ID : ")));
-                            titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(sfd.FileName)));
+                            titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("P.O ID : ")));
+                            titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(LblPurchaseOrderId.Text.Trim())));
 
                             titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("ORDER TO : ")));
                             titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(SupplierName)));
@@ -522,17 +518,17 @@ namespace SimpleBilling.MasterForms
                             orderTable.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).Add(new Paragraph("IIEM NAME")));
                             orderTable.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph("QTY")));
 
-                            pageHeight += 140;
+                            pageHeight += 120;
                             foreach (var ot in orderedItems)
                             {
-                                pageHeight += 12;
+                                pageHeight += 14;
                                 orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(ot.ItemCode)));
                                 orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ot.PrintableName)));
-                                orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(ot.Quantity.ToString())));
+                                orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(ot.Quantity.ToString())));
                             }
-                            orderTable.AddFooterCell(new Cell(1, 2).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph("TOTAL ORDERED ITEMS")));
-                            orderTable.AddFooterCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(orderedItems.Count.ToString())));
-                            pageHeight += 50;
+                            orderTable.AddCell(new Cell(1, 2).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph("TOTAL ORDERED ITEMS")));
+                            orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(orderedItems.Count.ToString())));
+                            pageHeight += 40;
                             LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(10);
                             PageSize ps = new PageSize(pageWidth, pageHeight);
                             Document document = new Document(pdf, ps);
@@ -602,7 +598,7 @@ namespace SimpleBilling.MasterForms
                 BtnRemove.Enabled = true;
                 BtnCompleteOrdering.Text = "Complete Ordering";
             }
-            if (BtnCompleteOrdering.Text == "Complete Ordering")
+            else if (BtnCompleteOrdering.Text == "Complete Ordering")
             {
                 using (BillingContext db = new BillingContext())
                 {
@@ -619,6 +615,7 @@ namespace SimpleBilling.MasterForms
                         BtnAddToOrder.Enabled = false;
                         BtnRemove.Enabled = false;
                         BtnExportPDF.Enabled = true;
+                        BtnCompleteOrdering.Text = "Add Some More Items";
                     }
                 }
             }

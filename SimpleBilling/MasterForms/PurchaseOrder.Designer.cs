@@ -123,10 +123,10 @@
             // LblPurchaseOrderId
             // 
             this.LblPurchaseOrderId.AutoSize = true;
-            this.LblPurchaseOrderId.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LblPurchaseOrderId.Dock = System.Windows.Forms.DockStyle.Left;
             this.LblPurchaseOrderId.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblPurchaseOrderId.ForeColor = System.Drawing.Color.White;
-            this.LblPurchaseOrderId.Location = new System.Drawing.Point(1128, 477);
+            this.LblPurchaseOrderId.Location = new System.Drawing.Point(800, 477);
             this.LblPurchaseOrderId.Name = "LblPurchaseOrderId";
             this.LblPurchaseOrderId.Size = new System.Drawing.Size(70, 35);
             this.LblPurchaseOrderId.TabIndex = 10;
@@ -674,11 +674,11 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Right;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(585, 477);
+            this.label8.Location = new System.Drawing.Point(575, 477);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(209, 35);
+            this.label8.Size = new System.Drawing.Size(219, 35);
             this.label8.TabIndex = 9;
-            this.label8.Text = "Current Purchase Order Id";
+            this.label8.Text = "Current Purchase Order Id: ";
             // 
             // PurchaseOrder
             // 
