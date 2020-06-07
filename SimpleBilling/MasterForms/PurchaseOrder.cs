@@ -1,9 +1,19 @@
-﻿using SimpleBilling.Migrations;
+﻿using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Borders;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using SimpleBilling.Migrations;
 using SimpleBilling.Model;
 using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SimpleBilling.MasterForms
@@ -109,7 +119,7 @@ namespace SimpleBilling.MasterForms
                 {
                     Model.PurchaseOrder po = new Model.PurchaseOrder
                     {
-                        OrderUniqueId = Info.RandomString(4) + "-" + PurchaseOrderDate + "-" + SupplierId + "-" + SupplierName,
+                        OrderUniqueId = GeneratePurchaseOrderId(SupplierId.ToString(), SupplierName),
                         OrderedDate = PurchaseOrderDate,
                         SupplierId = SupplierId,
                         CreatedDate = DateTime.Today
@@ -118,6 +128,7 @@ namespace SimpleBilling.MasterForms
                         db.Set<Model.PurchaseOrder>().Attach(po);
                     db.Entry(po).State = EntityState.Added;
                     db.SaveChanges();
+                    LblPurchaseOrderId.Text = po.OrderUniqueId;
                     LblOrderStatus.Text = "Order " + po.OrderUniqueId + " is created";
                     PurchaseOrderId = po.OrderUniqueId;
                     BtnAddToOrder.Enabled = true;
@@ -129,6 +140,13 @@ namespace SimpleBilling.MasterForms
                 Info.Mes(ex.Message);
                 ExportJson.Add(ex);
             }
+        }
+
+        private string GeneratePurchaseOrderId(string SupplierId, string SupplierName)
+        {
+            string PurchaseOrderDate = DtpOrderDate.Value.ToShortDateString();
+            string poId = (Info.RandomString(4) + "-" + PurchaseOrderDate + "-" + SupplierId + "-" + SupplierName).Replace("/", string.Empty).Replace(" ", string.Empty);
+            return poId;
         }
 
         private void DGVItemsToOrder_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -200,8 +218,49 @@ namespace SimpleBilling.MasterForms
         private void LstBoxPendingOrders_DoubleClick(object sender, EventArgs e)
         {
             PurchaseOrderId = LstBoxPendingOrders.SelectedItem.ToString();
-            FormLoadAll(PurchaseOrderId);
+            RefreshList(PurchaseOrderId);
             LblPurchaseOrderId.Text = PurchaseOrderId;
+        }
+
+        private void RefreshList(string OrderId)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext())
+                {
+                    //Load Data grid view of Ordered Items 
+                    var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
+                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                        on po.OrderUniqueId equals oi.OrderId
+                                        join it in db.Items.Where(c => !c.IsDeleted)
+                                        on oi.ItemCode equals it.Code
+                                        select new
+                                        {
+                                            oi.ItemCode,
+                                            it.PrintableName,
+                                            oi.Quantity
+                                        }).ToList();
+                    DGVOrderedItems.DataSource = orderedItems;
+                    //Load Data grid view of Received Items 
+                    var receivedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == OrderId && !c.IsDeleted)
+                                         join oi in db.OrderedItems.Where(c => c.IsReceived && !c.IsDeleted)
+                                         on po.OrderUniqueId equals oi.OrderId
+                                         join it in db.Items.Where(c => !c.IsDeleted)
+                                         on oi.ItemCode equals it.Code
+                                         select new
+                                         {
+                                             oi.ItemCode,
+                                             it.PrintableName,
+                                             oi.Quantity
+                                         }).ToList();
+                    DGVReceivedItems.DataSource = receivedItems;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void BtnMarkReceived_Click(object sender, EventArgs e)
@@ -342,7 +401,7 @@ namespace SimpleBilling.MasterForms
         {
             PurchaseOrderId = LstReceivedOrders.SelectedItem.ToString();
             LblPurchaseOrderId.Text = PurchaseOrderId;
-            FormLoadAll(PurchaseOrderId);
+            RefreshList(PurchaseOrderId);
         }
 
         private void DGVOrderedItems_DoubleClick(object sender, EventArgs e)
@@ -395,26 +454,94 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                using (BillingContext db = new BillingContext())
+                ExportPurchaseOrderPDF();
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
+
+        private void ExportPurchaseOrderPDF()
+        {
+
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog
                 {
-                    var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseOrderId && !c.IsDeleted)
-                                        join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
-                                        on po.OrderUniqueId equals oi.OrderId
-                                        join it in db.Items.Where(c => !c.IsDeleted)
-                                        on oi.ItemCode equals it.Code
-                                        select new
-                                        {
-                                            oi.ItemCode,
-                                            it.PrintableName,
-                                            oi.Quantity
-                                        }).ToList();
-                    DataTable Orders = Info.ToDataTable(orderedItems);
-                    Info.ExportPurchaseOrders(Orders, PurchaseOrderId);
+                    Filter = "PDF (*.pdf)|*.pdf",
+                    FileName = Info.CleanString(LblPurchaseOrderId.Text.Trim())
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    PdfWriter writer = new PdfWriter(sfd.FileName);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    int pageHeight = 0;
+                    float pageWidth = PageSize.A5.GetWidth();
+                    using (BillingContext db = new BillingContext())
+                    {
+                        var orderedItems = (from po in db.PurchaseOrders.Where(c => c.OrderUniqueId == PurchaseOrderId && !c.IsDeleted)
+                                            join oi in db.OrderedItems.Where(c => !c.IsReceived && !c.IsDeleted)
+                                            on po.OrderUniqueId equals oi.OrderId
+                                            join it in db.Items.Where(c => !c.IsDeleted)
+                                            on oi.ItemCode equals it.Code
+                                            select new
+                                            {
+                                                oi.ItemCode,
+                                                it.PrintableName,
+                                                oi.Quantity
+                                            }).ToList();
+
+                        var data = db.BusinessModels.FirstOrDefault(c => c.IsActive && !c.IsDeleted);
+                        //int SupplierId = db.PurchaseOrders.FirstOrDefault(c => c.OrderUniqueId == LblPurchaseOrderId.Text.Trim() && !c.IsDeleted).SupplierId;
+
+                        string SupplierName = db.Suppliers.FirstOrDefault(a => a.SupplierId == db.PurchaseOrders.FirstOrDefault(c => c.OrderUniqueId == LblPurchaseOrderId.Text.Trim() && !c.IsDeleted).SupplierId && !a.IsDeleted).Name;
+                        string orderFrom = data.Name;
+                        Table titleDetails = new Table(UnitValue.CreatePercentArray(new float[] { 5, 10 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                        titleDetails.SetWidth(UnitValue.CreatePercentValue(100));
+                        titleDetails.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                        titleDetails.SetFixedLayout();
+                        titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("ORDER TO : ")));
+                        titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(SupplierName)));
+
+                        titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("ORDER FROM : ")));
+                        titleDetails.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER).SetFontSize(10).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(orderFrom)));
+
+                        Table orderTable = new Table(UnitValue.CreatePercentArray(new float[] { 5, 15, 5 })).SetVerticalAlignment(VerticalAlignment.TOP).SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                        orderTable.SetWidth(UnitValue.CreatePercentValue(100));
+                        orderTable.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                        orderTable.SetFixedLayout();
+
+                        orderTable.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph("ITEM CODE")));
+                        orderTable.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).Add(new Paragraph("IIEM NAME")));
+                        orderTable.AddCell(new Cell(1, 1).SetTextAlignment(TextAlignment.CENTER).SetFontSize(10).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph("QTY")));
+
+                        pageHeight += 100;
+                        foreach (var ot in orderedItems)
+                        {
+                            pageHeight += 12;
+                            orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(ot.ItemCode)));
+                            orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(ot.PrintableName)));
+                            orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(ot.Quantity.ToString())));
+                        }
+
+                        pageHeight += 20;
+                        LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(10);
+                        PageSize ps = new PageSize(pageWidth, pageHeight);
+                        Document document = new Document(pdf, ps);
+                        document.SetMargins(10, 30, 10, 30);
+                        document.Add(titleDetails);
+                        document.Add(ls);
+                        document.Add(orderTable);
+                        document.Close();
+                        Info.StartProcess(sfd.FileName);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Info.Add(ex);
+                ExportJson.Add(ex);
+                Info.Mes(ex.Message);
             }
         }
 

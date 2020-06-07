@@ -169,7 +169,7 @@
             this.CmbAddItem.FormattingEnabled = true;
             this.CmbAddItem.Location = new System.Drawing.Point(299, 86);
             this.CmbAddItem.Name = "CmbAddItem";
-            this.CmbAddItem.Size = new System.Drawing.Size(447, 23);
+            this.CmbAddItem.Size = new System.Drawing.Size(446, 23);
             this.CmbAddItem.TabIndex = 2;
             this.CmbAddItem.ValueMember = "Id";
             this.CmbAddItem.SelectedIndexChanged += new System.EventHandler(this.CmbAddItem_SelectedIndexChanged);
@@ -184,7 +184,7 @@
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.00995F));
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.4F));
             this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.9F));
-            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.CRUDPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.CRUDPanel.Controls.Add(this.TxtContact, 1, 1);
             this.CRUDPanel.Controls.Add(this.LblReceiptNo, 0, 0);
             this.CRUDPanel.Controls.Add(this.LblCustomer, 1, 0);
@@ -280,9 +280,9 @@
             this.CmbVehicles.Enabled = false;
             this.CmbVehicles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbVehicles.FormattingEnabled = true;
-            this.CmbVehicles.Location = new System.Drawing.Point(752, 3);
+            this.CmbVehicles.Location = new System.Drawing.Point(751, 3);
             this.CmbVehicles.Name = "CmbVehicles";
-            this.CmbVehicles.Size = new System.Drawing.Size(180, 24);
+            this.CmbVehicles.Size = new System.Drawing.Size(179, 24);
             this.CmbVehicles.TabIndex = 19;
             // 
             // ChkVehicle
@@ -290,9 +290,9 @@
             this.ChkVehicle.AutoSize = true;
             this.ChkVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkVehicle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ChkVehicle.Location = new System.Drawing.Point(938, 3);
+            this.ChkVehicle.Location = new System.Drawing.Point(936, 3);
             this.ChkVehicle.Name = "ChkVehicle";
-            this.ChkVehicle.Size = new System.Drawing.Size(58, 26);
+            this.ChkVehicle.Size = new System.Drawing.Size(60, 26);
             this.ChkVehicle.TabIndex = 20;
             this.ChkVehicle.UseVisualStyleBackColor = true;
             this.ChkVehicle.CheckedChanged += new System.EventHandler(this.ChkVehicle_CheckedChanged);
@@ -328,17 +328,17 @@
             this.TxtSubTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSubTotal.Location = new System.Drawing.Point(299, 134);
             this.TxtSubTotal.Name = "TxtSubTotal";
-            this.TxtSubTotal.Size = new System.Drawing.Size(447, 22);
+            this.TxtSubTotal.Size = new System.Drawing.Size(446, 22);
             this.TxtSubTotal.TabIndex = 7;
             // 
             // TxtNetTotal
             // 
             this.TxtNetTotal.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtNetTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNetTotal.Location = new System.Drawing.Point(752, 134);
+            this.TxtNetTotal.Location = new System.Drawing.Point(751, 134);
             this.TxtNetTotal.Name = "TxtNetTotal";
             this.TxtNetTotal.ReadOnly = true;
-            this.TxtNetTotal.Size = new System.Drawing.Size(180, 22);
+            this.TxtNetTotal.Size = new System.Drawing.Size(179, 22);
             this.TxtNetTotal.TabIndex = 8;
             // 
             // label5
@@ -376,7 +376,7 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(299, 114);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(447, 17);
+            this.label7.Size = new System.Drawing.Size(446, 17);
             this.label7.TabIndex = 8;
             this.label7.Text = "Sub Total";
             // 
@@ -387,9 +387,9 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label8.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(752, 114);
+            this.label8.Location = new System.Drawing.Point(751, 114);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(180, 17);
+            this.label8.Size = new System.Drawing.Size(179, 17);
             this.label8.TabIndex = 9;
             this.label8.Text = "Net Total";
             // 
@@ -407,10 +407,10 @@
             // 
             this.TxtUnitPrice.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtUnitPrice.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUnitPrice.Location = new System.Drawing.Point(752, 86);
+            this.TxtUnitPrice.Location = new System.Drawing.Point(751, 86);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.ReadOnly = true;
-            this.TxtUnitPrice.Size = new System.Drawing.Size(180, 22);
+            this.TxtUnitPrice.Size = new System.Drawing.Size(179, 22);
             this.TxtUnitPrice.TabIndex = 12;
             this.TxtUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUnitPrice_KeyPress);
             // 
@@ -449,7 +449,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(299, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(447, 17);
+            this.label3.Size = new System.Drawing.Size(446, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Item Description";
             // 
@@ -460,9 +460,9 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(752, 66);
+            this.label4.Location = new System.Drawing.Point(751, 66);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 17);
+            this.label4.Size = new System.Drawing.Size(179, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "Unit Price";
             // 
@@ -487,7 +487,7 @@
             this.TxtAddress.ForeColor = System.Drawing.Color.DimGray;
             this.TxtAddress.Location = new System.Drawing.Point(299, 35);
             this.TxtAddress.Name = "TxtAddress";
-            this.TxtAddress.Size = new System.Drawing.Size(447, 22);
+            this.TxtAddress.Size = new System.Drawing.Size(446, 22);
             this.TxtAddress.TabIndex = 24;
             this.TxtAddress.Text = "Address";
             this.TxtAddress.Enter += new System.EventHandler(this.TxtAddress_Enter);
@@ -500,9 +500,9 @@
             this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEmail.ForeColor = System.Drawing.Color.DimGray;
-            this.TxtEmail.Location = new System.Drawing.Point(752, 35);
+            this.TxtEmail.Location = new System.Drawing.Point(751, 35);
             this.TxtEmail.Name = "TxtEmail";
-            this.TxtEmail.Size = new System.Drawing.Size(180, 22);
+            this.TxtEmail.Size = new System.Drawing.Size(179, 22);
             this.TxtEmail.TabIndex = 23;
             this.TxtEmail.Text = "Email";
             this.TxtEmail.Enter += new System.EventHandler(this.TxtEmail_Enter);
@@ -520,7 +520,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(447, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(446, 26);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // TxtSearchByVehicleNumber
@@ -529,7 +529,7 @@
             this.TxtSearchByVehicleNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TxtSearchByVehicleNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtSearchByVehicleNumber.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSearchByVehicleNumber.Location = new System.Drawing.Point(269, 3);
+            this.TxtSearchByVehicleNumber.Location = new System.Drawing.Point(268, 3);
             this.TxtSearchByVehicleNumber.Name = "TxtSearchByVehicleNumber";
             this.TxtSearchByVehicleNumber.Size = new System.Drawing.Size(175, 22);
             this.TxtSearchByVehicleNumber.TabIndex = 2;
@@ -545,7 +545,7 @@
             this.TxtCustomer.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCustomer.Location = new System.Drawing.Point(3, 3);
             this.TxtCustomer.Name = "TxtCustomer";
-            this.TxtCustomer.Size = new System.Drawing.Size(260, 22);
+            this.TxtCustomer.Size = new System.Drawing.Size(259, 22);
             this.TxtCustomer.TabIndex = 1;
             this.TxtCustomer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TxtCustomer_MouseClick);
             this.TxtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCustomer_KeyDown);

@@ -39,6 +39,11 @@ namespace SimpleBilling
             }
         }
 
+        public static string CleanString(string Input)
+        {
+            return Input.Replace("/", string.Empty).Replace(" ", string.Empty);
+        }
+
         public static void ToCapital(TextBox txt)
         {
             txt.Text = txt.Text.ToUpper();
