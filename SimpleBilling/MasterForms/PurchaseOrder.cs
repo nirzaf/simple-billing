@@ -293,10 +293,41 @@ namespace SimpleBilling.MasterForms
             FormLoadAll(string.Empty);
         }
 
+        private void LoadItems(string Input)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                //Load All Items with on hand Stock Qty
+                if (string.IsNullOrWhiteSpace(Input))
+                {
+                    var data = (from item in db.Items.Where(c => !c.IsDeleted)
+                                select new
+                                {
+                                    item.Code,
+                                    item.PrintableName,
+                                    item.StockQty
+                                }).OrderBy(c => c.StockQty).ToList();
+                    DGVItemsToOrder.DataSource = data;
+                }
+                else
+                {
+                    var data = (from item in db.Items.Where(c =>(c.Code.Contains(Input) || c.ItemName.Contains(Input)) && !c.IsDeleted)
+                                select new
+                                {
+                                    item.Code,
+                                    item.PrintableName,
+                                    item.StockQty
+                                }).OrderBy(c => c.StockQty).ToList();
+                    DGVItemsToOrder.DataSource = data;
+                }
+            }
+        }
+
         private void FormLoadAll(string OrderId)
         {
             try
             {
+                LoadItems(string.Empty);
                 using (BillingContext db = new BillingContext())
                 {
                     //Load Data grid view of Ordered Items 
@@ -325,16 +356,6 @@ namespace SimpleBilling.MasterForms
                                              oi.Quantity
                                          }).ToList();
                     DGVReceivedItems.DataSource = receivedItems;
-
-                    //Load All Items with on hand Stock Qty
-                    var data = (from item in db.Items.Where(c => !c.IsDeleted)
-                                select new
-                                {
-                                    item.Code,
-                                    item.PrintableName,
-                                    item.StockQty
-                                }).OrderBy(c => c.StockQty).ToList();
-                    DGVItemsToOrder.DataSource = data;
 
                     //Fetch List of Received Orders List 
                     var ReceivedOrders = db.PurchaseOrders.Where(c => c.IsReceived && !c.IsDeleted).Select(c => c.OrderUniqueId).ToList();
@@ -527,7 +548,7 @@ namespace SimpleBilling.MasterForms
                                 orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(ot.Quantity.ToString())));
                             }
                             orderTable.AddCell(new Cell(1, 2).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph("TOTAL ORDERED ITEMS")));
-                            orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(orderedItems.Count.ToString())));
+                            orderTable.AddCell(new Cell(1, 1).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).SetBackgroundColor(ColorConstants.LIGHT_GRAY).Add(new Paragraph(orderedItems.Count.ToString())));
                             pageHeight += 40;
                             LineSeparator ls = new LineSeparator(new DashedLine()).SetFontSize(10);
                             PageSize ps = new PageSize(pageWidth, pageHeight);
@@ -580,6 +601,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtFilterItems_KeyUp(object sender, KeyEventArgs e)
         {
+            LoadItems(TxtFilterItems.Text.Trim());
             Info.ToCapital(TxtFilterItems);
         }
 

@@ -1,4 +1,5 @@
-﻿using SimpleBilling.Model;
+﻿using iText.Layout.Element;
+using SimpleBilling.Model;
 using System;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -15,37 +16,53 @@ namespace SimpleBilling.SMS
         private static string CallerId = "CAR WEST";
         public static void Send(string DNumber, string Message)
         {
-            if (DNumber.StartsWith("0"))
+            try
             {
-                DNumber = DNumber.Remove(0, 1);
-            }
-            if (!DNumber.StartsWith("94"))
-            {
-                DNumber = "94" + DNumber;
-            }
-            string request = "https://bulksms2.etisalat.lk/sendsmsmultimask.php?";
-            var postData = "USER=" + HttpUtility.UrlPathEncode(Username) + "&PWD=" + HttpUtility.UrlPathEncode(Password) + "&MASK=" + HttpUtility.UrlPathEncode(CallerId) + "&NUM=" + HttpUtility.UrlPathEncode(DNumber) + "&MSG=" + HttpUtility.UrlDecode(Message);
-
-            using (var web = new WebClient())
-            {
-                Debug.WriteLine(request + postData);
-                string result = web.DownloadString(request + postData);
-                using (BillingContext db = new BillingContext())
+                if (DNumber.StartsWith("0"))
                 {
-                    SMSLog log = new SMSLog
+                    DNumber = DNumber.Remove(0, 1);
+                }
+                if (!DNumber.StartsWith("94"))
+                {
+                    DNumber = "94" + DNumber;
+                }
+
+                try
+                {
+                    string request = "https://bulksms2.etisalat.lk/sendsmsmultimask.php?";
+                    var postData = "USER=" + HttpUtility.UrlPathEncode(Username) + "&PWD=" + HttpUtility.UrlPathEncode(Password) + "&MASK=" + HttpUtility.UrlPathEncode(CallerId) + "&NUM=" + HttpUtility.UrlPathEncode(DNumber) + "&MSG=" + HttpUtility.UrlDecode(Message);
+
+                    using (var web = new WebClient())
                     {
-                        CreatedDate = DateTime.Today,
-                        LogKey = Rand.RandomString(15),
-                        LogMessage = Message,
-                        Log = result,
-                        Number = DNumber
-                    };
-                    if (db.Entry(log).State == EntityState.Detached)
-                        db.Set<SMSLog>().Attach(log);
-                    db.Entry(log).State = EntityState.Added;
-                    db.SaveChanges();
+                        Debug.WriteLine(request + postData);
+                        string result = web.DownloadString(request + postData);
+                        using (BillingContext db = new BillingContext())
+                        {
+                            SMSLog log = new SMSLog
+                            {
+                                CreatedDate = DateTime.Today,
+                                LogKey = Rand.RandomString(15),
+                                LogMessage = Message,
+                                Log = result,
+                                Number = DNumber
+                            };
+                            if (db.Entry(log).State == EntityState.Detached)
+                                db.Set<SMSLog>().Attach(log);
+                            db.Entry(log).State = EntityState.Added;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
+                    return;
                 }
             }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }            
         }
     }
 }

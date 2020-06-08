@@ -1776,6 +1776,8 @@ namespace SimpleBilling.MasterForms
             {
                 var vehicles = db.Vehicles.Select(c => c.VehicleNo).ToList();
                 Vehicles.AddRange(vehicles.ToArray());
+                TxtSearchByVehicleNumber.AutoCompleteMode = AutoCompleteMode.Suggest;
+                TxtSearchByVehicleNumber.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 TxtSearchByVehicleNumber.AutoCompleteCustomSource = Vehicles;
             }
         }
@@ -1788,6 +1790,8 @@ namespace SimpleBilling.MasterForms
             {
                 var data = db.Cheques.Select(c => c.PayeeName).ToList();
                 Payee.AddRange(data.ToArray());
+                TxtPayeeName.AutoCompleteMode = AutoCompleteMode.Suggest;
+                TxtPayeeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 TxtPayeeName.AutoCompleteCustomSource = Payee;
             }
         }
@@ -1800,7 +1804,7 @@ namespace SimpleBilling.MasterForms
             {
                 var data = db.Items.Select(c => c.Code).ToList();
                 Code.AddRange(data.ToArray());
-                TxtProductCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                TxtProductCode.AutoCompleteMode = AutoCompleteMode.Suggest;
                 TxtProductCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 TxtProductCode.AutoCompleteCustomSource = Code;
             }
@@ -2035,7 +2039,7 @@ namespace SimpleBilling.MasterForms
 
         private void TxtProductCode_KeyUp(object sender, KeyEventArgs e)
         {
-            Info.ToCapital(TxtProductCode);
+
         }
 
         private void CmbAddItem_KeyUp(object sender, KeyEventArgs e)
@@ -2233,6 +2237,43 @@ namespace SimpleBilling.MasterForms
                 ReceiptNo = LblReceiptNo.Text.Trim();
                 ItemId = Convert.ToInt32(DGVReturned.SelectedRows[0].Cells[0].Value + string.Empty);
             }
+        }
+
+        private void POS_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.J)
+            {
+                ItemLookup ilu = new ItemLookup();
+                ilu.Show();
+            }
+        }
+
+        private void CmbAddItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.J)
+            {
+                try
+                {
+                    using (ItemLookup frm = new ItemLookup())
+                    {
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            TxtProductCode.Text = frm.Code;
+                            CmbAddItem.Text = frm.ItemName;
+                            GetItemDetailsById();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
+                }
+
+            }
+        }
+
+        private void POS_Enter(object sender, EventArgs e)
+        {
         }
     }
 }

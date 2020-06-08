@@ -206,6 +206,12 @@
     <Compile Include="MasterForms\GRNInvoices.Designer.cs">
       <DependentUpon>GRNInvoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\ItemLookup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\ItemLookup.Designer.cs">
+      <DependentUpon>ItemLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\LoadReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\GRNInvoices.resx">
       <DependentUpon>GRNInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\ItemLookup.resx">
+      <DependentUpon>ItemLookup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\LoadReceipt.resx">
       <DependentUpon>LoadReceipt.cs</DependentUpon>
