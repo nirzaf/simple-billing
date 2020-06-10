@@ -293,5 +293,22 @@ namespace SimpleBilling.MasterForms
         {
             Info.ToCapital(TxtType);
         }
+
+        private void CmbVehicleOwner_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (BillingContext db = new BillingContext()) 
+                {
+                    int CustomerId =Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString());
+                    var Cus = db.Customers.FirstOrDefault(c => c.CustomerId == CustomerId && !c.IsDeleted);
+                    LblMobile.Text = Cus.Contact;
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+        }
     }
 }
