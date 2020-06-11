@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SimpleBilling.Model
 {
@@ -12,5 +13,7 @@ namespace SimpleBilling.Model
         public string ExceptionPath { get; set; }
         public int SetMinValue { get; set; }
         public string QuotationPath { get; set; }
+        [DefaultValue(false)]
+        public bool EnableSMS { get; set; }
     }
 }

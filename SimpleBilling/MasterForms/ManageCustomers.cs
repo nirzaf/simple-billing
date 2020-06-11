@@ -68,6 +68,7 @@ namespace SimpleBilling
             {
                 using (BillingContext db = new BillingContext())
                 {
+                    var path = db.Settings.Take(1).FirstOrDefault();
                     if (customersBindingSource1.Current is Customers cat)
                     {
                         if (db.Entry(cat).State == EntityState.Detached)
@@ -77,7 +78,10 @@ namespace SimpleBilling
                             db.Entry(cat).State = EntityState.Added;
                             cat.CreatedDate = DateTime.Now;
                             db.SaveChanges();
-                            SMS.Sender.Send(TxtContact.Text.Trim(), "Greetings " + TxtName.Text.Trim() + ", Welcome to Carwest Auto Service");
+                            if (path.EnableSMS)
+                            {
+                                SMS.Sender.Send(TxtContact.Text.Trim(), "Greetings " + TxtName.Text.Trim() + ", Welcome to Carwest Auto Service");
+                            }
                             Message("Customer Added");
                         }
                         else
