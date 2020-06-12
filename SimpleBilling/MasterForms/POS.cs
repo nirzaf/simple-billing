@@ -15,6 +15,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.UI;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -64,77 +65,98 @@ namespace SimpleBilling.MasterForms
 
         private void FormLoad()
         {
-            BtnAddCheque.Visible = false;
-            CmbChooseCheques.Visible = false;
-            BtnPrint.Enabled = false;
-            BtnPrintQuotation.Enabled = false;
-            ChkVehicle.Enabled = false;
-            TxtCurrentMileage.Enabled = false;
-            TxtNextServiceDue.Enabled = false;
-            BtnRemoveReturn.Visible = false;
-            BtnAddtoReturn.Visible = false;
-            BtnReturn.Enabled = false;
-            DGVLoad(ReceiptNo);
-            PrintAndVoid();
-            TxtCustomer.Focus();
-            HideCheque();
-            HideAddCustomer();
-            CustomersAutocomplete();
-            ProductCodeAutocomplete();
-            PayeeAutocomplete();
-            VehicleNumberAutoComplete();
-            LoadDGVLayout();
+            try
+            {
+                BtnAddCheque.Visible = false;
+                CmbChooseCheques.Visible = false;
+                BtnPrint.Enabled = false;
+                BtnPrintQuotation.Enabled = false;
+                ChkVehicle.Enabled = false;
+                TxtCurrentMileage.Enabled = false;
+                TxtNextServiceDue.Enabled = false;
+                BtnRemoveReturn.Visible = false;
+                BtnAddtoReturn.Visible = false;
+                BtnReturn.Enabled = false;
+                DGVLoad(ReceiptNo);
+                PrintAndVoid();
+                TxtCustomer.Focus();
+                HideCheque();
+                HideAddCustomer();
+                CustomersAutocomplete();
+                ProductCodeAutocomplete();
+                PayeeAutocomplete();
+                VehicleNumberAutoComplete();
+                LoadDGVLayout();
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
         }
 
         private void LoadDGVLayout()
         {
             int count = 0;
-            foreach (RowStyle rs in RptBodyLayout.RowStyles)
+            try
             {
-                count++;
-                if (DGVReturned.Rows.Count == 0)
+                foreach (RowStyle rs in RptBodyLayout.RowStyles)
                 {
-                    if (count == 2)
+                    count++;
+                    if (DGVReturned.Rows.Count == 0)
                     {
-                        rs.SizeType = SizeType.Percent;
-                        rs.Height = 0;
+                        if (count == 2)
+                        {
+                            rs.SizeType = SizeType.Percent;
+                            rs.Height = 0;
+                        }
+                        if (count == 1)
+                        {
+                            rs.SizeType = SizeType.Percent;
+                            rs.Height = 100;
+                        }
+                        BtnAddtoReturn.Visible = false;
+                        BtnRemoveReturn.Visible = false;
                     }
-                    if (count == 1)
+                    else
                     {
-                        rs.SizeType = SizeType.Percent;
-                        rs.Height = 100;
+                        foreach (RowStyle s in RptBodyLayout.RowStyles)
+                        {
+                            s.SizeType = SizeType.Percent;
+                            s.Height = 50;
+                        }
+                        BtnAddtoReturn.Visible = true;
+                        BtnRemoveReturn.Visible = true;
                     }
-                    BtnAddtoReturn.Visible = false;
-                    BtnRemoveReturn.Visible = false;
                 }
-                else
-                {
-                    foreach (RowStyle s in RptBodyLayout.RowStyles)
-                    {
-                        s.SizeType = SizeType.Percent;
-                        s.Height = 50;
-                    }
-                    BtnAddtoReturn.Visible = true;
-                    BtnRemoveReturn.Visible = true;
-                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
             }
         }
 
         private void LoabCMB()
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                CmbPaidBy.ValueMember = "CustomerId";
-                CmbPaidBy.DisplayMember = "Name";
-                CmbPaidBy.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
+                using (BillingContext db = new BillingContext())
+                {
+                    CmbPaidBy.ValueMember = "CustomerId";
+                    CmbPaidBy.DisplayMember = "Name";
+                    CmbPaidBy.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
 
-                CmbBank.ValueMember = "BankId";
-                CmbBank.DisplayMember = "BankName";
-                CmbBank.DataSource = db.Banks.Where(c => !c.IsDeleted).ToList();
+                    CmbBank.ValueMember = "BankId";
+                    CmbBank.DisplayMember = "BankName";
+                    CmbBank.DataSource = db.Banks.Where(c => !c.IsDeleted).ToList();
 
-                CmbChooseCheques.ValueMember = "ChequeNo";
-                CmbChooseCheques.DisplayMember = "ChequeNo";
-                CmbChooseCheques.DataSource = db.Cheques.Where(c => !c.IsDeleted).ToList();
+                    CmbChooseCheques.ValueMember = "ChequeNo";
+                    CmbChooseCheques.DisplayMember = "ChequeNo";
+                    CmbChooseCheques.DataSource = db.Cheques.Where(c => !c.IsDeleted).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
             }
         }
 
@@ -367,28 +389,36 @@ namespace SimpleBilling.MasterForms
 
         private string GenReceiptNo()
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                var data = db.ReceiptHeaders.Select(c => c.ReceiptNo).ToList();
-                List<int> intList = new List<int>();
-                if (data.Count > 0)
+                using (BillingContext db = new BillingContext())
                 {
-                    int RptNo;
-                    foreach (var i in data)
+                    var data = db.ReceiptHeaders.Select(c => c.ReceiptNo).ToList();
+                    List<int> intList = new List<int>();
+                    if (data.Count > 0)
                     {
-                        Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
-                        Match result = re.Match(i);
-                        string num = result.Groups[2].Value;
-                        intList.Add(Convert.ToInt32(num));
+                        int RptNo;
+                        foreach (var i in data)
+                        {
+                            Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
+                            Match result = re.Match(i);
+                            string num = result.Groups[2].Value;
+                            intList.Add(Convert.ToInt32(num));
+                        }
+                        RptNo = intList.Max();
+                        RptNo++;
+                        return ("CW" + RptNo.ToString());
                     }
-                    RptNo = intList.Max();
-                    RptNo++;
-                    return ("CW" + RptNo.ToString());
+                    else
+                    {
+                        return ("CW" + "1000");
+                    }
                 }
-                else
-                {
-                    return ("CW" + "1000");
-                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+                return string.Empty;
             }
         }
 
@@ -444,40 +474,48 @@ namespace SimpleBilling.MasterForms
         }
 
         private void LoadCustomer()
-        { 
-            if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
+        {
+            try
             {
-                string MobileNumber = TxtCustomer.Text.Trim();
-                using (BillingContext db = new BillingContext())
+                if (!string.IsNullOrWhiteSpace(TxtCustomer.Text.Trim()))
                 {
-                    var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber && !c.IsDeleted);
-                    if (data != null)
+                    string MobileNumber = TxtCustomer.Text.Trim();
+                    using (BillingContext db = new BillingContext())
                     {
-                        LblCustomer.Text = data.Name;
-
-                        var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId && !c.IsDeleted).ToList();
-                        if (vehicles != null)
+                        var data = db.Customers.FirstOrDefault(c => c.Contact == MobileNumber && !c.IsDeleted);
+                        if (data != null)
                         {
-                            CmbVehicles.Enabled = true;
-                            CmbVehicles.ValueMember = "VehicleNo";
-                            CmbVehicles.DisplayMember = "VehicleNo";
-                            CmbVehicles.DataSource = vehicles;
-                            ChkVehicle.Enabled = true;
+                            LblCustomer.Text = data.Name;
+
+                            var vehicles = db.Vehicles.Where(c => c.OwnerId == data.CustomerId && !c.IsDeleted).ToList();
+                            if (vehicles != null)
+                            {
+                                CmbVehicles.Enabled = true;
+                                CmbVehicles.ValueMember = "VehicleNo";
+                                CmbVehicles.DisplayMember = "VehicleNo";
+                                CmbVehicles.DataSource = vehicles;
+                                ChkVehicle.Enabled = true;
+                            }
+                            else
+                            {
+                                ChkVehicle.Enabled = false;
+                                CmbVehicles.Enabled = false;
+                                ChkVehicle.Checked = false;
+                            }
                         }
                         else
                         {
-                            ChkVehicle.Enabled = false;
+                            LblCustomer.Text = "Customer";
                             CmbVehicles.Enabled = false;
-                            ChkVehicle.Checked = false;
                         }
-                    }
-                    else
-                    {
-                        LblCustomer.Text = "Customer";
-                        CmbVehicles.Enabled = false;
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }
+           
         }
 
 
@@ -597,23 +635,30 @@ namespace SimpleBilling.MasterForms
 
         private void LoadDGV(string ReceiptNo)
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted)
-                            join item in db.Items
-                            on body.ProductId equals item.Id
-                            select new
-                            {
-                                item.Id,
-                                item.Code,
-                                item.PrintableName,
-                                body.UnitPrice,
-                                body.Quantity,
-                                body.SubTotal,
-                                body.Discount,
-                                body.NetTotal
-                            }).ToList();
-                DGVReceiptBody.DataSource = data;
+                using (BillingContext db = new BillingContext())
+                {
+                    var data = (from body in db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted)
+                                join item in db.Items
+                                on body.ProductId equals item.Id
+                                select new
+                                {
+                                    item.Id,
+                                    item.Code,
+                                    item.PrintableName,
+                                    body.UnitPrice,
+                                    body.Quantity,
+                                    body.SubTotal,
+                                    body.Discount,
+                                    body.NetTotal
+                                }).ToList();
+                    DGVReceiptBody.DataSource = data;
+                }
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
             }
         }
 
@@ -688,58 +733,72 @@ namespace SimpleBilling.MasterForms
 
         private void TotalCalculator()
         {
-            ReceiptTotalDiscount = Info.GetDGVSum(DGVReceiptBody, 6);
-            ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
-            if (DGVReturned.Rows.Count > 0)
+            try
             {
-                TotalReturns = Info.GetDGVSum(DGVReturned, 7);
-            }
+                ReceiptTotalDiscount = Info.GetDGVSum(DGVReceiptBody, 6);
+                ReceiptNetTotal = Info.GetDGVSum(DGVReceiptBody, 7);
+                if (DGVReturned.Rows.Count > 0)
+                {
+                    TotalReturns = Info.GetDGVSum(DGVReturned, 7);
+                }
 
-            if (Info.IsEmpty(TxtOverallDiscount))
+                if (Info.IsEmpty(TxtOverallDiscount))
+                {
+                    ReceiptTotalDiscount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
+                    ReceiptNetTotal -= ReceiptTotalDiscount;
+                }
+
+                LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
+                LblNetTotal.Text = ReceiptNetTotal.ToString();
+                ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;
+                LblSubTotal.Text = ReceiptSubTotal.ToString();
+            }
+            catch (Exception ex)
             {
-                ReceiptTotalDiscount += Convert.ToSingle(TxtOverallDiscount.Text.Trim());
-                ReceiptNetTotal -= ReceiptTotalDiscount;
+                Info.Mes(ex.Message);
             }
-
-            LblTotalDiscount.Text = ReceiptTotalDiscount.ToString();
-            LblNetTotal.Text = ReceiptNetTotal.ToString();
-            ReceiptSubTotal = ReceiptTotalDiscount + ReceiptNetTotal;
-            LblSubTotal.Text = ReceiptSubTotal.ToString();
         }
 
         private void InsertMileage()
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && !c.IsDeleted);
-                if (mlt == null)
+                using (BillingContext db = new BillingContext())
                 {
-                    MileageTracking mt = new MileageTracking
+                    var mlt = db.MileTracking.FirstOrDefault(c => c.ReceiptNo == LblReceiptNo.Text.Trim() && !c.IsDeleted);
+                    if (mlt == null)
                     {
-                        ReceiptNo = LblReceiptNo.Text.Trim(),
-                        VehicleNo = CmbVehicles.SelectedValue.ToString(),
-                        Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
-                        NextServiceDue = Convert.ToInt32(TxtNextServiceDue.Text.Trim()),
-                        CreatedDate = DateTime.Now
-                    };
-                    if (db.Entry(mt).State == EntityState.Detached)
-                        db.Set<MileageTracking>().Attach(mt);
-                    db.Entry(mt).State = EntityState.Added;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    mlt.VehicleNo = CmbVehicles.Text;
-                    mlt.ReceiptNo = LblReceiptNo.Text.Trim();
-                    mlt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
-                    mlt.NextServiceDue = Convert.ToInt32(TxtNextServiceDue.Text.Trim());
-                    mlt.UpdatedDate = DateTime.Now;
-                    if (db.Entry(mlt).State == EntityState.Detached)
-                        db.Set<MileageTracking>().Attach(mlt);
-                    db.Entry(mlt).State = EntityState.Modified;
-                    db.SaveChanges();
+                        MileageTracking mt = new MileageTracking
+                        {
+                            ReceiptNo = LblReceiptNo.Text.Trim(),
+                            VehicleNo = CmbVehicles.SelectedValue.ToString(),
+                            Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim()),
+                            NextServiceDue = Convert.ToInt32(TxtNextServiceDue.Text.Trim()),
+                            CreatedDate = DateTime.Now
+                        };
+                        if (db.Entry(mt).State == EntityState.Detached)
+                            db.Set<MileageTracking>().Attach(mt);
+                        db.Entry(mt).State = EntityState.Added;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        mlt.VehicleNo = CmbVehicles.Text;
+                        mlt.ReceiptNo = LblReceiptNo.Text.Trim();
+                        mlt.Mileage = Convert.ToInt32(TxtCurrentMileage.Text.Trim());
+                        mlt.NextServiceDue = Convert.ToInt32(TxtNextServiceDue.Text.Trim());
+                        mlt.UpdatedDate = DateTime.Now;
+                        if (db.Entry(mlt).State == EntityState.Detached)
+                            db.Set<MileageTracking>().Attach(mlt);
+                        db.Entry(mlt).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }            
         }
 
         private void CompleteReceipt(int Type)
@@ -835,30 +894,37 @@ namespace SimpleBilling.MasterForms
 
         private void ReduceStock(bool value)
         {
-            foreach (DataGridViewRow dgv in DGVReceiptBody.Rows)
+            try
             {
-                using (BillingContext db = new BillingContext())
+                foreach (DataGridViewRow dgv in DGVReceiptBody.Rows)
                 {
-                    int itemId = Convert.ToInt32(dgv.Cells[0].Value);
-                    int quantity = Convert.ToInt32(dgv.Cells[4].Value);
-                    var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
-                    if (Result != null)
+                    using (BillingContext db = new BillingContext())
                     {
-                        if (value)
+                        int itemId = Convert.ToInt32(dgv.Cells[0].Value);
+                        int quantity = Convert.ToInt32(dgv.Cells[4].Value);
+                        var Result = db.Items.FirstOrDefault(c => c.Id == itemId);
+                        if (Result != null)
                         {
-                            Result.StockQty -= quantity;
+                            if (value)
+                            {
+                                Result.StockQty -= quantity;
+                            }
+                            if (!value)
+                            {
+                                Result.StockQty += quantity;
+                            }
+                            if (db.Entry(Result).State == EntityState.Detached)
+                                db.Set<Item>().Attach(Result);
+                            db.Entry(Result).State = EntityState.Modified;
+                            db.SaveChanges();
                         }
-                        if (!value)
-                        {
-                            Result.StockQty += quantity;
-                        }
-                        if (db.Entry(Result).State == EntityState.Detached)
-                            db.Set<Item>().Attach(Result);
-                        db.Entry(Result).State = EntityState.Modified;
-                        db.SaveChanges();
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
+            }            
         }
 
         private void IncreaseStock()
@@ -962,26 +1028,33 @@ namespace SimpleBilling.MasterForms
 
         private void TxtGivenAmount_KeyUp(object sender, KeyEventArgs e)
         {
-            if (TxtGivenAmount.Text.Length > 0)
+            try
             {
-                GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
-                ReceiptNetTotal = Convert.ToSingle(LblNetTotal.Text);
-                ReceiptSubTotal = Convert.ToSingle(LblSubTotal.Text);
-                ReceiptTotalDiscount = Convert.ToSingle(LblTotalDiscount.Text);
+                if (TxtGivenAmount.Text.Length > 0)
+                {
+                    GivenAmount = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+                    ReceiptNetTotal = Convert.ToSingle(LblNetTotal.Text);
+                    ReceiptSubTotal = Convert.ToSingle(LblSubTotal.Text);
+                    ReceiptTotalDiscount = Convert.ToSingle(LblTotalDiscount.Text);
 
-                BalanceAmount = GivenAmount - ReceiptNetTotal;
-                LblBalanceAmount.Text = BalanceAmount.ToString();
-                PendingValue = ReceiptNetTotal - GivenAmount;
-                if (PendingValue > 0)
-                {
-                    LblPendingAmount.Text = PendingValue.ToString();
+                    BalanceAmount = GivenAmount - ReceiptNetTotal;
+                    LblBalanceAmount.Text = BalanceAmount.ToString();
+                    PendingValue = ReceiptNetTotal - GivenAmount;
+                    if (PendingValue > 0)
+                    {
+                        LblPendingAmount.Text = PendingValue.ToString();
+                    }
+                    else
+                    {
+                        PendingValue = 0;
+                        LblPendingAmount.Text = PendingValue.ToString();
+                    }
+                    PaidValue = Convert.ToSingle(TxtGivenAmount.Text.Trim());
                 }
-                else
-                {
-                    PendingValue = 0;
-                    LblPendingAmount.Text = PendingValue.ToString();
-                }
-                PaidValue = Convert.ToSingle(TxtGivenAmount.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
             }
         }
 
@@ -1000,29 +1073,36 @@ namespace SimpleBilling.MasterForms
 
         private void CancelReceipt()
         {
-            using (BillingContext db = new BillingContext())
+            try
             {
-                var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted && c.Status == 2);
-                var item = db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsReturned && !c.IsDeleted).ToList();
-                foreach (var i in item)
+                using (BillingContext db = new BillingContext())
                 {
-                    i.IsReturned = true;
-                    i.UpdatedDate = DateTime.Today;
-                    if (db.Entry(i).State == EntityState.Detached)
-                        db.Set<ReceiptBody>().Attach(i);
-                    db.Entry(i).State = EntityState.Modified;
+                    var result = db.ReceiptHeaders.FirstOrDefault(c => c.ReceiptNo == ReceiptNo && !c.IsDeleted && c.Status == 2);
+                    var item = db.ReceiptBodies.Where(c => c.ReceiptNo == ReceiptNo && !c.IsReturned && !c.IsDeleted).ToList();
+                    foreach (var i in item)
+                    {
+                        i.IsReturned = true;
+                        i.UpdatedDate = DateTime.Today;
+                        if (db.Entry(i).State == EntityState.Detached)
+                            db.Set<ReceiptBody>().Attach(i);
+                        db.Entry(i).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+
+                    if (result != null)
+                    {
+                        result.Status = 0;
+                        result.UpdatedDate = DateTime.Today;
+                        if (db.Entry(result).State == EntityState.Detached)
+                            db.Set<ReceiptHeader>().Attach(result);
+                        db.Entry(result).State = EntityState.Modified;
+                    }
                     db.SaveChanges();
                 }
-
-                if (result != null)
-                {
-                    result.Status = 0;
-                    result.UpdatedDate = DateTime.Today;
-                    if (db.Entry(result).State == EntityState.Detached)
-                        db.Set<ReceiptHeader>().Attach(result);
-                    db.Entry(result).State = EntityState.Modified;
-                }
-                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Info.Mes(ex.Message);
             }
         }
 
@@ -1106,26 +1186,33 @@ namespace SimpleBilling.MasterForms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (DGVReceiptBody.SelectedRows.Count > 0)
+            try
             {
-                int Id = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty);
-                string RptNo = LblReceiptNo.Text.Trim();
-                using (BillingContext db = new BillingContext())
+                if (DGVReceiptBody.SelectedRows.Count > 0)
                 {
-                    var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == RptNo && !c.IsDeleted);
-                    if (Item != null)
+                    int Id = Convert.ToInt32(DGVReceiptBody.SelectedRows[0].Cells[0].Value + string.Empty);
+                    string RptNo = LblReceiptNo.Text.Trim();
+                    using (BillingContext db = new BillingContext())
                     {
-                        if (db.Entry(Item).State == EntityState.Detached)
-                            db.Set<ReceiptBody>().Attach(Item);
-                        db.Entry(Item).State = EntityState.Deleted;
-                        db.SaveChanges();
-                        DGVLoad(RptNo);
+                        var Item = db.ReceiptBodies.FirstOrDefault(c => c.ProductId == Id && c.ReceiptNo == RptNo && !c.IsDeleted);
+                        if (Item != null)
+                        {
+                            if (db.Entry(Item).State == EntityState.Detached)
+                                db.Set<ReceiptBody>().Attach(Item);
+                            db.Entry(Item).State = EntityState.Deleted;
+                            db.SaveChanges();
+                            DGVLoad(RptNo);
+                        }
                     }
                 }
+                else
+                {
+                    Info.Mes("Please Select an item to delete");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Info.Mes("Please Select an item to delete");
+                Info.Mes(ex.Message);
             }
         }
 
