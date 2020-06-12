@@ -276,6 +276,7 @@
             this.CmbVehicleOwner.TabIndex = 13;
             this.CmbVehicleOwner.ValueMember = "CustomerId";
             this.CmbVehicleOwner.SelectedIndexChanged += new System.EventHandler(this.CmbVehicleOwner_SelectedIndexChanged);
+            this.CmbVehicleOwner.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbVehicleOwner_KeyDown);
             // 
             // customersBindingSource
             // 

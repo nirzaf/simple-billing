@@ -200,6 +200,12 @@
     <Compile Include="MasterForms\BusinessInfo.Designer.cs">
       <DependentUpon>BusinessInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterForms\CustomerLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterForms\CustomerLookUp.Designer.cs">
+      <DependentUpon>CustomerLookUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterForms\GRNInvoices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\BusinessInfo.resx">
       <DependentUpon>BusinessInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterForms\CustomerLookUp.resx">
+      <DependentUpon>CustomerLookUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterForms\GRNInvoices.resx">
       <DependentUpon>GRNInvoices.cs</DependentUpon>

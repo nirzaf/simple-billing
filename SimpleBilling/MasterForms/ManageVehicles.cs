@@ -9,6 +9,7 @@ namespace SimpleBilling.MasterForms
     public partial class ManageVehicles : Form
     {
         private string VehicleNum;
+        private int CustomerId;
 
         public ManageVehicles()
         {
@@ -300,14 +301,39 @@ namespace SimpleBilling.MasterForms
             {
                 using (BillingContext db = new BillingContext()) 
                 {
-                    int CustomerId =Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString());
-                    var Cus = db.Customers.FirstOrDefault(c => c.CustomerId == CustomerId && !c.IsDeleted);
-                    LblMobile.Text = Cus.Contact;
+                    if (CmbVehicleOwner.SelectedValue != null)
+                    {
+                        CustomerId = Convert.ToInt32(CmbVehicleOwner.SelectedValue.ToString());
+                        var Cus = db.Customers.FirstOrDefault(c => c.CustomerId == CustomerId && !c.IsDeleted);
+                        LblMobile.Text = Cus.Contact;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Info.Mes(ex.Message);
+            }
+        }
+
+        private void CmbVehicleOwner_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.J)
+            {
+                try
+                {
+                    using (CustomerLookUp frm = new CustomerLookUp())
+                    {
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            CmbVehicleOwner.SelectedValue = frm.CustomerId;
+                            CmbVehicleOwner.Text = frm.CustomerName;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
+                }
             }
         }
     }

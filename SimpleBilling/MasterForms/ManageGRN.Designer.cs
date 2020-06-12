@@ -197,6 +197,7 @@
             this.CmbProduct.TabIndex = 9;
             this.CmbProduct.ValueMember = "Id";
             this.CmbProduct.SelectedIndexChanged += new System.EventHandler(this.CmbProduct_SelectedIndexChanged);
+            this.CmbProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProduct_KeyDown);
             this.CmbProduct.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmbProduct_KeyUp);
             // 
             // label5

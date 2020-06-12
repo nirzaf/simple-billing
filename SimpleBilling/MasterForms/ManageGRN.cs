@@ -1372,5 +1372,27 @@ namespace SimpleBilling.MasterForms
                 }
             }
         }
+
+        private void CmbProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.J)
+            {
+                try
+                {
+                    using (ItemLookup frm = new ItemLookup())
+                    {
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            CmbProduct.SelectedValue = frm.Code;
+                            CmbProduct.SelectedText = frm.ItemName;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
+                }
+            }
+        }
     }
 }

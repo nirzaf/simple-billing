@@ -103,5 +103,10 @@ namespace SimpleBilling.MasterForms
                 ItemName = DGVItems.SelectedRows[0].Cells[1].Value + string.Empty;
             }
         }
+
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

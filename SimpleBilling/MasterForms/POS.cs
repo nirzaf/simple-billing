@@ -2356,7 +2356,6 @@ namespace SimpleBilling.MasterForms
                 {
                     Info.Mes(ex.Message);
                 }
-
             }
         }
 
