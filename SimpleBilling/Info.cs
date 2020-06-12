@@ -39,6 +39,16 @@ namespace SimpleBilling
             }
         }
 
+        public static bool IsAllDigits(string s)
+        {
+            foreach (char c in s)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
+
         public static string CleanString(string Input)
         {
             return Input.Replace("/", string.Empty).Replace(" ", string.Empty);

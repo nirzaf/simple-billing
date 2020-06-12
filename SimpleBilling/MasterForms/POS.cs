@@ -15,7 +15,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.UI;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -403,9 +402,15 @@ namespace SimpleBilling.MasterForms
                             Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
                             Match result = re.Match(i);
                             string num = result.Groups[2].Value;
-                            intList.Add(Convert.ToInt32(num));
+                            if (Info.IsAllDigits(num))
+                            {
+                                intList.Add(Convert.ToInt32(num));
+                            }
                         }
-                        RptNo = intList.Max();
+                        if (intList.Count > 0)
+                            RptNo = intList.Max();
+                        else
+                            RptNo = 1000; 
                         RptNo++;
                         return ("CW" + RptNo.ToString());
                     }
