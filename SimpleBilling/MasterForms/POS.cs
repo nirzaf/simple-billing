@@ -1442,9 +1442,14 @@ namespace SimpleBilling.MasterForms
 
                     foreach (DataRow d in dt.Rows)
                     {
-                        pageHeight += 12;
+                        pageHeight += 16;
+                        string item;
+                        if (d[2].ToString().Length > 40)
+                            item = d[2].ToString().Substring(0, 40);
+                        else
+                            item = d[2].ToString();
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[1].ToString())));
-                        table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(d[2].ToString())));
+                        table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(item)));
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[3].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(d[4].ToString())));
                         table.AddCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(d[5].ToString())));
@@ -1457,10 +1462,15 @@ namespace SimpleBilling.MasterForms
                         table.AddCell(new Cell(1,7).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(9).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("RETURNED ITEMS")));
                         foreach (DataRow dr in dtReturn.Rows)
                         {
+                            string item;
                             int x = 1;
-                            pageHeight += 12;
+                            pageHeight += 16;
+                            if (dr[2].ToString().Length > 40)
+                                item = dr[2].ToString().Substring(0, 40);
+                            else
+                                item = dr[2].ToString();
                             table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(dr[1].ToString())));
-                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(dr[2].ToString())));
+                            table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(item)));
                             table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(dr[3].ToString())));
                             table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.CENTER).Add(new Paragraph(dr[4].ToString())));
                             table.AddCell(new Cell(x, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(dr[5].ToString())));
@@ -1470,7 +1480,7 @@ namespace SimpleBilling.MasterForms
                     }
                     if (dtReturn.Rows.Count == 0)
                     {
-                        pageHeight += 30;
+                        pageHeight += 50;
                         table.AddFooterCell(new Cell(1, 5).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblSubTotal.Text)));
                         table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblTotalDiscount.Text)));
                         table.AddFooterCell(new Cell(1, 1).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(LblNetTotal.Text)));
@@ -1486,7 +1496,7 @@ namespace SimpleBilling.MasterForms
                     }
                     else
                     {
-                        pageHeight += 50;
+                        pageHeight += 100;
                         table.AddFooterCell(new Cell(1, 7).SetBorder(new SolidBorder(ColorConstants.LIGHT_GRAY, 1)).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph(TotalReturns.ToString())));
 
                         table.AddFooterCell(new Cell(1, 6).SetBorder(Border.NO_BORDER).SetFontSize(8).SetTextAlignment(TextAlignment.RIGHT).Add(new Paragraph("RETURNED AMOUNT")));
