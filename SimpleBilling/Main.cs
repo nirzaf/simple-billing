@@ -1,5 +1,6 @@
 ﻿using SimpleBilling.MasterForms;
 using SimpleBilling.Model;
+using SimpleBilling.Reports;
 using System;
 using System.Windows.Forms;
 
@@ -378,6 +379,24 @@ namespace SimpleBilling
                 MdiParent = this
             };
             ms.Show();
+        }
+
+        private void VoidedReceiptsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(VoidedReceipts))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            VoidedReceipts vr = new VoidedReceipts()
+            {
+                MdiParent = this
+            };
+            vr.Show();
         }
     }
 }
