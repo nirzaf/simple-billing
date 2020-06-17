@@ -110,25 +110,31 @@ namespace SimpleBilling
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (DGVCustomers.SelectedRows.Count > 0)
                 {
-                    using (BillingContext db = new BillingContext())
+                    int CusId = Convert.ToInt32(DGVCustomers.SelectedRows[0].Cells[0] + string.Empty);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        Customers cus = customersBindingSource1.Current as Customers;
-
-                        if (cus != null)
+                        using (BillingContext db = new BillingContext())
                         {
-                            if (db.Entry(cus).State == EntityState.Detached)
-                                db.Set<Customers>().Attach(cus);
-                            cus.IsDeleted = true;
-                            cus.UpdatedDate = DateTime.Now;
-                            db.Entry(cus).State = EntityState.Modified;
-                            cus.UpdatedDate = DateTime.Now;
-                            db.SaveChanges();
-                            Message("Customer Deleted Successfully");
+                            var cus = db.Customers.FirstOrDefault(c => c.CustomerId == CusId);
+                            if (cus != null)
+                            {
+                                if (db.Entry(cus).State == EntityState.Detached)
+                                    db.Set<Customers>().Attach(cus);
+                                cus.IsDeleted = true;
+                                cus.UpdatedDate = DateTime.Now;
+                                db.Entry(cus).State = EntityState.Modified;
+                                cus.UpdatedDate = DateTime.Now;
+                                db.SaveChanges();
+                                Message("Customer Deleted Successfully");
+                            }
                         }
                     }
+                } else
+                {
+                    Info.Mes("Please select a customer to delete");
                 }
             }
             catch (Exception ex)

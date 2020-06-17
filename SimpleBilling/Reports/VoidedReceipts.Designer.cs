@@ -32,8 +32,8 @@
             this.BaseLayout = new System.Windows.Forms.TableLayoutPanel();
             this.DGVReport = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.DTPFrom = new System.Windows.Forms.DateTimePicker();
             this.DTPTo = new System.Windows.Forms.DateTimePicker();
+            this.DTPFrom = new System.Windows.Forms.DateTimePicker();
             this.BtnFilter = new System.Windows.Forms.Button();
             this.BaseLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReport)).BeginInit();
@@ -87,15 +87,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(827, 31);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // DTPFrom
-            // 
-            this.DTPFrom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPFrom.Location = new System.Drawing.Point(3, 3);
-            this.DTPFrom.Name = "DTPFrom";
-            this.DTPFrom.Size = new System.Drawing.Size(269, 22);
-            this.DTPFrom.TabIndex = 0;
-            // 
             // DTPTo
             // 
             this.DTPTo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -104,6 +95,15 @@
             this.DTPTo.Name = "DTPTo";
             this.DTPTo.Size = new System.Drawing.Size(269, 22);
             this.DTPTo.TabIndex = 1;
+            // 
+            // DTPFrom
+            // 
+            this.DTPFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DTPFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPFrom.Location = new System.Drawing.Point(3, 3);
+            this.DTPFrom.Name = "DTPFrom";
+            this.DTPFrom.Size = new System.Drawing.Size(269, 22);
+            this.DTPFrom.TabIndex = 0;
             // 
             // BtnFilter
             // 
@@ -123,7 +123,7 @@
             this.Controls.Add(this.BaseLayout);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VoidedReceipts";
             this.Text = "VoidedReceipts";
             this.Load += new System.EventHandler(this.VoidedReceipts_Load);
