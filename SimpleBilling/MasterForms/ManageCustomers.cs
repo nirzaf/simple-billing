@@ -37,7 +37,6 @@ namespace SimpleBilling
             {
                 Info.Mes(ex.Message);
             }
-
         }
 
         private void Message(string Message)
