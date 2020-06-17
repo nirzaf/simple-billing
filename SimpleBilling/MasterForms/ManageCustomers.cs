@@ -126,7 +126,6 @@ namespace SimpleBilling
                                 cus.IsDeleted = true;
                                 cus.UpdatedDate = DateTime.Now;
                                 db.Entry(cus).State = EntityState.Modified;
-                                cus.UpdatedDate = DateTime.Now;
                                 db.SaveChanges();
                                 Message("Customer Deleted Successfully");
                             }
