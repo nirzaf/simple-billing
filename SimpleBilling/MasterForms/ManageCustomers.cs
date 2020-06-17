@@ -29,7 +29,8 @@ namespace SimpleBilling
                 BtnDelete.Enabled = false;
                 using (BillingContext db = new BillingContext())
                 {
-                    customersBindingSource1.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
+                    var data = db.Customers.Where(c => !c.IsDeleted).ToList();
+                    DGVCustomers.DataSource = data;
                 }
             }
             catch (Exception ex)
