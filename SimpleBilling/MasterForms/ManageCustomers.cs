@@ -112,7 +112,7 @@ namespace SimpleBilling
             {
                 if (DGVCustomers.SelectedRows.Count > 0)
                 {
-                    int CusId = Convert.ToInt32(DGVCustomers.SelectedRows[0].Cells[0] + string.Empty);
+                    int CusId = Convert.ToInt32(TxtCustomerId.Text.Trim());
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
