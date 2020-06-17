@@ -131,7 +131,8 @@ namespace SimpleBilling
                             }
                         }
                     }
-                } else
+                } 
+                else
                 {
                     Info.Mes("Please select a customer to delete");
                 }
