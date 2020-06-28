@@ -42,8 +42,13 @@ namespace SimpleBilling.MasterForms
             ResetValues();
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
-            supplierBindingSource.Add(new Supplier());
-            supplierBindingSource.MoveLast();
+            Supplier supplier = new Supplier();
+            supplier.Name = TxtSupplierName.Text.Trim();
+            supplier.Contact = TxtContact.Text.Trim();
+            supplier.Address = TxtAddress.Text.Trim();
+            supplier.Email = TxtEmail.Text.Trim();
+            supplier.PendingAmount = Convert.ToSingle(TxtCodeNumber.Text.Trim());
+            supplier.CreatedDate = DateTime.Today;
             TxtSupplierName.Focus();
         }
 
@@ -67,7 +72,23 @@ namespace SimpleBilling.MasterForms
             CRUDPanel.Enabled = true;
             BtnSave.Enabled = true;
             TxtSupplierName.Focus();
-            Supplier sup = supplierBindingSource.Current as Supplier;
+            if (DGVSupplier.SelectedRows.Count > 0)
+            {
+                int SupplierId = Convert.ToInt32(DGVSupplier.SelectedRows[0].Cells[0].Value + string.Empty);
+                using (BillingContext db = new BillingContext())
+                { 
+                        var data = db.Suppliers.FirstOrDefault(c => c.SupplierId == SupplierId && !c.IsDeleted);
+                    if (data != null)
+                    {
+                        TxtSupplierId.Text = data.SupplierId.ToString();
+                        TxtSupplierName.Text = data.Name;
+                        TxtContact.Text = data.Contact;
+                        TxtAddress.Text = data.Address;
+                        TxtEmail.Text = data.Email;
+                        TxtCodeNumber.Text = data.PendingAmount.ToString();
+                    }
+                }
+            }
         }
 
         private void MessageTimer_Tick(object sender, EventArgs e)
@@ -79,20 +100,25 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (DGVSupplier.SelectedRows.Count > 0)
                 {
-                    using (BillingContext db = new BillingContext())
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        if (supplierBindingSource.Current is Supplier sup)
+                        int SupplierId = Convert.ToInt32(DGVSupplier.SelectedRows[0].Cells[0].Value + string.Empty);
+                        using (BillingContext db = new BillingContext())
                         {
-                            if (db.Entry(sup).State == EntityState.Detached)
-                                db.Set<Supplier>().Attach(sup);
-                            sup.UpdatedDate = DateTime.Now;
-                            sup.IsDeleted = true;
-                            db.Entry(sup).State = EntityState.Modified;
-                            db.SaveChanges();
-                            Message("Supplier Deleted Successfully");
+                            var data = db.Suppliers.FirstOrDefault(c => c.SupplierId == SupplierId && !c.IsDeleted);
+                            if (data != null)
+                            {
+                                if (db.Entry(data).State == EntityState.Detached)
+                                    db.Set<Supplier>().Attach(data);
+                                data.UpdatedDate = DateTime.Now;
+                                data.IsDeleted = true;
+                                db.Entry(data).State = EntityState.Modified;
+                                db.SaveChanges();
+                                Message("Supplier Deleted Successfully");
+                            }
                         }
                     }
                 }

@@ -34,7 +34,6 @@
             this.CRUDPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtCodeNumber = new System.Windows.Forms.TextBox();
-            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.TxtAddress = new System.Windows.Forms.TextBox();
             this.TxtContact = new System.Windows.Forms.TextBox();
@@ -60,7 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVSupplier)).BeginInit();
             this.CRUDPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -116,20 +114,14 @@
             // 
             // TxtCodeNumber
             // 
-            this.TxtCodeNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "PendingAmount", true));
             this.TxtCodeNumber.Location = new System.Drawing.Point(573, 93);
             this.TxtCodeNumber.Name = "TxtCodeNumber";
             this.TxtCodeNumber.Size = new System.Drawing.Size(278, 26);
             this.TxtCodeNumber.TabIndex = 11;
             this.TxtCodeNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtCodeNumber_KeyUp);
             // 
-            // supplierBindingSource
-            // 
-            this.supplierBindingSource.DataSource = typeof(SimpleBilling.Model.Supplier);
-            // 
             // TxtEmail
             // 
-            this.TxtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "Email", true));
             this.TxtEmail.Location = new System.Drawing.Point(288, 93);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(278, 26);
@@ -137,7 +129,6 @@
             // 
             // TxtAddress
             // 
-            this.TxtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "Address", true));
             this.TxtAddress.Location = new System.Drawing.Point(3, 93);
             this.TxtAddress.Name = "TxtAddress";
             this.TxtAddress.Size = new System.Drawing.Size(278, 26);
@@ -146,7 +137,6 @@
             // 
             // TxtContact
             // 
-            this.TxtContact.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "Contact", true));
             this.TxtContact.Location = new System.Drawing.Point(573, 33);
             this.TxtContact.Name = "TxtContact";
             this.TxtContact.Size = new System.Drawing.Size(278, 26);
@@ -154,7 +144,6 @@
             // 
             // TxtSupplierName
             // 
-            this.TxtSupplierName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "Name", true));
             this.TxtSupplierName.Location = new System.Drawing.Point(288, 33);
             this.TxtSupplierName.Name = "TxtSupplierName";
             this.TxtSupplierName.Size = new System.Drawing.Size(278, 26);
@@ -223,7 +212,6 @@
             // 
             // TxtSupplierId
             // 
-            this.TxtSupplierId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.supplierBindingSource, "SupplierId", true));
             this.TxtSupplierId.Location = new System.Drawing.Point(3, 33);
             this.TxtSupplierId.Name = "TxtSupplierId";
             this.TxtSupplierId.ReadOnly = true;
@@ -381,7 +369,6 @@
             this.CRUDPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -413,7 +400,6 @@
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnAdd;
-        private System.Windows.Forms.BindingSource supplierBindingSource;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer MessageTimer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
