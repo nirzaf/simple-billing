@@ -197,6 +197,7 @@
             this.CmbProduct.TabIndex = 9;
             this.CmbProduct.ValueMember = "Id";
             this.CmbProduct.SelectedIndexChanged += new System.EventHandler(this.CmbProduct_SelectedIndexChanged);
+            this.CmbProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProduct_KeyDown);
             this.CmbProduct.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmbProduct_KeyUp);
             // 
             // label5
@@ -344,6 +345,7 @@
             this.TxtGRNNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtGRNNo.Location = new System.Drawing.Point(3, 20);
             this.TxtGRNNo.Name = "TxtGRNNo";
+            this.TxtGRNNo.ReadOnly = true;
             this.TxtGRNNo.Size = new System.Drawing.Size(183, 26);
             this.TxtGRNNo.TabIndex = 0;
             this.TxtGRNNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyUp);

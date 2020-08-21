@@ -43,18 +43,19 @@
             this.ManageVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ManageBankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PurchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManageStockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.voidReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VoidedReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PendingReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSM2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblAutoLogOut = new System.Windows.Forms.Label();
             this.AutoLogOut = new System.Windows.Forms.Timer(this.components);
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +87,7 @@
             this.ManageVehicleToolStripMenuItem,
             this.ManageBankToolStripMenuItem,
             this.PurchaseOrderToolStripMenuItem,
+            this.ManageStockToolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.mASTERToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mASTERToolStripMenuItem.Name = "mASTERToolStripMenuItem";
@@ -171,13 +173,27 @@
             this.PurchaseOrderToolStripMenuItem.Text = "Purchase Order";
             this.PurchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderToolStripMenuItem_Click);
             // 
+            // ManageStockToolStripMenuItem1
+            // 
+            this.ManageStockToolStripMenuItem1.Name = "ManageStockToolStripMenuItem1";
+            this.ManageStockToolStripMenuItem1.Size = new System.Drawing.Size(247, 24);
+            this.ManageStockToolStripMenuItem1.Text = "Manage Stock";
+            this.ManageStockToolStripMenuItem1.Click += new System.EventHandler(this.ManageStockToolStripMenuItem1_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gRNInvoicesToolStripMenuItem,
             this.receiptsToolStripMenuItem,
-            this.voidReceiptsToolStripMenuItem,
-            this.pendingReceiptsToolStripMenuItem});
+            this.VoidedReceiptsToolStripMenuItem,
+            this.PendingReceiptsToolStripMenuItem});
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(99, 23);
@@ -196,17 +212,18 @@
             this.receiptsToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
             this.receiptsToolStripMenuItem.Text = "Receipts";
             // 
-            // voidReceiptsToolStripMenuItem
+            // VoidedReceiptsToolStripMenuItem
             // 
-            this.voidReceiptsToolStripMenuItem.Name = "voidReceiptsToolStripMenuItem";
-            this.voidReceiptsToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.voidReceiptsToolStripMenuItem.Text = "Void Receipts";
+            this.VoidedReceiptsToolStripMenuItem.Name = "VoidedReceiptsToolStripMenuItem";
+            this.VoidedReceiptsToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.VoidedReceiptsToolStripMenuItem.Text = "Void Receipts";
+            this.VoidedReceiptsToolStripMenuItem.Click += new System.EventHandler(this.VoidedReceiptsToolStripMenuItem_Click);
             // 
-            // pendingReceiptsToolStripMenuItem
+            // PendingReceiptsToolStripMenuItem
             // 
-            this.pendingReceiptsToolStripMenuItem.Name = "pendingReceiptsToolStripMenuItem";
-            this.pendingReceiptsToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.pendingReceiptsToolStripMenuItem.Text = "Pending Receipts";
+            this.PendingReceiptsToolStripMenuItem.Name = "PendingReceiptsToolStripMenuItem";
+            this.PendingReceiptsToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.PendingReceiptsToolStripMenuItem.Text = "Pending Receipts";
             // 
             // pOSToolStripMenuItem
             // 
@@ -258,13 +275,6 @@
             this.AutoLogOut.Interval = 1000;
             this.AutoLogOut.Tick += new System.EventHandler(this.AutoLogOut_Tick);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
@@ -308,8 +318,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gRNInvoicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem receiptsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem voidReceiptsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pendingReceiptsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VoidedReceiptsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PendingReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageBusinessInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ManageVehicleToolStripMenuItem;
@@ -320,5 +330,6 @@
         private System.Windows.Forms.Label LblAutoLogOut;
         private System.Windows.Forms.Timer AutoLogOut;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManageStockToolStripMenuItem1;
     }
 }

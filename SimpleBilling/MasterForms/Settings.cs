@@ -83,6 +83,11 @@ namespace SimpleBilling.MasterForms
                         TxtMinReorderValue.Text = "0";
                     if (data.QuotationPath != null)
                         TxtDefaultQuotationPath.Text = data.QuotationPath;
+                    if (data.EnableSMS)
+                        ChkEnableSMS.Checked = true;
+                    else
+                        ChkEnableSMS.Checked = false;
+
                 }
 
                 CmbEmployee.ValueMember = "EmployeeId";
@@ -341,6 +346,30 @@ namespace SimpleBilling.MasterForms
             catch (Exception ex)
             {
                 Info.Add(ex);
+            }
+        }
+
+        private void BtnSaveEnableSMS_Click(object sender, EventArgs e)
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var s = db.Settings.Take(1).FirstOrDefault();
+                if (ChkEnableSMS.Checked)
+                {
+                    s.EnableSMS = true;
+                    if (db.Entry(s).State == EntityState.Detached)
+                        db.Set<Setting>().Attach(s);
+                    db.Entry(s).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else if (!ChkEnableSMS.Checked)
+                {
+                    s.EnableSMS = false;
+                    if (db.Entry(s).State == EntityState.Detached)
+                        db.Set<Setting>().Attach(s);
+                    db.Entry(s).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
         }
     }

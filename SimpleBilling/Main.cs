@@ -1,5 +1,6 @@
 ﻿using SimpleBilling.MasterForms;
 using SimpleBilling.Model;
+using SimpleBilling.Reports;
 using System;
 using System.Windows.Forms;
 
@@ -360,6 +361,42 @@ namespace SimpleBilling
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ManageStockToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ManageStock))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            ManageStock ms = new ManageStock()
+            {
+                MdiParent = this
+            };
+            ms.Show();
+        }
+
+        private void VoidedReceiptsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(VoidedReceipts))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            VoidedReceipts vr = new VoidedReceipts()
+            {
+                MdiParent = this
+            };
+            vr.Show();
         }
     }
 }

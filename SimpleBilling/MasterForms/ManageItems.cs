@@ -1,5 +1,4 @@
 ﻿using SimpleBilling.Model;
-using Spire.DataExport.PropEditors;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -194,7 +193,7 @@ namespace SimpleBilling.MasterForms
                 }
                 else
                 {
-                    var data = (from item in db.Items.Where(c => c.Code.Contains(Input) || c.ItemName.Contains(Input) || c.PrintableName.Contains(Input) || c.Unit.Contains(Input) && !c.IsDeleted)
+                    var data = (from item in db.Items.Where(c => (c.Code.Contains(Input) || c.ItemName.Contains(Input) || c.PrintableName.Contains(Input) || c.Unit.Contains(Input)) && !c.IsDeleted)
                                 join cat in db.Categories
                                 on item.Categories.CategoryId equals cat.CategoryId
                                 join shelve in db.Shelves
@@ -273,24 +272,32 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (DGVItems.SelectedRows.Count > 0)
                 {
-                    using (BillingContext db = new BillingContext())
+                    int Id = Convert.ToInt32(DGVItems.SelectedRows[0].Cells[0].Value + string.Empty);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        int Id = Convert.ToInt32(TxtItemId.Text.Trim().ToString());
-                        Item items = db.Items.FirstOrDefault(s => s.Id == Id);
-
-                        if (items != null)
+                        using (BillingContext db = new BillingContext())
                         {
-                            items.IsDeleted = true;
-                            items.UpdatedDate = DateTime.Now;
-                            db.Entry(items).State = EntityState.Modified;
-                            items.UpdatedDate = DateTime.Now;
-                            db.SaveChanges();
-                            Info.Mes("Item Deleted Successfully");
+                            Item items = db.Items.FirstOrDefault(s => s.Id == Id);
+
+                            if (items != null)
+                            {
+                                items.IsDeleted = true;
+                                items.UpdatedDate = DateTime.Now;
+                                if (db.Entry(items).State == EntityState.Detached)
+                                    db.Set<Item>().Attach(items);
+                                db.Entry(items).State = EntityState.Modified;
+                                db.SaveChanges();
+                                Info.Mes("Item Deleted Successfully");
+                            }
                         }
                     }
+                }
+                else
+                {
+                    Info.Mes("Please Select an Item to Delete");
                 }
             }
             catch (Exception ex)

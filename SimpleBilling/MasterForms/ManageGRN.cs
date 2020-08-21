@@ -7,11 +7,13 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using SimpleBilling.Model;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 
@@ -57,6 +59,7 @@ namespace SimpleBilling.MasterForms
                 LayoutCheque.Visible = false;
                 BtnAddCheque.Visible = false;
             }
+            TxtGRNNo.Text = GenGRNNo();
             BtnGRNReturn.Enabled = false;
             BtnAddToReturn.Visible = false;
             BtnRemoveReturn.Visible = false;
@@ -126,6 +129,7 @@ namespace SimpleBilling.MasterForms
                             rs.SizeType = SizeType.Percent;
                             rs.Height = 50;
                         }
+                        BtnRemoveReturn.Visible = true;
                     }
                     else
                     {
@@ -179,7 +183,7 @@ namespace SimpleBilling.MasterForms
             }
             else
             {
-                TxtGRNNo.Text = string.Empty;
+                TxtGRNNo.Text = GenGRNNo();
                 TxtReference.Text = string.Empty;
                 LblStatus.Text = "Ready";
                 CmbProduct.Text = string.Empty;
@@ -195,6 +199,25 @@ namespace SimpleBilling.MasterForms
                 LblBalanceAmount.Text = "0";
                 DGVGRNList.DataSource = null;
                 DGVGRNList.Refresh();
+            }
+        }
+
+        private string GenGRNNo()
+        {
+            using (BillingContext db = new BillingContext())
+            {
+                var data = db.GRNHeaders.Select(c => c.GRN_Id).ToList();
+                if (data.Count > 0)
+                {
+                    int GrnNo;
+                    GrnNo = data.Max();
+                    GrnNo++;
+                    return ("GRN" + GrnNo.ToString());
+                }
+                else
+                {
+                    return ("GRN" + "1000");
+                }
             }
         }
 
@@ -1346,6 +1369,28 @@ namespace SimpleBilling.MasterForms
                 else
                 {
                     label3.ForeColor = System.Drawing.Color.White;
+                }
+            }
+        }
+
+        private void CmbProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.J)
+            {
+                try
+                {
+                    using (ItemLookup frm = new ItemLookup())
+                    {
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            CmbProduct.SelectedValue = frm.Code;
+                            CmbProduct.SelectedText = frm.ItemName;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Info.Mes(ex.Message);
                 }
             }
         }

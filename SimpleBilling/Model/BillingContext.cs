@@ -4,6 +4,9 @@ namespace SimpleBilling.Model
 {
     public class BillingContext : DbContext
     {
+        /// <summary>
+        /// Version 1.0.1.2
+        /// </summary>
         public BillingContext() : base("name=con1")
         {
             Database.SetInitializer(new BillingDBInitializer());
@@ -29,5 +32,6 @@ namespace SimpleBilling.Model
         public DbSet<PendingJob> PendingJobs { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<OrderedItem> OrderedItems { get; set; }
+        public DbSet<SMSLog> SmsLogs { get; set; }
     }
 }

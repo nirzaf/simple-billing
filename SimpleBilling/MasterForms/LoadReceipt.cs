@@ -28,12 +28,15 @@ namespace SimpleBilling.MasterForms
                 var data = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && !c.IsQuotation)
                             join cashier in db.Employee
                             on header.Cashier equals cashier.EmployeeId
+                            join cus in db.Customers
+                            on header.CustomerId equals cus.CustomerId
                             select new
                             {
                                 header.ReceiptNo,
                                 header.Date,
                                 header.Time,
                                 cashier.EmployeeName,
+                                cus.Name,
                                 header.SubTotal,
                                 header.TotalDiscount,
                                 header.NetTotal,
@@ -62,9 +65,12 @@ namespace SimpleBilling.MasterForms
         {
             try
             {
-                POS pos = new POS(ReceiptNo);
-                pos.Show();
-                Hide();
+                if (DGVLoadReceipt.SelectedRows.Count > 0)
+                {
+                    POS pos = new POS(ReceiptNo);
+                    pos.Show();
+                    Hide();
+                }
             }
             catch (Exception ex)
             {
@@ -87,42 +93,29 @@ namespace SimpleBilling.MasterForms
                 {
                     if (FilterByReceipt.Length > 0)
                     {
-                        var data = (from header in db.ReceiptHeaders
-                                    .Where(c => !c.IsDeleted && !c.IsQuotation
-                                    && c.ReceiptNo.Contains(FilterByReceipt))
+                        var data = (from header in db.ReceiptHeaders.Where(c => !c.IsDeleted && !c.IsQuotation)
                                     join cashier in db.Employee
                                     on header.Cashier equals cashier.EmployeeId
+                                    join cus in db.Customers
+                                    on header.CustomerId equals cus.CustomerId
                                     select new
                                     {
                                         header.ReceiptNo,
                                         header.Date,
                                         header.Time,
                                         cashier.EmployeeName,
+                                        cus.Name,
                                         header.SubTotal,
                                         header.TotalDiscount,
                                         header.NetTotal,
                                         header.PaymentType
-                                    }).ToList();
+                                    }).Where(c => c.ReceiptNo.Contains(FilterByReceipt) || c.Name.Contains(FilterByReceipt)
+                                    || c.EmployeeName.Contains(FilterByReceipt) || c.PaymentType == FilterByReceipt).ToList();
                         DGVLoadReceipt.DataSource = data;
                     }
                     else
                     {
-                        var data = (from header in db.ReceiptHeaders
-                                    .Where(c => !c.IsDeleted && !c.IsQuotation)
-                                    join cashier in db.Employee
-                                    on header.Cashier equals cashier.EmployeeId
-                                    select new
-                                    {
-                                        header.ReceiptNo,
-                                        header.Date,
-                                        header.Time,
-                                        cashier.EmployeeName,
-                                        header.SubTotal,
-                                        header.TotalDiscount,
-                                        header.NetTotal,
-                                        header.PaymentType
-                                    }).ToList();
-                        DGVLoadReceipt.DataSource = data;
+                        DGVLoad();
                     }
                 }
             }

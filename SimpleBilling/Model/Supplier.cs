@@ -20,6 +20,5 @@ namespace SimpleBilling.Model
         public string Email { get; set; }
         public float PendingAmount { get; set; }
         public virtual ICollection<GrnHeader> GRNHeaders { get; set; }
-
     }
 }

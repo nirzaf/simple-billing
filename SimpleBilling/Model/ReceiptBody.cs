@@ -27,5 +27,8 @@ namespace SimpleBilling.Model
 
         [Required]
         public float NetTotal { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsReturned { get; set; }
     }
 }

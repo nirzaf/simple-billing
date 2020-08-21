@@ -57,6 +57,9 @@
             this.CmbEmployee = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnSaveUsers = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.ChkEnableSMS = new System.Windows.Forms.CheckBox();
+            this.BtnSaveEnableSMS = new System.Windows.Forms.Button();
             this.BaseLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -66,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVUsers)).BeginInit();
             this.TLPUserGenerate.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // BaseLayout
@@ -82,6 +86,7 @@
             this.BaseLayout.Controls.Add(this.DGVUsers, 2, 0);
             this.BaseLayout.Controls.Add(this.TLPUserGenerate, 2, 1);
             this.BaseLayout.Controls.Add(this.tableLayoutPanel7, 2, 2);
+            this.BaseLayout.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.BaseLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BaseLayout.Location = new System.Drawing.Point(0, 0);
             this.BaseLayout.Name = "BaseLayout";
@@ -441,6 +446,45 @@
             this.BtnSaveUsers.UseVisualStyleBackColor = false;
             this.BtnSaveUsers.Click += new System.EventHandler(this.BtnSaveUsers_Click);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.ChkEnableSMS, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BtnSaveEnableSMS, 1, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(284, 116);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(421, 107);
+            this.tableLayoutPanel3.TabIndex = 13;
+            // 
+            // ChkEnableSMS
+            // 
+            this.ChkEnableSMS.AutoSize = true;
+            this.ChkEnableSMS.ForeColor = System.Drawing.Color.White;
+            this.ChkEnableSMS.Location = new System.Drawing.Point(213, 3);
+            this.ChkEnableSMS.Name = "ChkEnableSMS";
+            this.ChkEnableSMS.Size = new System.Drawing.Size(120, 23);
+            this.ChkEnableSMS.TabIndex = 0;
+            this.ChkEnableSMS.Text = "Enable SMS";
+            this.ChkEnableSMS.UseVisualStyleBackColor = true;
+            // 
+            // BtnSaveEnableSMS
+            // 
+            this.BtnSaveEnableSMS.BackColor = System.Drawing.Color.White;
+            this.BtnSaveEnableSMS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSaveEnableSMS.Location = new System.Drawing.Point(213, 56);
+            this.BtnSaveEnableSMS.Name = "BtnSaveEnableSMS";
+            this.BtnSaveEnableSMS.Size = new System.Drawing.Size(205, 48);
+            this.BtnSaveEnableSMS.TabIndex = 1;
+            this.BtnSaveEnableSMS.Text = "Save ";
+            this.BtnSaveEnableSMS.UseVisualStyleBackColor = false;
+            this.BtnSaveEnableSMS.Click += new System.EventHandler(this.BtnSaveEnableSMS_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -469,6 +513,8 @@
             this.TLPUserGenerate.ResumeLayout(false);
             this.TLPUserGenerate.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -504,5 +550,8 @@
         private System.Windows.Forms.ComboBox CmbEmployee;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button BtnSaveUsers;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.CheckBox ChkEnableSMS;
+        private System.Windows.Forms.Button BtnSaveEnableSMS;
     }
 }

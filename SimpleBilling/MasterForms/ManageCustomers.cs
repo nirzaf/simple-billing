@@ -29,14 +29,14 @@ namespace SimpleBilling
                 BtnDelete.Enabled = false;
                 using (BillingContext db = new BillingContext())
                 {
-                    customersBindingSource1.DataSource = db.Customers.Where(c => !c.IsDeleted).ToList();
+                    var data = db.Customers.Where(c => !c.IsDeleted).ToList();
+                    DGVCustomers.DataSource = data;
                 }
             }
             catch (Exception ex)
             {
                 Info.Mes(ex.Message);
             }
-
         }
 
         private void Message(string Message)
@@ -68,6 +68,7 @@ namespace SimpleBilling
             {
                 using (BillingContext db = new BillingContext())
                 {
+                    var path = db.Settings.Take(1).FirstOrDefault();
                     if (customersBindingSource1.Current is Customers cat)
                     {
                         if (db.Entry(cat).State == EntityState.Detached)
@@ -76,15 +77,20 @@ namespace SimpleBilling
                         {
                             db.Entry(cat).State = EntityState.Added;
                             cat.CreatedDate = DateTime.Now;
+                            db.SaveChanges();
+                            if (path.EnableSMS)
+                            {
+                                SMS.Sender.Send(TxtContact.Text.Trim(), "Greetings " + TxtName.Text.Trim() + ", Welcome to Carwest Auto Service");
+                            }
                             Message("Customer Added");
                         }
                         else
                         {
                             db.Entry(cat).State = EntityState.Modified;
                             cat.UpdatedDate = DateTime.Now;
+                            db.SaveChanges();
                             Message("Customer Modified");
                         }
-                        db.SaveChanges();
                     }
                 }
             }
@@ -104,25 +110,31 @@ namespace SimpleBilling
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (DGVCustomers.SelectedRows.Count > 0)
                 {
-                    using (BillingContext db = new BillingContext())
+                    int CusId = Convert.ToInt32(TxtCustomerId.Text.Trim());
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the selected Item?", "Confirmation delete", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        Customers cus = customersBindingSource1.Current as Customers;
-
-                        if (cus != null)
+                        using (BillingContext db = new BillingContext())
                         {
-                            if (db.Entry(cus).State == EntityState.Detached)
-                                db.Set<Customers>().Attach(cus);
-                            cus.IsDeleted = true;
-                            cus.UpdatedDate = DateTime.Now;
-                            db.Entry(cus).State = EntityState.Modified;
-                            cus.UpdatedDate = DateTime.Now;
-                            db.SaveChanges();
-                            Message("Customer Deleted Successfully");
+                            var cus = db.Customers.FirstOrDefault(c => c.CustomerId == CusId);
+                            if (cus != null)
+                            {
+                                if (db.Entry(cus).State == EntityState.Detached)
+                                    db.Set<Customers>().Attach(cus);
+                                cus.IsDeleted = true;
+                                cus.UpdatedDate = DateTime.Now;
+                                db.Entry(cus).State = EntityState.Modified;
+                                db.SaveChanges();
+                                Message("Customer Deleted Successfully");
+                            }
                         }
                     }
+                } 
+                else
+                {
+                    Info.Mes("Please select a customer to delete");
                 }
             }
             catch (Exception ex)
