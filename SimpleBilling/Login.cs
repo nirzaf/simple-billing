@@ -1,8 +1,8 @@
-﻿using SimpleBilling.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using SimpleBilling.Model;
 
 namespace SimpleBilling.MasterForms
 {
@@ -11,33 +11,33 @@ namespace SimpleBilling.MasterForms
         public Login()
         {
             InitializeComponent();
-            using (BillingContext db = new BillingContext())
+            using (var db = new BillingContext())
             {
                 var employee = db.Employee.Take(1).FirstOrDefault();
                 if (employee == null)
                 {
                     IList<Employee> emp = new List<Employee>
                     {
-                       new Employee()
-                       {
-                        EmployeeName = "Fazrin",
-                        Contact = "0772949123",
-                        Address = "412, Bulugohotenne, Batugoda, Kandy",
-                        Email = "mfmfazrin1986@gmail.com",
-                        SecretCode = "2222",
-                        Status = 0,
-                        CreatedDate = DateTime.Today
-                       },
-                       new Employee()
-                       {
-                        EmployeeName = "Razmy",
-                        Contact = "0772949123",
-                        Address = "412, Bulugohotenne, Batugoda, Kandy",
-                        Email = "razmy@gmail.com",
-                        SecretCode = "3333",
-                        Status = 0,
-                        CreatedDate = DateTime.Today
-                       }
+                        new Employee()
+                        {
+                            EmployeeName = "Fazrin",
+                            Contact = "0772949123",
+                            Address = "412, Bulugohotenne, Batugoda, Kandy",
+                            Email = "mfmfazrin1986@gmail.com",
+                            SecretCode = "2222",
+                            Status = 0,
+                            CreatedDate = DateTime.Today
+                        },
+                        new Employee()
+                        {
+                            EmployeeName = "Razmy",
+                            Contact = "0772949123",
+                            Address = "412, Bulugohotenne, Batugoda, Kandy",
+                            Email = "razmy@gmail.com",
+                            SecretCode = "3333",
+                            Status = 0,
+                            CreatedDate = DateTime.Today
+                        }
                     };
                     db.Employee.AddRange(emp);
                     db.SaveChanges();
